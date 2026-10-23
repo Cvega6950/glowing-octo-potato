@@ -19,6 +19,9 @@ building of **Pokémon Emerald Imperium**.
   Rookidee → Tinted Lens Noctowl with Reflect and Hypnosis, Smart AI). Play-tested to be
   beatable with Pokémon catchable before him, but not free.
 - **Ability Capsule and Ability Patch** sold at the Goldenrod Flower Shop with the Mints.
+- **Mega Evolution** (48 classic stone Megas plus Rayquaza). The Mega Ring and stones come from a new Goldenrod
+  Dept. Store 5F specialist, with stones unlocking by badge. Press **R** in the move menu to
+  Mega Evolve. Lance and Red have signature Megas. Verified for both the player and the AI.
 - **Save, hard reset and Continue** work.
 - Level caps block EXP at the cap during battle.
 
@@ -29,12 +32,12 @@ building of **Pokémon Emerald Imperium**.
 **Not started / incomplete**
 - Gyms 2–16, rivals, Rockets, Kimono Girls, Elite Four, Lance, Red (Milestones 2–5).
 - Gen 4–9 encounter roll-out: 373 national-dex families have no in-game source yet.
-- Megas, DexNav, menu move relearner and portable PC.
+- Megas for Gym Leaders (added as each Gym is reworked), DexNav, menu move relearner and portable PC.
 - A full story playthrough. Only New Game → bedroom is played without debug tools.
 
 **Blocked**
 - Emerald Imperium's custom Megas and assets: no license to reuse them (DECISIONS.md D2).
-- Enabling every standard Mega: ROM budget (99.2% of 32 MB); must be curated.
+- Z-A Megas: left off to keep ROM headroom (98.75% used with the classic set).
 - Delta testing: needs a real iPhone.
 
 Details: [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [BALANCE.md](BALANCE.md) ·

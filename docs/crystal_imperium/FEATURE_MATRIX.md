@@ -66,9 +66,10 @@ assertions); *build* = compiles into the ROM; *val* = `tools/crystal_imperium/va
 | Feature | Status | Evidence / notes |
 |---|---|---|
 | Physical/special split, modern moves/abilities/crits/weather | Existing | RHH engine. Split is an option (default ON). |
-| Mega Evolution | **Blocked by ROM budget as a whole** | Measured: enabling all 97 standard Megas builds, but the ROM goes from 94.5% → **99.2%** of 32 MB. Plan: enable a curated subset later. |
+| Mega Evolution (48 classic stone Megas + Rayquaza) | Done | emu: `mega_evolution` (player Ampharos → Mega with R in the move menu; Lance's Gyarados Mega Evolves on turn 1) and `mega_specialist` (Mega Ring gift, tiered stone shop). ROM 94.5% → 98.75%. The 48 Z-A Megas stay off: they would add another 0.44% (≈145 KB) of ROM. |
 | Primal Reversion | Missing | Same budget concern. Groudon/Kyogre are not part of the main HnS story. |
 | Emerald Imperium's 24 custom Megas (Butterfree, Empoleon D/O, Infernape, Luxray, Machamp, Snorlax, Torterra, Lapras, Kingler, Gigantamax conversions, …) | **Blocked** | No license or permission to reuse their sprites and data (D2). They also need ROM space. Alternative: original designs, or ask the Imperium team for permission. |
+| Mega trigger button | Done | HnS maps START to move info, so the Mega trigger could never fire. It is now on R (`B_GIMMICK_TRIGGER_BUTTON`). |
 | Tera / Dynamax / Z-Moves | Existing in the engine, unused | Not part of the Crystal Imperium design. |
 
 ## Quality of life (Section 10)

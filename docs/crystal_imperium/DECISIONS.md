@@ -71,3 +71,21 @@ leaders keep their ace at that cap, so the player can always match the ace's lev
 - CI uploads `CrystalImperium.gba` as a run artifact only when the repository is private.
 - Public releases should be patches plus build-from-source instructions, never ROM files.
 - Building from source needs no Nintendo ROM; the decomp tool chain produces the ROM itself.
+
+## D9. Mega Evolution: classic set, progression-gated
+
+- Measured ROM use: no Megas 94.5%; classic set (48 stone Megas plus Rayquaza) **98.75%**; adding
+  the 48 Z-A Megas 99.19%. We enable the classic set and keep `P_GEN_9_MEGA_EVOLUTIONS`
+  off, which leaves about 410 KB for later data work.
+- The player gets the **Mega Ring** from a Mega Specialist on Goldenrod Dept. Store 5F after
+  the 3rd badge (`FLAG_RECEIVED_MEGA_RING`, formerly the unused flag 0x307). Older saves have
+  it clear.
+- The same NPC sells stones for ₽10,000. Stock grows with progress so Megas don't outpace the
+  level-cap curve: badge 3 (early-route Megas), badge 6 (starters and most Gen 1–3 Megas),
+  badge 8 (pseudo-legendaries, Gyarados, Lucario), Johto Champion (Mewtwo X/Y, Latias, Latios,
+  Diancie).
+- **Trigger button:** HnS uses START for move info, which blocked the Mega trigger. The
+  trigger is now on R (`B_GIMMICK_TRIGGER_BUTTON` in `include/config/battle.h`).
+- Bosses: one signature Mega each (the engine allows one Mega per trainer per battle).
+  Lance has Gyarados, his rematch has Salamence and his postgame team has Charizard X. Red's
+  teams have Charizard Y. Gym Leaders get Megas as they are reworked.

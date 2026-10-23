@@ -1,0 +1,63 @@
+# Crystal Imperium play test: Mega Evolution for the player (R in the move menu) and for boss AI.
+!new_game()
+# Ampharos Lv 50 holding Ampharosite, plus the Mega Ring
+!give_mon(181, 50)
+!give_item(703)
+!give_item(307)
+# START > POKeMON > Ampharos > ITEM > GIVE > Ampharosite
+press START
+wait 40
+press A
+wait 120
+press A
+wait 30
+press DOWN
+press A
+wait 30
+press A
+wait 120
+press A
+wait 60
+mash B 200
+wait 60
+
+# Player Mega Evolution against Falkner
+!battle_trainer(402)
+wait 300
+press A
+wait 200
+press A
+wait 200
+press A
+wait 400
+expect16 {gBattleMons} 181 player_is_ampharos
+press A
+wait 40
+press R
+wait 30
+shot 01_mega_trigger_on.png
+press A
+wait 900
+shot 02_mega_ampharos.png
+expect16 {gBattleMons} 921 player_mega_evolved_to_ampharos_mega
+# Leave the battle: the debug battle menu is not needed, just lose the rest by soft reset
+reset
+
+# Boss AI Mega Evolution: Lance's lead Gyarados holds Gyaradosite
+!new_game()
+!give_mon(181, 50)
+!battle_trainer(441)
+wait 300
+press A
+wait 200
+press A
+wait 200
+press A
+wait 400
+expect16 {gBattleMons+136} 130 lance_leads_gyarados
+press A
+wait 40
+press A
+wait 1200
+shot 03_lance_mega_gyarados.png
+expect16 {gBattleMons+136} 917 lance_gyarados_mega_evolved

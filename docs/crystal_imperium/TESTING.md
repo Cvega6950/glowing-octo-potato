@@ -20,6 +20,8 @@ depending on RNG where possible.
 |---|---|---|
 | `falkner.emu` | Boot, intro, settings menu (Minimal Grinding ON by default), debug-given team at the cap, 31 IV / 0 EV max HP for Cyndaquil and Geodude, Falkner leads Pidgey, full battle against the real AI runs to completion | PASS (2026-10-23) |
 | `save_load.emu` | In-game save to Flash, hard reset, Continue, party restored, game playable | PASS (2026-10-23) |
+| `mega_specialist.emu` | Goldenrod Dept. Store 5F: Mega Ring gift dialogue after badge 3, stone shop shows the 8-badge tier (ends at Garchompite; Champion-tier stones absent) | PASS (2026-10-23). Checked by screenshot; no memory assertion. |
+| `mega_evolution.emu` | Player's Ampharos holding Ampharosite Mega Evolves with R in the move menu (species 181 → 921); Lance's lead Gyarados Mega Evolves on turn 1 (130 → 917) | PASS (2026-10-23) |
 | `flower_shop.emu` | Debug warp to the Goldenrod Flower Shop; Mints, Ability Capsule (₽20,000) and Ability Patch (₽40,000) listed after badge 3 | PASS (2026-10-23). Checked by screenshot only; the test has no memory assertion yet, so it only fails on a crash. |
 
 Screenshots from each run are written to `build/emurun/<test>/`.

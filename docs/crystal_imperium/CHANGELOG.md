@@ -1,5 +1,22 @@
 # Crystal Imperium changelog
 
+## 0.2.0-experimental (2026-10-23)
+
+### Gameplay
+- **Mega Evolution** enabled for the 48 classic stone Megas and Mega Rayquaza. Press **R** in the move menu to Mega
+  Evolve.
+- A Mega Specialist on Goldenrod Dept. Store 5F gives the **Mega Ring** after the third badge
+  and sells Mega Stones (₽10,000). More stones unlock at badges 6 and 8 and after becoming
+  Champion.
+- Boss Megas: Lance (Gyarados), Lance rematch (Salamence), Lance postgame (Charizard X),
+  Red (Charizard Y).
+
+### Fixes
+- The gimmick trigger moved from START (taken by HnS's move info) to R.
+
+### Tooling
+- New play tests: `mega_evolution`, `mega_specialist`. New harness macro `give_item`.
+
 ## 0.1.0-experimental (2026-10-23)
 
 Based on Pokémon Heart & Soul 2.0.6 (`167aa6d5`).

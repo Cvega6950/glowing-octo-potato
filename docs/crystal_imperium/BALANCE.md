@@ -66,6 +66,22 @@ all Lv 11, no items):
   fourth Pokémon (Larvitar, Pichu, Phanpy) or leading Mareep into Noctowl improves the odds.
   This is the intended Gym 1 difficulty.
 
+## Mega Evolution
+
+| Stage | Stones sold by the Goldenrod Mega Specialist |
+|---|---|
+| Badge 3 (Mega Ring given) | Beedrill, Pidgeot, Ampharos, Heracross, Pinsir, Audino, Lopunny, Manectric, Sableye, Banette, Staraptor |
+| Badge 6 | Venusaur, Charizard X/Y, Blastoise, Sceptile, Blaziken, Swampert, Gengar, Alakazam, Slowbro, Steelix, Scizor, Houndoom, Absol, Glalie, Abomasnow, Altaria, Camerupt, Sharpedo, Aggron, Medicham, Gardevoir, Gallade, Aerodactyl, Kangaskhan, Mawile |
+| Badge 8 | Gyarados, Lucario, Tyranitar, Salamence, Metagross, Garchomp |
+| Johto Champion | Mewtwo X/Y, Latias, Latios, Diancie |
+
+The first tier is mostly weaker Megas, so having a Mega around Whitney/Morty adds options
+without breaking the level-cap curve. Medicham (Pure Power) and Kangaskhan (Parental Bond)
+are held back to badge 6 on purpose.
+
+Boss Megas so far: Lance (Gyarados), Lance rematch (Salamence), Lance postgame (Charizard X),
+Red and Red postgame (Charizard Y). Each one uses a stone the player can buy before that fight.
+
 ## Planned Gym designs (Milestones 2–3)
 
 Every leader keeps a recognisable signature Pokémon. These designs are drafts until they are

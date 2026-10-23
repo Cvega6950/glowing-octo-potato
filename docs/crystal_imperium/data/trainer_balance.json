@@ -3157,7 +3157,7 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Leftovers",
+     "item": "Gyaradosite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 54,
      "moves": [
@@ -3242,6 +3242,7 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
+     "item": "Salamencite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 69,
      "moves": [
@@ -3399,6 +3400,7 @@
     },
     {
      "ability": "Blaze",
+     "item": "Charizardite X",
      "level": 78,
      "moves": [
       "Fire Blast",
@@ -4311,7 +4313,7 @@
      "species": "Snorlax"
     },
     {
-     "item": "Charcoal",
+     "item": "Charizardite Y",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 79,
      "moves": [
@@ -4397,6 +4399,7 @@
     },
     {
      "ability": "Blaze",
+     "item": "Charizardite Y",
      "level": 87,
      "moves": [
       "Fire Blast",

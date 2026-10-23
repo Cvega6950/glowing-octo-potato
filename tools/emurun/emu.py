@@ -46,6 +46,13 @@ def give_mon(species, level):
     return out
 
 
+def give_item(item_id, quantity=1):
+    """Debug menu > Give X > Give item XYZ: item id, then quantity."""
+    out = open_debug() + ["press DOWN"] * 3 + ["press A", "wait 30", "press A", "wait 30"]
+    out += number(item_id) + ["press A", "wait 30"] + number(quantity) + ["press A", "wait 60", "mash B 60"]
+    return out
+
+
 def cheat_start():
     """Debug menu > Utilities > Cheat start (sets all eight badge flags, among others)."""
     return open_debug() + ["press A", "wait 30"] + ["press DOWN"] * 6 + ["press A", "wait 300", "mash B 120"]

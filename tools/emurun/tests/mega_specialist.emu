@@ -1,0 +1,33 @@
+# Crystal Imperium play test: the Goldenrod Dept. Store 5F Mega Specialist gives the Mega Ring
+# after the third badge and sells Mega Stones (tier unlocked by eight badges here).
+!new_game()
+!cheat_start()
+!max_money()
+# 5F, arriving on the stairs from 4F at (22,5)
+!warp(5, 24, 1)
+shot 01_5f.png
+# (22,5) -> (25,8), then face the specialist at (26,8)
+!walk("DOWN", 3, "RIGHT", 3)
+press RIGHT
+wait 20
+press A
+wait 60
+shot 02_intro.png
+mash A 600
+shot 03_ring_given.png
+mash B 200
+wait 60
+# Talk again: straight to the shop
+press RIGHT
+wait 20
+press A
+wait 120
+press A
+wait 60
+press A
+wait 60
+shot 04_shop_top.png
+press UP
+wait 10
+shot 05_shop_end.png
+mash B 300
