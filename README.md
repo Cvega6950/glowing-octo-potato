@@ -1,3 +1,7 @@
+> **This fork is Pokémon Crystal Imperium**: Heart & Soul with Emerald Imperium-style difficulty
+> and Minimal Grinding Mode. See [docs/crystal_imperium/README.md](docs/crystal_imperium/README.md)
+> for status, build steps and how to play on Delta. The original Heart & Soul README follows.
+
 ![HnS Logo](HnS_Logo.png)
 
 # About `pokemonHnS-expansion`
