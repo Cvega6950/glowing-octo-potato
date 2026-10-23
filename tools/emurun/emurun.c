@@ -14,6 +14,9 @@
 //   savestate/loadstate FILE   write or restore a full emulator state
 //   poke8/poke16/poke32 ADDR VALUE   write memory
 //   reset                  soft reset the core
+//   autobattle MOVES MAXFRAMES key=ADDR...   play the current battle to the end (see AutoBattle)
+//   tally NAME ADDR VALUE  count runs of NAME, and how many had the 8-bit value at ADDR == VALUE
+//   expecttally NAME MIN MAX   fail unless the matching count of NAME is within [MIN, MAX]
 // KEY: A B SELECT START RIGHT LEFT UP DOWN R L
 #include <mgba/core/core.h>
 #include <mgba/core/config.h>
@@ -32,6 +35,24 @@ static color_t *videoBuffer;
 static unsigned width, height;
 static unsigned long frameCount;
 static int failures;
+
+#define MAX_TALLIES 16
+static struct { char name[64]; int hits, runs; } sTallies[MAX_TALLIES];
+
+static int *TallySlot(const char *name, int create, int **runs)
+{
+    for (int i = 0; i < MAX_TALLIES; i++)
+    {
+        if (sTallies[i].name[0] == 0 && create)
+            snprintf(sTallies[i].name, sizeof(sTallies[i].name), "%s", name);
+        if (!strcmp(sTallies[i].name, name))
+        {
+            *runs = &sTallies[i].runs;
+            return &sTallies[i].hits;
+        }
+    }
+    return NULL;
+}
 
 static void QuietLog(struct mLogger *logger, int category, enum mLogLevel level, const char *format, va_list args)
 {
@@ -111,6 +132,146 @@ static uint32_t Peek(int size, uint32_t addr)
     case 16: return core->busRead16(core, addr);
     default: return core->busRead32(core, addr);
     }
+}
+
+// Battle autopilot. Reads the game's battle state each frame and answers whatever input it is
+// waiting for, so play tests don't depend on RNG or text timing.
+//   MOVES: one entry per party slot, the move slot (0-3) that Pokemon uses, e.g. "2,3,1".
+//          Append 'm' (e.g. "2m") to press the gimmick trigger (Mega Evolution) first.
+//   key=ADDR pairs (emu.py fills these from the ELF): main outcome ctrl act mov actcur movcur
+//          partyidx party count pmenu pmenucb2 battlecb2 mons (gBattleMons, for the turn log)
+// Forced switches send out the first party Pokemon that still has HP and is not already active.
+struct AutoSyms
+{
+    uint32_t main, outcome, ctrl, act, mov, actcur, movcur, partyidx, party, count, pmenu, pmenucb2, battlecb2, mons;
+};
+
+static void Tap(unsigned keys)
+{
+    RunFrames(keys, 4);
+    RunFrames(0, 8);
+}
+
+static int PartyHp(const struct AutoSyms *sy, int slot)
+{
+    return Peek(16, sy->party + slot * 100 + 86);
+}
+
+static void AutoBattle(const char *movesArg, unsigned long maxFrames, const struct AutoSyms *sy)
+{
+    int moves[6] = {0}, mega[6] = {0};
+    const char *p = movesArg;
+    for (int i = 0; i < 6 && *p; i++)
+    {
+        moves[i] = *p - '0';
+        p++;
+        if (*p == 'm')
+        {
+            mega[i] = 1;
+            p++;
+        }
+        if (*p == ',')
+            p++;
+    }
+
+    unsigned long start = frameCount, idle = 0;
+    int turns = 0, switches = 0, megaPressed = 0, shownMoves = 0;
+    uint32_t outcome = 0;
+    while (frameCount - start < maxFrames)
+    {
+        outcome = Peek(8, sy->outcome);
+        uint32_t cb2 = Peek(32, sy->main + 4) & ~1u;   // gMain.callback2
+        uint32_t ctrl = Peek(32, sy->ctrl) & ~1u;           // gBattlerControllerFuncs[0]
+        if (outcome != 0 && cb2 != sy->battlecb2)
+            break;
+        if (cb2 == sy->pmenucb2)
+        {
+            // Skip the active battler: it may still have HP after a voluntary switch (U-turn, Teleport)
+            int target = -1, count = Peek(8, sy->count), active = Peek(8, sy->partyidx);
+            for (int i = 0; i < count && i < 6; i++)
+            {
+                if (PartyHp(sy, i) > 0 && i != active)
+                {
+                    target = i;
+                    break;
+                }
+            }
+            int slot = (int8_t)Peek(8, sy->pmenu + 9);
+            if (target < 0 || slot == target)
+            {
+                Tap(1u << 0); // A: choose the Pokemon
+                RunFrames(0, 30);
+                Tap(1u << 0); // A: SEND OUT
+                RunFrames(0, 60);
+                switches++;
+                printf("[frame %lu] autobattle: switch to party slot %d\n", frameCount, target);
+            }
+            else
+            {
+                Tap(slot < target ? 1u << 7 : 1u << 6); // DOWN / UP
+            }
+            idle = 0;
+        }
+        else if (ctrl == sy->act)
+        {
+            if (Peek(8, sy->actcur) != 0)
+                Tap(1u << 6 | 1u << 5); // UP+LEFT: back to BATTLE
+            else
+                Tap(1u << 0);
+            idle = 0;
+        }
+        else if (ctrl == sy->mov)
+        {
+            int slot = Peek(8, sy->partyidx);
+            int want = moves[slot < 6 ? slot : 0], cur = Peek(8, sy->movcur);
+            if (cur != want)
+            {
+                if ((cur ^ want) & 1)
+                    Tap((want & 1) ? 1u << 4 : 1u << 5); // RIGHT / LEFT
+                else
+                    Tap((want & 2) ? 1u << 7 : 1u << 6); // DOWN / UP
+            }
+            else
+            {
+                if (mega[slot] && !(megaPressed & (1 << slot)))
+                {
+                    Tap(1u << 8); // R: gimmick trigger
+                    megaPressed |= 1 << slot;
+                }
+                // BattlePokemon is 0x88 bytes: species +0, moves +12, hp +42, level +44, maxHP +46
+                if (!(shownMoves & (1 << slot)))
+                {
+                    shownMoves |= 1 << slot;
+                    printf("[frame %lu] autobattle: party slot %d species %u knows move %u / move %u / move %u / move %u\n",
+                           frameCount, slot, Peek(16, sy->mons), Peek(16, sy->mons + 12), Peek(16, sy->mons + 14),
+                           Peek(16, sy->mons + 16), Peek(16, sy->mons + 18));
+                }
+                printf("[frame %lu] autobattle: turn %d: player species %u %u/%u uses move %u (slot %d)%s vs opponent species %u %u/%u\n",
+                       frameCount, turns + 1, Peek(16, sy->mons), Peek(16, sy->mons + 42), Peek(16, sy->mons + 46),
+                       Peek(16, sy->mons + 12 + 2 * want), want,
+                       mega[slot] && (megaPressed & (1 << slot)) ? " (mega)" : "",
+                       Peek(16, sy->mons + 0x88), Peek(16, sy->mons + 0x88 + 42), Peek(16, sy->mons + 0x88 + 46));
+                Tap(1u << 0);
+                turns++;
+            }
+            idle = 0;
+        }
+        else
+        {
+            RunFrames(0, 1);
+            // Some messages wait for a button; nudge them along
+            if (++idle % 60 == 0)
+                Tap(1u << 0);
+        }
+    }
+    // Let the post-battle text and fade finish
+    for (int i = 0; i < 40 && (Peek(32, sy->main + 4) & ~1u) == sy->battlecb2; i++)
+        Tap(1u << 0);
+    printf("[frame %lu] autobattle: outcome=%u (1=won 2=lost) turns=%d forced_switches=%d party_hp=",
+           frameCount, outcome, turns, switches);
+    for (int i = 0; i < (int)Peek(8, sy->count) && i < 6; i++)
+        printf("%s%d", i ? "/" : "", PartyHp(sy, i));
+    printf("\n");
 }
 
 int main(int argc, char **argv)
@@ -196,7 +357,7 @@ int main(int argc, char **argv)
             uint32_t addr = strtoul(a1, NULL, 0);
             printf("[frame %lu] %s @0x%08X = 0x%X (%u)\n", frameCount, n > 2 ? a2 : "peek", addr, Peek(size, addr), Peek(size, addr));
         }
-        else if (!strncmp(cmd, "expect", 6))
+        else if (!strncmp(cmd, "expect", 6) && strcmp(cmd, "expecttally"))
         {
             int negate = !strncmp(cmd, "expectne", 8);
             int size = atoi(cmd + (negate ? 8 : 6));
@@ -229,6 +390,60 @@ int main(int argc, char **argv)
                 core->busWrite16(core, addr, value);
             else
                 core->busWrite32(core, addr, value);
+        }
+        else if (!strcmp(cmd, "autobattle"))
+        {
+            struct AutoSyms sy = {0};
+            char *rest = line;
+            for (int skip = 0; skip < 3 && rest; skip++)
+            {
+                rest = strpbrk(rest, " \t");
+                if (rest)
+                    rest += strspn(rest, " \t");
+            }
+            for (char *tok = rest ? strtok(rest, " \t\n") : NULL; tok; tok = strtok(NULL, " \t\n"))
+            {
+                char *eq = strchr(tok, '=');
+                if (!eq)
+                    continue;
+                *eq = 0;
+                uint32_t v = strtoul(eq + 1, NULL, 0) & ~1u;
+                if (!strcmp(tok, "main")) sy.main = v;
+                else if (!strcmp(tok, "outcome")) sy.outcome = v;
+                else if (!strcmp(tok, "ctrl")) sy.ctrl = v;
+                else if (!strcmp(tok, "act")) sy.act = v;
+                else if (!strcmp(tok, "mov")) sy.mov = v;
+                else if (!strcmp(tok, "actcur")) sy.actcur = v;
+                else if (!strcmp(tok, "movcur")) sy.movcur = v;
+                else if (!strcmp(tok, "partyidx")) sy.partyidx = v;
+                else if (!strcmp(tok, "party")) sy.party = v;
+                else if (!strcmp(tok, "count")) sy.count = v;
+                else if (!strcmp(tok, "mons")) sy.mons = v;
+                else if (!strcmp(tok, "pmenu")) sy.pmenu = v;
+                else if (!strcmp(tok, "pmenucb2")) sy.pmenucb2 = v;
+                else if (!strcmp(tok, "battlecb2")) sy.battlecb2 = v;
+            }
+            AutoBattle(a1, strtoul(a2, NULL, 0), &sy);
+        }
+        else if (!strcmp(cmd, "tally"))
+        {
+            int *runs, *hits = TallySlot(a1, 1, &runs);
+            int hit = Peek(8, strtoul(a2, NULL, 0)) == strtoul(a3, NULL, 0);
+            if (hits)
+            {
+                *hits += hit;
+                (*runs)++;
+                printf("[frame %lu] tally %s: run %d %s (%d/%d)\n", frameCount, a1, *runs, hit ? "hit" : "miss", *hits, *runs);
+            }
+        }
+        else if (!strcmp(cmd, "expecttally"))
+        {
+            int *runs, *hits = TallySlot(a1, 0, &runs);
+            int lo = atoi(a2), hi = atoi(a3), got = hits ? *hits : 0;
+            int ok = hits && got >= lo && got <= hi;
+            printf("[frame %lu] %s tally %s: %d/%d (want %d..%d)\n", frameCount, ok ? "PASS" : "FAIL", a1, got, hits ? *runs : 0, lo, hi);
+            if (!ok)
+                failures++;
         }
         else if (!strcmp(cmd, "reset"))
             core->reset(core);

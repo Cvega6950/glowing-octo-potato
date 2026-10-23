@@ -35,6 +35,14 @@ def new_game():
     return out
 
 
+def battle_style_set():
+    """START > OPTION > BATTLE STYLE = SET, so trainer battles never ask "Will you switch?"."""
+    out = ["press START", "wait 40", "press UP", "press UP", "press A", "wait 120"]
+    out += ["press DOWN", "wait 10", "press DOWN", "wait 10", "press RIGHT", "wait 10", "shot options_set.png"]
+    out += ["press B", "wait 120", "press B", "wait 60"]
+    return out
+
+
 def open_debug():
     return ["hold R 10", "hold R+START 6", "hold R 6", "wait 40"]
 
@@ -88,10 +96,15 @@ def battle_trainer(trainer_id):
     return out
 
 
-def turn(*moves, shots=None):
-    """One battle turn per argument: 0-3 picks that move slot. Battle text auto-advances."""
+def turn(*moves, shots=None, decline_switch=False):
+    """One battle turn per argument: 0-3 picks that move slot. Battle text auto-advances.
+
+    decline_switch=True presses B first, which answers a "Will you switch?" prompt with No
+    and is harmless on the action menu (the cursor is reset right after)."""
     out = []
     for i, m in enumerate(moves):
+        if decline_switch:
+            out += ["press B", "wait 30"]
         out += ["press UP", "press LEFT", "press A", "wait 30", "press UP", "press LEFT"]
         if m & 1:
             out.append("press RIGHT")
@@ -103,18 +116,58 @@ def turn(*moves, shots=None):
     return out
 
 
+def autobattle(moves, max_frames=60000):
+    """Play the current battle to the end. moves: per party slot, the move slot (0-3) to use,
+    e.g. "2,3,1,2"; add 'm' to Mega Evolve first ("2m"). Forced switches pick the first healthy
+    Pokemon. Prints the outcome, turn count and remaining party HP."""
+    keys = ["main={gMain}", "outcome={gBattleOutcome}", "ctrl={gBattlerControllerFuncs}",
+            "act={HandleInputChooseAction@battle_controller_player}", "mov={HandleInputChooseMove}",
+            "actcur={gActionSelectionCursor}", "movcur={gMoveSelectionCursor}",
+            "partyidx={gBattlerPartyIndexes}", "party={gPlayerParty}", "count={gPlayerPartyCount}",
+            "mons={gBattleMons}", "pmenu={gPartyMenu}",
+            "pmenucb2={CB2_UpdatePartyMenu}", "battlecb2={BattleMainCB2}"]
+    return [f"autobattle {moves} {max_frames} " + " ".join(keys)]
+
+
+def sample_battle(trainer_id, moves, runs=5, min_wins=1, max_wins=None, state="team.ss"):
+    """Fight trainer_id `runs` times from the saved team state, starting each battle a few frames
+    later so the battle RNG differs, and require between min_wins and max_wins wins.
+    Save the team first with `savestate team.ss` (paths are relative to the output directory)."""
+    out = []
+    for k in range(runs):
+        out += [f"loadstate {state}", f"wait {1 + 37 * k}"] + battle_trainer(trainer_id) + autobattle(moves)
+        out += [f"tally wins_vs_{trainer_id} {{gBattleOutcome}} 1"]
+    out.append(f"expecttally wins_vs_{trainer_id} {min_wins} {runs if max_wins is None else max_wins}")
+    return out
+
+
 def send_out(slot):
     """Answer the 'Will you switch?' prompt / forced switch: party slot 1-5, then confirm."""
     return ["press A", "wait 150"] + ["press DOWN", "wait 10"] * slot + ["press A", "wait 30", "press A", "wait 500"]
 
 
 def symbols(elf):
+    """name -> address. Static functions that exist in several objects are also available as
+    name@object (e.g. HandleInputChooseAction@battle_controller_player), resolved via the .map."""
     out = subprocess.run(["arm-none-eabi-nm", elf], check=True, capture_output=True, text=True).stdout
-    table = {}
+    table, dupes = {}, {}
     for line in out.splitlines():
         parts = line.split()
         if len(parts) == 3:
-            table[parts[2]] = int(parts[0], 16)
+            addr = int(parts[0], 16)
+            table[parts[2]] = addr
+            dupes.setdefault(parts[2], []).append(addr)
+    mapfile = os.path.splitext(elf)[0] + ".map"
+    if os.path.exists(mapfile):
+        for line in open(mapfile):
+            m = re.match(r"\s*\.text\s+0x([0-9a-f]+)\s+0x([0-9a-f]+)\s+\S*?([\w]+)\.o$", line)
+            if not m:
+                continue
+            lo, size, obj = int(m.group(1), 16), int(m.group(2), 16), m.group(3)
+            for name, addrs in dupes.items():
+                for a in addrs:
+                    if lo <= a < lo + size:
+                        table[f"{name}@{obj}"] = a
     return table
 
 
@@ -129,11 +182,10 @@ def expand(path, syms):
             if name not in syms:
                 sys.exit(f"{path}: unknown symbol {name}")
             return hex(syms[name] + off)
-        line = re.sub(r"\{(\w+)(?:\+(\d+))?\}", sub, line)
         if line.startswith("!"):
-            lines += eval(line[1:])
+            lines += [re.sub(r"\{([\w@]+)(?:\+(\d+))?\}", sub, l) for l in eval(line[1:])]
         else:
-            lines.append(line)
+            lines.append(re.sub(r"\{([\w@]+)(?:\+(\d+))?\}", sub, line))
     return lines
 
 
