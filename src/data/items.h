@@ -1647,8 +1647,9 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_ABILITY_CAPSULE] =
     {
         .name = ITEM_NAME("ABILITY CAPSULE"),
+    // Crystal Imperium: priced like a Mint so it is usable for mid-game team building
     #if I_PRICE >= GEN_9
-        .price = 100000,
+        .price = 20000,
     #elif I_PRICE >= GEN_7
         .price = 10000,
     #else
@@ -1670,7 +1671,7 @@ const struct ItemInfo gItemsInfo[] =
     {
         .name = ITEM_NAME("ABILITY PATCH"),
         .pluralName = ITEM_PLURAL_NAME("Ability Patches"),
-        .price = (I_PRICE >= GEN_9) ? 250000 : 20,
+        .price = (I_PRICE >= GEN_9) ? 40000 : 20, // Crystal Imperium: 250000 in Gen 9
         .holdEffectParam = 0,
         .description = COMPOUND_STRING(
             "Turns the ability\n"
