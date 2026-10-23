@@ -459,15 +459,25 @@ Pic: Bird Keeper
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Pidgey
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 8
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Keen Eye
+- Gust
+- Quick Attack
+- Sand Attack
+- Tackle
 
 Natu
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 8
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Synchronize
+- Peck
+- Leer
+- Night Shade
+- Teleport
 
 === TRAINER_ABE_HNS ===
 Name: ABE
@@ -476,11 +486,25 @@ Pic: Bird Keeper
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Spearow
+Hoothoot
+Level: 8
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Insomnia
+- Peck
+- Hypnosis
+- Growl
+- Tackle
+
+Spearow @ Oran Berry
 Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Keen Eye
+- Peck
+- Fury Attack
+- Leer
+- Pursuit
 
 === TRAINER_BRYAN_HNS ===
 Name: BRYAN
@@ -6412,19 +6436,38 @@ Pic: Sage Leader Hns
 Gender: Male
 Music: Hg Sage
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer / Smart Switching / Ace Pokemon
+Mugshot: Light Blue
 
-Oddish
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
-
-Sunkern
+Gastly
 Level: 8
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+Ability: Levitate
+Nature: Timid
+- Lick
+- Hypnosis
+- Spite
+- Mean Look
 
-Bellsprout
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Hoppip
+Level: 8
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+Ability: Chlorophyll
+Nature: Jolly
+- Absorb
+- Synthesis
+- Poison Powder
+- Tail Whip
+
+Bellsprout @ Oran Berry
+Level: 10
+IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
+Ability: Chlorophyll
+Nature: Adamant
+- Vine Whip
+- Growth
+- Wrap
+- Acid
 
 === TRAINER_GAKU_HNS ===
 Name: GAKU
@@ -7173,22 +7216,38 @@ Pic: Leader Falkner Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Light Blue
 
-Pidgey
-Level: 8
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
+Pidgey @ Oran Berry
+Level: 9
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Big Pecks
+Nature: Timid
+- Tailwind
+- Gust
 - Sand Attack
 - Quick Attack
 
+Rookidee
+Level: 10
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Keen Eye
+Nature: Adamant
+- Hone Claws
+- Power Trip
+- Peck
+- Leer
+
 Noctowl @ Sitrus Berry
 Level: 11
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Tackle
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Tinted Lens
+Nature: Modest
+- Hypnosis
+- Air Cutter
+- Confusion
 - Mud Slap
-- Peck
 
 === TRAINER_FALKNER_2_HNS ===
 Name: FALKNER
