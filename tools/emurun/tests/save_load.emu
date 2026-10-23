@@ -1,0 +1,35 @@
+# Crystal Imperium play test: in-game save survives a hard reset and Continue restores it.
+# Run with --save so the cartridge save (Flash 128K) is backed by a real file.
+!new_game()
+!give_mon(152, 5)
+expect8 {gPlayerPartyCount} 1 party_before_save
+# START > SAVE (third from the bottom, reached by wrapping upward) > confirm
+press START
+wait 40
+press UP
+press UP
+press UP
+press A
+wait 120
+shot 01_save_prompt.png
+press A
+wait 400
+mash A 300
+shot 02_saved.png
+reset
+wait 1300
+press START
+wait 120
+shot 03_continue_menu.png
+wait 200
+# The first press finishes the menu fade-in, the second selects CONTINUE
+press A
+wait 100
+press A
+wait 900
+shot 04_loaded.png
+expect8 {gPlayerPartyCount} 1 party_after_load
+# The loaded game is playable: open the start menu in the overworld
+press START
+wait 60
+shot 05_start_menu_after_load.png

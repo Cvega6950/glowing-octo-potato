@@ -1,0 +1,28 @@
+# Crystal Imperium play test: Goldenrod Flower Shop sells Mints, Ability Capsules and Ability Patches
+# once the third badge is obtained.
+!new_game()
+!cheat_start()
+!max_money()
+!warp(5, 7, 0)
+shot 01_flower_shop.png
+# Door (6,9) -> (7,4), the tile left of the clerk at (8,4); turning costs a step's worth of frames
+!walk("UP", 4, "RIGHT", 2, "UP", 1)
+press RIGHT
+wait 20
+hold RIGHT 16
+wait 20
+press A
+wait 120
+press A
+wait 60
+shot 02_mart_menu.png
+press A
+wait 60
+# Scroll to the end of the list (wraps), where the ability items are
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+shot 03_mart_list_end.png

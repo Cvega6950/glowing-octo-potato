@@ -1,0 +1,103 @@
+# Crystal Imperium play test: boot -> new game -> settings -> Falkner (trainer 402).
+# Team: Cyndaquil / Mareep / Geodude at the pre-Falkner level cap (11), given via the debug menu.
+# Passes when the battle is won with the strategy recorded in docs/crystal_imperium/BALANCE.md.
+
+# Title screen and Oak's intro (name entry is filled by mashing A)
+wait 1300
+press START
+wait 60
+press A
+wait 500
+mash A 900
+mash A 900
+shot 01_settings_intro.png
+# Challenge menu: confirm defaults (Minimal Grinding ON) from the Challenges tab
+mash A 700
+shot 02_challenge_menu.png
+press R
+wait 20
+press R
+wait 20
+press R
+wait 20
+press R
+wait 20
+press R
+wait 30
+press UP
+wait 30
+press A
+wait 120
+press A
+wait 120
+mash A 1500
+mash A 1200
+wait 300
+shot 03_overworld.png
+
+# Team at the level cap
+!give_mon(155, 11)
+!give_mon(179, 11)
+!give_mon(74, 11)
+expect8 {gPlayerPartyCount} 3 party_has_three_mons
+# Minimal Grinding: Lv11 Cyndaquil with 31 IVs / 0 EVs has exactly 32 max HP (maxHP is at offset 88)
+expect16 {gPlayerParty+88} 32 cyndaquil_max_hp_31iv_0ev
+expect16 {gPlayerParty+288} 33 geodude_max_hp_31iv_0ev
+
+# Falkner
+!battle_trainer(402)
+wait 300
+press A
+wait 200
+press A
+wait 200
+press A
+wait 220
+shot 04_falkner_start.png
+expect16 {gBattleMons+136} 16 falkner_leads_pidgey
+# Cyndaquil Embers the Tailwind Pidgey
+!turn(2, 2, 2, 2)
+# Switch to Geodude when Rookidee comes in
+press A
+wait 200
+press A
+wait 150
+press A
+wait 150
+press A
+wait 80
+press DOWN
+press DOWN
+press A
+wait 30
+press A
+wait 600
+# Defense Curl, then Rollout until Geodude falls to Noctowl
+!turn(0, 3, 3, 3, 3, 3, 3)
+shot 05_geodude_down.png
+# Mareep: Thunder Wave, then Thunder Shock
+press A
+wait 150
+press DOWN
+wait 10
+press A
+wait 30
+press A
+wait 500
+!turn(1, 2, 2, 2, 2, 2)
+shot 06_mareep_down.png
+# Last Pokemon: Cyndaquil (slot 2) Embers Noctowl
+press B
+wait 60
+press DOWN
+wait 30
+press A
+wait 30
+press A
+wait 500
+!turn(2, 2, 2, 2, 2, 2)
+mash A 1200
+wait 300
+shot 07_result.png
+peek8 {gBattleOutcome} battle_outcome_1_win_2_loss
+expectne8 {gBattleOutcome} 0 battle_ran_to_completion
