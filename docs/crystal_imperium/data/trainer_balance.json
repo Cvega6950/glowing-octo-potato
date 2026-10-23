@@ -851,7 +851,7 @@
    "pic": "Elite Four Bruno Hns"
   },
   "TRAINER_BUGSY_1_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -859,37 +859,58 @@
    "items": "Potion / Potion",
    "mons": [
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
+     "ability": "Insomnia",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 14,
+     "moves": [
+      "Sticky Web",
+      "Night Shade",
+      "Poison Sting",
+      "Infestation"
+     ],
+     "nature": "Jolly",
+     "species": "Spinarak"
+    },
+    {
+     "ability": "Sturdy",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 15,
      "moves": [
-      "Pin Missile",
-      "Headbutt",
-      "Rollout",
-      "Harden"
+      "Spikes",
+      "Rock Tomb",
+      "Bug Bite",
+      "Protect"
      ],
+     "nature": "Relaxed",
      "species": "Pineco"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
+     "ability": "Early Bird",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 15,
      "moves": [
-      "Thunder Punch",
-      "Comet Punch",
-      "Supersonic",
-      "Reflect"
+      "Reflect",
+      "Light Screen",
+      "Silver Wind",
+      "Mach Punch"
      ],
+     "nature": "Calm",
      "species": "Ledian"
     },
     {
-     "item": "Berry Juice",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
+     "ability": "Technician",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 16,
      "moves": [
-      "Quick Attack",
       "Fury Cutter",
-      "U Turn",
-      "Pursuit"
+      "Wing Attack",
+      "Bug Bite",
+      "Quick Attack"
      ],
+     "nature": "Jolly",
      "species": "Scyther"
     }
    ],
@@ -5970,45 +5991,63 @@
    "pic": "Leader Sabrina Hns"
   },
   "TRAINER_WHITNEY_1_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_WHITNEY_1_HNS",
-   "items": "Super Potion / Potion",
+   "items": "Potion",
    "mons": [
     {
-     "ivs": "2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe",
-     "level": 20,
+     "ability": "Magic Guard",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 18,
      "moves": [
-      "Headbutt",
-      "Charm",
-      "Sweet Kiss",
-      "Metronome"
+      "Double Slap",
+      "Metronome",
+      "Encore",
+      "Charm"
      ],
+     "nature": "Bold",
      "species": "Clefairy"
     },
     {
-     "ivs": "2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe",
-     "level": 20,
+     "ability": "Pickup",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 19,
      "moves": [
-      "Fury Swipes",
-      "Fake Tears",
-      "Lick",
-      "Mud Slap"
+      "Fake Out",
+      "Double Hit",
+      "U Turn",
+      "Astonish"
      ],
-     "species": "Teddiursa"
+     "nature": "Jolly",
+     "species": "Aipom"
     },
     {
-     "item": "Sitrus Berry",
-     "ivs": "2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe",
+     "ability": "Intimidate",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 19,
+     "moves": [
+      "Hypnosis",
+      "Stomp",
+      "Zen Headbutt",
+      "Take Down"
+     ],
+     "nature": "Adamant",
+     "species": "Stantler"
+    },
+    {
+     "ability": "Scrappy",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 21,
      "moves": [
       "Rollout",
-      "Attract",
-      "Stomp",
-      "Milk Drink"
+      "Body Slam",
+      "Milk Drink",
+      "Attract"
      ],
+     "nature": "Impish",
      "species": "Miltank"
     }
    ],
@@ -6483,7 +6522,9 @@
   56
  ],
  "reworked": [
+  "TRAINER_BUGSY_1_HNS",
   "TRAINER_FALKNER_1_HNS",
-  "TRAINER_LI_HNS"
+  "TRAINER_LI_HNS",
+  "TRAINER_WHITNEY_1_HNS"
  ]
 }

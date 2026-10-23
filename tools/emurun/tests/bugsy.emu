@@ -1,0 +1,16 @@
+# Crystal Imperium balance test: Bugsy (trainer 404) at the badge-1 level cap (16).
+# Team: Quilava / Geodude / Flaaffy / Pidgey, no items, never switching voluntarily
+# (a deliberately naive line). Five battles with different RNG must include at least one win
+# (winnable with Pokemon caught before Azalea) and at least one loss (not a free badge).
+!new_game()
+!battle_style_set()
+!give_mon(156, 16)
+!give_mon(74, 16)
+!give_mon(180, 16)
+!give_mon(16, 16)
+savestate team.ss
+!battle_trainer(404)
+wait 1100
+expect16 {gBattleMons+136} 167 bugsy_leads_spinarak
+# Quilava Ember, Geodude Rock Throw, Flaaffy Thunder Shock, Pidgey Gust
+!sample_battle(404, "2,3,1,2", runs=5, min_wins=1, max_wins=4)

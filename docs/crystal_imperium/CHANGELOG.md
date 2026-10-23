@@ -1,5 +1,22 @@
 # Crystal Imperium changelog
 
+## 0.3.0-experimental (2026-10-23)
+
+### Gameplay
+- **Bugsy** rebuilt: Focus Sash Spinarak (Sticky Web), Pineco (Spikes, Rock Tomb), Ledian
+  (Reflect, Light Screen), Eviolite Technician Scyther (Fury Cutter). Smart AI.
+- **Whitney** rebuilt: Clefairy (Magic Guard; Metronome, Encore, Charm), Aipom (Fake Out,
+  U-turn), Intimidate Stantler (Hypnosis), Scrappy Miltank (Rollout, Body Slam, Milk Drink,
+  Attract). Smart AI; one Potion instead of Super Potion + Potion.
+- Azalea and Goldenrod Gym trainers get defined movesets, abilities and levels close to the cap.
+
+### Tooling
+- Battle autopilot (`autobattle`) and win-rate sampling (`sample_battle`, `tally`,
+  `expecttally`) in the emulator harness. `names.py` labels logs with species and move names.
+- New tests: `bugsy`, `whitney`, `gym_trainers_m2`. Macros: `battle_style_set`.
+- The validator now covers Bugsy and Whitney. It caught Aipom being given Technician
+  (Ambipom's ability) during the rework.
+
 ## 0.2.0-experimental (2026-10-23)
 
 ### Gameplay

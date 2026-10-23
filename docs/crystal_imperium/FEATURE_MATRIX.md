@@ -29,7 +29,10 @@ assertions); *build* = compiles into the ROM; *val* = `tools/crystal_imperium/va
 | Sleep Clause | Done | build. Imperium behaviour, both sides. |
 | Falkner competitive team | Done | emu: `falkner`. See BALANCE.md. |
 | Violet Gym trainers, Elder Li | Done | build + val. Not yet battled in the emulator. |
-| Bugsy → Clair, 8 Kanto leaders | Missing | HnS teams are in place; competitive rework is Milestones 2–3. |
+| Bugsy competitive team | Done | emu: `bugsy` (3 of 5 naive RNG samples won) plus per-Starter lines in BALANCE.md. |
+| Whitney competitive team | Done | emu: `whitney` (3 of 5 naive RNG samples won) plus per-Starter lines in BALANCE.md. |
+| Azalea and Goldenrod Gym trainers | Done | emu: `gym_trainers_m2` (every battle loads and resolves). |
+| Morty → Clair, 8 Kanto leaders | Missing | HnS teams are in place; competitive rework continues in Milestones 2–3. |
 | Rival, Rocket executives, Kimono Girls rework | Missing | Milestone 2. |
 | Elite Four, Lance, Red rework | Missing | Milestones 3 and 5. HnS already has `Smart Trainer / Prediction` post-game teams. |
 | Gym Leader rematches | Existing | HnS has rematch teams (e.g. `FALKNER_2`, `FALKNER_POSTOBC`). Not reworked yet. |

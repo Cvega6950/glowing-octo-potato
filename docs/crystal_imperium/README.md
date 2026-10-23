@@ -18,6 +18,12 @@ building of **Pokémon Emerald Imperium**.
 - **Falkner** rebuilt as a competitive boss (Tailwind Pidgey → Hone Claws/Power Trip/Steel Wing
   Rookidee → Tinted Lens Noctowl with Reflect and Hypnosis, Smart AI). Play-tested to be
   beatable with Pokémon catchable before him, but not free.
+- **Bugsy and Whitney** rebuilt (Milestone 2):
+  - Bugsy: Sticky Web, Spikes and screens into an Eviolite Technician Scyther.
+  - Whitney: disruption into a Scrappy Rollout/Attract Miltank.
+  - Their Gym trainers have proper movesets.
+  - The battle autopilot measured both. A naive no-item team wins 3 of 5 RNG samples, and
+    every Starter has a winning line using Pokémon obtainable before each Gym.
 - **Ability Capsule and Ability Patch** sold at the Goldenrod Flower Shop with the Mints.
 - **Mega Evolution** (48 classic stone Megas plus Rayquaza). The Mega Ring and stones come from a new Goldenrod
   Dept. Store 5F specialist, with stones unlocking by badge. Press **R** in the move menu to
@@ -30,7 +36,7 @@ building of **Pokémon Emerald Imperium**.
 - Violet Gym trainers and Elder Li (Sprout Tower) reworked.
 
 **Not started / incomplete**
-- Gyms 2–16, rivals, Rockets, Kimono Girls, Elite Four, Lance, Red (Milestones 2–5).
+- Gyms 4–16, rivals, Rockets, Kimono Girls, Elite Four, Lance, Red (Milestones 2–5).
 - Gen 4–9 encounter roll-out: 373 national-dex families have no in-game source yet.
 - Megas for Gym Leaders (added as each Gym is reworked), DexNav, menu move relearner and portable PC.
 - A full story playthrough. Only New Game → bedroom is played without debug tools.

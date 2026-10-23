@@ -13,3 +13,4 @@
 | 9 | Branding | The title screen and ROM header still say Heart & Soul / `POKEMON HNS`. | Open (cosmetic) |
 | 10 | Battle UI | HnS maps START to move info, which made the Mega trigger unreachable once Megas were enabled. | **Fixed**: the trigger is on R |
 | 11 | Battle UI | The in-battle hint only says "START: MOVE INFO"; nothing on screen tells the player that R toggles Mega Evolution (the Mega Specialist explains it). | Open (cosmetic) |
+| 12 | Tests | The battle autopilot cannot drive double battles (no target selection), so double battles are only checked to load. | Open |

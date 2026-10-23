@@ -16,12 +16,17 @@ explains the *why*.
    before the fight. The counter should cost planning, not be a free win.
 4. **Verify in the emulator.** Every reworked Gym Leader gets a play test with a realistic
    team of Pokémon that are obtainable before the fight.
+5. **Measure win rates, not single runs.** The battle autopilot (`tools/emurun`) plays a
+   deliberately naive line: no items, no voluntary switching, one fixed move per Pokémon.
+   For each Starter, at least one line obtainable at the cap must win, and a naive line
+   should win some but not all of five RNG samples. A human who heals and switches does
+   better than these numbers.
 
 ## Progression snapshot
 
 | Segment | Level cap | Status |
 |---|---|---|
-| Early Johto (Falkner, Bugsy, Whitney) | 11 / 16 / 21 | Falkner reworked; others HnS |
+| Early Johto (Falkner, Bugsy, Whitney) | 11 / 16 / 21 | All three reworked and play-tested |
 | Midgame Johto (Morty, Chuck, Jasmine, Pryce) | 25 / 31 / 36 / 38 | HnS. Pryce's ace (33) is below his cap (38), noted by the validator. |
 | Late Johto (Clair, Victory Road) | 45 / 56 | HnS |
 | Elite Four / Lance | 56 → 70 after the title | HnS |
@@ -66,6 +71,104 @@ all Lv 11, no items):
   fourth Pokémon (Larvitar, Pichu, Phanpy) or leading Mareep into Noctowl improves the odds.
   This is the intended Gym 1 difficulty.
 
+## Azalea and Goldenrod: Bugsy and Whitney
+
+### What the player can have
+
+- **Before Bugsy (cap 16), from `encounters.json`:**
+  - Rock: Geodude and Onix (Union Cave), the main Bug/Flying answers.
+  - Flying: Pidgey, Spearow, Zubat.
+  - Fighting: Machop (Route 33).
+  - Other: Heracross (Rock Smash in Azalea), Mareep → Flaaffy, and the Fire Starter.
+- **Before Whitney (cap 21):**
+  - Everything above, plus Abra on Route 34 (Kadabra at 16, which turns out to be the best
+    answer to Whitney's first three).
+  - Mankey, Snubbull, Growlithe, Yanma, Drowzee and Ditto.
+  - Scyther and Pinsir from the National Park.
+  - Gastly (Ghost) from Route 32 at night, though Whitney's Scrappy Miltank still hits it.
+
+### Bugsy (Azalea Gym), ace level 16 = cap 16
+
+AI: `Smart Trainer / Ace Pokemon / HP Aware`. Items: Potion ×2 (unchanged from HnS).
+
+| Pokémon | Item | Ability | Nature | Moves | Job |
+|---|---|---|---|---|---|
+| Spinarak Lv 14 | Focus Sash | Insomnia | Jolly | Sticky Web, Night Shade, Poison Sting, Infestation | Guaranteed Sticky Web |
+| Pineco Lv 15 | – | Sturdy | Relaxed | Spikes, Rock Tomb, Bug Bite, Protect | Spikes; Rock Tomb punishes the Fire/Flying answers |
+| Ledian Lv 15 | Sitrus Berry | Early Bird | Calm | Reflect, Light Screen, Silver Wind, Mach Punch | Screens for the ace; Mach Punch hits Rock answers |
+| Scyther Lv 16 (ace) | Eviolite | Technician | Jolly | Fury Cutter, Wing Attack, Bug Bite, Quick Attack | Technician-boosted cleaner; Fury Cutter escalates |
+
+**Signature strategy:** hazards and screens, then a bulky Technician Scyther. Rock types
+are 4× effective on Scyther and Ledian, and Stealth Rock alone takes half their HP.
+
+**Iterations (emulator):**
+- v1 Scyther had Swords Dance. At +2 it one-shot Quilava, Geodude, Flaaffy and Pidgey in a
+  row. Sticky Web plus base 105 Speed meant Rock types never moved first. Swords Dance became
+  Fury Cutter, Bugsy's HGSS signature.
+
+**Results** (v2, autopilot, no items, all Pokémon at Lv 16):
+
+| Starter | Line | Result |
+|---|---|---|
+| Cyndaquil | Quilava (Ember) / Geodude (Rock Throw) / Flaaffy (Thunder Shock) / Pidgey (Gust) | **3 of 5 RNG samples won** (`bugsy.emu`) |
+| Chikorita | Onix lead (Stealth Rock) / Pidgey / Flaaffy / Bayleef | **Win** (2 Pokémon left) |
+| Chikorita | Bayleef, Geodude or Onix (Rock Throw) leads | Loss: Spinarak (Bug/Poison) walls Grass |
+| Totodile | Croconaw (Bite) / Geodude / Flaaffy / Pidgey | **Win** (2 Pokémon left) |
+| Totodile | Croconaw (Water Gun), or Onix leads | Loss |
+
+### Whitney (Goldenrod Gym), ace level 21 = cap 21
+
+AI: `Smart Trainer / Ace Pokemon / HP Aware`. Items: one Potion (HnS had Super Potion + Potion).
+
+| Pokémon | Item | Ability | Nature | Moves | Job |
+|---|---|---|---|---|---|
+| Clefairy Lv 18 | – | Magic Guard | Bold | Double Slap, Metronome, Encore, Charm | Disruption: Encore locks set-up, Charm blunts physical attackers |
+| Aipom Lv 19 | – | Pickup | Jolly | Fake Out, Double Hit, U-turn, Astonish | Pivot that chips and keeps momentum |
+| Stantler Lv 19 | – | Intimidate | Adamant | Hypnosis, Stomp, Zen Headbutt, Take Down | Intimidate weakens the Fighting answer; one sleeper under Sleep Clause |
+| Miltank Lv 21 (ace) | – | Scrappy | Impish | Rollout, Body Slam, Milk Drink, Attract | The classic: Rollout snowball, Attract, Milk Drink; Scrappy hits Ghosts |
+
+**Signature strategy:** wear the player down with disruption, then a Miltank that can't be
+walled by Ghosts. The answers are female Pokémon (Attract fails on them), a fresh Fighting
+type held back for Miltank, and Kadabra for the support cast.
+
+**Iterations (emulator).** Each version lost every naive line, so each was cut back:
+1. v1 Clefairy had Eviolite and Moonlight; Stantler had Hypnosis, Confuse Ray and a Sitrus
+   Berry. Battles stalled for 14+ turns.
+2. v2 Clefairy (Fairy-type with the Fairy option on) still resisted both classic answers,
+   Fighting and Dark. Cute Charm plus Thunder Wave cost Quilava nine turns in a row.
+3. v3 Aipom's Skill Link Fury Swipes acted as a second ace.
+4. v4 Miltank alone beat four Pokémon with three heal sources (Milk Drink, Sitrus Berry,
+   Super Potion).
+5. **Shipped (v5):** Clefairy without Eviolite, Thunder Wave or Cute Charm; Aipom as a
+   Pickup pivot; supporting levels 18/19/19; Miltank without a Sitrus Berry; one Potion.
+
+**Results** (shipped version, autopilot, no items, all Pokémon at Lv 21):
+
+| Starter | Line | Result |
+|---|---|---|
+| Cyndaquil | Pidgeotto (Gust) / Quilava (Flame Wheel) / Kadabra (Psybeam) / Machop (Low Sweep) | **3 of 5 RNG samples won** (`whitney.emu`) |
+| Cyndaquil | Quilava or Kadabra leads with the same Pokémon | Loss (Miltank left at 1 HP in one) |
+| Chikorita | Bayleef (Mega Drain) / Kadabra / Pidgeotto / Machop | **Win** (3 Pokémon left) |
+| Totodile | Kadabra / Croconaw (Ice Fang) / Pidgeotto / Machop | **Win** |
+| Totodile | Pidgeotto / Croconaw / Flaaffy / Machop | **Win** |
+| Totodile | Croconaw / Machop / Geodude / Flaaffy | Loss |
+
+### Gym trainers
+
+All now have defined movesets and abilities. They sit 2–4 levels under the cap and use
+`Basic Trainer` AI.
+
+| Gym | Trainer | Team |
+|---|---|---|
+| Azalea | Bug Catcher Benny | Kakuna 12, Beedrill 14 (Swarm; Twineedle) |
+| Azalea | Bug Catcher Al | Metapod 12, Butterfree 14 (Compound Eyes Sleep Powder) |
+| Azalea | Bug Catcher Josh | Yanma 14 (Speed Boost, Detect) |
+| Azalea | Twins Amy & May (double) | Ledyba 13, Spinarak 13 |
+| Goldenrod | Lass Carrie | Snubbull 18 (Intimidate), Happiny 18 @ Eviolite |
+| Goldenrod | Lass Bridget | Aipom 18 (Fake Out), Munchlax 19 (Thick Fat, Recycle + Oran Berry) |
+| Goldenrod | Beauty Victoria | Teddiursa 18, Furret 19 (Rest) |
+| Goldenrod | Beauty Samantha | Meowth 19 (Technician Fake Out), Girafarig 19 |
+
 ## Mega Evolution
 
 | Stage | Stones sold by the Goldenrod Mega Specialist |
@@ -89,8 +192,8 @@ implemented and play-tested.
 
 | # | Leader | Signature | Strategy idea |
 |---|---|---|---|
-| 2 | Bugsy | Scyther | Sticky Web lead, U-turn pivoting, Technician Scyther ace |
-| 3 | Whitney | Miltank | Attract/Fake Out disruption, Scrappy Miltank with Rollout + Milk Drink |
+| 2 | Bugsy | Scyther | **Done**: see above |
+| 3 | Whitney | Miltank | **Done**: see above |
 | 4 | Morty | Gengar (Haunter at cap) | Hypnosis + Hex, Curse/Destiny Bond, Ghost immunity pivots |
 | 5 | Chuck | Poliwrath | Bulk Up, Mach Punch priority, Intimidate and Guts users |
 | 6 | Jasmine | Steelix | Stealth Rock, Sturdy, Magnemite Electric coverage |

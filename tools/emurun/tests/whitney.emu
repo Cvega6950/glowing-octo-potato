@@ -1,0 +1,16 @@
+# Crystal Imperium balance test: Whitney (trainer 406) at the badge-2 level cap (21).
+# Team: Pidgeotto / Quilava / Kadabra / Machop (Machop is kept for Miltank), no items, never
+# switching voluntarily. Five battles with different RNG must include at least one win and
+# at least one loss.
+!new_game()
+!battle_style_set()
+!give_mon(17, 21)
+!give_mon(156, 21)
+!give_mon(64, 21)
+!give_mon(66, 21)
+savestate team.ss
+!battle_trainer(406)
+wait 1100
+expect16 {gBattleMons+136} 35 whitney_leads_clefairy
+# Pidgeotto Gust, Quilava Flame Wheel, Kadabra Psybeam, Machop Low Sweep
+!sample_battle(406, "0,2,3,0", runs=5, min_wins=1, max_wins=4)

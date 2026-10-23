@@ -22,9 +22,30 @@ depending on RNG where possible.
 | `save_load.emu` | In-game save to Flash, hard reset, Continue, party restored, game playable | PASS (2026-10-23) |
 | `mega_specialist.emu` | Goldenrod Dept. Store 5F: Mega Ring gift dialogue after badge 3, stone shop shows the 8-badge tier (ends at Garchompite; Champion-tier stones absent) | PASS (2026-10-23). Checked by screenshot; no memory assertion. |
 | `mega_evolution.emu` | Player's Ampharos holding Ampharosite Mega Evolves with R in the move menu (species 181 → 921); Lance's lead Gyarados Mega Evolves on turn 1 (130 → 917) | PASS (2026-10-23) |
+| `bugsy.emu` | Bugsy leads Spinarak; five autopilot battles (different RNG) with a naive Cyndaquil-starter team must include at least one win and one loss | PASS (2026-10-23): 3/5 won |
+| `whitney.emu` | Whitney leads Clefairy; five autopilot battles must include at least one win and one loss | PASS (2026-10-23): 3/5 won |
+| `gym_trainers_m2.emu` | All eight Azalea/Goldenrod Gym trainer battles load; the seven single battles play to a result | PASS (2026-10-23) |
 | `flower_shop.emu` | Debug warp to the Goldenrod Flower Shop; Mints, Ability Capsule (₽20,000) and Ability Patch (₽40,000) listed after badge 3 | PASS (2026-10-23). Checked by screenshot only; the test has no memory assertion yet, so it only fails on a crash. |
 
 Screenshots from each run are written to `build/emurun/<test>/`.
+
+### Battle autopilot
+
+`!autobattle("2,3,1,2")` plays the current battle to the end. It reads the game's state
+every frame: which battle controller is waiting for input, whether the party menu is open,
+and the battle outcome. Then it answers:
+- Each party slot uses one fixed move slot; `m` after the slot number Mega Evolves first.
+- Forced switches send out the first healthy Pokémon.
+- Text is nudged along.
+
+It logs every turn with both sides' HP, and each Pokémon's moveset the first time it is sent
+out. Pipe the output through `tools/emurun/names.py` to get species and move names.
+Battle Style should be SET (`!battle_style_set()`) so the AI's free switch prompts don't appear.
+
+Battle RNG depends on frame timing, so one recorded win is not a stable regression check.
+`!sample_battle(trainer, moves, runs=5, min_wins=1, max_wins=4)` replays a saved team state
+at five different frame offsets. It asserts the win count is inside the range: winnable,
+but not a free badge. The autopilot cannot drive double battles yet.
 
 ## Upstream unit-test suite
 
@@ -47,7 +68,8 @@ Status: ☐ not yet tested · ☑ tested and passed · ☒ tested and failed
 - ☐ Choose a starter at Elm's lab (real story path, no debug)
 - ☐ Route 29 → Cherrygrove rival → Violet City, played through normally
 - ☑ Falkner battle (debug-started, real AI and party data)
-- ☐ Badges 2–8 (Bugsy … Clair)
+- ☑ Bugsy and Whitney battles (debug-started, real AI and party data, sampled win rates)
+- ☐ Badges 4–8 (Morty … Clair)
 - ☐ Team Rocket radio tower, Kimono Girls, Lugia/Ho-Oh events
 - ☐ Elite Four and Lance
 - ☐ Kanto access (S.S. Aqua), Kanto badges 1–8
