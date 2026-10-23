@@ -51,7 +51,7 @@ BOSS_PATTERNS = [
     r"TRAINER_LI_HNS",
 ]
 # Bosses already reworked for Crystal Imperium; the four-move rule is enforced only for these
-REWORKED = {"TRAINER_FALKNER_1_HNS", "TRAINER_LI_HNS"}
+REWORKED = {"TRAINER_FALKNER_1_HNS", "TRAINER_LI_HNS", "TRAINER_BUGSY_1_HNS", "TRAINER_WHITNEY_1_HNS"}
 
 
 def read(path):

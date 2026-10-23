@@ -746,11 +746,25 @@ Pic: Lass
 Gender: Male
 Music: Hg Girl 2
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Happiny
+Snubbull
 Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Intimidate
+- Bite
+- Charm
+- Scary Face
+- Lick
+
+Happiny @ Eviolite
+Level: 18
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Natural Cure
+- Pound
+- Charm
+- Sweet Kiss
+- Refresh
 
 === TRAINER_BRIDGET_HNS ===
 Name: BRIDGET
@@ -759,15 +773,25 @@ Pic: Lass
 Gender: Male
 Music: Hg Girl 2
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Aipom
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 18
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Pickup
+- Fake Out
+- Swift
+- Sand Attack
+- Astonish
 
-Munchlax
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Munchlax @ Oran Berry
+Level: 19
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Thick Fat
+- Body Slam
+- Lick
+- Defense Curl
+- Recycle
 
 === TRAINER_ALICE_HNS ===
 Name: ALICE
@@ -1732,15 +1756,25 @@ Pic: Beauty
 Gender: Male
 Music: Hg Girl 1
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Teddiursa
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 18
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Pickup
+- Fury Swipes
+- Fake Tears
+- Lick
+- Covet
 
 Furret
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 19
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Frisk
+- Quick Attack
+- Fury Swipes
+- Defense Curl
+- Rest
 
 === TRAINER_SAMANTHA_HNS ===
 Name: SAMANTHA
@@ -1749,11 +1783,25 @@ Pic: Beauty
 Gender: Male
 Music: Hg Girl 1
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Meowth
-Level: 18
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 19
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Technician
+- Fake Out
+- Fury Swipes
+- Bite
+- Pay Day
+
+Girafarig
+Level: 19
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Early Bird
+- Confusion
+- Stomp
+- Odor Sleuth
+- Agility
 
 === TRAINER_JULIE_HNS ===
 Name: JULIE
@@ -3067,15 +3115,25 @@ Pic: Bug Catcher
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Kakuna
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 12
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Shed Skin
+- Harden
+- Poison Sting
+- Bug Bite
+- String Shot
 
 Beedrill
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 14
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Swarm
+- Twineedle
+- Fury Attack
+- Focus Energy
+- Pursuit
 
 === TRAINER_AL_HNS ===
 Name: AL
@@ -3084,15 +3142,25 @@ Pic: Bug Catcher
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
 Metapod
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 12
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Shed Skin
+- Harden
+- Tackle
+- Bug Bite
+- String Shot
 
 Butterfree
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 14
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Compound Eyes
+- Sleep Powder
+- Confusion
+- Gust
+- Poison Powder
 
 === TRAINER_JOSH_HNS ===
 Name: JOSH
@@ -3101,11 +3169,16 @@ Pic: Bug Catcher
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
-AI: Check Bad Move
+AI: Basic Trainer
 
-Yanma
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Yanma @ Oran Berry
+Level: 14
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Speed Boost
+- Quick Attack
+- Sonic Boom
+- Bug Bite
+- Detect
 
 === TRAINER_ARNIE_HNS ===
 Name: ARNIE
@@ -6991,15 +7064,25 @@ Pic: Twins Hns
 Gender: Male
 Music: Hg Girl 2
 Double Battle: Yes
-AI: Check Bad Move
+AI: Basic Trainer
 
 Ledyba
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 13
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Swarm
+- Comet Punch
+- Supersonic
+- Reflect
+- Bug Bite
 
 Spinarak
-Level: 12
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Level: 13
+IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
+Ability: Swarm
+- Poison Sting
+- Night Shade
+- String Shot
+- Bug Bite
 
 === TRAINER_ANN_AND_ANNE_HNS ===
 Name: ANN&ANNE
@@ -7315,33 +7398,49 @@ Pic: Leader Bugsy Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Green
 Items: Potion / Potion
 
+Spinarak @ Focus Sash
+Level: 14
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Insomnia
+Nature: Jolly
+- Sticky Web
+- Night Shade
+- Poison Sting
+- Infestation
+
 Pineco
 Level: 15
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Pin Missile
-- Headbutt
-- Rollout
-- Harden
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Relaxed
+- Spikes
+- Rock Tomb
+- Bug Bite
+- Protect
 
-Ledian
+Ledian @ Sitrus Berry
 Level: 15
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Thunder Punch
-- Comet Punch
-- Supersonic
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Early Bird
+Nature: Calm
 - Reflect
+- Light Screen
+- Silver Wind
+- Mach Punch
 
-Scyther @ Berry Juice
+Scyther @ Eviolite
 Level: 16
-IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
-- Quick Attack
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Technician
+Nature: Jolly
 - Fury Cutter
-- U Turn 
-- Pursuit
+- Wing Attack
+- Bug Bite
+- Quick Attack
 
 === TRAINER_BUGSY_2_HNS ===
 Name: BUGSY
@@ -7409,33 +7508,49 @@ Pic: Leader Whitney Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Pink
-Items: Super Potion / Potion
+Items: Potion
 
 Clefairy
-Level: 20
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Headbutt
-- Charm
-- Sweet Kiss
+Level: 18
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Magic Guard
+Nature: Bold
+- Double Slap
 - Metronome
+- Encore
+- Charm
 
-Teddiursa
-Level: 20
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Fury Swipes
-- Fake Tears
-- Lick
-- Mud Slap
+Aipom
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Pickup
+Nature: Jolly
+- Fake Out
+- Double Hit
+- U Turn
+- Astonish
 
-Miltank @ Sitrus Berry
-Level: 21
-IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
-- Rollout
-- Attract
+Stantler
+Level: 19
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Adamant
+- Hypnosis
 - Stomp
+- Zen Headbutt
+- Take Down
+
+Miltank
+Level: 21
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Scrappy
+Nature: Impish
+- Rollout
+- Body Slam
 - Milk Drink
+- Attract
 
 === TRAINER_WHITNEY_2_HNS ===
 Name: WHITNEY
