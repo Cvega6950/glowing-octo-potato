@@ -107,6 +107,7 @@ enum {
 };
 
 enum {
+    ITEM_DIFFICULTY_MIN_GRINDING,
     ITEM_DIFFICULTY_PARTY_LIMIT,
     ITEM_DIFFICULTY_LEVEL_CAP,
     ITEM_DIFFICULTY_EXP_MULTIPLIER,
@@ -207,6 +208,7 @@ static const u8 sMidGameLockPolicy[TAB_COUNT * MAX_ITEMS_PER_TAB] = {
     [TAB_NUZLOCKE * MAX_ITEMS_PER_TAB + ITEM_NUZLOCKE_DELETION]       = LOCK_ONEWAY_DOWN,
     [TAB_NUZLOCKE * MAX_ITEMS_PER_TAB + ITEM_NUZLOCKE_RARE_CANDY]     = LOCK_FULL,
     // TAB_DIFFICULTY
+    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_MIN_GRINDING]   = LOCK_FREE,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_PARTY_LIMIT]    = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_LEVEL_CAP]      = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_EXP_MULTIPLIER] = LOCK_FREE,
@@ -966,6 +968,10 @@ static const struct ChallengeMenuItem sTabItems_Nuzlocke[] = {
 // DIFFICULTY descriptions + table
 // =============================================================================
 
+static const u8 *const sDesc_MinGrinding[] = {
+    COMPOUND_STRING("IVs and EVs work as usual for all\n{PKMN}."),
+    COMPOUND_STRING("All {PKMN} battle as if they had\nperfect IVs and zero EVs. No grind!"),
+};
 static const u8 sText_Desc_PartyLimit[] = _("Limits the amount of {PKMN} in the\nparty. 1 has visual bugs in DOUBLES.");
 static const u8 *const sDesc_PartyLimit[] = {
     sText_Desc_PartyLimit, sText_Desc_PartyLimit, sText_Desc_PartyLimit,
@@ -1023,6 +1029,12 @@ static const u8 *const sDesc_DifficultyNext[] = {
 };
 
 static const struct ChallengeMenuItem sTabItems_Difficulty[] = {
+    [ITEM_DIFFICULTY_MIN_GRINDING] = {
+        .name         = COMPOUND_STRING("MIN. GRINDING"),
+        .descriptions = sDesc_MinGrinding,
+        .numChoices   = 2,
+        .choiceNames  = sChoices_OffOn,
+    },
     [ITEM_DIFFICULTY_PARTY_LIMIT] = {
         .name         = COMPOUND_STRING("PARTY LIMIT"),
         .descriptions = sDesc_PartyLimit,
@@ -1821,6 +1833,17 @@ static void ProcessLeftRight(void)
         if (sMenu->currentTab == TAB_MODE && itemIndex == ITEM_MODE_GAMEMODE && *sel == 0)
             ApplyRecommendedPresets();
 
+        // Minimal Grinding ON — pair it with progression level caps and faster EXP
+        if (sMenu->currentTab == TAB_DIFFICULTY && itemIndex == ITEM_DIFFICULTY_MIN_GRINDING && *sel == 1)
+        {
+            *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_MAX_PARTY_IVS) = 1; // MAX
+            *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_NO_EVS)        = 1; // NO
+            if (*GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_LEVEL_CAP) == 0)
+                *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_LEVEL_CAP) = 1; // EASY
+            if (*GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_EXP_MULTIPLIER) == 0)
+                *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_EXP_MULTIPLIER) = 1; // x1.5
+        }
+
         // Nuzlocke OFF or EASY — reset sub-options to defaults
         if (sMenu->currentTab == TAB_NUZLOCKE && itemIndex == ITEM_NUZLOCKE_NUZLOCKE
             && (*sel == 0 || *sel == 1))
@@ -2055,6 +2078,7 @@ static void Task_ConfirmSaveYes(u8 taskId)
     }
 
     // Difficulty tab
+    cs->tx_Difficulty_MinimalGrinding = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_MIN_GRINDING);
     cs->tx_Challenges_PartyLimit      = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_PARTY_LIMIT);
     cs->tx_Challenges_LevelCap        = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_LEVEL_CAP);
     cs->tx_Challenges_ExpMultiplier   = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_EXP_MULTIPLIER);
@@ -2261,6 +2285,7 @@ void CB2_InitChallengeMenu(void)
             *GetSelectionPtr(TAB_NUZLOCKE, ITEM_NUZLOCKE_RARE_CANDY)     = !cs->tx_Nuzlocke_RareCandy;
 
             // Difficulty tab
+            *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_MIN_GRINDING)   = cs->tx_Difficulty_MinimalGrinding;
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_PARTY_LIMIT)    = cs->tx_Challenges_PartyLimit;
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_LEVEL_CAP)      = cs->tx_Challenges_LevelCap;
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_EXP_MULTIPLIER) = cs->tx_Challenges_ExpMultiplier;

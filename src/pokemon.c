@@ -3737,6 +3737,11 @@ static u16 CalculateBoxMonChecksumReencrypt(struct BoxPokemon *boxMon)
     return checksum;
 }
 
+bool32 IsMinimalGrindingMode(void)
+{
+    return gSaveBlock3Ptr != NULL && gSaveBlock3Ptr->challengeSettings.tx_Difficulty_MinimalGrinding;
+}
+
 void CalculateMonStats(struct Pokemon *mon)
 {
     s32 oldMaxHP = GetMonData(mon, MON_DATA_MAX_HP);
@@ -3754,6 +3759,7 @@ void CalculateMonStats(struct Pokemon *mon)
     SetMonData(mon, MON_DATA_LEVEL, &level);
 
     u32 equalizedBst = GetBaseStatEqualizerValue();
+    bool32 minimalGrinding = IsMinimalGrindingMode();
     bool32 hyperTrained[NUM_STATS]; //In a battle test, hyper training flag indicates a fixed stat
     s32 iv[NUM_STATS];
     s32 ev[NUM_STATS];
@@ -3762,6 +3768,13 @@ void CalculateMonStats(struct Pokemon *mon)
         hyperTrained[i] = GetMonData(mon, MON_DATA_HYPER_TRAINED_HP + i);
         iv[i] = GetMonData(mon, MON_DATA_HP_IV + i);
         ev[i] = GetMonData(mon, MON_DATA_HP_EV + i);
+
+        // Minimal Grinding: every Pokémon (player, trainer and wild) uses perfect IVs and no EVs
+        if (minimalGrinding)
+        {
+            iv[i] = MAX_PER_STAT_IVS;
+            ev[i] = 0;
+        }
 
         if (hyperTrained[i])
         {

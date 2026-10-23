@@ -149,6 +149,13 @@ void SetDefaultChallengeSettings(void)
     gSaveblock3.challengeSettings.tx_Mode_Mints              = 1;
     gSaveblock3.challengeSettings.tx_Mode_PoisonSurvive      = 1;
 
+    // Crystal Imperium — Minimal Grinding Mode on by default, with progression level caps
+    gSaveblock3.challengeSettings.tx_Difficulty_MinimalGrinding = 1;
+    gSaveblock3.challengeSettings.tx_Challenges_MaxPartyIVs     = 1; // always 31
+    gSaveblock3.challengeSettings.tx_Challenges_NoEVs           = 1;
+    gSaveblock3.challengeSettings.tx_Challenges_LevelCap        = 1; // next gym's highest level
+    gSaveblock3.challengeSettings.tx_Challenges_ExpMultiplier   = 1; // x1.5
+
     // Randomizer defaults (shown when Randomizer is ON)
     gSaveblock3.challengeSettings.tx_Random_Similar          = 1;
     gSaveblock3.challengeSettings.tx_Random_MapBased         = 1;

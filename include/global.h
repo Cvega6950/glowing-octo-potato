@@ -338,6 +338,8 @@ struct ChallengeSettings
     u8 tx_Features_FrontierBans:1;
     u8 tx_Difficulty_EscapeRopeDig:1;
     u8 tx_Features_ShinyChance:4;
+    // Crystal Imperium: uses spare bits of the byte above, so older saves read it as OFF
+    u8 tx_Difficulty_MinimalGrinding:1;
 };
 
 struct SaveBlock3
