@@ -1,0 +1,87 @@
+# Crystal Imperium play test: Training Kit (instant nature / ability changes) and the party-menu
+# move relearner. Results are checked in real game state: party stats and an actual battle.
+!new_game()
+!give_mon(155, 11)
+# Lv 11 Cyndaquil, 31 IVs / 0 EVs (Minimal Grinding): neutral Attack 19, Sp. Atk 21.
+# Party stats live after maxHP (+88): attack +90, defense +92, speed +94, spAttack +96, spDefense +98
+
+# Training Kit (Key Items slot 3) > NATURE > Cyndaquil > ADAMANT (list index 3)
+!open_bag_at("POCKET_KEY_ITEMS", 3)
+press A
+wait 20
+press A
+wait 120
+press A
+wait 120
+press A
+wait 120
+press DOWN
+press DOWN
+press DOWN
+press A
+wait 60
+shot 01_adamant.png
+mash A 120
+wait 60
+expect16 {gPlayerParty+90} 20 adamant_attack_19_x1.1
+expect16 {gPlayerParty+96} 18 adamant_spatk_21_x0.9
+
+# Again, MODEST (list index 15)
+!open_bag_at("POCKET_KEY_ITEMS", 3)
+press A
+wait 20
+press A
+wait 120
+press A
+wait 120
+press A
+wait 120
+!["press DOWN"] * 15
+press A
+wait 60
+shot 02_modest.png
+mash A 120
+wait 60
+expect16 {gPlayerParty+90} 17 modest_attack_19_x0.9
+expect16 {gPlayerParty+96} 23 modest_spatk_21_x1.1
+
+# Training Kit > ABILITY: Blaze -> Flash Fire (Hidden Ability)
+!open_bag_at("POCKET_KEY_ITEMS", 3)
+press A
+wait 20
+press A
+wait 120
+press DOWN
+press A
+wait 120
+press A
+wait 120
+shot 03_ability.png
+mash A 120
+wait 60
+
+# Party menu > LEARN MOVES > EGG MOVES > first entry (Fury Swipes) > YES
+!start_menu("POKEMON")
+press A
+wait 30
+press DOWN
+press A
+wait 30
+press A
+wait 120
+shot 04_egg_moves.png
+press A
+wait 60
+press A
+wait 200
+mash A 300
+mash B 200
+wait 60
+
+# Check the results inside a battle
+!battle_trainer(402)
+wait 1100
+!expect_battler(0, "species", "SPECIES_CYNDAQUIL")
+!expect_battler(0, "ability", "ABILITY_FLASH_FIRE", "ability_changed_to_hidden_flash_fire")
+!expect_battler(0, "moves[3]", "MOVE_FURY_SWIPES", "relearned_egg_move_fury_swipes")
+shot 05_battle.png

@@ -63,6 +63,7 @@ static void Task_OpenRegisteredPokeblockCase(u8);
 static void Task_AccessPokemonBoxLink(u8);
 static void ItemUseOnFieldCB_Bike(u8);
 static void ItemUseOnFieldCB_Rod(u8);
+static void Task_UseTrainingKit(u8 taskId);
 static void ItemUseOnFieldCB_Itemfinder(u8);
 static void ItemUseOnFieldCB_Berry(u8);
 static void ItemUseOnFieldCB_WailmerPailBerry(u8);
@@ -761,6 +762,18 @@ void ItemUseOutOfBattle_PokemonBoxLink(u8 taskId)
 static void Task_AccessPokemonBoxLink(u8 taskId)
 {
     ScriptContext_SetupScript(EventScript_AccessPokemonBoxLink);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_TrainingKit(u8 taskId)
+{
+    sItemUseOnFieldCB = Task_UseTrainingKit;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void Task_UseTrainingKit(u8 taskId)
+{
+    ScriptContext_SetupScript(EventScript_TrainingKit);
     DestroyTask(taskId);
 }
 

@@ -16475,6 +16475,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_AzureFlute,
         .iconPalette = gItemIconPalette_AzureFlute,
     },
+
+    [ITEM_TRAINING_KIT] =
+    {
+        .name = ITEM_NAME("TRAINING KIT"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Changes a Pokémon's\n"
+            "nature or ability,\n"
+            "as often as needed."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_TrainingKit,
+        .iconPic = gItemIcon_Mint,
+        .iconPalette = gItemIconPalette_GreenMint,
+    },
 };
 
 #undef ITEM_NAME

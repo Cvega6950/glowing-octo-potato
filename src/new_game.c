@@ -229,6 +229,7 @@ void GiveQoLKeyItems(void)
     AddBagItem(ITEM_INFINITE_RARE_CANDIES, 1);
     AddBagItem(ITEM_INFINITE_REPEL, 1);
     AddBagItem(ITEM_POKEMON_BOX_LINK, 1);
+    AddBagItem(ITEM_TRAINING_KIT, 1);
     FlagSet(FLAG_RECEIVED_QOL_KEY_ITEMS);
 }
 
