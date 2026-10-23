@@ -5661,7 +5661,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_VENUSAURITE] =
     {
         .name = ITEM_NAME("VENUSAURITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5679,7 +5679,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CHARIZARDITE_X] =
     {
         .name = ITEM_NAME("CHARIZARDITE X"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sCharizarditeDesc,
         .pocket = POCKET_ITEMS,
@@ -5694,7 +5694,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CHARIZARDITE_Y] =
     {
         .name = ITEM_NAME("CHARIZARDITE Y"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sCharizarditeDesc,
         .pocket = POCKET_ITEMS,
@@ -5709,7 +5709,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_BLASTOISINITE] =
     {
         .name = ITEM_NAME("BLASTOISINITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5727,7 +5727,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_BEEDRILLITE] =
     {
         .name = ITEM_NAME("BEEDRILLITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5745,7 +5745,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_PIDGEOTITE] =
     {
         .name = ITEM_NAME("PIDGEOTITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5763,7 +5763,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_ALAKAZITE] =
     {
         .name = ITEM_NAME("ALAKAZITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5781,7 +5781,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SLOWBRONITE] =
     {
         .name = ITEM_NAME("SLOWBRONITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5799,7 +5799,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GENGARITE] =
     {
         .name = ITEM_NAME("GENGARITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5817,7 +5817,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_KANGASKHANITE] =
     {
         .name = ITEM_NAME("KANGASKHANITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5835,7 +5835,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_PINSIRITE] =
     {
         .name = ITEM_NAME("PINSIRITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5853,7 +5853,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GYARADOSITE] =
     {
         .name = ITEM_NAME("GYARADOSITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5871,7 +5871,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_AERODACTYLITE] =
     {
         .name = ITEM_NAME("AERODACTYLITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5889,7 +5889,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MEWTWONITE_X] =
     {
         .name = ITEM_NAME("MEWTWONITE X"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sMewtwoniteDesc,
         .pocket = POCKET_ITEMS,
@@ -5904,7 +5904,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MEWTWONITE_Y] =
     {
         .name = ITEM_NAME("MEWTWONITE Y"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sMewtwoniteDesc,
         .pocket = POCKET_ITEMS,
@@ -5919,7 +5919,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_AMPHAROSITE] =
     {
         .name = ITEM_NAME("AMPHAROSITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5937,7 +5937,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_STEELIXITE] =
     {
         .name = ITEM_NAME("STEELIXITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5955,7 +5955,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SCIZORITE] =
     {
         .name = ITEM_NAME("SCIZORITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5973,7 +5973,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_HERACRONITE] =
     {
         .name = ITEM_NAME("HERACRONITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -5991,7 +5991,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_HOUNDOOMINITE] =
     {
         .name = ITEM_NAME("HOUNDOOMINITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6009,7 +6009,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_TYRANITARITE] =
     {
         .name = ITEM_NAME("TYRANITARITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6027,7 +6027,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SCEPTILITE] =
     {
         .name = ITEM_NAME("SCEPTILITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6045,7 +6045,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_BLAZIKENITE] =
     {
         .name = ITEM_NAME("BLAZIKENITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6063,7 +6063,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SWAMPERTITE] =
     {
         .name = ITEM_NAME("SWAMPERTITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6081,7 +6081,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GARDEVOIRITE] =
     {
         .name = ITEM_NAME("GARDEVOIRITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6099,7 +6099,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SABLENITE] =
     {
         .name = ITEM_NAME("SABLENITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6117,7 +6117,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MAWILITE] =
     {
         .name = ITEM_NAME("MAWILITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6135,7 +6135,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_AGGRONITE] =
     {
         .name = ITEM_NAME("AGGRONITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6153,7 +6153,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MEDICHAMITE] =
     {
         .name = ITEM_NAME("MEDICHAMITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6171,7 +6171,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MANECTITE] =
     {
         .name = ITEM_NAME("MANECTITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6189,7 +6189,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SHARPEDONITE] =
     {
         .name = ITEM_NAME("SHARPEDONITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6207,7 +6207,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CAMERUPTITE] =
     {
         .name = ITEM_NAME("CAMERUPTITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6225,7 +6225,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_ALTARIANITE] =
     {
         .name = ITEM_NAME("ALTARIANITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6243,7 +6243,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_BANETTITE] =
     {
         .name = ITEM_NAME("BANETTITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6261,7 +6261,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_ABSOLITE] =
     {
         .name = ITEM_NAME("ABSOLITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sAbsoliteDesc,
         .pocket = POCKET_ITEMS,
@@ -6276,7 +6276,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GLALITITE] =
     {
         .name = ITEM_NAME("GLALITITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6294,7 +6294,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SALAMENCITE] =
     {
         .name = ITEM_NAME("SALAMENCITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6312,7 +6312,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_METAGROSSITE] =
     {
         .name = ITEM_NAME("METAGROSSITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6330,7 +6330,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_LATIASITE] =
     {
         .name = ITEM_NAME("LATIASITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6348,7 +6348,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_LATIOSITE] =
     {
         .name = ITEM_NAME("LATIOSITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6366,7 +6366,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_LOPUNNITE] =
     {
         .name = ITEM_NAME("LOPUNNITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6384,7 +6384,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GARCHOMPITE] =
     {
         .name = ITEM_NAME("GARCHOMPITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sGarchompiteDesc,
         .pocket = POCKET_ITEMS,
@@ -6399,7 +6399,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_LUCARIONITE] =
     {
         .name = ITEM_NAME("LUCARIONITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sLucarioniteDesc,
         .pocket = POCKET_ITEMS,
@@ -6414,7 +6414,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_ABOMASITE] =
     {
         .name = ITEM_NAME("ABOMASITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6432,7 +6432,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GALLADITE] =
     {
         .name = ITEM_NAME("GALLADITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6450,7 +6450,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_AUDINITE] =
     {
         .name = ITEM_NAME("AUDINITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6468,7 +6468,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_DIANCITE] =
     {
         .name = ITEM_NAME("DIANCITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6486,7 +6486,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CLEFABLITE] =
     {
         .name = ITEM_NAME("CLEFABLITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6504,7 +6504,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_VICTREEBELITE] =
     {
         .name = ITEM_NAME("VICTREEBELITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6522,7 +6522,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_STARMINITE] =
     {
         .name = ITEM_NAME("STARMINITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6540,7 +6540,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_DRAGONINITE] =
     {
         .name = ITEM_NAME("DRAGONINITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6558,7 +6558,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MEGANIUMITE] =
     {
         .name = ITEM_NAME("MEGANIUMITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6576,7 +6576,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_FERALIGITE] =
     {
         .name = ITEM_NAME("FERALIGITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6594,7 +6594,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SKARMORITE] =
     {
         .name = ITEM_NAME("SKARMORITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6612,7 +6612,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_FROSLASSITE] =
     {
         .name = ITEM_NAME("FROSLASSITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6630,7 +6630,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_EMBOARITE] =
     {
         .name = ITEM_NAME("EMBOARITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6648,7 +6648,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_EXCADRITE] =
     {
         .name = ITEM_NAME("EXCADRITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6666,7 +6666,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SCOLIPITE] =
     {
         .name = ITEM_NAME("SCOLIPITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6684,7 +6684,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SCRAFTINITE] =
     {
         .name = ITEM_NAME("SCRAFTINITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6702,7 +6702,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_EELEKTROSSITE] =
     {
         .name = ITEM_NAME("EELEKTROSSITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6720,7 +6720,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CHANDELURITE] =
     {
         .name = ITEM_NAME("CHANDELURITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6738,7 +6738,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CHESNAUGHTITE] =
     {
         .name = ITEM_NAME("CHESNAUGHTITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6756,7 +6756,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_DELPHOXITE] =
     {
         .name = ITEM_NAME("DELPHOXITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6774,7 +6774,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GRENINJITE] =
     {
         .name = ITEM_NAME("GRENINJITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6792,7 +6792,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_PYROARITE] =
     {
         .name = ITEM_NAME("PYROARITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6810,7 +6810,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_FLOETTITE] =
     {
         .name = ITEM_NAME("FLOETTITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6828,7 +6828,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MALAMARITE] =
     {
         .name = ITEM_NAME("MALAMARITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6846,7 +6846,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_BARBARACITE] =
     {
         .name = ITEM_NAME("BARBARACITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6864,7 +6864,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_DRAGALGITE] =
     {
         .name = ITEM_NAME("DRAGALGITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6882,7 +6882,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_HAWLUCHANITE] =
     {
         .name = ITEM_NAME("HAWLUCHANITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6900,7 +6900,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_ZYGARDITE] =
     {
         .name = ITEM_NAME("ZYGARDITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6918,7 +6918,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_DRAMPANITE] =
     {
         .name = ITEM_NAME("DRAMPANITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6936,7 +6936,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_FALINKSITE] =
     {
         .name = ITEM_NAME("FALINKSITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6954,7 +6954,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_HEATRANITE] =
     {
         .name = ITEM_NAME("HEATRANITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6972,7 +6972,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_DARKRANITE] =
     {
         .name = ITEM_NAME("DARKRANITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -6990,7 +6990,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_ZERAORITE] =
     {
         .name = ITEM_NAME("ZERAORITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7008,7 +7008,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_RAICHUNITE_X] =
     {
         .name = ITEM_NAME("RAICHUNITE X"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sRaichuniteDesc,
         .pocket = POCKET_ITEMS,
@@ -7023,7 +7023,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_RAICHUNITE_Y] =
     {
         .name = ITEM_NAME("RAICHUNITE Y"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sRaichuniteDesc,
         .pocket = POCKET_ITEMS,
@@ -7038,7 +7038,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CHIMECHITE] =
     {
         .name = ITEM_NAME("CHIMECHITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7056,7 +7056,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_ABSOLITE_Z] =
     {
         .name = ITEM_NAME("ABSOLITE Z"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sAbsoliteDesc,
         .pocket = POCKET_ITEMS,
@@ -7071,7 +7071,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_STARAPTITE] =
     {
         .name = ITEM_NAME("STARAPTITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7089,7 +7089,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GARCHOMPITE_Z] =
     {
         .name = ITEM_NAME("GARCHOMPITE Z"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sGarchompiteDesc,
         .pocket = POCKET_ITEMS,
@@ -7104,7 +7104,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_LUCARIONITE_Z] =
     {
         .name = ITEM_NAME("LUCARIONITE Z"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = sLucarioniteDesc,
         .pocket = POCKET_ITEMS,
@@ -7119,7 +7119,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GOLURKITE] =
     {
         .name = ITEM_NAME("GOLURKITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7137,7 +7137,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MEOWSTICITE] =
     {
         .name = ITEM_NAME("MEOWSTICITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7155,7 +7155,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_CRABOMINITE] =
     {
         .name = ITEM_NAME("CRABOMINITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7173,7 +7173,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GOLISOPITE] =
     {
         .name = ITEM_NAME("GOLISOPITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7191,7 +7191,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_MAGEARNITE] =
     {
         .name = ITEM_NAME("MAGEARNITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7209,7 +7209,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_SCOVILLAINITE] =
     {
         .name = ITEM_NAME("SCOVILLAINITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7227,7 +7227,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_BAXCALIBRITE] =
     {
         .name = ITEM_NAME("BAXCALIBRITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7245,7 +7245,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_TATSUGIRINITE] =
     {
         .name = ITEM_NAME("TATSUGIRINITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
@@ -7263,7 +7263,7 @@ const struct ItemInfo gItemsInfo[] =
     [ITEM_GLIMMORANITE] =
     {
         .name = ITEM_NAME("GLIMMORANITE"),
-        .price = 0,
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
         .holdEffect = HOLD_EFFECT_MEGA_STONE,
         .description = COMPOUND_STRING(
             "This stone enables\n"
