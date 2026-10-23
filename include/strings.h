@@ -2407,6 +2407,8 @@ extern const u8 gText_Cancel3[];
 
 // Infinite Rare Candies
 extern const u8 gText_Obtained999RareCandies[];
+extern const u8 gText_InfiniteRepelOn[];
+extern const u8 gText_InfiniteRepelOff[];
 
 // Exp. Share
 extern const u8 gText_ExpShareOn[];

@@ -220,6 +220,18 @@ void ResetMenuAndMonGlobals(void)
     ResetPokeblockScrollPositions();
 }
 
+// Crystal Imperium: Emerald Imperium-style key items are part of normal play, not a Nuzlocke option.
+// Also called when a save is continued, so saves started before these existed receive them once.
+void GiveQoLKeyItems(void)
+{
+    if (FlagGet(FLAG_RECEIVED_QOL_KEY_ITEMS))
+        return;
+    AddBagItem(ITEM_INFINITE_RARE_CANDIES, 1);
+    AddBagItem(ITEM_INFINITE_REPEL, 1);
+    AddBagItem(ITEM_POKEMON_BOX_LINK, 1);
+    FlagSet(FLAG_RECEIVED_QOL_KEY_ITEMS);
+}
+
 void NewGameInitData(void)
 {
 #if IS_FRLG
@@ -271,6 +283,7 @@ void NewGameInitData(void)
     gSaveBlock3Ptr->registeredItemHold = ITEM_NONE;
     ClearBag();
     NewGameInitPCItems();
+    GiveQoLKeyItems();
     ClearPokeblocks();
     ClearDecorationInventories();
     InitEasyChatPhrases();

@@ -848,8 +848,8 @@
 #define FLAG_OLIVINE_GYM_NPC_TRADE_COMPLETED         0x302
 #define FLAG_ENABLE_CONDITION                       0x303
 #define FLAG_UNUSED_36                              0x304
-#define FLAG_UNUSED_37                              0x305
-#define FLAG_UNUSED_38                              0x306
+#define FLAG_RECEIVED_QOL_KEY_ITEMS                 0x305 // Crystal Imperium: Rare Candy Box, Infinite Repel, Box Link given
+#define FLAG_INFINITE_REPEL_ON                      0x306 // Crystal Imperium: Infinite Repel switched on
 #define FLAG_RECEIVED_MEGA_RING                     0x307 // Crystal Imperium
 #define HNS_UNUSED_COUNT                            40
 

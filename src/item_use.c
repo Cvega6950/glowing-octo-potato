@@ -1574,6 +1574,28 @@ void ItemUseOutOfBattle_InfiniteRareCandies(u8 taskId)
     }
 }
 
+void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
+{
+    const u8 *message;
+
+    FlagToggle(FLAG_INFINITE_REPEL_ON);
+    if (FlagGet(FLAG_INFINITE_REPEL_ON))
+    {
+        PlaySE(SE_REPEL);
+        message = gText_InfiniteRepelOn;
+    }
+    else
+    {
+        PlaySE(SE_PC_OFF);
+        message = gText_InfiniteRepelOff;
+    }
+
+    if (gTasks[taskId].tUsingRegisteredKeyItem)
+        DisplayItemMessageOnField(taskId, message, Task_CloseCantUseKeyItemMessage);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, message, CloseItemMessage);
+}
+
 void ItemUseOutOfBattle_PokeBall(u8 taskId)
 {
     gItemUseCB = ItemUseCB_PokeBall;

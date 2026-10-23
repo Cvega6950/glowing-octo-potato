@@ -1,0 +1,26 @@
+# Crystal Imperium play test: the Infinite Repel key item really keeps weaker wild Pokemon away,
+# and turning it off brings them back. Route 29 wild Pokemon are far below a Lv 50 lead.
+!new_game()
+!battle_style_set()
+!give_mon(157, 50)
+# Route 29, arriving at the Route 46 gate door (34,10); tall grass starts at x=25 on row 14
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!walkto(24, 14)
+shot 01_in_grass.png
+# Key Items: 0 RARECANDY BOX, 1 INFIN. REPEL, 2 BOX LINK
+!use_key_item(1)
+shot 02_repel_on.png
+!expect_flag("FLAG_INFINITE_REPEL_ON", 1, "infinite_repel_switched_on")
+# 10 laps = 80 grass steps with the repel on
+!pace(21, 25, 14, 10)
+shot 03_walked_with_repel.png
+expectne32 {gMain+4} {BattleMainCB2+1} no_battle_with_infinite_repel_on
+!use_key_item(1)
+shot 04_repel_off.png
+!expect_flag("FLAG_INFINITE_REPEL_ON", 0, "infinite_repel_switched_off")
+# Without the repel a wild battle starts within a few laps and stops the walk (soft), so this
+# part checks the battle state rather than the walk result
+!pace(21, 25, 14, 10, soft=True)
+shot 05_walked_without_repel.png
+expect32 {gMain+4} {BattleMainCB2+1} wild_battle_once_repel_off

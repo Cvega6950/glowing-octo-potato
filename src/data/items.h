@@ -16132,15 +16132,15 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("INFIN. REPEL"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "An item that repels\n"
-            "weak Pokémon\n"
-            "permanently."),
+            "Toggle: repels weak\n"
+            "wild Pokémon for\n"
+            "as long as it's on."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
-        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
-        .iconPic = gItemIcon_QuestionMark,
-        .iconPalette = gItemIconPalette_QuestionMark,
+        .fieldUseFunc = ItemUseOutOfBattle_InfiniteRepel,
+        .iconPic = gItemIcon_Repel,
+        .iconPalette = gItemIconPalette_MaxRepel,
     },
 
     [ITEM_INFINITE_RARE_CANDIES] =

@@ -1186,7 +1186,8 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 {
     u8 i;
 
-    if (!REPEL_STEP_COUNT)
+    // The Infinite Repel acts like a repel that never wears off
+    if (!REPEL_STEP_COUNT && !FlagGet(FLAG_INFINITE_REPEL_ON))
         return TRUE;
 
     for (i = 0; i < PARTY_SIZE; i++)

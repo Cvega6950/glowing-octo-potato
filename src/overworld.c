@@ -2202,6 +2202,7 @@ void CB2_ContinueSavedGame(void)
     UnfreezeObjectEvents();
     DoTimeBasedEvents();
     UpdateMiscOverworldStates();
+    GiveQoLKeyItems();
     if ((gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR || gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR_HNS))
         InitBattlePyramidMap(TRUE);
     else if (trainerHillMapId != 0)
