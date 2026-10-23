@@ -124,6 +124,14 @@ def expect_flag(flag, want, label=None):
     return [f"expectflag {{gSaveBlock1Ptr}} {v['flags']} {v[flag]} {want} {label or flag.lower()}"]
 
 
+def expect_battler(battler, field, const, label=None):
+    """Check a gBattleMons field (species, ability, moves[N], ...) of a battler against a game constant."""
+    v = probe.resolve({f"bm_{field}".replace("[", "_").replace("]", ""): f"offsetof(struct BattlePokemon, {field})",
+                       "bm_size": "sizeof(struct BattlePokemon)", const: const})
+    off = v[f"bm_{field}".replace("[", "_").replace("]", "")] + battler * v["bm_size"]
+    return [f"expect16 {{gBattleMons+{off}}} {v[const]} {label or field + '_is_' + const.lower()}"]
+
+
 def walkto(x, y, order="xy", soft=False):
     """Walk to map coordinates (x, y), reading the player's position from the save block.
     soft=True: being stopped (e.g. by a wild battle) is not a test failure."""

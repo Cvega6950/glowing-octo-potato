@@ -13,7 +13,7 @@ def resolve(exprs):
     todo = {k: v for k, v in exprs.items() if k not in _cache}
     if todo:
         src = ['#include "global.h"', '#include "constants/flags.h"', '#include "constants/vars.h"',
-               '#include "constants/items.h"', '#include "constants/species.h"', '#include "item_menu.h"']
+               '#include "constants/items.h"', '#include "constants/species.h"', '#include "item_menu.h"', '#include "pokemon.h"', '#include "battle.h"']
         src += [f"const int kProbe_{k} = ({v});" for k, v in todo.items()]
         path = os.path.join(ROOT, "src", "zz_emurun_probe.c")
         with open(path, "w") as f:
@@ -32,4 +32,7 @@ def resolve(exprs):
             os.remove(path)
         for name, val in re.findall(r"kProbe_(\w+):\s*\n\s*\.word\s+(-?\d+)", asm):
             _cache[name] = int(val)
+        # Zero-valued constants are emitted as ".space 4" rather than ".word 0"
+        for name in re.findall(r"kProbe_(\w+):\s*\n\s*\.space\s+4", asm):
+            _cache[name] = 0
     return {k: _cache[k] for k in exprs}
