@@ -15,6 +15,15 @@
 //   poke8/poke16/poke32 ADDR VALUE   write memory
 //   reset                  soft reset the core
 //   autobattle MOVES MAXFRAMES key=ADDR...   play the current battle to the end (see AutoBattle)
+//   menuselect CURSOR LIST COUNT TARGET   with a list menu open whose u8 cursor, u8 action list and
+//                          u8 length live at those addresses, move to the entry equal to TARGET and press A
+//   walkto SB1PTR X Y [yx]  step (holding the d-pad 8 frames per tile) until the player's map position,
+//                          read from *SB1PTR (gSaveBlock1Ptr->pos, offset 4 after HnS's saveVersion),
+//                          is (X,Y); x first unless "yx". With "soft" as 5th argument, not reaching
+//                          the target (e.g. a wild battle started) is not a failure
+//   expectflag SB1PTR FLAGSOFF FLAG WANT [LABEL]   check event flag FLAG (0/1) in (*SB1PTR)->flags
+//   seek8/seek16 ADDR TARGET KEYUP KEYDOWN   tap KEYUP while the value at ADDR is below TARGET and
+//                          KEYDOWN while above, until it equals TARGET (at most 32 taps)
 //   tally NAME ADDR VALUE  count runs of NAME, and how many had the 8-bit value at ADDR == VALUE
 //   expecttally NAME MIN MAX   fail unless the matching count of NAME is within [MIN, MAX]
 // KEY: A B SELECT START RIGHT LEFT UP DOWN R L
@@ -357,7 +366,7 @@ int main(int argc, char **argv)
             uint32_t addr = strtoul(a1, NULL, 0);
             printf("[frame %lu] %s @0x%08X = 0x%X (%u)\n", frameCount, n > 2 ? a2 : "peek", addr, Peek(size, addr), Peek(size, addr));
         }
-        else if (!strncmp(cmd, "expect", 6) && strcmp(cmd, "expecttally"))
+        else if (!strncmp(cmd, "expectne", 8) || (!strncmp(cmd, "expect", 6) && cmd[6] >= '0' && cmd[6] <= '9'))
         {
             int negate = !strncmp(cmd, "expectne", 8);
             int size = atoi(cmd + (negate ? 8 : 6));
@@ -424,6 +433,95 @@ int main(int argc, char **argv)
                 else if (!strcmp(tok, "battlecb2")) sy.battlecb2 = v;
             }
             AutoBattle(a1, strtoul(a2, NULL, 0), &sy);
+        }
+        else if (!strcmp(cmd, "menuselect"))
+        {
+            uint32_t cursorAddr = strtoul(a1, NULL, 0), listAddr = strtoul(a2, NULL, 0), countAddr = strtoul(a3, NULL, 0);
+            char a4[64] = {0};
+            sscanf(line, "%*s %*s %*s %*s %63s", a4);
+            uint32_t target = strtoul(a4, NULL, 0);
+            int found = 0;
+            for (int tries = 0; tries < 24 && !found; tries++)
+            {
+                int count = Peek(8, countAddr), cursor = Peek(8, cursorAddr);
+                if (cursor < count && Peek(8, listAddr + cursor) == target)
+                {
+                    Tap(1u << 0);
+                    found = 1;
+                }
+                else
+                {
+                    Tap(1u << 7); // DOWN
+                }
+            }
+            if (!found)
+            {
+                printf("[frame %lu] FAIL menuselect: entry %u not in menu\n", frameCount, target);
+                failures++;
+            }
+        }
+        else if (!strcmp(cmd, "walkto"))
+        {
+            uint32_t sb1 = Peek(32, strtoul(a1, NULL, 0));
+            int tx = atoi(a2), ty = atoi(a3), yFirst = 0, soft = 0;
+            char a4[16] = {0}, a5[16] = {0};
+            sscanf(line, "%*s %*s %*s %*s %15s %15s", a4, a5);
+            yFirst = !strcmp(a4, "yx");
+            soft = !strcmp(a5, "soft");
+            int stuck = 0, steps = 0;
+            while (steps < 400 && stuck < 6)
+            {
+                int x = (int16_t)Peek(16, sb1 + 4), y = (int16_t)Peek(16, sb1 + 6);
+                if (x == tx && y == ty)
+                    break;
+                unsigned key;
+                int moveX = x != tx && (!yFirst || y == ty);
+                if (moveX)
+                    key = x < tx ? 1u << 4 : 1u << 5;
+                else
+                    key = y < ty ? 1u << 7 : 1u << 6;
+                RunFrames(key, 8);
+                RunFrames(0, 2);
+                int nx = (int16_t)Peek(16, sb1 + 4), ny = (int16_t)Peek(16, sb1 + 6);
+                stuck = (nx == x && ny == y) ? stuck + 1 : 0;
+                steps++;
+            }
+            RunFrames(0, 16);
+            int x = (int16_t)Peek(16, sb1 + 4), y = (int16_t)Peek(16, sb1 + 6);
+            printf("[frame %lu] walkto (%d,%d): at (%d,%d)%s\n", frameCount, tx, ty, x, y, (x == tx && y == ty) ? "" : " BLOCKED");
+            if ((x != tx || y != ty) && !soft)
+                failures++;
+        }
+        else if (!strcmp(cmd, "expectflag"))
+        {
+            char a4[64] = {0}, a5[128] = {0};
+            sscanf(line, "%*s %*s %*s %*s %63s %127s", a4, a5);
+            uint32_t sb1 = Peek(32, strtoul(a1, NULL, 0)), flag = strtoul(a3, NULL, 0);
+            uint32_t addr = sb1 + strtoul(a2, NULL, 0) + flag / 8;
+            int got = (Peek(8, addr) >> (flag % 8)) & 1, want = atoi(a4);
+            printf("[frame %lu] %s %s: flag %u = %d (want %d)\n", frameCount, got == want ? "PASS" : "FAIL",
+                   a5[0] ? a5 : "expectflag", flag, got, want);
+            if (got != want)
+                failures++;
+        }
+        else if (!strncmp(cmd, "seek", 4))
+        {
+            char a4[64] = {0};
+            sscanf(line, "%*s %*s %*s %*s %63s", a4);
+            int size = atoi(cmd + 4);
+            uint32_t addr = strtoul(a1, NULL, 0), target = strtoul(a2, NULL, 0);
+            unsigned up = ParseKeys(a3), down = ParseKeys(a4);
+            int taps = 0;
+            for (uint32_t v = Peek(size, addr); v != target && taps < 32; v = Peek(size, addr), taps++)
+            {
+                Tap(v < target ? up : down);
+                RunFrames(0, 8);
+            }
+            if (Peek(size, addr) != target)
+            {
+                printf("[frame %lu] FAIL seek: @0x%08X stuck at %u (want %u)\n", frameCount, addr, Peek(size, addr), target);
+                failures++;
+            }
         }
         else if (!strcmp(cmd, "tally"))
         {

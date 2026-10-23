@@ -8,6 +8,7 @@ A .emu file is an emurun script (see emurun.c) with two additions:
   !macro(args)               expanded by the helpers below (Python expression)
 """
 import argparse
+import probe
 import os
 import re
 import subprocess
@@ -35,9 +36,20 @@ def new_game():
     return out
 
 
+START_MENU = {"POKEDEX": 0, "POKEMON": 1, "BAG": 2, "POKENAV": 3, "PLAYER": 4, "SAVE": 5, "OPTION": 6,
+              "EXIT": 7, "DEXNAV": 14}
+
+
+def start_menu(entry):
+    """Open the start menu and choose an entry by name, wherever the cursor was left."""
+    return ["press START", "wait 40",
+            f"menuselect {{sStartMenuCursorPos}} {{sCurrentStartMenuActions}} {{sNumStartMenuActions}} {START_MENU[entry]}",
+            "wait 120"]
+
+
 def battle_style_set():
     """START > OPTION > BATTLE STYLE = SET, so trainer battles never ask "Will you switch?"."""
-    out = ["press START", "wait 40", "press UP", "press UP", "press A", "wait 120"]
+    out = start_menu("OPTION")
     out += ["press DOWN", "wait 10", "press DOWN", "wait 10", "press RIGHT", "wait 10", "shot options_set.png"]
     out += ["press B", "wait 120", "press B", "wait 60"]
     return out
@@ -85,6 +97,45 @@ def walk(*steps):
     out = []
     for d, n in zip(steps[::2], steps[1::2]):
         out += [f"hold {d} {16 * n}", "wait 10"]
+    return out
+
+
+def open_bag_at(pocket, index):
+    """START > BAG, then move to `pocket` (constant name) and its index-th item, using the bag's
+    own position data (it remembers the last pocket and cursor)."""
+    v = probe.resolve({"pocket_off": "offsetof(struct BagPosition, pocket)",
+                       "cursor_off": "offsetof(struct BagPosition, cursorPosition)",
+                       pocket: pocket})
+    cursor = f"{{gBagPosition+{v['cursor_off'] + 2 * v[pocket]}}}"
+    return start_menu("BAG") + [f"seek8 {{gBagPosition+{v['pocket_off']}}} {v[pocket]} RIGHT LEFT", "wait 20",
+                                f"seek16 {cursor} {index} DOWN UP", "wait 10"]
+
+
+def use_key_item(index):
+    """Use the index-th Key Item from the bag (USE is the first context-menu entry), then close the bag."""
+    out = open_bag_at("POCKET_KEY_ITEMS", index)
+    out += ["press A", "wait 20", "press A", "wait 120", "mash B 200", "wait 60"]
+    return out
+
+
+def expect_flag(flag, want, label=None):
+    """Check an event flag by constant name, e.g. expect_flag("FLAG_INFINITE_REPEL_ON", 1)."""
+    v = probe.resolve({"flags": "offsetof(struct SaveBlock1, flags)", flag: flag})
+    return [f"expectflag {{gSaveBlock1Ptr}} {v['flags']} {v[flag]} {want} {label or flag.lower()}"]
+
+
+def walkto(x, y, order="xy", soft=False):
+    """Walk to map coordinates (x, y), reading the player's position from the save block.
+    soft=True: being stopped (e.g. by a wild battle) is not a test failure."""
+    return [f"walkto {{gSaveBlock1Ptr}} {x} {y} {order}" + (" soft" if soft else "")]
+
+
+def pace(x1, x2, y, laps, soft=False):
+    """Walk back and forth between (x1, y) and (x2, y) `laps` times, e.g. through tall grass.
+    Without soft=True, being interrupted (e.g. by a wild battle) is a test failure."""
+    out = []
+    for _ in range(laps):
+        out += walkto(x1, y, soft=soft) + walkto(x2, y, soft=soft)
     return out
 
 
