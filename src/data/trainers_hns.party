@@ -9314,7 +9314,7 @@ AI: Basic Trainer
 Items: Full Restore / Full Restore
 Mugshot: Blue
 
-Gyarados @ Leftovers
+Gyarados @ Gyaradosite
 Level: 54
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Waterfall
@@ -9373,7 +9373,7 @@ AI: Basic Trainer
 Items: Full Restore / Full Restore
 Mugshot: Blue
 
-Salamence
+Salamence @ Salamencite
 Level: 69
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dragon Claw
@@ -10471,7 +10471,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Heavy Slam
 - Earthquake
 
-Charizard @ Charcoal
+Charizard @ Charizardite Y
 Level: 79
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
@@ -15966,7 +15966,7 @@ Level: 77
 - Crunch  
 - Scary Face  
 
-Charizard  
+Charizard @ Charizardite X
 Ability: Blaze  
 Level: 78 
 - Fire Blast  
@@ -16025,7 +16025,7 @@ Level: 85
 - Rest  
 - Heavy Slam  
 
-Charizard  
+Charizard @ Charizardite Y
 Ability: Blaze  
 Level: 87  
 - Fire Blast  
