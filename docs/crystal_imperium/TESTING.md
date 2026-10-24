@@ -26,7 +26,7 @@ cartridge clock starts at a fixed time (2026-10-24 01:30 UTC, night in the game)
 with emulated time on both emulators. Battle results depend on the RNG, which depends on the
 code and on the emulator, so balance checks sample several battles and accept a range.
 
-Results on the final 0.4.0 ROM (SHA-1 `3200b89e96c1b965807b318991ca237797dd8cb0`), 2026-10-24:
+Results on the 0.4.1 ROM (SHA-1 `7b01c7490944acdbfd80a7d6994fca55a478ec44`), 2026-10-24:
 all 23 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
 that each test requires to be inside its accepted range.
 
@@ -36,8 +36,8 @@ that each test requires to be inside its accepted range.
 | `bug_contest` | Wild Variety is skipped in Bug-Catching Contest mode (0 of 12) and applies outside it | **PASS** (variety_in_contest 0/12, variety_outside_contest 8/12) | **PASS** (variety_in_contest 0/12, variety_outside_contest 9/12) |
 | `bugsy` | Bugsy leads Spinarak; naive team wins some, not all, of 5 sampled battles | **PASS** (wins_vs_404 3/5) | **PASS** (wins_vs_404 3/5) |
 | `care_packages` | 8 badge packages, one per step, then the Champion package; bag contents checked | **PASS** | **PASS** |
-| `dexnav` | Unseen species can't be searched; register with R, R-search, creep, battle, catch; search level and chain rise | **PASS** | **PASS** |
-| `dexnav_any` | Hidden row on Route 29; SELECT lists all 1,074 Pokémon (Ivysaur, Mewtwo); jump 100; register Squirtle; search and battle Charmander | **PASS** | **PASS** |
+| `dexnav` | With nothing seen, the area's Pokémon are shown; register Rattata with R, R-search, walk up (no sneaking), battle, catch; search level and chain rise | **PASS** | **PASS** |
+| `dexnav_any` | Hidden row on Route 29; SELECT lists all 1,074 Pokémon (Ivysaur, Mewtwo); jump 100; register Squirtle; search Charmander, run up with Auto Run, battle | **PASS** | **PASS** |
 | `dexnav_hidden` | Detector mode finds hidden Pokémon while walking; creeping up starts the battle | **PASS** (hidden_detected 3/12, hidden_battle 3/12) | **PASS** (hidden_detected 4/12, hidden_battle 4/12) |
 | `difficulty` | Falkner's party at 90% levels on EASY and 110% on HARD | **PASS** | **PASS** |
 | `easy_catch` | Catch rate 3 caught by one Poké Ball with EASY CATCH on; two balls fail with it off | **PASS** | **PASS** |
