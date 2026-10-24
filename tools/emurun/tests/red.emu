@@ -5,7 +5,8 @@
 #   lead Pikachu (level 100, Hasty, 252 Speed EVs) has 306 Speed, not 237.
 # - A level-100 six with held items and a Mega, played with a game plan (autobattle in emu.py:
 #   counters for each of Red's Pokemon, switched in when the one out has no move for him), beats
-#   him at least once in 12 tries; it won 4 of 12 when the plan was worked out. Charizard Mega
+#   him at least once in 24 tries; it won 4 of 12 when the plan was worked out, and 5 and 2 of 12
+#   (mGBA, VBA-M) with all of Red's six at 100 (0.7.0), hence 24 tries. Charizard Mega
 #   Evolves (Y). Sixes without items played naively lost all 30 tries (D27).
 !new_game()
 !battle_style_set()
@@ -78,5 +79,5 @@ savestate red100.ss
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B team_action_menu
 ![f"expect16 {{gBattleMons+{probe.resolve({'i': 'offsetof(struct BattlePokemon, item)'})['i']}}} {probe.resolve({'c': 'ITEM_LIFE_ORB'})['c']} garchomp_holds_life_orb"]
 seenreset
-!sample_battle("TRAINER_RED_HNS", "0,0,0,0,0m,0", 12, 1, 12, "red100.ss", plan={"SPECIES_PIKACHU": [(0, 0), (5, 2), (2, 0), (1, 0)], "SPECIES_ESPEON": [(1, 0), (5, 1), (2, 2)], "SPECIES_SNORLAX": [(2, 0), (1, 0), (5, 0)], "SPECIES_VENUSAUR": [(3, 0), (0, 3), (4, 1)], "SPECIES_BLASTOISE": [(4, 0), (0, 1), (2, 0), (1, 0)], "SPECIES_CHARIZARD": [(5, 0), (0, 2), (4, 3)], "SPECIES_CHARIZARD_MEGA_Y": [(5, 0), (0, 2), (4, 3)]}, max_frames=90000)
+!sample_battle("TRAINER_RED_HNS", "0,0,0,0,0m,0", 24, 1, 24, "red100.ss", plan={"SPECIES_PIKACHU": [(0, 0), (5, 2), (2, 0), (1, 0)], "SPECIES_ESPEON": [(1, 0), (5, 1), (2, 2)], "SPECIES_SNORLAX": [(2, 0), (1, 0), (5, 0)], "SPECIES_VENUSAUR": [(3, 0), (0, 3), (4, 1)], "SPECIES_BLASTOISE": [(4, 0), (0, 1), (2, 0), (1, 0)], "SPECIES_CHARIZARD": [(5, 0), (0, 2), (4, 3)], "SPECIES_CHARIZARD_MEGA_Y": [(5, 0), (0, 2), (4, 3)]}, max_frames=90000)
 !expect_const_seen("SPECIES_CHARIZARD_MEGA_Y", "red_mega_charizard_y")

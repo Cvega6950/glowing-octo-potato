@@ -1,17 +1,19 @@
-# Crystal Imperium balance test: Whitney (trainer 406) at the badge-2 level cap (21).
-# Team: Pidgeotto / Quilava / Kadabra / Machop (Machop is kept for Miltank), no items, never
-# switching voluntarily. Twelve battles with different RNG must include at least one win and
-# at least two losses. This naive team wins about a quarter of the time (3/12 on 2026-10-24),
-# so five samples were too few: they could all be losses without anything having changed.
+# Crystal Imperium balance test: Whitney (trainer 406) at the badge-2 level cap (21), where all
+# of her Pokemon are since 0.7.0. Team: Pidgeotto / Quilava / Kadabra / Machop (Machop is kept
+# for Miltank, holding the first care package's Eviolite), never switching voluntarily. 24
+# battles with different RNG must include at least one win and at least two losses. This naive
+# team wins about one battle in five (5 of 20 on mGBA, 4 of 20 on VBA-M when measured for 0.7.0;
+# without the Eviolite 3 of 12 and 1 of 12), so twelve samples could all be losses by chance.
 !new_game()
 !battle_style_set()
 !give_mon(17, 21)
 !give_mon(156, 21)
 !give_mon(64, 21)
 !give_mon(66, 21)
+!hold_item("ITEM_EVIOLITE", 3)
 savestate team.ss
 !battle_trainer(406)
 wait 1100
 expect16 {gBattleMons+136} 35 whitney_leads_clefairy
 # Pidgeotto Gust, Quilava Flame Wheel, Kadabra Psybeam, Machop Low Sweep
-!sample_battle(406, "0,2,3,0", runs=12, min_wins=1, max_wins=10)
+!sample_battle(406, "0,2,3,0", runs=24, min_wins=1, max_wins=22)

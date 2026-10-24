@@ -8,8 +8,10 @@ explains the *why*.
 
 1. **Levels come from the level-cap table, not from Emerald Imperium.** HnS's NORMAL cap
    (`src/caps.c`) is the next Gym ace's level: 11, 16, 21, 25, 31, 36, 38, 45, 56; then 70
-   for Kanto and uncapped after the Kanto League. A leader's ace sits *at* the cap, so a
-   capped player is never under-levelled. Difficulty comes from teams, not levels.
+   for Kanto and uncapped (100) after the Kanto League. **Every boss Pokémon sits at the cap**
+   of the earliest point its battle can happen (since 0.7.0; before, only the ace did), and a
+   boss fought later is raised to the player's cap then (D21). With the Rare Candy Box the
+   player can always match it, never beat it: difficulty comes from teams, not levels.
 2. **Bosses have perfect IVs, defined natures, abilities, items and four chosen moves.**
    With Minimal Grinding on (the default), every Pokémon battles at 31 IVs / 0 EVs anyway,
    except Red's, which keep their EVs (D27).
@@ -18,7 +20,8 @@ explains the *why*.
 4. **Verify in the emulator.** Every reworked Gym Leader gets a play test with a realistic
    team of Pokémon that are obtainable before the fight.
 5. **Measure win rates, not single runs.** The battle autopilot (`tools/emurun`) plays a
-   deliberately naive line: no items, no voluntary switching, one fixed move per Pokémon.
+   deliberately naive line: no voluntary switching, one fixed move per Pokémon, and since 0.7.0
+   held items only from the care packages the player has by then (before, no items).
    For each Starter, at least one line obtainable at the cap must win, and a naive line
    should win some but not all of its RNG samples (five, or twelve where the naive win rate
    is low). For the Elite Four from Will on, Blue and Red the autopilot plays a simple game
@@ -36,8 +39,8 @@ explains the *why*.
 | Late Johto (Radio Tower, rival 4, Clair, Kimono Girls, Victory Road) | 45 / 56 | Reworked (`bosses_m3`, `bosses_m4`) |
 | Elite Four / Lance | 56 → 70 after the title | Reworked (`bosses_e4`) |
 | Kanto leaders, Blue | 70 | Reworked (`bosses_m5`) |
-| Red (Mt. Silver) | after the Kanto League, uncapped; 96–100 | Reworked: the hardest battle (`red`) |
-| Rematches and other postgame battles | 70 / uncapped | HnS teams with the smart AI |
+| Red (Mt. Silver) | after the Kanto League, uncapped; 100 | Reworked: the hardest battle (`red`) |
+| Rematches and other postgame battles | 70 / uncapped (100) | HnS teams with the smart AI, at the cap |
 
 ## Early Johto: the path to Falkner
 
@@ -51,23 +54,23 @@ Bold entries resist or hit Flying types super-effectively.
 |---|---|---|
 | Bird Keeper Rod | Pidgey 8, Natu 8 | Teaches accuracy drops (Sand Attack) and Night Shade |
 | Bird Keeper Abe | Hoothoot 8, Spearow 9 @ Oran Berry | Hypnosis preview before Falkner |
-| Elder Li (Sprout Tower) | Gastly 8, Hoppip 8, Bellsprout 10 @ Oran Berry | Mini-boss: Mean Look + Hypnosis trap, Growth sweeper ace |
+| Elder Li (Sprout Tower) | Gastly, Hoppip, Bellsprout @ Oran Berry, all 11 (0.6.0: 8, 8, 10) | Mini-boss: Mean Look + Hypnosis trap, Growth sweeper ace |
 
-### Falkner (Violet Gym), ace level 11 = cap 11
+### Falkner (Violet Gym), all at level 11 = cap 11
 
 AI: `Smart Trainer / Ace Pokemon / HP Aware`. All Pokémon have 31 IVs.
 
 | Pokémon | Item | Ability | Nature | Moves | Job |
 |---|---|---|---|---|---|
-| Pidgey Lv 9 | Oran Berry | Big Pecks | Timid | Tailwind, Gust, Sand Attack, Quick Attack | Speed control + accuracy chip lead |
-| Rookidee Lv 10 | – | Keen Eye | Adamant | Hone Claws, Power Trip, Peck, Rock Smash | Set-up threat; Rock Smash punishes Rock answers (0.5.0: was Steel Wing, which Rookidee cannot learn) |
+| Pidgey Lv 11 | Oran Berry | Big Pecks | Timid | Tailwind, Gust, Sand Attack, Quick Attack | Speed control + accuracy chip lead |
+| Rookidee Lv 11 | – | Keen Eye | Adamant | Hone Claws, Power Trip, Peck, Rock Smash | Set-up threat; Rock Smash punishes Rock answers (0.5.0: was Steel Wing, which Rookidee cannot learn) |
 | Noctowl Lv 11 (ace) | Sitrus Berry | Tinted Lens | Modest | Hypnosis, Air Cutter, Reflect, Mud-Slap | Tinted Lens beats resists; Reflect blunts Rollout; Mud-Slap hits Electric/Rock |
 
 **Signature strategy:** a Tailwind lead into a Hone Claws/Power Trip set-up. The ace
 punishes the classic Rock/Electric answers instead of folding to them.
 
 **Emulator results** (`tools/emurun/tests/falkner.emu`; team Cyndaquil / Mareep / Geodude,
-all Lv 11, no items):
+all Lv 11, no items; measured when Pidgey and Rookidee were 9 and 10, before 0.7.0):
 - First version: Geodude's Defense Curl + Rollout soloed Rookidee and Noctowl. Too easy, so
   Rookidee got Steel Wing and Noctowl got Reflect in place of Leer and Confusion.
 - Retuned version, line A: Cyndaquil Embers Pidgey; Geodude Curl/Rollout takes Rookidee and
@@ -94,15 +97,15 @@ all Lv 11, no items):
   - Scyther and Pinsir from the National Park.
   - Gastly (Ghost) from Route 32 at night, though Whitney's Scrappy Miltank still hits it.
 
-### Bugsy (Azalea Gym), ace level 16 = cap 16
+### Bugsy (Azalea Gym), all at level 16 = cap 16
 
 AI: `Smart Trainer / Ace Pokemon / HP Aware`. Items: Potion ×2 (unchanged from HnS).
 
 | Pokémon | Item | Ability | Nature | Moves | Job |
 |---|---|---|---|---|---|
-| Spinarak Lv 14 | Focus Sash | Insomnia | Jolly | Sticky Web, Night Shade, Poison Sting, Infestation | Guaranteed Sticky Web |
-| Pineco Lv 15 | – | Sturdy | Relaxed | Spikes, Rock Tomb, Bug Bite, Protect | Spikes; Rock Tomb punishes the Fire/Flying answers |
-| Ledian Lv 15 | Sitrus Berry | Early Bird | Calm | Reflect, Light Screen, Silver Wind, Mach Punch | Screens for the ace; Mach Punch hits Rock answers |
+| Spinarak Lv 16 | Focus Sash | Insomnia | Jolly | Sticky Web, Night Shade, Poison Sting, Infestation | Guaranteed Sticky Web |
+| Pineco Lv 16 | – | Sturdy | Relaxed | Spikes, Rock Tomb, Bug Bite, Protect | Spikes; Rock Tomb punishes the Fire/Flying answers |
+| Ledian Lv 16 | Sitrus Berry | Early Bird | Calm | Reflect, Light Screen, Silver Wind, Mach Punch | Screens for the ace; Mach Punch hits Rock answers |
 | Scyther Lv 16 (ace) | Eviolite | Technician | Jolly | Fury Cutter, Wing Attack, Bug Bite, Quick Attack | Technician-boosted cleaner; Fury Cutter escalates |
 
 **Signature strategy:** hazards and screens, then a bulky Technician Scyther. Rock types
@@ -113,7 +116,7 @@ are 4× effective on Scyther and Ledian, and Stealth Rock alone takes half their
   row. Sticky Web plus base 105 Speed meant Rock types never moved first. Swords Dance became
   Fury Cutter, Bugsy's HGSS signature.
 
-**Results** (v2, autopilot, no items, all Pokémon at Lv 16):
+**Results** (v2, autopilot, no items, all Pokémon at Lv 16; Bugsy's at 14–16, before 0.7.0):
 
 | Starter | Line | Result |
 |---|---|---|
@@ -123,15 +126,15 @@ are 4× effective on Scyther and Ledian, and Stealth Rock alone takes half their
 | Totodile | Croconaw (Bite) / Geodude / Flaaffy / Pidgey | **Win** (2 Pokémon left) |
 | Totodile | Croconaw (Water Gun), or Onix leads | Loss |
 
-### Whitney (Goldenrod Gym), ace level 21 = cap 21
+### Whitney (Goldenrod Gym), all at level 21 = cap 21
 
 AI: `Smart Trainer / Ace Pokemon / HP Aware`. Items: one Potion (HnS had Super Potion + Potion).
 
 | Pokémon | Item | Ability | Nature | Moves | Job |
 |---|---|---|---|---|---|
-| Clefairy Lv 18 | – | Magic Guard | Bold | Double Slap, Metronome, Encore, Charm | Disruption: Encore locks set-up, Charm blunts physical attackers |
-| Aipom Lv 19 | – | Pickup | Jolly | Fake Out, Double Hit, U-turn, Astonish | Pivot that chips and keeps momentum |
-| Stantler Lv 19 | – | Intimidate | Adamant | Hypnosis, Stomp, Zen Headbutt, Take Down | Intimidate weakens the Fighting answer; one sleeper under Sleep Clause |
+| Clefairy Lv 21 | – | Magic Guard | Bold | Double Slap, Metronome, Encore, Charm | Disruption: Encore locks set-up, Charm blunts physical attackers |
+| Aipom Lv 21 | – | Pickup | Jolly | Fake Out, Double Hit, U-turn, Astonish | Pivot that chips and keeps momentum |
+| Stantler Lv 21 | – | Intimidate | Adamant | Hypnosis, Stomp, Zen Headbutt, Take Down | Intimidate weakens the Fighting answer; one sleeper under Sleep Clause |
 | Miltank Lv 21 (ace) | – | Scrappy | Impish | Rollout, Body Slam, Milk Drink, Attract | The classic: Rollout snowball, Attract, Milk Drink; Scrappy hits Ghosts |
 
 **Signature strategy:** wear the player down with disruption, then a Miltank that can't be
@@ -148,8 +151,9 @@ type held back for Miltank, and Kadabra for the support cast.
    Super Potion).
 5. **Shipped (v5):** Clefairy without Eviolite, Thunder Wave or Cute Charm; Aipom as a
    Pickup pivot; supporting levels 18/19/19; Miltank without a Sitrus Berry; one Potion.
+   Since 0.7.0 the supporting three are at 21 too.
 
-**Results** (shipped version, autopilot, no items, all Pokémon at Lv 21):
+**Results** (shipped version, autopilot, no items, all Pokémon at Lv 21; Whitney's at 18–21, before 0.7.0):
 
 | Starter | Line | Result |
 |---|---|---|
@@ -206,57 +210,75 @@ Hyper Potions for Morty and the 5th-Gym versions, two Full Restores for everyone
 except the Kimono Girls, who carry none, and Red, who carries four. The rival's team follows the player's starter choice;
 the Cyndaquil versions are shown.
 
-| Boss | Levels | Team (held item) |
+| Boss | Level (every Pokémon) | Team (held item) |
 |---|---|---|
-| Proton (Slowpoke Well) | 13–15 | Koffing (Eviolite), Slowpoke (Eviolite), Houndour (Charcoal) |
-| Rival 2 (Azalea; Cyndaquil version shown) | 17–19 | Golbat (Eviolite), Larvitar (Eviolite), Sneasel (Oran Berry), Quilava (Sitrus Berry) |
-| Rival 3 (Burned Tower) | 22–24 | Golbat (Eviolite), Sneasel (Razor Claw), Weepinbell (Eviolite), Larvitar (Eviolite), Quilava (Sitrus Berry) |
-| Morty | 23–25 | Sableye (Sitrus Berry), Misdreavus (Eviolite), Drifblim (Sitrus Berry), Marowak Alola (Thick Club), Gengar (Spell Tag) |
-| Chuck (as 5th Gym) | 29–31 | Hitmontop (Sitrus Berry), Breloom (Focus Sash), Primeape (Eviolite), Poliwrath (Leftovers), Heracross (Heracronite) |
-| Chuck (as 6th Gym) | 34–36 | Hitmontop (Sitrus Berry), Breloom (Focus Sash), Hawlucha (White Herb), Primeape (Eviolite), Poliwrath (Leftovers), Heracross (Heracronite) |
-| Chuck (as 7th Gym) | 36–38 | Hitmontop (Sitrus Berry), Breloom (Focus Sash), Hawlucha (White Herb), Primeape (Eviolite), Poliwrath (Leftovers), Heracross (Heracronite) |
-| Jasmine (as 5th Gym) | 29–31 | Skarmory (Rocky Helmet), Magneton (Eviolite), Mawile (Sitrus Berry), Scizor (Metal Coat), Steelix (Steelixite) |
-| Jasmine (as 6th Gym) | 34–36 | Skarmory (Rocky Helmet), Magneton (Eviolite), Bronzong (Leftovers), Mawile (Sitrus Berry), Scizor (Metal Coat), Steelix (Steelixite) |
-| Jasmine (as 7th Gym) | 36–38 | Skarmory (Rocky Helmet), Magneton (Eviolite), Bronzong (Leftovers), Mawile (Sitrus Berry), Scizor (Metal Coat), Steelix (Steelixite) |
-| Pryce (as 5th Gym) | 29–31 | Cloyster (Focus Sash), Jynx (Wise Glasses), Weavile (Razor Claw), Mamoswine (Never Melt Ice), Abomasnow (Abomasite) |
-| Pryce (as 6th Gym) | 34–36 | Cloyster (Focus Sash), Dewgong (Leftovers), Jynx (Wise Glasses), Weavile (Razor Claw), Mamoswine (Never Melt Ice), Abomasnow (Abomasite) |
-| Pryce (as 7th Gym) | 36–38 | Cloyster (Focus Sash), Dewgong (Leftovers), Jynx (Wise Glasses), Weavile (Razor Claw), Mamoswine (Never Melt Ice), Abomasnow (Abomasite) |
-| Petrel (Rocket Hideout) | 34–36 | Weezing (Black Sludge), Forretress (Leftovers), Pupitar (Eviolite), Drapion (Black Glasses) |
-| Ariana (Rocket Hideout) | 34–36 | Arbok (Black Sludge), Persian (Silk Scarf), Vileplume (Black Sludge), Honchkrow (Scope Lens) |
-| Proton (Radio Tower) | 42–44 | Muk (Black Sludge), Nidoqueen (Life Orb), Weezing (Rocky Helmet), Nidoking (Life Orb), Rhydon (Eviolite) |
-| Petrel (Radio Tower) | 43–44 | Forretress (Leftovers), Weezing Galar (Black Sludge), Pupitar (Eviolite), Cloyster (Focus Sash), Drapion (Black Glasses) |
-| Ariana (Radio Tower) | 43–44 | Arbok (Black Sludge), Persian (Silk Scarf), Vileplume (Black Sludge), Gyarados (Sitrus Berry), Honchkrow (Scope Lens) |
-| Archer (Radio Tower) | 43–45 | Porygon Z (Choice Specs), Tauros (Life Orb), Crawdaunt (Life Orb), Slowbro (Leftovers), Bisharp (Black Glasses), Houndoom (Houndoominite) |
-| Rival 4 (Goldenrod Underground) | 43–45 | Crobat (Sharp Beak), Weavile (Life Orb), Victreebel (Black Sludge), Pupitar (Eviolite), Typhlosion (Choice Scarf) |
-| Clair | 43–45 | Druddigon (Rocky Helmet), Flygon (Choice Scarf), Dragalge (Black Sludge), Altaria (Altarianite), Kommo O (Life Orb), Kingdra (Wacan Berry) |
-| Rival 5 (Victory Road) | 54–56 | Crobat (Sharp Beak), Weavile (Life Orb), Victreebel (Black Sludge), Ursaring (Flame Orb), Tyranitar (Tyranitarite), Typhlosion (Choice Scarf) |
-| Zuki | 54 | Umbreon (Leftovers) |
-| Naoko | 54 | Espeon (Life Orb) |
-| Miki | 55 | Flareon (Toxic Orb) |
-| Sayo | 55 | Jolteon (Choice Specs) |
+| Proton (Slowpoke Well) | 16 | Koffing (Eviolite), Slowpoke (Eviolite), Houndour (Charcoal) |
+| Rival 2 (Azalea; Cyndaquil version shown) | 21 | Golbat (Eviolite), Larvitar (Eviolite), Sneasel (Oran Berry), Quilava (Sitrus Berry) |
+| Rival 3 (Burned Tower) | 25 | Golbat (Eviolite), Sneasel (Razor Claw), Weepinbell (Eviolite), Larvitar (Eviolite), Quilava (Sitrus Berry) |
+| Morty | 25 | Sableye (Sitrus Berry), Misdreavus (Eviolite), Drifblim (Sitrus Berry), Marowak Alola (Thick Club), Gengar (Spell Tag) |
+| Chuck (as 5th Gym) | 31 | Hitmontop (Sitrus Berry), Breloom (Focus Sash), Primeape (Eviolite), Poliwrath (Leftovers), Heracross (Heracronite) |
+| Chuck (as 6th Gym) | 36 | Hitmontop (Sitrus Berry), Breloom (Focus Sash), Hawlucha (White Herb), Primeape (Eviolite), Poliwrath (Leftovers), Heracross (Heracronite) |
+| Chuck (as 7th Gym) | 38 | Hitmontop (Sitrus Berry), Breloom (Focus Sash), Hawlucha (White Herb), Primeape (Eviolite), Poliwrath (Leftovers), Heracross (Heracronite) |
+| Jasmine (as 5th Gym) | 31 | Skarmory (Rocky Helmet), Magneton (Eviolite), Mawile (Sitrus Berry), Scizor (Metal Coat), Steelix (Steelixite) |
+| Jasmine (as 6th Gym) | 36 | Skarmory (Rocky Helmet), Magneton (Eviolite), Bronzong (Leftovers), Mawile (Sitrus Berry), Scizor (Metal Coat), Steelix (Steelixite) |
+| Jasmine (as 7th Gym) | 38 | Skarmory (Rocky Helmet), Magneton (Eviolite), Bronzong (Leftovers), Mawile (Sitrus Berry), Scizor (Metal Coat), Steelix (Steelixite) |
+| Pryce (as 5th Gym) | 31 | Cloyster (Focus Sash), Jynx (Wise Glasses), Weavile (Razor Claw), Mamoswine (Never Melt Ice), Abomasnow (Abomasite) |
+| Pryce (as 6th Gym) | 36 | Cloyster (Focus Sash), Dewgong (Leftovers), Jynx (Wise Glasses), Weavile (Razor Claw), Mamoswine (Never Melt Ice), Abomasnow (Abomasite) |
+| Pryce (as 7th Gym) | 38 | Cloyster (Focus Sash), Dewgong (Leftovers), Jynx (Wise Glasses), Weavile (Razor Claw), Mamoswine (Never Melt Ice), Abomasnow (Abomasite) |
+| Petrel (Rocket Hideout) | 31 (36 or 38 with five or six badges) | Weezing (Black Sludge), Forretress (Leftovers), Pupitar (Eviolite), Drapion (Black Glasses) |
+| Ariana (Rocket Hideout) | 31 (36 or 38 with five or six badges) | Arbok (Black Sludge), Persian (Silk Scarf), Vileplume (Black Sludge), Honchkrow (Scope Lens) |
+| Proton (Radio Tower) | 45 | Muk (Black Sludge), Nidoqueen (Life Orb), Weezing (Rocky Helmet), Nidoking (Life Orb), Rhydon (Eviolite) |
+| Petrel (Radio Tower) | 45 | Forretress (Leftovers), Weezing Galar (Black Sludge), Pupitar (Eviolite), Cloyster (Focus Sash), Drapion (Black Glasses) |
+| Ariana (Radio Tower) | 45 | Arbok (Black Sludge), Persian (Silk Scarf), Vileplume (Black Sludge), Gyarados (Sitrus Berry), Honchkrow (Scope Lens) |
+| Archer (Radio Tower) | 45 | Porygon Z (Choice Specs), Tauros (Life Orb), Crawdaunt (Life Orb), Slowbro (Leftovers), Bisharp (Black Glasses), Houndoom (Houndoominite) |
+| Rival 4 (Goldenrod Underground) | 45 | Crobat (Sharp Beak), Weavile (Life Orb), Victreebel (Black Sludge), Pupitar (Eviolite), Typhlosion (Choice Scarf) |
+| Clair | 45 | Druddigon (Rocky Helmet), Flygon (Choice Scarf), Dragalge (Black Sludge), Altaria (Altarianite), Kommo O (Life Orb), Kingdra (Wacan Berry) |
+| Rival 5 (Victory Road) | 56 | Crobat (Sharp Beak), Weavile (Life Orb), Victreebel (Black Sludge), Ursaring (Flame Orb), Tyranitar (Tyranitarite), Typhlosion (Choice Scarf) |
+| Zuki | 56 | Umbreon (Leftovers) |
+| Naoko | 56 | Espeon (Life Orb) |
+| Miki | 56 | Flareon (Toxic Orb) |
+| Sayo | 56 | Jolteon (Choice Specs) |
 | Kuni | 56 | Vaporeon (Leftovers) |
-| Will | 54–55 | Xatu (Light Clay), Slowbro (Leftovers), Bronzong (Leftovers), Farigiraf (Sitrus Berry), Gardevoir (Choice Scarf), Alakazam (Alakazite) |
-| Koga | 54–55 | Toxapex (Black Sludge), Muk Alola (Black Sludge), Toxicroak (Life Orb), Venomoth (Focus Sash), Beedrill (Beedrillite), Crobat (Sharp Beak) |
-| Bruno | 55–56 | Hitmontop (Rocky Helmet), Steelix (Leftovers), Hitmonlee (Life Orb), Hitmonchan (Punching Glove), Machamp (Sitrus Berry), Lucario (Lucarionite) |
-| Karen | 55–56 | Umbreon (Leftovers), Vileplume (Black Sludge), Gengar (Life Orb), Honchkrow (Scope Lens), Absol (Absolite), Houndoom (Black Glasses) |
-| Lance | 55–56 | Gyarados (Gyaradosite), Aerodactyl (Focus Sash), Charizard (Charcoal), Salamence (Life Orb), Garchomp (Rocky Helmet), Dragonite (Lum Berry) |
-| Brock | 68–70 | Golem (Leftovers), Omastar (White Herb), Kabutops (Life Orb), Relicanth (Choice Band), Kleavor (Focus Sash), Aerodactyl (Aerodactylite) |
-| Misty | 68–70 | Pelipper (Damp Rock), Golduck (Life Orb), Lapras (Leftovers), Milotic (Leftovers), Blastoise (Blastoisinite), Starmie (Wise Glasses) |
-| Lt. Surge | 68–70 | Electrode (Focus Sash), Magnezone (Choice Specs), Lanturn (Leftovers), Electivire (Life Orb), Manectric (Manectite), Raichu (Magnet) |
-| Erika | 68–70 | Jumpluff (Leftovers), Roserade (Life Orb), Tangrowth (Rocky Helmet), Victreebel (Black Sludge), Bellossom (Sitrus Berry), Venusaur (Venusaurite) |
-| Janine | 68–70 | Weezing (Black Sludge), Nidoqueen (Life Orb), Muk (Leftovers), Crobat (Sharp Beak), Venomoth (Focus Sash), Gengar (Gengarite) |
-| Sabrina | 68–70 | Mr Mime (Light Clay), Wobbuffet (Sitrus Berry), Slowbro (Leftovers), Espeon (Life Orb), Alakazam (Twisted Spoon), Metagross (Metagrossite) |
-| Blaine | 68–70 | Torkoal (Heat Rock), Rapidash (Life Orb), Magmortar (Expert Belt), Volcarona (Charcoal), Arcanine Hisui (Choice Band), Camerupt (Cameruptite) |
-| Blue | 69–70 | Machamp (Sitrus Berry), Exeggutor (Sitrus Berry), Rhyperior (Weakness Policy), Arcanine (Choice Band), Tyranitar (Leftovers), Pidgeot (Pidgeotite) |
-| Red | 96–100 (rematch: 100) | Pikachu (Light Ball), Espeon (Life Orb), Snorlax (Leftovers), Venusaur (Life Orb), Blastoise (White Herb), Charizard (Charizardite Y); EVs on all six |
+| Will | 56 | Xatu (Light Clay), Slowbro (Leftovers), Bronzong (Leftovers), Farigiraf (Sitrus Berry), Gardevoir (Choice Scarf), Alakazam (Alakazite) |
+| Koga | 56 | Toxapex (Black Sludge), Muk Alola (Black Sludge), Toxicroak (Life Orb), Venomoth (Focus Sash), Beedrill (Beedrillite), Crobat (Sharp Beak) |
+| Bruno | 56 | Hitmontop (Rocky Helmet), Steelix (Leftovers), Hitmonlee (Life Orb), Hitmonchan (Punching Glove), Machamp (Sitrus Berry), Lucario (Lucarionite) |
+| Karen | 56 | Umbreon (Leftovers), Vileplume (Black Sludge), Gengar (Life Orb), Honchkrow (Scope Lens), Absol (Absolite), Houndoom (Black Glasses) |
+| Lance | 56 | Gyarados (Gyaradosite), Aerodactyl (Focus Sash), Charizard (Charcoal), Salamence (Life Orb), Garchomp (Rocky Helmet), Dragonite (Lum Berry) |
+| Brock | 70 | Golem (Leftovers), Omastar (White Herb), Kabutops (Life Orb), Relicanth (Choice Band), Kleavor (Focus Sash), Aerodactyl (Aerodactylite) |
+| Misty | 70 | Pelipper (Damp Rock), Golduck (Life Orb), Lapras (Leftovers), Milotic (Leftovers), Blastoise (Blastoisinite), Starmie (Wise Glasses) |
+| Lt. Surge | 70 | Electrode (Focus Sash), Magnezone (Choice Specs), Lanturn (Leftovers), Electivire (Life Orb), Manectric (Manectite), Raichu (Magnet) |
+| Erika | 70 | Jumpluff (Leftovers), Roserade (Life Orb), Tangrowth (Rocky Helmet), Victreebel (Black Sludge), Bellossom (Sitrus Berry), Venusaur (Venusaurite) |
+| Janine | 70 | Weezing (Black Sludge), Nidoqueen (Life Orb), Muk (Leftovers), Crobat (Sharp Beak), Venomoth (Focus Sash), Gengar (Gengarite) |
+| Sabrina | 70 | Mr Mime (Light Clay), Wobbuffet (Sitrus Berry), Slowbro (Leftovers), Espeon (Life Orb), Alakazam (Twisted Spoon), Metagross (Metagrossite) |
+| Blaine | 70 | Torkoal (Heat Rock), Rapidash (Life Orb), Magmortar (Expert Belt), Volcarona (Charcoal), Arcanine Hisui (Choice Band), Camerupt (Cameruptite) |
+| Blue | 70 | Machamp (Sitrus Berry), Exeggutor (Sitrus Berry), Rhyperior (Weakness Policy), Arcanine (Choice Band), Tyranitar (Leftovers), Pidgeot (Pidgeotite) |
+| Red | 100 (rematch too) | Pikachu (Light Ball), Espeon (Life Orb), Snorlax (Leftovers), Venusaur (Life Orb), Blastoise (White Herb), Charizard (Charizardite Y); EVs on all six |
+
+Every Pokémon is at the level shown, the cap of the earliest point the battle can happen. A boss
+fought later is raised to the player's cap then (D21): the Kanto Gym teams, which are also the
+Fighting Dojo rematches, are at 100 after the Kanto League, like every Heart & Soul rematch then.
 
 ### Notes from the play tests
 
-The naive autopilot (no switching, no items, one move per Pokémon) and the game-plan autopilot
-both play worse than a person, so their win counts are lower bounds. The regression's counts
-for both emulators are in TESTING.md.
+The naive autopilot (no switching, one move per Pokémon) and the game-plan autopilot both play
+worse than a person, so their win counts are lower bounds. Since 0.7.0 every boss Pokémon is at
+the cap, and the test teams hold items from the care packages the player has by then (before,
+no items). The regression's counts for both emulators are in TESTING.md.
 
-- **The Elite Four** (`bosses_e4`, cap 56): the prepared six beats Koga most of the time
+- **Johto Gyms at the cap** (0.7.0): the naive lines lost more. Bugsy's naive four won 5 of 20
+  without items, 9 and 11 of 20 with the first package's Charcoal on Quilava, and every try with
+  Charcoal, two Eviolites and a Focus Sash; the test keeps the Charcoal. Whitney's naive four,
+  Machop holding an Eviolite, won 5 and 4 of 20 (mGBA, VBA-M), so her test takes 24 samples. The
+  prepared six with items still beats Morty and Jasmine most of the time and Clair about half
+  the time; against Pryce (Shell Smash Cloyster, Mega Abomasnow in snow) it won once in 16, so
+  Pryce, like Chuck, is fought by a six built for him with a game plan: Assault Vest Magnezone
+  for Cloyster, Tyranitar for Jynx, Focus Sash Lucario for Weavile, Gyarados for Mamoswine and
+  Choice Band Arcanine and Metagross for Abomasnow. It won 13 and 16 of 16.
+
+- **The Elite Four** (`bosses_e4`, cap 56): with every Pokémon at 56 (0.7.0), the planned six
+  without items lost all 8 tries to Will on mGBA; holding items from the first eight packages
+  (no Choice items, since a plan changes moves) the sixes beat Will 9 and 7 times in 16, Bruno
+  10 and 9, and Lance 6 and 9 times in 24. Before 0.7.0: the prepared six beats Koga most of the time
   played naively. Naive play rarely beat Will (3 of 60 tries with the prepared six, on two ROM
   builds) or Lance (13 of 60 with a six built for him), and its results against Bruno and Karen
   swung between the emulators (5 and 0 of 6; 2 and 0 of 6). Played with a game plan, sixes
@@ -274,7 +296,9 @@ for both emulators are in TESTING.md.
   at the cap, the prepared six beat Lt. Surge and Erika on both emulators, Sabrina on mGBA and
   Blaine on VBA-M, and lost to the others. A six built for Blue beat him once in 12 tries
   played naively and 10 times in 12 with a game plan.
-- **Red** is the hardest battle (D27). Every team at level 100 played naively lost: 30 tries
+- **Red** is the hardest battle (D27). With all six at 100 (0.7.0; 96–100 before) the planned
+  six with items won 5 and 2 times in 12 (mGBA, VBA-M), so the test gives it 24 tries. Before
+  0.7.0: every team at level 100 played naively lost: 30 tries
   with five different sixes, among them six legendary Dragons, and 24 more against weaker
   versions of Red (two Full Restores, or no prediction AI). A game plan without held items lost
   12 of 12. A six with held items and a Mega played with a game plan (Life Orb Garchomp for

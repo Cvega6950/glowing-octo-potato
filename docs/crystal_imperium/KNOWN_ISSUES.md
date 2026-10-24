@@ -5,8 +5,8 @@
 | 1 | Tests | Upstream `make check` (Emerald variant) fails to compile on HnS 2.0.6: `FLAG_RECEIVED_TOGEPI_EGG` is undefined in `src/braille_puzzles.c`. | Open (upstream) |
 | 2 | Tests | `make check BUILD=hns` failed to compile because `test/test_runner.c` included `fake_rtc.h` before `global.h`. | **Fixed** (commit "Fix HnS test build") |
 | 3 | Tests | The HnS test suite runs, but about 1.4k tests fail because the zeroed test save leaves HnS's runtime toggles in non-default states. `mgba-rom-test-hydra` also grew to about 13 GB RAM before one worker hung. | Open |
-| 4 | Balance | Pryce's ace (Lv 33) is below the NORMAL level cap for 6 badges (38), so capped players can out-level him. | Open, Milestone 2 |
-| 5 | Data | `TRAINER_FALKNER_2_HNS` (rematch) gives Swellow no `Level:` line, so trainerproc's default applies. | Open, Milestone 5 rematch rework |
+| 4 | Balance | Pryce's ace (Lv 33) is below the NORMAL level cap for 6 badges (38), so capped players can out-level him. | **Fixed**: every version of every Gym Leader is at its cap, all six Pokémon (0.7.0, D21) |
+| 5 | Data | `TRAINER_FALKNER_2_HNS` (rematch) gives Swellow no `Level:` line, so trainerproc's default applies. | **Fixed**: `boss_teams.py` sets every rematch Pokémon's level (0.7.0) |
 | 6 | ROM budget | ROM 99.37% of 32 MB (about 208 KB free); EWRAM 99.12% (about 2.3 KB free, after the BW battle UI's +8 KB heap); SaveBlock3 1,548 of 1,624 bytes. New graphics and EWRAM buffers must be budgeted. | Constraint (DECISIONS.md D7, D9, D26) |
 | 7 | Build | Interrupting `make` (e.g. piping it into `head`) can leave an empty object such as `build/hns/src/region_map.o`, which breaks the link. Delete that object and rebuild. | Note |
 | 8 | Platform | Delta's emulator core (VBA-M at GBADeltaCore's pinned commit) runs the full play-test suite, but the Delta app itself (touch controls, its save-file handling, suspend/resume) has not been tested on an iPhone. | Open (needs a device) |
@@ -32,3 +32,7 @@
 | 28 | Story | Red battles only the Kanto Champion; Heart & Soul allowed the battle after 16 badges, while the level cap is still 70. | By design (D27) |
 | 29 | Tests | The battle autopilot's forced switches compared party-menu slots (battle order) with party slots (field order): it could keep choosing a fainted Pokémon until the battle timed out. | **Fixed** in 0.6.0 |
 | 30 | Tests | The expansion's AI-vs-AI test mode (`B_FLAG_AI_VS_AI_BATTLE`) stops in this build after the player's first Pokémon faints (the switch-in message never completes), so it is not used; the autopilot's game plan stands in for a thinking player. | Open (test tooling only) |
+| 31 | Balance | Rematches after the Kanto League (Heart & Soul's Fighting Dojo, Elite Four and Lance rematches, and the Kanto Gym teams fought again in the Dojo) are at level 100, the cap by then; their Heart & Soul teams were made for about 70. | By design (D21: every boss at the cap) |
+| 32 | Balance | Petrel and Ariana in the Rocket Hideout are at 31 when the hideout is done with four badges (the fewest it can be reached with), lower than 0.6.0's 34–36; with five or six badges they are raised to 36 or 38. | By design (D21) |
+| 33 | Balance | At the cap some boss Pokémon are below their usual evolution level (e.g. Drapion and Weezing at 31, Drifblim at 25), as in Emerald Imperium. | By design |
+| 34 | Balance | The bonus storylines' named trainers (the New Sinjoh trainers, Samson Oak, Steven at Sinjoh Ruins, Giovanni at Tohjo Falls) keep Heart & Soul's levels: they are at or above the cap where they can first be fought (70 for the Sinjoh story, which opens with Mt. Silver), so they aren't raised. | By design (D21) |

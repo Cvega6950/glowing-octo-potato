@@ -88,30 +88,68 @@ loadstate base.ss
 !autobattle("0,1,3,3,1")
 expectne8 {gBattleOutcome} 0 clair_resolved
 
-# Winnable with a well-built team: six fully evolved Pokemon at the cap with good natures and
-# moves but no held items (prepared_team), played by the autopilot (one move per Pokemon, no
-# switching), wins at least once: in eight tries, sixteen against Pryce (it won 5, 6, 6, 3 and 4 of
-# 8 against Morty, Chuck, Jasmine, Pryce and Clair when the tries were sized). The bosses' Mega
-# Evolutions happen.
+# Winnable with a well-built team. Since 0.7.0 every boss Pokemon is at the cap, and the player's
+# teams hold items from the care packages they have by then (DECISIONS.md D16). Morty, Jasmine
+# and Clair face the prepared six (prepared_team with items: Life Orb, Leftovers, Choice Specs,
+# Focus Sash, Choice Band, Expert Belt), played naively (one move per Pokemon, no switching). The
+# prepared six beat Pryce only 1 time in 16 even with items and a game plan (0 in 16 without), so
+# Chuck and Pryce face sixes built for them, played with a game plan like the Elite Four's
+# (bosses_e4): they won 16 of 16 and 13 of 16 when built. Each Gym Leader must be beaten at least
+# once in eight tries (Clair sixteen), and every boss Mega Evolution happens.
 loadstate base.ss
-!prepared_team(25)
+!prepared_team(25, items=True)
 savestate prep25.ss
 !sample_battle("TRAINER_MORTY_1_HNS", "0,0,1,0,3,0", 8, 1, 8, "prep25.ss")
 loadstate base.ss
-!prepared_team(31)
+!prepared_team(31, items=True)
 savestate prep31.ss
-seenreset
-!sample_battle("TRAINER_CHUCK_1_HNS", "1,0,1,0,0,0", 8, 1, 8, "prep31.ss")
-!expect_const_seen("SPECIES_HERACROSS_MEGA", "chuck_mega_heracross")
 seenreset
 !sample_battle("TRAINER_JASMINE_1_HNS", "1,2,2,0,0,2", 8, 1, 8, "prep31.ss")
 !expect_const_seen("SPECIES_STEELIX_MEGA", "jasmine_mega_steelix")
-seenreset
-!sample_battle("TRAINER_PRYCE_1_HNS", "1,0,2,1,0,2", 16, 1, 16, "prep31.ss")
-!expect_const_seen("SPECIES_ABOMASNOW_MEGA", "pryce_mega_abomasnow")
+
+# Chuck: Psychic, Flying and Fairy attackers (Talonflame with a Lum Berry against Breloom's Spore)
 loadstate base.ss
-!prepared_team(45)
+!give_mon_complex("SPECIES_GARDEVOIR", 31, "NATURE_MODEST", 0, ['MOVE_PSYCHIC', 'MOVE_MOONBLAST', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
+!give_mon_complex("SPECIES_TALONFLAME", 31, "NATURE_ADAMANT", 1, ['MOVE_BRAVE_BIRD', 'MOVE_FLARE_BLITZ', 'MOVE_U_TURN', 'MOVE_ROOST'])
+!give_mon_complex("SPECIES_TOGEKISS", 31, "NATURE_MODEST", 1, ['MOVE_AIR_SLASH', 'MOVE_MOONBLAST', 'MOVE_AURA_SPHERE', 'MOVE_NASTY_PLOT'])
+!give_mon_complex("SPECIES_SLOWBRO", 31, "NATURE_MODEST", 0, ['MOVE_PSYCHIC', 'MOVE_SCALD', 'MOVE_ICE_BEAM', 'MOVE_SLACK_OFF'])
+!give_mon_complex("SPECIES_GENGAR", 31, "NATURE_TIMID", 0, ['MOVE_SHADOW_BALL', 'MOVE_SLUDGE_BOMB', 'MOVE_FOCUS_BLAST', 'MOVE_NASTY_PLOT'])
+!give_mon_complex("SPECIES_ALAKAZAM", 31, "NATURE_TIMID", 0, ['MOVE_PSYCHIC', 'MOVE_SHADOW_BALL', 'MOVE_FOCUS_BLAST', 'MOVE_CALM_MIND'])
+!hold_item("ITEM_LIFE_ORB", 0)
+!hold_item("ITEM_LUM_BERRY", 1, "POCKET_BERRIES")
+!hold_item("ITEM_LEFTOVERS", 2)
+!hold_item("ITEM_ASSAULT_VEST", 3)
+!hold_item("ITEM_FOCUS_SASH", 4)
+!hold_item("ITEM_FOCUS_SASH", 5)
+savestate chuck31.ss
+seenreset
+!sample_battle("TRAINER_CHUCK_1_HNS", "0,0,0,0,0,0", 8, 1, 8, "chuck31.ss", plan={"SPECIES_HITMONTOP": [(0, 0), (2, 0), (5, 0)], "SPECIES_BRELOOM": [(1, 0), (2, 0), (0, 0)], "SPECIES_PRIMEAPE": [(0, 1), (2, 0), (5, 0)], "SPECIES_POLIWRATH": [(0, 0), (2, 0), (5, 0)], "SPECIES_HERACROSS": [(1, 0), (2, 0)], "SPECIES_HERACROSS_MEGA": [(1, 0), (2, 0)]})
+!expect_const_seen("SPECIES_HERACROSS_MEGA", "chuck_mega_heracross")
+
+# Pryce: Electric for Cloyster, Dark for Jynx, Fighting for Weavile, Water for Mamoswine, Fire
+# and Steel for Abomasnow (Assault Vest Magnezone and Tyranitar, Focus Sash Lucario, Choice
+# Band Arcanine, which only uses Flare Blitz)
+loadstate base.ss
+!give_mon_complex("SPECIES_MAGNEZONE", 31, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_FLASH_CANNON', 'MOVE_VOLT_SWITCH', 'MOVE_BODY_PRESS'])
+!give_mon_complex("SPECIES_LUCARIO", 31, "NATURE_ADAMANT", 1, ['MOVE_CLOSE_COMBAT', 'MOVE_METEOR_MASH', 'MOVE_EXTREME_SPEED', 'MOVE_SWORDS_DANCE'])
+!give_mon_complex("SPECIES_ARCANINE", 31, "NATURE_ADAMANT", 0, ['MOVE_FLARE_BLITZ', 'MOVE_EXTREME_SPEED', 'MOVE_WILD_CHARGE', 'MOVE_CRUNCH'])
+!give_mon_complex("SPECIES_GYARADOS", 31, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_ICE_FANG', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
+!give_mon_complex("SPECIES_TYRANITAR", 31, "NATURE_ADAMANT", 0, ['MOVE_CRUNCH', 'MOVE_STONE_EDGE', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
+!give_mon_complex("SPECIES_METAGROSS", 31, "NATURE_ADAMANT", 0, ['MOVE_METEOR_MASH', 'MOVE_ZEN_HEADBUTT', 'MOVE_BULLET_PUNCH', 'MOVE_EARTHQUAKE'])
+!hold_item("ITEM_ASSAULT_VEST", 0)
+!hold_item("ITEM_FOCUS_SASH", 1)
+!hold_item("ITEM_CHOICE_BAND", 2)
+!hold_item("ITEM_LEFTOVERS", 3)
+!hold_item("ITEM_ASSAULT_VEST", 4)
+!hold_item("ITEM_LIFE_ORB", 5)
+savestate pryce31.ss
+seenreset
+!sample_battle("TRAINER_PRYCE_1_HNS", "0,0,0,0,0,0", 8, 1, 8, "pryce31.ss", plan={"SPECIES_CLOYSTER": [(0, 0), (1, 0)], "SPECIES_JYNX": [(4, 0), (5, 0)], "SPECIES_WEAVILE": [(1, 0), (2, 0), (5, 0)], "SPECIES_MAMOSWINE": [(3, 0), (1, 0)], "SPECIES_ABOMASNOW": [(2, 0), (5, 0), (0, 1), (1, 0)], "SPECIES_ABOMASNOW_MEGA": [(2, 0), (5, 0), (0, 1), (1, 0)]})
+!expect_const_seen("SPECIES_ABOMASNOW_MEGA", "pryce_mega_abomasnow")
+
+loadstate base.ss
+!prepared_team(45, items=True)
 savestate prep45.ss
 seenreset
-!sample_battle("TRAINER_CLAIR_1_HNS", "1,1,0,1,3,1", 8, 1, 8, "prep45.ss")
+!sample_battle("TRAINER_CLAIR_1_HNS", "1,1,0,1,3,1", 16, 1, 16, "prep45.ss")
 !expect_const_seen("SPECIES_ALTARIA_MEGA", "clair_mega_altaria")

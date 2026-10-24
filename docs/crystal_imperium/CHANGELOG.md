@@ -1,5 +1,62 @@
 # Crystal Imperium changelog
 
+## 0.7.0-experimental (2026-10-24)
+
+### Gameplay
+- **Every boss Pokémon is at the level cap** (DECISIONS.md D21), not just the ace: every Gym
+  Leader (all versions and rematches), the rival, Team Rocket's executives, Eusine, the Kimono
+  Girls, the Elite Four, Lance, Blue and Red. Each battle's level is the NORMAL cap of the
+  earliest point it can happen: 11 for Sprout Tower, Falkner and the first rival battle, then
+  16, 21, 25, 31, 36, 38, 45 and 56 up to the Johto League, 70 for Kanto (the Kanto leaders,
+  Blue, the Fighting Dojo rematches, the Kanto League) and 100 after the Kanto League (Red and
+  every rematch then). With the Rare Candy Box you can always match a boss, never out-level it.
+  - A boss fought later than its earliest point is raised to your cap when the battle starts:
+    the Rocket Hideout with five or six badges (36 or 38), and the Kanto Gym teams in the
+    Fighting Dojo or the Elite Four's rematch after the Kanto League (100). EASY and HARD
+    still scale the result to 90% and 110%.
+  - Petrel and Ariana in the Rocket Hideout are at 31 if you go there with four badges (the
+    Lake of Rage needs Surf, the 4th badge's move); 0.6.0 had them at 34–36.
+  - Red: all six at 100 in both battles (0.6.0: 96–100). He stays the hardest battle: the
+    only Pokémon with EVs under Minimal Grinding, four Full Restores, prediction AI (D27).
+- **Care packages are full of battle gear, Emerald Imperium-style** (D16). The 17 packages now
+  hold 287 entries: competitive held items with the staples several times over the game
+  (Leftovers ×7, Focus Sash ×8, Life Orb ×5, Assault Vest ×5, Heavy-Duty Boots ×5, Choice
+  Band and Choice Specs ×3 each, Choice Scarf ×4, Weakness Policy ×3, Booster Energy ×4 and
+  dozens more), all 18
+  type-boosting items, all 18 type-resist Berries and the pinch Berries, 35 Sitrus and 19 Lum
+  Berries, **93 PP Max** and 8 PP Up, X items, Max Elixirs, Elixirs and Max Ethers, besides
+  the balls, healing and evolution items they had.
+  - A package lists its contents in one message (two lines a page) instead of one message per
+    item. An item whose Bag pocket is full goes to your PC, and you're told.
+  - **Continuing an older save?** The gear for the packages you already received arrives too,
+    one package per step out on a route or in a town ("PROF. ELM sent the battle gear an
+    earlier package didn't have!").
+
+### Tooling
+- `tools/crystal_imperium/boss_teams.py` gives every boss a stage and sets its levels from
+  `src/caps.c`; Heart & Soul's own boss teams get only their levels (`LEVEL_ONLY`). It also writes
+  the boss list the battle code uses (`src/data/level_cap_bosses.h`).
+- `tools/crystal_imperium/care_packages.py` writes the care package script from a table (item
+  names and line widths come from the game's own data); CI checks it with `--check`. New var
+  `VAR_CARE_PACKAGE_GEAR` (0x40E5) for the catch-up.
+- `validate.py`: every boss at its stage's cap, no boss trainer missing from the list (Lt.
+  Surge's teams were not matched by the boss patterns before), and Red's guard now asks for
+  the most Full Restores, since the post-League rematches are at 100 like him.
+- Harness: `fill_pocket`, `expect_pc_has`; `prepared_team(level, items=True)` holds Life Orb,
+  Leftovers, Choice Specs, Focus Sash, Choice Band and Expert Belt, all from the first three
+  care packages.
+- New test `boss_levels` (a boss raised to the cap with six badges and after the Kanto League;
+  a Grunt unchanged). `care_packages` checks the new gear, the PC fallback and an older save
+  catching up. The boss samples' teams hold items from the care packages the player has by then:
+  the prepared six in `bosses_m3`, `bosses_m4` and for Koga, the planned sixes for Will, Bruno,
+  Karen and Lance (Karen now 12 tries), Bugsy's naive four a Charcoal (12 samples) and Whitney's
+  Machop an Eviolite (24 samples). Chuck and Pryce are fought by sixes built for them with a game
+  plan (the prepared six won once in 16 against Pryce). `bosses_m4` checks Archer's and the
+  rival's Megas with a level-100 six, since at the cap the six can lose before the ace comes out;
+  `bosses_m5`'s Janine check no longer leads with Earthquake against Levitate Weezing. `red`
+  takes 24 tries (it won 5 and 2 of 12). `difficulty` and `red` expectations follow the new
+  levels.
+
 ## 0.6.0-experimental (2026-10-24)
 
 ### Gameplay

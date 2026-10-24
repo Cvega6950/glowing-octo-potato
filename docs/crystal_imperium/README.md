@@ -4,11 +4,12 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.6.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.7.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
-> uses the smart AI, every story boss from the rival to Red has an Imperium-style team, the TM
-> list is Emerald Imperium's, and HMs work without being taught. Nobody has played the whole
-> story through yet, and the postgame rematches still have Heart & Soul's teams.
+> uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
+> of its Pokémon at the level cap, the TM list is Emerald Imperium's, and HMs work without being
+> taught. Nobody has played the whole story through yet, and the postgame rematches still have
+> Heart & Soul's teams (at the level cap too).
 
 ## What you get
 
@@ -47,8 +48,13 @@ From the first step of a new game:
   Goldenrod Dept. Store 5F sells all of them, more with each badge tier (3, 6 and 8 badges).
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
-- **Care packages** from Prof. Elm after every badge and after becoming Champion. They carry
-  supplies and every evolution item the game doesn't otherwise have.
+- **Care packages** from Prof. Elm after every badge and after becoming Champion, full of
+  battle gear the Emerald Imperium way: competitive held items (Leftovers, Life Orb, Focus Sash,
+  Choice items, Assault Vest, Heavy-Duty Boots, Booster Energy and dozens more, the staples
+  several times), every type-boosting item, every type-resist and pinch Berry, 93 PP Max over the
+  game, X items and Elixirs, besides supplies and every evolution item the game doesn't
+  otherwise have. Each package lists what's inside; if a Bag pocket is full, the rest goes to
+  your PC.
 - **Mega Evolution** (48 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F).
 - Legendary and Mythical Pokémon are on the DexNav list from the start. Once you are
   Champion, about a quarter of each day's Wild Variety sets include one.
@@ -60,9 +66,11 @@ From the first step of a new game:
 - **Imperium-style bosses for the whole story:** every Johto Gym Leader (Chuck, Jasmine and
   Pryce in three versions, for whichever order you take them), the rival from Azalea to
   Victory Road, Team Rocket's executives, the Kimono Girls, the Elite Four and Lance, the eight
-  Kanto leaders, Blue and Red. Aces at the level cap, held items, natures, abilities,
-  competitive moves, and Mega Evolutions from the 5th Gym on.
-- **Red is the hardest battle in the game:** levels 96–100, competitive EVs that only his
+  Kanto leaders, Blue and Red. **Every boss Pokémon is at the level cap** (not just the ace),
+  with held items, natures, abilities, competitive moves, and Mega Evolutions from the 5th Gym
+  on. A boss you fight later than usual (the Rocket Hideout with six badges, a rematch after the
+  Kanto League) is raised to your cap then; rematches after the Kanto League are at 100.
+- **Red is the hardest battle in the game:** all six at level 100, competitive EVs that only his
   Pokémon keep under Minimal Grinding, the boss AI with move and switch prediction, four Full
   Restores, and a sun team around Mega Charizard Y. He battles only the Kanto Champion, so win
   the Kanto League first (the level cap is gone by then).

@@ -2,26 +2,28 @@
 # (tools/crystal_imperium/boss_teams.py): the Rocket executives in the Rocket Hideout and the
 # Radio Tower, the rival in the Goldenrod Underground and on Victory Road, and the five Kimono
 # Girls (the Elite Four and Lance are bosses_e4). The player brings a prepared six at the level cap
-# (good natures and moves, no held items; the autopilot uses one move per Pokemon and never
-# switches). Every battle plays to a result, and Archer's and the rival's Mega Evolutions happen.
+# (good natures and moves, holding items from the care packages; the autopilot uses one move per
+# Pokemon and never switches). Every battle plays to a result. Archer's and the rival's Mega
+# Evolutions happen: those come last, so they are checked with the six at level 100, which always
+# gets to them (at the cap the six can lose before the ace comes out).
 !new_game()
 !battle_style_set()
 savestate base.ss
 
-# Rocket Hideout (5 or 6 badges)
-!prepared_team(36)
-savestate prep36.ss
+# Rocket Hideout (4 badges at the earliest: cap 31)
+!prepared_team(31, items=True)
+savestate prep31.ss
 !battle("TRAINER_PETREL_1_HNS")
 !autobattle("2,0,1,0,0,0")
 expectne8 {gBattleOutcome} 0 petrel_1_resolved
-loadstate prep36.ss
+loadstate prep31.ss
 !battle("TRAINER_ARIANA_1_HNS")
 !autobattle("1,1,1,0,0,0")
 expectne8 {gBattleOutcome} 0 ariana_1_resolved
 
 # Radio Tower and the Goldenrod Underground (7 badges, cap 45)
 loadstate base.ss
-!prepared_team(45)
+!prepared_team(45, items=True)
 savestate prep45.ss
 !battle("TRAINER_PROTON_2_HNS")
 !autobattle("2,0,1,0,0,2")
@@ -35,11 +37,9 @@ loadstate prep45.ss
 !autobattle("1,1,1,0,0,0")
 expectne8 {gBattleOutcome} 0 ariana_2_resolved
 loadstate prep45.ss
-seenreset
 !battle("TRAINER_ARCHER_HNS")
 !autobattle("0,0,0,0,2,2")
 expectne8 {gBattleOutcome} 0 archer_resolved
-!expect_const_seen("SPECIES_HOUNDOOM_MEGA", "archer_mega_houndoom")
 loadstate prep45.ss
 !battle("TRAINER_RIVAL_CHIKORITA_4_HNS")
 !autobattle("1,0,0,0,0,0")
@@ -47,13 +47,11 @@ expectne8 {gBattleOutcome} 0 rival_4_resolved
 
 # Victory Road rival, Kimono Girls, Elite Four and Lance (8 badges, cap 56)
 loadstate base.ss
-!prepared_team(56)
+!prepared_team(56, items=True)
 savestate prep56.ss
-seenreset
 !battle("TRAINER_RIVAL_CYNDAQUIL_5_HNS")
 !autobattle("1,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 rival_5_resolved
-!expect_const_seen("SPECIES_TYRANITAR_MEGA", "rival_5_mega_tyranitar")
 loadstate prep56.ss
 !battle("TRAINER_ZUKI_HNS")
 !autobattle("1,0,0,0,0,0")
@@ -74,3 +72,17 @@ loadstate prep56.ss
 !battle("TRAINER_KUNI_HNS")
 !autobattle("0,0,0,0,2,0")
 expectne8 {gBattleOutcome} 0 kuni_resolved
+
+# The Megas, with the six at level 100
+loadstate base.ss
+!prepared_team(100)
+savestate prep100.ss
+seenreset
+!battle("TRAINER_ARCHER_HNS")
+!autobattle("0,0,0,0,2,2")
+!expect_const_seen("SPECIES_HOUNDOOM_MEGA", "archer_mega_houndoom")
+loadstate prep100.ss
+seenreset
+!battle("TRAINER_RIVAL_CYNDAQUIL_5_HNS")
+!autobattle("1,0,0,0,0,0")
+!expect_const_seen("SPECIES_TYRANITAR_MEGA", "rival_5_mega_tyranitar")

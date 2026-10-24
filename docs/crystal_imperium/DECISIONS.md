@@ -192,12 +192,48 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   Champion, a care package from Prof. Elm arrives (`src/care_packages.c`,
   `data/scripts/care_packages.inc`, counter `VAR_CARE_PACKAGES` = 0x40CA). Several missed
   milestones are caught up one package per step.
-- Besides balls and medicine they carry every evolution item found nowhere else in HnS: Linking
-  Cord, Upgrade, Sachet, Whipped Dream, Prism Scale, Sun Stone, Sweet/Tart/Syrupy Apple, the
-  Alcremie Sweets, Cracked/Chipped Pot, both Teacups, Leader's Crest, both Armors, Metal Alloy,
-  999 Gimmighoul Coins and, for the Champion, both Scrolls.
+- **Battle gear, Emerald Imperium-style (0.7.0).** The user asked for "a ton of useful held items
+  and stuff for battle like PP Maxes, just like Emerald Imperium". Emerald Imperium hands out
+  competitive tools cheaply (Ability Capsules and Patches for 100 at Slateport, the type-resist
+  Berries free, a Scope Lens gift, a stat editor and IV perfecter). The 17 packages (287 entries)
+  now carry, besides balls, medicine and evolution items:
+  - Competitive held items, the staples several times over the game: Leftovers 7, Focus Sash 8,
+    Life Orb 5, Assault Vest 5, Heavy-Duty Boots 5, Choice Band and Specs 3 each and Choice Scarf
+    4, Rocky Helmet 3, Weakness Policy 3, Booster Energy 4, Eviolite 3, Air Balloon 6, White Herb
+    4; and Expert Belt, Muscle Band, Wise Glasses, Scope Lens, the Orbs, Light Clay, Black Sludge,
+    the Herbs, Red Card, Eject Button and Pack, Safety Goggles, Covert Cloak, Clear Amulet,
+    Protective Pads, Loaded Dice, Punching Glove, Throat Spray, Blunder Policy, Room Service,
+    Utility Umbrella, Ability Shield, Adrenaline Orb, the weather Rocks, the Terrain Seeds and
+    Extender, the species items (Light Ball, Thick Club, Leek, ...) and more.
+  - All 18 type-boosting items (Charcoal to Fairy Feather), spread over packages 1–6.
+  - All 18 type-resist Berries (two each, packages 2–4), the pinch Berries (Liechi to Custap,
+    Jaboca to Maranga), 35 Sitrus and 19 Lum Berries.
+  - **93 PP Max** and 8 PP Up (PP Max from the first package on: 3, then 5 a package, 10 for the
+    Champion and the 16th badge), X items, Max Elixirs, Elixirs and Max Ethers.
+  - No Mints or Ability Capsules beyond the Ability Patches already there: the Training Kit and
+    the Goldenrod Flower Shop cover natures and abilities (D10).
+- The table is in `tools/crystal_imperium/care_packages.py`, which writes the script (CI runs
+  it with `--check`). A package shows its contents in one message, wrapped to the message box
+  with the game's own font widths (two lines a page), then adds the items without a message each:
+  with `giveitem` the bigger packages would take forty message boxes. An item whose Bag pocket is
+  full goes to the PC instead (`addpcitem`), and the player is told. The Bag has room: 236 item
+  slots, 92 medicine, 66 Berries.
+- **Saves from before 0.7.0 get the gear too.** Their packages came with the earlier contents
+  (the same in every release that had them, `EARLIER` in the generator). `VAR_CARE_PACKAGE_GEAR`
+  (0x40E5, never referenced before) counts the packages whose gear has arrived; while it is behind
+  `VAR_CARE_PACKAGES`, each step on a route or in a town brings one package's missing gear ("PROF.
+  ELM sent the battle gear an earlier package didn't have!") before any new package. A package
+  received since 0.7.0 brings its gear itself and moves both counters.
+- The evolution items found nowhere else in HnS stay where they were: Linking Cord, Upgrade,
+  Sachet, Whipped Dream, Prism Scale, Sun Stone, Sweet/Tart/Syrupy Apple, the Alcremie Sweets,
+  Cracked/Chipped Pot, both Teacups, Leader's Crest, both Armors, Metal Alloy, 999 Gimmighoul
+  Coins and, for the Champion, both Scrolls.
 - All 30 trade evolutions also have a non-trade method in the data, so no evolution needs a
   link cable.
+- Evidence: `care_packages` (one package per milestone, the held items, PP Max, X items and
+  Berries in the Bag after the eight Johto badges and the Champion, a full Berries pocket
+  sending the first package's Berries to the PC, and a save with eight packages and no gear
+  getting the eight packages' gear before the Champion's package).
 
 ## D17. Delta compatibility is tested on VBA-M
 
@@ -264,10 +300,30 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 
 - `tools/crystal_imperium/boss_teams.py` holds the reworked bosses and writes them into
   `src/data/trainers_hns.party`, keeping each trainer's header. Rules:
-  - The ace (last Pokémon, kept back by `Ace Pokemon`) is at the NORMAL level cap the player
-    has when the battle can happen; the others are one or two levels below.
+  - **Every Pokémon is at the NORMAL level cap** (since 0.7.0; before, only the ace was, and the
+    others were one or two levels below). The user asked for every boss's and Gym Leader's
+    Pokémon to be at the level cap, to make the game harder. Each boss has a *stage*, the
+    earliest point in the game its battle can happen (a badge count, the Johto League won or the
+    Kanto League won), and its levels are that stage's cap from `src/caps.c` (11, 16, 21, 25, 31,
+    36, 38, 45, 56, then 70 and 100). With the Rare Candy Box the player can always be at the cap.
+  - **A boss fought later is raised to the cap then.** `CreateNPCTrainerParty`
+    (`src/battle_main.c`) raises a boss's Pokémon to the player's NORMAL cap (whatever the level
+    cap setting) when that is above the party's levels; the list of bosses is generated into
+    `src/data/level_cap_bosses.h`. This covers the battles whose badge count varies: the Rocket
+    Hideout (the Lake of Rage needs Surf, so four to six badges: 31, 36 or 38), Eusine in
+    Cianwood, and the battles that are also rematches after the Kanto League (the Kanto Gym
+    teams in the Fighting Dojo, the Johto leaders' and the Elite Four's `_2` teams before the
+    Sinjoh story, the rival at the Indigo Plateau): at 100 then. EASY and HARD still scale the
+    result to 90% and 110%. Other trainers are untouched (`boss_levels` checks a Grunt).
+  - Heart & Soul's own teams for the other bosses keep their Pokémon and only get the levels
+    (`LEVEL_ONLY` in `boss_teams.py`): Li, Falkner, Bugsy, Whitney, the first rival battle and
+    Eusine; the rival on Mt. Moon and at the Indigo Plateau, the Fighting Dojo rematches and the
+    Kanto League (70); and every rematch after it (`_POSTOBC`: 100). The bonus storylines'
+    trainers (New Sinjoh, Samson Oak, Steven, Giovanni) are at or above the cap where they can
+    first be fought and keep their levels; the unused and debug-only teams too.
   - Every Pokémon has a held item, a nature, an ability chosen for the set and four moves its
-    species or a pre-evolution can learn (`validate.py` checks abilities, moves and aces).
+    species or a pre-evolution can learn (`validate.py` checks abilities, moves, that every
+    boss is at its stage's cap and that no boss trainer is missing from the list).
   - Team size grows: 3–4 for early story bosses, 5 for Morty and for a 5th Gym, 6 after that.
   - From the 5th Gym on, each boss has one Mega Evolution with a stone from the Mega shop's
     tiers (D9). The stone isn't always on sale before the boss who uses it: Steelixite and
@@ -275,8 +331,8 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
     (the player's Mega Ring arrives only one badge earlier).
   - Chuck, Jasmine and Pryce have three versions each, picked by how many of the three the
     player has beaten (HnS's `_1`, `_1_2`, `_1_3`): caps 31, 36 and 38.
-  - The Kanto leaders and Blue are at 68–70 (the cap is 70 for all of Kanto). Red, with no cap
-    left, was at 86–90; since 0.6.0 he is the hardest battle, at 96–100 (D27).
+  - The Kanto leaders and Blue are at 70 (the cap for all of Kanto). Red, with no cap left, was
+    at 86–90; since 0.6.0 he is the hardest battle, and since 0.7.0 all six are at 100 (D27).
 - Done: Proton (Slowpoke Well and Radio Tower), Petrel and Ariana (Rocket Hideout and Radio
   Tower), Archer; the rival's 2nd–5th battles (Azalea, Burned Tower, Goldenrod Underground,
   Victory Road; all three starter versions); Morty, Chuck, Jasmine, Pryce, Clair; the five
@@ -286,36 +342,44 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   Lucario, Karen's Absol, Lance's Gyarados; Brock's Aerodactyl, Misty's Blastoise, Lt. Surge's
   Manectric, Erika's Venusaur, Janine's Gengar, Sabrina's Metagross, Blaine's Camerupt, Blue's
   Pidgeot, Red's Charizard (Y).
-- Evidence:
+- Evidence (since 0.7.0 the player's test teams hold items from the care packages the player
+  has by then, D16; `boss_levels` checks the raise to the cap, `validate.py` every level):
   - `bosses_m3`: the naive play-test team (3–5 Pokémon at the cap with their default moves)
-    loses every one of these battles; a prepared six at the cap (good natures and moves, no
-    held items, one move per Pokémon, never switching) wins at least one of eight tries
-    against each Johto Gym Leader (sixteen against Pryce; three before 0.6.0), and every boss
-    Mega Evolution happens.
+    loses every one of these battles. A prepared six at the cap (good natures and moves, items
+    from the first three packages, one move per Pokémon, never switching) wins at least once
+    against Morty and Jasmine in eight tries and Clair in sixteen (Clair: 8 and 6 of 16). With
+    every boss Pokémon at the cap it beat Pryce once in 16 with items (twice with a game plan
+    too) and Chuck 1 to 5 times in 8, so Chuck and Pryce face sixes built for them, played with a
+    game plan (16 of 16 against Chuck; 13 of 16 and 16 of 16 against Pryce), in eight tries.
+    Every boss Mega Evolution happens.
   - `bosses_m4`: every Rocket executive, rival and Kimono Girl battle plays to a result against
-    the prepared six at the cap, and Archer's and the rival's Megas happen.
+    the prepared six at the cap. Archer's and the rival's Megas, on their aces, are checked
+    with the six at level 100: at the cap the six lost to Archer before Houndoom came out.
   - `bosses_e4`: at cap 56. In 0.5.0 the prepared six beat Will 2 and 1 times in six
     (mGBA, VBA-M) and Koga 5 and 5 times; sixes built for them beat Bruno 2 and 3 times, Karen
     2 and 1 times and Lance 2 and 1 times. Those naive samples turned out too unreliable to
     require a win (Will about 1 try in 20 over 60 tries), so since 0.6.0 Will, Bruno, Karen and
-    Lance face sixes played with a game plan, in 8, 6, 8 and 24 tries (D27). Every Mega
-    Evolution happens.
+    Lance face sixes played with a game plan, in 8, 6, 8 and 24 tries (D27). With every boss
+    Pokémon at the cap (0.7.0) and no items, Will beat the planned six in all 8 tries on mGBA;
+    holding items from the first eight packages the sixes beat Will 9 and 7 times in 16, Bruno
+    10 and 9, and Lance 6 and 9 times in 24. Karen gets 12 tries. Every Mega Evolution happens.
   - `bosses_m5`: at cap 70 the prepared six won one try each against Lt. Surge and Erika on
     both emulators, Sabrina on mGBA and Blaine on VBA-M, and lost the others; a six built for
     Blue beat him 2 and 1 times in 3 (0.5.0; since 0.6.0 it plays a game plan, 10 of 12). With
     the prepared six at level 100 every Kanto leader's and Blue's Mega Evolution happens. Red,
     reworked as the hardest battle in 0.6.0, has his own test (`red`, D27).
-- The autopilot never switches, uses one move per Pokémon and holds no items, so these are
-  lower bounds; a player who switches, heals and uses held items does better. Each boss was
-  checked to be beatable by some team without items; the ones it couldn't beat were changed:
+- The naive autopilot never switches and uses one move per Pokémon, and the game-plan mode
+  only switches to a counter, so these are lower bounds; a player who switches, heals and reads
+  the opponent does better. Each boss was checked to be beatable by some team (before 0.7.0
+  without items); the ones it couldn't beat were changed:
   - Lance first had three Dragon Dance users, and the all-round six lost all six tries. With
     only Dragonite setting up, his Roosting Charizard and two Full Restores still beat three
     different sixes built for him in all nine tries on VBA-M. Now Mega Gyarados has Thunder
     Wave, Salamence Dual Wingbeat, and Charizard Dragon Pulse instead of Roost.
   - Blue's and Bruno's Machamp have Close Combat instead of No Guard Dynamic Punch (a
     guaranteed confusion every turn): Blue had beaten every team in all six tries.
-- Still Heart & Soul teams (with the smart AI): Gym Leader and Elite Four rematches and the
-  other postgame battles.
+- Still Heart & Soul teams (with the smart AI), now at the cap too: Gym Leader and Elite Four
+  rematches and the other postgame battles.
 
 ## D22. Emerald Imperium's TM list
 
@@ -490,20 +554,21 @@ DexNav shows and that wild encounters draw from:
 - The user asked for the battle with Red to be the hardest in the game. Red's two parties
   (`TRAINER_RED_HNS`, and `TRAINER_RED_POSTOBC_HNS` after the Sinjoh story) are the strongest in
   the game, and `validate.py` keeps them so:
-  - Levels 96–100, the rematch all 100. No other trainer's average reaches 80; the Kanto
-    League rematch is at 76–79.
+  - All six at level 100, in both battles (since 0.7.0; 96–100 in 0.6.0). With every boss at
+    the level cap (D21) the rematches after the Kanto League are at 100 too, so what sets Red
+    apart is below: no other trainer keeps EVs, carries four Full Restores or has his sets.
   - Competitive EVs on all six, and Red's are the only Pokémon whose EVs Minimal Grinding keeps
     (`IsRedsPokemon` in `CalculateMonStats`, `src/pokemon.c`). Everyone else, the player
-    included, battles at 31 IVs and 0 EVs when it is on (the default). His lead Pikachu has 294
-    Speed instead of 227.
+    included, battles at 31 IVs and 0 EVs when it is on (the default). His lead Pikachu has 306
+    Speed instead of 237.
   - The boss AI with `Prediction` (it predicts switches and moves and punishes them), Ace
-    Pokémon and HP Aware, and four Full Restores (other bosses carry two).
+    Pokémon and HP Aware, and four Full Restores (other bosses carry two at most).
   - A sun team: Mega Charizard Y's Drought powers Venusaur's Chlorophyll and Growth and
     Charizard's Solar Beam; Light Ball Pikachu leads with Fake Out; Magic Bounce Espeon, a
     Curse/Rest Snorlax and a White Herb Shell Smash Blastoise.
 - **Red battles only the Kanto Champion.** Oak opens Mt. Silver and the Kanto League at the
   same time (16 badges), and the level cap stays at 70 until the Kanto League is won; at the
-  cap a level-96–100 team with EVs is out of reach. Before the Kanto League Red now stays
+  cap a level-100 team with EVs is out of reach. Before the Kanto League Red now stays
   silent ("RED seems to be waiting for the KANTO CHAMPION."), so he is the last battle and the
   player can bring a level-100 team. Heart & Soul let him be fought after 16 badges.
 - **How hard, and is he beatable?** The battle autopilot can't prove a person's chances, but
@@ -523,5 +588,5 @@ DexNav shows and that wild encounters draw from:
   the player's side stops after its first Pokémon faints, so it isn't used.
 - Evidence: `red` (no battle before the Kanto League; the summit battle is `TRAINER_RED_HNS`
   and after the Sinjoh story `TRAINER_RED_POSTOBC_HNS`; Pikachu's EV Speed; the game-plan win;
-  Mega Charizard Y); `validate.py` (highest average level, EVs on all six, prediction AI,
-  four Full Restores).
+  Mega Charizard Y); `validate.py` (no trainer with a higher average level, EVs on all six,
+  prediction AI, more Full Restores than any other trainer).

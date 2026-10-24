@@ -23,7 +23,7 @@ expectne8 {gBattleOutcome} 0 misty_resolved
 expectne8 {gBattleOutcome} 0 surge_resolved
 !sample_battle("TRAINER_ERIKA_HNS", "1,1,1,2,0,3", 1, 0, 1, "prep70.ss")
 expectne8 {gBattleOutcome} 0 erika_resolved
-!sample_battle("TRAINER_JANINE_HNS", "2,2,1,0,0,0", 1, 0, 1, "prep70.ss")
+!sample_battle("TRAINER_JANINE_HNS", "0,0,1,1,0,0", 1, 0, 1, "prep70.ss")
 expectne8 {gBattleOutcome} 0 janine_resolved
 !sample_battle("TRAINER_SABRINA_HNS", "0,0,0,0,3,0", 1, 0, 1, "prep70.ss")
 expectne8 {gBattleOutcome} 0 sabrina_resolved
@@ -68,7 +68,7 @@ seenreset
 loadstate prep100.ss
 seenreset
 !battle("TRAINER_JANINE_HNS")
-!autobattle("2,2,1,0,0,0")
+!autobattle("0,0,1,1,0,0")
 !expect_const_seen("SPECIES_GENGAR_MEGA", "janine_mega_gengar")
 loadstate prep100.ss
 seenreset

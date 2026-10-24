@@ -4,8 +4,8 @@
 
 | Check | Command | What it proves |
 |---|---|---|
-| Data validation | `python3 tools/crystal_imperium/validate.py --check` | Trainer abilities are legal for their species; Gym aces match the level caps; reworked bosses have 4 moves their species can learn and explicit levels. Reports evolution-family availability. Identifier typos are rejected at build time by trainerproc and the compiler. |
-| Generated data is current | `boss_teams.py --check`, `tm_list.py --check` (in `tools/crystal_imperium/`) | The boss parties, the TM list, the TM item data and the shop lists match their sources. |
+| Data validation | `python3 tools/crystal_imperium/validate.py --check` | Trainer abilities are legal for their species; every boss Pokémon is at the level cap of the boss's stage, and no boss trainer is missing from the list; reworked bosses have 4 moves their species can learn and explicit levels; Red stays the strongest. Reports evolution-family availability. Identifier typos are rejected at build time by trainerproc and the compiler. |
+| Generated data is current | `boss_teams.py --check`, `care_packages.py --check`, `tm_list.py --check` (in `tools/crystal_imperium/`) | The boss parties and boss list, the care package script, the TM list, the TM item data and the shop lists match their sources. |
 | ROM build | `make hns` | Compiles and links within ROM/EWRAM/IWRAM limits; gbafix writes a valid header. |
 | Play tests on mGBA | `tools/emurun/run_all.sh` | Real gameplay in libmgba from power-on: see below. |
 | Play tests on VBA-M (Delta's core) | `EMURUN_CORE=... tools/emurun/run_all.sh vbam` | The same tests on VBA-M at the commit Delta's GBA core pins. `tools/emurun/build_vbam_core.sh` builds the core. |
