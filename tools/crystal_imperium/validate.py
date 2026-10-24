@@ -107,6 +107,18 @@ def parse_parties(path):
     return trainers
 
 
+def macro_arguments(text, field, macro):
+    """The argument text of every `field = MACRO(...)` in text, with nested parentheses matched."""
+    result = []
+    for m in re.finditer(re.escape(field) + r"\s*=\s*" + macro + r"\(", text):
+        depth, i = 1, m.end()
+        while i < len(text) and depth:
+            depth += {"(": 1, ")": -1}.get(text[i], 0)
+            i += 1
+        result.append(text[m.end():i - 1])
+    return result
+
+
 def parse_species():
     """SPECIES_X -> {abilities:set, evolutions:[SPECIES_Y], name}"""
     species = {}
@@ -117,7 +129,7 @@ def parse_species():
             entry = species.setdefault(name, {"abilities": set(), "evolutions": []})
             for abl in re.findall(r"\.abilities\s*=\s*\{([^}]*)\}", body):
                 entry["abilities"].update(a.strip() for a in abl.split(",") if a.strip() and a.strip() != "ABILITY_NONE")
-            for evo in re.findall(r"\.evolutions\s*=\s*EVOLUTION\((.*?)\),\s*\n", body, re.S):
+            for evo in macro_arguments(body, ".evolutions", "EVOLUTION"):
                 entry["evolutions"] += re.findall(r"SPECIES_\w+", evo)
     return species
 
@@ -132,9 +144,21 @@ def species_constant(name, species):
 
 
 def national_species():
-    """Base species constants (national dex 1..1025); alternate forms are defined past SPECIES_EGG."""
-    text = read("include/constants/species.h")
-    return {name for name, num in re.findall(r"#define (SPECIES_\w+)\s+(\d+)\b", text) if 0 < int(num) <= 1025}
+    """Species constants of the National Dex (enum NationalDexOrder, including HnS's separate
+    regional-form entries), with aliases resolved to the defined form (SPECIES_MIMIKYU ->
+    SPECIES_MIMIKYU_DISGUISED). HnS numbers some forms below 1025, so numbers can't be used."""
+    dex = read("include/constants/pokedex.h")
+    names = re.findall(r"NATIONAL_DEX_(\w+),", re.search(r"enum\s+NationalDexOrder\s*\{(.*?)\};", dex, re.S).group(1))
+    alias = dict(re.findall(r"#define (SPECIES_\w+)\s+(SPECIES_\w+)", read("include/constants/species.h")))
+    result = set()
+    for name in names:
+        if name == "NONE":
+            continue
+        sp = "SPECIES_" + name
+        while sp in alias:
+            sp = alias[sp]
+        result.add(sp)
+    return result
 
 
 def parse_level_caps():
@@ -157,10 +181,12 @@ def families(species):
     return {s: root(s) for s in species}
 
 
-def parse_encounters():
-    """Wild encounters on HnS maps plus scripted gifts/static encounters."""
+def parse_encounters(data=None):
+    """Wild encounters on HnS maps plus scripted gifts/static encounters. `data` replaces
+    src/data/wild_encounters.json (gen_hidden_encounters.py passes it without hidden slots)."""
     found = defaultdict(list)
-    data = json.loads(read("src/data/wild_encounters.json"))
+    if data is None:
+        data = json.loads(read("src/data/wild_encounters.json"))
     for group in data["wild_encounter_groups"]:
         if group.get("label") != "gWildMonHeaders":
             continue
