@@ -139,7 +139,7 @@ static const struct KurtBallMapping sKurtBallMappings[] =
 static EWRAM_DATA struct MartInfo sMartInfo = {0};
 static EWRAM_DATA struct ShopData *sShopData = NULL;
 static EWRAM_DATA struct ListMenuItem *sListMenuItems = NULL;
-static EWRAM_DATA u8 (*sItemNames)[ITEM_NAME_LENGTH + 2] = {0};
+static EWRAM_DATA u8 (*sItemNames)[ITEM_NAME_LENGTH + MOVE_NAME_LENGTH + 2] = {0}; // Crystal Imperium: room for "TM110 STOMPING TANTRUM"
 static EWRAM_DATA u8 sPurchaseHistoryId = 0;
 static EWRAM_DATA u16 sKurtCurrentBerry = ITEM_NONE;
 static EWRAM_DATA u8 sBerryIconSpriteId = 0;
@@ -1211,7 +1211,13 @@ static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, enum Item item, u
         || sMartInfo.martType == MART_TYPE_KURT
         || sMartInfo.martType == MART_TYPE_BP
         || sMartInfo.martType == MART_TYPE_BP_ITEM)
+    {
         CopyItemName(item, name);
+        // Crystal Imperium: a TM shows its move, as in the bag ("TM03 FLIP TURN"); the list
+        // picks a narrower font when it is long
+        if (GetItemPocket(item) == POCKET_TM_HM)
+            StringCopy(StringAppend(name, gText_Space), GetMoveName(ItemIdToBattleMoveId(item)));
+    }
     else
         StringCopy(name, gDecorations[item].name);
 

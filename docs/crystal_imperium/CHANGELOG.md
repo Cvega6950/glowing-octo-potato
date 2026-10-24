@@ -19,7 +19,8 @@
   TM70 Rock Climb TM192, TM92 Trick Room TM106, ...); the rest keep theirs.
   - The TM case holds all 198 TMs and 8 HMs, and each TM's description is its move's.
   - The Goldenrod Dept. Store 5F sells every TM: 71 from the start (including Heart & Soul's
-    own stock, now cheaper), 155 from 3 badges, 178 from 6, all 198 from 8.
+    own stock, now cheaper), 155 from 3 badges, 178 from 6, all 198 from 8. Shop lists show
+    each TM's move next to its number, as the bag does.
 - **HMs without teaching:** carrying an HM, with its badge, is enough for any Pokémon in the
   party to use the field move (Cut, Surf, Strength, Rock Smash, Waterfall, Fly and Flash from
   the lead's party menu). Before, the Pokémon had to be able to learn the move.

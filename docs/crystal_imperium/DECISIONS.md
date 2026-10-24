@@ -341,7 +341,8 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 
   The badges are counted (Gyms 5–7 come in any order, so a badge flag alone wouldn't do).
   Prices are ₽1,500 / 3,000 / 5,000 / 8,000 by tier; Heart & Soul charged ₽10,000 for its 5F
-  TMs. The Mega Stone shop's 6-badge tier now counts badges the same way (it read Jasmine's
+  TMs. Shop lists show each TM's move next to its number ("TM03 FLIP TURN"), as the bag does;
+  with up to 198 entries, numbers alone weren't usable. The Mega Stone shop's 6-badge tier now counts badges the same way (it read Jasmine's
   badge flag).
 - TMs stay reusable (Heart & Soul's REUSABLE TMS option, on by default).
 
