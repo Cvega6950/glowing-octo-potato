@@ -114,7 +114,6 @@ struct DexNavSearch
     u8 hiddenSearch:1;
     u8 isHiddenMon:1;
     u8 unk:6;
-    u16 palBuffer[16];
 };
 
 struct DexNavGUI
@@ -154,7 +153,7 @@ EWRAM_DATA u16 gDexNavSpecies = SPECIES_NONE;
 static void Task_DexNavWaitFadeIn(u8 taskId);
 static void Task_DexNavMain(u8 taskId);
 static void PrintCurrentSpeciesInfo(void);
-static void PrintSpeciesInfo(u16 species, bool32 showUnseen);
+static void PrintSpeciesInfo(u16 species);
 static void Task_DexNavPicker(u8 taskId);
 static bool32 OpenSpeciesPicker(void);
 // SEARCH
@@ -197,7 +196,7 @@ static const u32 sHiddenMonIconGfx[] = INCBIN_U32("graphics/dexnav/hidden.4bpp.s
 // strings
 static const u8 sText_DexNav_NoInfo[] = _("--------");
 static const u8 sText_DexNav_CaptureToSee[] = _("Capture first!");
-static const u8 sText_DexNav_PressRToRegister[] = _("REGISTER  SELECT: ANY {PKMN}");
+static const u8 sText_DexNav_PressRToRegister[] = _("REGISTER  SELECT: ALL {PKMN}");
 static const u8 sText_DexNav_PickerHelp[] = _("A SEARCH START REGISTER {DPAD_LEFTRIGHT}{PLUS}100");
 static const u8 sText_DexNav_SearchForRegisteredSpecies[] = _("Search {STR_VAR_1}");
 static const u8 sText_DexNav_NotFoundHere[] = _("This Pokémon cannot be found here!");
@@ -481,22 +480,13 @@ static void AddSearchWindow(u8 width)
 #define SEARCH_ARROW_X      (WINDOW_MOVE_NAME_X + 90)
 #define SEARCH_ARROW_Y      0
 
-static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8 hidden)
+static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel)
 {
     u8 windowId = sDexNavSearchDataPtr->windowId;
 
     //species name - always present
-    if (hidden)
-    {
-        StringCopy(gStringVar4, sText_ThreeQmarks);
-        AddTextPrinterParameterized3(sDexNavSearchDataPtr->windowId, FONT_SMALL, WINDOW_COL_0, 0, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
-        return;
-    }
-    else
-    {
-        StringCopy(gStringVar1, GetSpeciesName(species));
-        AddTextPrinterParameterized3(sDexNavSearchDataPtr->windowId, FONT_SMALL, WINDOW_COL_0, 0, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar1);
-    }
+    StringCopy(gStringVar1, GetSpeciesName(species));
+    AddTextPrinterParameterized3(sDexNavSearchDataPtr->windowId, FONT_SMALL, WINDOW_COL_0, 0, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar1);
 
     //level - always present
     ConvertIntToDecimalStringN(gStringVar1, sDexNavSearchDataPtr->monLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -543,12 +533,12 @@ static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8
 
 #define SEARCH_WINDOW_WIDTH     28
 
-static void DrawSearchWindow(u16 species, u8 potential, bool8 hidden)
+static void DrawSearchWindow(u16 species, u8 potential)
 {
     u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
 
     AddSearchWindow(SEARCH_WINDOW_WIDTH);
-    AddSearchWindowText(species, sDexNavSearchDataPtr->proximity, searchLevel, hidden);
+    AddSearchWindowText(species, sDexNavSearchDataPtr->proximity, searchLevel);
 }
 
 #undef SEARCH_WINDOW_WIDTH
@@ -979,7 +969,7 @@ static void DexNavDrawIcons(void)
 {
     u16 species = sDexNavSearchDataPtr->species;
 
-    DrawSearchWindow(species, sDexNavSearchDataPtr->potential, FALSE);
+    DrawSearchWindow(species, sDexNavSearchDataPtr->potential);
     DrawDexNavSearchMonIcon(species, &sDexNavSearchDataPtr->iconSpriteId, GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT));
     DrawDexNavSearchHeldItem(&sDexNavSearchDataPtr->itemSpriteId);
     DexNavDrawPotentialStars(sDexNavSearchDataPtr->potential, &sDexNavSearchDataPtr->starSpriteIds[0]);
@@ -1064,25 +1054,9 @@ static void RevealHiddenMon(void)
         sDexNavSearchDataPtr->exclamationSpriteId = MAX_SPRITES;
     }
 
-
-    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
-    {
-        u8 index;
-
-        //if not seen, hide name and whiteout mon
-        DrawSearchWindow(species, sDexNavSearchDataPtr->potential, TRUE);
-        DrawDexNavSearchMonIcon(species, &sDexNavSearchDataPtr->iconSpriteId, FALSE);
-        // whiteout icon
-        index = IndexOfSpritePaletteTag(gSprites[sDexNavSearchDataPtr->iconSpriteId].template->paletteTag);
-        CpuCopy16(&gPlttBufferUnfaded[OBJ_PLTT_ID(index)], sDexNavSearchDataPtr->palBuffer, 32);
-        TintPalette_CustomTone(sDexNavSearchDataPtr->palBuffer, 16, 510, 510, 510);
-        LoadPalette(sDexNavSearchDataPtr->palBuffer, OBJ_PLTT_ID(index), PLTT_SIZE_4BPP);
-    }
-    else
-    {
-        DrawSearchWindow(species, sDexNavSearchDataPtr->potential, FALSE);
-        DrawDexNavSearchMonIcon(species, &sDexNavSearchDataPtr->iconSpriteId, GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT));
-    }
+    // Crystal Imperium: DexNav names every Pokemon, seen or not
+    DrawSearchWindow(species, sDexNavSearchDataPtr->potential);
+    DrawDexNavSearchMonIcon(species, &sDexNavSearchDataPtr->iconSpriteId, GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT));
 
     sDexNavSearchDataPtr->startingTime = gMain.vblankCounter1;
     DexNavUpdateDirectionArrow();
@@ -1186,13 +1160,8 @@ bool32 OnStep_DexNavSearch(void)
 
 static void DexNavUpdateSearchWindow(u8 proximity, u8 searchLevel)
 {
-    bool8 hideName = FALSE;
-
-    if (sDexNavSearchDataPtr->hiddenSearch && !GetSetPokedexFlag(SpeciesToNationalPokedexNum(sDexNavSearchDataPtr->species), FLAG_GET_SEEN))
-        hideName = TRUE;    //if a detector mode hidden search and player hasn't seen the mon, hide info
-
     FillWindowPixelBuffer(sDexNavSearchDataPtr->windowId, PIXEL_FILL(1));   //clear window
-    AddSearchWindowText(sDexNavSearchDataPtr->species, proximity, searchLevel, hideName);
+    AddSearchWindowText(sDexNavSearchDataPtr->species, proximity, searchLevel);
 
     DexNavUpdateDirectionArrow();
 
@@ -2065,10 +2034,8 @@ static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
 {
     if (species == SPECIES_NONE || species > NUM_SPECIES)
         CreateNoDataIcon(x, y);   //'X' in slot
-    else if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
-        CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark
     else
-        CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF);
+        CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); // Crystal Imperium: seen or not
 }
 
 static void DrawSpeciesIcons(void)
@@ -2133,9 +2100,7 @@ static u16 DexNavGetSpecies(void)
         return SPECIES_NONE;
     }
 
-    if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
-        return SPECIES_NONE;
-
+    // Crystal Imperium: any Pokemon in the area can be registered and searched for, seen or not
     return species;
 }
 
@@ -2184,17 +2149,14 @@ static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 
 static void PrintCurrentSpeciesInfo(void)
 {
-    PrintSpeciesInfo(DexNavGetSpecies(), FALSE);
+    PrintSpeciesInfo(DexNavGetSpecies());
 }
 
-// showUnseen: the "any Pokemon" list names every Pokemon, seen or not
-static void PrintSpeciesInfo(u16 species, bool32 showUnseen)
+// Crystal Imperium: every Pokemon's name and types, seen or not
+static void PrintSpeciesInfo(u16 species)
 {
     enum NationalDexOrder dexNum = SpeciesToNationalPokedexNum(species);
     enum Type type1, type2;
-
-    if (!showUnseen && !GetSetPokedexFlag(dexNum, FLAG_GET_SEEN))
-        species = SPECIES_NONE;
 
     // clear windows
     FillWindowPixelBuffer(WINDOW_INFO, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
@@ -2618,7 +2580,7 @@ static bool32 GetPickerEnvironment(u16 species, enum EncounterType *environment)
 
 static void PickerMoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *list)
 {
-    PrintSpeciesInfo(sDexNavUiDataPtr->pickerSpecies[itemIndex], TRUE);
+    PrintSpeciesInfo(sDexNavUiDataPtr->pickerSpecies[itemIndex]);
 }
 
 static void PrintPickerHelp(void)

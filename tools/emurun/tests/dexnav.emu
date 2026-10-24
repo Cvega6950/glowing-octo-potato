@@ -1,8 +1,8 @@
 # Crystal Imperium play test: the DexNav, in the start menu from a new game.
-# Route 29 at night lists Hoothoot and Rattata (second land icon). DexNav only works for
-# species already seen: first nothing is seen and Rattata can't be searched or registered.
-# With a Rattata in the Pokedex: register it with R, close DexNav, press R in
-# the grass to search, creep (hold A) to the rustling tile, and the DexNav battle starts.
+# Route 29 at night lists Hoothoot and Rattata (second land icon). DexNav shows every Pokemon
+# in the area, seen or not: nothing has been seen yet, and Rattata is registered with R anyway.
+# Close DexNav, press R in the grass to search, creep (hold A) to the rustling tile, and the
+# DexNav battle starts.
 # Catching the DexNav Rattata raises its search level and the DexNav chain. The Infinite Repel
 # keeps random encounters away; it does not stop DexNav encounters.
 # The search target is sDexNavSearchDataPtr: species +0, tileX +18, tileY +20 (map coords + 7).
@@ -17,7 +17,8 @@
 !walkto(24, 14)
 expect32 {gMain+4} {CB2_Overworld+1} in_route29_grass
 
-# Nothing seen yet: Rattata's icon can't be registered or searched
+# Nothing seen yet (the debug-given Cyndaquil is not registered in the Pokedex either), but the
+# area's Pokemon are shown, not question marks, and Rattata can be registered
 !start_menu("DEXNAV")
 wait 120
 expect32 {gMain+4} {DexNav_MainCB+1} dexnav_opens
@@ -26,26 +27,8 @@ press RIGHT
 wait 20
 press R
 wait 60
-!expect_var("VAR_DEXNAV_SPECIES", 0, "unseen_species_not_registered")
-press A
-wait 200
-!expect_flag("FLAG_DEXNAV_SEARCHING", 0, "unseen_species_not_searched")
-press B
-wait 200
-press B
-wait 60
-
-# Get a Rattata and register it in the Pokedex (debug-given Pokemon are not registered on their own)
-!give_mon(19, 3)
-!dex_flags_from_party()
-!start_menu("DEXNAV")
-wait 120
-press RIGHT
-wait 20
-press R
-wait 60
 shot 02_dexnav_rattata_registered.png
-!expect_var("VAR_DEXNAV_SPECIES", "(ENCOUNTER_TYPE_LAND << 14) | SPECIES_RATTATA", "rattata_registered")
+!expect_var("VAR_DEXNAV_SPECIES", "(ENCOUNTER_TYPE_LAND << 14) | SPECIES_RATTATA", "unseen_rattata_registered")
 # B leaves DexNav for the start menu; B again closes it
 press B
 wait 200
@@ -69,6 +52,6 @@ wait 300
 press R
 wait 1000
 mash B 2400
-expect8 {gPlayerPartyCount} 3 dexnav_rattata_caught
+expect8 {gPlayerPartyCount} 2 dexnav_rattata_caught
 !expect_save3("dexNavSearchLevels[NATIONAL_DEX_RATTATA]", 1, "rattata_search_level_1")
 !expect_save3("dexNavChain", 1, "dexnav_chain_1")

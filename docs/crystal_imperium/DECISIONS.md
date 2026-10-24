@@ -208,3 +208,18 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 - What this covers: the same CPU, video, Flash save and RTC emulation code as Delta, driven
   through the whole test suite. What it does not cover: Delta's iOS front end (touch
   controls, its own save-file handling, app suspension), which still needs a device.
+
+## D18. DexNav reveals every Pokémon
+
+- Upstream DexNav draws a Pokémon the player has not seen as a question mark, hides its name
+  and types, and refuses to register or search for it. On a new game that makes every area
+  a row of question marks. The user reported exactly that ("it's just showing question
+  marks") after asking for DexNav to show all species.
+- Now the area lists (land, water, hidden) draw every Pokémon's icon with its name and types,
+  and any of them can be registered or searched for. A revealed search shows the name and the
+  normal icon (no whited-out silhouette).
+- Two things still depend on the Pokédex: the Hidden Ability line says "Capture first!" until
+  the Pokémon is caught, and DexNav only gives Hidden Abilities to Pokémon caught before
+  (upstream rules that reward catching).
+- A hidden Pokémon detected while walking (detector mode) still starts as ???; R or sneaking
+  close reveals it. That is the detector's surprise, not a seen rule.

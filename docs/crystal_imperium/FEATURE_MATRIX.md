@@ -84,7 +84,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | Search, sneak up (hold A), battle | Done | emu: `dexnav`, `dexnav_any`. |
 | Search levels and chain | Done | emu: `dexnav` (search level 1 and chain 1 after one DexNav catch). Stored per National Dex number (D13). |
 | Hidden Pokémon detection while walking | Done | emu: `dexnav_hidden` (detections lead to battles). |
-| Seen-only rule for the area lists | Existing | emu: `dexnav` (an unseen species can't be registered or searched). The "any Pokémon" list has no seen requirement. |
+| Area lists show every Pokémon, seen or not (no question marks) | Done | emu: `dexnav` (nothing seen yet; Rattata is shown, registered with R, searched and caught). D18. |
 
 ## Battle mechanics (Section 9)
 

@@ -1,5 +1,17 @@
 # Crystal Imperium changelog
 
+## 0.4.1-experimental (2026-10-24)
+
+### Gameplay
+- **DexNav shows every Pokémon on its main screen**, seen or not: no more question marks. Any
+  of the area's Pokémon (land, water and hidden rows) can be registered with R and searched
+  for with A right away. The top bar now reads SELECT: ALL, for the list of every Pokémon.
+  A hidden Pokémon detected while walking still shows ??? until R is pressed or the player
+  sneaks close.
+
+### Tooling
+- `dexnav` registers, searches for and catches a Rattata that has not been seen.
+
 ## 0.4.0-experimental (2026-10-24)
 
 ### Gameplay

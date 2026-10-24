@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.4.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.4.1-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Gym Leaders 4–16,
 > the Elite Four and the postgame bosses still have Heart & Soul's teams; reworking them is the
 > remaining milestone work.
@@ -17,7 +17,8 @@ From the first step of a new game:
   on/off switch), Pokémon Box Link (the PC anywhere), Training Kit (change nature or ability
   any time), PokéVial (full heal outside battle, never runs out).
 - **DexNav** (START menu):
-  - It lists each area's Pokémon, including three hidden ones per area.
+  - It shows each area's Pokémon by icon and name, seen or not, including three hidden
+    ones per area. Pick any of them: A searches, R registers.
   - SELECT lists **every** Gen 1–9 Pokémon (all 1,074: every evolution stage, regional
     forms, Legendaries), and you can search for any of them anywhere. LEFT/RIGHT jump 100.
   - Sneaking up on a Pokémon found by searching (hold A) starts a battle.
@@ -36,7 +37,8 @@ From the first step of a new game:
 - Legendary and Mythical Pokémon are on the DexNav list from the start, and join Wild
   Variety's random encounters once you are Champion.
 - **Cheat menu:** hold R and press START in the overworld for HnS's debug menu (give any
-  Pokémon or item, Pokédex flags, and more). Use it with care: it can also change story flags.
+  Pokémon or item, and more; *Flags & Vars… → Pokédex Flags All* fills the Pokédex). Use it
+  with care: it can also change story flags.
 - Sleep Clause, Smart-AI Gym Leaders. Falkner, Bugsy and Whitney are rebuilt as competitive
   bosses so far.
 

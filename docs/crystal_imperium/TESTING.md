@@ -131,8 +131,9 @@ tried on a phone yet.
 2. The title screen appears and START responds.
 3. New Game reaches the bedroom; the settings menu shows MIN. GRINDING ON, EASY CATCH ON and
    WILD VARIETY 30%.
-4. START shows DEXNAV; the bag's Key Items hold the Rare Candy Box, Infinite Repel, Box Link,
-   Training Kit and PokéVial.
+4. START shows DEXNAV; on Route 29 it shows the route's Pokémon (not question marks), and
+   SELECT opens the list of every Pokémon. The bag's Key Items hold the Rare Candy Box,
+   Infinite Repel, Box Link, Training Kit and PokéVial.
 5. Save in-game (START → SAVE), close Delta completely, reopen, choose CONTINUE: the game resumes.
 6. Fight one wild battle and one trainer battle.
 7. Check the in-game clock behaves. HnS can use the real-time clock or the ROM's fake clock
