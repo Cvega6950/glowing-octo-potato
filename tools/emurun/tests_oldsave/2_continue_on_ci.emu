@@ -1,0 +1,25 @@
+# Crystal Imperium (run by old_save_test.sh): Continue the Heart & Soul 2.0.6 save
+wait 1300
+press START
+wait 120
+press A
+wait 100
+press A
+wait 900
+shot 03_ci_continue.png
+expect8 {gPlayerPartyCount} 1 party_kept
+!expect_bag_has("keyItems", "ITEM_INFINITE_RARE_CANDIES")
+!expect_bag_has("keyItems", "ITEM_POKE_VIAL")
+!expect_bag_has("keyItems", "ITEM_TRAINING_KIT")
+!expect_bag_has("keyItems", "ITEM_INFINITE_REPEL")
+!expect_bag_has("keyItems", "ITEM_POKEMON_BOX_LINK")
+!expect_flag("FLAG_SYS_DEXNAV_GET", 1, "dexnav_given")
+!expect_save3("dexNavSearchLevels[NATIONAL_DEX_RATTATA]", 0, "search_levels_zero")
+# The clock window shown after Continue closes on its own; DexNav opens where there are wild
+# Pokemon (not in the bedroom), so warp to Route 29
+wait 400
+!warp(0, 11, 0)
+!start_menu("DEXNAV")
+wait 120
+shot 04_ci_dexnav.png
+expect32 {gMain+4} {DexNav_MainCB+1} dexnav_opens_on_old_save

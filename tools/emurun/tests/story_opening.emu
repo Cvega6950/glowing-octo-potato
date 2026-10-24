@@ -1,0 +1,79 @@
+# Crystal Imperium play test: the story opening, played normally (no debug menu).
+# New Game -> Mom's intro -> Prof. Elm's lab: Elm's intro, Cyndaquil from the middle Poke Ball,
+# Elm's errand (his number goes into the Pokegear), the aide's Potion at the door ->
+# New Bark Town -> Route 29: the first wild battle, fought by the starter.
+!new_game()
+!leave_bedroom_get_running_shoes()
+!walkto(10, 10, path=True)
+hold UP 16
+wait 200
+shot 01_lab.png
+# Stepping onto (6, 7) starts Elm's intro; the script walks the player up to Elm at (6, 4).
+# A answers YES to "help me", then Elm asks the player to choose a Pokemon.
+!walkto(6, 7, soft=True)
+wait 60
+mash A 2400
+# Extra A presses talk to Elm again; B closes that message without opening another
+wait 60
+mash B 300
+wait 30
+shot 02_choose_a_pokemon.png
+!expect_var("VAR_NEWBARKTOWN_LABSTATE", 1, "elm_asks_to_choose_a_pokemon")
+
+# The Poke Balls lie on the table at (8..10, 4); Cyndaquil is the middle one
+!walkto(9, 5, path=True)
+press UP
+wait 20
+press A
+wait 90
+shot 03_take_cyndaquil.png
+# "You'll take CYNDAQUIL?" YES; B through the rest, which also answers NO to the nickname
+press A
+mash B 900
+wait 60
+shot 04_received.png
+!expect_flag("FLAG_SYS_POKEMON_GET", 1, "got_a_pokemon")
+!expect_var("VAR_STARTER_MON", 1, "starter_is_cyndaquil")
+expect8 {gPlayerPartyCount} 1 party_has_the_starter
+expect8 {gPlayerParty+84} 5 starter_is_level_5
+expect16 {gPlayerParty+88} 20 cyndaquil_lv5_max_hp_31iv_0ev
+
+# Elm's errand: visit Mr. Pokemon
+!walkto(6, 4, path=True)
+press UP
+wait 20
+press A
+mash B 1500
+wait 60
+shot 05_errand.png
+!expect_var("VAR_NEWBARKTOWN_LABSTATE", 2, "elm_gave_the_errand")
+# The aide stops the player at the door with a Potion
+!walkto(6, 12, path=True, soft=True)
+mash B 900
+wait 60
+shot 06_potion.png
+!expect_var("VAR_NEWBARKTOWN_LABSTATE", 3, "aide_gave_a_potion")
+!expect_bag_has("medicine", "ITEM_POTION")
+hold DOWN 16
+wait 200
+
+# West out of New Bark Town onto Route 29 (east edge at (69, 18))
+!walkto(0, 13, path=True)
+hold LEFT 16
+wait 120
+expect16 *{gSaveBlock1Ptr}+4 69 route29_east_edge_x
+expect16 *{gSaveBlock1Ptr}+6 18 route29_east_edge_y
+# The first wild battle starts in the grass on the way west
+!walkto(25, 14, path=True, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+wait 300
+shot 07_wild_battle.png
+expect32 {gMain+4} {BattleMainCB2+1} wild_battle_on_route_29
+!expect_battler(0, "species", "SPECIES_CYNDAQUIL", "starter_sent_out")
+!autobattle("0")
+# Won, or the wild Pokemon fled (a Wild Variety Wimpod's Wimp Out does that); not lost
+expectne8 {gBattleOutcome} 0 battle_finished
+expectne8 {gBattleOutcome} 2 starter_did_not_lose
+wait 300
+shot 08_after_battle.png
+expectne32 {gMain+4} {BattleMainCB2+1} back_in_the_overworld

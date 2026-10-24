@@ -19,8 +19,8 @@ explains the *why*.
 5. **Measure win rates, not single runs.** The battle autopilot (`tools/emurun`) plays a
    deliberately naive line: no items, no voluntary switching, one fixed move per Pokémon.
    For each Starter, at least one line obtainable at the cap must win, and a naive line
-   should win some but not all of five RNG samples. A human who heals and switches does
-   better than these numbers.
+   should win some but not all of its RNG samples (five, or twelve where the naive win rate
+   is low). A human who heals and switches does better than these numbers.
 
 ## Progression snapshot
 
@@ -146,7 +146,7 @@ type held back for Miltank, and Kadabra for the support cast.
 
 | Starter | Line | Result |
 |---|---|---|
-| Cyndaquil | Pidgeotto (Gust) / Quilava (Flame Wheel) / Kadabra (Psybeam) / Machop (Low Sweep) | **3 of 5 RNG samples won** (`whitney.emu`) |
+| Cyndaquil | Pidgeotto (Gust) / Quilava (Flame Wheel) / Kadabra (Psybeam) / Machop (Low Sweep) | **3 of 12 RNG samples won** (`whitney.emu`, 2026-10-24). The first measurement (2026-10-23) was 3 of 5; after later code changes shifted the battle RNG, the same five samples all lost, so the test now samples twelve battles. The naive line wins about a quarter of the time. |
 | Cyndaquil | Quilava or Kadabra leads with the same Pokémon | Loss (Miltank left at 1 HP in one) |
 | Chikorita | Bayleef (Mega Drain) / Kadabra / Pidgeotto / Machop | **Win** (3 Pokémon left) |
 | Totodile | Kadabra / Croconaw (Ice Fang) / Pidgeotto / Machop | **Win** |

@@ -1,5 +1,61 @@
 # Crystal Imperium changelog
 
+## 0.4.0-experimental (2026-10-24)
+
+### Gameplay
+- **Key items from the first step:**
+  - Rare Candy Box (unlimited Rare Candies, capped by the level cap; also without a Nuzlocke).
+  - Infinite Repel (now an on/off switch that works).
+  - Pokémon Box Link (the PC anywhere).
+  - **Training Kit:** change a Pokémon's nature or cycle its ability any time.
+  - **PokéVial:** full party heal outside battle, never runs out.
+
+  Older saves receive whichever of them they lack on Continue.
+- **DexNav** in the start menu from the first step:
+  - Area lists with three **hidden Pokémon** per area; hidden Pokémon are also detected while
+    walking.
+  - Search levels and chains; R searches for the registered Pokémon.
+  - **SELECT lists every Gen 1–9 Pokémon** (all 1,074: every evolution stage, regional
+    forms, Legendaries), and any of them can be searched for in any area with wild Pokémon,
+    at that area's levels. LEFT/RIGHT jump 100 entries.
+- **Wild Variety** (Features tab, 30% by default): that share of wild encounters are any
+  Gen 1–9 Pokémon, evolved as far as their level allows. Legendary and Mythical Pokémon join
+  Wild Variety's random encounters after becoming Champion.
+- 258 evolution families that had no source in the game now appear as hidden Pokémon on 249
+  maps.
+- **Easy Catch** (Features tab, on by default): every Poké Ball catches.
+- **Difficulty selection** (Difficulty tab): EASY (trainer levels −10%, no trainer items),
+  NORMAL, HARD (trainer levels +10%, HARD level caps).
+- **Milestone care packages** from Prof. Elm after each badge and after becoming Champion,
+  with supplies and every evolution item the game had nowhere: Linking Cord, Upgrade,
+  Prism Scale, Sachet, Whipped Dream, Sun Stones, Apples, Sweets, Pots, Teacups, Armors,
+  Leader's Crest, Metal Alloy, 999 Gimmighoul Coins, Scrolls.
+- **Move relearner** in the party menu (level-up, egg, TM and tutor moves).
+
+### Fixes
+- DexNav no longer fails at random in small patches of grass.
+- Wild Variety leaves the Bug-Catching Contest, the Battle Pike and the Battle Pyramid alone.
+- A game saved during a DexNav search loads cleanly.
+
+### Tooling
+- The play tests also run on **VBA-M** at the commit Delta's GBA core pins
+  (`tools/emurun/build_vbam_core.sh`, `run_all.sh vbam`), locally and in a second CI job. They have a pathfinding walker,
+  bag checks and pointer-following addresses.
+- New tests:
+  - `qol_items`, `infinite_repel`, `relearner_training_kit`, `difficulty`, `autorun`
+  - `pokevial`, `easy_catch`, `tm_reusable`
+  - `dexnav`, `dexnav_any`, `dexnav_hidden`, `wild_variety`, `bug_contest`, `care_packages`
+  - `story_opening`: the real story path from New Game to Elm's lab (starter, errand, Potion)
+    and the first wild battle on Route 29, with no debug menu
+  - `old_save_test.sh`: a Heart & Soul 2.0.6 save continued in Crystal Imperium
+- `whitney` samples 12 battles (the naive team wins about 25%). `falkner` uses the autopilot.
+- `tools/crystal_imperium/gen_hidden_encounters.py` generates the hidden tables. The validator
+  reads the National Dex from `pokedex.h` (HnS numbers some forms below 1025) and parses nested
+  evolution lists. It now reports 449 of 571 families with a source; the other 122 are
+  legendary (DexNav's list from the start, Wild Variety after the Champion).
+- Play tests run on a fixed cartridge clock (2026-10-24 01:30 UTC, advancing with emulated time),
+  so they give the same results at any hour and on any host.
+
 ## 0.3.0-experimental (2026-10-23)
 
 ### Gameplay

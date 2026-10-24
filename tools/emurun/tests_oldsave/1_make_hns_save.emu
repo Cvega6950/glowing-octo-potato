@@ -1,0 +1,10 @@
+# Heart & Soul 2.0.6 (run by old_save_test.sh): new game, a Pokemon from the debug menu, save
+!new_game()
+!give_mon(155, 5)
+expect8 {gPlayerPartyCount} 1 hns_party
+!start_menu("SAVE")
+shot 01_hns_save_prompt.png
+press A
+wait 400
+mash A 300
+shot 02_hns_saved.png

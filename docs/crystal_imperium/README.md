@@ -1,53 +1,71 @@
 # Pokémon Crystal Imperium
 
 The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on the
-pokeemerald-expansion GBA engine), rebuilt with the competitive difficulty and no-grind team
-building of **Pokémon Emerald Imperium**.
+pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
+competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: early development (Milestone 1, experimental).** The game is fully playable
-> because it is the complete Heart & Soul adventure. Only the first block of Crystal Imperium
-> changes is in so far; see the progress report below.
+> **Status: in development (0.4.0-experimental).** The full Heart & Soul story is in and
+> playable. All the systems listed below work and are tested in an emulator. Gym Leaders 4–16,
+> the Elite Four and the postgame bosses still have Heart & Soul's teams; reworking them is the
+> remaining milestone work.
 
-## Progress report (2026-10-23)
+## What you get
 
-**Done and verified in the emulator**
-- Baseline: HnS 2.0.6 (`167aa6d5`) builds reproducibly and boots in mGBA.
-- **Minimal Grinding Mode**: a new Difficulty option, ON by default. Every Pokémon battles as
-  if it had 31 IVs / 0 EVs. Turning it on also enables max player IVs, no EV gain, NORMAL
-  level caps and ×1.5 EXP.
-- **Falkner** rebuilt as a competitive boss (Tailwind Pidgey → Hone Claws/Power Trip/Steel Wing
-  Rookidee → Tinted Lens Noctowl with Reflect and Hypnosis, Smart AI). Play-tested to be
-  beatable with Pokémon catchable before him, but not free.
-- **Bugsy and Whitney** rebuilt (Milestone 2):
-  - Bugsy: Sticky Web, Spikes and screens into an Eviolite Technician Scyther.
-  - Whitney: disruption into a Scrappy Rollout/Attract Miltank.
-  - Their Gym trainers have proper movesets.
-  - The battle autopilot measured both. A naive no-item team wins 3 of 5 RNG samples, and
-    every Starter has a winning line using Pokémon obtainable before each Gym.
-- **Ability Capsule and Ability Patch** sold at the Goldenrod Flower Shop with the Mints.
-- **Mega Evolution** (48 classic stone Megas plus Rayquaza). The Mega Ring and stones come from a new Goldenrod
-  Dept. Store 5F specialist, with stones unlocking by badge. Press **R** in the move menu to
-  Mega Evolve. Lance and Red have signature Megas. Verified for both the player and the AI.
-- **Save, hard reset and Continue** work.
-- Level caps block EXP at the cap during battle.
+From the first step of a new game:
 
-**Done, build-verified only**
-- Sleep Clause always on.
-- Violet Gym trainers and Elder Li (Sprout Tower) reworked.
+- **Key items:** Rare Candy Box (unlimited Rare Candies up to the level cap), Infinite Repel (an
+  on/off switch), Pokémon Box Link (the PC anywhere), Training Kit (change nature or ability
+  any time), PokéVial (full heal outside battle, never runs out).
+- **DexNav** (START menu):
+  - It lists each area's Pokémon, including three hidden ones per area.
+  - SELECT lists **every** Gen 1–9 Pokémon (all 1,074: every evolution stage, regional
+    forms, Legendaries), and you can search for any of them anywhere. LEFT/RIGHT jump 100.
+  - Sneaking up on a Pokémon found by searching (hold A) starts a battle.
+  - R repeats a search for the registered Pokémon.
+  - Hidden Pokémon are also detected while walking.
+  - Search levels improve the chances of egg moves, Hidden Abilities and held items.
+- **Wild Variety:** 30% of wild encounters (adjustable) are any Gen 1–9 Pokémon at the area's
+  level, already evolved if the level allows it.
+- **Easy Catch:** every Poké Ball catches (can be turned off).
+- **Minimal Grinding Mode** (every Pokémon battles as if it had 31 IVs and 0 EVs), **level caps**,
+  ×1.5 EXP, an **EASY / NORMAL / HARD** difficulty selection, **reusable TMs**, **Auto Run**
+  (START > OPTION > AUTORUN), and a **move relearner** in the party menu.
+- **Care packages** from Prof. Elm after every badge and after becoming Champion. They carry
+  supplies and every evolution item the game doesn't otherwise have.
+- **Mega Evolution** (48 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F).
+- Legendary and Mythical Pokémon are on the DexNav list from the start, and join Wild
+  Variety's random encounters once you are Champion.
+- **Cheat menu:** hold R and press START in the overworld for HnS's debug menu (give any
+  Pokémon or item, Pokédex flags, and more). Use it with care: it can also change story flags.
+- Sleep Clause, Smart-AI Gym Leaders. Falkner, Bugsy and Whitney are rebuilt as competitive
+  bosses so far.
 
-**Not started / incomplete**
-- Gyms 4–16, rivals, Rockets, Kimono Girls, Elite Four, Lance, Red (Milestones 2–5).
-- Gen 4–9 encounter roll-out: 373 national-dex families have no in-game source yet.
-- Megas for Gym Leaders (added as each Gym is reworked), DexNav, menu move relearner and portable PC.
-- A full story playthrough. Only New Game → bedroom is played without debug tools.
+All of these are in the challenge menu at the start of a new game (and on the settings PC in
+your house), except Auto Run, which is in the Options menu.
 
-**Blocked**
-- Emerald Imperium's custom Megas and assets: no license to reuse them (DECISIONS.md D2).
-- Z-A Megas: left off to keep ROM headroom (98.75% used with the classic set).
-- Delta testing: needs a real iPhone.
+## Requirement status (2026-10-24)
 
-Details: [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [BALANCE.md](BALANCE.md) ·
-[TESTING.md](TESTING.md) · [DECISIONS.md](DECISIONS.md) · [KNOWN_ISSUES.md](KNOWN_ISSUES.md) ·
+| # | Requirement | Status | Evidence |
+|---|---|---|---|
+| 1 | Gen 1–9 Pokémon, abilities, moves, evolution methods, sprites, wild encounters | **Done** | Engine data for all 1,025 species. Wild Variety on every route (`wild_variety`). The DexNav list of any Pokémon (`dexnav_any`). Hidden slots for the 258 families that had no source. Care packages hold the missing evolution items (`care_packages`). Every trade evolution has a non-trade method. |
+| 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden` |
+| 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym) |
+| 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
+| 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies) |
+| 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel` |
+| 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | Our changes don't touch the story scripts. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29) and the first three Gym battles are tested; no full playthrough has been done. |
+| 8 | Works on Delta (iOS) | **Passes on Delta's emulator core; no iPhone test** | All 23 play tests and the save-compatibility test pass on VBA-M at the commit Delta's GBA core pins, as on mGBA (TESTING.md). A device test is still needed for Delta's own app layer. |
+
+Also asked for and done: DexNav and Rare Candy before the first Gym (both are there from the
+first step), Easy Catch, an unlimited PokéVial given with the Rare Candy Box, and milestone care
+packages.
+
+**Not done yet:** competitive rework of Gyms 4–16, the rival, Rockets, Kimono Girls, Elite
+Four, Lance and Red (HnS's teams are in place); a full story playthrough; a test on a real
+iPhone; Emerald Imperium's custom Megas (no permission to use them, DECISIONS.md D2).
+
+Details: [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [TESTING.md](TESTING.md) ·
+[DECISIONS.md](DECISIONS.md) · [BALANCE.md](BALANCE.md) · [KNOWN_ISSUES.md](KNOWN_ISSUES.md) ·
 [CHANGELOG.md](CHANGELOG.md)
 
 ## Building
@@ -69,6 +87,20 @@ tools/crystal_imperium/build.sh --test   # also run the emulator play tests
 
 The first build takes a few minutes. Tested tool chain: arm-none-eabi-gcc 13.2.1, libmgba 0.10.2.
 
+## Patches
+
+`tools/crystal_imperium/make_patches.sh` writes both patches into `build/release/`:
+
+- **Source patch series** (`git format-patch` on top of Heart & Soul's tag `2.0.6`): apply it
+  to an HnS 2.0.6 checkout with `git am` and build as above.
+- **BPS patch** from the Heart & Soul 2.0.6 ROM, built from that tag with the same tool chain,
+  to `CrystalImperium.gba`. Apply it with Flips or Rom Patcher JS. `SHA1SUMS` lists both ROMs'
+  hashes; the patch only applies to that exact HnS ROM. The script checks that the patch
+  rebuilds the ROM byte for byte.
+
+No patch against an original Nintendo ROM is provided, and no ROM files are distributed from
+this repository.
+
 ## Playing on Delta (iPhone)
 
 1. Get `CrystalImperium.gba` onto the phone. Either:
@@ -87,8 +119,10 @@ in [TESTING.md](TESTING.md).
 
 ## Saves
 
-Saves from Heart & Soul 2.0.6 load in Crystal Imperium; Minimal Grinding starts OFF for them
-and can be turned on from the settings PC. No save invalidation has been needed so far.
+Saves from Heart & Soul 2.0.6 and from earlier Crystal Imperium builds load. On Continue they
+receive any key items they are missing and the DexNav. Easy Catch and Wild Variety (30%) are on
+for them, and any care packages for badges already earned arrive one per step. Minimal
+Grinding starts OFF for HnS saves and can be turned on from the settings PC.
 
 ## Credits
 
@@ -96,8 +130,10 @@ and can be turned on from the settings PC. No save invalidation has been needed 
   `CREDITS.md`). The whole Johto/Kanto adventure, maps, scripts, music and features come
   from them.
 - **pokeemerald-expansion**: the Rom Hacking Hideout (RHH) contributors, and **pret** for the
-  pokeemerald decompilation.
+  pokeemerald decompilation. DexNav is the expansion's (added by ghoulslash).
 - **Pokémon Emerald Imperium** (iriv24 and team): the design inspiration for Minimal Grinding
-  Mode, Sleep Clause and competitive trainer philosophy. No Imperium code or assets are used.
+  Mode, Sleep Clause, the QoL key items and competitive trainer philosophy. No Imperium code or
+  assets are used.
+- **VBA-M** (play tests on Delta's emulator core) and **mGBA** (play tests), **Flips** (BPS patch).
 - Pokémon is © Nintendo / Creatures Inc. / GAME FREAK inc. This is a non-commercial fan
   project; do not sell or redistribute ROM files.

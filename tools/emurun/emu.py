@@ -404,6 +404,7 @@ def main():
     ap.add_argument("--elf", default="pokehns.elf")
     ap.add_argument("--out", default="build/emurun")
     ap.add_argument("--save", help="attach a fresh save file (removed before the run) at this path")
+    ap.add_argument("--keep-save", action="store_true", help="keep an existing --save file (e.g. made by another ROM)")
     ap.add_argument("--emulator", default=os.environ.get("EMURUN_EMULATOR", "mgba"), choices=("mgba", "vbam"),
                     help="mgba (libmgba) or vbam (VBA-M's libretro core, the emulator Delta's GBA core is built "
                          "on; EMURUN_CORE names the core, see tools/emurun/build_vbam_core.sh)")
@@ -418,7 +419,7 @@ def main():
     # Screenshot paths in tests are relative to the output directory
     cmd = [emurun, os.path.abspath(args.rom), os.path.abspath(script)]
     if args.save:
-        if os.path.exists(args.save):
+        if os.path.exists(args.save) and not args.keep_save:
             os.remove(args.save)
         cmd.append(os.path.abspath(args.save))
     res = subprocess.run(cmd, cwd=args.out)
