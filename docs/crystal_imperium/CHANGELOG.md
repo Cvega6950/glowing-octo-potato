@@ -1,5 +1,34 @@
 # Crystal Imperium changelog
 
+## 0.5.1-experimental (2026-10-24)
+
+### Fixes
+- **DexNav's lists now match the wild Pokémon you meet.** Before, Wild Variety turned 30% of
+  encounters into a random pick from about 445 Pokémon that DexNav couldn't list (on Route 29
+  at night DexNav showed Hoothoot and Rattata while 6 of 12 test battles were other Pokémon),
+  and with the randomizer on for wild Pokémon DexNav showed the unrandomized ones (12 of 12
+  battles unlisted).
+  - Wild Variety now gives each area a set for the day: up to six Pokémon in the grass and
+    three Water-types on the water, in the DexNav row's free slots, evolved for the area's
+    highest level. Variety encounters (still 30% by default, 5% per Pokémon in the grass) are
+    one of the set, and DexNav lists the set after the area's own Pokémon. The sets change at
+    midnight and differ between saves.
+  - With the randomizer on and MAP SEEDED on, DexNav lists each slot's randomized Pokémon.
+  - A mass outbreak's Pokémon is listed in the grass.
+  - Fishing's variety Pokémon come from the water set. DexNav's detector finds what an
+    encounter would turn up, and the caught-all marks count the variety Pokémon.
+  - After becoming Champion, about a quarter of the day's sets end with a Legendary, Mythical,
+    Ultra Beast or Paradox Pokémon (Water-types on the water), instead of 3% of variety
+    encounters everywhere.
+  - DECISIONS.md D24.
+
+### Tooling
+- emurun: `snap16` remembers a list of values (a DexNav row) and `tallynotin` checks against
+  it (`@LIST`). Harness: `snap_dexnav_rows`, `fish_sample`, `set_save`, `expect_listed`,
+  `new_game(random_wild=True)`.
+- New tests: `dexnav_wild_match`, `dexnav_water_match`, `dexnav_randomizer`; `wild_variety`
+  checks that DexNav lists no variety Pokémon with WILD VARIETY off.
+
 ## 0.5.0-experimental (2026-10-24)
 
 ### Gameplay

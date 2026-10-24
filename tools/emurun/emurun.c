@@ -34,7 +34,9 @@
 //                          KEYDOWN while above, until it equals TARGET (at most 32 taps)
 //   tally NAME ADDR VALUE  count runs of NAME, and how many had the 8-bit value at ADDR == VALUE
 //                          (tally16 / tally32: 16- or 32-bit value)
-//   tallynotin NAME ADDR V1,V2,...  like tally, but a hit is a 16-bit value at ADDR not in the list
+//   tallynotin NAME ADDR V1,V2,...  like tally, but a hit is a 16-bit value at ADDR not in the list;
+//                          an entry @LIST stands for every value of a list remembered by snap16
+//   snap16 LIST ADDR COUNT   remember COUNT 16-bit values from ADDR (e.g. a DexNav row) as LIST
 //   expecttally NAME MIN MAX   fail unless the matching count of NAME is within [MIN, MAX]
 //   expectseen SPECIES [LABEL]   fail unless an autobattle since the last seenreset saw the
 //                          opponent's battler as SPECIES (e.g. a boss's Mega Evolved form)
@@ -52,6 +54,22 @@ static int failures;
 
 #define MAX_TALLIES 16
 static struct { char name[64]; int hits, runs; } sTallies[MAX_TALLIES];
+
+#define MAX_SNAPS 8
+#define MAX_SNAP_VALUES 64
+static struct { char name[64]; unsigned count, values[MAX_SNAP_VALUES]; } sSnaps[MAX_SNAPS];
+
+static int SnapSlot(const char *name, int create)
+{
+    for (int i = 0; i < MAX_SNAPS; i++)
+    {
+        if (sSnaps[i].name[0] == 0 && create)
+            snprintf(sSnaps[i].name, sizeof(sSnaps[i].name), "%s", name);
+        if (!strcmp(sSnaps[i].name, name))
+            return i;
+    }
+    return -1;
+}
 
 static int *TallySlot(const char *name, int create, int **runs)
 {
@@ -674,7 +692,8 @@ int main(int argc, char **argv)
         }
         else if (!strcmp(cmd, "tallynotin"))
         {
-            // hit when the 16-bit value at ADDR is not in the comma-separated list
+            // hit when the 16-bit value at ADDR is not in the comma-separated list, whose entries
+            // are numbers or @LIST (every value of a list remembered by snap16)
             int *runs, *hits = TallySlot(a1, 1, &runs);
             unsigned value = Peek(16, ParseAddr(a2)), hit = 1;
             char list[256], *tok;
@@ -682,7 +701,21 @@ int main(int argc, char **argv)
             list[sizeof(list) - 1] = 0;
             for (tok = strtok(list, ","); tok; tok = strtok(NULL, ","))
             {
-                if (strtoul(tok, NULL, 0) == value)
+                if (tok[0] == '@')
+                {
+                    int snap = SnapSlot(tok + 1, 0);
+                    if (snap < 0)
+                    {
+                        printf("[frame %lu] FAIL tallynotin: no list %s\n", frameCount, tok + 1);
+                        failures++;
+                    }
+                    for (unsigned i = 0; snap >= 0 && i < sSnaps[snap].count; i++)
+                    {
+                        if (sSnaps[snap].values[i] == value)
+                            hit = 0;
+                    }
+                }
+                else if (strtoul(tok, NULL, 0) == value)
                     hit = 0;
             }
             if (hits)
@@ -691,6 +724,27 @@ int main(int argc, char **argv)
                 (*runs)++;
                 printf("[frame %lu] tally %s: run %d value %u %s (%d/%d)\n", frameCount, a1, *runs, value,
                        hit ? "hit" : "miss", *hits, *runs);
+            }
+        }
+        else if (!strcmp(cmd, "snap16"))
+        {
+            int snap = SnapSlot(a1, 1);
+            uint32_t base = ParseAddr(a2), count = strtoul(a3, NULL, 0);
+            if (snap < 0 || count > MAX_SNAP_VALUES)
+            {
+                printf("[frame %lu] FAIL snap16 %s: too many lists or values\n", frameCount, a1);
+                failures++;
+            }
+            else
+            {
+                printf("[frame %lu] snap16 %s:", frameCount, a1);
+                for (uint32_t i = 0; i < count; i++)
+                {
+                    sSnaps[snap].values[i] = Peek(16, base + i * 2);
+                    printf(" %u", sSnaps[snap].values[i]);
+                }
+                sSnaps[snap].count = count;
+                printf("\n");
             }
         }
         else if (!strcmp(cmd, "expecttally"))

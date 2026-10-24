@@ -68,9 +68,9 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | Feature | Status | Evidence / notes |
 |---|---|---|
 | Gen 1–9 species data, Fairy type, Hidden Abilities, sprites | Existing | All `P_GEN_*_POKEMON TRUE`. Fairy type is an option (default ON). |
-| Gen 1–9 Pokémon on every route: Wild Variety (default 30%) | Done | emu: `wild_variety` (Route 29 gave Heatmor, Durant, Gligar and Golett in 12 battles; none with it OFF). D14. |
+| Gen 1–9 Pokémon on every route: Wild Variety (default 30%), a daily set per area | Done | emu: `wild_variety` (5 of 12 Route 29 battles were Wild Variety Pokémon; none with it OFF, and DexNav lists none), `dexnav_wild_match` (a new set the next day, the same set on the same day). D14, D24. |
 | Search for any Pokémon anywhere (DexNav list) | Done | emu: `dexnav_any` (all 1,074 Pokémon listed from the start, including Ivysaur and Mewtwo; LEFT/RIGHT jump 100; Charmander searched for and battled on Route 29). |
-| Legendary and Mythical Pokémon | Done | On the DexNav list from the start (`dexnav_any`); in Wild Variety's random encounters (3% of them) after becoming Champion. HnS's own legendary events are unchanged. |
+| Legendary and Mythical Pokémon | Done | On the DexNav list from the start (`dexnav_any`); after becoming Champion, a quarter of the day's Wild Variety sets end with one (4 of 16 days on Route 29 in a check run). HnS's own legendary events are unchanged. D24. |
 | Cheat menu (any Pokémon or item) | Existing | HnS's debug menu, compiled in: hold R and press START in the overworld (the play tests use it). |
 | Families with no source in the base game | Done | 258 non-legendary families placed in DexNav hidden slots on 249 map tables (`gen_hidden_encounters.py`). val: 449 of 571 families have a wild, hidden or scripted source; the remaining 122 are all legendary/mythical (see above). |
 | Evolution items | Done | Items found nowhere else come in care packages (D16). |
@@ -88,6 +88,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | Search levels and chain | Done | emu: `dexnav` (search level 1 and chain 1 after one DexNav catch). Stored per National Dex number (D13). |
 | Hidden Pokémon detection while walking | Done | emu: `dexnav_hidden` (detections lead to battles). |
 | Area lists show every Pokémon, seen or not (no question marks) | Done | emu: `dexnav` (nothing seen yet; Rattata is shown, registered with R, searched and caught). D18. |
+| Area lists match the wild Pokémon you meet (Wild Variety, randomizer, outbreaks) | Done | emu: `dexnav_wild_match` (12 grass battles all listed; a listed Wild Variety Pokémon searched for and battled; outbreak listed), `dexnav_water_match` (surfing and fishing), `dexnav_randomizer` (map-seeded randomizer). D24. |
 
 ## Battle mechanics (Section 9)
 

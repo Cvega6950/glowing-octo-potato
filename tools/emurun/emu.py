@@ -29,11 +29,12 @@ def number(target, initial=1):
     return out
 
 
-def new_game(difficulty=None, easy_catch=True, variety=None):
+def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False):
     """Power-on to the bedroom in New Bark Town with default settings (Minimal Grinding, Easy
     Catch and Wild Variety 30% ON). difficulty="EASY" or "HARD" picks that DIFFICULTY in the
     Difficulty tab; easy_catch=False turns EASY CATCH (first row of the Features tab) off;
-    variety="OFF"/"15%"/"60%" sets WILD VARIETY (second row)."""
+    variety="OFF"/"15%"/"60%" sets WILD VARIETY (second row); random_wild=True turns the
+    RANDOMIZER on with WILD randomized (MAP SEEDED stays ON)."""
     out = ["wait 1300", "press START", "wait 60", "press A", "wait 500", "mash A 900", "mash A 900", "mash A 700"]
     # Tabs: MODE, FEATURES, RANDOMIZER, NUZLOCKE, DIFFICULTY, CHALLENGES (confirm)
     out += ["press R", "wait 20"]
@@ -45,7 +46,12 @@ def new_game(difficulty=None, easy_catch=True, variety=None):
                                              "60%": ["press RIGHT", "wait 20"]}[variety]
     if not easy_catch or variety:
         out += ["shot features_tab.png"]
-    out += ["press R", "wait 20"] * 3
+    out += ["press R", "wait 20"]
+    if random_wild:
+        # RANDOMIZER (first row) on, then WILD (third row)
+        out += ["press RIGHT", "wait 20", "press DOWN", "wait 20", "press DOWN", "wait 20", "press RIGHT", "wait 20",
+                "shot randomizer_tab.png"]
+    out += ["press R", "wait 20"] * 2
     if difficulty:
         # DIFFICULTY is the first row and starts at NORMAL (EASY / NORMAL / HARD)
         out += ["press " + {"EASY": "LEFT", "HARD": "RIGHT"}[difficulty], "wait 20", "shot difficulty_tab.png"]
@@ -243,16 +249,31 @@ def expect_var(var, want, label=None):
     return [f"expect16 *{{gSaveBlock1Ptr}}+{v['vars'] + v[var]} {v['want']} {label or var.lower()}"]
 
 
+def set_save(block, field, value, size=8):
+    """Write a save block field, e.g. set_save(1, "outbreakPokemonSpecies", "SPECIES_PIKACHU", 16);
+    value may be a number or a C expression."""
+    ptr = {1: "gSaveBlock1Ptr", 2: "gSaveBlock2Ptr", 3: "gSaveBlock3Ptr"}[block]
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock{block}, {field})", "value": str(value)})
+    return [f"poke{size} *{{{ptr}}}+{v['off']} {v['value'] & ((1 << size) - 1)}"]
+
+
+def expect_listed(base, count, const, label):
+    """One of `count` 16-bit entries from `base` (e.g. a DexNav row) is the game constant `const`."""
+    v = probe.resolve({const: const})
+    return [f"expectfind16 {base} {count} 2 {v[const]} {label}"]
+
+
 def expect_save3(field, want, label, size=8):
     """Check a SaveBlock3 field, e.g. expect_save3("dexNavSearchLevels[19]", 1, "label")."""
     v = probe.resolve({"off": f"offsetof(struct SaveBlock3, {field})", "want": str(want)})
     return [f"expect{size} *{{gSaveBlock3Ptr}}+{v['off']} {v['want']} {label}"]
 
 
-def tally_species_not_in(name, *species):
-    """Count a run as a hit when the wild Pokemon (battler 1) is none of the given species."""
+def tally_species_not_in(name, *species, addr="{gBattleMons+136}"):
+    """Count a run as a hit when the wild Pokemon (battler 1), or the species at `addr`, is none
+    of the given species."""
     v = probe.resolve({s: s for s in species})
-    return [f"tallynotin {name} {{gBattleMons+136}} " + ",".join(str(v[s]) for s in species)]
+    return [f"tallynotin {name} {addr} " + ",".join(str(v[s]) for s in species)]
 
 
 ROUTE29_SPECIES = ("SPECIES_PIDGEY", "SPECIES_SENTRET", "SPECIES_HOPPIP", "SPECIES_RATTATA", "SPECIES_HOOTHOOT")
@@ -261,17 +282,43 @@ NATIONAL_PARK_SPECIES = ("SPECIES_CATERPIE", "SPECIES_NIDORAN_F", "SPECIES_NIDOR
                          "SPECIES_VENONAT")
 
 
-def wild_variety_sample(name, runs, state="route29.ss", grass=(24, 21, 25, 14), species=ROUTE29_SPECIES):
+def wild_variety_sample(name, runs, state="route29.ss", grass=(24, 21, 25, 14), species=ROUTE29_SPECIES, listed=None):
     """From a saved state at a grass edge, walk into the grass until a wild battle starts, `runs`
     times at different frame offsets, tallying wild Pokemon that are not one of the area's own
     `species`. grass = (entry x, pace from x, pace to x, row y), Route 29's by default. Each
-    battle is left by loading the state again."""
+    battle is left by loading the state again. listed="LIST" also tallies, as NAME_not_listed,
+    wild Pokemon missing from a list remembered by snap_dexnav_rows (DexNav's rows)."""
     entry, x1, x2, y = grass
     out = []
     for k in range(runs):
         out += [f"loadstate {state}", f"wait {1 + 23 * k}"] + walkto(entry, y, soft=True) + pace(x1, x2, y, 10, soft=True)
         out += ["wait 300", f"shot {name}_{k:02d}.png"] + tally_species_not_in(name, *species)
+        if listed:
+            out += [f"tallynotin {name}_not_listed {{gBattleMons+136}} @{listed}"]
     return out
+
+
+def fish_sample(name, runs, state, rod_index, listed, species=()):
+    """From a saved state facing water, cast the rod at `rod_index` in the Key Items pocket `runs`
+    times at different frame offsets (HnS's default FISHING setting needs no timing: a bite is
+    hooked, and A starts the battle). Tallies as NAME the wild Pokemon that are neither on the
+    list `listed` (remembered by snap_dexnav_rows) nor one of `species` (the area's fishing
+    Pokemon), and as NAME_battles the casts that led to a battle."""
+    v = probe.resolve({s: s for s in species})
+    allowed = ",".join([f"@{listed}", "0"] + [str(v[s]) for s in species])
+    out = []
+    for k in range(runs):
+        out += [f"loadstate {state}", f"wait {1 + 17 * k}", "poke16 {gBattleMons+136} 0"]
+        out += open_bag_at("POCKET_KEY_ITEMS", 0) + ["press DOWN", "wait 10"] * rod_index
+        out += ["press A", "wait 20", "press A", "wait 300", "mash A 120", "wait 400", f"shot {name}_{k:02d}.png"]
+        out += [f"tally32 {name}_battles {{gMain+4}} {{BattleMainCB2+1}}", f"tallynotin {name} {{gBattleMons+136}} {allowed}"]
+    return out
+
+
+def snap_dexnav_rows(name):
+    """With DexNav open, remember its land and water rows (sDexNavUiDataPtr->landSpecies at +6,
+    twelve entries, then waterSpecies, five) as the list NAME."""
+    return [f"snap16 {name} *{{sDexNavUiDataPtr}}+6 17"]
 
 
 def expect_const(addr, const, label, size=16, negate=False):

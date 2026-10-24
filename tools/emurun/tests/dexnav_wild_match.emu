@@ -1,0 +1,106 @@
+# Crystal Imperium play test: DexNav lists the Pokemon you run into in the wild.
+# Route 29 at night has Hoothoot and Rattata. With WILD VARIETY at 30% (the default) DexNav's
+# land row also lists the day's six Wild Variety Pokemon, and every wild battle is one of the
+# listed Pokemon. The row is sDexNavUiDataPtr->landSpecies (+6, twelve u16; the water row
+# follows), remembered with snap16 while DexNav is open.
+# The next day (gSaveBlock2Ptr->localTimeOffset.days one lower) brings a new set, the same day
+# always the same one. A Wild Variety Pokemon picked in DexNav (third icon) is searched for and
+# battled. A mass outbreak on Route 29 is listed too.
+!new_game()
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!set_save(2, "localTimeOffset.days", 0, 16)
+!start_menu("DEXNAV")
+wait 120
+shot 01_dexnav_route29.png
+!snap_dexnav_rows("day_a")
+expectne16 *{sDexNavUiDataPtr}+20 0 route29_lists_variety_pokemon
+expect16 *{sDexNavUiDataPtr}+22 0 two_own_and_six_variety_pokemon
+press B
+wait 200
+press B
+wait 60
+savestate route29_a.ss
+!wild_variety_sample("day_a", 12, state="route29_a.ss", listed="day_a")
+expecttally day_a 1 12
+expecttally day_a_not_listed 0 0
+
+# The next day: a new set (at least one of the six is new), and the battles are on the new list
+loadstate route29_a.ss
+!set_save(2, "localTimeOffset.days", -1, 16)
+!start_menu("DEXNAV")
+wait 120
+shot 02_dexnav_next_day.png
+!snap_dexnav_rows("day_b")
+![f"tallynotin new_on_day_b *{{sDexNavUiDataPtr}}+{6 + 2 * i} @day_a" for i in range(2, 8)]
+expecttally new_on_day_b 1 6
+press B
+wait 200
+press B
+wait 60
+savestate route29_b.ss
+!wild_variety_sample("day_b", 8, state="route29_b.ss", listed="day_b")
+expecttally day_b_not_listed 0 0
+
+# Back to the first day: the same list as before
+loadstate route29_b.ss
+!set_save(2, "localTimeOffset.days", 0, 16)
+!start_menu("DEXNAV")
+wait 120
+shot 03_dexnav_first_day_again.png
+![f"tallynotin changed_on_day_a *{{sDexNavUiDataPtr}}+{6 + 2 * i} @day_a" for i in range(0, 12)]
+expecttally changed_on_day_a 0 0
+press B
+wait 200
+press B
+wait 60
+
+# A mass outbreak of Pikachu on Route 29 (map group 0, number 11) is listed, and turns up
+loadstate route29_a.ss
+!set_save(1, "outbreakPokemonSpecies", "SPECIES_PIKACHU", 16)
+!set_save(1, "outbreakLocationMapNum", 11)
+!set_save(1, "outbreakLocationMapGroup", 0)
+!set_save(1, "outbreakPokemonLevel", 5)
+!set_save(1, "outbreakPokemonProbability", 100)
+!start_menu("DEXNAV")
+wait 120
+shot 04_dexnav_outbreak.png
+!expect_listed("*{sDexNavUiDataPtr}+6", 12, "SPECIES_PIKACHU", "outbreak_listed")
+press B
+wait 200
+press B
+wait 60
+!walkto(24, 14, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+wait 300
+shot 05_outbreak_battle.png
+!expect_battler(1, "species", "SPECIES_PIKACHU", "outbreak_pikachu")
+
+# Search for a Wild Variety Pokemon from the list (third land icon) and battle it. The Infinite
+# Repel keeps random battles away.
+loadstate route29_a.ss
+!use_key_item(1)
+!walkto(24, 14)
+!start_menu("DEXNAV")
+wait 120
+press RIGHT
+wait 20
+press RIGHT
+wait 20
+shot 06_variety_pokemon_picked.png
+snap16 target *{sDexNavUiDataPtr}+10 1
+press A
+wait 300
+shot 07_variety_search.png
+!expect_flag("FLAG_DEXNAV_SEARCHING", 1, "variety_search_started")
+tallynotin search_target *{sDexNavSearchDataPtr}+0 @target
+expecttally search_target 0 0
+!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", path=True, soft=True)
+wait 400
+shot 08_variety_battle.png
+expect32 {gMain+4} {BattleMainCB2+1} variety_dexnav_battle
+press A
+wait 300
+tallynotin battle_target {gBattleMons+136} @target
+expecttally battle_target 0 0

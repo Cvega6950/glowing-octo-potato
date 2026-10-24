@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.5.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.5.1-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team, the TM
 > list is Emerald Imperium's, and HMs work without being taught. Nobody has played the whole
@@ -18,16 +18,20 @@ From the first step of a new game:
   on/off switch), Pokémon Box Link (the PC anywhere), Training Kit (change nature or ability
   any time), PokéVial (full heal outside battle, never runs out).
 - **DexNav** (START menu):
-  - It shows each area's Pokémon by icon and name, seen or not, including three hidden
-    ones per area. Pick any of them: A searches, R registers.
+  - It shows each area's Pokémon by icon and name, seen or not: the area's own, the day's
+    Wild Variety Pokémon and three hidden ones. What you run into in the grass or on the water
+    is on the list (with Heart & Soul's randomizer on, the randomized Pokémon are). Pick any
+    of them: A searches, R registers.
   - SELECT lists **every** Gen 1–9 Pokémon (all 1,074: every evolution stage, regional
     forms, Legendaries), and you can search for any of them anywhere. LEFT/RIGHT jump 100.
   - Walk or run up to a Pokémon found by searching to battle it: no sneaking needed.
   - R repeats a search for the registered Pokémon.
   - Hidden Pokémon are also detected while walking.
   - Search levels improve the chances of egg moves, Hidden Abilities and held items.
-- **Wild Variety:** 30% of wild encounters (adjustable) are any Gen 1–9 Pokémon at the area's
-  level, already evolved if the level allows it.
+- **Wild Variety:** every area gets a daily set of other Gen 1–9 Pokémon (up to six in the
+  grass and three Water-types on the water, already evolved if the area's level allows it),
+  shown in DexNav. 30% of wild encounters (adjustable) are one of them. The sets change every
+  day.
 - **Easy Catch:** every Poké Ball catches (can be turned off).
 - **Minimal Grinding Mode** (every Pokémon battles as if it had 31 IVs and 0 EVs), **level caps**,
   ×1.5 EXP, an **EASY / NORMAL / HARD** difficulty selection, **Auto Run**
@@ -40,8 +44,8 @@ From the first step of a new game:
 - **Care packages** from Prof. Elm after every badge and after becoming Champion. They carry
   supplies and every evolution item the game doesn't otherwise have.
 - **Mega Evolution** (48 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F).
-- Legendary and Mythical Pokémon are on the DexNav list from the start, and join Wild
-  Variety's random encounters once you are Champion.
+- Legendary and Mythical Pokémon are on the DexNav list from the start. Once you are
+  Champion, about a quarter of each day's Wild Variety sets include one.
 - **Cheat menu:** hold R and press START in the overworld for HnS's debug menu (give any
   Pokémon or item, and more; *Flags & Vars… → Pokédex Flags All* fills the Pokédex). Use it
   with care: it can also change story flags.
@@ -61,7 +65,7 @@ your house), except Auto Run, which is in the Options menu.
 | # | Requirement | Status | Evidence |
 |---|---|---|---|
 | 1 | Gen 1–9 Pokémon, abilities, moves, evolution methods, sprites, wild encounters | **Done** | Engine data for all 1,025 species. Wild Variety on every route (`wild_variety`). The DexNav list of any Pokémon (`dexnav_any`). Hidden slots for the 258 families that had no source. Care packages hold the missing evolution items (`care_packages`). Every trade evolution has a non-trade method. |
-| 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden` |
+| 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden`; the lists match the wild Pokémon you meet (`dexnav_wild_match`, `dexnav_water_match`, `dexnav_randomizer`) |
 | 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym) |
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
 | 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies) |

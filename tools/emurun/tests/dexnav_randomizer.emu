@@ -1,0 +1,22 @@
+# Crystal Imperium play test: with Heart & Soul's randomizer on for wild Pokemon (RANDOMIZER and
+# WILD set to RANDOM, MAP SEEDED left ON), DexNav lists Route 29's randomized Pokemon (one per
+# encounter slot, so the land row is full), and every wild battle is one of them. Before 0.5.1,
+# DexNav listed the unrandomized Hoothoot and Rattata.
+!new_game(random_wild=True)
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!start_menu("DEXNAV")
+wait 120
+shot 01_dexnav_randomized.png
+!snap_dexnav_rows("randomized")
+!tally_species_not_in("unrandomized", "SPECIES_HOOTHOOT", "SPECIES_RATTATA", addr="*{sDexNavUiDataPtr}+6")
+!tally_species_not_in("unrandomized", "SPECIES_HOOTHOOT", "SPECIES_RATTATA", addr="*{sDexNavUiDataPtr}+8")
+expecttally unrandomized 1 2
+press B
+wait 200
+press B
+wait 60
+savestate route29.ss
+!wild_variety_sample("random", 12, state="route29.ss", listed="randomized")
+expecttally random_not_listed 0 0

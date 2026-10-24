@@ -22,3 +22,7 @@
 | 18 | Options | Auto Run is OFF on a new game (Heart & Soul's default); turn it on in START > OPTION > AUTORUN. | Note |
 | 19 | Cheats | HnS's debug menu (R + START) is reachable in normal play. It can break the story if story flags are changed. | Note (documented as a cheat menu) |
 | 20 | Validator | Counts of families are by evolution family root from the source headers; species defined through nested macros (e.g. Alcremie's forms) are matched through their pre-evolution. | Note |
+| 21 | DexNav | DexNav's lists didn't match the wild Pokémon met: Wild Variety picked from the whole pool, and the randomizer's Pokémon weren't shown. | **Fixed** in 0.5.1 (D24) |
+| 22 | DexNav | With the randomizer's MAP SEEDED off or CHAOS on, every wild encounter is a new random Pokémon; DexNav lists the area's own Pokémon then. | By design (D24) |
+| 23 | DexNav | Fishing Pokémon have no DexNav row (as in the expansion's DexNav), and roaming Pokémon aren't listed. Fishing's Wild Variety Pokémon are the water row's. | By design (D24) |
+| 24 | Wild Variety | The grass set can include Pokémon that live in water (e.g. Goldeen, Dondozo): only the water set is limited to Water-types. | By design (D14: every Pokémon on every route) |

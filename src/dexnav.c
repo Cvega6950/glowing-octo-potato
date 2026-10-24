@@ -62,6 +62,7 @@
 #include "gba/m4a_internal.h"
 #include "list_menu.h"
 #include "wild_variety.h"
+#include "randomizer.h"
 
 #if DEXNAV_ENABLED
 STATIC_ASSERT(DN_FLAG_SEARCHING != 0, DNFlagSearching_Must_Not_Be_Zero);
@@ -1518,6 +1519,23 @@ static u8 GetVarietyEncounterLevel(enum EncounterType environment)
     return RandomUniform(RNG_DEXNAV_ENCOUNTER_LEVEL, min, max);
 }
 
+// Crystal Imperium: the area's list holds randomized Pokemon and an outbreak's too
+static bool32 IsOnAreaList(u16 species, enum EncounterType environment)
+{
+    u16 list[LAND_WILD_COUNT];
+    u32 i, count, varietyStart;
+
+    if (environment != ENCOUNTER_TYPE_LAND && environment != ENCOUNTER_TYPE_WATER)
+        return FALSE;
+    count = WildVariety_GetAreaList(environment == ENCOUNTER_TYPE_LAND ? WILD_AREA_LAND : WILD_AREA_WATER, list, &varietyStart);
+    for (i = 0; i < count; i++)
+    {
+        if (list[i] == species)
+            return TRUE;
+    }
+    return FALSE;
+}
+
 static u8 GetEncounterLevelFromMapData(u16 species, enum EncounterType environment)
 {
     u32 headerId = GetCurrentMapWildMonHeaderId();
@@ -1591,7 +1609,7 @@ static u8 GetEncounterLevelFromMapData(u16 species, enum EncounterType environme
 
     if (max == 0)
     {
-        if (WildVariety_IsSearchable(species))
+        if (WildVariety_IsSearchable(species) || IsOnAreaList(species, environment))
             return GetVarietyEncounterLevel(environment);
         return MON_LEVEL_NONEXISTENT;
     }
@@ -1743,71 +1761,39 @@ static void CreateNoDataIcon(s16 x, s16 y)
     CreateSprite(&sNoDataIconTemplate, x, y, 0);
 }
 
+// Crystal Imperium: the rows as listed, Wild Variety Pokemon included
+static bool8 CapturedAllInRow(const u16 *species, u32 count)
+{
+    u32 i, listed = 0;
+
+    for (i = 0; i < count; i++)
+    {
+        if (species[i] == SPECIES_NONE)
+            continue;
+        if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species[i]), FLAG_GET_CAUGHT))
+            return FALSE;
+        listed++;
+    }
+    return listed > 0;
+}
+
 static bool8 CapturedAllLandMons(u32 headerId)
 {
-    u16 i, species;
-    int count = 0;
     enum TimeOfDay timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_LAND);
 
-    const struct WildPokemonInfo *landMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo;
-
-    if (landMonsInfo != NULL)
-    {
-        for (i = 0; i < LAND_WILD_COUNT; ++i)
-        {
-            species = landMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE)
-            {
-                if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
-                    break;
-
-                count++;
-            }
-        }
-
-        if (i >= LAND_WILD_COUNT && count > 0) //All land mons caught
-            return TRUE;
-    }
-    else
-    {
+    if (gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo == NULL)
         return TRUE;    //technically, no mon data means you caught them all
-    }
-
-    return FALSE;
+    return CapturedAllInRow(sDexNavUiDataPtr->landSpecies, LAND_WILD_COUNT);
 }
 
 //Checks if all Pokemon that can be encountered while surfing have been capture
 static bool8 CapturedAllWaterMons(u32 headerId)
 {
-    u32 i;
-    u16 species;
-    u8 count = 0;
     enum TimeOfDay timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_WATER);
 
-    const struct WildPokemonInfo *waterMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo;
-
-    if (waterMonsInfo != NULL)
-    {
-        for (i = 0; i < WATER_WILD_COUNT; ++i)
-        {
-            species = waterMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE)
-            {
-                count++;
-                if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT))
-                    break;
-            }
-        }
-
-        if (i >= WATER_WILD_COUNT && count > 0)
-            return TRUE;
-    }
-    else
-    {
+    if (gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo == NULL)
         return TRUE;    //technically, no mon data means you caught them all
-    }
-
-    return FALSE;
+    return CapturedAllInRow(sDexNavUiDataPtr->waterSpecies, WATER_WILD_COUNT);
 }
 
 static bool8 CapturedAllHiddenMons(u32 headerId)
@@ -1956,21 +1942,15 @@ static bool8 SpeciesInArray(u16 species, u8 section)
 // get unique wild encounters on current map
 static void DexNavLoadEncounterData(void)
 {
-    u8 grassIndex = 0;
-    u8 waterIndex = 0;
     u8 hiddenIndex = 0;
     u16 species;
-    u32 i;
+    u32 i, varietyStart;
     u32 headerId = GetCurrentMapWildMonHeaderId();
     enum TimeOfDay timeOfDay;
 
     if (headerId == HEADER_NONE)
         return;
 
-    timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_LAND);
-    const struct WildPokemonInfo *landMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo;
-    timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_WATER);
-    const struct WildPokemonInfo *waterMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo;
     timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_HIDDEN);
     const struct WildPokemonInfo *hiddenMonsInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].hiddenMonsInfo;
 
@@ -1979,27 +1959,10 @@ static void DexNavLoadEncounterData(void)
     memset(sDexNavUiDataPtr->waterSpecies, 0, sizeof(sDexNavUiDataPtr->waterSpecies));
     memset(sDexNavUiDataPtr->hiddenSpecies, 0, sizeof(sDexNavUiDataPtr->hiddenSpecies));
 
-    // land mons
-    if (landMonsInfo != NULL && landMonsInfo->encounterRate != 0)
-    {
-        for (i = 0; i < LAND_WILD_COUNT; i++)
-        {
-            species = landMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE && !SpeciesInArray(species, 0))
-                sDexNavUiDataPtr->landSpecies[grassIndex++] = landMonsInfo->wildPokemon[i].species;
-        }
-    }
-
-    // water mons
-    if (waterMonsInfo != NULL && waterMonsInfo->encounterRate != 0)
-    {
-        for (i = 0; i < WATER_WILD_COUNT; i++)
-        {
-            species = waterMonsInfo->wildPokemon[i].species;
-            if (species != SPECIES_NONE && !SpeciesInArray(species, 1))
-                sDexNavUiDataPtr->waterSpecies[waterIndex++] = waterMonsInfo->wildPokemon[i].species;
-        }
-    }
+    // Crystal Imperium: land and water mons as wild encounters turn them up, today's Wild Variety
+    // Pokemon included
+    WildVariety_GetAreaList(WILD_AREA_LAND, sDexNavUiDataPtr->landSpecies, &varietyStart);
+    WildVariety_GetAreaList(WILD_AREA_WATER, sDexNavUiDataPtr->waterSpecies, &varietyStart);
 
     // hidden mons
     if (hiddenMonsInfo != NULL) // no encounter rate check since 0 means land, 1 means water encounters
@@ -2727,6 +2690,27 @@ static void Task_DexNavPicker(u8 taskId)
 /////////////////////////
 //// HIDDEN POKEMON /////
 /////////////////////////
+// Crystal Imperium: a Pokemon the detector finds in the grass or on the water is one a wild
+// encounter there would turn up: randomized, or one of the day's Wild Variety Pokemon
+static u16 GetDetectedWildSpecies(u32 headerId, enum WildPokemonArea area)
+{
+    enum TimeOfDay timeOfDay = GetTimeOfDayForEncounters(headerId, area);
+    const struct WildPokemonInfo *info = (area == WILD_AREA_LAND)
+                                       ? gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo
+                                       : gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo;
+    u32 slot;
+    u16 species;
+
+    if (info == NULL)
+        return SPECIES_NONE;
+    slot = (area == WILD_AREA_LAND) ? ChooseWildMonIndex_Land() : ChooseWildMonIndex_Water();
+    species = info->wildPokemon[slot].species;
+#if RANDOMIZER_AVAILABLE == TRUE
+    species = RandomizeWildEncounter(species, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, area, slot);
+#endif
+    return WildVariety_TryReplaceSpecies(species, area);
+}
+
 bool32 TryFindHiddenPokemon(void)
 {
     u16 *stepPtr = GetVarPointer(DN_VAR_STEP_COUNTER);
@@ -2780,7 +2764,7 @@ bool32 TryFindHiddenPokemon(void)
             }
             else
             {
-                species = gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo->wildPokemon[ChooseWildMonIndex_Land()].species;
+                species = GetDetectedWildSpecies(headerId, WILD_AREA_LAND);
                 environment = ENCOUNTER_TYPE_LAND;
             }
             break;
@@ -2798,7 +2782,7 @@ bool32 TryFindHiddenPokemon(void)
                 }
                 else
                 {
-                    species = gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo->wildPokemon[ChooseWildMonIndex_Water()].species;
+                    species = GetDetectedWildSpecies(headerId, WILD_AREA_WATER);
                     environment = ENCOUNTER_TYPE_WATER;
 
                 }

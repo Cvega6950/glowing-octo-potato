@@ -1,0 +1,48 @@
+# Crystal Imperium play test: DexNav's water row lists the Pokemon you meet surfing and fishing.
+# New Bark Town's water has Tentacool. With WILD VARIETY at 30% the water row
+# (sDexNavUiDataPtr->waterSpecies, +30, five u16) also lists the day's three Wild Variety
+# Pokemon, all Water-type. Surfing battles are all on the list; fishing turns up the town's own
+# fishing Pokemon (DexNav has no fishing row) or the listed Wild Variety Pokemon. The Super Rod is
+# the eighth Key Item; HM03 and the Fog Badge let the Magikarp surf.
+!new_game()
+!give_mon(129, 10)
+!give_item("ITEM_HM_SURF")
+!give_item("ITEM_SUPER_ROD")
+!set_flag("FLAG_BADGE04_GET")
+!set_var("VAR_CARE_PACKAGES", 17)
+!warp(0, 0, 1)
+!walkto(24, 12, order="yx")
+press RIGHT
+wait 20
+!start_menu("DEXNAV")
+wait 120
+shot 01_dexnav_water_row.png
+!snap_dexnav_rows("water")
+!expect_const("*{sDexNavUiDataPtr}+30", "SPECIES_TENTACOOL", "tentacool_listed_first")
+expectne16 *{sDexNavUiDataPtr}+36 0 three_variety_pokemon_listed
+expect16 *{sDexNavUiDataPtr}+38 0 one_own_and_three_variety_pokemon
+press B
+wait 200
+press B
+wait 60
+savestate shore.ss
+
+# Fishing from the shore, facing the water
+!fish_sample("fish", 10, "shore.ss", 7, "water", ("SPECIES_CHINCHOU", "SPECIES_LANTURN", "SPECIES_MAGIKARP", "SPECIES_SHELLDER", "SPECIES_TENTACOOL", "SPECIES_TENTACRUEL"))
+expecttally fish_battles 3 10
+expecttally fish 0 0
+
+# Surfing: the water is x 25-29 on row 12
+loadstate shore.ss
+press A
+wait 90
+press A
+wait 60
+mash A 120
+wait 120
+shot 02_surfing.png
+expect16 *{gSaveBlock1Ptr}+4 25 surfing
+savestate surfing.ss
+!wild_variety_sample("surf", 12, state="surfing.ss", grass=(26, 25, 29, 12), species=("SPECIES_TENTACOOL",), listed="water")
+expecttally surf 1 12
+expecttally surf_not_listed 0 0

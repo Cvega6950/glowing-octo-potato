@@ -142,16 +142,18 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 12-slot tables is impossible, so the routes keep their tables and two systems sit on top:
 
 - **Wild Variety** (Features tab: OFF / 15% / 30% / 60%, default 30%, stored so that 0 is 30%
-  for older saves): that share of land, surfing and fishing encounters is replaced by a random
+  for older saves): that share of land, surfing and fishing encounters is replaced by a
   Pokémon from the variety pool, at the encounter's own level. Surfing and fishing draw
-  Water-type Pokémon. Rock Smash and hidden encounters are left alone, and so are the
+  Water-type Pokémon. Since 0.5.1 the replacement comes from the area's set for the day,
+  which DexNav lists (D24); before, it was any Pokémon of the pool. Rock Smash and hidden encounters are left alone, and so are the
   Bug-Catching Contest, the Battle Pike and the Battle Pyramid, which keep their own Pokémon.
 - **The pool** (`src/wild_variety.c`) is built once at run time from the species data: every
   species with no pre-evolution, in its main form or a regional form, excluding battle-only and
   cosmetic forms (`randomizerMode == MON_RANDOMIZER_INVALID`, Megas, Gigantamax, Totems). That
   is 445 Pokémon. Legendary, Mythical, Ultra Beast and Paradox Pokémon (122 more) join after
   becoming Champion; before that, variety never produces them.
-- **Level-appropriate evolution:** a variety Pokémon is evolved as far as its level allows.
+- **Level-appropriate evolution:** a variety Pokémon is evolved as far as the area's highest
+  level allows (its own level before 0.5.1).
   Level-up evolutions use their level. Friendship and other condition-only level-ups use 18
   (from a base form) or 35. Stones, trades and special methods use 30 or 40.
 - **Targeted hunting:** a random draw from 445 Pokémon can't be relied on to find one in
@@ -371,3 +373,56 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   the same way through the same code.
 - Evidence: `hm_field_moves`. A Magikarp, which can learn none of these moves, cuts the Route 29
   tree, opens the Fly map from its party menu and surfs, with only the HMs and badges.
+
+## D24. DexNav lists the Pokémon you meet
+
+The user found that the Pokémon DexNav lists didn't match the ones met in the wild. Three
+things caused it in 0.5.0:
+
+- Wild Variety (D14) replaced 30% of encounters with a random pick from about 445 Pokémon,
+  which no list can show. On Route 29 at night, DexNav listed Hoothoot and Rattata while 6 of
+  12 test battles were other Pokémon.
+- With Heart & Soul's randomizer on for wild Pokémon, DexNav listed the unrandomized Pokémon:
+  12 of 12 battles were unlisted.
+- A mass outbreak's Pokémon wasn't listed.
+
+Now one function, `WildVariety_GetAreaList` (`src/wild_variety.c`), makes the list that
+DexNav shows and that wild encounters draw from:
+
+- **The area's own Pokémon** as encounters turn them out. With the randomizer on for wild
+  Pokémon and MAP SEEDED on, each encounter slot always gives the same randomized Pokémon, and
+  DexNav lists those (one per slot, so the land row is often full).
+- **A mass outbreak's Pokémon**, in the grass.
+- **The day's Wild Variety set** in the free slots of DexNav's row (12 in the grass, 5 on the
+  water): up to six Pokémon in the grass and three Water-type ones on the water. The set is
+  drawn from the variety pool with a seed made of the map, the area, the RTC day counter (real
+  clock or Heart & Soul's fake clock) and the trainer ID, and evolved for the area's highest
+  level. It stays the same all day, changes at midnight, and differs between saves. A Wild
+  Variety encounter is one of the set: each of its Pokémon is (WILD VARIETY share) / 6 of grass
+  encounters (5% each at 30%) and / 3 on the water. About one land table in five has 7 or
+  more of its own Pokémon (12 at most); there the set is smaller and variety rarer, rather
+  than unlisted.
+- **Legends after becoming Champion:** a quarter of the day's sets (rolled per area and day)
+  end with a Legendary, Mythical, Ultra Beast or Paradox Pokémon, Water-type ones on the
+  water. The rest of the set stays as it was before becoming Champion. In 0.5.0, 3% of variety
+  encounters everywhere were legendary; the average is similar (about 1.25% of grass
+  encounters), but now DexNav shows where one is.
+- Fishing gives the area's fishing Pokémon, or a Pokémon of the water set (DexNav has no
+  fishing row, as in the expansion's DexNav). The detector finds what an encounter would turn
+  up (randomizer and Wild Variety included). The caught-all marks count the listed Pokémon.
+- A listed Pokémon is searched for with A like any other; Wild Variety and randomized ones are
+  found at the area's levels.
+- **Not listable:** with the randomizer's MAP SEEDED off, or CHAOS on, every encounter is a new
+  random Pokémon, so DexNav lists the area's own Pokémon. Roaming Pokémon aren't listed (as in
+  the main games). The Bug-Catching Contest, the Battle Pike and the Battle Pyramid have no
+  Wild Variety, and DexNav lists none there.
+- Evidence: `dexnav_wild_match` (Route 29: the two own Pokémon and six Wild Variety ones
+  listed, 12 battles all listed, 6 of them Wild Variety; the next day's set is new and its
+  battles are listed; the first day's set comes back unchanged; a Wild Variety Pokémon picked
+  in DexNav is searched for and battled; an outbreak's Pikachu is listed and met),
+  `dexnav_water_match` (New Bark Town: Tentacool and three Water-type Wild Variety Pokémon
+  listed; 12 surfing battles all listed; 7 bites in 10 casts, all the town's fishing Pokémon or
+  listed ones), `dexnav_randomizer` (randomized Route 29: 12 Pokémon listed, 12 battles all
+  listed) and `wild_variety` (OFF: only the route's own Pokémon listed and met). On the 0.5.0
+  ROM the same checks found 6 of 12 and 12 of 12 battles unlisted. Over 16 days after becoming
+  Champion, 4 of Route 29's sets had a legend.
