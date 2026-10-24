@@ -1,6 +1,6 @@
 # Crystal Imperium play test: boot -> new game -> settings -> Falkner (trainer 402).
 # Team: Cyndaquil / Mareep / Geodude at the pre-Falkner level cap (11), given via the debug menu.
-# Passes when the battle is won with the strategy recorded in docs/crystal_imperium/BALANCE.md.
+# Passes when the battle against the real AI and party data runs to a result.
 
 # Title screen and Oak's intro (name entry is filled by mashing A)
 wait 1300
@@ -35,6 +35,9 @@ mash A 1200
 wait 300
 shot 03_overworld.png
 
+# Battle Style SET, so the autopilot is never asked "Will you switch?"
+!battle_style_set()
+
 # Team at the level cap
 !give_mon(155, 11)
 !give_mon(179, 11)
@@ -55,49 +58,10 @@ press A
 wait 220
 shot 04_falkner_start.png
 expect16 {gBattleMons+136} 16 falkner_leads_pidgey
-# Cyndaquil Embers the Tailwind Pidgey
-!turn(2, 2, 2, 2)
-# Switch to Geodude when Rookidee comes in
-press A
-wait 200
-press A
-wait 150
-press A
-wait 150
-press A
-wait 80
-press DOWN
-press DOWN
-press A
-wait 30
-press A
-wait 600
-# Defense Curl, then Rollout until Geodude falls to Noctowl
-!turn(0, 3, 3, 3, 3, 3, 3)
-shot 05_geodude_down.png
-# Mareep: Thunder Wave, then Thunder Shock
-press A
-wait 150
-press DOWN
-wait 10
-press A
-wait 30
-press A
-wait 500
-!turn(1, 2, 2, 2, 2, 2)
-shot 06_mareep_down.png
-# Last Pokemon: Cyndaquil (slot 2) Embers Noctowl
-press B
-wait 60
-press DOWN
-wait 30
-press A
-wait 30
-press A
-wait 500
-!turn(2, 2, 2, 2, 2, 2)
-mash A 1200
-wait 300
+# The battle is played by the autopilot (it follows the battle state, so it also runs on other
+# emulators, whose RNG seed differs): Cyndaquil Ember, Mareep Thunder Shock, Geodude Rollout.
+# The hand-played winning line is in docs/crystal_imperium/BALANCE.md.
+!autobattle("2,2,3")
 shot 07_result.png
 peek8 {gBattleOutcome} battle_outcome_1_win_2_loss
 expectne8 {gBattleOutcome} 0 battle_ran_to_completion

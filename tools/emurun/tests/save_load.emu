@@ -3,14 +3,8 @@
 !new_game()
 !give_mon(152, 5)
 expect8 {gPlayerPartyCount} 1 party_before_save
-# START > SAVE (third from the bottom, reached by wrapping upward) > confirm
-press START
-wait 40
-press UP
-press UP
-press UP
-press A
-wait 120
+# START > SAVE > confirm
+!start_menu("SAVE")
 shot 01_save_prompt.png
 press A
 wait 400

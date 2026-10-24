@@ -1,0 +1,74 @@
+# Crystal Imperium play test: DexNav finds any Pokemon, and lists hidden Pokemon.
+# On Route 29 the DexNav's HIDDEN row lists three Pokemon from the generated hidden tables
+# (sDexNavUiDataPtr->hiddenSpecies, +40). SELECT opens the list of every Pokemon Wild Variety can
+# turn up, in National Dex order: A searches for one right away, START registers it.
+# Charmander (second on the list) is searched for and battled on Route 29, at Route 29's levels.
+!new_game()
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!use_key_item(1)
+!walkto(34, 14, "yx")
+!walkto(24, 14)
+
+!start_menu("DEXNAV")
+wait 120
+shot 01_dexnav_hidden_row.png
+expectne16 *{sDexNavUiDataPtr}+40 0 route29_lists_hidden_pokemon
+press SELECT
+wait 60
+shot 02_any_pokemon_list.png
+!expect_const("**{sDexNavUiDataPtr}+64+0", "SPECIES_BULBASAUR", "list_starts_with_bulbasaur")
+# Squirtle (third) is registered with START; Route 29 has no water, so DexNav looks in the grass
+press DOWN
+wait 10
+press DOWN
+wait 10
+shot 03_squirtle.png
+press START
+wait 60
+!expect_var("VAR_DEXNAV_SPECIES", "(ENCOUNTER_TYPE_LAND << 14) | SPECIES_SQUIRTLE", "squirtle_registered")
+# The list opens again where it was left; up to Charmander and A searches right away
+press SELECT
+wait 60
+press UP
+wait 10
+shot 04_charmander.png
+press A
+wait 300
+shot 05_searching_charmander.png
+!expect_flag("FLAG_DEXNAV_SEARCHING", 1, "search_started")
+!expect_const("*{sDexNavSearchDataPtr}+0", "SPECIES_CHARMANDER", "searching_for_charmander")
+!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", creep=True, path=True, soft=True)
+wait 400
+shot 06_charmander_battle.png
+expect32 {gMain+4} {BattleMainCB2+1} dexnav_battle_started
+press A
+wait 300
+!expect_battler(1, "species", "SPECIES_CHARMANDER", "wild_charmander")
+
+# After becoming Champion, Legendary and Mythical Pokemon join the list (pickerCount, u16 at +58
+# in DexNav's GUI data): 445 base forms before, 567 after (Legendary, Mythical, Ultra Beast and
+# Paradox Pokemon). The numbers follow the species data; update them if it changes.
+reset
+!new_game()
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!start_menu("DEXNAV")
+wait 120
+press SELECT
+wait 60
+expect16 *{sDexNavUiDataPtr}+58 445 list_size_before_champion
+shot 07_list_before_champion.png
+press B
+wait 60
+press B
+wait 200
+press B
+wait 60
+!debug_flags_menu(11)
+!start_menu("DEXNAV")
+wait 120
+press SELECT
+wait 60
+expect16 *{sDexNavUiDataPtr}+58 567 list_size_after_champion
+shot 08_list_after_champion.png

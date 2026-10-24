@@ -1,0 +1,74 @@
+# Crystal Imperium play test: the DexNav, in the start menu from a new game.
+# Route 29 at night lists Hoothoot and Rattata (second land icon). DexNav only works for
+# species already seen: first nothing is seen and Rattata can't be searched or registered.
+# With a Rattata in the Pokedex: register it with R, close DexNav, press R in
+# the grass to search, creep (hold A) to the rustling tile, and the DexNav battle starts.
+# Catching the DexNav Rattata raises its search level and the DexNav chain. The Infinite Repel
+# keeps random encounters away; it does not stop DexNav encounters.
+# The search target is sDexNavSearchDataPtr: species +0, tileX +18, tileY +20 (map coords + 7).
+!new_game()
+!give_mon(155, 5)
+!give_item(1, 10)
+!warp(0, 11, 0)
+# Infinite Repel on (Key Item 1), so no random wild battle interrupts; DexNav battles still happen
+!use_key_item(1)
+!expect_flag("FLAG_INFINITE_REPEL_ON", 1, "infinite_repel_on")
+!walkto(34, 14, "yx")
+!walkto(24, 14)
+expect32 {gMain+4} {CB2_Overworld+1} in_route29_grass
+
+# Nothing seen yet: Rattata's icon can't be registered or searched
+!start_menu("DEXNAV")
+wait 120
+expect32 {gMain+4} {DexNav_MainCB+1} dexnav_opens
+shot 01_dexnav_nothing_seen.png
+press RIGHT
+wait 20
+press R
+wait 60
+!expect_var("VAR_DEXNAV_SPECIES", 0, "unseen_species_not_registered")
+press A
+wait 200
+!expect_flag("FLAG_DEXNAV_SEARCHING", 0, "unseen_species_not_searched")
+press B
+wait 200
+press B
+wait 60
+
+# Get a Rattata and register it in the Pokedex (debug-given Pokemon are not registered on their own)
+!give_mon(19, 3)
+!dex_flags_from_party()
+!start_menu("DEXNAV")
+wait 120
+press RIGHT
+wait 20
+press R
+wait 60
+shot 02_dexnav_rattata_registered.png
+!expect_var("VAR_DEXNAV_SPECIES", "(ENCOUNTER_TYPE_LAND << 14) | SPECIES_RATTATA", "rattata_registered")
+# B leaves DexNav for the start menu; B again closes it
+press B
+wait 200
+press B
+wait 60
+
+# R in the overworld starts the search for the registered species
+press R
+wait 200
+shot 03_dexnav_search.png
+!expect_flag("FLAG_DEXNAV_SEARCHING", 1, "r_starts_dexnav_search")
+expect16 *{sDexNavSearchDataPtr}+0 19 searching_for_rattata
+!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", creep=True, path=True, soft=True)
+wait 400
+shot 04_dexnav_battle.png
+expect32 {gMain+4} {BattleMainCB2+1} dexnav_battle_started
+!expect_flag("FLAG_DEXNAV_SEARCHING", 0, "search_ends_at_battle")
+press A
+wait 300
+!expect_battler(1, "species", "SPECIES_RATTATA", "dexnav_rattata")
+press R
+wait 1000
+mash B 2400
+expect8 {gPlayerPartyCount} 3 dexnav_rattata_caught
+!expect_save3("dexNavSearchLevels[NATIONAL_DEX_RATTATA]", 1, "rattata_search_level_1")
+!expect_save3("dexNavChain", 1, "dexnav_chain_1")

@@ -1,0 +1,20 @@
+# Crystal Imperium play test: WILD VARIETY (challenge menu > Features; 30% by default).
+# Route 29's own wild Pokemon are Pidgey, Sentret, Hoppip, Rattata and Hoothoot. Twelve wild
+# battles start from the same spot at different frame offsets. With WILD VARIETY at 30% some of
+# them must be other Pokemon (Gen 1-9); with it OFF none may be.
+!new_game()
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+savestate route29.ss
+!wild_variety_sample("variety_30", 12)
+expecttally variety_30 1 12
+
+reset
+!new_game(variety="OFF")
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+savestate route29_off.ss
+!wild_variety_sample("variety_off", 12, state="route29_off.ss")
+expecttally variety_off 0 0

@@ -1,0 +1,15 @@
+# Crystal Imperium play test: DexNav hidden Pokemon (detector mode, on from the start).
+# Every 100 steps DexNav has a 25% chance to detect a hidden Pokemon nearby; the player then
+# creeps (holds A) up to it and a battle starts. Each run sets the step counter to 99 and takes
+# one step, so each run has the 25% chance. Twelve runs must detect at least one, and every
+# detection must lead to a battle. The Infinite Repel keeps ordinary wild battles away.
+!new_game()
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!use_key_item(1)
+!walkto(34, 14, "yx")
+!walkto(24, 14)
+savestate grass.ss
+!dexnav_hidden_sample(12)
+expecttally hidden_detected 1 12
+expecttally hidden_battle 1 12

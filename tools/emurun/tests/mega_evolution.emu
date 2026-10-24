@@ -2,22 +2,20 @@
 !new_game()
 # Ampharos Lv 50 holding Ampharosite, plus the Mega Ring
 !give_mon(181, 50)
-!give_item(703)
-!give_item(307)
-# START > POKeMON > Ampharos > ITEM > GIVE > Ampharosite
-press START
-wait 40
+!give_item("ITEM_AMPHAROSITE")
+!give_item("ITEM_MEGA_RING")
+# Bag > Items > Ampharosite > GIVE (right of USE in the 2x2 menu) > Ampharos. (The party menu's list for a Pokemon changes with
+# its moves and the relearner entry, so the item is given from the bag.)
+!open_bag_at("POCKET_ITEMS", 0)
+press A
+wait 20
+press RIGHT
+wait 10
 press A
 wait 120
-press A
-wait 30
-press DOWN
-press A
-wait 30
+shot 00_give_ampharosite.png
 press A
 wait 120
-press A
-wait 60
 mash B 200
 wait 60
 

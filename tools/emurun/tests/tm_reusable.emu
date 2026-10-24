@@ -1,0 +1,60 @@
+# Crystal Imperium play test: TMs are reusable (HnS's INFINITE TMs option, on by default).
+# One TM Protect teaches Cyndaquil and then Chikorita and stays in the bag; Cyndaquil uses
+# Protect in battle. Lv 5 Cyndaquil knows Tackle and Leer, so Protect lands in move slot 2.
+!new_game()
+!give_mon(155, 5)
+!give_mon(152, 5)
+!give_item("ITEM_TM_PROTECT")
+!expect_bag_has("TMsHMs", "ITEM_TM_PROTECT", "tm_in_bag")
+
+# Bag > TMs > TM Protect > USE ("Booted up a TM." "It contained PROTECT." "Teach ...?" YES) > Cyndaquil
+!open_bag_at("POCKET_TM_HM", 0)
+press A
+wait 20
+press A
+wait 150
+press A
+wait 60
+press A
+wait 60
+press A
+wait 150
+shot 01_choose_pokemon.png
+press A
+wait 150
+shot 02_cyndaquil_learns.png
+mash A 300
+mash B 120
+!expect_bag_has("TMsHMs", "ITEM_TM_PROTECT", "tm_kept_after_first_use")
+
+# Again for Chikorita (second in the party)
+!open_bag_at("POCKET_TM_HM", 0)
+press A
+wait 20
+press A
+wait 150
+press A
+wait 60
+press A
+wait 60
+press A
+wait 150
+press DOWN
+wait 10
+press A
+wait 150
+shot 03_chikorita_learns.png
+mash A 300
+mash B 120
+!expect_bag_has("TMsHMs", "ITEM_TM_PROTECT", "tm_kept_after_second_use")
+
+# Cyndaquil knows Protect in battle
+!battle_trainer(402)
+wait 300
+press A
+wait 200
+press A
+wait 200
+press A
+wait 400
+!expect_battler(0, "moves[2]", "MOVE_PROTECT", "cyndaquil_knows_protect")

@@ -2,6 +2,7 @@
 """Run a Crystal Imperium emulator play test.
 
 Usage: tools/emurun/emu.py TEST.emu [--rom pokehns.gba] [--elf pokehns.elf] [--out DIR] [--save FILE]
+                           [--emulator mgba|vbam]
 
 A .emu file is an emurun script (see emurun.c) with two additions:
   {gSymbol} or {gSymbol+N}   replaced by the symbol's address from the ELF
@@ -28,16 +29,27 @@ def number(target, initial=1):
     return out
 
 
-def new_game(difficulty=None):
-    """Power-on to the bedroom in New Bark Town with default settings (Minimal Grinding ON).
-    difficulty="EASY" or "HARD" picks that DIFFICULTY in the challenge menu's Difficulty tab."""
+def new_game(difficulty=None, easy_catch=True, variety=None):
+    """Power-on to the bedroom in New Bark Town with default settings (Minimal Grinding, Easy
+    Catch and Wild Variety 30% ON). difficulty="EASY" or "HARD" picks that DIFFICULTY in the
+    Difficulty tab; easy_catch=False turns EASY CATCH (first row of the Features tab) off;
+    variety="OFF"/"15%"/"60%" sets WILD VARIETY (second row)."""
     out = ["wait 1300", "press START", "wait 60", "press A", "wait 500", "mash A 900", "mash A 900", "mash A 700"]
+    # Tabs: MODE, FEATURES, RANDOMIZER, NUZLOCKE, DIFFICULTY, CHALLENGES (confirm)
+    out += ["press R", "wait 20"]
+    if not easy_catch:
+        out += ["press LEFT", "wait 20"]
+    if variety:
+        # OFF / 15% / 30% / 60%, starting at 30%
+        out += ["press DOWN", "wait 20"] + {"OFF": ["press LEFT", "wait 20"] * 2, "15%": ["press LEFT", "wait 20"],
+                                             "60%": ["press RIGHT", "wait 20"]}[variety]
+    if not easy_catch or variety:
+        out += ["shot features_tab.png"]
+    out += ["press R", "wait 20"] * 3
     if difficulty:
-        # Difficulty tab; DIFFICULTY is its first row and starts at NORMAL (EASY / NORMAL / HARD)
-        out += ["press R", "wait 20"] * 4 + ["press " + {"EASY": "LEFT", "HARD": "RIGHT"}[difficulty], "wait 20",
-                                               "shot difficulty_tab.png", "press R", "wait 20"]
-    else:
-        out += ["press R", "wait 20"] * 5
+        # DIFFICULTY is the first row and starts at NORMAL (EASY / NORMAL / HARD)
+        out += ["press " + {"EASY": "LEFT", "HARD": "RIGHT"}[difficulty], "wait 20", "shot difficulty_tab.png"]
+    out += ["press R", "wait 20"]
     out += ["wait 10", "press UP", "wait 30", "press A", "wait 120", "press A", "wait 120"]
     out += ["mash A 1500", "mash A 1200", "wait 300"]
     return out
@@ -102,9 +114,38 @@ def give_mon(species, level):
 
 
 def give_item(item_id, quantity=1):
-    """Debug menu > Give X > Give item XYZ: item id, then quantity."""
+    """Debug menu > Give X > Give item XYZ: item id (number or ITEM_ constant name), then quantity."""
+    if isinstance(item_id, str):
+        item_id = probe.resolve({item_id: item_id})[item_id]
     out = open_debug() + ["press DOWN"] * 3 + ["press A", "wait 30", "press A", "wait 30"]
     out += number(item_id) + ["press A", "wait 30"] + number(quantity) + ["press A", "wait 60", "mash B 60"]
+    return out
+
+
+def dex_flags_from_party():
+    """Debug menu > Flags & Vars > Pokedex Flags Reset: the Pokedex lists exactly the Pokemon in
+    the party and boxes as seen and caught (debug-given Pokemon are not registered otherwise)."""
+    return open_debug() + ["press DOWN"] * 7 + ["press A", "wait 30"] + ["press DOWN"] * 3 + ["press A", "wait 60", "mash B 120"]
+
+
+def debug_flags_menu(row):
+    """Debug menu > Flags & Vars > the row-th entry (10: all badges, 11: game clear)."""
+    return open_debug() + ["press DOWN"] * 7 + ["press A", "wait 30"] + ["press DOWN"] * row + ["press A", "wait 60", "mash B 120"]
+
+
+def expect_bag_has(pocket, item, label=None):
+    """Check that a bag pocket (struct Bag field: items, keyItems, pokeBalls, ...) holds the item."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock1, bag.{pocket})",
+                       "count": f"ARRAY_COUNT(((struct SaveBlock1 *)0)->bag.{pocket})",
+                       "stride": "sizeof(struct ItemSlot)", item: item})
+    return [f"expectfind16 *{{gSaveBlock1Ptr}}+{v['off']} {v['count']} {v['stride']} {v[item]} {label or 'bag_has_' + item.lower()}"]
+
+
+def care_package_steps(count):
+    """Step back and forth on Route 29's (33,11)-(34,11) and read through each package that arrives."""
+    out = []
+    for k in range(count):
+        out += walkto(33 if k % 2 == 0 else 34, 11, soft=True) + ["wait 30", f"shot care_package_{k:02d}.png", "mash A 2400"]
     return out
 
 
@@ -159,6 +200,65 @@ def expect_flag(flag, want, label=None):
     return [f"expectflag {{gSaveBlock1Ptr}} {v['flags']} {v[flag]} {want} {label or flag.lower()}"]
 
 
+def expect_var(var, want, label=None):
+    """Check a script variable (VAR_*) in the save block; want may be a number or a C expression."""
+    v = probe.resolve({"vars": "offsetof(struct SaveBlock1, vars)", var: f"({var} - VARS_START) * 2",
+                       "want": str(want)})
+    return [f"expect16 *{{gSaveBlock1Ptr}}+{v['vars'] + v[var]} {v['want']} {label or var.lower()}"]
+
+
+def expect_save3(field, want, label, size=8):
+    """Check a SaveBlock3 field, e.g. expect_save3("dexNavSearchLevels[19]", 1, "label")."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock3, {field})", "want": str(want)})
+    return [f"expect{size} *{{gSaveBlock3Ptr}}+{v['off']} {v['want']} {label}"]
+
+
+def tally_species_not_in(name, *species):
+    """Count a run as a hit when the wild Pokemon (battler 1) is none of the given species."""
+    v = probe.resolve({s: s for s in species})
+    return [f"tallynotin {name} {{gBattleMons+136}} " + ",".join(str(v[s]) for s in species)]
+
+
+ROUTE29_SPECIES = ("SPECIES_PIDGEY", "SPECIES_SENTRET", "SPECIES_HOPPIP", "SPECIES_RATTATA", "SPECIES_HOOTHOOT")
+
+
+def wild_variety_sample(name, runs, state="route29.ss"):
+    """From a saved state at Route 29's grass edge, walk into the grass until a wild battle
+    starts, `runs` times at different frame offsets, tallying wild Pokemon that are not one of
+    Route 29's own. Each battle is left by loading the state again."""
+    out = []
+    for k in range(runs):
+        out += [f"loadstate {state}", f"wait {1 + 23 * k}"] + walkto(24, 14, soft=True) + pace(21, 25, 14, 10, soft=True)
+        out += ["wait 300", f"shot {name}_{k:02d}.png"] + tally_species_not_in(name, *ROUTE29_SPECIES)
+    return out
+
+
+def expect_const(addr, const, label, size=16, negate=False):
+    """Check a memory value against a game constant, e.g. expect_const("*{ptr}+0", "SPECIES_X", "l")."""
+    v = probe.resolve({const: const})
+    return [f"expect{'ne' if negate else ''}{size} {addr} {v[const]} {label}"]
+
+
+def var_addr(var):
+    """Address expression of a script variable (VAR_*) in the save block."""
+    v = probe.resolve({"addr": f"offsetof(struct SaveBlock1, vars) + ({var} - VARS_START) * 2"})
+    return f"*{{gSaveBlock1Ptr}}+{v['addr']}"
+
+
+def dexnav_hidden_sample(runs, state="grass.ss"):
+    """DexNav detector mode: from a saved state standing in grass, set the hidden-Pokemon step
+    counter one short of its 100-step check, take a step (a 25% chance of a detection), and if a
+    hidden Pokemon was found, creep up on it. Tallies detections and the battles they lead to."""
+    out = []
+    for k in range(runs):
+        out += [f"loadstate {state}", f"wait {1 + 13 * k}", f"poke16 {var_addr('VAR_DEXNAV_STEP_COUNTER')} 99"]
+        out += walkto(23, 14, soft=True) + ["wait 40", f"shot hidden_{k:02d}.png"]
+        out += ["tallynotin hidden_detected {sDexNavSearchDataPtr} 0"]
+        out += walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", creep=True, path=True, soft=True)
+        out += ["wait 400", f"shot hidden_battle_{k:02d}.png", "tally32 hidden_battle {gMain+4} {BattleMainCB2+1}"]
+    return out
+
+
 def expect_battler(battler, field, const, label=None):
     """Check a gBattleMons field (species, ability, moves[N], ...) of a battler against a game constant."""
     v = probe.resolve({f"bm_{field}".replace("[", "_").replace("]", ""): f"offsetof(struct BattlePokemon, {field})",
@@ -167,10 +267,13 @@ def expect_battler(battler, field, const, label=None):
     return [f"expect16 {{gBattleMons+{off}}} {v[const]} {label or field + '_is_' + const.lower()}"]
 
 
-def walkto(x, y, order="xy", soft=False):
+def walkto(x, y, order="xy", soft=False, creep=False, path=False):
     """Walk to map coordinates (x, y), reading the player's position from the save block.
-    soft=True: being stopped (e.g. by a wild battle) is not a test failure."""
-    return [f"walkto {{gSaveBlock1Ptr}} {x} {y} {order}" + (" soft" if soft else "")]
+    soft=True: being stopped (e.g. by a wild battle) is not a test failure. creep=True holds A
+    (sneaking up on a DexNav target). path=True finds a way around walls and trees using the
+    loaded map's collision. x/y may be "@ADDR~BIAS" to read the target from memory."""
+    return [f"walkto {{gSaveBlock1Ptr}} {x} {y} {order}" + (" soft" if soft else "") + (" creep" if creep else "")
+            + (" path={gBackupMapLayout}" if path else "")]
 
 
 def pace(x1, x2, y, laps, soft=False):
@@ -290,12 +393,15 @@ def main():
     ap.add_argument("--elf", default="pokehns.elf")
     ap.add_argument("--out", default="build/emurun")
     ap.add_argument("--save", help="attach a fresh save file (removed before the run) at this path")
+    ap.add_argument("--emulator", default=os.environ.get("EMURUN_EMULATOR", "mgba"), choices=("mgba", "vbam"),
+                    help="mgba (libmgba) or vbam (VBA-M's libretro core, the emulator Delta's GBA core is built "
+                         "on; EMURUN_CORE names the core, see tools/emurun/build_vbam_core.sh)")
     args = ap.parse_args()
     os.makedirs(args.out, exist_ok=True)
     script = os.path.join(args.out, os.path.basename(args.test) + ".txt")
     with open(script, "w") as f:
         f.write("\n".join(expand(args.test, symbols(args.elf))) + "\n")
-    emurun = os.path.join(HERE, "emurun")
+    emurun = os.path.join(HERE, "emurun" if args.emulator == "mgba" else "emurun-libretro")
     if not os.path.exists(emurun):
         subprocess.run(["make", "-C", HERE], check=True)
     # Screenshot paths in tests are relative to the output directory

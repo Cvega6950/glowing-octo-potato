@@ -1,15 +1,24 @@
 #!/bin/sh
 # Run every Crystal Imperium emulator play test against the current build.
-# Usage: tools/emurun/run_all.sh   (after `make hns`)
+# Usage: tools/emurun/run_all.sh [mgba|vbam]   (after `make hns`)
+#   mgba (default): libmgba.  vbam: VBA-M's libretro core, the emulator Delta's GBA core is built
+#   on; set EMURUN_CORE to the core (tools/emurun/build_vbam_core.sh builds it).
 set -u
 cd "$(dirname "$0")/../.."
+emulator=${1:-mgba}
+case $emulator in
+    mgba) results=build/emurun ;;
+    vbam) results=build/emurun-vbam ;;
+    *) echo "usage: $0 [mgba|vbam]" >&2; exit 1 ;;
+esac
+make -s -C tools/emurun
 fail=0
 for t in tools/emurun/tests/*.emu; do
     name=$(basename "$t" .emu)
-    out=build/emurun/$name
+    out=$results/$name
     mkdir -p "$out"
     echo "== $name"
-    if python3 tools/emurun/emu.py "$t" --out "$out" --save "$out/test.sav" > "$out/log.txt" 2>&1; then
+    if python3 tools/emurun/emu.py "$t" --emulator "$emulator" --out "$out" --save "$out/test.sav" > "$out/log.txt" 2>&1; then
         status=0
     else
         status=1

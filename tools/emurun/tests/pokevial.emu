@@ -1,0 +1,30 @@
+# Crystal Imperium play test: the PokéVial is in the bag from a new game and fully heals the
+# party outside battle, as often as needed.
+# Key Items at new game: 0 RARECANDY BOX, 1 INFIN. REPEL, 2 BOX LINK, 3 TRAINING KIT, 4 POKéVIAL
+# Pokemon: status +80, hp +86, maxHP +88 (STATUS1_POISON = 8).
+!new_game()
+!give_mon(155, 5)
+!give_mon(179, 5)
+expect16 {gPlayerParty+88} 20 cyndaquil_max_hp
+expect16 {gPlayerParty+188} 22 mareep_max_hp
+# Hurt and poison both Pokemon
+poke16 {gPlayerParty+86} 3
+poke32 {gPlayerParty+80} 8
+poke16 {gPlayerParty+186} 1
+expect16 {gPlayerParty+86} 3 cyndaquil_hurt
+!open_bag_at("POCKET_KEY_ITEMS", 4)
+shot 01_pokevial_in_bag.png
+press A
+wait 20
+press A
+wait 120
+shot 02_pokevial_message.png
+mash B 200
+wait 60
+expect16 {gPlayerParty+86} 20 pokevial_heals_cyndaquil
+expect32 {gPlayerParty+80} 0 pokevial_cures_poison
+expect16 {gPlayerParty+186} 22 pokevial_heals_mareep
+# Unlimited: the vial is not used up and works again
+poke16 {gPlayerParty+86} 7
+!use_key_item(4)
+expect16 {gPlayerParty+86} 20 pokevial_heals_again

@@ -1,4 +1,6 @@
-// emurun: headless mGBA driver for Crystal Imperium automated play tests.
+// emurun: headless emulator driver for Crystal Imperium automated play tests.
+// Two builds: emurun (mGBA) and emurun-libretro (any libretro GBA core, named by EMURUN_CORE;
+// used with VBA-M, the emulator Delta's GBA core is built on). See backend.h.
 //
 // Usage: emurun <rom.gba> <script.txt> [save.sav]
 //
@@ -18,31 +20,29 @@
 //   autobattle MOVES MAXFRAMES key=ADDR...   play the current battle to the end (see AutoBattle)
 //   menuselect CURSOR LIST COUNT TARGET   with a list menu open whose u8 cursor, u8 action list and
 //                          u8 length live at those addresses, move to the entry equal to TARGET and press A
-//   walkto SB1PTR X Y [yx]  step (holding the d-pad 8 frames per tile) until the player's map position,
-//                          read from *SB1PTR (gSaveBlock1Ptr->pos, offset 4 after HnS's saveVersion),
-//                          is (X,Y); x first unless "yx". With "soft" as 5th argument, not reaching
-//                          the target (e.g. a wild battle started) is not a failure
+//   walkto SB1PTR X Y [yx] [soft] [creep] [path=ADDR]  step (holding the d-pad 8 frames per tile) until the
+//                          player's map position, read from *SB1PTR (gSaveBlock1Ptr->pos, offset 4
+//                          after HnS's saveVersion), is (X,Y); x first unless "yx". With "soft", not
+//                          reaching the target (e.g. a wild battle started) is not a failure; "creep"
+//                          holds A (DexNav sneaking); "path=ADDR" (&gBackupMapLayout) routes around
+//                          walls. X/Y may be @ADDR~BIAS: an s16 in memory minus BIAS
+//   expectfind16 BASE COUNT STRIDE VALUE [LABEL]   fail unless one of COUNT entries STRIDE bytes apart
+//                          from BASE (which may be *PTR+OFF) holds the 16-bit VALUE
 //   expectflag SB1PTR FLAGSOFF FLAG WANT [LABEL]   check event flag FLAG (0/1) in (*SB1PTR)->flags
 //   seek8/seek16 ADDR TARGET KEYUP KEYDOWN   tap KEYUP while the value at ADDR is below TARGET and
 //                          KEYDOWN while above, until it equals TARGET (at most 32 taps)
 //   tally NAME ADDR VALUE  count runs of NAME, and how many had the 8-bit value at ADDR == VALUE
+//                          (tally16 / tally32: 16- or 32-bit value)
+//   tallynotin NAME ADDR V1,V2,...  like tally, but a hit is a 16-bit value at ADDR not in the list
 //   expecttally NAME MIN MAX   fail unless the matching count of NAME is within [MIN, MAX]
 // KEY: A B SELECT START RIGHT LEFT UP DOWN R L
-#include <mgba/core/core.h>
-#include <mgba/core/config.h>
-#include <mgba/core/log.h>
-#include <mgba/core/serialize.h>
-#include <mgba/gba/core.h>
-#include <mgba-util/vfs.h>
+#include "backend.h"
 #include <png.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <strings.h>
 
-static struct mCore *core;
-static color_t *videoBuffer;
-static unsigned width, height;
 static unsigned long frameCount;
 static int failures;
 
@@ -63,12 +63,6 @@ static int *TallySlot(const char *name, int create, int **runs)
     }
     return NULL;
 }
-
-static void QuietLog(struct mLogger *logger, int category, enum mLogLevel level, const char *format, va_list args)
-{
-    (void)logger; (void)category; (void)level; (void)format; (void)args;
-}
-static struct mLogger sLogger = { .log = QuietLog };
 
 static unsigned ParseKeys(const char *s)
 {
@@ -96,16 +90,17 @@ static unsigned ParseKeys(const char *s)
 
 static void RunFrames(unsigned keys, unsigned n)
 {
-    core->setKeys(core, keys);
     for (unsigned i = 0; i < n; i++)
     {
-        core->runFrame(core);
+        Backend_RunFrame(keys);
         frameCount++;
     }
 }
 
 static int WritePng(const char *path)
 {
+    unsigned width, height;
+    const uint32_t *videoBuffer = Backend_Video(&width, &height);
     FILE *f = fopen(path, "wb");
     if (!f)
         return -1;
@@ -136,24 +131,107 @@ static int WritePng(const char *path)
 
 static uint32_t Peek(int size, uint32_t addr)
 {
-    switch (size)
-    {
-    case 8: return core->busRead8(core, addr);
-    case 16: return core->busRead16(core, addr);
-    default: return core->busRead32(core, addr);
-    }
+    return Backend_Read(size, addr);
 }
 
-// An address is a number, or *PTR+OFF: the 32-bit pointer stored at PTR, plus OFF
+// An address is a number, or *PTR+OFF: the 32-bit pointer stored at PTR, plus OFF. More stars
+// follow more pointers: **PTR+A+B is the pointer stored at (*PTR + A), plus B.
 static uint32_t ParseAddr(const char *text)
 {
     char *end;
-    if (text[0] != '*')
-        return strtoul(text, NULL, 0);
-    uint32_t addr = Peek(32, strtoul(text + 1, &end, 0));
-    if (*end == '+')
-        addr += strtoul(end + 1, NULL, 0);
+    int derefs = 0;
+    while (text[derefs] == '*')
+        derefs++;
+    uint32_t addr = strtoul(text + derefs, &end, 0);
+    for (int i = 0; i < derefs; i++)
+    {
+        addr = Peek(32, addr);
+        if (*end == '+')
+            addr += strtoul(end + 1, &end, 0);
+    }
     return addr;
+}
+
+// A map coordinate is a number, or @ADDR~BIAS: the s16 at ADDR (see ParseAddr) minus BIAS
+static int ParseCoord(const char *text)
+{
+    char addr[256] = {0};
+    const char *tilde;
+    if (text[0] != '@')
+        return atoi(text);
+    tilde = strchr(text, '~');
+    strncpy(addr, text + 1, tilde ? (size_t)(tilde - text - 1) : sizeof(addr) - 1);
+    return (int16_t)Peek(16, ParseAddr(addr)) - (tilde ? atoi(tilde + 1) : 0);
+}
+
+// Path finding on the loaded map (gBackupMapLayout: s32 width, s32 height, u16 *map; map coords
+// are offset by 7). Only the collision bits are used: NPCs and ledges are not considered.
+#define MAP_OFFSET 7
+static int Walkable(uint32_t layout, int x, int y)
+{
+    int w = (int32_t)Peek(32, layout), h = (int32_t)Peek(32, layout + 4);
+    x += MAP_OFFSET;
+    y += MAP_OFFSET;
+    if (x < 0 || y < 0 || x >= w || y >= h)
+        return 0;
+    return (Peek(16, Peek(32, layout + 8) + 2 * (y * w + x)) & 0x0C00) == 0;
+}
+
+// Steps from every tile to (tx, ty), by breadth-first search from the target; -1 = unreachable
+static int *PathDistances(uint32_t layout, int tx, int ty)
+{
+    int w = (int32_t)Peek(32, layout), h = (int32_t)Peek(32, layout + 4);
+    int *dist = malloc(sizeof(int) * w * h), *queue = malloc(sizeof(int) * w * h), head = 0, tail = 0;
+    static const int dx[] = {1, -1, 0, 0}, dy[] = {0, 0, 1, -1};
+    for (int i = 0; i < w * h; i++)
+        dist[i] = -1;
+    tx += MAP_OFFSET;
+    ty += MAP_OFFSET;
+    if (tx < 0 || ty < 0 || tx >= w || ty >= h)
+    {
+        free(queue);
+        return dist;
+    }
+    dist[ty * w + tx] = 0;
+    queue[tail++] = ty * w + tx;
+    while (head < tail)
+    {
+        int cur = queue[head++], cx = cur % w, cy = cur / w;
+        for (int d = 0; d < 4; d++)
+        {
+            int nx = cx + dx[d], ny = cy + dy[d];
+            if (nx < 0 || ny < 0 || nx >= w || ny >= h || dist[ny * w + nx] >= 0
+             || !Walkable(layout, nx - MAP_OFFSET, ny - MAP_OFFSET))
+                continue;
+            dist[ny * w + nx] = dist[cur] + 1;
+            queue[tail++] = ny * w + nx;
+        }
+    }
+    free(queue);
+    return dist;
+}
+
+// The d-pad key for the next step from (x, y) towards the target of `dist`
+static unsigned PathStep(uint32_t layout, const int *dist, int x, int y)
+{
+    int w = (int32_t)Peek(32, layout), h = (int32_t)Peek(32, layout + 4), best = -1;
+    unsigned key = 0;
+    static const int dx[] = {1, -1, 0, 0}, dy[] = {0, 0, 1, -1};
+    static const unsigned keys[] = {1u << 4, 1u << 5, 1u << 7, 1u << 6}; // right, left, down, up
+    x += MAP_OFFSET;
+    y += MAP_OFFSET;
+    for (int d = 0; d < 4; d++)
+    {
+        int nx = x + dx[d], ny = y + dy[d];
+        if (nx < 0 || ny < 0 || nx >= w || ny >= h || dist[ny * w + nx] < 0)
+            continue;
+        if (best < 0 || dist[ny * w + nx] < best)
+        {
+            best = dist[ny * w + nx];
+            key = keys[d];
+        }
+    }
+    return key;
 }
 
 // Battle autopilot. Reads the game's battle state each frame and answers whatever input it is
@@ -303,32 +381,9 @@ int main(int argc, char **argv)
         fprintf(stderr, "usage: %s rom.gba script.txt [save.sav]\n", argv[0]);
         return 1;
     }
-    mLogSetDefaultLogger(&sLogger);
-    core = mCoreFind(argv[1]);
-    if (!core || !core->init(core))
-    {
-        fprintf(stderr, "could not create core for %s\n", argv[1]);
+    if (Backend_Init(argv[1], argc > 3 ? argv[3] : NULL) != 0)
         return 1;
-    }
-    mCoreInitConfig(core, NULL);
-    core->desiredVideoDimensions(core, &width, &height);
-    videoBuffer = calloc(width * height, BYTES_PER_PIXEL);
-    core->setVideoBuffer(core, videoBuffer, width);
-    if (!mCoreLoadFile(core, argv[1]))
-    {
-        fprintf(stderr, "could not load ROM %s\n", argv[1]);
-        return 1;
-    }
-    if (argc > 3)
-    {
-        struct VFile *vf = VFileOpen(argv[3], O_CREAT | O_RDWR);
-        if (!vf || !core->loadSave(core, vf))
-        {
-            fprintf(stderr, "could not attach save %s\n", argv[3]);
-            return 1;
-        }
-    }
-    core->reset(core);
+    printf("emulator: %s\n", Backend_Name());
 
     FILE *script = fopen(argv[2], "r");
     if (!script)
@@ -393,11 +448,7 @@ int main(int argc, char **argv)
         else if (!strcmp(cmd, "savestate") || !strcmp(cmd, "loadstate"))
         {
             int saving = cmd[0] == 's';
-            struct VFile *vf = VFileOpen(a1, saving ? O_CREAT | O_TRUNC | O_RDWR : O_RDONLY);
-            int ok = vf && (saving ? mCoreSaveStateNamed(core, vf, SAVESTATE_SAVEDATA | SAVESTATE_RTC)
-                                   : mCoreLoadStateNamed(core, vf, SAVESTATE_SAVEDATA | SAVESTATE_RTC));
-            if (vf)
-                vf->close(vf);
+            int ok = saving ? Backend_SaveState(a1) : Backend_LoadState(a1);
             printf("[frame %lu] %s %s %s\n", frameCount, cmd, a1, ok ? "ok" : "FAILED");
             if (!ok)
                 failures++;
@@ -405,13 +456,8 @@ int main(int argc, char **argv)
         else if (!strncmp(cmd, "poke", 4))
         {
             int size = atoi(cmd + 4);
-            uint32_t addr = strtoul(a1, NULL, 0), value = strtoul(a2, NULL, 0);
-            if (size == 8)
-                core->busWrite8(core, addr, value);
-            else if (size == 16)
-                core->busWrite16(core, addr, value);
-            else
-                core->busWrite32(core, addr, value);
+            uint32_t addr = ParseAddr(a1), value = strtoul(a2, NULL, 0);
+            Backend_Write(size, addr, value);
         }
         else if (!strcmp(cmd, "autobattle"))
         {
@@ -476,11 +522,23 @@ int main(int argc, char **argv)
         else if (!strcmp(cmd, "walkto"))
         {
             uint32_t sb1 = Peek(32, strtoul(a1, NULL, 0));
-            int tx = atoi(a2), ty = atoi(a3), yFirst = 0, soft = 0;
-            char a4[16] = {0}, a5[16] = {0};
-            sscanf(line, "%*s %*s %*s %*s %15s %15s", a4, a5);
-            yFirst = !strcmp(a4, "yx");
-            soft = !strcmp(a5, "soft");
+            int tx = ParseCoord(a2), ty = ParseCoord(a3), yFirst = 0, soft = 0;
+            unsigned extraKeys = 0;
+            uint32_t layout = 0;
+            char opts[4][32] = {{0}};
+            sscanf(line, "%*s %*s %*s %*s %31s %31s %31s %31s", opts[0], opts[1], opts[2], opts[3]);
+            for (int i = 0; i < 4; i++)
+            {
+                if (!strcmp(opts[i], "yx"))
+                    yFirst = 1;
+                else if (!strcmp(opts[i], "soft"))
+                    soft = 1;
+                else if (!strcmp(opts[i], "creep"))
+                    extraKeys = 1u << 0; // hold A: creep (DexNav)
+                else if (!strncmp(opts[i], "path=", 5))
+                    layout = strtoul(opts[i] + 5, NULL, 0); // &gBackupMapLayout: route around obstacles
+            }
+            int *dist = layout ? PathDistances(layout, tx, ty) : NULL;
             int stuck = 0, steps = 0;
             while (steps < 400 && stuck < 6)
             {
@@ -489,20 +547,37 @@ int main(int argc, char **argv)
                     break;
                 unsigned key;
                 int moveX = x != tx && (!yFirst || y == ty);
-                if (moveX)
+                if (dist)
+                    key = PathStep(layout, dist, x, y);
+                else if (moveX)
                     key = x < tx ? 1u << 4 : 1u << 5;
                 else
                     key = y < ty ? 1u << 7 : 1u << 6;
-                RunFrames(key, 8);
-                RunFrames(0, 2);
+                RunFrames(key | extraKeys, 8);
+                RunFrames(extraKeys, 2);
                 int nx = (int16_t)Peek(16, sb1 + 4), ny = (int16_t)Peek(16, sb1 + 6);
                 stuck = (nx == x && ny == y) ? stuck + 1 : 0;
                 steps++;
             }
+            free(dist);
             RunFrames(0, 16);
             int x = (int16_t)Peek(16, sb1 + 4), y = (int16_t)Peek(16, sb1 + 6);
             printf("[frame %lu] walkto (%d,%d): at (%d,%d)%s\n", frameCount, tx, ty, x, y, (x == tx && y == ty) ? "" : " BLOCKED");
             if ((x != tx || y != ty) && !soft)
+                failures++;
+        }
+        else if (!strcmp(cmd, "expectfind16"))
+        {
+            // expectfind16 BASE COUNT STRIDE VALUE [LABEL]: one of COUNT entries STRIDE bytes apart holds VALUE
+            char a4[64] = {0}, a5[128] = {0};
+            sscanf(line, "%*s %*s %*s %*s %63s %127s", a4, a5);
+            uint32_t base = ParseAddr(a1), count = strtoul(a2, NULL, 0), stride = strtoul(a3, NULL, 0);
+            uint32_t value = strtoul(a4, NULL, 0), i;
+            for (i = 0; i < count && Peek(16, base + i * stride) != value; i++)
+                ;
+            printf("[frame %lu] %s %s: 0x%X %s\n", frameCount, i < count ? "PASS" : "FAIL", a5[0] ? a5 : "expectfind16",
+                   value, i < count ? "found" : "not found");
+            if (i == count)
                 failures++;
         }
         else if (!strcmp(cmd, "expectflag"))
@@ -536,15 +611,37 @@ int main(int argc, char **argv)
                 failures++;
             }
         }
-        else if (!strcmp(cmd, "tally"))
+        else if (!strcmp(cmd, "tally") || !strcmp(cmd, "tally16") || !strcmp(cmd, "tally32"))
         {
             int *runs, *hits = TallySlot(a1, 1, &runs);
-            int hit = Peek(8, strtoul(a2, NULL, 0)) == strtoul(a3, NULL, 0);
+            int size = cmd[5] ? atoi(cmd + 5) : 8;
+            int hit = Peek(size, ParseAddr(a2)) == strtoul(a3, NULL, 0);
             if (hits)
             {
                 *hits += hit;
                 (*runs)++;
                 printf("[frame %lu] tally %s: run %d %s (%d/%d)\n", frameCount, a1, *runs, hit ? "hit" : "miss", *hits, *runs);
+            }
+        }
+        else if (!strcmp(cmd, "tallynotin"))
+        {
+            // hit when the 16-bit value at ADDR is not in the comma-separated list
+            int *runs, *hits = TallySlot(a1, 1, &runs);
+            unsigned value = Peek(16, ParseAddr(a2)), hit = 1;
+            char list[256], *tok;
+            strncpy(list, a3, sizeof(list) - 1);
+            list[sizeof(list) - 1] = 0;
+            for (tok = strtok(list, ","); tok; tok = strtok(NULL, ","))
+            {
+                if (strtoul(tok, NULL, 0) == value)
+                    hit = 0;
+            }
+            if (hits)
+            {
+                *hits += hit;
+                (*runs)++;
+                printf("[frame %lu] tally %s: run %d value %u %s (%d/%d)\n", frameCount, a1, *runs, value,
+                       hit ? "hit" : "miss", *hits, *runs);
             }
         }
         else if (!strcmp(cmd, "expecttally"))
@@ -557,12 +654,12 @@ int main(int argc, char **argv)
                 failures++;
         }
         else if (!strcmp(cmd, "reset"))
-            core->reset(core);
+            Backend_Reset();
         else
             fprintf(stderr, "line %d: unknown command '%s'\n", lineNo, cmd);
     }
     fclose(script);
     printf("done: %lu frames, %d failures\n", frameCount, failures);
-    core->deinit(core);
+    Backend_Deinit();
     return failures ? 2 : 0;
 }

@@ -1,0 +1,33 @@
+# Crystal Imperium play test: milestone care packages from PROF. ELM.
+# A package arrives on the first step (on a route or in a town) after each milestone: every
+# Gym Badge and becoming Champion. VAR_CARE_PACKAGES counts the packages received. The badges
+# and the Champion flag are set with the debug menu here; the delivery is the real game code.
+!new_game()
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!walkto(33, 11)
+!walkto(34, 11)
+!expect_var("VAR_CARE_PACKAGES", 0, "no_package_without_milestones")
+
+# The eight Johto badges: one package per step until all eight have arrived
+!debug_flags_menu(10)
+!care_package_steps(8)
+shot 01_after_badge_packages.png
+!expect_var("VAR_CARE_PACKAGES", 8, "eight_badge_packages")
+!expect_bag_has("items", "ITEM_LINKING_CORD")
+!expect_bag_has("items", "ITEM_UPGRADE")
+!expect_bag_has("items", "ITEM_PRISM_SCALE")
+!expect_bag_has("items", "ITEM_METAL_ALLOY")
+!expect_bag_has("items", "ITEM_GIMMIGHOUL_COIN")
+# No milestone, no package
+!walkto(33, 11)
+!walkto(34, 11)
+!expect_var("VAR_CARE_PACKAGES", 8, "no_extra_package")
+
+# Champion
+!debug_flags_menu(11)
+!care_package_steps(1)
+shot 02_after_champion_package.png
+!expect_var("VAR_CARE_PACKAGES", 9, "champion_package")
+!expect_bag_has("pokeBalls", "ITEM_MASTER_BALL")
+!expect_bag_has("keyItems", "ITEM_SCROLL_OF_DARKNESS")

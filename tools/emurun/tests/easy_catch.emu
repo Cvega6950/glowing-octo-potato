@@ -1,0 +1,53 @@
+# Crystal Imperium play test: EASY CATCH (challenge menu > Features, ON by default).
+# A wild Route 29 Pokemon is given Mewtwo's catch rate (3) by setting its battle species, so a
+# normal Poke Ball at full HP catches it about 1.5% of the time. With EASY CATCH ON the first
+# ball catches; with it OFF two balls fail. R in the action menu throws the last-used ball.
+# The wild battler's species is gBattleMons+136.
+
+# EASY CATCH ON (default)
+!new_game()
+!give_mon(155, 5)
+!give_item(1, 5)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!walkto(24, 14, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+expect32 {gMain+4} {BattleMainCB2+1} wild_battle_on
+wait 300
+press A
+wait 300
+poke16 {gBattleMons+136} 150
+press R
+wait 600
+shot 01_easy_catch_on.png
+# "Gotcha!", catch EXP (large: the species reads as Mewtwo), then the nickname prompt; B
+# advances the text and answers No
+wait 400
+mash B 2400
+shot 02_after_catch.png
+expect8 {gPlayerPartyCount} 2 first_ball_caught_it
+
+# EASY CATCH OFF
+reset
+!new_game(easy_catch=False)
+!give_mon(155, 5)
+!give_item(1, 5)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!walkto(24, 14, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+expect32 {gMain+4} {BattleMainCB2+1} wild_battle_off
+wait 300
+press A
+wait 300
+poke16 {gBattleMons+136} 150
+press R
+wait 900
+shot 03_easy_catch_off_throw1.png
+mash B 120
+poke16 {gBattleMons+136} 150
+press R
+wait 900
+shot 04_easy_catch_off_throw2.png
+expect32 {gMain+4} {BattleMainCB2+1} still_battling_after_two_balls
+expect8 {gPlayerPartyCount} 1 nothing_caught_without_easy_catch
