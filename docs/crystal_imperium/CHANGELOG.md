@@ -45,7 +45,8 @@
 - Harness: Pokémon (Complex) from the debug menu, a prepared team for winnability checks,
   battles by trainer constant, `expectseen` for Mega forms; the autopilot skips moves with no
   PP. `set_var`, `fill_tm_case`, `save_and_continue`; bag checks read the TM case in EWRAM.
-- New tests: `bosses_m3`, `bosses_m4`, `bosses_m5`, `tm_case`, `tm_shop`, `hm_field_moves`.
+- New tests: `bosses_m3`, `bosses_m4`, `bosses_e4`, `bosses_m5`, `tm_case`, `tm_shop`,
+  `hm_field_moves`.
   `tm_reusable` also teaches through the relearner; `old_save_test.sh` now saves Heart & Soul
   TMs and checks their conversion.
 - `data/battle_anim_scripts.s` read the vanilla TM list (`IS_HNS` was undefined there), which

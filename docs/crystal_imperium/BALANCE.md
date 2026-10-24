@@ -29,7 +29,7 @@ explains the *why*.
 | Early Johto (Falkner, Bugsy, Whitney; Proton, rival 2–3) | 11 / 16 / 21 | Reworked and play-tested (`falkner`, `bugsy`, `whitney`, `bosses_m3`) |
 | Midgame Johto (Morty, Chuck, Jasmine, Pryce; Rocket Hideout) | 25 / 31 / 36 / 38 | Reworked; Chuck, Jasmine and Pryce in three versions for any order (`bosses_m3`, `bosses_m4`) |
 | Late Johto (Radio Tower, rival 4, Clair, Kimono Girls, Victory Road) | 45 / 56 | Reworked (`bosses_m3`, `bosses_m4`) |
-| Elite Four / Lance | 56 → 70 after the title | Reworked (`bosses_m4`) |
+| Elite Four / Lance | 56 → 70 after the title | Reworked (`bosses_e4`) |
 | Kanto leaders, Blue | 70 | Reworked (`bosses_m5`) |
 | Red (Mt. Silver) | uncapped; ace 90 | Reworked (`bosses_m5`) |
 | Rematches and other postgame battles | 70 / uncapped | HnS teams with the smart AI |

@@ -120,7 +120,7 @@ Status: ☐ not yet tested · ☑ tested and passed · ☒ tested and failed
 - ☐ Cherrygrove, Mr. Pokémon, the rival battle, Violet City, played through normally
 - ☑ Falkner, Bugsy and Whitney battles (debug-started, real AI and party data)
 - ☑ Every other reworked boss battle, Morty to Red (debug-started, real AI and party data:
-  `bosses_m3`, `bosses_m4`, `bosses_m5`)
+  `bosses_m3`, `bosses_m4`, `bosses_e4`, `bosses_m5`)
 - ☐ Badges 4–8 (Morty … Clair), reached in the story
 - ☐ Team Rocket radio tower, Kimono Girls, Lugia/Ho-Oh events
 - ☐ Elite Four and Lance, reached in the story
