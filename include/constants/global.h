@@ -136,6 +136,11 @@ enum Language
 #define BAG_TREASURES_COUNT 36 // 26 + padding
 #endif
 
+// Crystal Imperium: the TM case holds every TM and HM (198 + 8 + spare), more than SaveBlock1's
+// BAG_TMHM_COUNT slots, so it lives in EWRAM and is saved in SaveBlock3 (src/item.c).
+#define TMHM_POCKET_COUNT 208
+#define TMHM_POCKET_VERSION 1
+
 // Number of facilities for Ranking Hall.
 // 7 facilities for single mode + tower double mode + tower multi mode.
 // Excludes link modes. See RANKING_HALL_* in include/constants/battle_frontier.h

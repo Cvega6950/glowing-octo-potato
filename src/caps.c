@@ -16,6 +16,13 @@ static u8 GetCurrentBadgeCount(void)
     return badgeCount;
 }
 
+// Crystal Imperium: specialvar VAR_RESULT, GetBadgeCount (the Goldenrod Dept. Store 5F TM shop).
+// Gyms 5-7 can be taken in any order, so FLAG_BADGE06_GET alone doesn't mean six badges.
+u16 GetBadgeCount(void)
+{
+    return GetCurrentBadgeCount();
+}
+
 static const u8 sLevelCapTable_Normal[] =
 {
     [0] = 11,  // no badges

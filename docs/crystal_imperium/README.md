@@ -4,10 +4,11 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.4.1-experimental).** The full Heart & Soul story is in and
-> playable. All the systems listed below work and are tested in an emulator. Gym Leaders 4–16,
-> the Elite Four and the postgame bosses still have Heart & Soul's teams; reworking them is the
-> remaining milestone work.
+> **Status: in development (0.5.0-experimental).** The full Heart & Soul story is in and
+> playable. All the systems listed below work and are tested in an emulator. Every trainer
+> uses the smart AI, every story boss from the rival to Red has an Imperium-style team, the TM
+> list is Emerald Imperium's, and HMs work without being taught. Nobody has played the whole
+> story through yet, and the postgame rematches still have Heart & Soul's teams.
 
 ## What you get
 
@@ -29,8 +30,13 @@ From the first step of a new game:
   level, already evolved if the level allows it.
 - **Easy Catch:** every Poké Ball catches (can be turned off).
 - **Minimal Grinding Mode** (every Pokémon battles as if it had 31 IVs and 0 EVs), **level caps**,
-  ×1.5 EXP, an **EASY / NORMAL / HARD** difficulty selection, **reusable TMs**, **Auto Run**
+  ×1.5 EXP, an **EASY / NORMAL / HARD** difficulty selection, **Auto Run**
   (START > OPTION > AUTORUN), and a **move relearner** in the party menu.
+- **Emerald Imperium's TMs:** 198 reusable TMs. TM01–TM172 are Imperium's list in its order
+  (without its two custom moves), TM173–TM198 the Heart & Soul TMs Imperium doesn't have. The
+  Goldenrod Dept. Store 5F sells all of them, more with each badge tier (3, 6 and 8 badges).
+- **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
+  Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
 - **Care packages** from Prof. Elm after every badge and after becoming Champion. They carry
   supplies and every evolution item the game doesn't otherwise have.
 - **Mega Evolution** (48 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F).
@@ -39,8 +45,13 @@ From the first step of a new game:
 - **Cheat menu:** hold R and press START in the overworld for HnS's debug menu (give any
   Pokémon or item, and more; *Flags & Vars… → Pokédex Flags All* fills the Pokédex). Use it
   with care: it can also change story flags.
-- Sleep Clause, Smart-AI Gym Leaders. Falkner, Bugsy and Whitney are rebuilt as competitive
-  bosses so far.
+- **Smart AI for every trainer** on NORMAL and HARD: it knows your team, picks the best move,
+  switches smartly and plays around HP (EASY keeps Heart & Soul's AI). Sleep Clause.
+- **Imperium-style bosses for the whole story:** every Johto Gym Leader (Chuck, Jasmine and
+  Pryce in three versions, for whichever order you take them), the rival from Azalea to
+  Victory Road, Team Rocket's executives, the Kimono Girls, the Elite Four and Lance, the eight
+  Kanto leaders, Blue and Red. Aces at the level cap, held items, natures, abilities,
+  competitive moves, and Mega Evolutions from the 5th Gym on.
 
 All of these are in the challenge menu at the start of a new game (and on the settings PC in
 your house), except Auto Run, which is in the Options menu.
@@ -54,17 +65,18 @@ your house), except Auto Run, which is in the Options menu.
 | 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym) |
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
 | 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies) |
-| 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel` |
-| 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | Our changes don't touch the story scripts. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29) and the first three Gym battles are tested; no full playthrough has been done. |
-| 8 | Works on Delta (iOS) | **Passes on Delta's emulator core; no iPhone test** | All 23 play tests and the save-compatibility test pass on VBA-M at the commit Delta's GBA core pins, as on mGBA (TESTING.md). A device test is still needed for Delta's own app layer. |
+| 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs (`tm_case`, `tm_shop`) and HMs without teaching (`hm_field_moves`) |
+| 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | The story scripts are Heart & Soul's. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29), and every reworked boss battle is started from the debug menu and played to a result (`falkner`, `bugsy`, `whitney`, `bosses_m3`–`bosses_m5`); no full playthrough has been done. |
+| 8 | Works on Delta (iOS) | **Passes on Delta's emulator core; no iPhone test** | The play tests and the save-compatibility test run on VBA-M at the commit Delta's GBA core pins, as on mGBA (results in TESTING.md). A device test is still needed for Delta's own app layer. |
 
 Also asked for and done: DexNav and Rare Candy before the first Gym (both are there from the
 first step), Easy Catch, an unlimited PokéVial given with the Rare Candy Box, and milestone care
 packages.
 
-**Not done yet:** competitive rework of Gyms 4–16, the rival, Rockets, Kimono Girls, Elite
-Four, Lance and Red (HnS's teams are in place); a full story playthrough; a test on a real
-iPhone; Emerald Imperium's custom Megas (no permission to use them, DECISIONS.md D2).
+**Not done yet:** a full story playthrough; a test on a real iPhone; Imperium-style teams for
+the postgame rematches (they have Heart & Soul's teams with the smart AI); Emerald Imperium's
+custom Megas and its two custom TM moves, Dark Hole and Draco Barrage (no permission to use
+Imperium's own content, DECISIONS.md D2).
 
 Details: [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [TESTING.md](TESTING.md) ·
 [DECISIONS.md](DECISIONS.md) · [BALANCE.md](BALANCE.md) · [KNOWN_ISSUES.md](KNOWN_ISSUES.md) ·
@@ -122,7 +134,8 @@ in [TESTING.md](TESTING.md).
 ## Saves
 
 Saves from Heart & Soul 2.0.6 and from earlier Crystal Imperium builds load. On Continue they
-receive any key items they are missing and the DexNav. Easy Catch and Wild Variety (30%) are on
+receive any key items they are missing and the DexNav, and their TMs keep their moves under the
+new numbering (Heart & Soul's TM70 Rock Climb becomes TM192, for example). Easy Catch and Wild Variety (30%) are on
 for them, and any care packages for badges already earned arrive one per step. Minimal
 Grinding starts OFF for HnS saves and can be turned on from the settings PC.
 
@@ -134,8 +147,8 @@ Grinding starts OFF for HnS saves and can be turned on from the settings PC.
 - **pokeemerald-expansion**: the Rom Hacking Hideout (RHH) contributors, and **pret** for the
   pokeemerald decompilation. DexNav is the expansion's (added by ghoulslash).
 - **Pokémon Emerald Imperium** (iriv24 and team): the design inspiration for Minimal Grinding
-  Mode, Sleep Clause, the QoL key items and competitive trainer philosophy. No Imperium code or
-  assets are used.
+  Mode, Sleep Clause, the QoL key items, competitive trainer philosophy and the TM list (from
+  its public TM guide). No Imperium code or assets are used.
 - **VBA-M** (play tests on Delta's emulator core) and **mGBA** (play tests), **Flips** (BPS patch).
 - Pokémon is © Nintendo / Creatures Inc. / GAME FREAK inc. This is a non-commercial fan
   project; do not sell or redistribute ROM files.

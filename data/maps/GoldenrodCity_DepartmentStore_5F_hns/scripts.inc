@@ -94,29 +94,31 @@ GoldenrodDeptStore_Text_Girl:
 	.string "The lady gave me RETURN!\n"
     .string "My POKéMON must really like me!$"
 
+@ Crystal Imperium: every TM is on sale here, more of them with each badge tier (3, 6 and 8 badges).
+@ The lists are data/scripts/tm_shop_hns.inc (tools/crystal_imperium/tm_list.py).
 GoldenrodDeptStore5_EventScript_Clerk::
 	lock
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart GoldenrodDeptStore5_Pokemart
+	specialvar VAR_RESULT, GetBadgeCount
+	goto_if_ge VAR_RESULT, 8, GoldenrodDeptStore5_EventScript_TMs3
+	goto_if_ge VAR_RESULT, 6, GoldenrodDeptStore5_EventScript_TMs2
+	goto_if_ge VAR_RESULT, 3, GoldenrodDeptStore5_EventScript_TMs1
+	pokemart GoldenrodDeptStore5_TMs0
+	goto GoldenrodDeptStore5_EventScript_ClerkDone
+GoldenrodDeptStore5_EventScript_TMs1::
+	pokemart GoldenrodDeptStore5_TMs1
+	goto GoldenrodDeptStore5_EventScript_ClerkDone
+GoldenrodDeptStore5_EventScript_TMs2::
+	pokemart GoldenrodDeptStore5_TMs2
+	goto GoldenrodDeptStore5_EventScript_ClerkDone
+GoldenrodDeptStore5_EventScript_TMs3::
+	pokemart GoldenrodDeptStore5_TMs3
+GoldenrodDeptStore5_EventScript_ClerkDone::
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
-
-	.align 2
-GoldenrodDeptStore5_Pokemart:
-	.2byte ITEM_TM_LIGHT_SCREEN
-	.2byte ITEM_TM_PROTECT
-	.2byte ITEM_TM_REFLECT
-	.2byte ITEM_TM_NATURAL_GIFT
-	.2byte ITEM_TM_BLIZZARD
-	.2byte ITEM_TM_HYPER_BEAM
-	.2byte ITEM_TM_SOLAR_BEAM
-	.2byte ITEM_TM_THUNDER
-	.2byte ITEM_TM_FIRE_BLAST
-	.2byte ITEM_TM_FOCUS_BLAST
-	pokemartlistend
 
 
 GoldenrodDeptStore_Text_5FDirectory:
@@ -124,7 +126,7 @@ GoldenrodDeptStore_Text_5FDirectory:
     .string "5F TM CORNER$"
 
 @ Crystal Imperium: Mega Ring gift after the third badge, then a Mega Stone shop
-@ whose stock grows with progress (badges 3 / 6 / 8, then the Johto title).
+@ whose stock grows with progress (3 / 6 / 8 badges, counted, then the Johto title).
 GoldenrodDeptStore5_EventScript_MegaSpecialist::
 	lock
 	faceplayer
@@ -139,8 +141,9 @@ GoldenrodDeptStore5_EventScript_MegaShop::
 	message gText_HowMayIServeYou
 	waitmessage
 	goto_if_set FLAG_IS_CHAMPION, GoldenrodDeptStore5_EventScript_MegaShop4
-	goto_if_set FLAG_BADGE08_GET, GoldenrodDeptStore5_EventScript_MegaShop3
-	goto_if_set FLAG_BADGE06_GET, GoldenrodDeptStore5_EventScript_MegaShop2
+	specialvar VAR_RESULT, GetBadgeCount
+	goto_if_ge VAR_RESULT, 8, GoldenrodDeptStore5_EventScript_MegaShop3
+	goto_if_ge VAR_RESULT, 6, GoldenrodDeptStore5_EventScript_MegaShop2
 	pokemart GoldenrodDeptStore5_MegaStones1
 	goto GoldenrodDeptStore5_EventScript_MegaShopDone
 GoldenrodDeptStore5_EventScript_MegaShop2::

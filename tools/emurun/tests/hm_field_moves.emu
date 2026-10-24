@@ -1,0 +1,70 @@
+# Crystal Imperium play test: HMs work without being taught. The only Pokemon is a Magikarp, which
+# can learn neither Cut nor Surf; carrying HM01 and HM03 with their badges is enough to cut the
+# Route 29 tree, to open the Fly map from its party menu (HM02) and to surf in New Bark Town
+# (HMsOverwriteOptionActive is always on).
+!new_game()
+!give_mon(129, 10)
+!give_item("ITEM_HM_CUT")
+!give_item("ITEM_HM_SURF")
+!set_flag("FLAG_RECEIVED_HM_CUT")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE04_GET")
+# No care packages for these badges (they would interrupt the walk)
+!set_var("VAR_CARE_PACKAGES", 17)
+
+# Route 29: (34,10) down to the ledge, jump it, then stand at (32,23) facing the tree at (31,23)
+!warp(0, 11, 0)
+!walkto(34, 18)
+!walkto(34, 20)
+!walkto(32, 23, order="yx")
+press LEFT
+wait 20
+shot 01_facing_tree.png
+!expect_flag("FLAG_TEMP_1", 0, "tree_standing")
+press A
+wait 90
+shot 02_magikarp_used_cut.png
+# One A closes "MAGIKARP used CUT!"; more would talk to the follower Pokemon
+press A
+wait 150
+mash B 60
+shot 03_tree_cut.png
+!expect_flag("FLAG_TEMP_1", 1, "tree_cut")
+# The way west is open: step onto the tree's tile
+!walkto(31, 23)
+
+# Fly from the lead's party menu (SUMMARY, FLY, ITEM, ...) with HM02 and the Storm Badge
+!give_item("ITEM_HM_FLY")
+!set_flag("FLAG_BADGE05_GET")
+!start_menu("POKEMON")
+wait 60
+press A
+wait 30
+shot 04_party_menu_fly.png
+press DOWN
+wait 10
+press A
+wait 240
+shot 05_fly_map.png
+expect32 {gMain+4} {CB2_FlyMap+1} fly_map_opens
+press B
+wait 200
+mash B 120
+wait 60
+
+# New Bark Town: out of Elm's lab door (20,11) to (24,12), facing the water at (25,12)
+!warp(0, 0, 1)
+!walkto(24, 12, order="yx")
+press RIGHT
+wait 20
+shot 06_facing_water.png
+press A
+wait 90
+shot 07_want_to_surf.png
+press A
+wait 60
+mash A 120
+wait 120
+shot 08_surfing.png
+expect16 *{gSaveBlock1Ptr}+4 25 surfing_on_water_x
+expect16 *{gSaveBlock1Ptr}+6 12 surfing_on_water_y

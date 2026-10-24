@@ -1,6 +1,10 @@
-# Heart & Soul 2.0.6 (run by old_save_test.sh): new game, a Pokemon from the debug menu, save
+# Heart & Soul 2.0.6 (run by old_save_test.sh): new game, a Pokemon and TMs from the debug menu, save
 !new_game()
 !give_mon(155, 5)
+# Heart & Soul numbering: TM70 is Rock Climb and TM03 Water Pulse (Crystal Imperium renumbers them)
+!give_item("ITEM_TM70")
+!give_item("ITEM_TM03")
+!give_item("ITEM_HM01")
 expect8 {gPlayerPartyCount} 1 hns_party
 !start_menu("SAVE")
 shot 01_hns_save_prompt.png

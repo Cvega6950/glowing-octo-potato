@@ -1,0 +1,79 @@
+# Crystal Imperium play test: the Goldenrod Dept. Store 5F TM shop sells Emerald Imperium's TMs in
+# badge tiers (data/scripts/tm_shop_hns.inc): 71 TMs with no badges (Heart & Soul's own stock
+# among them), 155 from 3 badges, 178 from 6, all 198 from 8. The badge count decides, not
+# FLAG_BADGE06_GET (Gyms 5-7 come in any order).
+!new_game()
+!max_money()
+# 5F, arriving on the stairs from 4F at (22,5); the clerk stands behind the counter at (17,11)
+!warp(5, 24, 1)
+!walkto(17, 8, path=True)
+press DOWN
+wait 20
+hold DOWN 16
+wait 20
+press A
+wait 120
+press A
+wait 90
+shot 01_tier0_list.png
+expect16 {sMartInfo+12} 71 shop_tier0_count
+# Buy the first TM: TM03 Flip Turn (quantity 1, confirm)
+press A
+wait 90
+press A
+wait 60
+press A
+wait 90
+press A
+wait 90
+shot 02_bought_tier0.png
+press A
+wait 60
+mash B 300
+!expect_bag_has("TMsHMs", "ITEM_TM_FLIP_TURN", "bought_flip_turn")
+
+# Three badges
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+press A
+wait 120
+press A
+wait 90
+shot 03_tier1_list.png
+expect16 {sMartInfo+12} 155 shop_tier1_count
+mash B 300
+
+# Five badges plus Pryce's (FLAG_BADGE07_GET) is six badges without FLAG_BADGE06_GET
+!set_flag("FLAG_BADGE04_GET")
+!set_flag("FLAG_BADGE05_GET")
+!set_flag("FLAG_BADGE07_GET")
+press A
+wait 120
+press A
+wait 90
+shot 04_tier2_list.png
+expect16 {sMartInfo+12} 178 shop_tier2_count
+mash B 300
+
+# Eight badges: every TM, TM01 Focus Punch first
+!set_flag("FLAG_BADGE06_GET")
+!set_flag("FLAG_BADGE08_GET")
+press A
+wait 120
+press A
+wait 90
+shot 05_tier3_list.png
+expect16 {sMartInfo+12} 198 shop_tier3_count
+press A
+wait 90
+press A
+wait 60
+press A
+wait 90
+press A
+wait 90
+press A
+wait 60
+mash B 300
+!expect_bag_has("TMsHMs", "ITEM_TM_FOCUS_PUNCH", "bought_focus_punch")

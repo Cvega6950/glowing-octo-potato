@@ -1,0 +1,64 @@
+# Crystal Imperium play test: Emerald Imperium's TMs. TM163 Temper Flare (past Heart & Soul's
+# old TM100 limit) teaches Cyndaquil. The TM case holds all 198 TMs and 8 HMs and keeps them
+# through a save and reset: it lives in EWRAM and is saved as counts in SaveBlock3 (src/item.c).
+!new_game()
+!give_mon(155, 5)
+!give_item("ITEM_TM_TEMPER_FLARE")
+!expect_bag_has("TMsHMs", "ITEM_TM_TEMPER_FLARE", "tm163_in_case")
+
+# Bag > TMs > TM163 > USE ("Booted up a TM." "It contained TEMPER FLARE." "Teach ...?" YES) > Cyndaquil
+!open_bag_at("POCKET_TM_HM", 0)
+shot 01_tm163_in_bag.png
+press A
+wait 20
+press A
+wait 150
+press A
+wait 60
+press A
+wait 60
+press A
+wait 150
+shot 02_choose_pokemon.png
+press A
+wait 150
+shot 03_cyndaquil_learns.png
+mash A 300
+# Back out of the bag and the START menu
+mash B 300
+!expect_bag_has("TMsHMs", "ITEM_TM_TEMPER_FLARE", "tm163_kept_after_use")
+
+# Every TM and HM: 206 machines fill slots 0-205 of the 208-slot case
+wait 60
+!fill_tm_case()
+!["expectne16 " + tm_case_slot(205) + " 0 case_slot_206_used", "expect16 " + tm_case_slot(206) + " 0 case_slot_207_empty"]
+!expect_bag_has("TMsHMs", "ITEM_TM01", "case_has_tm001")
+!expect_bag_has("TMsHMs", "ITEM_TM_FLIP_TURN", "case_has_flip_turn")
+!expect_bag_has("TMsHMs", "ITEM_TM198", "case_has_tm198")
+!expect_bag_has("TMsHMs", "ITEM_HM08", "case_has_hm08")
+!open_bag_at("POCKET_TM_HM", 0)
+shot 04_full_case.png
+mash B 120
+
+# Save, reset and continue: the case comes back whole
+!save_and_continue()
+shot 05_loaded.png
+!expect_save3("tmHmPocketVersion", 1, "case_version_saved")
+# Two TM163s: the one taught from and the one the fill added
+!expect_save3("tmHmCounts[162]", 2, "count_tm163_saved", size=16)
+!expect_save3("tmHmCounts[205]", 1, "count_hm08_saved", size=16)
+!["expectne16 " + tm_case_slot(205) + " 0 case_slot_206_used_after_load", "expect16 " + tm_case_slot(206) + " 0 case_slot_207_empty_after_load"]
+!expect_bag_has("TMsHMs", "ITEM_TM198", "case_has_tm198_after_load")
+!expect_bag_has("TMsHMs", "ITEM_TM_TEMPER_FLARE", "case_has_tm163_after_load")
+!expect_bag_has("TMsHMs", "ITEM_HM_CUT", "case_has_hm01_after_load")
+
+# Cyndaquil knows Temper Flare in battle (Lv 5: Tackle, Leer, then the TM move)
+!battle_trainer(402)
+wait 300
+press A
+wait 200
+press A
+wait 200
+press A
+wait 400
+!expect_battler(0, "moves[2]", "MOVE_TEMPER_FLARE", "cyndaquil_knows_temper_flare")

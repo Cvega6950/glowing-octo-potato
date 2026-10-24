@@ -133,8 +133,31 @@ def debug_flags_menu(row):
     return open_debug() + ["press DOWN"] * 7 + ["press A", "wait 30"] + ["press DOWN"] * row + ["press A", "wait 60", "mash B 120"]
 
 
+def fill_tm_case():
+    """Debug menu > PC/Bag > Fill > Fill Pocket TMHM: one of every TM and HM."""
+    return open_debug() + ["press DOWN", "press A", "wait 30", "press DOWN", "press A", "wait 30"] + \
+        ["press DOWN"] * 5 + ["press A", "wait 60", "mash B 60"]
+
+
+def save_and_continue():
+    """START > SAVE, hard reset, then CONTINUE (the test runs with a real cartridge save)."""
+    return start_menu("SAVE") + ["press A", "wait 400", "mash A 300", "reset", "wait 1300", "press START",
+                                 "wait 320", "press A", "wait 100", "press A", "wait 900"]
+
+
+def tm_case_slot(index):
+    """Address of the TM case's index-th slot: it lives in EWRAM (gBagPockets[POCKET_TM_HM].itemSlots)."""
+    v = probe.resolve({"ptr": "POCKET_TM_HM * sizeof(struct BagPocket) + offsetof(struct BagPocket, itemSlots)",
+                       "stride": "sizeof(struct ItemSlot)"})
+    return f"*{{gBagPockets+{v['ptr']}}}+{index * v['stride']}"
+
+
 def expect_bag_has(pocket, item, label=None):
-    """Check that a bag pocket (struct Bag field: items, keyItems, pokeBalls, ...) holds the item."""
+    """Check that a bag pocket (struct Bag field: items, keyItems, pokeBalls, ...) holds the item.
+    "TMsHMs" is the TM case, which is not in SaveBlock1 any more (TMHM_POCKET_COUNT)."""
+    if pocket == "TMsHMs":
+        v = probe.resolve({"count": "TMHM_POCKET_COUNT", "stride": "sizeof(struct ItemSlot)", item: item})
+        return [f"expectfind16 {tm_case_slot(0)} {v['count']} {v['stride']} {v[item]} {label or 'bag_has_' + item.lower()}"]
     v = probe.resolve({"off": f"offsetof(struct SaveBlock1, bag.{pocket})",
                        "count": f"ARRAY_COUNT(((struct SaveBlock1 *)0)->bag.{pocket})",
                        "stride": "sizeof(struct ItemSlot)", item: item})
@@ -204,6 +227,13 @@ def expect_flag(flag, want, label=None):
     """Check an event flag by constant name, e.g. expect_flag("FLAG_INFINITE_REPEL_ON", 1)."""
     v = probe.resolve({"flags": "offsetof(struct SaveBlock1, flags)", flag: flag})
     return [f"expectflag {{gSaveBlock1Ptr}} {v['flags']} {v[flag]} {want} {label or flag.lower()}"]
+
+
+def set_var(var, value):
+    """Set a script variable (VAR_*) in the save block; value may be a number or a C expression."""
+    v = probe.resolve({"vars": "offsetof(struct SaveBlock1, vars)", var: f"({var} - VARS_START) * 2",
+                       "value": str(value)})
+    return [f"poke16 *{{gSaveBlock1Ptr}}+{v['vars'] + v[var]} {v['value']}"]
 
 
 def expect_var(var, want, label=None):

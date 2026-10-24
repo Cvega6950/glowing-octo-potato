@@ -21,7 +21,10 @@ jobs:
             libnewlib-arm-none-eabi libpng-dev libmgba-dev python3
 
       - name: Validate game data
-        run: python3 tools/crystal_imperium/validate.py --check
+        run: |
+          python3 tools/crystal_imperium/validate.py --check
+          python3 tools/crystal_imperium/boss_teams.py --check
+          python3 tools/crystal_imperium/tm_list.py --check
 
       - name: Build ROM
         run: |

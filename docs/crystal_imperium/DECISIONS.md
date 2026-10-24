@@ -236,3 +236,125 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   20 tiles away or after `DEXNAV_TIMEOUT`, raised from 15 to 30 seconds.
 - In caves and on water the Pokémon still moves away up to twice when the player gets close
   at low search levels (upstream behaviour).
+
+## D20. Smart AI for every trainer
+
+- Heart & Soul gives most ordinary trainers `Check Bad Move` only (427 of 651), which picks at
+  random among moves that don't fail; 193 more use `Basic Trainer`. The user asked for a much
+  smarter AI, as in Emerald Imperium.
+- On NORMAL and HARD, `GetAiFlags()` (`src/battle_ai_main.c`) now adds the expansion's
+  `Smart Trainer` and `HP Aware` to every trainer from the trainer data: it knows the
+  player's Pokémon, moves, abilities and items, compares damage to pick the best move, goes
+  for KOs, switches out of bad match-ups and picks its next Pokémon for the match-up, avoids
+  PP stalling, and plays around HP (no setup at low HP, no healing at high HP). Trainers keep
+  their own extra flags (Ace Pokémon and so on). EASY keeps each trainer's Heart & Soul AI.
+  This replaces D5's "ordinary trainers keep HnS's cheaper AI".
+- `Prediction` is not added. It makes the AI guess, half the time, that the player will
+  switch whenever the AI would switch in the player's place, and then aim at the expected
+  switch-in. Against a player who stays in, that wastes the turn: the battle autopilot (which
+  never switches) beat Whitney 8 of 12 times with it and 3 of 12 without, and Bugsy 4 of 5
+  against 3 of 5. Emerald Imperium predates the prediction flags.
+- Cost: none measurable. In `gym_trainers_m2` a turn takes 562 frames on average against 568
+  before (most of a turn is animation and text).
+
+## D21. Imperium-style boss teams
+
+- `tools/crystal_imperium/boss_teams.py` holds the reworked bosses and writes them into
+  `src/data/trainers_hns.party`, keeping each trainer's header. Rules:
+  - The ace (last Pokémon, kept back by `Ace Pokemon`) is at the NORMAL level cap the player
+    has when the battle can happen; the others are one or two levels below.
+  - Every Pokémon has a held item, a nature, an ability chosen for the set and four moves its
+    species or a pre-evolution can learn (`validate.py` checks abilities, moves and aces).
+  - Team size grows: 3–4 for early story bosses, 5 for Morty and for a 5th Gym, 6 after that.
+  - From the 5th Gym on, each boss has one Mega Evolution with a stone from the Mega shop's
+    tiers (D9). The stone isn't always on sale before the boss who uses it: Steelixite and
+    Abomasite come with the 6th badge, and Jasmine or Pryce can be the 5th Gym. Morty has none
+    (the player's Mega Ring arrives only one badge earlier).
+  - Chuck, Jasmine and Pryce have three versions each, picked by how many of the three the
+    player has beaten (HnS's `_1`, `_1_2`, `_1_3`): caps 31, 36 and 38.
+  - The Kanto leaders and Blue are at 68–70 (the cap is 70 for all of Kanto). Red, with no cap
+    left, is at 86–90.
+- Done: Proton (Slowpoke Well and Radio Tower), Petrel and Ariana (Rocket Hideout and Radio
+  Tower), Archer; the rival's 2nd–5th battles (Azalea, Burned Tower, Goldenrod Underground,
+  Victory Road; all three starter versions); Morty, Chuck, Jasmine, Pryce, Clair; the five
+  Kimono Girls; Will, Koga, Bruno, Karen, Lance; the eight Kanto leaders, Blue and Red.
+- Megas: Chuck's Heracross, Jasmine's Steelix, Pryce's Abomasnow, Clair's Altaria, Archer's
+  Houndoom, the rival's Tyranitar (Victory Road), Will's Alakazam, Koga's Beedrill, Bruno's
+  Lucario, Karen's Absol, Lance's Gyarados; Brock's Aerodactyl, Misty's Blastoise, Lt. Surge's
+  Manectric, Erika's Venusaur, Janine's Gengar, Sabrina's Metagross, Blaine's Camerupt, Blue's
+  Pidgeot, Red's Charizard (Y).
+- Evidence:
+  - `bosses_m3`: the naive play-test team (3–5 Pokémon at the cap with their default moves)
+    loses every one of these battles; a prepared six at the cap (good natures and moves, no
+    held items, one move per Pokémon, never switching) wins at least one of three against each
+    Johto Gym Leader, and every boss Mega Evolution happens.
+  - `bosses_m4`: every Rocket executive, rival and Kimono Girl battle plays to a result against
+    the prepared six at the cap; it beats each Elite Four member and Lance at least once in
+    three tries; every Mega Evolution happens.
+  - `bosses_m5`: every Kanto battle plays to a result at the cap, and the win counts are
+    reported in TESTING.md (the prepared six, which never switches, loses most of them; a
+    player who switches and heals does better). With the six at level 100 every battle reaches
+    the boss's ace and every Mega Evolution happens.
+- Still Heart & Soul teams (with the smart AI): Gym Leader and Elite Four rematches and the
+  other postgame battles.
+
+## D22. Emerald Imperium's TM list
+
+- The user asked for the same TMs as Emerald Imperium. Its official TM guide lists TM001–TM174
+  ([pokemonemeraldimperium.com](https://pokemonemeraldimperium.com/all-tms-and-hms-location-guide/)).
+  Two of them teach moves Imperium made itself, "Dark Hole" (TM161) and "Draco Barrage"
+  (TM171), which the engine doesn't have and D2 keeps out. Crystal Imperium has the other 172,
+  in Imperium's order, as TM01–TM172; from Imperium's TM162 on the numbers are one lower here,
+  and from its TM172 on two lower. A list of move names is design data, not Imperium code or
+  assets.
+- TM173–TM198 are the 26 Heart & Soul TMs Imperium's list lacks (Hail, Hyper Beam, Safeguard,
+  Frustration, Double Team, Shock Wave, Torment, Secret Power, Attract, Skill Swap, Snatch,
+  False Swipe, Brine, Fling, Endure, Embargo, Payback, Recycle, Giga Impact, Rock Climb,
+  Avalanche, Psych Up, Captivate, Natural Gift, Dream Eater, Swagger), so every TM the story
+  hands out still exists. `tools/crystal_imperium/tm_list.py` holds both lists and writes the
+  TM list, the item data and the shop lists.
+- Imperium numbers many TMs as Gen 4 did, so 64 of Heart & Soul's 92 TMs keep their number.
+  28 move, for example TM03 Water Pulse → TM160, TM41 Torment → TM179, TM70 Rock Climb →
+  TM192, TM92 Trick Room → TM106. The two script texts that named a moved number now give the
+  new one. TM101–TM198 are new item ids after the last item, so item ids in older saves keep
+  their meaning.
+- Each TM's description is its move's description, re-wrapped by glyph width (read from the
+  game's font tables) to fit the bag's 3-line box; nine long ones use the small font.
+- **The TM case.** 206 machines don't fit SaveBlock1's 160 TM slots, and SaveBlock1 has no room
+  to grow (15,760 of 15,872 bytes). The case now lives in EWRAM (208 slots) and is saved in
+  SaveBlock3 as one count per machine plus a version byte (SaveBlock3: 1,548 of 1,624 bytes).
+  Its quantities aren't XOR-encrypted like the other pockets, since no save block holds it.
+- **Older saves** (Heart & Soul 2.0.6 and earlier Crystal Imperium builds) have version 0
+  there. When one loads, its TMs move from SaveBlock1 into the counts, converted by move: Heart
+  & Soul's TM70 Rock Climb becomes TM192 Rock Climb, not TM70 Triple Axel. TMs stored in the
+  item PC or held by Pokémon in the party, the boxes and the Day-Care are renumbered the same
+  way. HMs are unchanged.
+- **Where to get them.** Imperium's TM locations are on its Hoenn map, so they can't be
+  copied. Heart & Soul's own TM gifts and item balls are unchanged (same moves as before), and
+  the Goldenrod Dept. Store 5F sells every TM, more with each badge tier:
+  - from the start: status moves and moves below 70 power, plus Heart & Soul's own 5F stock
+    (71 TMs);
+  - 3 badges: strong setup and hazard moves, multi-hit and variable-power moves, 70–89 power
+    (155);
+  - 6 badges: 90–109 power (178);
+  - 8 badges: the rest, 110+ power and Explosion (198).
+
+  The badges are counted (Gyms 5–7 come in any order, so a badge flag alone wouldn't do).
+  Prices are ₽1,500 / 3,000 / 5,000 / 8,000 by tier; Heart & Soul charged ₽10,000 for its 5F
+  TMs. The Mega Stone shop's 6-badge tier now counts badges the same way (it read Jasmine's
+  badge flag).
+- TMs stay reusable (Heart & Soul's REUSABLE TMS option, on by default).
+
+## D23. HMs work without teaching them
+
+- Heart & Soul already let a Pokémon that *can learn* an HM move use it while the player
+  carries the HM. In its challenge runs (Nuzlocke, Mirror, random moves, party limit, one
+  type) carrying the HM was enough for any Pokémon. The user asked to use HMs without teaching
+  them, so that rule (`HMsOverwriteOptionActive`) is now always on. Each field move still
+  needs its badge.
+- Cut, Rock Smash, Strength and Waterfall use the first Pokémon in the party that isn't an
+  Egg; Surf works when facing water; Fly and Flash appear in the lead Pokémon's party menu (a
+  lead that could learn Fly keeps the entry it had without HM02). Rock Climb, a TM here, works
+  the same way through the same code.
+- Evidence: `hm_field_moves`. A Magikarp, which can learn none of these moves, cuts the Route 29
+  tree, opens the Fly map from its party menu and surfs, with only the HMs and badges.

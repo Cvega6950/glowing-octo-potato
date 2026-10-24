@@ -371,6 +371,11 @@ struct SaveBlock3
     // saves from before the DexNav load with every level at 0.
     u8 dexNavSearchLevels[NATIONAL_DEX_COUNT + 1];
 #endif
+    // Crystal Imperium: how many of each TM and HM the bag holds, by TM/HM index - 1 (the TM case
+    // itself is in EWRAM, see src/item.c). Kept last, so older saves load with version 0, which
+    // makes src/item.c convert the TMs they keep in SaveBlock1's bag.
+    u8 tmHmPocketVersion;
+    u16 tmHmCounts[TMHM_POCKET_COUNT];
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

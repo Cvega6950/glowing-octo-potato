@@ -15,6 +15,8 @@
 #include "battle_pyramid.h"
 #include "battle_pyramid_bag.h"
 #include "graphics.h"
+#include "pokemon.h"
+#include "pokemon_storage_system.h"
 #include "constants/battle.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -35,6 +37,11 @@ static bool32 DoesItemHavePluralName(enum Item);
 static void NONNULL BagPocket_CompactItems(struct BagPocket *pocket);
 
 EWRAM_DATA struct BagPocket gBagPockets[POCKETS_COUNT] = {0};
+
+// Crystal Imperium: the TM case. It holds every TM and HM, more than SaveBlock1's bag has room for,
+// so it lives here and SaveTMHMPocket/LoadTMHMPocket keep it in SaveBlock3 as one count per machine.
+// Its quantities aren't encrypted, as no save block holds it.
+EWRAM_DATA static struct ItemSlot sTMHMPocket[TMHM_POCKET_COUNT] = {0};
 
 #include "data/pokemon/item_effects.h"
 #include "data/items.h"
@@ -59,6 +66,10 @@ const struct TmHmIndexKey gTMHMItemMoveIds[NUM_ALL_MACHINES + 1] =
 
 #undef UNPACK_TM_ITEM_ID
 #undef UNPACK_HM_ITEM_ID
+
+STATIC_ASSERT(NUM_ALL_MACHINES <= TMHM_POCKET_COUNT, TMHMPocketHoldsEveryMachine);
+
+#include "data/tms_old_hns.h"
 
 static inline struct ItemSlot NONNULL BagPocket_GetSlotDataGeneric(struct BagPocket *pocket, u32 pocketPos)
 {
@@ -95,7 +106,6 @@ struct ItemSlot NONNULL BagPocket_GetSlotData(struct BagPocket *pocket, u32 pock
     case POCKET_ITEMS:
     case POCKET_KEY_ITEMS:
     case POCKET_POKE_BALLS:
-    case POCKET_TM_HM:
     case POCKET_BERRIES:
     case POCKET_MEDICINE:
 #if I_COMBINE_BAG_POCKETS == FALSE
@@ -103,6 +113,7 @@ struct ItemSlot NONNULL BagPocket_GetSlotData(struct BagPocket *pocket, u32 pock
     case POCKET_TREASURES:
 #endif
         return BagPocket_GetSlotDataGeneric(pocket, pocketPos);
+    case POCKET_TM_HM: // Crystal Imperium: not encrypted, see sTMHMPocket
     case POCKET_DUMMY:
         return BagPocket_GetSlotDataPC(pocket, pocketPos);
     }
@@ -123,7 +134,6 @@ void NONNULL BagPocket_SetSlotData(struct BagPocket *pocket, u32 pocketPos, stru
     case POCKET_ITEMS:
     case POCKET_KEY_ITEMS:
     case POCKET_POKE_BALLS:
-    case POCKET_TM_HM:
     case POCKET_BERRIES:
     case POCKET_MEDICINE:
 #if I_COMBINE_BAG_POCKETS == FALSE
@@ -132,6 +142,7 @@ void NONNULL BagPocket_SetSlotData(struct BagPocket *pocket, u32 pocketPos, stru
 #endif
         BagPocket_SetSlotDataGeneric(pocket, pocketPos, newSlot);
         break;
+    case POCKET_TM_HM: // Crystal Imperium: not encrypted, see sTMHMPocket
     case POCKET_DUMMY:
         BagPocket_SetSlotDataPC(pocket, pocketPos, newSlot);
         break;
@@ -144,6 +155,8 @@ void ApplyNewEncryptionKeyToBagItems(u32 newKey)
     enum Item item;
     for (pocketId = 0; pocketId < POCKETS_COUNT; pocketId++)
     {
+        if (pocketId == POCKET_TM_HM) // Crystal Imperium: not encrypted, see sTMHMPocket
+            continue;
         for (item = 0; item < gBagPockets[pocketId].capacity; item++)
             ApplyNewEncryptionKeyToHword(&(gBagPockets[pocketId].itemSlots[item].quantity), newKey);
     }
@@ -163,8 +176,8 @@ void SetBagItemsPointers(void)
     gBagPockets[POCKET_POKE_BALLS].capacity = BAG_POKEBALLS_COUNT;
     gBagPockets[POCKET_POKE_BALLS].id = POCKET_POKE_BALLS;
 
-    gBagPockets[POCKET_TM_HM].itemSlots = gSaveBlock1Ptr->bag.TMsHMs;
-    gBagPockets[POCKET_TM_HM].capacity = BAG_TMHM_COUNT;
+    gBagPockets[POCKET_TM_HM].itemSlots = sTMHMPocket;
+    gBagPockets[POCKET_TM_HM].capacity = TMHM_POCKET_COUNT;
     gBagPockets[POCKET_TM_HM].id = POCKET_TM_HM;
 
     gBagPockets[POCKET_BERRIES].itemSlots = gSaveBlock1Ptr->bag.berries;
@@ -587,6 +600,97 @@ void MoveItemSlotInPC(struct ItemSlot *itemSlots, u32 from, u32 to)
 void ClearBag(void)
 {
     CpuFastFill(0, &gSaveBlock1Ptr->bag, sizeof(struct Bag));
+    memset(sTMHMPocket, 0, sizeof(sTMHMPocket));
+    memset(gSaveBlock3Ptr->tmHmCounts, 0, sizeof(gSaveBlock3Ptr->tmHmCounts));
+    gSaveBlock3Ptr->tmHmPocketVersion = TMHM_POCKET_VERSION;
+}
+
+// Crystal Imperium: saves from before Emerald Imperium's TM list number their TMs as Heart & Soul
+// 2.0.6 did (sOldHnsTmMoves). Each such TM becomes the new TM for the same move; HMs are unchanged.
+static enum Item ConvertOldHnsTM(enum Item itemId)
+{
+    if (itemId >= ITEM_TM01 && itemId < ITEM_TM01 + ARRAY_COUNT(sOldHnsTmMoves))
+        return GetTMHMItemIdFromMoveId(sOldHnsTmMoves[itemId - ITEM_TM01]);
+    return itemId;
+}
+
+static void ConvertOldHnsHeldTM(struct BoxPokemon *boxMon)
+{
+    enum Item itemId;
+
+    if (GetBoxMonData(boxMon, MON_DATA_SPECIES) == SPECIES_NONE)
+        return;
+    itemId = GetBoxMonData(boxMon, MON_DATA_HELD_ITEM);
+    if (ConvertOldHnsTM(itemId) != itemId)
+    {
+        itemId = ConvertOldHnsTM(itemId);
+        SetBoxMonData(boxMon, MON_DATA_HELD_ITEM, &itemId);
+    }
+}
+
+// The bag's TMs move from SaveBlock1 into the counts; TMs in the item PC and held TMs are renumbered.
+static void ConvertOldHnsTMs(void)
+{
+    u32 i, j;
+
+    for (i = 0; i < BAG_TMHM_COUNT; i++)
+    {
+        struct ItemSlot slot = gSaveBlock1Ptr->bag.TMsHMs[i];
+        u32 index = GetItemTMHMIndex(ConvertOldHnsTM(slot.itemId));
+        u16 quantity = slot.quantity ^ gSaveBlock2Ptr->encryptionKey;
+
+        if (slot.itemId != ITEM_NONE && index != 0)
+            gSaveBlock3Ptr->tmHmCounts[index - 1] = min(MAX_BAG_ITEM_CAPACITY, gSaveBlock3Ptr->tmHmCounts[index - 1] + quantity);
+    }
+    memset(gSaveBlock1Ptr->bag.TMsHMs, 0, sizeof(gSaveBlock1Ptr->bag.TMsHMs));
+
+    for (i = 0; i < PC_ITEMS_COUNT; i++)
+        gSaveBlock1Ptr->pcItems[i].itemId = ConvertOldHnsTM(gSaveBlock1Ptr->pcItems[i].itemId);
+    for (i = 0; i < PARTY_SIZE; i++)
+        ConvertOldHnsHeldTM(&gPlayerParty[i].box);
+    for (i = 0; i < TOTAL_BOXES_COUNT; i++)
+    {
+        for (j = 0; j < IN_BOX_COUNT; j++)
+            ConvertOldHnsHeldTM(&gPokemonStoragePtr->boxes[i][j]);
+    }
+    for (i = 0; i < DAYCARE_MON_COUNT; i++)
+        ConvertOldHnsHeldTM(&gSaveBlock1Ptr->daycare.mons[i].mon);
+}
+
+// Called just before the game is saved.
+void SaveTMHMPocket(void)
+{
+    u32 i, index;
+
+    memset(gSaveBlock3Ptr->tmHmCounts, 0, sizeof(gSaveBlock3Ptr->tmHmCounts));
+    for (i = 0; i < TMHM_POCKET_COUNT; i++)
+    {
+        index = GetItemTMHMIndex(sTMHMPocket[i].itemId);
+        if (index != 0)
+            gSaveBlock3Ptr->tmHmCounts[index - 1] = min(MAX_BAG_ITEM_CAPACITY, gSaveBlock3Ptr->tmHmCounts[index - 1] + sTMHMPocket[i].quantity);
+    }
+    gSaveBlock3Ptr->tmHmPocketVersion = TMHM_POCKET_VERSION;
+}
+
+// Called after a save is loaded, once the party is in gPlayerParty.
+void LoadTMHMPocket(void)
+{
+    u32 i, slot = 0;
+
+    if (gSaveBlock3Ptr->tmHmPocketVersion != TMHM_POCKET_VERSION)
+        ConvertOldHnsTMs();
+    gSaveBlock3Ptr->tmHmPocketVersion = TMHM_POCKET_VERSION;
+
+    memset(sTMHMPocket, 0, sizeof(sTMHMPocket));
+    for (i = 0; i < NUM_ALL_MACHINES; i++)
+    {
+        if (gSaveBlock3Ptr->tmHmCounts[i] != 0)
+        {
+            sTMHMPocket[slot].itemId = GetTMHMItemId(i + 1);
+            sTMHMPocket[slot].quantity = gSaveBlock3Ptr->tmHmCounts[i];
+            slot++;
+        }
+    }
 }
 
 static inline u16 NONNULL BagPocket_CountTotalItemQuantity(struct BagPocket *pocket, enum Item itemId)

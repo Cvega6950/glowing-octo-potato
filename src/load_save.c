@@ -243,12 +243,14 @@ void CopyPartyAndObjectsToSave(void)
 {
     SavePlayerParty();
     SaveObjectEvents();
+    SaveTMHMPocket();
 }
 
 void CopyPartyAndObjectsFromSave(void)
 {
     LoadPlayerParty();
     LoadObjectEvents();
+    LoadTMHMPocket();
 }
 
 void LoadPlayerBag(void)

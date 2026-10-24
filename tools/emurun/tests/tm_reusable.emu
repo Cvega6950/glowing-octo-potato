@@ -1,6 +1,7 @@
 # Crystal Imperium play test: TMs are reusable (HnS's INFINITE TMs option, on by default).
-# One TM Protect teaches Cyndaquil and then Chikorita and stays in the bag; Cyndaquil uses
-# Protect in battle. Lv 5 Cyndaquil knows Tackle and Leer, so Protect lands in move slot 2.
+# One TM Protect teaches Cyndaquil and then Chikorita and stays in the bag, then Totodile through
+# the party menu's relearner (TM MOVES), and it still stays; Cyndaquil uses Protect in battle.
+# Lv 5 Cyndaquil knows Tackle and Leer, so Protect lands in move slot 2.
 !new_game()
 !give_mon(155, 5)
 !give_mon(152, 5)
@@ -47,6 +48,34 @@ shot 03_chikorita_learns.png
 mash A 300
 mash B 120
 !expect_bag_has("TMsHMs", "ITEM_TM_PROTECT", "tm_kept_after_second_use")
+
+# The party menu's relearner (LEARN MOVES > TM MOVES) teaches Totodile Protect and keeps the TM too
+!give_mon(158, 5)
+!start_menu("POKEMON")
+wait 60
+press DOWN
+wait 10
+press DOWN
+wait 10
+press A
+wait 30
+press DOWN
+wait 10
+press A
+wait 30
+press DOWN
+wait 10
+press A
+wait 120
+shot 04_relearner_tm_moves.png
+press A
+wait 60
+press A
+wait 120
+shot 05_totodile_learns.png
+mash A 200
+mash B 300
+!expect_bag_has("TMsHMs", "ITEM_TM_PROTECT", "tm_kept_after_relearner")
 
 # Cyndaquil knows Protect in battle
 !battle_trainer(402)

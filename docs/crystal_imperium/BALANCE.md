@@ -26,11 +26,13 @@ explains the *why*.
 
 | Segment | Level cap | Status |
 |---|---|---|
-| Early Johto (Falkner, Bugsy, Whitney) | 11 / 16 / 21 | All three reworked and play-tested |
-| Midgame Johto (Morty, Chuck, Jasmine, Pryce) | 25 / 31 / 36 / 38 | HnS. Pryce's ace (33) is below his cap (38), noted by the validator. |
-| Late Johto (Clair, Victory Road) | 45 / 56 | HnS |
-| Elite Four / Lance | 56 → 70 after the title | HnS |
-| Kanto, Mt. Silver, postgame | ≤ 70, then uncapped | HnS |
+| Early Johto (Falkner, Bugsy, Whitney; Proton, rival 2–3) | 11 / 16 / 21 | Reworked and play-tested (`falkner`, `bugsy`, `whitney`, `bosses_m3`) |
+| Midgame Johto (Morty, Chuck, Jasmine, Pryce; Rocket Hideout) | 25 / 31 / 36 / 38 | Reworked; Chuck, Jasmine and Pryce in three versions for any order (`bosses_m3`, `bosses_m4`) |
+| Late Johto (Radio Tower, rival 4, Clair, Kimono Girls, Victory Road) | 45 / 56 | Reworked (`bosses_m3`, `bosses_m4`) |
+| Elite Four / Lance | 56 → 70 after the title | Reworked (`bosses_m4`) |
+| Kanto leaders, Blue | 70 | Reworked (`bosses_m5`) |
+| Red (Mt. Silver) | uncapped; ace 90 | Reworked (`bosses_m5`) |
+| Rematches and other postgame battles | 70 / uncapped | HnS teams with the smart AI |
 
 ## Early Johto: the path to Falkner
 
@@ -182,21 +184,73 @@ The first tier is mostly weaker Megas, so having a Mega around Whitney/Morty add
 without breaking the level-cap curve. Medicham (Pure Power) and Kangaskhan (Parental Bond)
 are held back to badge 6 on purpose.
 
-Boss Megas so far: Lance (Gyarados), Lance rematch (Salamence), Lance postgame (Charizard X),
-Red and Red postgame (Charizard Y). Each one uses a stone the player can buy before that fight.
+Boss Megas: Chuck (Heracross), Jasmine (Steelix), Pryce (Abomasnow), Clair (Altaria), Archer
+(Houndoom), the rival on Victory Road (Tyranitar), Will (Alakazam), Koga (Beedrill), Bruno
+(Lucario), Karen (Absol), Lance (Gyarados); Brock (Aerodactyl), Misty (Blastoise), Lt. Surge
+(Manectric), Erika (Venusaur), Janine (Gengar), Sabrina (Metagross), Blaine (Camerupt), Blue
+(Pidgeot), Red (Charizard Y); from Heart & Soul's rematch teams, Lance's rematch (Salamence)
+and postgame battle (Charizard X). Steelixite and Abomasite come with the 6th badge, so Jasmine
+or Pryce as the 5th Gym uses a stone the player can't buy yet; the others are on sale by then.
 
-## Planned Gym designs (Milestones 2–3)
+## Boss roster
 
-Every leader keeps a recognisable signature Pokémon. These designs are drafts until they are
-implemented and play-tested.
+Every boss from `tools/crystal_imperium/boss_teams.py` (the file has the natures, abilities and
+moves). Each team's last Pokémon is its ace, kept back until the others are down. Healing items:
+Super Potions for Proton in Slowpoke Well and the rival in Azalea and at the Burned Tower, two
+Hyper Potions for Morty and the 5th-Gym versions, two Full Restores for everyone after that
+except the Kimono Girls, who carry none. The rival's team follows the player's starter choice;
+the Cyndaquil versions are shown.
 
-| # | Leader | Signature | Strategy idea |
-|---|---|---|---|
-| 2 | Bugsy | Scyther | **Done**: see above |
-| 3 | Whitney | Miltank | **Done**: see above |
-| 4 | Morty | Gengar (Haunter at cap) | Hypnosis + Hex, Curse/Destiny Bond, Ghost immunity pivots |
-| 5 | Chuck | Poliwrath | Bulk Up, Mach Punch priority, Intimidate and Guts users |
-| 6 | Jasmine | Steelix | Stealth Rock, Sturdy, Magnemite Electric coverage |
-| 7 | Pryce | Piloswine / Mamoswine | Hail team, Slush Rush, Ice Shard priority |
-| 8 | Clair | Kingdra | Rain Swift Swim Kingdra, Dragon Dance, Dragonite/Dudunsparce bulk |
-| 9–16 | Kanto leaders | Raichu, Alakazam, Vileplume, Crobat, Starmie, Onix/Steelix, Arcanine, Blue's mixed team | Themes per the project brief, with weather/terrain cores where they fit |
+| Boss | Levels | Team (held item) |
+|---|---|---|
+| Proton (Slowpoke Well) | 13–15 | Koffing (Eviolite), Slowpoke (Eviolite), Houndour (Charcoal) |
+| Rival 2 (Azalea; Cyndaquil version shown) | 17–19 | Golbat (Eviolite), Larvitar (Eviolite), Sneasel (Oran Berry), Quilava (Sitrus Berry) |
+| Rival 3 (Burned Tower) | 22–24 | Golbat (Eviolite), Sneasel (Razor Claw), Weepinbell (Eviolite), Larvitar (Eviolite), Quilava (Sitrus Berry) |
+| Morty | 23–25 | Sableye (Sitrus Berry), Misdreavus (Eviolite), Drifblim (Sitrus Berry), Marowak Alola (Thick Club), Gengar (Spell Tag) |
+| Chuck (as 5th Gym) | 29–31 | Hitmontop (Sitrus Berry), Breloom (Focus Sash), Primeape (Eviolite), Poliwrath (Leftovers), Heracross (Heracronite) |
+| Chuck (as 6th Gym) | 34–36 | Hitmontop (Sitrus Berry), Breloom (Focus Sash), Hawlucha (White Herb), Primeape (Eviolite), Poliwrath (Leftovers), Heracross (Heracronite) |
+| Chuck (as 7th Gym) | 36–38 | Hitmontop (Sitrus Berry), Breloom (Focus Sash), Hawlucha (White Herb), Primeape (Eviolite), Poliwrath (Leftovers), Heracross (Heracronite) |
+| Jasmine (as 5th Gym) | 29–31 | Skarmory (Rocky Helmet), Magneton (Eviolite), Mawile (Sitrus Berry), Scizor (Metal Coat), Steelix (Steelixite) |
+| Jasmine (as 6th Gym) | 34–36 | Skarmory (Rocky Helmet), Magneton (Eviolite), Bronzong (Leftovers), Mawile (Sitrus Berry), Scizor (Metal Coat), Steelix (Steelixite) |
+| Jasmine (as 7th Gym) | 36–38 | Skarmory (Rocky Helmet), Magneton (Eviolite), Bronzong (Leftovers), Mawile (Sitrus Berry), Scizor (Metal Coat), Steelix (Steelixite) |
+| Pryce (as 5th Gym) | 29–31 | Cloyster (Focus Sash), Jynx (Wise Glasses), Weavile (Razor Claw), Mamoswine (Never Melt Ice), Abomasnow (Abomasite) |
+| Pryce (as 6th Gym) | 34–36 | Cloyster (Focus Sash), Dewgong (Leftovers), Jynx (Wise Glasses), Weavile (Razor Claw), Mamoswine (Never Melt Ice), Abomasnow (Abomasite) |
+| Pryce (as 7th Gym) | 36–38 | Cloyster (Focus Sash), Dewgong (Leftovers), Jynx (Wise Glasses), Weavile (Razor Claw), Mamoswine (Never Melt Ice), Abomasnow (Abomasite) |
+| Petrel (Rocket Hideout) | 34–36 | Weezing (Black Sludge), Forretress (Leftovers), Pupitar (Eviolite), Drapion (Black Glasses) |
+| Ariana (Rocket Hideout) | 34–36 | Arbok (Black Sludge), Persian (Silk Scarf), Vileplume (Black Sludge), Honchkrow (Scope Lens) |
+| Proton (Radio Tower) | 42–44 | Muk (Black Sludge), Nidoqueen (Life Orb), Weezing (Rocky Helmet), Nidoking (Life Orb), Rhydon (Eviolite) |
+| Petrel (Radio Tower) | 43–44 | Forretress (Leftovers), Weezing Galar (Black Sludge), Pupitar (Eviolite), Cloyster (Focus Sash), Drapion (Black Glasses) |
+| Ariana (Radio Tower) | 43–44 | Arbok (Black Sludge), Persian (Silk Scarf), Vileplume (Black Sludge), Gyarados (Sitrus Berry), Honchkrow (Scope Lens) |
+| Archer (Radio Tower) | 43–45 | Porygon Z (Choice Specs), Tauros (Life Orb), Crawdaunt (Life Orb), Slowbro (Leftovers), Bisharp (Black Glasses), Houndoom (Houndoominite) |
+| Rival 4 (Goldenrod Underground) | 43–45 | Crobat (Sharp Beak), Weavile (Life Orb), Victreebel (Black Sludge), Pupitar (Eviolite), Typhlosion (Choice Scarf) |
+| Clair | 43–45 | Druddigon (Rocky Helmet), Flygon (Choice Scarf), Dragalge (Black Sludge), Altaria (Altarianite), Kommo O (Life Orb), Kingdra (Wacan Berry) |
+| Rival 5 (Victory Road) | 54–56 | Crobat (Sharp Beak), Weavile (Life Orb), Victreebel (Black Sludge), Ursaring (Flame Orb), Tyranitar (Tyranitarite), Typhlosion (Choice Scarf) |
+| Zuki | 54 | Umbreon (Leftovers) |
+| Naoko | 54 | Espeon (Life Orb) |
+| Miki | 55 | Flareon (Toxic Orb) |
+| Sayo | 55 | Jolteon (Choice Specs) |
+| Kuni | 56 | Vaporeon (Leftovers) |
+| Will | 54–55 | Xatu (Light Clay), Slowbro (Leftovers), Bronzong (Leftovers), Farigiraf (Sitrus Berry), Gardevoir (Choice Scarf), Alakazam (Alakazite) |
+| Koga | 54–55 | Toxapex (Black Sludge), Muk Alola (Black Sludge), Toxicroak (Life Orb), Venomoth (Focus Sash), Beedrill (Beedrillite), Crobat (Sharp Beak) |
+| Bruno | 55–56 | Hitmontop (Rocky Helmet), Steelix (Leftovers), Hitmonlee (Life Orb), Hitmonchan (Punching Glove), Machamp (Sitrus Berry), Lucario (Lucarionite) |
+| Karen | 55–56 | Umbreon (Leftovers), Vileplume (Black Sludge), Gengar (Life Orb), Honchkrow (Scope Lens), Absol (Absolite), Houndoom (Black Glasses) |
+| Lance | 55–56 | Gyarados (Gyaradosite), Aerodactyl (Focus Sash), Charizard (Charcoal), Salamence (Life Orb), Garchomp (Rocky Helmet), Dragonite (Lum Berry) |
+| Brock | 68–70 | Golem (Leftovers), Omastar (White Herb), Kabutops (Life Orb), Relicanth (Choice Band), Kleavor (Focus Sash), Aerodactyl (Aerodactylite) |
+| Misty | 68–70 | Pelipper (Damp Rock), Golduck (Life Orb), Lapras (Leftovers), Milotic (Leftovers), Blastoise (Blastoisinite), Starmie (Wise Glasses) |
+| Lt. Surge | 68–70 | Electrode (Focus Sash), Magnezone (Choice Specs), Lanturn (Leftovers), Electivire (Life Orb), Manectric (Manectite), Raichu (Magnet) |
+| Erika | 68–70 | Jumpluff (Leftovers), Roserade (Life Orb), Tangrowth (Rocky Helmet), Victreebel (Black Sludge), Bellossom (Sitrus Berry), Venusaur (Venusaurite) |
+| Janine | 68–70 | Weezing (Black Sludge), Nidoqueen (Life Orb), Muk (Leftovers), Crobat (Sharp Beak), Venomoth (Focus Sash), Gengar (Gengarite) |
+| Sabrina | 68–70 | Mr Mime (Light Clay), Wobbuffet (Sitrus Berry), Slowbro (Leftovers), Espeon (Life Orb), Alakazam (Twisted Spoon), Metagross (Metagrossite) |
+| Blaine | 68–70 | Torkoal (Heat Rock), Rapidash (Life Orb), Magmortar (Expert Belt), Volcarona (Charcoal), Arcanine Hisui (Choice Band), Camerupt (Cameruptite) |
+| Blue | 69–70 | Machamp (Sitrus Berry), Exeggutor (Sitrus Berry), Rhyperior (Weakness Policy), Arcanine (Choice Band), Tyranitar (Leftovers), Pidgeot (Pidgeotite) |
+| Red | 86–90 | Pikachu (Light Ball), Espeon (Life Orb), Snorlax (Leftovers), Venusaur (Black Sludge), Blastoise (Leftovers), Charizard (Charizardite Y) |
+
+### Notes from the play tests
+
+- **Lance** first had three Dragon Dance users (Mega Gyarados, Salamence, Dragonite). The
+  all-round prepared six (no held items, one move per Pokémon, never switching) lost all six
+  tries even after the change to one, while a six built for him (Electric, Fairy and Ice
+  attackers) wins about one in three. He is the wall of the Johto League on purpose: bring
+  counters to Dragons and Mega Gyarados.
+- **Kanto** is level 70 everywhere, so the leaders can be taken in any order. In one try each
+  at the cap, the prepared six beat Lt. Surge, Erika and Sabrina and lost to the others.

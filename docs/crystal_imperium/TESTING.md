@@ -4,14 +4,15 @@
 
 | Check | Command | What it proves |
 |---|---|---|
-| Data validation | `python3 tools/crystal_imperium/validate.py --check` | Trainer abilities are legal for their species; Gym aces match the level caps; reworked bosses have 4 moves and explicit levels. Reports evolution-family availability. Identifier typos are rejected at build time by trainerproc and the compiler. |
+| Data validation | `python3 tools/crystal_imperium/validate.py --check` | Trainer abilities are legal for their species; Gym aces match the level caps; reworked bosses have 4 moves their species can learn and explicit levels. Reports evolution-family availability. Identifier typos are rejected at build time by trainerproc and the compiler. |
+| Generated data is current | `boss_teams.py --check`, `tm_list.py --check` (in `tools/crystal_imperium/`) | The boss parties, the TM list, the TM item data and the shop lists match their sources. |
 | ROM build | `make hns` | Compiles and links within ROM/EWRAM/IWRAM limits; gbafix writes a valid header. |
 | Play tests on mGBA | `tools/emurun/run_all.sh` | Real gameplay in libmgba from power-on: see below. |
 | Play tests on VBA-M (Delta's core) | `EMURUN_CORE=... tools/emurun/run_all.sh vbam` | The same tests on VBA-M at the commit Delta's GBA core pins. `tools/emurun/build_vbam_core.sh` builds the core. |
 | Patches | `tools/crystal_imperium/make_patches.sh` | The BPS patch rebuilds the ROM byte for byte from the HnS 2.0.6 ROM. |
 | Save compatibility | `tools/emurun/old_save_test.sh` (`EMURUN_EMULATOR=vbam` for VBA-M) | A save made with Heart & Soul 2.0.6 continues in Crystal Imperium. |
 
-CI (`.github/workflows/crystal_imperium.yml`) runs the validation, the build and the mGBA tests in
+CI (`.github/workflows/crystal_imperium.yml`) runs the validation and generator checks, the build and the mGBA tests in
 one job, and the build plus the VBA-M tests in a second job, on pushes to Crystal Imperium
 branches.
 
@@ -56,11 +57,15 @@ that each test requires to be inside its accepted range.
 | `whitney` | Whitney leads Clefairy; naive team wins some, not all, of 12 sampled battles | **PASS** (wins_vs_406 3/12) | **PASS** (wins_vs_406 5/12) |
 | `wild_variety` | Route 29 at 30%: other Gen 1–9 Pokémon appear; OFF: none | **PASS** (variety_30 4/12, variety_off 0/12) | **PASS** (variety_30 3/12, variety_off 0/12) |
 
-Save compatibility (`old_save_test.sh`), same ROM, on mGBA and on VBA-M: **PASS** on both.
-- A Heart & Soul 2.0.6 save (new game, one Pokémon, saved) continues in Crystal Imperium.
+Save compatibility (`old_save_test.sh`), same ROM, on mGBA and on VBA-M: OLDSAVE_RESULT.
+- A Heart & Soul 2.0.6 save (new game, one Pokémon, TM70, TM03 and HM01 from the debug menu,
+  saved) continues in Crystal Imperium.
 - The party is kept.
 - The five key items and the DexNav are given.
 - DexNav search levels read 0.
+- The TMs keep their moves under the new numbering: TM70 Rock Climb is TM192 and TM03 Water
+  Pulse is TM160 in the TM case (not TM70 Triple Axel or TM03 Flip Turn), HM01 is kept, and the
+  old SaveBlock1 slots are cleared.
 - DexNav opens.
 
 The BPS patch applied to the HnS 2.0.6 ROM gives this ROM byte for byte (`make_patches.sh`).
@@ -114,11 +119,16 @@ Status: ☐ not yet tested · ☑ tested and passed · ☒ tested and failed
 - ☑ New Bark Town → Route 29, first wild battle with the starter (`story_opening`)
 - ☐ Cherrygrove, Mr. Pokémon, the rival battle, Violet City, played through normally
 - ☑ Falkner, Bugsy and Whitney battles (debug-started, real AI and party data)
-- ☐ Badges 4–8 (Morty … Clair)
+- ☑ Every other reworked boss battle, Morty to Red (debug-started, real AI and party data:
+  `bosses_m3`, `bosses_m4`, `bosses_m5`)
+- ☐ Badges 4–8 (Morty … Clair), reached in the story
 - ☐ Team Rocket radio tower, Kimono Girls, Lugia/Ho-Oh events
-- ☐ Elite Four and Lance
-- ☐ Kanto access (S.S. Aqua), Kanto badges 1–8
-- ☐ Mt. Silver and Red
+- ☐ Elite Four and Lance, reached in the story
+- ☐ Kanto access (S.S. Aqua), Kanto badges 1–8, reached in the story
+- ☐ Mt. Silver and Red, reached in the story
+- ☑ TMs: teaching a TM past TM100, the full TM case through a save, the 5F shop tiers
+  (`tm_case`, `tm_shop`, `tm_reusable`)
+- ☑ HMs without teaching: Cut, Fly and Surf with a Pokémon that can't learn them (`hm_field_moves`)
 - ☑ Save / reset / Continue (mGBA, VBA-M)
 - ☐ Save survives a full-story playthrough across major map transitions
 - ☐ Credits / Hall of Fame

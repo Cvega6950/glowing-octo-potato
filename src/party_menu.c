@@ -2952,7 +2952,10 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
                 }
             }
         }
-        if (CheckBagHasItem(ITEM_HM02, 1) && numFieldMoves < maxFieldMoves && !hasFlyAlready)
+        // Crystal Imperium: the overwrite is always on (HMsOverwriteOptionActive), so a lead that
+        // could learn Fly keeps the entry it had in Heart & Soul without HM02.
+        if ((CheckBagHasItem(ITEM_HM02, 1) || CanLearnTeachableMove(GetMonData(&mons[slotId], MON_DATA_SPECIES), MOVE_FLY))
+         && numFieldMoves < maxFieldMoves && !hasFlyAlready)
         {
             AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, FIELD_MOVE_FLY + MENU_FIELD_MOVES);
             numFieldMoves++;

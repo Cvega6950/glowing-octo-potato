@@ -293,7 +293,7 @@ SlateportCity_BattleTentLobby_hns_Text_CouldntFindMonForMe:
 	.string "Just, you know, take this!$"
 
 SlateportCity_BattleTentLobby_hns_Text_ExplainTorment:
-	.string "That's, like, TM41, you know?\n"
+	.string "That's, like, TM179, you know?\n"
 	.string "Hey, it's TORMENT, you hearing me?\p"
 	.string "Like, it won't let the other guy\n"
 	.string "use the same move twice in a row, see?\p"

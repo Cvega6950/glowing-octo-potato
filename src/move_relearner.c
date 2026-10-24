@@ -531,7 +531,9 @@ static void RemoveRelearnerTMFromBag(enum Move move)
 {
     enum Item item = GetTMHMItemIdFromMoveId(move);
 
-    if (!I_REUSABLE_TMS && !P_ENABLE_ALL_TM_MOVES
+    // Crystal Imperium: GetItemImportance also covers Heart & Soul's REUSABLE TMS option, as when
+    // a TM is used from the bag (Task_LearnedMove)
+    if (!I_REUSABLE_TMS && !P_ENABLE_ALL_TM_MOVES && !GetItemImportance(item)
      && gMoveRelearnerState == MOVE_RELEARNER_TM_MOVES && GetItemTMHMIndex(item) <= NUM_TECHNICAL_MACHINES)
     {
         RemoveBagItem(item, 1);

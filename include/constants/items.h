@@ -822,20 +822,6 @@ enum __attribute__((packed)) Item
     ITEM_HM08 = 689,
 
 
-    /* Expands to:
-     *   ITEM_TM_FOCUS_PUNCH = ITEM_TM01,
-     *   ...
-     *   ITEM_HM_CUT = ITM_HM01,
-     *   ... */
-    #define ENUM_TM(n, id) CAT(ITEM_TM_, id) = CAT(ITEM_TM, n),
-    #define ENUM_HM(n, id) CAT(ITEM_HM_, id) = CAT(ITEM_HM, n),
-    #define TO_TMHM_NUMS(a, ...) (__VA_ARGS__)
-    RECURSIVELY(R_ZIP(ENUM_TM, TO_TMHM_NUMS NUMBERS_256, (FOREACH_TM(APPEND_COMMA))))
-    RECURSIVELY(R_ZIP(ENUM_HM, TO_TMHM_NUMS NUMBERS_256, (FOREACH_HM(APPEND_COMMA))))
-    #undef ENUM_TM
-    #undef ENUM_HM
-    #undef TO_TMHM_NUMS
-
     // Charms
     ITEM_OVAL_CHARM = 690,
     ITEM_SHINY_CHARM = 691,
@@ -1083,8 +1069,131 @@ enum __attribute__((packed)) Item
     ITEM_TRAINING_KIT, // Crystal Imperium
     ITEM_POKE_VIAL, // Crystal Imperium
 
+    // Crystal Imperium: TMs past TM100, for Emerald Imperium's TM list (tools/crystal_imperium/tm_list.py).
+    // They come after every older item, so item ids in older saves keep their meaning.
+    ITEM_TM101,
+    ITEM_TM102,
+    ITEM_TM103,
+    ITEM_TM104,
+    ITEM_TM105,
+    ITEM_TM106,
+    ITEM_TM107,
+    ITEM_TM108,
+    ITEM_TM109,
+    ITEM_TM110,
+    ITEM_TM111,
+    ITEM_TM112,
+    ITEM_TM113,
+    ITEM_TM114,
+    ITEM_TM115,
+    ITEM_TM116,
+    ITEM_TM117,
+    ITEM_TM118,
+    ITEM_TM119,
+    ITEM_TM120,
+    ITEM_TM121,
+    ITEM_TM122,
+    ITEM_TM123,
+    ITEM_TM124,
+    ITEM_TM125,
+    ITEM_TM126,
+    ITEM_TM127,
+    ITEM_TM128,
+    ITEM_TM129,
+    ITEM_TM130,
+    ITEM_TM131,
+    ITEM_TM132,
+    ITEM_TM133,
+    ITEM_TM134,
+    ITEM_TM135,
+    ITEM_TM136,
+    ITEM_TM137,
+    ITEM_TM138,
+    ITEM_TM139,
+    ITEM_TM140,
+    ITEM_TM141,
+    ITEM_TM142,
+    ITEM_TM143,
+    ITEM_TM144,
+    ITEM_TM145,
+    ITEM_TM146,
+    ITEM_TM147,
+    ITEM_TM148,
+    ITEM_TM149,
+    ITEM_TM150,
+    ITEM_TM151,
+    ITEM_TM152,
+    ITEM_TM153,
+    ITEM_TM154,
+    ITEM_TM155,
+    ITEM_TM156,
+    ITEM_TM157,
+    ITEM_TM158,
+    ITEM_TM159,
+    ITEM_TM160,
+    ITEM_TM161,
+    ITEM_TM162,
+    ITEM_TM163,
+    ITEM_TM164,
+    ITEM_TM165,
+    ITEM_TM166,
+    ITEM_TM167,
+    ITEM_TM168,
+    ITEM_TM169,
+    ITEM_TM170,
+    ITEM_TM171,
+    ITEM_TM172,
+    ITEM_TM173,
+    ITEM_TM174,
+    ITEM_TM175,
+    ITEM_TM176,
+    ITEM_TM177,
+    ITEM_TM178,
+    ITEM_TM179,
+    ITEM_TM180,
+    ITEM_TM181,
+    ITEM_TM182,
+    ITEM_TM183,
+    ITEM_TM184,
+    ITEM_TM185,
+    ITEM_TM186,
+    ITEM_TM187,
+    ITEM_TM188,
+    ITEM_TM189,
+    ITEM_TM190,
+    ITEM_TM191,
+    ITEM_TM192,
+    ITEM_TM193,
+    ITEM_TM194,
+    ITEM_TM195,
+    ITEM_TM196,
+    ITEM_TM197,
+    ITEM_TM198,
+
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,
+
+    // Crystal Imperium: the aliases come last, after ITEM_TM101+ are declared. Each has an explicit
+    // value, so they don't shift the enumerators above.
+    /* Expands to:
+     *   ITEM_TM_FOCUS_PUNCH = ITEM_TM01,
+     *   ...
+     *   ITEM_HM_CUT = ITM_HM01,
+     *   ... */
+    #define ENUM_TM(n, id) CAT(ITEM_TM_, id) = CAT(ITEM_TM, n),
+    #define ENUM_HM(n, id) CAT(ITEM_HM_, id) = CAT(ITEM_HM, n),
+    #define TO_TMHM_NUMS(a, ...) (__VA_ARGS__)
+    RECURSIVELY(R_ZIP(ENUM_TM, TO_TMHM_NUMS NUMBERS_256, (FOREACH_TM(APPEND_COMMA))))
+    RECURSIVELY(R_ZIP(ENUM_HM, TO_TMHM_NUMS NUMBERS_256, (FOREACH_HM(APPEND_COMMA))))
+    #undef ENUM_TM
+    #undef ENUM_HM
+    #undef TO_TMHM_NUMS
+#if IS_HNS
+    // Crystal Imperium: Heart & Soul has no HM Dive, but the unused Hoenn script for Steven's house
+    // still names it. It used to link against a stray definition from the vanilla HM list (Dive is
+    // HM08 there), so it keeps that value.
+    ITEM_HM_DIVE = ITEM_HM08,
+#endif
 };
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

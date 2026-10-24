@@ -2434,15 +2434,12 @@ void Script_OpenChallengeMenu(struct ScriptContext *ctx)
     SetMainCallback2(CB2_InitChallengeMenu);
 }
 
+// Crystal Imperium: always on. Carrying an HM is enough for any Pokemon in the party to use its
+// field move, so HMs never have to be taught (the story's badge checks still apply). Heart & Soul
+// only allowed this in challenge runs (Nuzlocke, Mirror, random moves, party limit, one type).
 bool32 HMsOverwriteOptionActive(void)
 {
-    struct ChallengeSettings *cs = &gSaveBlock3Ptr->challengeSettings;
-    return (cs->tx_Challenges_Nuzlocke
-            || cs->tx_Nuzlocke_EasyMode
-            || cs->tx_Challenges_Mirror
-            || cs->tx_Random_Moves
-            || cs->tx_Challenges_PartyLimit != 0
-            || cs->tx_Challenges_OneTypeChallenge != ONE_TYPE_OFF);
+    return TRUE;
 }
 
 u8 GetMaxPartySize(void)

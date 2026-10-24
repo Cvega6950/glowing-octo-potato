@@ -278,14 +278,14 @@ GoldenrodCity_GameCorner_PrizeRoom_EventScript_TMRest::
 
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_TMSwordsDance::
 	setvar VAR_TEMP_1, 4
-	bufferitemname STR_VAR_1, ITEM_TM75
-	setvar VAR_0x8004, ITEM_TM75
+	bufferitemname STR_VAR_1, ITEM_TM_SWORDS_DANCE
+	setvar VAR_0x8004, ITEM_TM_SWORDS_DANCE
 	goto GoldenrodCity_GameCorner_PrizeRoom_EventScript_ConfirmTMPrize
 
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_TMSubstitute::
 	setvar VAR_TEMP_1, 5
-	bufferitemname STR_VAR_1, ITEM_TM90
-	setvar VAR_0x8004, ITEM_TM90
+	bufferitemname STR_VAR_1, ITEM_TM_SUBSTITUTE
+	setvar VAR_0x8004, ITEM_TM_SUBSTITUTE
 	goto GoldenrodCity_GameCorner_PrizeRoom_EventScript_ConfirmTMPrize
 
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_ConfirmTMPrize::
@@ -367,10 +367,10 @@ GoldenrodCity_GameCorner_PrizeRoom_EventScript_BuyTMRestInfinite::
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_BuyTMSwordsDanceInfinite::
 	checkcoins VAR_TEMP_2
 	goto_if_lt VAR_TEMP_2, TM_SWORDS_DANCE_COINS, GoldenrodCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoinsForTM
-	checkitem ITEM_TM75, 1
+	checkitem ITEM_TM_SWORDS_DANCE, 1
 	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_GameCorner_PrizeRoom_EventScript_YouAlreadyHaveThis
 	removecoins TM_SWORDS_DANCE_COINS
-	additem ITEM_TM75
+	additem ITEM_TM_SWORDS_DANCE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox GoldenrodCity_GameCorner_Text_PrizeVendorHereYouGo, MSGBOX_DEFAULT
@@ -380,10 +380,10 @@ GoldenrodCity_GameCorner_PrizeRoom_EventScript_BuyTMSwordsDanceInfinite::
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_BuyTMSubstituteInfinite::
 	checkcoins VAR_TEMP_2
 	goto_if_lt VAR_TEMP_2, TM_SUBSTITUTE_COINS, GoldenrodCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoinsForTM
-	checkitem ITEM_TM90, 1
+	checkitem ITEM_TM_SUBSTITUTE, 1
 	goto_if_eq VAR_RESULT, TRUE, GoldenrodCity_GameCorner_PrizeRoom_EventScript_YouAlreadyHaveThis
 	removecoins TM_SUBSTITUTE_COINS
-	additem ITEM_TM90
+	additem ITEM_TM_SUBSTITUTE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox GoldenrodCity_GameCorner_Text_PrizeVendorHereYouGo, MSGBOX_DEFAULT
@@ -445,10 +445,10 @@ GoldenrodCity_GameCorner_PrizeRoom_EventScript_BuyTMRest::
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_BuyTMSwordsDance::
 	checkcoins VAR_TEMP_2
 	goto_if_lt VAR_TEMP_2, TM_SWORDS_DANCE_COINS, GoldenrodCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoinsForTM
-	checkitemspace ITEM_TM75
+	checkitemspace ITEM_TM_SWORDS_DANCE
 	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_GameCorner_PrizeRoom_EventScript_NoRoomForTM
 	removecoins TM_SWORDS_DANCE_COINS
-	additem ITEM_TM75
+	additem ITEM_TM_SWORDS_DANCE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox GoldenrodCity_GameCorner_Text_PrizeVendorHereYouGo, MSGBOX_DEFAULT
@@ -458,10 +458,10 @@ GoldenrodCity_GameCorner_PrizeRoom_EventScript_BuyTMSwordsDance::
 GoldenrodCity_GameCorner_PrizeRoom_EventScript_BuyTMSubstitute::
 	checkcoins VAR_TEMP_2
 	goto_if_lt VAR_TEMP_2, TM_SUBSTITUTE_COINS, GoldenrodCity_GameCorner_PrizeRoom_EventScript_NotEnoughCoinsForTM
-	checkitemspace ITEM_TM90
+	checkitemspace ITEM_TM_SUBSTITUTE
 	goto_if_eq VAR_RESULT, FALSE, GoldenrodCity_GameCorner_PrizeRoom_EventScript_NoRoomForTM
 	removecoins TM_SUBSTITUTE_COINS
-	additem ITEM_TM90
+	additem ITEM_TM_SUBSTITUTE
 	updatecoinsbox 1, 1
 	playse SE_SHOP
 	msgbox GoldenrodCity_GameCorner_Text_PrizeVendorHereYouGo, MSGBOX_DEFAULT

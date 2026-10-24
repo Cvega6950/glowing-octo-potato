@@ -1,5 +1,55 @@
 # Crystal Imperium changelog
 
+## 0.5.0-experimental (2026-10-24)
+
+### Gameplay
+- **Smarter trainers:** on NORMAL and HARD every trainer uses the smart AI (it knows your
+  team, picks the best move, switches smartly and plays around HP). EASY keeps the old AI.
+- **Imperium-style bosses for the whole story:** Proton, Petrel, Ariana and Archer; every rival
+  battle from Azalea to Victory Road; Morty, Chuck, Jasmine, Pryce (all three versions each)
+  and Clair; the Kimono Girls; the Elite Four and Lance; the eight Kanto leaders, Blue and Red.
+  Aces at the level cap (70 in Kanto; Red's is 90), full held items, natures, abilities and
+  competitive moves. Every Gym Leader from the 5th Gym on, Archer, the rival on Victory Road,
+  the Elite Four, Lance, Blue and Red Mega Evolve (Heracross, Steelix, Abomasnow, Altaria,
+  Houndoom, Tyranitar, Alakazam, Beedrill, Lucario, Absol, Gyarados, Aerodactyl, Blastoise,
+  Manectric, Venusaur, Gengar, Metagross, Camerupt, Pidgeot, Charizard Y).
+- **Emerald Imperium's TMs:** 198 TMs. TM01–TM172 are Emerald Imperium's list in its order
+  (all but its two custom moves, Dark Hole and Draco Barrage), TM173–TM198 the Heart & Soul
+  TMs Imperium lacks. 28 TMs have a new number (TM03 Water Pulse is TM160, TM41 Torment TM179,
+  TM70 Rock Climb TM192, TM92 Trick Room TM106, ...); the rest keep theirs.
+  - The TM case holds all 198 TMs and 8 HMs, and each TM's description is its move's.
+  - The Goldenrod Dept. Store 5F sells every TM: 71 from the start (including Heart & Soul's
+    own stock, now cheaper), 155 from 3 badges, 178 from 6, all 198 from 8.
+- **HMs without teaching:** carrying an HM, with its badge, is enough for any Pokémon in the
+  party to use the field move (Cut, Surf, Strength, Rock Smash, Waterfall, Fly and Flash from
+  the lead's party menu). Before, the Pokémon had to be able to learn the move.
+- The Mega Stone shop's 6-badge tier counts badges (it unlocked with Jasmine's badge).
+- Falkner's Rookidee knows Rock Smash instead of Steel Wing, which it can't learn.
+
+### Fixes
+- Teaching a move from the party menu's relearner (LEARN MOVES > TM MOVES) used up the TM even
+  with REUSABLE TMS on.
+
+### Save compatibility
+- The TM case moved from SaveBlock1 to EWRAM, saved as counts in SaveBlock3. Saves from Heart &
+  Soul 2.0.6 and earlier Crystal Imperium builds load: their TMs keep their moves (Heart &
+  Soul's TM70 Rock Climb becomes TM192), including TMs in the item PC and held TMs.
+
+### Tooling
+- `tools/crystal_imperium/boss_teams.py` holds the boss teams; `validate.py` checks their
+  moves are learnable and their aces sit at the cap, and resolves abilities given by macros.
+- `tools/crystal_imperium/tm_list.py` holds the TM list and writes the TM constants, the item
+  data (with descriptions wrapped to the bag box by glyph width), the shop lists and the old
+  numbering for save conversion.
+- Harness: Pokémon (Complex) from the debug menu, a prepared team for winnability checks,
+  battles by trainer constant, `expectseen` for Mega forms; the autopilot skips moves with no
+  PP. `set_var`, `fill_tm_case`, `save_and_continue`; bag checks read the TM case in EWRAM.
+- New tests: `bosses_m3`, `bosses_m4`, `bosses_m5`, `tm_case`, `tm_shop`, `hm_field_moves`.
+  `tm_reusable` also teaches through the relearner; `old_save_test.sh` now saves Heart & Soul
+  TMs and checks their conversion.
+- `data/battle_anim_scripts.s` read the vanilla TM list (`IS_HNS` was undefined there), which
+  only mattered once the TM list changed; `constants/tms_hms.h` now defines it for every user.
+
 ## 0.4.1-experimental (2026-10-24)
 
 ### Gameplay

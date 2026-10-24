@@ -134,7 +134,7 @@ ViridianCity_Text_DreamEaterFisher:
 	.string "this TM.$"
 
 ViridianCity_Text_DreamEaterFisher_GotDreamEater:
-	.string "TM42 contains DREAM EATER…\p"
+	.string "TM197 contains DREAM EATER…\p"
 	.string "…Zzzzz…$"
 
 ViridianCity_Text_Youngster:

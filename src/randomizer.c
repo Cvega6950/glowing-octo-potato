@@ -456,7 +456,7 @@ static inline bool32 IsItemTMHM(u16 itemId)
 
 static inline bool32 IsItemHM(u16 itemId)
 {
-    return itemId >= ITEM_HM01 && IsItemTMHM(itemId);
+    return IsItemTMHM(itemId) && GetItemTMHMIndex(itemId) > NUM_TECHNICAL_MACHINES;
 }
 
 static inline bool32 IsKeyItem(u16 itemId)
@@ -490,7 +490,7 @@ u16 RandomizeFoundItem(u16 itemId, u8 mapNum, u8 mapGroup, u8 localId)
     state = RandomizerRandSeed(RANDOMIZER_REASON_FIELD_ITEM, mapSeed, itemId);
 
     if (IsItemTMHM(itemId))
-        return RandomizerNextRange(&state, RANDOMIZER_MAX_TM - ITEM_TM01 + 1) + ITEM_TM01;
+        return GetTMHMItemId(RandomizerNextRange(&state, NUM_TECHNICAL_MACHINES) + 1); // Crystal Imperium: TM101+ come after ITEM_HM08
 
     do {
         result = sRandomizerItemWhitelist[RandomizerNextRange(&state, ITEM_WHITELIST_SIZE)];
