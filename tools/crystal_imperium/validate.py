@@ -16,6 +16,9 @@ trainerproc and the C compiler; this script adds the semantic checks:
     the player challenges them, and the cap after a badge must match the next
     leader's ace (src/caps.c)
   * boss trainers must define four moves for every Pokemon
+  * reworked bosses (tools/crystal_imperium/boss_teams.py) may only use moves their species or a
+    pre-evolution can learn in some game (src/data/pokemon/all_learnables.json), and every
+    version of a Gym Leader keeps its ace at the cap for the badges the player can have
   * every evolution family should be obtainable (reported, not fatal: the
     Gen 4-9 roll-out is ongoing work)
 """
@@ -50,8 +53,20 @@ BOSS_PATTERNS = [
     r"TRAINER_RIVAL_\w+",
     r"TRAINER_LI_HNS",
 ]
-# Bosses already reworked for Crystal Imperium; the four-move rule is enforced only for these
+# Bosses already reworked for Crystal Imperium; the four-move and learnable-move rules are enforced
+# only for these (the later bosses come from boss_teams.py)
 REWORKED = {"TRAINER_FALKNER_1_HNS", "TRAINER_LI_HNS", "TRAINER_BUGSY_1_HNS", "TRAINER_WHITNEY_1_HNS"}
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import boss_teams  # noqa: E402
+REWORKED |= set(boss_teams.TEAMS)
+
+# Gym Leader versions HnS picks by badge count: Chuck, Jasmine and Pryce can be the 5th, 6th or
+# 7th Gym (_1, _1_2, _1_3), so each version's ace must match the cap for 4, 5 or 6 badges
+GYM_VERSIONS = {"TRAINER_" + leader + suffix: badges
+                for leader in ("CHUCK", "JASMINE", "PRYCE")
+                for suffix, badges in (("_1_HNS", 4), ("_1_2_HNS", 5), ("_1_3_HNS", 6))}
+GYM_VERSIONS.update({"TRAINER_FALKNER_1_HNS": 0, "TRAINER_BUGSY_1_HNS": 1, "TRAINER_WHITNEY_1_HNS": 2,
+                     "TRAINER_MORTY_1_HNS": 3, "TRAINER_CLAIR_1_HNS": 7})
 
 
 def read(path):
@@ -124,10 +139,17 @@ def parse_species():
     species = {}
     for path in sorted(glob.glob(os.path.join(ROOT, "src/data/pokemon/species_info/*.h"))):
         text = open(path, encoding="utf-8").read()
+        # Abilities given by a macro (e.g. GENGAR_ABILITIES), with every #if branch's list
+        ability_macros = defaultdict(list)
+        for macro, abl in re.findall(r"#define\s+(\w+_ABILITIES)\s*\{([^}]*)\}", text):
+            ability_macros[macro].append(abl)
         parts = re.split(r"(?m)^\s*\[(SPECIES_\w+)\]\s*=", text)
         for name, body in zip(parts[1::2], parts[2::2]):
             entry = species.setdefault(name, {"abilities": set(), "evolutions": []})
-            for abl in re.findall(r"\.abilities\s*=\s*\{([^}]*)\}", body):
+            lists = re.findall(r"\.abilities\s*=\s*\{([^}]*)\}", body)
+            for macro in re.findall(r"\.abilities\s*=\s*(\w+_ABILITIES)\b", body):
+                lists += ability_macros[macro]
+            for abl in lists:
                 entry["abilities"].update(a.strip() for a in abl.split(",") if a.strip() and a.strip() != "ABILITY_NONE")
             for evo in macro_arguments(body, ".evolutions", "EVOLUTION"):
                 entry["evolutions"] += re.findall(r"SPECIES_\w+", evo)
@@ -165,6 +187,23 @@ def parse_level_caps():
     text = read("src/caps.c")
     m = re.search(r"sLevelCapTable_Normal\[\]\s*=\s*\{(.*?)\};", text, re.S)
     return [int(v) for v in re.findall(r"\]\s*=\s*(\d+)", m.group(1))]
+
+
+def learnable_moves(species):
+    """SPECIES_X -> the MOVE_ constants it or a pre-evolution can learn in some game."""
+    data = json.loads(read("src/data/pokemon/all_learnables.json"))
+    parent = {}
+    for s, e in species.items():
+        for child in e["evolutions"]:
+            parent.setdefault(child, s)
+    def moves(sp):
+        out, seen = set(), set()
+        while sp and sp not in seen:
+            seen.add(sp)
+            out |= set(data.get(sp[len("SPECIES_"):], []))
+            sp = parent.get(sp)
+        return out
+    return moves
 
 
 def families(species):
@@ -222,6 +261,8 @@ def main():
     caps = parse_level_caps()
     encounters = parse_encounters()
 
+    learnable = learnable_moves(species)
+
     # Abilities and move counts
     for tid, t in trainers.items():
         boss = any(re.fullmatch(p, tid) for p in BOSS_PATTERNS)
@@ -237,6 +278,11 @@ def main():
                                   f"(has {', '.join(sorted(species[sp]['abilities']))})")
             if tid in REWORKED and len(mon["moves"]) != 4:
                 errors.append(f"{tid}: {mon['species']} has {len(mon['moves'])} moves; reworked bosses need 4")
+            if tid in REWORKED:
+                can = learnable(sp)
+                for move in mon["moves"]:
+                    if "MOVE_" + constify(move) not in can:
+                        errors.append(f"{tid}: {mon['species']} cannot learn {move}")
             if boss and "level" not in mon:
                 errors.append(f"{tid}: {mon['species']} has no Level (trainerproc defaults it)")
 
@@ -244,12 +290,16 @@ def main():
     for badge, (leader, tid) in enumerate(GYM_LEADERS):
         if tid not in trainers:
             errors.append(f"missing Gym Leader trainer {tid}")
+    for tid, badges in sorted(GYM_VERSIONS.items()):
+        if tid not in trainers:
+            errors.append(f"missing Gym Leader trainer {tid}")
             continue
         ace = max(m.get("level", 0) for m in trainers[tid]["mons"])
-        if ace > caps[badge]:
-            errors.append(f"{leader}: ace level {ace} exceeds the NORMAL level cap {caps[badge]} for {badge} badges")
-        elif ace < caps[badge]:
-            notes.append(f"{leader}: ace level {ace} is below the NORMAL cap {caps[badge]} (player can overlevel)")
+        if ace > caps[badges]:
+            errors.append(f"{tid}: ace level {ace} exceeds the NORMAL level cap {caps[badges]} for {badges} badges")
+        elif ace < caps[badges]:
+            (errors if tid in REWORKED else notes).append(
+                f"{tid}: ace level {ace} is below the NORMAL cap {caps[badges]} for {badges} badges")
 
     # Family availability
     fam = families(species)

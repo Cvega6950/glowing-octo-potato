@@ -53,7 +53,7 @@ AI: `Smart Trainer / Ace Pokemon / HP Aware`. All Pokémon have 31 IVs.
 | Pokémon | Item | Ability | Nature | Moves | Job |
 |---|---|---|---|---|---|
 | Pidgey Lv 9 | Oran Berry | Big Pecks | Timid | Tailwind, Gust, Sand Attack, Quick Attack | Speed control + accuracy chip lead |
-| Rookidee Lv 10 | – | Keen Eye | Adamant | Hone Claws, Power Trip, Peck, Steel Wing | Set-up threat; Steel Wing punishes Rock answers |
+| Rookidee Lv 10 | – | Keen Eye | Adamant | Hone Claws, Power Trip, Peck, Rock Smash | Set-up threat; Rock Smash punishes Rock answers (0.5.0: was Steel Wing, which Rookidee cannot learn) |
 | Noctowl Lv 11 (ace) | Sitrus Berry | Tinted Lens | Modest | Hypnosis, Air Cutter, Reflect, Mud-Slap | Tinted Lens beats resists; Reflect blunts Rollout; Mud-Slap hits Electric/Rock |
 
 **Signature strategy:** a Tailwind lead into a Hone Claws/Power Trip set-up. The ace

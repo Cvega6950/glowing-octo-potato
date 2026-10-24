@@ -36,6 +36,9 @@
 //                          (tally16 / tally32: 16- or 32-bit value)
 //   tallynotin NAME ADDR V1,V2,...  like tally, but a hit is a 16-bit value at ADDR not in the list
 //   expecttally NAME MIN MAX   fail unless the matching count of NAME is within [MIN, MAX]
+//   expectseen SPECIES [LABEL]   fail unless an autobattle since the last seenreset saw the
+//                          opponent's battler as SPECIES (e.g. a boss's Mega Evolved form)
+//   seenreset              forget the opponent species seen so far
 // KEY: A B SELECT START RIGHT LEFT UP DOWN R L
 #include "backend.h"
 #include <png.h>
@@ -241,16 +244,35 @@ static unsigned PathStep(uint32_t layout, const int *dist, int x, int y)
 //          Append 'm' (e.g. "2m") to press the gimmick trigger (Mega Evolution) first.
 //   key=ADDR pairs (emu.py fills these from the ELF): main outcome ctrl act mov actcur movcur
 //          partyidx party count pmenu pmenucb2 battlecb2 mons (gBattleMons, for the turn log)
+//          ppoff (offsetof(struct BattlePokemon, pp))
 // Forced switches send out the first party Pokemon that still has HP and is not already active.
+// A move slot out of PP is replaced by the first slot that still has PP.
 struct AutoSyms
 {
-    uint32_t main, outcome, ctrl, act, mov, actcur, movcur, partyidx, party, count, pmenu, pmenucb2, battlecb2, mons;
+    uint32_t main, outcome, ctrl, act, mov, actcur, movcur, partyidx, party, count, pmenu, pmenucb2, battlecb2, mons, ppoff;
 };
 
 static void Tap(unsigned keys)
 {
     RunFrames(keys, 4);
     RunFrames(0, 8);
+}
+
+// Opponent species seen in autobattles since the last seenreset (sampled every frame, so a Mega
+// Evolved Pokemon that faints in the same turn still counts)
+#define MAX_SEEN 64
+static unsigned sSeenSpecies[MAX_SEEN];
+static int sSeenCount;
+
+static void NoteSeen(unsigned species)
+{
+    for (int i = 0; i < sSeenCount; i++)
+    {
+        if (sSeenSpecies[i] == species)
+            return;
+    }
+    if (sSeenCount < MAX_SEEN)
+        sSeenSpecies[sSeenCount++] = species;
 }
 
 static int PartyHp(const struct AutoSyms *sy, int slot)
@@ -285,6 +307,8 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
         uint32_t ctrl = Peek(32, sy->ctrl) & ~1u;           // gBattlerControllerFuncs[0]
         if (outcome != 0 && cb2 != sy->battlecb2)
             break;
+        if (cb2 == sy->battlecb2)
+            NoteSeen(Peek(16, sy->mons + 0x88));
         if (cb2 == sy->pmenucb2)
         {
             // Skip the active battler: it may still have HP after a voluntary switch (U-turn, Teleport)
@@ -325,6 +349,17 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
         {
             int slot = Peek(8, sy->partyidx);
             int want = moves[slot < 6 ? slot : 0], cur = Peek(8, sy->movcur);
+            if (sy->ppoff && Peek(8, sy->mons + sy->ppoff + want) == 0)
+            {
+                for (int m = 0; m < 4; m++)
+                {
+                    if (Peek(16, sy->mons + 12 + 2 * m) != 0 && Peek(8, sy->mons + sy->ppoff + m) != 0)
+                    {
+                        want = m;
+                        break;
+                    }
+                }
+            }
             if (cur != want)
             {
                 if ((cur ^ want) & 1)
@@ -491,6 +526,7 @@ int main(int argc, char **argv)
                 else if (!strcmp(tok, "pmenu")) sy.pmenu = v;
                 else if (!strcmp(tok, "pmenucb2")) sy.pmenucb2 = v;
                 else if (!strcmp(tok, "battlecb2")) sy.battlecb2 = v;
+                else if (!strcmp(tok, "ppoff")) sy.ppoff = strtoul(eq + 1, NULL, 0);
             }
             AutoBattle(a1, strtoul(a2, NULL, 0), &sy);
         }
@@ -663,6 +699,19 @@ int main(int argc, char **argv)
             int lo = atoi(a2), hi = atoi(a3), got = hits ? *hits : 0;
             int ok = hits && got >= lo && got <= hi;
             printf("[frame %lu] %s tally %s: %d/%d (want %d..%d)\n", frameCount, ok ? "PASS" : "FAIL", a1, got, hits ? *runs : 0, lo, hi);
+            if (!ok)
+                failures++;
+        }
+        else if (!strcmp(cmd, "seenreset"))
+            sSeenCount = 0;
+        else if (!strcmp(cmd, "expectseen"))
+        {
+            unsigned want = strtoul(a1, NULL, 0);
+            int ok = 0;
+            for (int i = 0; i < sSeenCount; i++)
+                ok |= sSeenSpecies[i] == want;
+            printf("[frame %lu] %s %s: opponent species %u %s since the last seenreset\n", frameCount,
+                   ok ? "PASS" : "FAIL", a2[0] ? a2 : "expectseen", want, ok ? "seen" : "not seen");
             if (!ok)
                 failures++;
         }

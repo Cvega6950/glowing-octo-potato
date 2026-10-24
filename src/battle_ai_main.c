@@ -14,6 +14,7 @@
 #include "battle_terastal.h"
 #include "data.h"
 #include "debug.h"
+#include "difficulty.h"
 #include "event_data.h"
 #include "item.h"
 #include "math_util.h"
@@ -211,6 +212,13 @@ static u64 GetWildAiFlags(void)
     return flags;
 }
 
+// Crystal Imperium: on NORMAL and HARD every trainer battles with the expansion's smart AI, as in
+// Emerald Imperium: it knows the player's Pokemon, moves, abilities and items, switches and picks
+// its next Pokemon smartly, and plays around HP. Prediction is left out: it targets the Pokemon it
+// expects the player to switch in, which wastes turns against a player who stays in. EASY keeps
+// each trainer's own (Heart & Soul) AI.
+#define IMPERIUM_TRAINER_AI (AI_FLAG_SMART_TRAINER | AI_FLAG_HP_AWARE)
+
 static u64 GetAiFlags(u16 trainerId, enum BattlerId battler)
 {
     u64 flags = 0;
@@ -238,7 +246,11 @@ static u64 GetAiFlags(u16 trainerId, enum BattlerId battler)
         else if (IsSpecialTrainer(trainerId))
             flags = 0; // Link/Union Room/Secret Base opponents have no entry in gTrainers.
         else
+        {
             flags = GetTrainerAIFlagsFromId(trainerId);
+            if (GetCurrentDifficultyLevel() != DIFFICULTY_EASY)
+                flags |= IMPERIUM_TRAINER_AI;
+        }
     }
 
     if (IsDoubleBattle() && flags != 0)

@@ -250,6 +250,11 @@ def expect_const(addr, const, label, size=16, negate=False):
     return [f"expect{'ne' if negate else ''}{size} {addr} {v[const]} {label}"]
 
 
+def expect_const_seen(species, label):
+    """An autobattle since the last seenreset saw the opponent's battler as this species."""
+    return [f"expectseen {probe.resolve({species: species})[species]} {label}"]
+
+
 def var_addr(var):
     """Address expression of a script variable (VAR_*) in the save block."""
     v = probe.resolve({"addr": f"offsetof(struct SaveBlock1, vars) + ({var} - VARS_START) * 2"})
@@ -304,6 +309,53 @@ def battle_trainer(trainer_id):
     return out
 
 
+def battle(trainer):
+    """Start a battle against a trainer given by its constant, e.g. battle("TRAINER_MORTY_1_HNS")."""
+    return battle_trainer(probe.resolve({trainer: trainer})[trainer])
+
+
+def give_mon_complex(species, level, nature, ability_slot, moves):
+    """Debug menu > Give X > Pokemon (Complex): species, level, nature (NATURE_*), ability (UP
+    presses from slot 0: 1 is the next non-empty slot) and four moves (MOVE_*). Not shiny, no
+    Tera/Dynamax changes; IVs and EVs are left at 0, which Minimal Grinding turns into 31/0."""
+    v = probe.resolve({x: x for x in [species, nature] + list(moves)})
+    out = open_debug() + ["press DOWN"] * 3 + ["press A", "wait 30", "press DOWN", "press DOWN", "press A", "wait 30"]
+    out += number(v[species]) + ["press A", "wait 10"] + number(level) + ["press A", "wait 10"]
+    out += ["press A", "wait 10"]  # shiny: no
+    out += number(v[nature] + 1, initial=0) + ["press A", "wait 10"]
+    out += ["press UP 2", "wait 4"] * ability_slot + ["press A", "wait 10"]
+    out += ["press A", "wait 10"] * 3  # Tera type, Dynamax level, Gigantamax factor
+    out += ["press A", "wait 6"] * 12  # IVs and EVs
+    for m in moves:
+        out += number(v[m], initial=0) + ["press A", "wait 10"]
+    out += ["wait 60", "mash B 60"]
+    return out
+
+
+def prepared_team(level):
+    """A strong, well-built six: what a player can put together with DexNav, Rare Candies, the
+    relearner, TMs and the Training Kit. No held items."""
+    out = []
+    for sp, nature, ability, moves in (
+            ("SPECIES_TYRANITAR", "NATURE_ADAMANT", 0, ["MOVE_CRUNCH", "MOVE_STONE_EDGE", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"]),
+            ("SPECIES_GYARADOS", "NATURE_ADAMANT", 0, ["MOVE_WATERFALL", "MOVE_ICE_FANG", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"]),
+            ("SPECIES_GARDEVOIR", "NATURE_MODEST", 0, ["MOVE_MOONBLAST", "MOVE_PSYCHIC", "MOVE_MYSTICAL_FIRE", "MOVE_CALM_MIND"]),
+            ("SPECIES_GARCHOMP", "NATURE_JOLLY", 1, ["MOVE_EARTHQUAKE", "MOVE_DRAGON_CLAW", "MOVE_FIRE_FANG", "MOVE_SWORDS_DANCE"]),
+            ("SPECIES_ARCANINE", "NATURE_ADAMANT", 0, ["MOVE_FLARE_BLITZ", "MOVE_EXTREME_SPEED", "MOVE_WILD_CHARGE", "MOVE_CRUNCH"]),
+            ("SPECIES_AMPHAROS", "NATURE_MODEST", 0, ["MOVE_THUNDERBOLT", "MOVE_DRAGON_PULSE", "MOVE_FOCUS_BLAST", "MOVE_POWER_GEM"])):
+        out += give_mon_complex(sp, level, nature, ability, moves)
+    return out
+
+
+def team(level, *species):
+    """Give the player these Pokemon (species constants) at one level."""
+    ids = probe.resolve({s: s for s in species})
+    out = []
+    for s in species:
+        out += give_mon(ids[s], level)
+    return out
+
+
 def turn(*moves, shots=None, decline_switch=False):
     """One battle turn per argument: 0-3 picks that move slot. Battle text auto-advances.
 
@@ -334,13 +386,17 @@ def autobattle(moves, max_frames=60000):
             "partyidx={gBattlerPartyIndexes}", "party={gPlayerParty}", "count={gPlayerPartyCount}",
             "mons={gBattleMons}", "pmenu={gPartyMenu}",
             "pmenucb2={CB2_UpdatePartyMenu}", "battlecb2={BattleMainCB2}"]
+    keys.append("ppoff=%d" % probe.resolve({"ppoff": "offsetof(struct BattlePokemon, pp)"})["ppoff"])
     return [f"autobattle {moves} {max_frames} " + " ".join(keys)]
 
 
 def sample_battle(trainer_id, moves, runs=5, min_wins=1, max_wins=None, state="team.ss"):
-    """Fight trainer_id `runs` times from the saved team state, starting each battle a few frames
-    later so the battle RNG differs, and require between min_wins and max_wins wins.
-    Save the team first with `savestate team.ss` (paths are relative to the output directory)."""
+    """Fight trainer_id (a number or a TRAINER_ constant) `runs` times from the saved team state,
+    starting each battle a few frames later so the battle RNG differs, and require between
+    min_wins and max_wins wins. Save the team first with `savestate team.ss` (paths are relative
+    to the output directory)."""
+    if isinstance(trainer_id, str):
+        trainer_id = probe.resolve({trainer_id: trainer_id})[trainer_id]
     out = []
     for k in range(runs):
         out += [f"loadstate {state}", f"wait {1 + 37 * k}"] + battle_trainer(trainer_id) + autobattle(moves)
