@@ -1,7 +1,444 @@
 {
  "bosses": {
-  "TRAINER_BLAINE_HNS": {
+  "TRAINER_ARCHER_1_HNS": {
    "ai": "Basic Trainer",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_ARCHER_1_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 39,
+     "moves": [
+      "Self Destruct",
+      "Smog",
+      "Smokescreen",
+      "Sludge Bomb"
+     ],
+     "species": "Weezing"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 38,
+     "moves": [
+      "Headbutt",
+      "Rock Smash",
+      "Pursuit",
+      "Frustration"
+     ],
+     "species": "Tauros"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 38,
+     "moves": [
+      "Bite",
+      "Smog",
+      "Roar",
+      "Flamethrower"
+     ],
+     "species": "Houndoom"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "ARCHER",
+   "pic": "Archer Hns"
+  },
+  "TRAINER_ARCHER_4_HNS": {
+   "ai": "Basic Trainer",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_ARCHER_4_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 39,
+     "moves": [
+      "Tri Attack",
+      "Zap Cannon",
+      "Flamethrower",
+      "Ice Beam"
+     ],
+     "species": "Porygon Z"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 38,
+     "moves": [
+      "Headbutt",
+      "Rock Smash",
+      "Pursuit",
+      "Frustration"
+     ],
+     "species": "Tauros"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 39,
+     "moves": [
+      "Bite",
+      "Strength",
+      "Gust",
+      "Surf"
+     ],
+     "species": "Gyarados"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 38,
+     "moves": [
+      "Bite",
+      "Smog",
+      "Roar",
+      "Flamethrower"
+     ],
+     "species": "Houndoom"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 40,
+     "moves": [
+      "Confusion",
+      "Curse",
+      "Amnesia",
+      "Surf"
+     ],
+     "species": "Slowbro"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "ARCHER",
+   "pic": "Archer Hns"
+  },
+  "TRAINER_ARCHER_5_HNS": {
+   "ai": "Basic Trainer",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_ARCHER_5_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 39,
+     "moves": [
+      "Tri Attack",
+      "Zap Cannon",
+      "Flamethrower",
+      "Ice Beam"
+     ],
+     "species": "Porygon Z"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 38,
+     "moves": [
+      "Headbutt",
+      "Rock Smash",
+      "Pursuit",
+      "Frustration"
+     ],
+     "species": "Tauros"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 39,
+     "moves": [
+      "Bite",
+      "Strength",
+      "Gust",
+      "Surf"
+     ],
+     "species": "Gyarados"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 38,
+     "moves": [
+      "Bite",
+      "Smog",
+      "Roar",
+      "Flamethrower"
+     ],
+     "species": "Houndoom"
+    },
+    {
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 40,
+     "moves": [
+      "Confusion",
+      "Curse",
+      "Amnesia",
+      "Surf"
+     ],
+     "species": "Slowbro"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "ARCHER",
+   "pic": "Archer Hns"
+  },
+  "TRAINER_ARCHER_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_ARCHER_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Adaptability",
+     "item": "Choice Specs",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Tri Attack",
+      "Thunderbolt",
+      "Ice Beam",
+      "Shadow Ball"
+     ],
+     "nature": "Modest",
+     "species": "Porygon Z"
+    },
+    {
+     "ability": "Intimidate",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Double Edge",
+      "Earthquake",
+      "Rock Slide",
+      "Zen Headbutt"
+     ],
+     "nature": "Jolly",
+     "species": "Tauros"
+    },
+    {
+     "ability": "Adaptability",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Crabhammer",
+      "Knock Off",
+      "Aqua Jet",
+      "Swords Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Crawdaunt"
+    },
+    {
+     "ability": "Regenerator",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Scald",
+      "Psyshock",
+      "Slack Off",
+      "Calm Mind"
+     ],
+     "nature": "Bold",
+     "species": "Slowbro"
+    },
+    {
+     "ability": "Defiant",
+     "item": "Black Glasses",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Sucker Punch",
+      "Iron Head",
+      "Knock Off",
+      "Swords Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Bisharp"
+    },
+    {
+     "ability": "Flash Fire",
+     "item": "Houndoominite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Fire Blast",
+      "Dark Pulse",
+      "Sludge Bomb",
+      "Nasty Plot"
+     ],
+     "nature": "Timid",
+     "species": "Houndoom"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "ARCHER",
+   "pic": "Archer Hns"
+  },
+  "TRAINER_ARIANA_1_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_ARIANA_1_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Intimidate",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 31,
+     "moves": [
+      "Gunk Shot",
+      "Sucker Punch",
+      "Glare",
+      "Earthquake"
+     ],
+     "nature": "Adamant",
+     "species": "Arbok"
+    },
+    {
+     "ability": "Technician",
+     "item": "Silk Scarf",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 31,
+     "moves": [
+      "Fake Out",
+      "Faint Attack",
+      "U Turn",
+      "Hypnosis"
+     ],
+     "nature": "Jolly",
+     "species": "Persian"
+    },
+    {
+     "ability": "Effect Spore",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 31,
+     "moves": [
+      "Giga Drain",
+      "Sludge Bomb",
+      "Sleep Powder",
+      "Strength Sap"
+     ],
+     "nature": "Calm",
+     "species": "Vileplume"
+    },
+    {
+     "ability": "Super Luck",
+     "item": "Scope Lens",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 31,
+     "moves": [
+      "Brave Bird",
+      "Night Slash",
+      "Sucker Punch",
+      "Heat Wave"
+     ],
+     "nature": "Adamant",
+     "species": "Honchkrow"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "ARIANA",
+   "pic": "Ariana Hns"
+  },
+  "TRAINER_ARIANA_2_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_ARIANA_2_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Intimidate",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Gunk Shot",
+      "Sucker Punch",
+      "Glare",
+      "Earthquake"
+     ],
+     "nature": "Adamant",
+     "species": "Arbok"
+    },
+    {
+     "ability": "Technician",
+     "item": "Silk Scarf",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Fake Out",
+      "Faint Attack",
+      "U Turn",
+      "Hypnosis"
+     ],
+     "nature": "Jolly",
+     "species": "Persian"
+    },
+    {
+     "ability": "Effect Spore",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Giga Drain",
+      "Sludge Bomb",
+      "Sleep Powder",
+      "Strength Sap"
+     ],
+     "nature": "Calm",
+     "species": "Vileplume"
+    },
+    {
+     "ability": "Intimidate",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Waterfall",
+      "Crunch",
+      "Earthquake",
+      "Dragon Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Gyarados"
+    },
+    {
+     "ability": "Super Luck",
+     "item": "Scope Lens",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Brave Bird",
+      "Night Slash",
+      "Sucker Punch",
+      "Heat Wave"
+     ],
+     "nature": "Adamant",
+     "species": "Honchkrow"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "ARIANA",
+   "pic": "Ariana Hns"
+  },
+  "TRAINER_BLAINE_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -9,75 +446,87 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Quick Claw",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 66,
+     "ability": "Drought",
+     "item": "Heat Rock",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Bounce",
-      "Sunny Day",
-      "Flare Blitz",
-      "Solar Beam"
+      "Lava Plume",
+      "Stealth Rock",
+      "Rapid Spin",
+      "Yawn"
      ],
-     "species": "Rapidash"
-    },
-    {
-     "item": "Sitrus Berry",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
-     "moves": [
-      "Thunder Punch",
-      "Fire Blast",
-      "Psychic",
-      "Confuse Ray"
-     ],
-     "species": "Magmortar"
-    },
-    {
-     "item": "Miracle Seed",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 66,
-     "moves": [
-      "Fire Blast",
-      "Sunny Day",
-      "Thunder Fang",
-      "Crunch"
-     ],
-     "species": "Houndoom"
-    },
-    {
-     "item": "Leftovers",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
-     "moves": [
-      "Flamethrower",
-      "Recover",
-      "Amnesia",
-      "Hypnosis"
-     ],
-     "species": "Magcargo"
-    },
-    {
-     "item": "White Herb",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 67,
-     "moves": [
-      "Curse",
-      "Iron Defense",
-      "Withdraw",
-      "Heat Wave"
-     ],
+     "nature": "Bold",
      "species": "Torkoal"
     },
     {
-     "item": "Charcoal",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 67,
+     "ability": "Flash Fire",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Earth Power",
-      "Eruption",
-      "Yawn",
-      "Amnesia"
+      "Flare Blitz",
+      "Wild Charge",
+      "High Horsepower",
+      "Morning Sun"
      ],
+     "nature": "Jolly",
+     "species": "Rapidash"
+    },
+    {
+     "ability": "Vital Spirit",
+     "item": "Expert Belt",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Fire Blast",
+      "Thunderbolt",
+      "Focus Blast",
+      "Psychic"
+     ],
+     "nature": "Modest",
+     "species": "Magmortar"
+    },
+    {
+     "ability": "Flame Body",
+     "item": "Charcoal",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Quiver Dance",
+      "Fiery Dance",
+      "Bug Buzz",
+      "Giga Drain"
+     ],
+     "nature": "Timid",
+     "species": "Volcarona"
+    },
+    {
+     "ability": "Rock Head",
+     "item": "Choice Band",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Head Smash",
+      "Flare Blitz",
+      "Extreme Speed",
+      "Wild Charge"
+     ],
+     "nature": "Adamant",
+     "species": "Arcanine Hisui"
+    },
+    {
+     "ability": "Solid Rock",
+     "item": "Cameruptite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Fire Blast",
+      "Earth Power",
+      "Ancient Power",
+      "Stealth Rock"
+     ],
+     "nature": "Modest",
      "species": "Camerupt"
     }
    ],
@@ -98,7 +547,7 @@
      "ability": "Drought",
      "item": "Heat Rock",
      "ivs": "0 Spe",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Solar Beam",
       "Heat Wave",
@@ -111,7 +560,7 @@
      "ability": "Flame Body",
      "item": "Magnet",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Fire Blast",
       "Thunderbolt",
@@ -123,7 +572,7 @@
     {
      "ability": "Speed Boost",
      "item": "Scope Lens",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Blaze Kick",
       "Power-Up Punch",
@@ -136,7 +585,7 @@
      "ability": "Flame Body",
      "item": "Absorb Bulb",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Sunny Day",
       "Flamethrower",
@@ -148,7 +597,7 @@
     {
      "ability": "Rock Head",
      "item": "Rock Incense",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Head Smash",
       "Raging Fury",
@@ -161,7 +610,7 @@
      "ability": "Solid Rock",
      "item": "Leftovers",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Eruption",
       "Protect",
@@ -263,7 +712,7 @@
    "pic": "Leader Blue Hns"
   },
   "TRAINER_BLUE_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -271,76 +720,88 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
+     "ability": "No Guard",
      "item": "Sitrus Berry",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 69,
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Drill Run",
+      "Close Combat",
       "Stone Edge",
-      "Rest",
-      "Toxic"
+      "Knock Off",
+      "Bullet Punch"
      ],
-     "species": "Rhyperior"
-    },
-    {
-     "item": "Sharp Beak",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 68,
-     "moves": [
-      "Hurricane",
-      "Giga Impact",
-      "Air Slash",
-      "Feather Dance"
-     ],
-     "species": "Pidgeot"
-    },
-    {
-     "item": "Scope Lens",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 67,
-     "moves": [
-      "Cross Chop",
-      "Rock Slide",
-      "Earthquake",
-      "Dual Chop"
-     ],
+     "nature": "Adamant",
      "species": "Machamp"
     },
     {
-     "item": "Leftovers",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 68,
+     "ability": "Harvest",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Leech Seed",
-      "Trick Room",
+      "Leaf Storm",
       "Psychic",
-      "Seed Bomb"
+      "Sludge Bomb",
+      "Trick Room"
      ],
+     "nature": "Modest",
      "species": "Exeggutor"
     },
     {
-     "item": "Focus Band",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 68,
+     "ability": "Solid Rock",
+     "item": "Weakness Policy",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
       "Stone Edge",
-      "Payback",
-      "Crunch",
-      "Thunder Fang"
+      "Earthquake",
+      "Megahorn",
+      "Rock Polish"
      ],
+     "nature": "Adamant",
+     "species": "Rhyperior"
+    },
+    {
+     "ability": "Intimidate",
+     "item": "Choice Band",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Flare Blitz",
+      "Extreme Speed",
+      "Wild Charge",
+      "Close Combat"
+     ],
+     "nature": "Adamant",
+     "species": "Arcanine"
+    },
+    {
+     "ability": "Sand Stream",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Stone Edge",
+      "Crunch",
+      "Earthquake",
+      "Dragon Dance"
+     ],
+     "nature": "Adamant",
      "species": "Tyranitar"
     },
     {
-     "item": "Silk Scarf",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 69,
+     "ability": "Keen Eye",
+     "item": "Pidgeotite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Flamethrower",
-      "Curse",
-      "Crunch",
-      "Extreme Speed"
+      "Hurricane",
+      "Heat Wave",
+      "U Turn",
+      "Roost"
      ],
-     "species": "Arcanine"
+     "nature": "Timid",
+     "species": "Pidgeot"
     }
    ],
    "mugshot": "Blue",
@@ -359,7 +820,7 @@
     {
      "ability": "Solid Rock",
      "item": "Loaded Dice",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Rock Blast",
       "Drill Run",
@@ -371,7 +832,7 @@
     {
      "ability": "Keen Eye",
      "item": "Quick Claw",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Feather Dance",
       "Air Slash",
@@ -383,7 +844,7 @@
     {
      "ability": "No Guard",
      "item": "Scope Lens",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Dynamic Punch",
       "Dual Chop",
@@ -395,7 +856,7 @@
     {
      "ability": "Lightning Rod",
      "item": "Thick Club",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Shadow Bone",
       "Flame Charge",
@@ -407,7 +868,7 @@
     {
      "ability": "Unnerve",
      "item": "Rocky Helmet",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Stone Edge",
       "Crunch",
@@ -420,7 +881,7 @@
      "ability": "Torrent",
      "item": "Sitrus Berry",
      "ivs": "0 Atk",
-     "level": 73,
+     "level": 100,
      "moves": [
       "Scald",
       "Dark Pulse",
@@ -436,7 +897,7 @@
    "pic": "Leader Blue Hns"
   },
   "TRAINER_BROCK_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -444,76 +905,88 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Quick Claw",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 66,
+     "ability": "Sturdy",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Curse",
+      "Stealth Rock",
+      "Earthquake",
       "Stone Edge",
-      "Body Slam",
-      "Earthquake"
+      "Explosion"
      ],
+     "nature": "Adamant",
      "species": "Golem"
     },
     {
-     "item": "Hard Stone",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 66,
+     "ability": "Swift Swim",
+     "item": "White Herb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Ancient Power",
-      "Sky Attack",
-      "Earthquake",
-      "Fire Fang"
-     ],
-     "species": "Aerodactyl"
-    },
-    {
-     "item": "Scope Lens",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 66,
-     "moves": [
-      "Surf",
-      "Ancient Power",
-      "Night Slash",
-      "Swords Dance"
-     ],
-     "species": "Kabutops"
-    },
-    {
-     "item": "Focus Band",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 66,
-     "moves": [
-      "Ancient Power",
+      "Shell Smash",
+      "Hydro Pump",
       "Ice Beam",
-      "Surf",
-      "Toxic"
+      "Earth Power"
      ],
+     "nature": "Modest",
      "species": "Omastar"
     },
     {
-     "item": "Hard Stone",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 66,
+     "ability": "Swift Swim",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Hydro Pump",
-      "Rock Slide",
-      "Curse",
-      "Thunderbolt"
+      "Stone Edge",
+      "Liquidation",
+      "Swords Dance",
+      "Aqua Jet"
      ],
+     "nature": "Adamant",
+     "species": "Kabutops"
+    },
+    {
+     "ability": "Rock Head",
+     "item": "Choice Band",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Head Smash",
+      "Liquidation",
+      "Earthquake",
+      "Double Edge"
+     ],
+     "nature": "Adamant",
      "species": "Relicanth"
     },
     {
-     "item": "Quick Claw",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 66,
+     "ability": "Sharpness",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Swords Dance",
       "Stone Axe",
       "X Scissor",
-      "Agility"
+      "Close Combat",
+      "Swords Dance"
      ],
+     "nature": "Jolly",
      "species": "Kleavor"
+    },
+    {
+     "ability": "Unnerve",
+     "item": "Aerodactylite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Stone Edge",
+      "Earthquake",
+      "Crunch",
+      "Ice Fang"
+     ],
+     "nature": "Jolly",
+     "species": "Aerodactyl"
     }
    ],
    "mugshot": "Orange",
@@ -532,7 +1005,7 @@
     {
      "ability": "Sharpness",
      "item": "Razor Claw",
-     "level": 72,
+     "level": 100,
      "moves": [
       "Stone Axe",
       "X-Scissor",
@@ -544,7 +1017,7 @@
     {
      "ability": "Poison Heal",
      "item": "Toxic Orb",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Spikes",
       "Protect",
@@ -555,7 +1028,7 @@
     },
     {
      "ability": "Unnerve",
-     "level": 72,
+     "level": 100,
      "moves": [
       "Fire Fang",
       "Sky Attack",
@@ -567,7 +1040,7 @@
     {
      "ability": "Swift Swim",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Ancient Power",
       "Surf",
@@ -579,7 +1052,7 @@
     {
      "ability": "Rock Head",
      "item": "Hard Stone",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Wave Crash",
       "Head Smash",
@@ -591,7 +1064,7 @@
     {
      "ability": "Galvanize",
      "item": "Magnet",
-     "level": 72,
+     "level": 100,
      "moves": [
       "Stone Edge",
       "Body Slam",
@@ -607,7 +1080,7 @@
    "pic": "Leader Brock Hns"
   },
   "TRAINER_BRUNO_1_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Elite Four Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -615,62 +1088,88 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Scope Lens",
+     "ability": "Intimidate",
+     "item": "Rocky Helmet",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 53,
+     "level": 56,
      "moves": [
+      "Fake Out",
       "Close Combat",
-      "Pursuit",
-      "Dizzy Punch",
-      "Thunder Punch"
+      "Sucker Punch",
+      "Rapid Spin"
      ],
-     "species": "Hitmonchan"
+     "nature": "Impish",
+     "species": "Hitmontop"
     },
     {
+     "ability": "Sturdy",
+     "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 52,
+     "level": 56,
      "moves": [
-      "Close Combat",
-      "Megahorn",
-      "Take Down",
-      "Earthquake"
-     ],
-     "species": "Heracross"
-    },
-    {
-     "item": "Silk Scarf",
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 53,
-     "moves": [
-      "Blaze Kick",
-      "Meditate",
-      "Reversal",
-      "Hi Jump Kick"
-     ],
-     "species": "Hitmonlee"
-    },
-    {
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 53,
-     "moves": [
-      "Crunch",
+      "Heavy Slam",
       "Earthquake",
       "Stone Edge",
-      "Iron Tail"
+      "Stealth Rock"
      ],
+     "nature": "Impish",
      "species": "Steelix"
     },
     {
-     "item": "Black Belt",
+     "ability": "Reckless",
+     "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 54,
+     "level": 56,
      "moves": [
-      "Rock Slide",
-      "Fire Punch",
-      "Vital Throw",
-      "Cross Chop"
+      "High Jump Kick",
+      "Knock Off",
+      "Blaze Kick",
+      "Fake Out"
      ],
+     "nature": "Jolly",
+     "species": "Hitmonlee"
+    },
+    {
+     "ability": "Iron Fist",
+     "item": "Punching Glove",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Drain Punch",
+      "Ice Punch",
+      "Thunder Punch",
+      "Mach Punch"
+     ],
+     "nature": "Adamant",
+     "species": "Hitmonchan"
+    },
+    {
+     "ability": "No Guard",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Close Combat",
+      "Stone Edge",
+      "Knock Off",
+      "Bullet Punch"
+     ],
+     "nature": "Adamant",
      "species": "Machamp"
+    },
+    {
+     "ability": "Inner Focus",
+     "item": "Lucarionite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Close Combat",
+      "Meteor Mash",
+      "Extreme Speed",
+      "Swords Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Lucario"
     }
    ],
    "mugshot": "Orange",
@@ -689,7 +1188,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Crunch",
       "Earthquake",
@@ -701,7 +1200,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Submission",
       "Blizzard",
@@ -713,7 +1212,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Close Combat",
       "Megahorn",
@@ -724,7 +1223,7 @@
     },
     {
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Belly Drum",
       "SmellingSalt",
@@ -736,7 +1235,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Triple Kick",
       "Double Kick",
@@ -748,7 +1247,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Rock Slide",
       "Earthquake",
@@ -775,7 +1274,7 @@
      "ability": "Rock Head",
      "evs": "252 SpD",
      "item": "Assault Vest",
-     "level": 74,
+     "level": 100,
      "moves": [
       "Heavy Slam",
       "Earthquake",
@@ -787,7 +1286,7 @@
     },
     {
      "ability": "Intimidate",
-     "level": 75,
+     "level": 100,
      "moves": [
       "Raging Bull",
       "Close Combat",
@@ -799,7 +1298,7 @@
     {
      "ability": "Moxie",
      "item": "Loaded Dice",
-     "level": 76,
+     "level": 100,
      "moves": [
       "Pin Missile",
       "Close Combat",
@@ -811,7 +1310,7 @@
     {
      "ability": "Thick Fat",
      "item": "Sitrus Berry",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Fake Out",
       "Belly Drum",
@@ -823,7 +1322,7 @@
     {
      "ability": "Technician",
      "item": "Expert Belt",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Triple Kick",
       "Victory Dance",
@@ -835,7 +1334,7 @@
     {
      "ability": "Guts",
      "item": "Flame Orb",
-     "level": 79,
+     "level": 100,
      "moves": [
       "Facade",
       "Cross Chop",
@@ -862,7 +1361,7 @@
      "ability": "Insomnia",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 14,
+     "level": 16,
      "moves": [
       "Sticky Web",
       "Night Shade",
@@ -875,7 +1374,7 @@
     {
      "ability": "Sturdy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 15,
+     "level": 16,
      "moves": [
       "Spikes",
       "Rock Tomb",
@@ -889,7 +1388,7 @@
      "ability": "Early Bird",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 15,
+     "level": 16,
      "moves": [
       "Reflect",
       "Light Screen",
@@ -930,7 +1429,7 @@
     {
      "item": "Focus Band",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Drain Punch",
       "Swords Dance",
@@ -941,7 +1440,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Iron Defense",
       "Rapid Spin",
@@ -953,7 +1452,7 @@
     {
      "item": "Berry Juice",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Air Slash",
       "Screech",
@@ -964,7 +1463,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Bullet Punch",
       "X Scissor",
@@ -975,7 +1474,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Phantom Force",
       "Bug Buzz",
@@ -987,7 +1486,7 @@
     {
      "item": "Scope Lens",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Slash",
       "X Scissor",
@@ -1013,7 +1512,7 @@
     {
      "ability": "Sturdy",
      "ivs": "0 Spe",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Toxic Spikes",
       "Stealth Rock",
@@ -1024,7 +1523,7 @@
     },
     {
      "ability": "Iron Fist",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Drain Punch",
       "Acrobatics",
@@ -1036,7 +1535,7 @@
     {
      "ability": "Intimidate",
      "ivs": "0 Atk",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Quiver Dance",
       "Hydro Pump",
@@ -1049,7 +1548,7 @@
      "ability": "Speed Boost",
      "item": "Sitrus Berry",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Air Slash",
       "Protect",
@@ -1061,7 +1560,7 @@
     {
      "ability": "Wonder Guard",
      "item": "Focus Sash",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Phantom Force",
       "X-Scissor",
@@ -1073,7 +1572,7 @@
     {
      "ability": "Technician",
      "item": "Scope Lens",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Bullet Punch",
       "Bug Bite",
@@ -1100,7 +1599,7 @@
      "ability": "Intimidate",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 34,
+     "level": 36,
      "moves": [
       "Fake Out",
       "Triple Kick",
@@ -1114,7 +1613,7 @@
      "ability": "Technician",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 34,
+     "level": 36,
      "moves": [
       "Mach Punch",
       "Bullet Seed",
@@ -1128,7 +1627,7 @@
      "ability": "Unburden",
      "item": "White Herb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 35,
+     "level": 36,
      "moves": [
       "High Jump Kick",
       "Acrobatics",
@@ -1142,7 +1641,7 @@
      "ability": "Defiant",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 35,
+     "level": 36,
      "moves": [
       "Rage Fist",
       "Drain Punch",
@@ -1156,7 +1655,7 @@
      "ability": "Water Absorb",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 35,
+     "level": 36,
      "moves": [
       "Waterfall",
       "Dynamic Punch",
@@ -1198,7 +1697,7 @@
      "ability": "Intimidate",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 36,
+     "level": 38,
      "moves": [
       "Fake Out",
       "Triple Kick",
@@ -1212,7 +1711,7 @@
      "ability": "Technician",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 36,
+     "level": 38,
      "moves": [
       "Mach Punch",
       "Bullet Seed",
@@ -1226,7 +1725,7 @@
      "ability": "Unburden",
      "item": "White Herb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 37,
+     "level": 38,
      "moves": [
       "High Jump Kick",
       "Acrobatics",
@@ -1240,7 +1739,7 @@
      "ability": "Defiant",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 37,
+     "level": 38,
      "moves": [
       "Rage Fist",
       "Drain Punch",
@@ -1254,7 +1753,7 @@
      "ability": "Water Absorb",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 37,
+     "level": 38,
      "moves": [
       "Waterfall",
       "Dynamic Punch",
@@ -1296,7 +1795,7 @@
      "ability": "Intimidate",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 29,
+     "level": 31,
      "moves": [
       "Fake Out",
       "Triple Kick",
@@ -1310,7 +1809,7 @@
      "ability": "Technician",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 29,
+     "level": 31,
      "moves": [
       "Mach Punch",
       "Bullet Seed",
@@ -1324,7 +1823,7 @@
      "ability": "Defiant",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 30,
+     "level": 31,
      "moves": [
       "Rage Fist",
       "Drain Punch",
@@ -1338,7 +1837,7 @@
      "ability": "Water Absorb",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 30,
+     "level": 31,
      "moves": [
       "Waterfall",
       "Dynamic Punch",
@@ -1379,7 +1878,7 @@
     {
      "item": "Scope Lens",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Fire Punch",
       "Sky Uppercut",
@@ -1390,7 +1889,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Detect",
       "Hi Jump Kick",
@@ -1401,7 +1900,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Cross Chop",
       "Rage Fist",
@@ -1412,7 +1911,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Mega Kick",
       "Blaze Kick",
@@ -1423,7 +1922,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Mach Punch",
       "Seed Bomb",
@@ -1435,7 +1934,7 @@
     {
      "item": "Sitrus Berry",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Surf",
       "Submission",
@@ -1460,7 +1959,7 @@
    "mons": [
     {
      "ability": "Iron Fist",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Sky Uppercut",
       "Thunder Punch",
@@ -1471,7 +1970,7 @@
     },
     {
      "ability": "Pure Power",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Acupressure",
       "Stored Power",
@@ -1482,7 +1981,7 @@
     },
     {
      "ability": "Vital Spirit",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Cross Chop",
       "Rage Fist",
@@ -1494,7 +1993,7 @@
     {
      "ability": "Scrappy",
      "item": "Leek",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Leaf Blade",
       "Protect",
@@ -1505,7 +2004,7 @@
     },
     {
      "ability": "Poison Touch",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Dire Claw",
       "Close Combat",
@@ -1517,7 +2016,7 @@
     {
      "ability": "Water Absorb",
      "item": "Sitrus Berry",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Liquidation",
       "Submission",
@@ -1544,7 +2043,7 @@
      "ability": "Rough Skin",
      "item": "Rocky Helmet",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 43,
+     "level": 45,
      "moves": [
       "Outrage",
       "Gunk Shot",
@@ -1558,7 +2057,7 @@
      "ability": "Levitate",
      "item": "Choice Scarf",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 43,
+     "level": 45,
      "moves": [
       "Earthquake",
       "Dragon Claw",
@@ -1572,7 +2071,7 @@
      "ability": "Adaptability",
      "item": "Black Sludge",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 44,
+     "level": 45,
      "moves": [
       "Sludge Bomb",
       "Dragon Pulse",
@@ -1586,7 +2085,7 @@
      "ability": "Natural Cure",
      "item": "Altarianite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 44,
+     "level": 45,
      "moves": [
       "Hyper Voice",
       "Dragon Pulse",
@@ -1600,7 +2099,7 @@
      "ability": "Bulletproof",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 44,
+     "level": 45,
      "moves": [
       "Scale Shot",
       "Close Combat",
@@ -1641,7 +2140,7 @@
     {
      "item": "Metal Coat",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Thunder Wave",
       "Thunderbolt",
@@ -1653,7 +2152,7 @@
     {
      "item": "Focus Band",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Crunch",
       "Surf",
@@ -1664,7 +2163,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Yawn",
       "Glare",
@@ -1676,7 +2175,7 @@
     {
      "item": "Sitrus Berry",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Thunder Wave",
       "Zen Headbutt",
@@ -1687,7 +2186,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Agility",
       "Thunder",
@@ -1699,7 +2198,7 @@
     {
      "item": "Leftovers",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Dragon Dance",
       "Hydro Pump",
@@ -1771,7 +2270,7 @@
     {
      "ability": "Marvel Scale",
      "item": "Eviolite",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Thunder Wave",
       "Thunderbolt",
@@ -1782,7 +2281,7 @@
     },
     {
      "ability": "Serene Grace",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Charge Beam",
       "Boomburst",
@@ -1794,7 +2293,7 @@
     {
      "ability": "Harvest",
      "item": "Sitrus Berry",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Wood Hammer",
       "Dragon Hammer",
@@ -1805,7 +2304,7 @@
     },
     {
      "ability": "Moxie",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Dragon Dance",
       "Dragon Rush",
@@ -1818,7 +2317,7 @@
      "ability": "Sniper",
      "item": "Scope Lens",
      "ivs": "0 Atk",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Focus Energy",
       "Dragon Pulse",
@@ -1829,7 +2328,7 @@
     },
     {
      "ability": "Multiscale",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Extreme Speed",
       "Dragon Pulse",
@@ -1845,7 +2344,7 @@
    "pic": "Leader Clair Hns"
   },
   "TRAINER_ERIKA_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -1853,74 +2352,88 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Focus Band",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 61,
+     "ability": "Infiltrator",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Acrobatics",
-      "U Turn",
       "Sleep Powder",
-      "Leech Seed"
+      "Leech Seed",
+      "Acrobatics",
+      "U Turn"
      ],
+     "nature": "Jolly",
      "species": "Jumpluff"
     },
     {
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 60,
+     "ability": "Technician",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Synthesis",
-      "Grass Whistle",
-      "Toxic",
-      "Petal Dance"
+      "Giga Drain",
+      "Sludge Bomb",
+      "Shadow Ball",
+      "Spikes"
      ],
+     "nature": "Timid",
      "species": "Roserade"
     },
     {
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 60,
+     "ability": "Regenerator",
+     "item": "Rocky Helmet",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Power Whip",
-      "Wring Out",
-      "Grassy Terrain",
-      "Tickle"
+      "Giga Drain",
+      "Knock Off",
+      "Earthquake",
+      "Sleep Powder"
      ],
+     "nature": "Relaxed",
      "species": "Tangrowth"
     },
     {
-     "item": "Leftovers",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 61,
+     "ability": "Chlorophyll",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Sunny Day",
-      "Solar Beam",
-      "Sludge Bomb",
-      "Sleep Powder"
+      "Power Whip",
+      "Sucker Punch",
+      "Poison Jab",
+      "Weather Ball"
      ],
-     "species": "Venusaur"
-    },
-    {
-     "item": "Poison Barb",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 62,
-     "moves": [
-      "Sludge Bomb",
-      "Leaf Blade",
-      "Swords Dance",
-      "Sleep Powder"
-     ],
+     "nature": "Adamant",
      "species": "Victreebel"
     },
     {
-     "item": "Miracle Seed",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 62,
+     "ability": "Chlorophyll",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Petal Blizzard",
       "Quiver Dance",
-      "Stun Spore",
-      "Attract"
+      "Giga Drain",
+      "Moonblast",
+      "Strength Sap"
      ],
+     "nature": "Modest",
      "species": "Bellossom"
+    },
+    {
+     "ability": "Chlorophyll",
+     "item": "Venusaurite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Giga Drain",
+      "Sludge Bomb",
+      "Earth Power",
+      "Synthesis"
+     ],
+     "nature": "Modest",
+     "species": "Venusaur"
     }
    ],
    "mugshot": "Green",
@@ -1940,7 +2453,7 @@
      "ability": "Natural Cure",
      "item": "Focus Sash",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Toxic Spikes",
       "Venoshock",
@@ -1953,7 +2466,7 @@
      "ability": "Chlorophyll",
      "item": "Leftovers",
      "ivs": "0 Atk",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Ingrain",
       "Giga Drain",
@@ -1965,7 +2478,7 @@
     {
      "ability": "Overgrow",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Sludge Bomb",
       "Energy Ball",
@@ -1978,7 +2491,7 @@
      "ability": "Aftermath",
      "item": "Miracle Seed",
      "ivs": "0 Atk",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Chloroblast",
       "Electro Ball",
@@ -1990,7 +2503,7 @@
      "ability": "Chlorophyll",
      "item": "Lum Berry",
      "ivs": "0 Atk",
-     "level": 72,
+     "level": 100,
      "moves": [
       "Grassy Terrain",
       "Quiver Dance",
@@ -2002,7 +2515,7 @@
     {
      "ability": "Swift Swim",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Rain Dance",
       "Hydro Pump",
@@ -2017,6 +2530,53 @@
    "name": "ERIKA",
    "pic": "Leader Erika Hns"
   },
+  "TRAINER_EUSINE_HNS": {
+   "ai": "Basic Trainer",
+   "class": "Mystery Man Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_EUSINE_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ivs": "2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe",
+     "level": 31,
+     "moves": [
+      "Bubble Beam",
+      "Rain Dance",
+      "Hypnosis",
+      "Icy Wind"
+     ],
+     "species": "Politoed"
+    },
+    {
+     "ivs": "2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe",
+     "level": 31,
+     "moves": [
+      "Hypnosis",
+      "Disable",
+      "Confusion",
+      "Dream Eater"
+     ],
+     "species": "Hypno"
+    },
+    {
+     "ivs": "2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe",
+     "level": 31,
+     "moves": [
+      "Thunder Wave",
+      "Sonic Boom",
+      "Body Slam",
+      "Thunderbolt"
+     ],
+     "species": "Electrode"
+    }
+   ],
+   "mugshot": "Yellow",
+   "music": "Hg Boy 1",
+   "name": "EUSINE",
+   "pic": "Eusine Hns"
+  },
   "TRAINER_FALKNER_1_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Hns",
@@ -2028,7 +2588,7 @@
      "ability": "Big Pecks",
      "item": "Oran Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 9,
+     "level": 11,
      "moves": [
       "Tailwind",
       "Gust",
@@ -2041,7 +2601,7 @@
     {
      "ability": "Keen Eye",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 10,
+     "level": 11,
      "moves": [
       "Hone Claws",
       "Power Trip",
@@ -2082,7 +2642,7 @@
     {
      "item": "Sitrus Berry",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Psychic",
       "Air Slash",
@@ -2093,7 +2653,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Stealth Rock",
       "Drill Peck",
@@ -2105,7 +2665,7 @@
     {
      "item": "Focus Band",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Endeavor",
       "Double Team",
@@ -2116,7 +2676,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Mimic",
       "Dark Pulse",
@@ -2127,7 +2687,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "TailWind",
       "Aerial Ace",
@@ -2138,7 +2698,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Roost",
       "Brine",
@@ -2164,7 +2724,7 @@
     {
      "ability": "Tinted Lens",
      "ivs": "0 Atk",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Psychic",
       "Air Slash",
@@ -2175,7 +2735,7 @@
     },
     {
      "ability": "Keen Eye",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Drill Peck",
       "Steel Wing",
@@ -2187,7 +2747,7 @@
     {
      "ability": "Guts",
      "item": "Flame Orb",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Brave Bird",
       "Endeavor",
@@ -2198,7 +2758,7 @@
     },
     {
      "ability": "Moxie",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Acrobatics",
       "Night Slash",
@@ -2209,7 +2769,7 @@
     },
     {
      "ability": "Keen Eye",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Extreme Speed",
       "Fly",
@@ -2221,7 +2781,7 @@
     {
      "ability": "Drizzle",
      "ivs": "0 Atk",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Hurricane",
       "Brine",
@@ -2237,7 +2797,7 @@
    "pic": "Leader Falkner Hns"
   },
   "TRAINER_JANINE_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -2245,73 +2805,88 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Leftovers",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "ability": "Levitate",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
       "Sludge Bomb",
-      "Flamethrower",
-      "Belch",
-      "Amnesia"
+      "Will O Wisp",
+      "Pain Split",
+      "Toxic Spikes"
      ],
+     "nature": "Bold",
      "species": "Weezing"
     },
     {
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 62,
+     "ability": "Sheer Force",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Minimize",
-      "Gunk Shot",
-      "Toxic",
-      "Acid Armor"
+      "Earth Power",
+      "Sludge Wave",
+      "Ice Beam",
+      "Flamethrower"
      ],
-     "species": "Muk"
-    },
-    {
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 61,
-     "moves": [
-      "Swallow",
-      "Stockpile",
-      "Amnesia",
-      "Spit Up"
-     ],
-     "species": "Swalot"
-    },
-    {
-     "item": "Quick Claw",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 62,
-     "moves": [
-      "Earthquake",
-      "Cross Poison",
-      "Thunder",
-      "Superpower"
-     ],
+     "nature": "Modest",
      "species": "Nidoqueen"
     },
     {
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "ability": "Poison Touch",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Air Slash",
-      "Venoshock",
-      "Toxic",
-      "Confuse Ray"
+      "Gunk Shot",
+      "Knock Off",
+      "Shadow Sneak",
+      "Curse"
      ],
+     "nature": "Adamant",
+     "species": "Muk"
+    },
+    {
+     "ability": "Infiltrator",
+     "item": "Sharp Beak",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Brave Bird",
+      "Cross Poison",
+      "U Turn",
+      "Roost"
+     ],
+     "nature": "Jolly",
      "species": "Crobat"
     },
     {
-     "item": "Bright Powder",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
+     "ability": "Tinted Lens",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Signal Beam",
-      "Poison Fang",
-      "Toxic",
-      "Double Team"
+      "Quiver Dance",
+      "Bug Buzz",
+      "Sludge Bomb",
+      "Sleep Powder"
      ],
+     "nature": "Timid",
      "species": "Venomoth"
+    },
+    {
+     "ability": "Levitate",
+     "item": "Gengarite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Shadow Ball",
+      "Sludge Bomb",
+      "Focus Blast",
+      "Nasty Plot"
+     ],
+     "nature": "Timid",
+     "species": "Gengar"
     }
    ],
    "mugshot": "Purple",
@@ -2330,7 +2905,7 @@
     {
      "ability": "Liquid Ooze",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Toxic Spikes",
       "Stockpile",
@@ -2343,7 +2918,7 @@
      "ability": "Levitate",
      "item": "Fairy Feather",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Strange Steam",
       "Sludge Bomb",
@@ -2355,7 +2930,7 @@
     {
      "ability": "Poison Touch",
      "item": "Leftovers",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Gunk Shot",
       "Acid Armor",
@@ -2366,7 +2941,7 @@
     },
     {
      "ability": "Infiltrator",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Leech Life",
       "Confuse Ray",
@@ -2378,7 +2953,7 @@
     {
      "ability": "Unburden",
      "item": "Flying Gem",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Acrobatics",
       "Dire Claw",
@@ -2391,7 +2966,7 @@
      "ability": "Shield Dust",
      "item": "Bright Powder",
      "ivs": "0 Atk",
-     "level": 73,
+     "level": 100,
      "moves": [
       "Venoshock",
       "Signal Beam",
@@ -2418,7 +2993,7 @@
      "ability": "Sturdy",
      "item": "Rocky Helmet",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 34,
+     "level": 36,
      "moves": [
       "Spikes",
       "Drill Peck",
@@ -2432,7 +3007,7 @@
      "ability": "Magnet Pull",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 34,
+     "level": 36,
      "moves": [
       "Thunderbolt",
       "Flash Cannon",
@@ -2446,7 +3021,7 @@
      "ability": "Levitate",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 35,
+     "level": 36,
      "moves": [
       "Gyro Ball",
       "Earthquake",
@@ -2460,7 +3035,7 @@
      "ability": "Intimidate",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 35,
+     "level": 36,
      "moves": [
       "Iron Head",
       "Play Rough",
@@ -2474,7 +3049,7 @@
      "ability": "Technician",
      "item": "Metal Coat",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 35,
+     "level": 36,
      "moves": [
       "Bullet Punch",
       "U Turn",
@@ -2516,7 +3091,7 @@
      "ability": "Sturdy",
      "item": "Rocky Helmet",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 36,
+     "level": 38,
      "moves": [
       "Spikes",
       "Drill Peck",
@@ -2530,7 +3105,7 @@
      "ability": "Magnet Pull",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 36,
+     "level": 38,
      "moves": [
       "Thunderbolt",
       "Flash Cannon",
@@ -2544,7 +3119,7 @@
      "ability": "Levitate",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 37,
+     "level": 38,
      "moves": [
       "Gyro Ball",
       "Earthquake",
@@ -2558,7 +3133,7 @@
      "ability": "Intimidate",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 37,
+     "level": 38,
      "moves": [
       "Iron Head",
       "Play Rough",
@@ -2572,7 +3147,7 @@
      "ability": "Technician",
      "item": "Metal Coat",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 37,
+     "level": 38,
      "moves": [
       "Bullet Punch",
       "U Turn",
@@ -2614,7 +3189,7 @@
      "ability": "Sturdy",
      "item": "Rocky Helmet",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 29,
+     "level": 31,
      "moves": [
       "Spikes",
       "Drill Peck",
@@ -2628,7 +3203,7 @@
      "ability": "Magnet Pull",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 29,
+     "level": 31,
      "moves": [
       "Thunderbolt",
       "Flash Cannon",
@@ -2642,7 +3217,7 @@
      "ability": "Intimidate",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 30,
+     "level": 31,
      "moves": [
       "Iron Head",
       "Play Rough",
@@ -2656,7 +3231,7 @@
      "ability": "Technician",
      "item": "Metal Coat",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 30,
+     "level": 31,
      "moves": [
       "Bullet Punch",
       "U Turn",
@@ -2696,7 +3271,7 @@
    "mons": [
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Stealth Rock",
       "Drill Peck",
@@ -2707,7 +3282,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Flash Cannon",
       "Iron Defense",
@@ -2718,7 +3293,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Rain Dance",
       "Surf",
@@ -2729,7 +3304,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Gyro Ball",
       "Flash Cannon",
@@ -2741,7 +3316,7 @@
     {
      "item": "Hard Stone",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Rock Slide",
       "Metal Burst",
@@ -2753,7 +3328,7 @@
     {
      "item": "Quick Claw",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Crunch",
       "Earthquake",
@@ -2778,7 +3353,7 @@
    "mons": [
     {
      "ability": "Keen Eye",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Drill Peck",
       "Torment",
@@ -2789,7 +3364,7 @@
     },
     {
      "ability": "Snow Cloak",
-     "level": 72,
+     "level": 100,
      "moves": [
       "Curse",
       "Avalanche",
@@ -2802,7 +3377,7 @@
      "ability": "Regenerator",
      "item": "Damp Rock",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Rain Dance",
       "Power Gem",
@@ -2814,7 +3389,7 @@
     {
      "ability": "Analytic",
      "ivs": "0 Atk / 0 Spe",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Thunder",
       "Rain Dance",
@@ -2827,7 +3402,7 @@
     {
      "ability": "Steely Spirit",
      "ivs": "0 Spe",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Gyro Ball",
       "Play Rough",
@@ -2839,7 +3414,7 @@
     {
      "ability": "Rock Head",
      "item": "Quick Claw",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Head Smash",
       "Earthquake",
@@ -2855,7 +3430,7 @@
    "pic": "Leader Jasmine Hns"
   },
   "TRAINER_KAREN_1_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Elite Four Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -2863,62 +3438,87 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Sitrus Berry",
+     "ability": "Inner Focus",
+     "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 54,
+     "level": 56,
      "moves": [
-      "Faint Attack",
-      "Double Team",
-      "Baton Pass",
-      "Moonlight"
+      "Foul Play",
+      "Wish",
+      "Protect",
+      "Toxic"
      ],
+     "nature": "Calm",
      "species": "Umbreon"
     },
     {
+     "ability": "Effect Spore",
+     "item": "Black Sludge",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 53,
+     "level": 56,
      "moves": [
-      "Shadow Ball",
-      "Hypnosis",
-      "Dream Eater",
-      "Confuse Ray"
-     ],
-     "species": "Gengar"
-    },
-    {
-     "item": "Leftovers",
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 53,
-     "moves": [
-      "Sleep Powder",
       "Giga Drain",
-      "Leech Seed",
-      "Substitute"
+      "Sludge Bomb",
+      "Sleep Powder",
+      "Strength Sap"
      ],
+     "nature": "Bold",
      "species": "Vileplume"
     },
     {
-     "item": "Sharp Beak",
+     "ability": "Levitate",
+     "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 53,
+     "level": 56,
      "moves": [
-      "Air Slash",
-      "Faint Attack",
-      "Steel Wing",
-      "Haze"
+      "Shadow Ball",
+      "Sludge Bomb",
+      "Focus Blast",
+      "Nasty Plot"
      ],
+     "nature": "Timid",
+     "species": "Gengar"
+    },
+    {
+     "ability": "Super Luck",
+     "item": "Scope Lens",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Brave Bird",
+      "Night Slash",
+      "Sucker Punch",
+      "Heat Wave"
+     ],
+     "nature": "Adamant",
      "species": "Honchkrow"
     },
     {
+     "ability": "Super Luck",
+     "item": "Absolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Knock Off",
+      "Sucker Punch",
+      "Play Rough",
+      "Swords Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Absol"
+    },
+    {
+     "ability": "Flash Fire",
      "item": "Black Glasses",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 55,
+     "level": 56,
      "moves": [
-      "Flamethrower",
-      "Crunch",
-      "Iron Tail",
-      "Reversal"
+      "Fire Blast",
+      "Dark Pulse",
+      "Sludge Bomb",
+      "Nasty Plot"
      ],
+     "nature": "Timid",
      "species": "Houndoom"
     }
    ],
@@ -2938,7 +3538,7 @@
     {
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Growth",
       "Shadow Ball",
@@ -2949,7 +3549,7 @@
     },
     {
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Hone Claws",
       "Metal Claw",
@@ -2961,7 +3561,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Slash",
       "Assurance",
@@ -2973,7 +3573,7 @@
     {
      "item": "Sharp Beak",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Air Slash",
       "Dark Pulse",
@@ -2985,7 +3585,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Psycho Cut",
       "Shadow Claw",
@@ -2997,7 +3597,7 @@
     {
      "item": "Charcoal",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 69,
+     "level": 70,
      "moves": [
       "Flamethrower",
       "Crunch",
@@ -3024,7 +3624,7 @@
      "ability": "Synchronize",
      "item": "Black Glasses",
      "ivs": "0 Atk",
-     "level": 74,
+     "level": 100,
      "moves": [
       "Lunar Blessing",
       "Foul Play",
@@ -3036,7 +3636,7 @@
     {
      "ability": "Pressure",
      "item": "Razor Claw",
-     "level": 75,
+     "level": 100,
      "moves": [
       "Hone Claws",
       "Night Slash",
@@ -3048,7 +3648,7 @@
     {
      "ability": "Fur Coat",
      "item": "Charcoal",
-     "level": 76,
+     "level": 100,
      "moves": [
       "Fake Out",
       "Dark Pulse",
@@ -3059,7 +3659,7 @@
     },
     {
      "ability": "Moxie",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Night Slash",
       "Brave Bird",
@@ -3071,7 +3671,7 @@
     {
      "ability": "Guts",
      "item": "Flame Orb",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Close Combat",
       "Double-Edge",
@@ -3082,7 +3682,7 @@
     },
     {
      "ability": "Unnerve",
-     "level": 79,
+     "level": 100,
      "moves": [
       "Fire Blast",
       "Crunch",
@@ -3098,7 +3698,7 @@
    "pic": "Elite Four Karen Hns"
   },
   "TRAINER_KOGA_1_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Elite Four Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -3106,61 +3706,87 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Kings Rock",
+     "ability": "Regenerator",
+     "item": "Black Sludge",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 50,
+     "level": 56,
      "moves": [
-      "Megahorn",
-      "Giga Drain",
-      "Double Team",
-      "Toxic"
-     ],
-     "species": "Ariados"
-    },
-    {
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 51,
-     "moves": [
-      "Aqua Tail",
+      "Scald",
       "Toxic",
-      "Protect",
-      "Poison Jab"
+      "Recover",
+      "Haze"
      ],
-     "species": "Qwilfish"
+     "nature": "Bold",
+     "species": "Toxapex"
     },
     {
-     "item": "Leftovers",
+     "ability": "Poison Touch",
+     "item": "Black Sludge",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 50,
+     "level": 56,
      "moves": [
-      "Minimize",
-      "Fire Blast",
+      "Knock Off",
+      "Poison Jab",
+      "Ice Punch",
+      "Shadow Sneak"
+     ],
+     "nature": "Adamant",
+     "species": "Muk Alola"
+    },
+    {
+     "ability": "Dry Skin",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
       "Gunk Shot",
-      "Toxic"
+      "Drain Punch",
+      "Sucker Punch",
+      "Swords Dance"
      ],
-     "species": "Muk"
+     "nature": "Jolly",
+     "species": "Toxicroak"
     },
     {
+     "ability": "Tinted Lens",
+     "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 51,
+     "level": 56,
      "moves": [
-      "Leech Life",
-      "Psychic",
-      "Poison Fang",
+      "Quiver Dance",
+      "Bug Buzz",
+      "Sludge Bomb",
       "Sleep Powder"
      ],
+     "nature": "Timid",
      "species": "Venomoth"
     },
     {
-     "item": "Bright Powder",
+     "ability": "Sniper",
+     "item": "Beedrillite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 52,
+     "level": 56,
      "moves": [
-      "Double Team",
-      "Toxic",
-      "Bite",
-      "Confuse Ray"
+      "Poison Jab",
+      "U Turn",
+      "Drill Run",
+      "Swords Dance"
      ],
+     "nature": "Jolly",
+     "species": "Beedrill"
+    },
+    {
+     "ability": "Infiltrator",
+     "item": "Sharp Beak",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Brave Bird",
+      "Cross Poison",
+      "U Turn",
+      "Roost"
+     ],
+     "nature": "Jolly",
      "species": "Crobat"
     }
    ],
@@ -3180,7 +3806,7 @@
     {
      "item": "Chesto Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Waterfall",
       "Blizzard",
@@ -3192,7 +3818,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Minimize",
       "Fire Blast",
@@ -3203,7 +3829,7 @@
     },
     {
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Swallow",
       "Stockpile",
@@ -3215,7 +3841,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Lovely Kiss",
       "Fire Blast",
@@ -3227,7 +3853,7 @@
     {
      "item": "Bright Powder",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Silver Wind",
       "Signal Beam",
@@ -3239,7 +3865,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Cross Poison",
       "Air Slash",
@@ -3264,7 +3890,7 @@
    "mons": [
     {
      "ability": "Water Absorb",
-     "level": 74,
+     "level": 100,
      "moves": [
       "Toxic Spikes",
       "Earthquake",
@@ -3276,7 +3902,7 @@
     {
      "ability": "Poison Point",
      "item": "Black Sludge",
-     "level": 75,
+     "level": 100,
      "moves": [
       "Barb Barrage",
       "Lash Out",
@@ -3289,7 +3915,7 @@
      "ability": "Sniper",
      "evs": "252 Spe",
      "item": "Blunder Policy",
-     "level": 76,
+     "level": 100,
      "moves": [
       "Sticky Web",
       "Megahorn",
@@ -3303,7 +3929,7 @@
      "ability": "Sheer Force",
      "item": "Life Orb",
      "ivs": "0 Atk",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Fire Blast",
       "Ice Beam",
@@ -3316,7 +3942,7 @@
      "ability": "Shield Dust",
      "item": "Bright Powder",
      "ivs": "0 Atk",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Venoshock",
       "Bug Buzz",
@@ -3327,7 +3953,7 @@
     },
     {
      "ability": "Inner Focus",
-     "level": 79,
+     "level": 100,
      "moves": [
       "Acrobatics",
       "Cross Poison",
@@ -3343,7 +3969,7 @@
    "pic": "Elite Four Koga Hns"
   },
   "TRAINER_LANCE_1_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Champion Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -3351,74 +3977,87 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
+     "ability": "Intimidate",
      "item": "Gyaradosite",
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 54,
-     "moves": [
-      "Waterfall",
-      "Dragon Dance",
-      "Hyper Beam",
-      "Earthquake"
-     ],
-     "species": "Gyarados"
-    },
-    {
-     "item": "Sitrus Berry",
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 55,
-     "moves": [
-      "Blizzard",
-      "Fire Blast",
-      "Thunder",
-      "Extreme Speed"
-     ],
-     "species": "Dragonite"
-    },
-    {
-     "item": "Charcoal",
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 54,
-     "moves": [
-      "Flamethrower",
-      "Wing Attack",
-      "Double Team",
-      "Steel Wing"
-     ],
-     "species": "Charizard"
-    },
-    {
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 55,
-     "moves": [
-      "Bounce",
-      "Dragon Claw",
-      "Waterfall",
-      "Dragon Dance"
-     ],
-     "species": "Dragonite"
-    },
-    {
-     "item": "Silk Scarf",
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 54,
-     "moves": [
-      "Aerial Ace",
-      "Rock Slide",
-      "Hyper Beam",
-      "Earthquake"
-     ],
-     "species": "Aerodactyl"
-    },
-    {
-     "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 56,
      "moves": [
-      "Thunder",
-      "Safeguard",
-      "Outrage",
-      "Hyper Beam"
+      "Waterfall",
+      "Crunch",
+      "Earthquake",
+      "Thunder Wave"
      ],
+     "nature": "Jolly",
+     "species": "Gyarados"
+    },
+    {
+     "ability": "Unnerve",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Stone Edge",
+      "Earthquake",
+      "Taunt",
+      "Stealth Rock"
+     ],
+     "nature": "Jolly",
+     "species": "Aerodactyl"
+    },
+    {
+     "ability": "Solar Power",
+     "item": "Charcoal",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Fire Blast",
+      "Air Slash",
+      "Focus Blast",
+      "Dragon Pulse"
+     ],
+     "nature": "Timid",
+     "species": "Charizard"
+    },
+    {
+     "ability": "Intimidate",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Outrage",
+      "Earthquake",
+      "Fire Fang",
+      "Dual Wingbeat"
+     ],
+     "nature": "Jolly",
+     "species": "Salamence"
+    },
+    {
+     "ability": "Rough Skin",
+     "item": "Rocky Helmet",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Earthquake",
+      "Dragon Claw",
+      "Stone Edge",
+      "Swords Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Garchomp"
+    },
+    {
+     "ability": "Multiscale",
+     "item": "Lum Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Extreme Speed",
+      "Dragon Dance",
+      "Earthquake",
+      "Outrage"
+     ],
+     "nature": "Adamant",
      "species": "Dragonite"
     }
    ],
@@ -3438,7 +4077,7 @@
     {
      "item": "Salamencite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 69,
+     "level": 70,
      "moves": [
       "Dragon Claw",
       "Air Slash",
@@ -3450,7 +4089,7 @@
     {
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Iron Tail",
       "Ice Punch",
@@ -3462,7 +4101,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 69,
+     "level": 70,
      "moves": [
       "Waterfall",
       "Hyper Beam",
@@ -3474,7 +4113,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Fire Blast",
       "Crunch",
@@ -3486,7 +4125,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 69,
+     "level": 70,
      "moves": [
       "Sky Attack",
       "Rock Slide",
@@ -3571,7 +4210,7 @@
     {
      "ability": "Intimidate",
      "item": "Assault Vest",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Draco Meteor",
       "Iron Head",
@@ -3583,7 +4222,7 @@
     {
      "ability": "Intimidate",
      "item": "Eject Button",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Waterfall",
       "Hyper Beam",
@@ -3595,7 +4234,7 @@
     {
      "ability": "Blaze",
      "item": "Charizardite X",
-     "level": 78,
+     "level": 100,
      "moves": [
       "Fire Blast",
       "Earthquake",
@@ -3608,7 +4247,7 @@
      "ability": "Infiltrator",
      "item": "Silk Scarf",
      "ivs": "0 Atk",
-     "level": 78,
+     "level": 100,
      "moves": [
       "Boomburst",
       "Dragon Pulse",
@@ -3620,7 +4259,7 @@
     {
      "ability": "Rock Head",
      "item": "Scope Lens",
-     "level": 79,
+     "level": 100,
      "moves": [
       "Rock Slide",
       "Earthquake",
@@ -3632,7 +4271,7 @@
     {
      "ability": "Multiscale",
      "item": "Leftovers",
-     "level": 79,
+     "level": 100,
      "moves": [
       "Iron Head",
       "Fire Punch",
@@ -3657,7 +4296,7 @@
     {
      "ability": "Levitate",
      "ivs": "25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe",
-     "level": 8,
+     "level": 11,
      "moves": [
       "Lick",
       "Hypnosis",
@@ -3670,7 +4309,7 @@
     {
      "ability": "Chlorophyll",
      "ivs": "25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe",
-     "level": 8,
+     "level": 11,
      "moves": [
       "Absorb",
       "Synthesis",
@@ -3684,7 +4323,7 @@
      "ability": "Chlorophyll",
      "item": "Oran Berry",
      "ivs": "25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe",
-     "level": 10,
+     "level": 11,
      "moves": [
       "Vine Whip",
       "Growth",
@@ -3700,8 +4339,193 @@
    "name": "LI",
    "pic": "Sage Leader Hns"
   },
+  "TRAINER_LTSURGE_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Kanto Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_LTSURGE_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Aftermath",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Thunderbolt",
+      "Volt Switch",
+      "Taunt",
+      "Explosion"
+     ],
+     "nature": "Timid",
+     "species": "Electrode"
+    },
+    {
+     "ability": "Magnet Pull",
+     "item": "Choice Specs",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Thunderbolt",
+      "Flash Cannon",
+      "Volt Switch",
+      "Body Press"
+     ],
+     "nature": "Modest",
+     "species": "Magnezone"
+    },
+    {
+     "ability": "Volt Absorb",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Scald",
+      "Discharge",
+      "Ice Beam",
+      "Heal Bell"
+     ],
+     "nature": "Bold",
+     "species": "Lanturn"
+    },
+    {
+     "ability": "Motor Drive",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Wild Charge",
+      "Ice Punch",
+      "Earthquake",
+      "Cross Chop"
+     ],
+     "nature": "Adamant",
+     "species": "Electivire"
+    },
+    {
+     "ability": "Lightning Rod",
+     "item": "Manectite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Thunderbolt",
+      "Overheat",
+      "Snarl",
+      "Volt Switch"
+     ],
+     "nature": "Timid",
+     "species": "Manectric"
+    },
+    {
+     "ability": "Lightning Rod",
+     "item": "Magnet",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Thunderbolt",
+      "Focus Blast",
+      "Nasty Plot",
+      "Grass Knot"
+     ],
+     "nature": "Timid",
+     "species": "Raichu"
+    }
+   ],
+   "mugshot": "Yellow",
+   "music": "Hg Boy 1",
+   "name": "LTSURGE",
+   "pic": "Leader Surge Hns"
+  },
+  "TRAINER_LTSURGE_POSTOBC_HNS": {
+   "ai": "Smart Trainer / Prediction",
+   "class": "Leader Kanto Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_LTSURGE_POSTOBC_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Soundproof",
+     "item": "Normal Gem",
+     "level": 100,
+     "moves": [
+      "Electro Ball",
+      "Rain Dance",
+      "Explosion"
+     ],
+     "species": "Electrode"
+    },
+    {
+     "ability": "Volt Absorb",
+     "ivs": "0 Atk",
+     "level": 100,
+     "moves": [
+      "Electric Terrain",
+      "Thunder",
+      "Rain Dance",
+      "Reflect"
+     ],
+     "species": "Jolteon"
+    },
+    {
+     "ability": "Volt Absorb",
+     "item": "Leftovers",
+     "ivs": "0 Atk",
+     "level": 100,
+     "moves": [
+      "Rain Dance",
+      "Thunder",
+      "Ion Deluge",
+      "Hydro Pump"
+     ],
+     "species": "Lanturn"
+    },
+    {
+     "ability": "Lightning Rod",
+     "item": "Terrain Extender",
+     "level": 100,
+     "moves": [
+      "Electric Terrain",
+      "Charge",
+      "Wild Charge",
+      "Crunch"
+     ],
+     "species": "Manectric"
+    },
+    {
+     "ability": "Motor Drive",
+     "item": "Scope Lens",
+     "level": 100,
+     "moves": [
+      "Thunder Punch",
+      "Ice Punch",
+      "Cross Chop",
+      "Bulk Up"
+     ],
+     "species": "Electivire"
+    },
+    {
+     "ability": "Surge Surfer",
+     "item": "Electric Seed",
+     "ivs": "0 Atk",
+     "level": 100,
+     "moves": [
+      "Rising Voltage",
+      "Electric Terrain",
+      "Psyshock",
+      "Calm Mind"
+     ],
+     "species": "Raichu-Alola"
+    }
+   ],
+   "mugshot": "Yellow",
+   "music": "Hg Boy 1",
+   "name": "LTSURGE",
+   "pic": "Leader Surge Hns"
+  },
   "TRAINER_MISTY_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -3709,73 +4533,87 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 62,
+     "ability": "Drizzle",
+     "item": "Damp Rock",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Aqua Tail",
-      "Psychic",
-      "Wonder Room",
-      "Cross Chop"
+      "Scald",
+      "Hurricane",
+      "U Turn",
+      "Roost"
      ],
+     "nature": "Bold",
+     "species": "Pelipper"
+    },
+    {
+     "ability": "Swift Swim",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Hydro Pump",
+      "Ice Beam",
+      "Psychic",
+      "Nasty Plot"
+     ],
+     "nature": "Timid",
      "species": "Golduck"
     },
     {
-     "item": "Quick Claw",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 62,
-     "moves": [
-      "Muddy Water",
-      "Amnesia",
-      "Earthquake",
-      "Rain Dance"
-     ],
-     "species": "Quagsire"
-    },
-    {
+     "ability": "Water Absorb",
      "item": "Leftovers",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 61,
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
+      "Freeze Dry",
       "Hydro Pump",
-      "Ice Beam",
-      "Acid Armor",
-      "Shadow Ball"
+      "Thunderbolt",
+      "Ice Shard"
      ],
-     "species": "Vaporeon"
-    },
-    {
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 61,
-     "moves": [
-      "Hydro Pump",
-      "Ice Beam",
-      "Rest",
-      "Sleep Talk"
-     ],
-     "species": "Milotic"
-    },
-    {
-     "item": "Never Melt Ice",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 62,
-     "moves": [
-      "Hydro Pump",
-      "Ice Beam",
-      "Rain Dance",
-      "Reflect"
-     ],
+     "nature": "Modest",
      "species": "Lapras"
     },
     {
-     "item": "Mystic Water",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "ability": "Competitive",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Surf",
-      "Psychic",
+      "Scald",
+      "Ice Beam",
       "Recover",
-      "Thunderbolt"
+      "Haze"
      ],
+     "nature": "Bold",
+     "species": "Milotic"
+    },
+    {
+     "ability": "Torrent",
+     "item": "Blastoisinite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Water Pulse",
+      "Aura Sphere",
+      "Dark Pulse",
+      "Ice Beam"
+     ],
+     "nature": "Modest",
+     "species": "Blastoise"
+    },
+    {
+     "ability": "Analytic",
+     "item": "Wise Glasses",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Hydro Pump",
+      "Psychic",
+      "Thunderbolt",
+      "Ice Beam"
+     ],
+     "nature": "Timid",
      "species": "Starmie"
     }
    ],
@@ -3795,7 +4633,7 @@
     {
      "ability": "Drizzle",
      "item": "Damp Rock",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Weather Ball",
       "Seismic Toss",
@@ -3807,7 +4645,7 @@
     {
      "ability": "Torrent",
      "item": "Quick Claw",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Rain Dance",
       "Barrier",
@@ -3821,7 +4659,7 @@
      "evs": "32 HP / 40 Def / 12 SpD",
      "item": "Leftovers",
      "ivs": "0 Atk",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Aqua Ring",
       "Hydro Pump",
@@ -3834,7 +4672,7 @@
      "ability": "Marvel Scale",
      "item": "Shell Bell",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Scald",
       "Ice Beam",
@@ -3846,7 +4684,7 @@
     {
      "ability": "Shell Armor",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Freeze-Dry",
       "Hydro Pump",
@@ -3859,7 +4697,7 @@
      "ability": "Natural Cure",
      "item": "Mystic Water",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Psyshock",
       "Surf",
@@ -3886,7 +4724,7 @@
      "ability": "Prankster",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 23,
+     "level": 25,
      "moves": [
       "Will O Wisp",
       "Knock Off",
@@ -3900,7 +4738,7 @@
      "ability": "Levitate",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 23,
+     "level": 25,
      "moves": [
       "Hex",
       "Thunder Wave",
@@ -3914,7 +4752,7 @@
      "ability": "Unburden",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 24,
+     "level": 25,
      "moves": [
       "Shadow Ball",
       "Air Slash",
@@ -3928,7 +4766,7 @@
      "ability": "Lightning Rod",
      "item": "Thick Club",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 24,
+     "level": 25,
      "moves": [
       "Shadow Bone",
       "Fire Punch",
@@ -3968,7 +4806,7 @@
    "mons": [
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Quash",
       "Foul Play",
@@ -3980,7 +4818,7 @@
     {
      "item": "Silk Scarf",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Jump Kick",
       "Psyshield Bash",
@@ -3993,7 +4831,7 @@
      "ability": "Levitate",
      "item": "Spell Tag",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Shadow Ball",
       "Dark Pulse",
@@ -4004,7 +4842,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Shadow Ball",
       "Magical Leaf",
@@ -4017,7 +4855,7 @@
      "ability": "Levitate",
      "item": "Sitrus Berry",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Shadow Ball",
       "Hypnosis",
@@ -4028,7 +4866,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Shadow Punch",
       "Fire Punch",
@@ -4054,7 +4892,7 @@
     {
      "ability": "Prankster",
      "ivs": "0 Atk",
-     "level": 72,
+     "level": 100,
      "moves": [
       "Foul Play",
       "Will-O-Wisp",
@@ -4066,7 +4904,7 @@
     {
      "ability": "Sap Sipper",
      "item": "Silk Scarf",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Psyshield Bash",
       "Megahorn",
@@ -4077,7 +4915,7 @@
     },
     {
      "ability": "Pressure",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Shadow Punch",
       "Fire Punch",
@@ -4089,7 +4927,7 @@
     {
      "ability": "Blaze",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Infernal Parade",
       "Lava Plume",
@@ -4102,7 +4940,7 @@
     {
      "ability": "Levitate",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Mean Look",
       "Perish Song",
@@ -4115,7 +4953,7 @@
      "ability": "Cursed Body",
      "item": "Sitrus Berry",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Hex",
       "Hypnosis",
@@ -4130,6 +4968,300 @@
    "name": "MORTY",
    "pic": "Leader Morty Hns"
   },
+  "TRAINER_PETREL_1_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_PETREL_1_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Levitate",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 31,
+     "moves": [
+      "Sludge Bomb",
+      "Will O Wisp",
+      "Pain Split",
+      "Fire Blast"
+     ],
+     "nature": "Bold",
+     "species": "Weezing"
+    },
+    {
+     "ability": "Sturdy",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 31,
+     "moves": [
+      "Spikes",
+      "Volt Switch",
+      "Gyro Ball",
+      "Rapid Spin"
+     ],
+     "nature": "Relaxed",
+     "species": "Forretress"
+    },
+    {
+     "ability": "Shed Skin",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 31,
+     "moves": [
+      "Rock Slide",
+      "Crunch",
+      "Earthquake",
+      "Dragon Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Pupitar"
+    },
+    {
+     "ability": "Sniper",
+     "item": "Black Glasses",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 31,
+     "moves": [
+      "Knock Off",
+      "Poison Jab",
+      "Earthquake",
+      "Swords Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Drapion"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "PETREL",
+   "pic": "Petrel Hns"
+  },
+  "TRAINER_PETREL_2_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_PETREL_2_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Sturdy",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Spikes",
+      "Volt Switch",
+      "Gyro Ball",
+      "Rapid Spin"
+     ],
+     "nature": "Relaxed",
+     "species": "Forretress"
+    },
+    {
+     "ability": "Neutralizing Gas",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Strange Steam",
+      "Sludge Bomb",
+      "Will O Wisp",
+      "Pain Split"
+     ],
+     "nature": "Bold",
+     "species": "Weezing Galar"
+    },
+    {
+     "ability": "Shed Skin",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Stone Edge",
+      "Crunch",
+      "Earthquake",
+      "Dragon Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Pupitar"
+    },
+    {
+     "ability": "Skill Link",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Icicle Spear",
+      "Rock Blast",
+      "Shell Smash",
+      "Liquidation"
+     ],
+     "nature": "Adamant",
+     "species": "Cloyster"
+    },
+    {
+     "ability": "Sniper",
+     "item": "Black Glasses",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Knock Off",
+      "Poison Jab",
+      "Earthquake",
+      "Swords Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Drapion"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "PETREL",
+   "pic": "Petrel Hns"
+  },
+  "TRAINER_PROTON_1_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_PROTON_1_HNS",
+   "items": "Super Potion",
+   "mons": [
+    {
+     "ability": "Levitate",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 16,
+     "moves": [
+      "Sludge",
+      "Will O Wisp",
+      "Clear Smog",
+      "Smokescreen"
+     ],
+     "nature": "Bold",
+     "species": "Koffing"
+    },
+    {
+     "ability": "Regenerator",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 16,
+     "moves": [
+      "Water Pulse",
+      "Confusion",
+      "Yawn",
+      "Slack Off"
+     ],
+     "nature": "Relaxed",
+     "species": "Slowpoke"
+    },
+    {
+     "ability": "Flash Fire",
+     "item": "Charcoal",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 16,
+     "moves": [
+      "Incinerate",
+      "Snarl",
+      "Smog",
+      "Nasty Plot"
+     ],
+     "nature": "Timid",
+     "species": "Houndour"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "PROTON",
+   "pic": "Proton Hns"
+  },
+  "TRAINER_PROTON_2_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Rocket Admin Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_PROTON_2_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Poison Touch",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Gunk Shot",
+      "Shadow Sneak",
+      "Knock Off",
+      "Curse"
+     ],
+     "nature": "Adamant",
+     "species": "Muk"
+    },
+    {
+     "ability": "Sheer Force",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Earth Power",
+      "Sludge Wave",
+      "Ice Beam",
+      "Flamethrower"
+     ],
+     "nature": "Modest",
+     "species": "Nidoqueen"
+    },
+    {
+     "ability": "Levitate",
+     "item": "Rocky Helmet",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Sludge Bomb",
+      "Will O Wisp",
+      "Pain Split",
+      "Toxic Spikes"
+     ],
+     "nature": "Bold",
+     "species": "Weezing"
+    },
+    {
+     "ability": "Sheer Force",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Earth Power",
+      "Sludge Wave",
+      "Ice Beam",
+      "Thunderbolt"
+     ],
+     "nature": "Timid",
+     "species": "Nidoking"
+    },
+    {
+     "ability": "Lightning Rod",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Stone Edge",
+      "Earthquake",
+      "Megahorn",
+      "Swords Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Rhydon"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Rocket",
+   "name": "PROTON",
+   "pic": "Proton Hns"
+  },
   "TRAINER_PRYCE_1_2_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Hns",
@@ -4142,7 +5274,7 @@
      "ability": "Skill Link",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 34,
+     "level": 36,
      "moves": [
       "Icicle Spear",
       "Rock Blast",
@@ -4156,7 +5288,7 @@
      "ability": "Thick Fat",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 34,
+     "level": 36,
      "moves": [
       "Surf",
       "Ice Beam",
@@ -4170,7 +5302,7 @@
      "ability": "Dry Skin",
      "item": "Wise Glasses",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 35,
+     "level": 36,
      "moves": [
       "Lovely Kiss",
       "Ice Beam",
@@ -4184,7 +5316,7 @@
      "ability": "Pressure",
      "item": "Razor Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 35,
+     "level": 36,
      "moves": [
       "Ice Punch",
       "Knock Off",
@@ -4198,7 +5330,7 @@
      "ability": "Thick Fat",
      "item": "Never Melt Ice",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 35,
+     "level": 36,
      "moves": [
       "Earthquake",
       "Icicle Crash",
@@ -4240,7 +5372,7 @@
      "ability": "Skill Link",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 36,
+     "level": 38,
      "moves": [
       "Icicle Spear",
       "Rock Blast",
@@ -4254,7 +5386,7 @@
      "ability": "Thick Fat",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 36,
+     "level": 38,
      "moves": [
       "Surf",
       "Ice Beam",
@@ -4268,7 +5400,7 @@
      "ability": "Dry Skin",
      "item": "Wise Glasses",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 37,
+     "level": 38,
      "moves": [
       "Lovely Kiss",
       "Ice Beam",
@@ -4282,7 +5414,7 @@
      "ability": "Pressure",
      "item": "Razor Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 37,
+     "level": 38,
      "moves": [
       "Ice Punch",
       "Knock Off",
@@ -4296,7 +5428,7 @@
      "ability": "Thick Fat",
      "item": "Never Melt Ice",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 37,
+     "level": 38,
      "moves": [
       "Earthquake",
       "Icicle Crash",
@@ -4338,7 +5470,7 @@
      "ability": "Skill Link",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 29,
+     "level": 31,
      "moves": [
       "Icicle Spear",
       "Rock Blast",
@@ -4352,7 +5484,7 @@
      "ability": "Dry Skin",
      "item": "Wise Glasses",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 29,
+     "level": 31,
      "moves": [
       "Lovely Kiss",
       "Ice Beam",
@@ -4366,7 +5498,7 @@
      "ability": "Pressure",
      "item": "Razor Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 30,
+     "level": 31,
      "moves": [
       "Ice Punch",
       "Knock Off",
@@ -4380,7 +5512,7 @@
      "ability": "Thick Fat",
      "item": "Never Melt Ice",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 30,
+     "level": 31,
      "moves": [
       "Earthquake",
       "Icicle Crash",
@@ -4420,7 +5552,7 @@
    "mons": [
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Night Slash",
       "Metal Claw",
@@ -4432,7 +5564,7 @@
     {
      "item": "Sitrus Berry",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Aqua Tail",
       "Ice Beam",
@@ -4443,7 +5575,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Ice Beam",
       "Psychic",
@@ -4454,7 +5586,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Shadow Ball",
       "Blizzard",
@@ -4466,7 +5598,7 @@
     {
      "item": "Soft Sand",
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Strength",
       "Earthquake",
@@ -4477,7 +5609,7 @@
     },
     {
      "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Sheer Cold",
       "Crunch",
@@ -4502,7 +5634,7 @@
    "mons": [
     {
      "ability": "Pressure",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Fake Out",
       "Night Slash",
@@ -4514,7 +5646,7 @@
     {
      "ability": "Ice Body",
      "ivs": "0 Atk",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Teeter Dance",
       "Snowscape",
@@ -4527,7 +5659,7 @@
      "ability": "Snow Warning",
      "item": "Light Clay",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Aurora Veil",
       "Blizzard",
@@ -4539,7 +5671,7 @@
     {
      "ability": "Regenerator",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Chilly Reception",
       "Hydro Pump",
@@ -4551,7 +5683,7 @@
     {
      "ability": "Oblivious",
      "item": "Soft Sand",
-     "level": 71,
+     "level": 100,
      "moves": [
       "Earthquake",
       "Avalanche",
@@ -4563,7 +5695,7 @@
     {
      "ability": "Snow Cloak",
      "ivs": "0 Atk",
-     "level": 72,
+     "level": 100,
      "moves": [
       "Shadow Ball",
       "Blizzard",
@@ -4579,84 +5711,102 @@
    "pic": "Leader Pryce Hns"
   },
   "TRAINER_RED_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Prediction / Ace Pokemon / HP Aware",
    "class": "Pkmn Trainer 1 Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_RED_HNS",
-   "items": "Full Restore / Full Restore",
+   "items": "Full Restore / Full Restore / Full Restore / Full Restore",
    "mons": [
     {
+     "ability": "Lightning Rod",
+     "evs": "252 Atk / 4 SpA / 252 Spe",
      "item": "Light Ball",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 93,
+     "level": 100,
      "moves": [
-      "Thunderbolt",
+      "Volt Tackle",
       "Surf",
-      "Iron Tail",
-      "Double Team"
+      "Knock Off",
+      "Fake Out"
      ],
-     "species": "Pikachu-Starter"
+     "nature": "Hasty",
+     "species": "Pikachu"
     },
     {
+     "ability": "Magic Bounce",
+     "evs": "4 HP / 252 SpA / 252 Spe",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 100,
+     "moves": [
+      "Psychic",
+      "Dazzling Gleam",
+      "Shadow Ball",
+      "Calm Mind"
+     ],
+     "nature": "Timid",
+     "species": "Espeon"
+    },
+    {
+     "ability": "Thick Fat",
+     "evs": "252 HP / 4 Atk / 252 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 77,
+     "level": 100,
      "moves": [
-      "Belly Drum",
       "Curse",
-      "Heavy Slam",
-      "Earthquake"
+      "Body Slam",
+      "Rest",
+      "Sleep Talk"
      ],
+     "nature": "Careful",
      "species": "Snorlax"
     },
     {
-     "item": "Charizardite Y",
+     "ability": "Chlorophyll",
+     "evs": "4 HP / 252 SpA / 252 Spe",
+     "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 79,
+     "level": 100,
      "moves": [
-      "Fire Blast",
-      "Aerial Ace",
-      "Outrage",
-      "Steel Wing"
-     ],
-     "species": "Charizard"
-    },
-    {
-     "item": "Miracle Seed",
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 79,
-     "moves": [
-      "Petal Blizzard",
-      "Double Edge",
       "Sleep Powder",
-      "Leech Seed"
+      "Growth",
+      "Giga Drain",
+      "Sludge Bomb"
      ],
+     "nature": "Modest",
      "species": "Venusaur"
     },
     {
-     "item": "Quick Claw",
+     "ability": "Torrent",
+     "evs": "4 HP / 252 SpA / 252 Spe",
+     "item": "White Herb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 79,
+     "level": 100,
      "moves": [
-      "Ice Beam",
+      "Shell Smash",
       "Hydro Pump",
-      "Skull Bash",
-      "Earthquake"
+      "Ice Beam",
+      "Aura Sphere"
      ],
+     "nature": "Modest",
      "species": "Blastoise"
     },
     {
-     "item": "Sitrus Berry",
+     "ability": "Solar Power",
+     "evs": "4 HP / 252 SpA / 252 Spe",
+     "item": "Charizardite Y",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 80,
+     "level": 100,
      "moves": [
-      "Psychic",
-      "Shadow Ball",
-      "Hidden Power",
-      "Morning Sun"
+      "Fire Blast",
+      "Solar Beam",
+      "Focus Blast",
+      "Air Slash"
      ],
-     "species": "Espeon"
+     "nature": "Timid",
+     "species": "Charizard"
     }
    ],
    "music": "Hg Champion",
@@ -4664,88 +5814,102 @@
    "pic": "Red Hns"
   },
   "TRAINER_RED_POSTOBC_HNS": {
-   "ai": "Smart Trainer / Prediction",
+   "ai": "Smart Trainer / Prediction / Ace Pokemon / HP Aware",
    "class": "Pkmn Trainer 1 Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_RED_POSTOBC_HNS",
-   "items": "Full Restore / Full Restore",
+   "items": "Full Restore / Full Restore / Full Restore / Full Restore",
    "mons": [
     {
      "ability": "Lightning Rod",
+     "evs": "252 Atk / 4 SpA / 252 Spe",
      "item": "Light Ball",
-     "level": 95,
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 100,
      "moves": [
       "Volt Tackle",
       "Surf",
-      "Iron Tail",
-      "Double Team"
+      "Knock Off",
+      "Fake Out"
      ],
-     "species": "Pikachu-Starter"
+     "nature": "Hasty",
+     "species": "Pikachu"
     },
     {
-     "ability": "Immunity",
-     "item": "Chesto Berry",
-     "level": 85,
+     "ability": "Magic Bounce",
+     "evs": "4 HP / 252 SpA / 252 Spe",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 100,
      "moves": [
-      "Belly Drum",
-      "Earthquake",
-      "Rest",
-      "Heavy Slam"
+      "Psychic",
+      "Dazzling Gleam",
+      "Shadow Ball",
+      "Calm Mind"
      ],
+     "nature": "Timid",
+     "species": "Espeon"
+    },
+    {
+     "ability": "Thick Fat",
+     "evs": "252 HP / 4 Atk / 252 SpD",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 100,
+     "moves": [
+      "Curse",
+      "Body Slam",
+      "Rest",
+      "Sleep Talk"
+     ],
+     "nature": "Careful",
      "species": "Snorlax"
     },
     {
-     "ability": "Blaze",
-     "item": "Charizardite Y",
-     "level": 87,
-     "moves": [
-      "Fire Blast",
-      "Seismic Toss",
-      "Outrage",
-      "Steel Wing"
-     ],
-     "species": "Charizard"
-    },
-    {
      "ability": "Chlorophyll",
-     "evs": "252 Spe",
-     "item": "Blunder Policy",
-     "ivs": "0 Atk",
-     "level": 87,
+     "evs": "4 HP / 252 SpA / 252 Spe",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 100,
      "moves": [
-      "Sunny Day",
-      "Solar Beam",
-      "Earth Power",
-      "Sleep Powder"
+      "Sleep Powder",
+      "Growth",
+      "Giga Drain",
+      "Sludge Bomb"
      ],
-     "species": "Venusaur",
-     "tera_type": "Grass"
+     "nature": "Modest",
+     "species": "Venusaur"
     },
     {
      "ability": "Torrent",
-     "item": "Leftovers",
-     "level": 86,
+     "evs": "4 HP / 252 SpA / 252 Spe",
+     "item": "White Herb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 100,
      "moves": [
-      "Hydro Cannon",
-      "Skull Bash",
+      "Shell Smash",
+      "Hydro Pump",
       "Ice Beam",
-      "Flash Cannon"
+      "Aura Sphere"
      ],
+     "nature": "Modest",
      "species": "Blastoise"
     },
     {
-     "ability": "Cud Chew",
-     "item": "Sitrus Berry",
-     "level": 85,
+     "ability": "Solar Power",
+     "evs": "4 HP / 252 SpA / 252 Spe",
+     "item": "Charizardite Y",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 100,
      "moves": [
-      "Raging Bull",
-      "Wild Charge",
-      "Bulk Up",
-      "Throat Chop"
+      "Fire Blast",
+      "Solar Beam",
+      "Focus Blast",
+      "Air Slash"
      ],
-     "species": "Tauros-Paldea-Combat",
-     "tera_type": "Fighting"
+     "nature": "Timid",
+     "species": "Charizard"
     }
    ],
    "music": "Hg Champion",
@@ -4761,7 +5925,7 @@
    "mons": [
     {
      "ivs": "0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe",
-     "level": 5,
+     "level": 11,
      "moves": [],
      "species": "Chikorita"
     }
@@ -4783,7 +5947,7 @@
      "ability": "Inner Focus",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 17,
+     "level": 21,
      "moves": [
       "Wing Attack",
       "Bite",
@@ -4797,7 +5961,7 @@
      "ability": "Guts",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 18,
+     "level": 21,
      "moves": [
       "Rock Slide",
       "Bite",
@@ -4811,7 +5975,7 @@
      "ability": "Inner Focus",
      "item": "Oran Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 18,
+     "level": 21,
      "moves": [
       "Faint Attack",
       "Ice Shard",
@@ -4825,7 +5989,7 @@
      "ability": "Overgrow",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 19,
+     "level": 21,
      "moves": [
       "Razor Leaf",
       "Reflect",
@@ -4853,7 +6017,7 @@
      "ability": "Inner Focus",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 22,
+     "level": 25,
      "moves": [
       "Air Cutter",
       "Bite",
@@ -4867,7 +6031,7 @@
      "ability": "Inner Focus",
      "item": "Razor Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 22,
+     "level": 25,
      "moves": [
       "Fake Out",
       "Ice Punch",
@@ -4881,7 +6045,7 @@
      "ability": "Chlorophyll",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 23,
+     "level": 25,
      "moves": [
       "Bullet Seed",
       "Poison Jab",
@@ -4895,7 +6059,7 @@
      "ability": "Guts",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 23,
+     "level": 25,
      "moves": [
       "Rock Slide",
       "Crunch",
@@ -4909,7 +6073,7 @@
      "ability": "Overgrow",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 24,
+     "level": 25,
      "moves": [
       "Magical Leaf",
       "Leech Seed",
@@ -4926,66 +6090,81 @@
    "pic": "Silver Hns"
   },
   "TRAINER_RIVAL_CHIKORITA_4_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Rival Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_RIVAL_CHIKORITA_4_HNS",
-   "items": "Hyper Potion",
+   "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 39,
+     "ability": "Infiltrator",
+     "item": "Sharp Beak",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Thrash",
-      "Rock Slide",
-      "Screech",
-      "Bite"
+      "Brave Bird",
+      "Cross Poison",
+      "U Turn",
+      "Roost"
      ],
+     "nature": "Jolly",
+     "species": "Crobat"
+    },
+    {
+     "ability": "Pressure",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Knock Off",
+      "Ice Punch",
+      "Ice Shard",
+      "Low Kick"
+     ],
+     "nature": "Jolly",
+     "species": "Weavile"
+    },
+    {
+     "ability": "Chlorophyll",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Power Whip",
+      "Sucker Punch",
+      "Poison Jab",
+      "Sleep Powder"
+     ],
+     "nature": "Adamant",
+     "species": "Victreebel"
+    },
+    {
+     "ability": "Shed Skin",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Stone Edge",
+      "Crunch",
+      "Earthquake",
+      "Dragon Dance"
+     ],
+     "nature": "Adamant",
      "species": "Pupitar"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 39,
+     "ability": "Overgrow",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Flamethrower",
-      "Iron Tail",
-      "Bite",
-      "Nasty Plot"
+      "Energy Ball",
+      "Earth Power",
+      "Leech Seed",
+      "Synthesis"
      ],
-     "species": "Houndoom"
-    },
-    {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 38,
-     "moves": [
-      "Octazooka",
-      "Psybeam",
-      "Aurora Beam",
-      "Signal Beam"
-     ],
-     "species": "Octillery"
-    },
-    {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 39,
-     "moves": [
-      "Poison Fang",
-      "Double Team",
-      "Confuse Ray",
-      "Air Cutter"
-     ],
-     "species": "Golbat"
-    },
-    {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 40,
-     "moves": [
-      "Synthesis",
-      "Magical Leaf",
-      "Sunny Day",
-      "Body Slam"
-     ],
+     "nature": "Bold",
      "species": "Meganium"
     }
    ],
@@ -4995,81 +6174,96 @@
    "pic": "Silver Hns"
   },
   "TRAINER_RIVAL_CHIKORITA_5_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Rival Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_RIVAL_CHIKORITA_5_HNS",
-   "items": "Hyper Potion",
+   "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Chesto Berry",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 45,
+     "ability": "Infiltrator",
+     "item": "Sharp Beak",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Slash",
-      "Faint Attack",
-      "Rock Smash",
-      "Rest"
+      "Brave Bird",
+      "Cross Poison",
+      "U Turn",
+      "Roost"
      ],
+     "nature": "Jolly",
+     "species": "Crobat"
+    },
+    {
+     "ability": "Pressure",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Knock Off",
+      "Ice Punch",
+      "Ice Shard",
+      "Low Kick"
+     ],
+     "nature": "Jolly",
+     "species": "Weavile"
+    },
+    {
+     "ability": "Chlorophyll",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Power Whip",
+      "Sucker Punch",
+      "Poison Jab",
+      "Sleep Powder"
+     ],
+     "nature": "Adamant",
+     "species": "Victreebel"
+    },
+    {
+     "ability": "Guts",
+     "item": "Flame Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Facade",
+      "Close Combat",
+      "Crunch",
+      "Swords Dance"
+     ],
+     "nature": "Adamant",
      "species": "Ursaring"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 45,
+     "ability": "Sand Stream",
+     "item": "Tyranitarite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Venoshock",
-      "Aerial Ace",
-      "Double Team",
-      "Confuse Ray"
-     ],
-     "species": "Golbat"
-    },
-    {
-     "item": "Quick Claw",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 46,
-     "moves": [
-      "Surf",
-      "Ice Beam",
-      "Psybeam",
-      "Signal Beam"
-     ],
-     "species": "Octillery"
-    },
-    {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 46,
-     "moves": [
-      "Flamethrower",
-      "Iron Tail",
-      "Crunch",
-      "Sunny Day"
-     ],
-     "species": "Houndoom"
-    },
-    {
-     "item": "Miracle Seed",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 47,
-     "moves": [
-      "Play Rough",
-      "Petal Dance",
-      "Petal Blizzard",
-      "Poison Powder"
-     ],
-     "species": "Meganium"
-    },
-    {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 48,
-     "moves": [
+      "Stone Edge",
       "Crunch",
       "Earthquake",
-      "Rock Slide",
-      "Fire Fang"
+      "Dragon Dance"
      ],
+     "nature": "Adamant",
      "species": "Tyranitar"
+    },
+    {
+     "ability": "Overgrow",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Energy Ball",
+      "Earth Power",
+      "Leech Seed",
+      "Synthesis"
+     ],
+     "nature": "Bold",
+     "species": "Meganium"
     }
    ],
    "mugshot": "Dark Red",
@@ -5088,7 +6282,7 @@
     {
      "item": "Chesto Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Hammer Arm",
       "Moonblast",
@@ -5100,7 +6294,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Air Slash",
       "Venoshock",
@@ -5112,7 +6306,7 @@
     {
      "item": "Never Melt Ice",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Surf",
       "Ice Beam",
@@ -5124,7 +6318,7 @@
     {
      "item": "Charcoal",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Fire Blast",
       "Iron Tail",
@@ -5136,7 +6330,7 @@
     {
      "item": "Miracle Seed",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Synthesis",
       "MoonBlast",
@@ -5148,7 +6342,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Crunch",
       "Earthquake",
@@ -5174,7 +6368,7 @@
     {
      "item": "Chesto Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Hammer Arm",
       "Moonblast",
@@ -5186,7 +6380,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Air Slash",
       "Venoshock",
@@ -5198,7 +6392,7 @@
     {
      "item": "Never Melt Ice",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Surf",
       "Ice Beam",
@@ -5210,7 +6404,7 @@
     {
      "item": "Charcoal",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Fire Blast",
       "Iron Tail",
@@ -5222,7 +6416,7 @@
     {
      "item": "Miracle Seed",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Reflect",
       "Giga Drain",
@@ -5234,7 +6428,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Crunch",
       "Earthquake",
@@ -5258,7 +6452,7 @@
    "mons": [
     {
      "ivs": "0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe",
-     "level": 5,
+     "level": 11,
      "moves": [],
      "species": "Cyndaquil"
     }
@@ -5280,7 +6474,7 @@
      "ability": "Inner Focus",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 17,
+     "level": 21,
      "moves": [
       "Wing Attack",
       "Bite",
@@ -5294,7 +6488,7 @@
      "ability": "Guts",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 18,
+     "level": 21,
      "moves": [
       "Rock Slide",
       "Bite",
@@ -5308,7 +6502,7 @@
      "ability": "Inner Focus",
      "item": "Oran Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 18,
+     "level": 21,
      "moves": [
       "Faint Attack",
       "Ice Shard",
@@ -5322,7 +6516,7 @@
      "ability": "Blaze",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 19,
+     "level": 21,
      "moves": [
       "Lava Plume",
       "Extrasensory",
@@ -5350,7 +6544,7 @@
      "ability": "Inner Focus",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 22,
+     "level": 25,
      "moves": [
       "Air Cutter",
       "Bite",
@@ -5364,7 +6558,7 @@
      "ability": "Inner Focus",
      "item": "Razor Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 22,
+     "level": 25,
      "moves": [
       "Fake Out",
       "Ice Punch",
@@ -5378,7 +6572,7 @@
      "ability": "Chlorophyll",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 23,
+     "level": 25,
      "moves": [
       "Bullet Seed",
       "Poison Jab",
@@ -5392,7 +6586,7 @@
      "ability": "Guts",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 23,
+     "level": 25,
      "moves": [
       "Rock Slide",
       "Crunch",
@@ -5406,7 +6600,7 @@
      "ability": "Blaze",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 24,
+     "level": 25,
      "moves": [
       "Lava Plume",
       "Extrasensory",
@@ -5423,66 +6617,81 @@
    "pic": "Silver Hns"
   },
   "TRAINER_RIVAL_CYNDAQUIL_4_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Rival Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_RIVAL_CYNDAQUIL_4_HNS",
-   "items": "Super Potion",
+   "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 39,
+     "ability": "Infiltrator",
+     "item": "Sharp Beak",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Thrash",
-      "Rock Slide",
-      "Screech",
-      "Bite"
+      "Brave Bird",
+      "Cross Poison",
+      "U Turn",
+      "Roost"
      ],
-     "species": "Pupitar"
+     "nature": "Jolly",
+     "species": "Crobat"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 39,
+     "ability": "Pressure",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Sludge",
-      "Razor Leaf",
-      "Sleep Powder",
-      "Growth"
+      "Knock Off",
+      "Ice Punch",
+      "Ice Shard",
+      "Low Kick"
      ],
+     "nature": "Jolly",
+     "species": "Weavile"
+    },
+    {
+     "ability": "Chlorophyll",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Power Whip",
+      "Sucker Punch",
+      "Poison Jab",
+      "Sleep Powder"
+     ],
+     "nature": "Adamant",
      "species": "Victreebel"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 38,
+     "ability": "Shed Skin",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Octazooka",
-      "Psybeam",
-      "Aurora Beam",
-      "Signal Beam"
+      "Stone Edge",
+      "Crunch",
+      "Earthquake",
+      "Dragon Dance"
      ],
-     "species": "Octillery"
+     "nature": "Adamant",
+     "species": "Pupitar"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 39,
+     "ability": "Flash Fire",
+     "item": "Choice Scarf",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Poison Fang",
-      "Double Team",
-      "Confuse Ray",
-      "Air Cutter"
+      "Eruption",
+      "Fire Blast",
+      "Focus Blast",
+      "Extrasensory"
      ],
-     "species": "Golbat"
-    },
-    {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 40,
-     "moves": [
-      "Thunder Punch",
-      "Flamethrower",
-      "Quick Attack",
-      "Iron Tail"
-     ],
+     "nature": "Timid",
      "species": "Typhlosion"
     }
    ],
@@ -5492,81 +6701,96 @@
    "pic": "Silver Hns"
   },
   "TRAINER_RIVAL_CYNDAQUIL_5_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Rival Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_RIVAL_CYNDAQUIL_5_HNS",
-   "items": "Hyper Potion",
+   "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Chesto Berry",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 45,
+     "ability": "Infiltrator",
+     "item": "Sharp Beak",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Slash",
-      "Faint Attack",
-      "Rock Smash",
-      "Rest"
+      "Brave Bird",
+      "Cross Poison",
+      "U Turn",
+      "Roost"
      ],
-     "species": "Ursaring"
+     "nature": "Jolly",
+     "species": "Crobat"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 45,
+     "ability": "Pressure",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Venoshock",
-      "Aerial Ace",
-      "Double Team",
-      "Confuse Ray"
+      "Knock Off",
+      "Ice Punch",
+      "Ice Shard",
+      "Low Kick"
      ],
-     "species": "Golbat"
+     "nature": "Jolly",
+     "species": "Weavile"
     },
     {
-     "item": "Quick Claw",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 46,
+     "ability": "Chlorophyll",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Surf",
-      "Ice Beam",
-      "Psybeam",
-      "Signal Beam"
+      "Power Whip",
+      "Sucker Punch",
+      "Poison Jab",
+      "Sleep Powder"
      ],
-     "species": "Octillery"
-    },
-    {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 46,
-     "moves": [
-      "Sludge Bomb",
-      "Giga Drain",
-      "Sleep Powder",
-      "Growth"
-     ],
+     "nature": "Adamant",
      "species": "Victreebel"
     },
     {
-     "item": "Charcoal",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 47,
+     "ability": "Guts",
+     "item": "Flame Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Flamethrower",
-      "Quick Attack",
-      "Iron Tail",
-      "Thunder Punch"
+      "Facade",
+      "Close Combat",
+      "Crunch",
+      "Swords Dance"
      ],
-     "species": "Typhlosion"
+     "nature": "Adamant",
+     "species": "Ursaring"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 48,
+     "ability": "Sand Stream",
+     "item": "Tyranitarite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
+      "Stone Edge",
       "Crunch",
       "Earthquake",
-      "Rock Slide",
-      "Fire Fang"
+      "Dragon Dance"
      ],
+     "nature": "Adamant",
      "species": "Tyranitar"
+    },
+    {
+     "ability": "Flash Fire",
+     "item": "Choice Scarf",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Eruption",
+      "Fire Blast",
+      "Focus Blast",
+      "Extrasensory"
+     ],
+     "nature": "Timid",
+     "species": "Typhlosion"
     }
    ],
    "mugshot": "Dark Red",
@@ -5585,7 +6809,7 @@
     {
      "item": "Chesto Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Hammer Arm",
       "Moonblast",
@@ -5597,7 +6821,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Air Slash",
       "Venoshock",
@@ -5609,7 +6833,7 @@
     {
      "item": "Never Melt Ice",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Surf",
       "Ice Beam",
@@ -5621,7 +6845,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Sludge Bomb",
       "Razor Leaf",
@@ -5633,7 +6857,7 @@
     {
      "item": "Charcoal",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Fire Blast",
       "Earthquake",
@@ -5645,7 +6869,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Crunch",
       "Earthquake",
@@ -5671,7 +6895,7 @@
     {
      "item": "Chesto Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Hammer Arm",
       "Moonblast",
@@ -5683,7 +6907,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Air Slash",
       "Venoshock",
@@ -5695,7 +6919,7 @@
     {
      "item": "Never Melt Ice",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Surf",
       "Ice Beam",
@@ -5707,7 +6931,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Leaf Blade",
       "Sludge Bomb",
@@ -5719,7 +6943,7 @@
     {
      "item": "Charcoal",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Fire Blast",
       "Earthquake",
@@ -5731,7 +6955,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Crunch",
       "Earthquake",
@@ -5755,7 +6979,7 @@
    "mons": [
     {
      "ivs": "0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe",
-     "level": 5,
+     "level": 11,
      "moves": [],
      "species": "Totodile"
     }
@@ -5777,7 +7001,7 @@
      "ability": "Inner Focus",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 17,
+     "level": 21,
      "moves": [
       "Wing Attack",
       "Bite",
@@ -5791,7 +7015,7 @@
      "ability": "Guts",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 18,
+     "level": 21,
      "moves": [
       "Rock Slide",
       "Bite",
@@ -5805,7 +7029,7 @@
      "ability": "Inner Focus",
      "item": "Oran Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 18,
+     "level": 21,
      "moves": [
       "Faint Attack",
       "Ice Shard",
@@ -5819,7 +7043,7 @@
      "ability": "Sheer Force",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 19,
+     "level": 21,
      "moves": [
       "Ice Fang",
       "Bite",
@@ -5847,7 +7071,7 @@
      "ability": "Inner Focus",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 22,
+     "level": 25,
      "moves": [
       "Air Cutter",
       "Bite",
@@ -5861,7 +7085,7 @@
      "ability": "Inner Focus",
      "item": "Razor Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 22,
+     "level": 25,
      "moves": [
       "Fake Out",
       "Ice Punch",
@@ -5875,7 +7099,7 @@
      "ability": "Chlorophyll",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 23,
+     "level": 25,
      "moves": [
       "Bullet Seed",
       "Poison Jab",
@@ -5889,7 +7113,7 @@
      "ability": "Guts",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 23,
+     "level": 25,
      "moves": [
       "Rock Slide",
       "Crunch",
@@ -5903,7 +7127,7 @@
      "ability": "Sheer Force",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 24,
+     "level": 25,
      "moves": [
       "Aqua Tail",
       "Ice Fang",
@@ -5920,66 +7144,81 @@
    "pic": "Silver Hns"
   },
   "TRAINER_RIVAL_TOTODILE_4_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Rival Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_RIVAL_TOTODILE_4_HNS",
-   "items": "Super Potion",
+   "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 39,
+     "ability": "Infiltrator",
+     "item": "Sharp Beak",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Thrash",
-      "Rock Slide",
-      "Screech",
-      "Bite"
+      "Brave Bird",
+      "Cross Poison",
+      "U Turn",
+      "Roost"
      ],
-     "species": "Pupitar"
+     "nature": "Jolly",
+     "species": "Crobat"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 39,
+     "ability": "Pressure",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Sludge",
-      "Razor Leaf",
-      "Sleep Powder",
-      "Growth"
+      "Knock Off",
+      "Ice Punch",
+      "Ice Shard",
+      "Low Kick"
      ],
+     "nature": "Jolly",
+     "species": "Weavile"
+    },
+    {
+     "ability": "Chlorophyll",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
+     "moves": [
+      "Power Whip",
+      "Sucker Punch",
+      "Poison Jab",
+      "Sleep Powder"
+     ],
+     "nature": "Adamant",
      "species": "Victreebel"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 38,
+     "ability": "Shed Skin",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Flamethrower",
-      "Iron Tail",
-      "Bite",
-      "Nasty Plot"
+      "Stone Edge",
+      "Crunch",
+      "Earthquake",
+      "Dragon Dance"
      ],
-     "species": "Houndoom"
+     "nature": "Adamant",
+     "species": "Pupitar"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 39,
+     "ability": "Sheer Force",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 45,
      "moves": [
-      "Poison Fang",
-      "Double Team",
-      "Confuse Ray",
-      "Air Cutter"
-     ],
-     "species": "Golbat"
-    },
-    {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 40,
-     "moves": [
+      "Liquidation",
       "Ice Punch",
-      "Surf",
-      "Slash",
-      "Bite"
+      "Crunch",
+      "Dragon Dance"
      ],
+     "nature": "Adamant",
      "species": "Feraligatr"
     }
    ],
@@ -5989,81 +7228,96 @@
    "pic": "Silver Hns"
   },
   "TRAINER_RIVAL_TOTODILE_5_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Rival Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_RIVAL_TOTODILE_5_HNS",
-   "items": "Hyper Potion",
+   "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Chesto Berry",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 45,
+     "ability": "Infiltrator",
+     "item": "Sharp Beak",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Slash",
-      "Faint Attack",
-      "Rock Smash",
-      "Rest"
+      "Brave Bird",
+      "Cross Poison",
+      "U Turn",
+      "Roost"
      ],
-     "species": "Ursaring"
+     "nature": "Jolly",
+     "species": "Crobat"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 45,
+     "ability": "Pressure",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Venoshock",
-      "Aerial Ace",
-      "Double Team",
-      "Confuse Ray"
+      "Knock Off",
+      "Ice Punch",
+      "Ice Shard",
+      "Low Kick"
      ],
-     "species": "Golbat"
+     "nature": "Jolly",
+     "species": "Weavile"
     },
     {
-     "item": "Quick Claw",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 46,
+     "ability": "Chlorophyll",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Sludge Bomb",
-      "Giga Drain",
-      "Sleep Powder",
-      "Growth"
+      "Power Whip",
+      "Sucker Punch",
+      "Poison Jab",
+      "Sleep Powder"
      ],
+     "nature": "Adamant",
      "species": "Victreebel"
     },
     {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 46,
+     "ability": "Guts",
+     "item": "Flame Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Flamethrower",
-      "Iron Tail",
+      "Facade",
+      "Close Combat",
       "Crunch",
-      "Double Team"
+      "Swords Dance"
      ],
-     "species": "Houndoom"
+     "nature": "Adamant",
+     "species": "Ursaring"
     },
     {
-     "item": "Mystic Water",
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 47,
+     "ability": "Sand Stream",
+     "item": "Tyranitarite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
      "moves": [
-      "Ice Punch",
-      "Surf",
-      "Slash",
-      "Bite"
-     ],
-     "species": "Feraligatr"
-    },
-    {
-     "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 48,
-     "moves": [
+      "Stone Edge",
       "Crunch",
       "Earthquake",
-      "Rock Slide",
-      "Fire Fang"
+      "Dragon Dance"
      ],
+     "nature": "Adamant",
      "species": "Tyranitar"
+    },
+    {
+     "ability": "Sheer Force",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Liquidation",
+      "Ice Punch",
+      "Crunch",
+      "Dragon Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Feraligatr"
     }
    ],
    "mugshot": "Dark Red",
@@ -6082,7 +7336,7 @@
     {
      "item": "Chesto Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Hammer Arm",
       "Moonblast",
@@ -6094,7 +7348,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Air Slash",
       "Venoshock",
@@ -6106,7 +7360,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Sludge Bomb",
       "Razor Leaf",
@@ -6118,7 +7372,7 @@
     {
      "item": "Charcoal",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Fire Blast",
       "Iron Tail",
@@ -6130,7 +7384,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Ice Beam",
       "Surf",
@@ -6142,7 +7396,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Crunch",
       "Earthquake",
@@ -6168,7 +7422,7 @@
     {
      "item": "Chesto Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Hammer Arm",
       "Moonblast",
@@ -6180,7 +7434,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Air Slash",
       "Venoshock",
@@ -6192,7 +7446,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Leaf Blade",
       "Sludge Bomb",
@@ -6204,7 +7458,7 @@
     {
      "item": "Charcoal",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Fire Blast",
       "Iron Tail",
@@ -6216,7 +7470,7 @@
     {
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Ice Beam",
       "Surf",
@@ -6228,7 +7482,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Crunch",
       "Earthquake",
@@ -6244,7 +7498,7 @@
    "pic": "Silver Hns"
   },
   "TRAINER_SABRINA_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -6252,74 +7506,88 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "item": "Quick Claw",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "ability": "Filter",
+     "item": "Light Clay",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Magical Leaf",
+      "Light Screen",
+      "Reflect",
       "Psychic",
-      "Substitute",
-      "Reflect"
+      "Dazzling Gleam"
      ],
+     "nature": "Timid",
      "species": "Mr Mime"
     },
     {
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
+     "ability": "Shadow Tag",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Psychic",
-      "Ice Beam",
-      "Lovely Kiss",
-      "Grass Knot"
-     ],
-     "species": "Jynx"
-    },
-    {
-     "item": "Chesto Berry",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
-     "moves": [
-      "Rest",
-      "Sleep Talk",
-      "Submission",
-      "Surf"
-     ],
-     "species": "Slowbro"
-    },
-    {
-     "item": "Leftovers",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 64,
-     "moves": [
-      "Mirror Coat",
       "Counter",
-      "Safeguard",
+      "Mirror Coat",
+      "Encore",
       "Destiny Bond"
      ],
+     "nature": "Bold",
      "species": "Wobbuffet"
     },
     {
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 65,
+     "ability": "Regenerator",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Scald",
+      "Psyshock",
+      "Slack Off",
+      "Thunder Wave"
+     ],
+     "nature": "Bold",
+     "species": "Slowbro"
+    },
+    {
+     "ability": "Magic Bounce",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
       "Psychic",
-      "Morning Sun",
-      "Future Sight",
-      "Power Gem"
+      "Dazzling Gleam",
+      "Shadow Ball",
+      "Calm Mind"
      ],
+     "nature": "Timid",
      "species": "Espeon"
     },
     {
+     "ability": "Magic Guard",
      "item": "Twisted Spoon",
-     "ivs": "24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe",
-     "level": 66,
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
      "moves": [
-      "Shadow Ball",
       "Psychic",
-      "Recover",
+      "Shadow Ball",
+      "Focus Blast",
       "Calm Mind"
      ],
+     "nature": "Timid",
      "species": "Alakazam"
+    },
+    {
+     "ability": "Clear Body",
+     "item": "Metagrossite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 70,
+     "moves": [
+      "Meteor Mash",
+      "Zen Headbutt",
+      "Earthquake",
+      "Bullet Punch"
+     ],
+     "nature": "Jolly",
+     "species": "Metagross"
     }
    ],
    "mugshot": "Pink",
@@ -6339,7 +7607,7 @@
      "ability": "Vital Spirit",
      "item": "Eviolite",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Light Screen",
       "Reflect",
@@ -6351,7 +7619,7 @@
     {
      "ability": "Quick Draw",
      "item": "Quick Claw",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Shell Side Arm",
       "Calm Mind",
@@ -6363,7 +7631,7 @@
     {
      "ability": "Magic Bounce",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Psychic",
       "Morning Sun",
@@ -6374,7 +7642,7 @@
     },
     {
      "ability": "Pastel Veil",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Play Rough",
       "Psycho Cut",
@@ -6387,7 +7655,7 @@
      "ability": "Shadow Tag",
      "item": "Leftovers",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Counter",
       "Mirror Coat",
@@ -6399,7 +7667,7 @@
     {
      "ability": "Magic Guard",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Psyshock",
       "Shadow Ball",
@@ -6425,7 +7693,7 @@
     {
      "ability": "Magic Guard",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 18,
+     "level": 21,
      "moves": [
       "Double Slap",
       "Metronome",
@@ -6438,7 +7706,7 @@
     {
      "ability": "Pickup",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 19,
+     "level": 21,
      "moves": [
       "Fake Out",
       "Double Hit",
@@ -6451,7 +7719,7 @@
     {
      "ability": "Intimidate",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 19,
+     "level": 21,
      "moves": [
       "Hypnosis",
       "Stomp",
@@ -6490,7 +7758,7 @@
    "mons": [
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "MoonBlast",
       "Meteor Mash",
@@ -6502,7 +7770,7 @@
     {
      "item": "Chesto Berry",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Double Edge",
       "Fake Out",
@@ -6513,7 +7781,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 63,
+     "level": 70,
      "moves": [
       "Sing",
       "Light Screen",
@@ -6524,7 +7792,7 @@
     },
     {
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 64,
+     "level": 70,
      "moves": [
       "Thrash",
       "Work Up",
@@ -6536,7 +7804,7 @@
     {
      "item": "Silk Scarf",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Iron Tail",
       "Attract",
@@ -6548,7 +7816,7 @@
     {
      "item": "Silk Scarf",
      "ivs": "12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe",
-     "level": 65,
+     "level": 70,
      "moves": [
       "Defense Curl",
       "Rollout",
@@ -6574,7 +7842,7 @@
     {
      "ability": "Cute Charm",
      "ivs": "0 Atk",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Moonblast",
       "Meteor Beam",
@@ -6585,7 +7853,7 @@
     },
     {
      "ability": "Cute Charm",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Attract",
       "Fake Out",
@@ -6597,7 +7865,7 @@
     {
      "ability": "Technician",
      "item": "Loaded Dice",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Tail Slap",
       "Knock Off",
@@ -6609,7 +7877,7 @@
     {
      "ability": "Mind's Eye",
      "ivs": "0 Atk",
-     "level": 69,
+     "level": 100,
      "moves": [
       "Blood Moon",
       "Lunar Blessing",
@@ -6621,7 +7889,7 @@
     {
      "ability": "Thick Fat",
      "item": "Silk Scarf",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Milk Drink",
       "Defense Curl",
@@ -6632,7 +7900,7 @@
     },
     {
      "ability": "Reckless",
-     "level": 70,
+     "level": 100,
      "moves": [
       "Double-Edge",
       "Obstruct",
@@ -6648,7 +7916,7 @@
    "pic": "Leader Whitney Hns"
   },
   "TRAINER_WILL_1_HNS": {
-   "ai": "Basic Trainer",
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Elite Four Hns",
    "double_battle": "No",
    "gender": "Male",
@@ -6656,61 +7924,88 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
+     "ability": "Magic Bounce",
+     "item": "Light Clay",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 48,
-     "moves": [
-      "Zen Headbutt",
-      "Nasty Plot",
-      "Agility",
-      "Baton Pass"
-     ],
-     "species": "Girafarig"
-    },
-    {
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 49,
-     "moves": [
-      "Amnesia",
-      "Fire Punch",
-      "Surf",
-      "Psychic"
-     ],
-     "species": "Slowking"
-    },
-    {
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 48,
+     "level": 56,
      "moves": [
       "Psychic",
-      "Shadow Ball",
-      "Reflect",
-      "Headbutt"
+      "Air Slash",
+      "Roost",
+      "Reflect"
      ],
-     "species": "Espeon"
+     "nature": "Timid",
+     "species": "Xatu"
     },
     {
-     "item": "Quick Claw",
+     "ability": "Regenerator",
+     "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 49,
+     "level": 56,
      "moves": [
-      "Curse",
-      "Rock Smash",
-      "Body Slam",
-      "Zen Headbutt"
+      "Scald",
+      "Psyshock",
+      "Slack Off",
+      "Calm Mind"
      ],
+     "nature": "Bold",
      "species": "Slowbro"
     },
     {
-     "item": "Twisted Spoon",
+     "ability": "Levitate",
+     "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 50,
+     "level": 56,
      "moves": [
-      "Air Slash",
-      "Recover",
-      "Confuse Ray",
-      "Psychic"
+      "Trick Room",
+      "Gyro Ball",
+      "Earthquake",
+      "Stealth Rock"
      ],
-     "species": "Xatu"
+     "nature": "Relaxed",
+     "species": "Bronzong"
+    },
+    {
+     "ability": "Armor Tail",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Twin Beam",
+      "Hyper Voice",
+      "Shadow Ball",
+      "Nasty Plot"
+     ],
+     "nature": "Modest",
+     "species": "Farigiraf"
+    },
+    {
+     "ability": "Trace",
+     "item": "Choice Scarf",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Moonblast",
+      "Psychic",
+      "Mystical Fire",
+      "Focus Blast"
+     ],
+     "nature": "Timid",
+     "species": "Gardevoir"
+    },
+    {
+     "ability": "Magic Guard",
+     "item": "Alakazite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 56,
+     "moves": [
+      "Psychic",
+      "Shadow Ball",
+      "Focus Blast",
+      "Calm Mind"
+     ],
+     "nature": "Timid",
+     "species": "Alakazam"
     }
    ],
    "mugshot": "Pink",
@@ -6728,7 +8023,7 @@
    "mons": [
     {
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 66,
+     "level": 70,
      "moves": [
       "Psychic",
       "Hyper Voice",
@@ -6739,7 +8034,7 @@
     },
     {
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Blizzard",
       "Psychic",
@@ -6751,7 +8046,7 @@
     {
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Ancient Power",
       "Sleep Powder",
@@ -6762,7 +8057,7 @@
     },
     {
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 67,
+     "level": 70,
      "moves": [
       "Teeter Dance",
       "Power Gem",
@@ -6774,7 +8069,7 @@
     {
      "item": "Quick Claw",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 66,
+     "level": 70,
      "moves": [
       "Fire Punch",
       "Curse",
@@ -6786,7 +8081,7 @@
     {
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 68,
+     "level": 70,
      "moves": [
       "Future Sight",
       "Air Slash",
@@ -6813,7 +8108,7 @@
      "ability": "Trace",
      "item": "Light Clay",
      "ivs": "0 Atk",
-     "level": 74,
+     "level": 100,
      "moves": [
       "Psyshock",
       "Moonblast",
@@ -6826,7 +8121,7 @@
      "ability": "Dry Skin",
      "item": "Never-Melt Ice",
      "ivs": "0 Atk",
-     "level": 75,
+     "level": 100,
      "moves": [
       "Lovely Kiss",
       "Sweet Kiss",
@@ -6839,7 +8134,7 @@
      "ability": "Own Tempo",
      "item": "Black Sludge",
      "ivs": "0 Atk",
-     "level": 76,
+     "level": 100,
      "moves": [
       "Eerie Spell",
       "Trick Room",
@@ -6852,7 +8147,7 @@
      "ability": "Thick Fat",
      "item": "Leftovers",
      "ivs": "0 Atk",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Teeter Dance",
       "Power Gem",
@@ -6863,7 +8158,7 @@
     },
     {
      "ability": "Oblivious",
-     "level": 77,
+     "level": 100,
      "moves": [
       "Fire Punch",
       "Curse",
@@ -6875,7 +8170,7 @@
     {
      "ability": "Magic Bounce",
      "ivs": "0 Atk",
-     "level": 79,
+     "level": 100,
      "moves": [
       "Future Sight",
       "Air Slash",
@@ -6946,27 +8241,59 @@
   56
  ],
  "reworked": [
+  "TRAINER_ARCHER_HNS",
+  "TRAINER_ARIANA_1_HNS",
+  "TRAINER_ARIANA_2_HNS",
+  "TRAINER_BLAINE_HNS",
+  "TRAINER_BLUE_HNS",
+  "TRAINER_BROCK_HNS",
+  "TRAINER_BRUNO_1_HNS",
   "TRAINER_BUGSY_1_HNS",
   "TRAINER_CHUCK_1_2_HNS",
   "TRAINER_CHUCK_1_3_HNS",
   "TRAINER_CHUCK_1_HNS",
   "TRAINER_CLAIR_1_HNS",
+  "TRAINER_ERIKA_HNS",
   "TRAINER_FALKNER_1_HNS",
+  "TRAINER_JANINE_HNS",
   "TRAINER_JASMINE_1_2_HNS",
   "TRAINER_JASMINE_1_3_HNS",
   "TRAINER_JASMINE_1_HNS",
+  "TRAINER_KAREN_1_HNS",
+  "TRAINER_KOGA_1_HNS",
+  "TRAINER_KUNI_HNS",
+  "TRAINER_LANCE_1_HNS",
   "TRAINER_LI_HNS",
+  "TRAINER_LTSURGE_HNS",
+  "TRAINER_MIKI_HNS",
+  "TRAINER_MISTY_HNS",
   "TRAINER_MORTY_1_HNS",
+  "TRAINER_NAOKO_HNS",
+  "TRAINER_PETREL_1_HNS",
+  "TRAINER_PETREL_2_HNS",
   "TRAINER_PROTON_1_HNS",
+  "TRAINER_PROTON_2_HNS",
   "TRAINER_PRYCE_1_2_HNS",
   "TRAINER_PRYCE_1_3_HNS",
   "TRAINER_PRYCE_1_HNS",
+  "TRAINER_RED_HNS",
+  "TRAINER_RED_POSTOBC_HNS",
   "TRAINER_RIVAL_CHIKORITA_2_HNS",
   "TRAINER_RIVAL_CHIKORITA_3_HNS",
+  "TRAINER_RIVAL_CHIKORITA_4_HNS",
+  "TRAINER_RIVAL_CHIKORITA_5_HNS",
   "TRAINER_RIVAL_CYNDAQUIL_2_HNS",
   "TRAINER_RIVAL_CYNDAQUIL_3_HNS",
+  "TRAINER_RIVAL_CYNDAQUIL_4_HNS",
+  "TRAINER_RIVAL_CYNDAQUIL_5_HNS",
   "TRAINER_RIVAL_TOTODILE_2_HNS",
   "TRAINER_RIVAL_TOTODILE_3_HNS",
-  "TRAINER_WHITNEY_1_HNS"
+  "TRAINER_RIVAL_TOTODILE_4_HNS",
+  "TRAINER_RIVAL_TOTODILE_5_HNS",
+  "TRAINER_SABRINA_HNS",
+  "TRAINER_SAYO_HNS",
+  "TRAINER_WHITNEY_1_HNS",
+  "TRAINER_WILL_1_HNS",
+  "TRAINER_ZUKI_HNS"
  ]
 }

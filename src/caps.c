@@ -53,6 +53,26 @@ static const u8 sLevelCapTable_Hard[] =
 // 70 for the Kanto half, and only beating the Kanto league removes it entirely.
 #define KANTO_MAX_LEVEL 70
 
+// Crystal Imperium: the NORMAL level cap for the player's progress, whatever the level cap
+// setting. Every boss's Pokemon are at least at this level (DECISIONS.md D21).
+u32 GetBossLevelCap(void)
+{
+    u8 badgeCount = GetCurrentBadgeCount();
+
+#if IS_HNS
+    if (FlagGet(FLAG_IS_KANTO_CHAMPION))
+        return MAX_LEVEL;
+    if (FlagGet(FLAG_IS_CHAMPION))
+        return KANTO_MAX_LEVEL;
+#else
+    if (FlagGet(FLAG_IS_CHAMPION))
+        return MAX_LEVEL;
+#endif
+    if (badgeCount > 8)
+        badgeCount = 8;
+    return sLevelCapTable_Normal[badgeCount];
+}
+
 u32 GetCurrentLevelCap(void)
 {
     static const u32 sLevelCapFlagMap[][2] =

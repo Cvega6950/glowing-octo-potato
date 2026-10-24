@@ -19,6 +19,7 @@
 #include "battle_gimmick.h"
 #include "berry.h"
 #include "bg.h"
+#include "caps.h"
 #include "data.h"
 #include "debug.h"
 #include "decompress.h"
@@ -2002,12 +2003,32 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
+// Crystal Imperium: every boss's Pokemon are at the player's NORMAL level cap (DECISIONS.md D21).
+// Their parties are at the cap of the earliest point the battle can happen; a boss fought later
+// (e.g. the Rocket Hideout with six badges, a rematch after the Kanto League) is raised to the
+// cap then. sBossLevelCap is that cap while a boss's party is created, 0 otherwise.
+#include "data/level_cap_bosses.h"
+
+static u8 sBossLevelCap;
+
+static bool32 IsLevelCapBoss(u16 trainerNum)
+{
+    for (u32 i = 0; i < ARRAY_COUNT(sLevelCapBosses); i++)
+    {
+        if (sLevelCapBosses[i] == trainerNum)
+            return TRUE;
+    }
+    return FALSE;
+}
+
 // Crystal Imperium difficulty selection: trainers that have no dedicated Easy/Hard party in the
 // .party data use their Normal party, scaled to 90% (EASY) or 110% (HARD) of its levels.
 static bool8 sScaleTrainerLevels;
 
 static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
 {
+    if (level < sBossLevelCap)
+        level = sBossLevelCap;
     if (!sScaleTrainerLevels)
         return level;
     switch (GetCurrentDifficultyLevel())
@@ -2206,6 +2227,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     sScaleTrainerLevels = (!gIsDebugBattle
                            && GetCurrentDifficultyLevel() != DIFFICULTY_NORMAL
                            && GetTrainerDifficultyLevel(trainerNum) == DIFFICULTY_NORMAL);
+    sBossLevelCap = IsLevelCapBoss(trainerNum) ? GetBossLevelCap() : 0;
     if (GetTrainerStructFromId(trainerNum)->overrideTrainer)
     {
         struct Trainer tempTrainer;
@@ -2225,6 +2247,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         retVal = CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum), firstTrainer, gBattleTypeFlags);
     }
     sScaleTrainerLevels = FALSE;
+    sBossLevelCap = 0;
     return retVal;
 }
 

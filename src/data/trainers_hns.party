@@ -6513,7 +6513,7 @@ AI: Basic Trainer / Smart Switching / Ace Pokemon
 Mugshot: Light Blue
 
 Gastly
-Level: 8
+Level: 11
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 Ability: Levitate
 Nature: Timid
@@ -6523,7 +6523,7 @@ Nature: Timid
 - Mean Look
 
 Hoppip
-Level: 8
+Level: 11
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 Ability: Chlorophyll
 Nature: Jolly
@@ -6533,7 +6533,7 @@ Nature: Jolly
 - Tail Whip
 
 Bellsprout @ Oran Berry
-Level: 10
+Level: 11
 IVs: 25 HP / 25 Atk / 25 Def / 25 SpA / 25 SpD / 25 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -6978,7 +6978,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Pink
 
 Espeon @ Life Orb
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Bounce
 Nature: Timid
@@ -6998,7 +6998,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Yellow
 
 Jolteon @ Choice Specs
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Volt Absorb
 Nature: Timid
@@ -7018,7 +7018,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Purple
 
 Umbreon @ Leftovers
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Calm
@@ -7058,7 +7058,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 
 Flareon @ Toxic Orb
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -7313,7 +7313,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Light Blue
 
 Pidgey @ Oran Berry
-Level: 9
+Level: 11
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Big Pecks
 Nature: Timid
@@ -7323,7 +7323,7 @@ Nature: Timid
 - Quick Attack
 
 Rookidee
-Level: 10
+Level: 11
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Keen Eye
 Nature: Adamant
@@ -7354,7 +7354,7 @@ Mugshot: Light Blue
 Items: Full Restore / Full Restore
 
 Noctowl @ Sitrus Berry
-Level: 64
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Psychic
 - Air Slash
@@ -7362,7 +7362,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Dream Eater
 
 Skarmory
-Level: 63
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Stealth Rock
 - Drill Peck
@@ -7370,7 +7370,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Steel Wing
 
 Swellow @ Focus Band
-Level: 63
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Endeavor
 - Double Team
@@ -7378,7 +7378,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Steel Wing
 
 Honchkrow
-Level: 64
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Mimic
 - Dark Pulse
@@ -7386,7 +7386,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Nasty Plot
 
 Pidgeot
-Level: 65
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - TailWind
 - Aerial Ace
@@ -7394,7 +7394,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Sand Attack
 
 Pelipper
-Level: 68
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Roost
 - Brine
@@ -7413,7 +7413,7 @@ Mugshot: Green
 Items: Potion / Potion
 
 Spinarak @ Focus Sash
-Level: 14
+Level: 16
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Insomnia
 Nature: Jolly
@@ -7423,7 +7423,7 @@ Nature: Jolly
 - Infestation
 
 Pineco
-Level: 15
+Level: 16
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Relaxed
@@ -7433,7 +7433,7 @@ Nature: Relaxed
 - Protect
 
 Ledian @ Sitrus Berry
-Level: 15
+Level: 16
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Early Bird
 Nature: Calm
@@ -7464,7 +7464,7 @@ Mugshot: Green
 Items: Full Restore / Full Restore
 
 Ledian @ Focus Band
-Level: 64
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Drain Punch
 - Swords Dance
@@ -7472,7 +7472,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Baton Pass
 
 Forretress
-Level: 63
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Iron Defense
 - Rapid Spin
@@ -7480,7 +7480,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Earthquake
 
 Yanmega @ Berry Juice
-Level: 63
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Air Slash
 - Screech
@@ -7488,7 +7488,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Night Slash
 
 Scizor
-Level: 64
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Bullet Punch
 - X Scissor
@@ -7496,7 +7496,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Swords Dance
 
 Shedinja
-Level: 65
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Phantom Force
 - Bug Buzz
@@ -7504,7 +7504,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Sand Attack
 
 Scyther @ Scope Lens
-Level: 65
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Slash
 - X Scissor
@@ -7523,7 +7523,7 @@ Mugshot: Pink
 Items: Potion
 
 Clefairy
-Level: 18
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Guard
 Nature: Bold
@@ -7533,7 +7533,7 @@ Nature: Bold
 - Charm
 
 Aipom
-Level: 19
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pickup
 Nature: Jolly
@@ -7543,7 +7543,7 @@ Nature: Jolly
 - Astonish
 
 Stantler
-Level: 19
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -7574,7 +7574,7 @@ Mugshot: Pink
 Items: Full Restore / Full Restore
 
 Clefable
-Level: 63
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - MoonBlast
 - Meteor Mash
@@ -7582,7 +7582,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Encore
 
 Delcatty @ Chesto Berry
-Level: 64
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Double Edge
 - Fake Out
@@ -7590,7 +7590,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Play Rough
 
 Blissey
-Level: 63
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Sing
 - Light Screen
@@ -7598,7 +7598,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Soft Boiled
 
 Tauros
-Level: 64
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Thrash
 - Work Up
@@ -7606,7 +7606,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Giga Impact
 
 Miltank @ Silk Scarf
-Level: 65
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Iron Tail
 - Attract
@@ -7614,7 +7614,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Zen Headbutt
 
 Lickilicky @ Silk Scarf
-Level: 65
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Defense Curl
 - Rollout
@@ -7633,7 +7633,7 @@ Mugshot: Purple
 Items: Hyper Potion / Hyper Potion
 
 Sableye @ Sitrus Berry
-Level: 23
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Prankster
 Nature: Careful
@@ -7643,7 +7643,7 @@ Nature: Careful
 - Recover
 
 Misdreavus @ Eviolite
-Level: 23
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Timid
@@ -7653,7 +7653,7 @@ Nature: Timid
 - Pain Split
 
 Drifblim @ Sitrus Berry
-Level: 24
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Unburden
 Nature: Modest
@@ -7663,7 +7663,7 @@ Nature: Modest
 - Calm Mind
 
 Marowak Alola @ Thick Club
-Level: 24
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Lightning Rod
 Nature: Adamant
@@ -7694,7 +7694,7 @@ Mugshot: Purple
 Items: Full Restore / Full Restore
 
 Sableye
-Level: 64
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Quash
 - Foul Play
@@ -7702,7 +7702,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Power Gem
 
 Wyrdeer @ Silk Scarf
-Level: 63
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Jump Kick
 - Psyshield Bash
@@ -7711,7 +7711,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Gengar @ Spell Tag
 Ability: Levitate
-Level: 64
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shadow Ball
 - Dark Pulse
@@ -7719,7 +7719,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Psychic
 
 Mismagius
-Level: 63
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shadow Ball
 - Magical Leaf
@@ -7728,7 +7728,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 
 Gengar @ Sitrus Berry
 Ability: Levitate
-Level: 65
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shadow Ball
 - Hypnosis
@@ -7736,7 +7736,7 @@ IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Dream Eater
 
 Dusknoir
-Level: 65
+Level: 70
 IVs: 12 HP / 12 Atk / 12 Def / 12 SpA / 12 SpD / 12 Spe
 - Shadow Punch
 - Fire Punch
@@ -7755,7 +7755,7 @@ Mugshot: Light Blue
 Items: Hyper Potion / Hyper Potion
 
 Cloyster @ Focus Sash
-Level: 29
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Skill Link
 Nature: Adamant
@@ -7765,7 +7765,7 @@ Nature: Adamant
 - Liquidation
 
 Jynx @ Wise Glasses
-Level: 29
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Dry Skin
 Nature: Timid
@@ -7775,7 +7775,7 @@ Nature: Timid
 - Nasty Plot
 
 Weavile @ Razor Claw
-Level: 30
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Jolly
@@ -7785,7 +7785,7 @@ Nature: Jolly
 - Low Kick
 
 Mamoswine @ Never Melt Ice
-Level: 30
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Thick Fat
 Nature: Adamant
@@ -7816,7 +7816,7 @@ Mugshot: Light Blue
 Items: Full Restore / Full Restore
 
 Weavile
-Level: 64
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Night Slash
 - Metal Claw
@@ -7824,7 +7824,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Blizzard
 
 Dewgong @ Sitrus Berry
-Level: 63
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Aqua Tail
 - Ice Beam
@@ -7832,7 +7832,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Aqua Ring
 
 Jynx
-Level: 63
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ice Beam
 - Psychic
@@ -7840,7 +7840,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Lovely Kiss
 
 Froslass
-Level: 64
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Shadow Ball
 - Blizzard
@@ -7848,7 +7848,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Destiny Bond
 
 Mamoswine @ Soft Sand
-Level: 65
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Strength
 - Earthquake
@@ -7856,7 +7856,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Ice Fang
 
 Glalie
-Level: 65
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Sheer Cold
 - Crunch
@@ -7875,7 +7875,7 @@ Mugshot: Light Blue
 Items: Full Restore / Full Restore
 
 Cloyster @ Focus Sash
-Level: 34
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Skill Link
 Nature: Adamant
@@ -7885,7 +7885,7 @@ Nature: Adamant
 - Liquidation
 
 Dewgong @ Leftovers
-Level: 34
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Thick Fat
 Nature: Bold
@@ -7895,7 +7895,7 @@ Nature: Bold
 - Protect
 
 Jynx @ Wise Glasses
-Level: 35
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Dry Skin
 Nature: Timid
@@ -7905,7 +7905,7 @@ Nature: Timid
 - Nasty Plot
 
 Weavile @ Razor Claw
-Level: 35
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Jolly
@@ -7915,7 +7915,7 @@ Nature: Jolly
 - Low Kick
 
 Mamoswine @ Never Melt Ice
-Level: 35
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Thick Fat
 Nature: Adamant
@@ -7946,7 +7946,7 @@ Mugshot: Light Blue
 Items: Full Restore / Full Restore
 
 Cloyster @ Focus Sash
-Level: 36
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Skill Link
 Nature: Adamant
@@ -7956,7 +7956,7 @@ Nature: Adamant
 - Liquidation
 
 Dewgong @ Leftovers
-Level: 36
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Thick Fat
 Nature: Bold
@@ -7966,7 +7966,7 @@ Nature: Bold
 - Protect
 
 Jynx @ Wise Glasses
-Level: 37
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Dry Skin
 Nature: Timid
@@ -7976,7 +7976,7 @@ Nature: Timid
 - Nasty Plot
 
 Weavile @ Razor Claw
-Level: 37
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Jolly
@@ -7986,7 +7986,7 @@ Nature: Jolly
 - Low Kick
 
 Mamoswine @ Never Melt Ice
-Level: 37
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Thick Fat
 Nature: Adamant
@@ -8017,7 +8017,7 @@ Mugshot: Yellow
 Items: Hyper Potion / Hyper Potion
 
 Skarmory @ Rocky Helmet
-Level: 29
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Impish
@@ -8027,7 +8027,7 @@ Nature: Impish
 - Whirlwind
 
 Magneton @ Eviolite
-Level: 29
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magnet Pull
 Nature: Modest
@@ -8037,7 +8037,7 @@ Nature: Modest
 - Thunder Wave
 
 Mawile @ Sitrus Berry
-Level: 30
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -8047,7 +8047,7 @@ Nature: Adamant
 - Swords Dance
 
 Scizor @ Metal Coat
-Level: 30
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Technician
 Nature: Adamant
@@ -8078,7 +8078,7 @@ Mugshot: Yellow
 Items: Full Restore / Full Restore
 
 Skarmory
-Level: 63
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Stealth Rock
 - Drill Peck
@@ -8086,7 +8086,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Steel Wing
 
 Mawile
-Level: 65
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Flash Cannon
 - Iron Defense
@@ -8094,7 +8094,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Play Rough
 
 Corsola
-Level: 63
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Rain Dance
 - Surf
@@ -8102,7 +8102,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Power Gem
 
 Magnezone
-Level: 64
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Gyro Ball
 - Flash Cannon
@@ -8110,7 +8110,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Thunder
 
 Aggron @ Hard Stone
-Level: 65
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Rock Slide
 - Metal Burst
@@ -8118,7 +8118,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Earthquake
 
 Steelix @ Quick Claw
-Level: 65
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Crunch
 - Earthquake
@@ -8137,7 +8137,7 @@ Mugshot: Yellow
 Items: Full Restore / Full Restore
 
 Skarmory @ Rocky Helmet
-Level: 34
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Impish
@@ -8147,7 +8147,7 @@ Nature: Impish
 - Whirlwind
 
 Magneton @ Eviolite
-Level: 34
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magnet Pull
 Nature: Modest
@@ -8157,7 +8157,7 @@ Nature: Modest
 - Thunder Wave
 
 Bronzong @ Leftovers
-Level: 35
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Relaxed
@@ -8167,7 +8167,7 @@ Nature: Relaxed
 - Stealth Rock
 
 Mawile @ Sitrus Berry
-Level: 35
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -8177,7 +8177,7 @@ Nature: Adamant
 - Swords Dance
 
 Scizor @ Metal Coat
-Level: 35
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Technician
 Nature: Adamant
@@ -8208,7 +8208,7 @@ Mugshot: Yellow
 Items: Full Restore / Full Restore
 
 Skarmory @ Rocky Helmet
-Level: 36
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Impish
@@ -8218,7 +8218,7 @@ Nature: Impish
 - Whirlwind
 
 Magneton @ Eviolite
-Level: 36
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magnet Pull
 Nature: Modest
@@ -8228,7 +8228,7 @@ Nature: Modest
 - Thunder Wave
 
 Bronzong @ Leftovers
-Level: 37
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Relaxed
@@ -8238,7 +8238,7 @@ Nature: Relaxed
 - Stealth Rock
 
 Mawile @ Sitrus Berry
-Level: 37
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -8248,7 +8248,7 @@ Nature: Adamant
 - Swords Dance
 
 Scizor @ Metal Coat
-Level: 37
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Technician
 Nature: Adamant
@@ -8279,7 +8279,7 @@ Mugshot: Orange
 Items: Hyper Potion / Hyper Potion
 
 Hitmontop @ Sitrus Berry
-Level: 29
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -8289,7 +8289,7 @@ Nature: Adamant
 - Rock Slide
 
 Breloom @ Focus Sash
-Level: 29
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Technician
 Nature: Jolly
@@ -8299,7 +8299,7 @@ Nature: Jolly
 - Spore
 
 Primeape @ Eviolite
-Level: 30
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Defiant
 Nature: Jolly
@@ -8309,7 +8309,7 @@ Nature: Jolly
 - Bulk Up
 
 Poliwrath @ Leftovers
-Level: 30
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
 Nature: Adamant
@@ -8340,7 +8340,7 @@ Mugshot: Orange
 Items: Full Restore / Full Restore
 
 Hitmonchan @ Scope Lens
-Level: 64
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Fire Punch
 - Sky Uppercut
@@ -8348,7 +8348,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Mach Punch
 
 Medicham
-Level: 63
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Detect
 - Hi Jump Kick
@@ -8356,7 +8356,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Zen Headbutt
 
 Annihilape
-Level: 64
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Cross Chop
 - Rage Fist
@@ -8364,7 +8364,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Stomping Tantrum
 
 Hitmonlee
-Level: 63
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Mega Kick
 - Blaze Kick
@@ -8372,7 +8372,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Rolling Kick
 
 Breloom
-Level: 65
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Mach Punch
 - Seed Bomb
@@ -8380,7 +8380,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Drain Punch
 
 Poliwrath @ Sitrus Berry
-Level: 65
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Surf
 - Submission
@@ -8399,7 +8399,7 @@ Mugshot: Orange
 Items: Full Restore / Full Restore
 
 Hitmontop @ Sitrus Berry
-Level: 34
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -8409,7 +8409,7 @@ Nature: Adamant
 - Rock Slide
 
 Breloom @ Focus Sash
-Level: 34
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Technician
 Nature: Jolly
@@ -8419,7 +8419,7 @@ Nature: Jolly
 - Spore
 
 Hawlucha @ White Herb
-Level: 35
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Unburden
 Nature: Jolly
@@ -8429,7 +8429,7 @@ Nature: Jolly
 - Roost
 
 Primeape @ Eviolite
-Level: 35
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Defiant
 Nature: Jolly
@@ -8439,7 +8439,7 @@ Nature: Jolly
 - Bulk Up
 
 Poliwrath @ Leftovers
-Level: 35
+Level: 36
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
 Nature: Adamant
@@ -8470,7 +8470,7 @@ Mugshot: Orange
 Items: Full Restore / Full Restore
 
 Hitmontop @ Sitrus Berry
-Level: 36
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -8480,7 +8480,7 @@ Nature: Adamant
 - Rock Slide
 
 Breloom @ Focus Sash
-Level: 36
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Technician
 Nature: Jolly
@@ -8490,7 +8490,7 @@ Nature: Jolly
 - Spore
 
 Hawlucha @ White Herb
-Level: 37
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Unburden
 Nature: Jolly
@@ -8500,7 +8500,7 @@ Nature: Jolly
 - Roost
 
 Primeape @ Eviolite
-Level: 37
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Defiant
 Nature: Jolly
@@ -8510,7 +8510,7 @@ Nature: Jolly
 - Bulk Up
 
 Poliwrath @ Leftovers
-Level: 37
+Level: 38
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
 Nature: Adamant
@@ -8541,7 +8541,7 @@ Mugshot: Blue
 Items: Full Restore / Full Restore
 
 Druddigon @ Rocky Helmet
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Rough Skin
 Nature: Adamant
@@ -8551,7 +8551,7 @@ Nature: Adamant
 - Glare
 
 Flygon @ Choice Scarf
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Jolly
@@ -8561,7 +8561,7 @@ Nature: Jolly
 - Fire Punch
 
 Dragalge @ Black Sludge
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Adaptability
 Nature: Modest
@@ -8571,7 +8571,7 @@ Nature: Modest
 - Toxic Spikes
 
 Altaria @ Altarianite
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Natural Cure
 Nature: Modest
@@ -8581,7 +8581,7 @@ Nature: Modest
 - Roost
 
 Kommo O @ Life Orb
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Bulletproof
 Nature: Jolly
@@ -8612,7 +8612,7 @@ Mugshot: Blue
 Items: Full Restore / Full Restore
 
 Dragonair @ Metal Coat
-Level: 64
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Thunder Wave
 - Thunderbolt
@@ -8620,7 +8620,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dragon Rush
 
 Gyarados @ Focus Band
-Level: 63
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Crunch
 - Surf
@@ -8628,7 +8628,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dragon Dance
 
 Dudunsparce
-Level: 63
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Yawn
 - Glare
@@ -8636,7 +8636,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Hyper Drill
 
 Shelgon @ Sitrus Berry
-Level: 64
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Thunder Wave
 - Zen Headbutt
@@ -8644,7 +8644,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dragon Claw
 
 Dragonite
-Level: 65
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Agility
 - Thunder
@@ -8652,7 +8652,7 @@ IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Hyper Beam
 
 Kingdra @ Leftovers
-Level: 65
+Level: 70
 IVs: 24 HP / 24 Atk / 24 Def / 24 SpA / 24 SpD / 24 Spe
 - Dragon Dance
 - Hydro Pump
@@ -8671,7 +8671,7 @@ Mugshot: Orange
 Items: Full Restore / Full Restore
 
 Golem @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Adamant
@@ -8681,7 +8681,7 @@ Nature: Adamant
 - Explosion
 
 Omastar @ White Herb
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Swift Swim
 Nature: Modest
@@ -8691,7 +8691,7 @@ Nature: Modest
 - Earth Power
 
 Kabutops @ Life Orb
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Swift Swim
 Nature: Adamant
@@ -8701,7 +8701,7 @@ Nature: Adamant
 - Aqua Jet
 
 Relicanth @ Choice Band
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Rock Head
 Nature: Adamant
@@ -8711,7 +8711,7 @@ Nature: Adamant
 - Double Edge
 
 Kleavor @ Focus Sash
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sharpness
 Nature: Jolly
@@ -8742,7 +8742,7 @@ Mugshot: Light Blue
 Items: Full Restore / Full Restore
 
 Pelipper @ Damp Rock
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Drizzle
 Nature: Bold
@@ -8752,7 +8752,7 @@ Nature: Bold
 - Roost
 
 Golduck @ Life Orb
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Swift Swim
 Nature: Timid
@@ -8762,7 +8762,7 @@ Nature: Timid
 - Nasty Plot
 
 Lapras @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
 Nature: Modest
@@ -8772,7 +8772,7 @@ Nature: Modest
 - Ice Shard
 
 Milotic @ Leftovers
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Competitive
 Nature: Bold
@@ -8782,7 +8782,7 @@ Nature: Bold
 - Haze
 
 Blastoise @ Blastoisinite
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Torrent
 Nature: Modest
@@ -8813,7 +8813,7 @@ Items: Full Restore / Full Restore
 Mugshot: Yellow
 
 Electrode @ Focus Sash
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Aftermath
 Nature: Timid
@@ -8823,7 +8823,7 @@ Nature: Timid
 - Explosion
 
 Magnezone @ Choice Specs
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magnet Pull
 Nature: Modest
@@ -8833,7 +8833,7 @@ Nature: Modest
 - Body Press
 
 Lanturn @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Volt Absorb
 Nature: Bold
@@ -8843,7 +8843,7 @@ Nature: Bold
 - Heal Bell
 
 Electivire @ Life Orb
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Motor Drive
 Nature: Adamant
@@ -8853,7 +8853,7 @@ Nature: Adamant
 - Cross Chop
 
 Manectric @ Manectite
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Lightning Rod
 Nature: Timid
@@ -8884,7 +8884,7 @@ Mugshot: Green
 Items: Full Restore / Full Restore
 
 Jumpluff @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
@@ -8894,7 +8894,7 @@ Nature: Jolly
 - U Turn
 
 Roserade @ Life Orb
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Technician
 Nature: Timid
@@ -8904,7 +8904,7 @@ Nature: Timid
 - Spikes
 
 Tangrowth @ Rocky Helmet
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
 Nature: Relaxed
@@ -8914,7 +8914,7 @@ Nature: Relaxed
 - Sleep Powder
 
 Victreebel @ Black Sludge
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -8924,7 +8924,7 @@ Nature: Adamant
 - Weather Ball
 
 Bellossom @ Sitrus Berry
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Modest
@@ -8955,7 +8955,7 @@ Mugshot: Pink
 Items: Full Restore / Full Restore
 
 Mr Mime @ Light Clay
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Filter
 Nature: Timid
@@ -8965,7 +8965,7 @@ Nature: Timid
 - Dazzling Gleam
 
 Wobbuffet @ Sitrus Berry
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Shadow Tag
 Nature: Bold
@@ -8975,7 +8975,7 @@ Nature: Bold
 - Destiny Bond
 
 Slowbro @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
 Nature: Bold
@@ -8985,7 +8985,7 @@ Nature: Bold
 - Thunder Wave
 
 Espeon @ Life Orb
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Bounce
 Nature: Timid
@@ -8995,7 +8995,7 @@ Nature: Timid
 - Calm Mind
 
 Alakazam @ Twisted Spoon
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Guard
 Nature: Timid
@@ -9026,7 +9026,7 @@ Mugshot: Purple
 Items: Full Restore / Full Restore
 
 Weezing @ Black Sludge
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Bold
@@ -9036,7 +9036,7 @@ Nature: Bold
 - Toxic Spikes
 
 Nidoqueen @ Life Orb
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sheer Force
 Nature: Modest
@@ -9046,7 +9046,7 @@ Nature: Modest
 - Flamethrower
 
 Muk @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Poison Touch
 Nature: Adamant
@@ -9056,7 +9056,7 @@ Nature: Adamant
 - Curse
 
 Crobat @ Sharp Beak
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
@@ -9066,7 +9066,7 @@ Nature: Jolly
 - Roost
 
 Venomoth @ Focus Sash
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Tinted Lens
 Nature: Timid
@@ -9097,7 +9097,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Torkoal @ Heat Rock
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Drought
 Nature: Bold
@@ -9107,7 +9107,7 @@ Nature: Bold
 - Yawn
 
 Rapidash @ Life Orb
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flash Fire
 Nature: Jolly
@@ -9117,7 +9117,7 @@ Nature: Jolly
 - Morning Sun
 
 Magmortar @ Expert Belt
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Vital Spirit
 Nature: Modest
@@ -9127,7 +9127,7 @@ Nature: Modest
 - Psychic
 
 Volcarona @ Charcoal
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flame Body
 Nature: Timid
@@ -9137,7 +9137,7 @@ Nature: Timid
 - Giga Drain
 
 Arcanine Hisui @ Choice Band
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Rock Head
 Nature: Adamant
@@ -9168,7 +9168,7 @@ Mugshot: Blue
 Items: Full Restore / Full Restore
 
 Machamp @ Sitrus Berry
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: No Guard
 Nature: Adamant
@@ -9178,7 +9178,7 @@ Nature: Adamant
 - Bullet Punch
 
 Exeggutor @ Sitrus Berry
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Harvest
 Nature: Modest
@@ -9188,7 +9188,7 @@ Nature: Modest
 - Trick Room
 
 Rhyperior @ Weakness Policy
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Solid Rock
 Nature: Adamant
@@ -9298,7 +9298,7 @@ Mugshot: Pink
 Items: Full Restore / Full Restore
 
 Xatu @ Light Clay
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Bounce
 Nature: Timid
@@ -9308,7 +9308,7 @@ Nature: Timid
 - Reflect
 
 Slowbro @ Leftovers
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
 Nature: Bold
@@ -9318,7 +9318,7 @@ Nature: Bold
 - Calm Mind
 
 Bronzong @ Leftovers
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Relaxed
@@ -9328,7 +9328,7 @@ Nature: Relaxed
 - Stealth Rock
 
 Farigiraf @ Sitrus Berry
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Armor Tail
 Nature: Modest
@@ -9338,7 +9338,7 @@ Nature: Modest
 - Nasty Plot
 
 Gardevoir @ Choice Scarf
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Trace
 Nature: Timid
@@ -9348,7 +9348,7 @@ Nature: Timid
 - Focus Blast
 
 Alakazam @ Alakazite
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Guard
 Nature: Timid
@@ -9369,7 +9369,7 @@ Mugshot: Pink
 Items: Full Restore / Full Restore
 
 Gardevoir
-Level: 66
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 - Hyper Voice
@@ -9377,7 +9377,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Reflect
 
 Jynx
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Blizzard
 - Psychic
@@ -9385,7 +9385,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sing
 
 Exeggutor @ Sitrus Berry
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ancient Power
 - Sleep Powder
@@ -9393,7 +9393,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Soft Boiled
 
 Grumpig
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Teeter Dance
 - Power Gem
@@ -9401,7 +9401,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rest
 
 Slowbro @ Quick Claw
-Level: 66
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Punch
 - Curse
@@ -9409,7 +9409,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Zen Headbutt
 
 Xatu @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Future Sight
 - Air Slash
@@ -9428,7 +9428,7 @@ Mugshot: Orange
 Items: Full Restore / Full Restore
 
 Hitmontop @ Rocky Helmet
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Impish
@@ -9438,7 +9438,7 @@ Nature: Impish
 - Rapid Spin
 
 Steelix @ Leftovers
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Impish
@@ -9448,7 +9448,7 @@ Nature: Impish
 - Stealth Rock
 
 Hitmonlee @ Life Orb
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Reckless
 Nature: Jolly
@@ -9458,7 +9458,7 @@ Nature: Jolly
 - Fake Out
 
 Hitmonchan @ Punching Glove
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Iron Fist
 Nature: Adamant
@@ -9468,7 +9468,7 @@ Nature: Adamant
 - Mach Punch
 
 Machamp @ Sitrus Berry
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: No Guard
 Nature: Adamant
@@ -9499,7 +9499,7 @@ Mugshot: Orange
 Items: Full Restore / Full Restore
 
 Steelix @ Quick Claw
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 - Earthquake
@@ -9507,7 +9507,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Iron Tail
 
 Poliwrath @ Scope Lens
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Submission
 - Blizzard
@@ -9515,7 +9515,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psychic
 
 Heracross @ Quick Claw
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Close Combat
 - Megahorn
@@ -9523,7 +9523,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
 
 Hariyama
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Belly Drum
 - SmellingSalt
@@ -9531,7 +9531,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Seismic Toss
 
 Hitmontop @ Scope Lens
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Triple Kick
 - Double Kick
@@ -9539,7 +9539,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Pursuit
 
 Machamp @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rock Slide
 - Earthquake
@@ -9558,7 +9558,7 @@ Mugshot: Yellow
 Items: Full Restore / Full Restore
 
 Umbreon @ Leftovers
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Calm
@@ -9568,7 +9568,7 @@ Nature: Calm
 - Toxic
 
 Vileplume @ Black Sludge
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Effect Spore
 Nature: Bold
@@ -9578,7 +9578,7 @@ Nature: Bold
 - Strength Sap
 
 Gengar @ Life Orb
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Timid
@@ -9588,7 +9588,7 @@ Nature: Timid
 - Nasty Plot
 
 Honchkrow @ Scope Lens
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Super Luck
 Nature: Adamant
@@ -9598,7 +9598,7 @@ Nature: Adamant
 - Heat Wave
 
 Absol @ Absolite
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Super Luck
 Nature: Adamant
@@ -9629,7 +9629,7 @@ Mugshot: Yellow
 Items: Full Restore / Full Restore
 
 Umbreon @ Sitrus Berry
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Growth
 - Shadow Ball
@@ -9637,7 +9637,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Baton Pass
 
 Weavile
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hone Claws
 - Metal Claw
@@ -9645,7 +9645,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Avalanche
 
 Persian @ Scope Lens
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Slash
 - Assurance
@@ -9653,7 +9653,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Play Rough
 
 Honchkrow @ Sharp Beak
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Air Slash
 - Dark Pulse
@@ -9661,7 +9661,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Nasty Plot
 
 Absol @ Leftovers
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Psycho Cut
 - Shadow Claw
@@ -9669,7 +9669,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Slash
 
 Houndoom @ Charcoal
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Flamethrower
 - Crunch
@@ -9688,7 +9688,7 @@ Mugshot: Purple
 Items: Full Restore / Full Restore
 
 Toxapex @ Black Sludge
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
 Nature: Bold
@@ -9698,7 +9698,7 @@ Nature: Bold
 - Haze
 
 Muk Alola @ Black Sludge
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Poison Touch
 Nature: Adamant
@@ -9708,7 +9708,7 @@ Nature: Adamant
 - Shadow Sneak
 
 Toxicroak @ Life Orb
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Dry Skin
 Nature: Jolly
@@ -9718,7 +9718,7 @@ Nature: Jolly
 - Swords Dance
 
 Venomoth @ Focus Sash
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Tinted Lens
 Nature: Timid
@@ -9728,7 +9728,7 @@ Nature: Timid
 - Sleep Powder
 
 Beedrill @ Beedrillite
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sniper
 Nature: Jolly
@@ -9738,7 +9738,7 @@ Nature: Jolly
 - Swords Dance
 
 Crobat @ Sharp Beak
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
@@ -9759,7 +9759,7 @@ Mugshot: Purple
 Items: Full Restore / Full Restore
 
 Tentacruel @ Chesto Berry
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Waterfall
 - Blizzard
@@ -9767,7 +9767,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rest
 
 Muk @ Leftovers
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Minimize
 - Fire Blast
@@ -9775,7 +9775,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Toxic
 
 Swalot
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Swallow
 - Stockpile
@@ -9783,7 +9783,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Spit Up
 
 Nidoking @ Quick Claw
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Lovely Kiss
 - Fire Blast
@@ -9791,7 +9791,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
 
 Venomoth @ Bright Powder
-Level: 67
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Silver Wind
 - Signal Beam
@@ -9799,7 +9799,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Supersonic
 
 Crobat @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Cross Poison
 - Air Slash
@@ -9818,7 +9818,7 @@ Items: Full Restore / Full Restore
 Mugshot: Blue
 
 Gyarados @ Gyaradosite
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Jolly
@@ -9828,7 +9828,7 @@ Nature: Jolly
 - Thunder Wave
 
 Aerodactyl @ Focus Sash
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Unnerve
 Nature: Jolly
@@ -9838,7 +9838,7 @@ Nature: Jolly
 - Stealth Rock
 
 Charizard @ Charcoal
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Solar Power
 Nature: Timid
@@ -9889,7 +9889,7 @@ Items: Full Restore / Full Restore
 Mugshot: Blue
 
 Salamence @ Salamencite
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dragon Claw
 - Air Slash
@@ -9897,7 +9897,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Thunderbolt
 
 Dragonite @ Sitrus Berry
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Iron Tail
 - Ice Punch
@@ -9905,7 +9905,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Dragon Dance
 
 Gyarados @ Quick Claw
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Waterfall
 - Hyper Beam
@@ -9913,7 +9913,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
 
 Charizard @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
 - Crunch
@@ -9921,7 +9921,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Swords Dance
 
 Aerodactyl @ Scope Lens
-Level: 69
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sky Attack
 - Rock Slide
@@ -10011,7 +10011,7 @@ AI: Basic Trainer
 Mugshot: Dark Red
 
 Chikorita
-Level: 5
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RIVAL_CHIKORITA_2_HNS ===
@@ -10026,7 +10026,7 @@ Mugshot: Dark Red
 Items: Super Potion
 
 Golbat @ Eviolite
-Level: 17
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10036,7 +10036,7 @@ Nature: Jolly
 - Toxic
 
 Larvitar @ Eviolite
-Level: 18
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -10046,7 +10046,7 @@ Nature: Adamant
 - Scary Face
 
 Sneasel @ Oran Berry
-Level: 18
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10056,7 +10056,7 @@ Nature: Jolly
 - Icy Wind
 
 Bayleef @ Sitrus Berry
-Level: 19
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Overgrow
 Nature: Bold
@@ -10077,7 +10077,7 @@ Mugshot: Dark Red
 Items: Super Potion / Super Potion
 
 Golbat @ Eviolite
-Level: 22
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10087,7 +10087,7 @@ Nature: Jolly
 - Toxic
 
 Sneasel @ Razor Claw
-Level: 22
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10097,7 +10097,7 @@ Nature: Jolly
 - Ice Shard
 
 Weepinbell @ Eviolite
-Level: 23
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -10107,7 +10107,7 @@ Nature: Adamant
 - Knock Off
 
 Larvitar @ Eviolite
-Level: 23
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -10117,7 +10117,7 @@ Nature: Adamant
 - Dragon Dance
 
 Bayleef @ Sitrus Berry
-Level: 24
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Overgrow
 Nature: Bold
@@ -10138,7 +10138,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Crobat @ Sharp Beak
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
@@ -10148,7 +10148,7 @@ Nature: Jolly
 - Roost
 
 Weavile @ Life Orb
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Jolly
@@ -10158,7 +10158,7 @@ Nature: Jolly
 - Low Kick
 
 Victreebel @ Black Sludge
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -10168,7 +10168,7 @@ Nature: Adamant
 - Sleep Powder
 
 Pupitar @ Eviolite
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Shed Skin
 Nature: Adamant
@@ -10199,7 +10199,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Crobat @ Sharp Beak
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
@@ -10209,7 +10209,7 @@ Nature: Jolly
 - Roost
 
 Weavile @ Life Orb
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Jolly
@@ -10219,7 +10219,7 @@ Nature: Jolly
 - Low Kick
 
 Victreebel @ Black Sludge
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -10229,7 +10229,7 @@ Nature: Adamant
 - Sleep Powder
 
 Ursaring @ Flame Orb
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -10239,7 +10239,7 @@ Nature: Adamant
 - Swords Dance
 
 Tyranitar @ Tyranitarite
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sand Stream
 Nature: Adamant
@@ -10270,7 +10270,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Ursaluna Bloodmoon @ Chesto Berry
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
@@ -10278,7 +10278,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rest
 
 Crobat @ Leftovers
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Air Slash
 - Venoshock
@@ -10286,7 +10286,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Facade
 
 Octillery @ Never Melt Ice
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
 - Ice Beam
@@ -10294,7 +10294,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Signal Beam
 
 Houndoom @ Charcoal
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
 - Iron Tail
@@ -10302,7 +10302,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sunny Day
 
 Meganium @ Miracle Seed
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Synthesis
 - MoonBlast
@@ -10310,7 +10310,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Body Slam
 
 Tyranitar @ Quick Claw
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 - Earthquake
@@ -10329,7 +10329,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Ursaluna Bloodmoon @ Chesto Berry
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
@@ -10337,7 +10337,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rest
 
 Crobat @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Air Slash
 - Venoshock
@@ -10345,7 +10345,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Facade
 
 Octillery @ Never Melt Ice
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
 - Ice Beam
@@ -10353,7 +10353,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Signal Beam
 
 Houndoom @ Charcoal
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
 - Iron Tail
@@ -10361,7 +10361,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sunny Day
 
 Meganium @ Miracle Seed
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Reflect
 - Giga Drain
@@ -10369,7 +10369,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Body Slam
 
 Tyranitar @ Quick Claw
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 - Earthquake
@@ -10387,7 +10387,7 @@ AI: Basic Trainer
 Mugshot: Dark Red
 
 Cyndaquil
-Level: 5
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RIVAL_CYNDAQUIL_2_HNS ===
@@ -10402,7 +10402,7 @@ Mugshot: Dark Red
 Items: Super Potion
 
 Golbat @ Eviolite
-Level: 17
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10412,7 +10412,7 @@ Nature: Jolly
 - Toxic
 
 Larvitar @ Eviolite
-Level: 18
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -10422,7 +10422,7 @@ Nature: Adamant
 - Scary Face
 
 Sneasel @ Oran Berry
-Level: 18
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10432,7 +10432,7 @@ Nature: Jolly
 - Icy Wind
 
 Quilava @ Sitrus Berry
-Level: 19
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Blaze
 Nature: Timid
@@ -10453,7 +10453,7 @@ Mugshot: Dark Red
 Items: Super Potion / Super Potion
 
 Golbat @ Eviolite
-Level: 22
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10463,7 +10463,7 @@ Nature: Jolly
 - Toxic
 
 Sneasel @ Razor Claw
-Level: 22
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10473,7 +10473,7 @@ Nature: Jolly
 - Ice Shard
 
 Weepinbell @ Eviolite
-Level: 23
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -10483,7 +10483,7 @@ Nature: Adamant
 - Knock Off
 
 Larvitar @ Eviolite
-Level: 23
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -10493,7 +10493,7 @@ Nature: Adamant
 - Dragon Dance
 
 Quilava @ Sitrus Berry
-Level: 24
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Blaze
 Nature: Timid
@@ -10514,7 +10514,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Crobat @ Sharp Beak
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
@@ -10524,7 +10524,7 @@ Nature: Jolly
 - Roost
 
 Weavile @ Life Orb
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Jolly
@@ -10534,7 +10534,7 @@ Nature: Jolly
 - Low Kick
 
 Victreebel @ Black Sludge
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -10544,7 +10544,7 @@ Nature: Adamant
 - Sleep Powder
 
 Pupitar @ Eviolite
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Shed Skin
 Nature: Adamant
@@ -10575,7 +10575,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Crobat @ Sharp Beak
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
@@ -10585,7 +10585,7 @@ Nature: Jolly
 - Roost
 
 Weavile @ Life Orb
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Jolly
@@ -10595,7 +10595,7 @@ Nature: Jolly
 - Low Kick
 
 Victreebel @ Black Sludge
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -10605,7 +10605,7 @@ Nature: Adamant
 - Sleep Powder
 
 Ursaring @ Flame Orb
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -10615,7 +10615,7 @@ Nature: Adamant
 - Swords Dance
 
 Tyranitar @ Tyranitarite
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sand Stream
 Nature: Adamant
@@ -10646,7 +10646,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Ursaluna Bloodmoon @ Chesto Berry
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
@@ -10654,7 +10654,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rest
 
 Crobat @ Leftovers
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Air Slash
 - Venoshock
@@ -10662,7 +10662,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Facade
 
 Octillery @ Never Melt Ice
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
 - Ice Beam
@@ -10670,7 +10670,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Signal Beam
 
 Victreebel @ Scope Lens
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sludge Bomb
 - Razor Leaf
@@ -10678,7 +10678,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Growth
 
 Typhlosion @ Charcoal
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
 - Earthquake
@@ -10686,7 +10686,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Thunder Punch
 
 Tyranitar @ Quick Claw
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 - Earthquake
@@ -10705,7 +10705,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Ursaluna Bloodmoon @ Chesto Berry
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
@@ -10713,7 +10713,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rest
 
 Crobat @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Air Slash
 - Venoshock
@@ -10721,7 +10721,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Facade
 
 Octillery @ Never Melt Ice
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Surf
 - Ice Beam
@@ -10729,7 +10729,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Signal Beam
 
 Victreebel @ Scope Lens
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Leaf Blade
 - Sludge Bomb
@@ -10737,7 +10737,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Growth
 
 Typhlosion @ Charcoal
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
 - Earthquake
@@ -10745,7 +10745,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Thunder Punch
 
 Tyranitar @ Quick Claw
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 - Earthquake
@@ -10763,7 +10763,7 @@ AI: Basic Trainer
 Mugshot: Dark Red
 
 Totodile
-Level: 5
+Level: 11
 IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
 
 === TRAINER_RIVAL_TOTODILE_2_HNS ===
@@ -10778,7 +10778,7 @@ Mugshot: Dark Red
 Items: Super Potion
 
 Golbat @ Eviolite
-Level: 17
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10788,7 +10788,7 @@ Nature: Jolly
 - Toxic
 
 Larvitar @ Eviolite
-Level: 18
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -10798,7 +10798,7 @@ Nature: Adamant
 - Scary Face
 
 Sneasel @ Oran Berry
-Level: 18
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10808,7 +10808,7 @@ Nature: Jolly
 - Icy Wind
 
 Croconaw @ Sitrus Berry
-Level: 19
+Level: 21
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sheer Force
 Nature: Adamant
@@ -10829,7 +10829,7 @@ Mugshot: Dark Red
 Items: Super Potion / Super Potion
 
 Golbat @ Eviolite
-Level: 22
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10839,7 +10839,7 @@ Nature: Jolly
 - Toxic
 
 Sneasel @ Razor Claw
-Level: 22
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
@@ -10849,7 +10849,7 @@ Nature: Jolly
 - Ice Shard
 
 Weepinbell @ Eviolite
-Level: 23
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -10859,7 +10859,7 @@ Nature: Adamant
 - Knock Off
 
 Larvitar @ Eviolite
-Level: 23
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -10869,7 +10869,7 @@ Nature: Adamant
 - Dragon Dance
 
 Croconaw @ Sitrus Berry
-Level: 24
+Level: 25
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sheer Force
 Nature: Adamant
@@ -10890,7 +10890,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Crobat @ Sharp Beak
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
@@ -10900,7 +10900,7 @@ Nature: Jolly
 - Roost
 
 Weavile @ Life Orb
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Jolly
@@ -10910,7 +10910,7 @@ Nature: Jolly
 - Low Kick
 
 Victreebel @ Black Sludge
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -10920,7 +10920,7 @@ Nature: Adamant
 - Sleep Powder
 
 Pupitar @ Eviolite
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Shed Skin
 Nature: Adamant
@@ -10951,7 +10951,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Crobat @ Sharp Beak
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
@@ -10961,7 +10961,7 @@ Nature: Jolly
 - Roost
 
 Weavile @ Life Orb
-Level: 54
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Jolly
@@ -10971,7 +10971,7 @@ Nature: Jolly
 - Low Kick
 
 Victreebel @ Black Sludge
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -10981,7 +10981,7 @@ Nature: Adamant
 - Sleep Powder
 
 Ursaring @ Flame Orb
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Adamant
@@ -10991,7 +10991,7 @@ Nature: Adamant
 - Swords Dance
 
 Tyranitar @ Tyranitarite
-Level: 55
+Level: 56
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sand Stream
 Nature: Adamant
@@ -11022,7 +11022,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Ursaluna Bloodmoon @ Chesto Berry
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
@@ -11030,7 +11030,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rest
 
 Crobat @ Leftovers
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Air Slash
 - Venoshock
@@ -11038,7 +11038,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Facade
 
 Victreebel @ Scope Lens
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Sludge Bomb
 - Razor Leaf
@@ -11046,7 +11046,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Growth
 
 Houndoom @ Charcoal
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
 - Iron Tail
@@ -11054,7 +11054,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Double Team
 
 Feraligatr @ Scope Lens
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Beam
 - Surf
@@ -11062,7 +11062,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
 
 Tyranitar @ Quick Claw
-Level: 64
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 - Earthquake
@@ -11081,7 +11081,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Ursaluna Bloodmoon @ Chesto Berry
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Hammer Arm
 - Moonblast
@@ -11089,7 +11089,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Rest
 
 Crobat @ Leftovers
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Air Slash
 - Venoshock
@@ -11097,7 +11097,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Facade
 
 Victreebel @ Scope Lens
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Leaf Blade
 - Sludge Bomb
@@ -11105,7 +11105,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Growth
 
 Houndoom @ Charcoal
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Fire Blast
 - Iron Tail
@@ -11113,7 +11113,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Double Team
 
 Feraligatr @ Scope Lens
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Ice Beam
 - Surf
@@ -11121,7 +11121,7 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Earthquake
 
 Tyranitar @ Quick Claw
-Level: 68
+Level: 70
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 - Crunch
 - Earthquake
@@ -11139,7 +11139,7 @@ AI: Smart Trainer / Prediction / Ace Pokemon / HP Aware
 Items: Full Restore / Full Restore / Full Restore / Full Restore
 
 Pikachu @ Light Ball
-Level: 96
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpA / 252 Spe
 Ability: Lightning Rod
@@ -11150,7 +11150,7 @@ Nature: Hasty
 - Fake Out
 
 Espeon @ Life Orb
-Level: 96
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magic Bounce
@@ -11161,7 +11161,7 @@ Nature: Timid
 - Calm Mind
 
 Snorlax @ Leftovers
-Level: 97
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Thick Fat
@@ -11172,7 +11172,7 @@ Nature: Careful
 - Sleep Talk
 
 Venusaur @ Life Orb
-Level: 97
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Chlorophyll
@@ -11183,7 +11183,7 @@ Nature: Modest
 - Sludge Bomb
 
 Blastoise @ White Herb
-Level: 98
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Torrent
@@ -11216,7 +11216,7 @@ Mugshot: Yellow
 Items: Full Restore / Full Restore
 
 Politoed
-Level: 27
+Level: 31
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 - Bubble Beam
 - Rain Dance
@@ -11224,7 +11224,7 @@ IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 - Icy Wind
 
 Hypno
-Level: 27
+Level: 31
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 - Hypnosis
 - Disable
@@ -11232,7 +11232,7 @@ IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 - Dream Eater
 
 Electrode
-Level: 27
+Level: 31
 IVs: 2 HP / 2 Atk / 2 Def / 2 SpA / 2 SpD / 2 Spe
 - Thunder Wave
 - Sonic Boom
@@ -11310,7 +11310,7 @@ Mugshot: Dark Red
 Items: Super Potion
 
 Koffing @ Eviolite
-Level: 13
+Level: 16
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Bold
@@ -11320,7 +11320,7 @@ Nature: Bold
 - Smokescreen
 
 Slowpoke @ Eviolite
-Level: 14
+Level: 16
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
 Nature: Relaxed
@@ -11330,7 +11330,7 @@ Nature: Relaxed
 - Slack Off
 
 Houndour @ Charcoal
-Level: 15
+Level: 16
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flash Fire
 Nature: Timid
@@ -11351,7 +11351,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Muk @ Black Sludge
-Level: 42
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Poison Touch
 Nature: Adamant
@@ -11361,7 +11361,7 @@ Nature: Adamant
 - Curse
 
 Nidoqueen @ Life Orb
-Level: 42
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sheer Force
 Nature: Modest
@@ -11371,7 +11371,7 @@ Nature: Modest
 - Flamethrower
 
 Weezing @ Rocky Helmet
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Bold
@@ -11381,7 +11381,7 @@ Nature: Bold
 - Toxic Spikes
 
 Nidoking @ Life Orb
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sheer Force
 Nature: Timid
@@ -11391,7 +11391,7 @@ Nature: Timid
 - Thunderbolt
 
 Rhydon @ Eviolite
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Lightning Rod
 Nature: Adamant
@@ -11412,7 +11412,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Porygon Z @ Choice Specs
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Adaptability
 Nature: Modest
@@ -11422,7 +11422,7 @@ Nature: Modest
 - Shadow Ball
 
 Tauros @ Life Orb
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Jolly
@@ -11432,7 +11432,7 @@ Nature: Jolly
 - Zen Headbutt
 
 Crawdaunt @ Life Orb
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Adaptability
 Nature: Adamant
@@ -11442,7 +11442,7 @@ Nature: Adamant
 - Swords Dance
 
 Slowbro @ Leftovers
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
 Nature: Bold
@@ -11452,7 +11452,7 @@ Nature: Bold
 - Calm Mind
 
 Bisharp @ Black Glasses
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Defiant
 Nature: Adamant
@@ -11620,7 +11620,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Weezing @ Black Sludge
-Level: 34
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Bold
@@ -11630,7 +11630,7 @@ Nature: Bold
 - Fire Blast
 
 Forretress @ Leftovers
-Level: 34
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Relaxed
@@ -11640,7 +11640,7 @@ Nature: Relaxed
 - Rapid Spin
 
 Pupitar @ Eviolite
-Level: 35
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Shed Skin
 Nature: Adamant
@@ -11650,7 +11650,7 @@ Nature: Adamant
 - Dragon Dance
 
 Drapion @ Black Glasses
-Level: 36
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sniper
 Nature: Jolly
@@ -11671,7 +11671,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Forretress @ Leftovers
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Relaxed
@@ -11681,7 +11681,7 @@ Nature: Relaxed
 - Rapid Spin
 
 Weezing Galar @ Black Sludge
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Neutralizing Gas
 Nature: Bold
@@ -11691,7 +11691,7 @@ Nature: Bold
 - Pain Split
 
 Pupitar @ Eviolite
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Shed Skin
 Nature: Adamant
@@ -11701,7 +11701,7 @@ Nature: Adamant
 - Dragon Dance
 
 Cloyster @ Focus Sash
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Skill Link
 Nature: Adamant
@@ -11711,7 +11711,7 @@ Nature: Adamant
 - Liquidation
 
 Drapion @ Black Glasses
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sniper
 Nature: Jolly
@@ -11732,7 +11732,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Arbok @ Black Sludge
-Level: 34
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -11742,7 +11742,7 @@ Nature: Adamant
 - Earthquake
 
 Persian @ Silk Scarf
-Level: 34
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Technician
 Nature: Jolly
@@ -11752,7 +11752,7 @@ Nature: Jolly
 - Hypnosis
 
 Vileplume @ Black Sludge
-Level: 35
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Effect Spore
 Nature: Calm
@@ -11762,7 +11762,7 @@ Nature: Calm
 - Strength Sap
 
 Honchkrow @ Scope Lens
-Level: 36
+Level: 31
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Super Luck
 Nature: Adamant
@@ -11783,7 +11783,7 @@ Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
 Arbok @ Black Sludge
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -11793,7 +11793,7 @@ Nature: Adamant
 - Earthquake
 
 Persian @ Silk Scarf
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Technician
 Nature: Jolly
@@ -11803,7 +11803,7 @@ Nature: Jolly
 - Hypnosis
 
 Vileplume @ Black Sludge
-Level: 43
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Effect Spore
 Nature: Calm
@@ -11813,7 +11813,7 @@ Nature: Calm
 - Strength Sap
 
 Gyarados @ Sitrus Berry
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Jolly
@@ -11823,7 +11823,7 @@ Nature: Jolly
 - Dragon Dance
 
 Honchkrow @ Scope Lens
-Level: 44
+Level: 45
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Super Luck
 Nature: Adamant
@@ -15516,7 +15516,7 @@ Items: Full Restore / Full Restore
 
 Noctowl  
 Ability: Tinted Lens  
-Level: 69  
+Level: 100
 IVs: 0 Atk  
 - Psychic  
 - Air Slash  
@@ -15525,7 +15525,7 @@ IVs: 0 Atk
 
 Skarmory  
 Ability: Keen Eye  
-Level: 69 
+Level: 100
 - Drill Peck  
 - Steel Wing  
 - Stealth Rock  
@@ -15533,7 +15533,7 @@ Level: 69
 
 Swellow @ Flame Orb  
 Ability: Guts  
-Level: 69 
+Level: 100
 - Brave Bird  
 - Endeavor  
 - Double Team  
@@ -15541,7 +15541,7 @@ Level: 69
 
 Honchkrow  
 Ability: Moxie  
-Level: 69 
+Level: 100
 - Acrobatics  
 - Night Slash  
 - Mimic  
@@ -15549,7 +15549,7 @@ Level: 69
 
 Pidgeot  
 Ability: Keen Eye  
-Level: 69  
+Level: 100
 - Extreme Speed  
 - Fly  
 - Tailwind  
@@ -15557,7 +15557,7 @@ Level: 69
 
 Pelipper  
 Ability: Drizzle  
-Level: 69 
+Level: 100
 IVs: 0 Atk  
 - Hurricane  
 - Brine  
@@ -15577,7 +15577,7 @@ Items: Full Restore / Full Restore
 
 Forretress  
 Ability: Sturdy  
-Level: 69 
+Level: 100
 IVs: 0 Spe  
 - Toxic Spikes  
 - Stealth Rock  
@@ -15586,7 +15586,7 @@ IVs: 0 Spe
 
 Ledian  
 Ability: Iron Fist  
-Level: 71   
+Level: 100
 - Drain Punch  
 - Acrobatics  
 - Swords Dance  
@@ -15594,7 +15594,7 @@ Level: 71
 
 Masquerain  
 Ability: Intimidate  
-Level: 69   
+Level: 100
 IVs: 0 Atk  
 - Quiver Dance  
 - Hydro Pump  
@@ -15603,7 +15603,7 @@ IVs: 0 Atk
 
 Yanmega @ Sitrus Berry  
 Ability: Speed Boost  
-Level: 70   
+Level: 100
 IVs: 0 Atk  
 - Air Slash  
 - Protect  
@@ -15612,7 +15612,7 @@ IVs: 0 Atk
 
 Shedinja @ Focus Sash  
 Ability: Wonder Guard  
-Level: 71 
+Level: 100
 - Phantom Force  
 - X-Scissor  
 - Hone Claws  
@@ -15620,7 +15620,7 @@ Level: 71
 
 Scizor @ Scope Lens  
 Ability: Technician  
-Level: 69  
+Level: 100
 - Bullet Punch  
 - Bug Bite  
 - Swords Dance  
@@ -15639,7 +15639,7 @@ Items: Full Restore / Full Restore
 
 Clefable  
 Ability: Cute Charm  
-Level: 70   
+Level: 100
 IVs: 0 Atk  
 - Moonblast  
 - Meteor Beam  
@@ -15648,7 +15648,7 @@ IVs: 0 Atk
 
 Delcatty  
 Ability: Cute Charm  
-Level: 70 
+Level: 100
 - Attract  
 - Fake Out  
 - Double-Edge  
@@ -15656,7 +15656,7 @@ Level: 70
 
 Ambipom @ Loaded Dice  
 Ability: Technician  
-Level: 70 
+Level: 100
 - Tail Slap  
 - Knock Off  
 - Tail Whip  
@@ -15664,7 +15664,7 @@ Level: 70
 
 Ursaluna-Bloodmoon  
 Ability: Mind's Eye  
-Level: 69  
+Level: 100
 IVs: 0 Atk  
 - Blood Moon  
 - Lunar Blessing  
@@ -15673,7 +15673,7 @@ IVs: 0 Atk
 
 Miltank @ Silk Scarf  
 Ability: Thick Fat  
-Level: 70  
+Level: 100
 - Milk Drink  
 - Defense Curl  
 - Rollout  
@@ -15681,7 +15681,7 @@ Level: 70
 
 Obstagoon  
 Ability: Reckless  
-Level: 70 
+Level: 100
 - Double-Edge  
 - Obstruct  
 - Cross Poison  
@@ -15700,7 +15700,7 @@ Items: Full Restore / Full Restore
 
 Sableye  
 Ability: Prankster  
-Level: 72 
+Level: 100
 IVs: 0 Atk  
 - Foul Play  
 - Will-O-Wisp  
@@ -15709,7 +15709,7 @@ IVs: 0 Atk
 
 Wyrdeer @ Silk Scarf  
 Ability: Sap Sipper  
-Level: 70
+Level: 100
 - Psyshield Bash  
 - Megahorn  
 - Hypnosis  
@@ -15717,7 +15717,7 @@ Level: 70
 
 Dusknoir  
 Ability: Pressure  
-Level: 70 
+Level: 100
 - Shadow Punch  
 - Fire Punch  
 - Will-O-Wisp  
@@ -15725,7 +15725,7 @@ Level: 70
 
 Typhlosion-Hisui  
 Ability: Blaze  
-Level: 70 
+Level: 100
 Quirky Nature  
 IVs: 0 Atk  
 - Infernal Parade  
@@ -15735,7 +15735,7 @@ IVs: 0 Atk
 
 Mismagius  
 Ability: Levitate  
-Level: 70   
+Level: 100
 IVs: 0 Atk  
 - Mean Look  
 - Perish Song  
@@ -15744,7 +15744,7 @@ IVs: 0 Atk
 
 Gengar @ Sitrus Berry  
 Ability: Cursed Body  
-Level: 70 
+Level: 100
 IVs: 0 Atk  
 - Hex  
 - Hypnosis  
@@ -15764,7 +15764,7 @@ Items: Full Restore / Full Restore
 
 Hitmonchan  
 Ability: Iron Fist  
-Level: 70
+Level: 100
 - Sky Uppercut  
 - Thunder Punch  
 - Ice Punch  
@@ -15772,7 +15772,7 @@ Level: 70
 
 Medicham  
 Ability: Pure Power  
-Level: 70 
+Level: 100
 - Acupressure  
 - Stored Power  
 - High Jump Kick  
@@ -15780,7 +15780,7 @@ Level: 70
 
 Annihilape  
 Ability: Vital Spirit  
-Level: 70 
+Level: 100
 - Cross Chop  
 - Rage Fist  
 - Drain Punch  
@@ -15788,7 +15788,7 @@ Level: 70
 
 Sirfetch’d @ Leek  
 Ability: Scrappy  
-Level: 70 
+Level: 100
 - Leaf Blade  
 - Protect  
 - Quick Attack  
@@ -15796,7 +15796,7 @@ Level: 70
 
 Sneasler  
 Ability: Poison Touch  
-Level: 70
+Level: 100
 - Dire Claw  
 - Close Combat  
 - Fake Out  
@@ -15804,7 +15804,7 @@ Level: 70
 
 Poliwrath @ Sitrus Berry  
 Ability: Water Absorb  
-Level: 71  
+Level: 100
 - Liquidation  
 - Submission  
 - Belly Drum  
@@ -15823,7 +15823,7 @@ Items: Full Restore / Full Restore
 
 Skarmory  
 Ability: Keen Eye  
-Level: 70 
+Level: 100
 - Drill Peck  
 - Torment  
 - Steel Wing  
@@ -15831,7 +15831,7 @@ Level: 70
 
 Sandslash-Alola  
 Ability: Snow Cloak  
-Level: 72 
+Level: 100
 - Curse  
 - Avalanche  
 - Iron Head  
@@ -15839,7 +15839,7 @@ Level: 72
 
 Corsola @ Damp Rock  
 Ability: Regenerator  
-Level: 70
+Level: 100
 IVs: 0 Atk  
 - Rain Dance  
 - Power Gem  
@@ -15848,7 +15848,7 @@ IVs: 0 Atk
 
 Magnezone  
 Ability: Analytic  
-Level: 70
+Level: 100
 Sassy Nature  
 IVs: 0 Atk / 0 Spe  
 - Thunder  
@@ -15858,7 +15858,7 @@ IVs: 0 Atk / 0 Spe
 
 Perrserker  
 Ability: Steely Spirit  
-Level: 70 
+Level: 100
 IVs: 0 Spe  
 - Gyro Ball  
 - Play Rough  
@@ -15867,7 +15867,7 @@ IVs: 0 Spe
 
 Steelix @ Quick Claw  
 Ability: Rock Head  
-Level: 70
+Level: 100
 - Head Smash  
 - Earthquake  
 - Dragon Dance  
@@ -15886,7 +15886,7 @@ Items: Full Restore / Full Restore
 
 Weavile  
 Ability: Pressure  
-Level: 70 
+Level: 100
 - Fake Out  
 - Night Slash  
 - Beat Up  
@@ -15894,7 +15894,7 @@ Level: 70
 
 Mr. Rime  
 Ability: Ice Body  
-Level: 71
+Level: 100
 IVs: 0 Atk  
 - Teeter Dance  
 - Snowscape  
@@ -15903,7 +15903,7 @@ IVs: 0 Atk
 
 Ninetales-Alola @ Light Clay  
 Ability: Snow Warning  
-Level: 70
+Level: 100
 IVs: 0 Atk  
 - Aurora Veil  
 - Blizzard  
@@ -15912,7 +15912,7 @@ IVs: 0 Atk
 
 Slowking  
 Ability: Regenerator  
-Level: 70  
+Level: 100
 IVs: 0 Atk  
 - Chilly Reception  
 - Hydro Pump  
@@ -15921,7 +15921,7 @@ IVs: 0 Atk
 
 Mamoswine @ Soft Sand  
 Ability: Oblivious  
-Level: 71
+Level: 100
 - Earthquake  
 - Avalanche  
 - Curse  
@@ -15929,7 +15929,7 @@ Level: 71
 
 Froslass (F)  
 Ability: Snow Cloak  
-Level: 72
+Level: 100
 IVs: 0 Atk  
 - Shadow Ball  
 - Blizzard  
@@ -15949,7 +15949,7 @@ Items: Full Restore / Full Restore
 
 Dragonair @ Eviolite  
 Ability: Marvel Scale  
-Level: 71
+Level: 100
 - Thunder Wave  
 - Thunderbolt  
 - Aqua Tail  
@@ -15957,7 +15957,7 @@ Level: 71
 
 Dudunsparce  
 Ability: Serene Grace  
-Level: 69 
+Level: 100
 - Charge Beam  
 - Boomburst  
 - Poison Jab  
@@ -15965,7 +15965,7 @@ Level: 69
 
 Exeggutor-Alola @ Sitrus Berry  
 Ability: Harvest  
-Level: 70  
+Level: 100
 - Wood Hammer  
 - Dragon Hammer  
 - Leech Seed  
@@ -15973,7 +15973,7 @@ Level: 70
 
 Salamence  
 Ability: Moxie  
-Level: 71
+Level: 100
 - Dragon Dance  
 - Dragon Rush  
 - Iron Head  
@@ -15981,7 +15981,7 @@ Level: 71
 
 Kingdra @ Scope Lens  
 Ability: Sniper  
-Level: 69 
+Level: 100
 IVs: 0 Atk  
 - Focus Energy  
 - Dragon Pulse  
@@ -15990,7 +15990,7 @@ IVs: 0 Atk
 
 Dragonite  
 Ability: Multiscale  
-Level: 70  
+Level: 100
 - Extreme Speed  
 - Dragon Pulse  
 - Flamethrower  
@@ -16009,7 +16009,7 @@ Items: Full Restore / Full Restore
 
 Kleavor @ Razor Claw  
 Ability: Sharpness  
-Level: 72 
+Level: 100
 - Stone Axe  
 - X-Scissor  
 - Agility  
@@ -16017,7 +16017,7 @@ Level: 72
 
 Gliscor @ Toxic Orb  
 Ability: Poison Heal  
-Level: 71 
+Level: 100
 - Spikes  
 - Protect  
 - Crabhammer  
@@ -16025,7 +16025,7 @@ Level: 71
 
 Aerodactyl  
 Ability: Unnerve  
-Level: 72
+Level: 100
 - Fire Fang  
 - Sky Attack  
 - Earthquake  
@@ -16033,7 +16033,7 @@ Level: 72
 
 Omastar  
 Ability: Swift Swim  
-Level: 70
+Level: 100
 IVs: 0 Atk  
 - Ancient Power  
 - Surf  
@@ -16042,7 +16042,7 @@ IVs: 0 Atk
 
 Relicanth @ Hard Stone  
 Ability: Rock Head  
-Level: 70 
+Level: 100
 - Wave Crash  
 - Head Smash  
 - Calm Mind  
@@ -16050,7 +16050,7 @@ Level: 70
 
 Golem-Alola @ Magnet  
 Ability: Galvanize  
-Level: 72  
+Level: 100
 - Stone Edge  
 - Body Slam  
 - Autotomize  
@@ -16069,7 +16069,7 @@ Items: Full Restore / Full Restore
 
 Politoed @ Damp Rock  
 Ability: Drizzle  
-Level: 71 
+Level: 100
 - Weather Ball  
 - Seismic Toss  
 - Metronome  
@@ -16077,7 +16077,7 @@ Level: 71
 
 Swampert @ Quick Claw  
 Ability: Torrent  
-Level: 71 
+Level: 100
 - Rain Dance  
 - Barrier  
 - Earthquake  
@@ -16085,7 +16085,7 @@ Level: 71
 
 Vaporeon @ Leftovers  
 Ability: Water Absorb  
-Level: 71  
+Level: 100
 EVs: 32 HP / 40 Def / 12 SpD  
 IVs: 0 Atk  
 - Aqua Ring  
@@ -16095,7 +16095,7 @@ IVs: 0 Atk
 
 Milotic @ Shell Bell  
 Ability: Marvel Scale  
-Level: 70   
+Level: 100
 IVs: 0 Atk  
 - Scald  
 - Ice Beam  
@@ -16104,7 +16104,7 @@ IVs: 0 Atk
 
 Lapras  
 Ability: Shell Armor  
-Level: 70 
+Level: 100
 IVs: 0 Atk  
 - Freeze-Dry  
 - Hydro Pump  
@@ -16113,7 +16113,7 @@ IVs: 0 Atk
 
 Starmie @ Mystic Water  
 Ability: Natural Cure  
-Level: 70
+Level: 100
 IVs: 0 Atk  
 - Psyshock  
 - Surf  
@@ -16133,14 +16133,14 @@ Mugshot: Yellow
 
 Electrode @ Normal Gem  
 Ability: Soundproof  
-Level: 70  
+Level: 100
 - Electro Ball  
 - Rain Dance  
 - Explosion  
 
 Jolteon  
 Ability: Volt Absorb  
-Level: 69   
+Level: 100
 IVs: 0 Atk  
 - Electric Terrain  
 - Thunder  
@@ -16149,7 +16149,7 @@ IVs: 0 Atk
 
 Lanturn @ Leftovers  
 Ability: Volt Absorb  
-Level: 70   
+Level: 100
 IVs: 0 Atk  
 - Rain Dance  
 - Thunder  
@@ -16158,7 +16158,7 @@ IVs: 0 Atk
 
 Manectric @ Terrain Extender  
 Ability: Lightning Rod  
-Level: 70  
+Level: 100
 - Electric Terrain  
 - Charge  
 - Wild Charge  
@@ -16166,7 +16166,7 @@ Level: 70
 
 Electivire @ Scope Lens  
 Ability: Motor Drive  
-Level: 69  
+Level: 100
 - Thunder Punch  
 - Ice Punch  
 - Cross Chop  
@@ -16174,7 +16174,7 @@ Level: 69
 
 Raichu-Alola @ Electric Seed  
 Ability: Surge Surfer  
-Level: 71  
+Level: 100
 IVs: 0 Atk  
 - Rising Voltage  
 - Electric Terrain  
@@ -16194,7 +16194,7 @@ Items: Full Restore / Full Restore
 
 Roserade @ Focus Sash  
 Ability: Natural Cure  
-Level: 70
+Level: 100
 IVs: 0 Atk  
 - Toxic Spikes  
 - Venoshock  
@@ -16203,7 +16203,7 @@ IVs: 0 Atk
 
 Tangrowth @ Leftovers  
 Ability: Chlorophyll  
-Level: 71 
+Level: 100
 IVs: 0 Atk  
 - Ingrain  
 - Giga Drain  
@@ -16212,7 +16212,7 @@ IVs: 0 Atk
 
 Venusaur  
 Ability: Overgrow  
-Level: 70
+Level: 100
 IVs: 0 Atk  
 - Sludge Bomb  
 - Energy Ball  
@@ -16221,7 +16221,7 @@ IVs: 0 Atk
 
 Electrode-Hisui @ Miracle Seed  
 Ability: Aftermath  
-Level: 71  
+Level: 100
 IVs: 0 Atk  
 - Chloroblast  
 - Electro Ball  
@@ -16229,7 +16229,7 @@ IVs: 0 Atk
 
 Bellossom @ Lum Berry  
 Ability: Chlorophyll  
-Level: 72
+Level: 100
 IVs: 0 Atk  
 - Grassy Terrain  
 - Quiver Dance  
@@ -16238,7 +16238,7 @@ IVs: 0 Atk
 
 Ludicolo  
 Ability: Swift Swim  
-Level: 70
+Level: 100
 IVs: 0 Atk  
 - Rain Dance  
 - Hydro Pump  
@@ -16259,7 +16259,7 @@ Items: Full Restore / Full Restore
 Swalot  
 Ability: Liquid Ooze  
 IVs: 0 Atk  
-Level: 70
+Level: 100
 - Toxic Spikes  
 - Stockpile  
 - Swallow  
@@ -16267,7 +16267,7 @@ Level: 70
 
 Weezing-Galar @ Fairy Feather  
 Ability: Levitate  
-Level: 70 
+Level: 100
 IVs: 0 Atk  
 - Strange Steam  
 - Sludge Bomb  
@@ -16276,7 +16276,7 @@ IVs: 0 Atk
 
 Muk-Alola @ Leftovers  
 Ability: Poison Touch  
-Level: 70 
+Level: 100
 - Gunk Shot  
 - Acid Armor  
 - Power-Up Punch  
@@ -16284,7 +16284,7 @@ Level: 70
 
 Crobat  
 Ability: Infiltrator  
-Level: 70  
+Level: 100
 - Leech Life  
 - Confuse Ray  
 - Brave Bird  
@@ -16292,7 +16292,7 @@ Level: 70
 
 Sneasler @ Flying Gem  
 Ability: Unburden  
-Level: 70 
+Level: 100
 - Acrobatics  
 - Dire Claw  
 - Close Combat  
@@ -16300,7 +16300,7 @@ Level: 70
 
 Venomoth @ Bright Powder  
 Ability: Shield Dust  
-Level: 73 
+Level: 100
 IVs: 0 Atk  
 - Venoshock  
 - Signal Beam  
@@ -16320,7 +16320,7 @@ Items: Full Restore / Full Restore
 
 Mr. Mime-Galar @ Eviolite  
 Ability: Vital Spirit  
-Level: 70
+Level: 100
 IVs: 0 Atk  
 - Light Screen  
 - Reflect  
@@ -16329,7 +16329,7 @@ IVs: 0 Atk
 
 Slowbro-Galar @ Quick Claw  
 Ability: Quick Draw  
-Level: 70 
+Level: 100
 - Shell Side Arm  
 - Calm Mind  
 - Psyshock  
@@ -16337,7 +16337,7 @@ Level: 70
 
 Espeon  
 Ability: Magic Bounce  
-Level: 70
+Level: 100
 IVs: 0 Atk  
 - Psychic  
 - Morning Sun  
@@ -16346,7 +16346,7 @@ IVs: 0 Atk
 
 Rapidash-Galar  
 Ability: Pastel Veil  
-Level: 70 
+Level: 100
 - Play Rough  
 - Psycho Cut  
 - Wild Charge  
@@ -16354,7 +16354,7 @@ Level: 70
 
 Wobbuffet @ Leftovers  
 Ability: Shadow Tag  
-Level: 70  
+Level: 100
 IVs: 0 Atk  
 - Counter  
 - Mirror Coat  
@@ -16363,7 +16363,7 @@ IVs: 0 Atk
 
 Alakazam  
 Ability: Magic Guard  
-Level: 70 
+Level: 100
 IVs: 0 Atk  
 - Psyshock  
 - Shadow Ball  
@@ -16383,7 +16383,7 @@ Items: Full Restore / Full Restore
 
 Torkoal @ Heat Rock  
 Ability: Drought  
-Level: 71 
+Level: 100
 IVs: 0 Spe  
 - Solar Beam  
 - Heat Wave  
@@ -16392,7 +16392,7 @@ IVs: 0 Spe
 
 Magmortar @ Magnet  
 Ability: Flame Body  
-Level: 70 
+Level: 100
 IVs: 0 Atk  
 - Fire Blast  
 - Thunderbolt  
@@ -16401,7 +16401,7 @@ IVs: 0 Atk
 
 Blaziken @ Scope Lens  
 Ability: Speed Boost  
-Level: 70 
+Level: 100
 - Blaze Kick  
 - Power-Up Punch  
 - Thunder Punch  
@@ -16409,7 +16409,7 @@ Level: 70
 
 Magcargo @ Absorb Bulb  
 Ability: Flame Body  
-Level: 70 
+Level: 100
 IVs: 0 Atk  
 - Sunny Day  
 - Flamethrower  
@@ -16418,7 +16418,7 @@ IVs: 0 Atk
 
 Arcanine-Hisui @ Rock Incense  
 Ability: Rock Head  
-Level: 70 
+Level: 100
 - Head Smash  
 - Raging Fury  
 - Wild Charge  
@@ -16426,7 +16426,7 @@ Level: 70
 
 Camerupt @ Leftovers  
 Ability: Solid Rock  
-Level: 70 
+Level: 100
 IVs: 0 Atk  
 - Eruption  
 - Protect  
@@ -16446,7 +16446,7 @@ Items: Full Restore / Full Restore
 
 Rhyperior @ Loaded Dice  
 Ability: Solid Rock  
-Level: 70 
+Level: 100
 - Rock Blast  
 - Drill Run  
 - Toxic  
@@ -16454,7 +16454,7 @@ Level: 70
 
 Pidgeot @ Quick Claw  
 Ability: Keen Eye  
-Level: 70  
+Level: 100
 - Feather Dance  
 - Air Slash  
 - Brave Bird  
@@ -16462,7 +16462,7 @@ Level: 70
 
 Machamp @ Scope Lens  
 Ability: No Guard  
-Level: 70  
+Level: 100
 - Dynamic Punch  
 - Dual Chop  
 - Stone Edge  
@@ -16470,7 +16470,7 @@ Level: 70
 
 Marowak-Alola @ Thick Club  
 Ability: Lightning Rod  
-Level: 71  
+Level: 100
 - Shadow Bone  
 - Flame Charge  
 - Pain Split  
@@ -16478,7 +16478,7 @@ Level: 71
 
 Tyranitar @ Rocky Helmet  
 Ability: Unnerve  
-Level: 70  
+Level: 100
 - Stone Edge  
 - Crunch  
 - Curse  
@@ -16486,7 +16486,7 @@ Level: 70
 
 Blastoise @ Sitrus Berry  
 Ability: Torrent  
-Level: 73   
+Level: 100
 IVs: 0 Atk  
 - Scald  
 - Dark Pulse  
@@ -16506,7 +16506,7 @@ Items: Full Restore / Full Restore
 
 Gardevoir @ Light Clay  
 Ability: Trace  
-Level: 74 
+Level: 100
 IVs: 0 Atk  
 - Psyshock  
 - Moonblast  
@@ -16515,7 +16515,7 @@ IVs: 0 Atk
 
 Jynx @ Never-Melt Ice  
 Ability: Dry Skin  
-Level: 75 
+Level: 100
 IVs: 0 Atk  
 - Lovely Kiss  
 - Sweet Kiss  
@@ -16524,7 +16524,7 @@ IVs: 0 Atk
 
 Slowking-Galar @ Black Sludge  
 Ability: Own Tempo  
-Level: 76 
+Level: 100
 IVs: 0 Atk  
 - Eerie Spell  
 - Trick Room  
@@ -16533,7 +16533,7 @@ IVs: 0 Atk
 
 Grumpig @ Leftovers  
 Ability: Thick Fat  
-Level: 77  
+Level: 100
 IVs: 0 Atk  
 - Teeter Dance  
 - Power Gem  
@@ -16542,7 +16542,7 @@ IVs: 0 Atk
 
 Slowbro  
 Ability: Oblivious  
-Level: 77  
+Level: 100
 - Fire Punch  
 - Curse  
 - Earthquake  
@@ -16550,7 +16550,7 @@ Level: 77
 
 Xatu  
 Ability: Magic Bounce  
-Level: 79 
+Level: 100
 IVs: 0 Atk  
 - Future Sight  
 - Air Slash  
@@ -16570,7 +16570,7 @@ Items: Full Restore / Full Restore
 
 Clodsire  
 Ability: Water Absorb  
-Level: 74 
+Level: 100
 - Toxic Spikes  
 - Earthquake  
 - Gunk Shot  
@@ -16578,7 +16578,7 @@ Level: 74
 
 Overqwil @ Black Sludge  
 Ability: Poison Point  
-Level: 75
+Level: 100
 - Barb Barrage  
 - Lash Out  
 - Swords Dance  
@@ -16586,7 +16586,7 @@ Level: 75
 
 Ariados @ Blunder Policy  
 Ability: Sniper  
-Level: 76
+Level: 100
 EVs: 252 Spe  
 Jolly Nature  
 - Sticky Web  
@@ -16596,7 +16596,7 @@ Jolly Nature
 
 Nidoking @ Life Orb  
 Ability: Sheer Force  
-Level: 77   
+Level: 100
 IVs: 0 Atk  
 - Fire Blast  
 - Ice Beam  
@@ -16605,7 +16605,7 @@ IVs: 0 Atk
 
 Venomoth @ Bright Powder  
 Ability: Shield Dust  
-Level: 77  
+Level: 100
 IVs: 0 Atk  
 - Venoshock  
 - Bug Buzz  
@@ -16614,7 +16614,7 @@ IVs: 0 Atk
 
 Crobat  
 Ability: Inner Focus  
-Level: 79  
+Level: 100
 - Acrobatics  
 - Cross Poison  
 - Toxic  
@@ -16633,7 +16633,7 @@ Items: Full Restore / Full Restore
 
 Steelix @ Assault Vest  
 Ability: Rock Head  
-Level: 74 
+Level: 100
 EVs: 252 SpD  
 Sassy Nature  
 - Heavy Slam  
@@ -16643,7 +16643,7 @@ Sassy Nature
 
 Tauros-Paldea-Blaze  
 Ability: Intimidate  
-Level: 75 
+Level: 100
 - Raging Bull  
 - Close Combat  
 - Rock Slide  
@@ -16651,7 +16651,7 @@ Level: 75
 
 Heracross @ Loaded Dice  
 Ability: Moxie  
-Level: 76 
+Level: 100
 - Pin Missile  
 - Close Combat  
 - Earthquake  
@@ -16659,7 +16659,7 @@ Level: 76
 
 Hariyama @ Sitrus Berry  
 Ability: Thick Fat  
-Level: 77  
+Level: 100
 - Fake Out  
 - Belly Drum  
 - Cross Chop  
@@ -16667,7 +16667,7 @@ Level: 77
 
 Hitmontop @ Expert Belt  
 Ability: Technician  
-Level: 77 
+Level: 100
 - Triple Kick  
 - Victory Dance  
 - Bullet Punch  
@@ -16675,7 +16675,7 @@ Level: 77
 
 Machamp @ Flame Orb  
 Ability: Guts  
-Level: 79  
+Level: 100
 - Facade  
 - Cross Chop  
 - Earthquake  
@@ -16694,7 +16694,7 @@ Items: Full Restore / Full Restore
 
 Umbreon @ Black Glasses  
 Ability: Synchronize  
-Level: 74  
+Level: 100
 IVs: 0 Atk  
 - Lunar Blessing  
 - Foul Play  
@@ -16703,7 +16703,7 @@ IVs: 0 Atk
 
 Weavile @ Razor Claw  
 Ability: Pressure  
-Level: 75  
+Level: 100
 - Hone Claws  
 - Night Slash  
 - Icicle Crash  
@@ -16711,7 +16711,7 @@ Level: 75
 
 Persian-Alola @ Charcoal  
 Ability: Fur Coat  
-Level: 76 
+Level: 100
 - Fake Out  
 - Dark Pulse  
 - Nasty Plot  
@@ -16719,7 +16719,7 @@ Level: 76
 
 Honchkrow  
 Ability: Moxie  
-Level: 77 
+Level: 100
 - Night Slash  
 - Brave Bird  
 - Roost  
@@ -16727,7 +16727,7 @@ Level: 77
 
 Obstagoon @ Flame Orb  
 Ability: Guts  
-Level: 77 
+Level: 100
 - Close Combat  
 - Double-Edge  
 - Fling  
@@ -16735,7 +16735,7 @@ Level: 77
 
 Houndoom  
 Ability: Unnerve  
-Level: 79  
+Level: 100
 - Fire Blast  
 - Crunch  
 - Iron Tail  
@@ -16754,7 +16754,7 @@ Mugshot: Blue
 
 Salamence @ Assault Vest  
 Ability: Intimidate  
-Level: 77 
+Level: 100
 - Draco Meteor  
 - Iron Head  
 - Double-Edge  
@@ -16762,7 +16762,7 @@ Level: 77
 
 Gyarados @ Eject Button  
 Ability: Intimidate  
-Level: 77 
+Level: 100
 - Waterfall  
 - Hyper Beam  
 - Crunch  
@@ -16770,7 +16770,7 @@ Level: 77
 
 Charizard @ Charizardite X
 Ability: Blaze  
-Level: 78 
+Level: 100
 - Fire Blast  
 - Earthquake  
 - Acrobatics  
@@ -16778,7 +16778,7 @@ Level: 78
 
 Noivern @ Silk Scarf  
 Ability: Infiltrator  
-Level: 78 
+Level: 100
 IVs: 0 Atk  
 - Boomburst  
 - Dragon Pulse  
@@ -16787,7 +16787,7 @@ IVs: 0 Atk
 
 Aerodactyl @ Scope Lens  
 Ability: Rock Head  
-Level: 79
+Level: 100
 - Rock Slide  
 - Earthquake  
 - Sky Attack  
@@ -16795,7 +16795,7 @@ Level: 79
 
 Dragonite @ Leftovers  
 Ability: Multiscale  
-Level: 79 
+Level: 100
 - Iron Head  
 - Fire Punch  
 - Dragon Rush  

@@ -1,20 +1,24 @@
 #!/usr/bin/env python3
 """Crystal Imperium boss teams (Emerald Imperium-style): writes the parties below into
 src/data/trainers_hns.party, keeping each trainer's header (name, class, picture, music, mugshot)
-and replacing its AI, bag items and Pokemon.
+and replacing its AI, bag items and Pokemon. Heart & Soul's own teams for the other bosses
+(LEVEL_ONLY) keep their Pokemon and only get their levels set. The list of every boss goes to
+src/data/level_cap_bosses.h for the battle code.
 
-  python3 tools/crystal_imperium/boss_teams.py          # rewrite the parties
-  python3 tools/crystal_imperium/boss_teams.py --check  # exit 1 if the file is out of date
+  python3 tools/crystal_imperium/boss_teams.py          # rewrite the parties and the boss list
+  python3 tools/crystal_imperium/boss_teams.py --check  # exit 1 if either file is out of date
 
 Design rules (DECISIONS.md D21):
-  * the ace (last Pokemon) is at the NORMAL level cap the player has when the battle can happen,
-    the others one or two levels below
+  * every Pokemon of a boss is at the NORMAL level cap (src/caps.c) of the earliest point in the
+    game the battle can happen (its stage: a badge count, or the Johto or Kanto League won); when
+    a boss is fought later, the battle code raises its Pokemon to the player's cap then
+    (src/battle_main.c), so a boss is always at the cap
   * every Pokemon has a held item, a nature, an ability chosen for the set and four moves it
     can learn (validate.py checks abilities and moves)
   * IVs are 31 (Minimal Grinding gives every Pokemon 31 IVs anyway; this covers games with it off)
   * from the 5th Gym on, each boss has one Mega Evolution, normally the ace
-  * Red is the hardest battle in the game (D27): the highest levels, competitive EVs (which he
-    keeps under Minimal Grinding), the prediction AI and four Full Restores; validate.py checks it
+  * Red is the hardest battle in the game (D27): level 100, competitive EVs (which he keeps under
+    Minimal Grinding), the prediction AI and the most Full Restores; validate.py checks it
 """
 import argparse
 import os
@@ -23,56 +27,79 @@ import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PARTY = os.path.join(ROOT, "src", "data", "trainers_hns.party")
+BOSS_LIST = os.path.join(ROOT, "src", "data", "level_cap_bosses.h")
 
 BOSS_AI = "Smart Trainer / Ace Pokemon / HP Aware"
 RED_AI = "Smart Trainer / Prediction / Ace Pokemon / HP Aware"
 
+# Stages after the eighth badge: the Johto League won (FLAG_IS_CHAMPION; cap 70 for all of Kanto)
+# and the Kanto League won (FLAG_IS_KANTO_CHAMPION; no cap left)
+JOHTO_CHAMPION = "Johto Champion"
+KANTO_CHAMPION = "Kanto Champion"
+MAX_LEVEL = 100
 
-def mon(species, level, item, ability, nature, moves, evs=None):
-    return {"species": species, "level": level, "item": item, "ability": ability, "nature": nature, "moves": moves,
-            "evs": evs}
+
+def read_caps():
+    """The NORMAL level caps by badge count and the Kanto cap, from src/caps.c."""
+    with open(os.path.join(ROOT, "src", "caps.c"), encoding="utf-8") as f:
+        text = f.read()
+    table = re.search(r"sLevelCapTable_Normal\[\]\s*=\s*\{(.*?)\};", text, re.S).group(1)
+    caps = [int(v) for v in re.findall(r"\]\s*=\s*(\d+)", table)]
+    kanto = int(re.search(r"#define KANTO_MAX_LEVEL (\d+)", text).group(1))
+    return caps, kanto
 
 
-def team(levels, mons):
-    """The same Pokemon at different levels: levels[i] for mons[i] (a mon() with level None)."""
-    return [dict(m, level=l) for l, m in zip(levels, mons)]
+NORMAL_CAPS, KANTO_CAP = read_caps()
+
+
+def cap(stage):
+    """The NORMAL level cap at a stage: a badge count (0-8), JOHTO_CHAMPION or KANTO_CHAMPION."""
+    if stage == KANTO_CHAMPION:
+        return MAX_LEVEL
+    if stage == JOHTO_CHAMPION:
+        return KANTO_CAP
+    return NORMAL_CAPS[stage]
+
+
+def mon(species, item, ability, nature, moves, evs=None):
+    return {"species": species, "item": item, "ability": ability, "nature": nature, "moves": moves, "evs": evs}
 
 
 # --- Morty (4th Gym, 3 badges: cap 25) ------------------------------------------------------------
 MORTY = [
-    mon("Sableye", 23, "Sitrus Berry", "Prankster", "Careful", ["Will O Wisp", "Knock Off", "Night Shade", "Recover"]),
-    mon("Misdreavus", 23, "Eviolite", "Levitate", "Timid", ["Hex", "Thunder Wave", "Dazzling Gleam", "Pain Split"]),
-    mon("Drifblim", 24, "Sitrus Berry", "Unburden", "Modest", ["Shadow Ball", "Air Slash", "Thunderbolt", "Calm Mind"]),
-    mon("Marowak Alola", 24, "Thick Club", "Lightning Rod", "Adamant", ["Shadow Bone", "Fire Punch", "Bonemerang", "Thunder Punch"]),
-    mon("Gengar", 25, "Spell Tag", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Thunderbolt", "Hypnosis"]),
+    mon("Sableye", "Sitrus Berry", "Prankster", "Careful", ["Will O Wisp", "Knock Off", "Night Shade", "Recover"]),
+    mon("Misdreavus", "Eviolite", "Levitate", "Timid", ["Hex", "Thunder Wave", "Dazzling Gleam", "Pain Split"]),
+    mon("Drifblim", "Sitrus Berry", "Unburden", "Modest", ["Shadow Ball", "Air Slash", "Thunderbolt", "Calm Mind"]),
+    mon("Marowak Alola", "Thick Club", "Lightning Rod", "Adamant", ["Shadow Bone", "Fire Punch", "Bonemerang", "Thunder Punch"]),
+    mon("Gengar", "Spell Tag", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Thunderbolt", "Hypnosis"]),
 ]
 
 # --- Chuck, Jasmine, Pryce (5th to 7th Gym in any order) ------------------------------------------
 # HnS picks the party by how many of the three the player has beaten: _1 with 4 badges (cap 31),
 # _1_2 with 5 (cap 36), _1_3 with 6 (cap 38).
 CHUCK = [
-    mon("Hitmontop", None, "Sitrus Berry", "Intimidate", "Adamant", ["Fake Out", "Triple Kick", "Sucker Punch", "Rock Slide"]),
-    mon("Breloom", None, "Focus Sash", "Technician", "Jolly", ["Mach Punch", "Bullet Seed", "Rock Tomb", "Spore"]),
-    mon("Hawlucha", None, "White Herb", "Unburden", "Jolly", ["High Jump Kick", "Acrobatics", "Swords Dance", "Roost"]),
-    mon("Primeape", None, "Eviolite", "Defiant", "Jolly", ["Rage Fist", "Drain Punch", "U Turn", "Bulk Up"]),
-    mon("Poliwrath", None, "Leftovers", "Water Absorb", "Adamant", ["Waterfall", "Dynamic Punch", "Mind Reader", "Ice Punch"]),
-    mon("Heracross", None, "Heracronite", "Guts", "Jolly", ["Pin Missile", "Rock Blast", "Close Combat", "Bullet Seed"]),
+    mon("Hitmontop", "Sitrus Berry", "Intimidate", "Adamant", ["Fake Out", "Triple Kick", "Sucker Punch", "Rock Slide"]),
+    mon("Breloom", "Focus Sash", "Technician", "Jolly", ["Mach Punch", "Bullet Seed", "Rock Tomb", "Spore"]),
+    mon("Hawlucha", "White Herb", "Unburden", "Jolly", ["High Jump Kick", "Acrobatics", "Swords Dance", "Roost"]),
+    mon("Primeape", "Eviolite", "Defiant", "Jolly", ["Rage Fist", "Drain Punch", "U Turn", "Bulk Up"]),
+    mon("Poliwrath", "Leftovers", "Water Absorb", "Adamant", ["Waterfall", "Dynamic Punch", "Mind Reader", "Ice Punch"]),
+    mon("Heracross", "Heracronite", "Guts", "Jolly", ["Pin Missile", "Rock Blast", "Close Combat", "Bullet Seed"]),
 ]
 JASMINE = [
-    mon("Skarmory", None, "Rocky Helmet", "Sturdy", "Impish", ["Spikes", "Drill Peck", "Roost", "Whirlwind"]),
-    mon("Magneton", None, "Eviolite", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Thunder Wave"]),
-    mon("Bronzong", None, "Leftovers", "Levitate", "Relaxed", ["Gyro Ball", "Earthquake", "Hypnosis", "Stealth Rock"]),
-    mon("Mawile", None, "Sitrus Berry", "Intimidate", "Adamant", ["Iron Head", "Play Rough", "Sucker Punch", "Swords Dance"]),
-    mon("Scizor", None, "Metal Coat", "Technician", "Adamant", ["Bullet Punch", "U Turn", "Knock Off", "Swords Dance"]),
-    mon("Steelix", None, "Steelixite", "Sturdy", "Impish", ["Gyro Ball", "Earthquake", "Rock Slide", "Curse"]),
+    mon("Skarmory", "Rocky Helmet", "Sturdy", "Impish", ["Spikes", "Drill Peck", "Roost", "Whirlwind"]),
+    mon("Magneton", "Eviolite", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Thunder Wave"]),
+    mon("Bronzong", "Leftovers", "Levitate", "Relaxed", ["Gyro Ball", "Earthquake", "Hypnosis", "Stealth Rock"]),
+    mon("Mawile", "Sitrus Berry", "Intimidate", "Adamant", ["Iron Head", "Play Rough", "Sucker Punch", "Swords Dance"]),
+    mon("Scizor", "Metal Coat", "Technician", "Adamant", ["Bullet Punch", "U Turn", "Knock Off", "Swords Dance"]),
+    mon("Steelix", "Steelixite", "Sturdy", "Impish", ["Gyro Ball", "Earthquake", "Rock Slide", "Curse"]),
 ]
 PRYCE = [
-    mon("Cloyster", None, "Focus Sash", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Shell Smash", "Liquidation"]),
-    mon("Dewgong", None, "Leftovers", "Thick Fat", "Bold", ["Surf", "Ice Beam", "Toxic", "Protect"]),
-    mon("Jynx", None, "Wise Glasses", "Dry Skin", "Timid", ["Lovely Kiss", "Ice Beam", "Psychic", "Nasty Plot"]),
-    mon("Weavile", None, "Razor Claw", "Pressure", "Jolly", ["Ice Punch", "Knock Off", "Ice Shard", "Low Kick"]),
-    mon("Mamoswine", None, "Never Melt Ice", "Thick Fat", "Adamant", ["Earthquake", "Icicle Crash", "Ice Shard", "Stone Edge"]),
-    mon("Abomasnow", None, "Abomasite", "Snow Warning", "Quiet", ["Blizzard", "Energy Ball", "Ice Shard", "Earthquake"]),
+    mon("Cloyster", "Focus Sash", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Shell Smash", "Liquidation"]),
+    mon("Dewgong", "Leftovers", "Thick Fat", "Bold", ["Surf", "Ice Beam", "Toxic", "Protect"]),
+    mon("Jynx", "Wise Glasses", "Dry Skin", "Timid", ["Lovely Kiss", "Ice Beam", "Psychic", "Nasty Plot"]),
+    mon("Weavile", "Razor Claw", "Pressure", "Jolly", ["Ice Punch", "Knock Off", "Ice Shard", "Low Kick"]),
+    mon("Mamoswine", "Never Melt Ice", "Thick Fat", "Adamant", ["Earthquake", "Icicle Crash", "Ice Shard", "Stone Edge"]),
+    mon("Abomasnow", "Abomasite", "Snow Warning", "Quiet", ["Blizzard", "Energy Ball", "Ice Shard", "Earthquake"]),
 ]
 
 
@@ -82,299 +109,322 @@ def five_of_six(mons, drop):
 
 # --- Clair (8th Gym, 7 badges: cap 45) ------------------------------------------------------------
 CLAIR = [
-    mon("Druddigon", 43, "Rocky Helmet", "Rough Skin", "Adamant", ["Outrage", "Gunk Shot", "Sucker Punch", "Glare"]),
-    mon("Flygon", 43, "Choice Scarf", "Levitate", "Jolly", ["Earthquake", "Dragon Claw", "U Turn", "Fire Punch"]),
-    mon("Dragalge", 44, "Black Sludge", "Adaptability", "Modest", ["Sludge Bomb", "Dragon Pulse", "Focus Blast", "Toxic Spikes"]),
-    mon("Altaria", 44, "Altarianite", "Natural Cure", "Modest", ["Hyper Voice", "Dragon Pulse", "Fire Blast", "Roost"]),
-    mon("Kommo O", 44, "Life Orb", "Bulletproof", "Jolly", ["Scale Shot", "Close Combat", "Poison Jab", "Swords Dance"]),
-    mon("Kingdra", 45, "Wacan Berry", "Swift Swim", "Modest", ["Hydro Pump", "Draco Meteor", "Ice Beam", "Rain Dance"]),
+    mon("Druddigon", "Rocky Helmet", "Rough Skin", "Adamant", ["Outrage", "Gunk Shot", "Sucker Punch", "Glare"]),
+    mon("Flygon", "Choice Scarf", "Levitate", "Jolly", ["Earthquake", "Dragon Claw", "U Turn", "Fire Punch"]),
+    mon("Dragalge", "Black Sludge", "Adaptability", "Modest", ["Sludge Bomb", "Dragon Pulse", "Focus Blast", "Toxic Spikes"]),
+    mon("Altaria", "Altarianite", "Natural Cure", "Modest", ["Hyper Voice", "Dragon Pulse", "Fire Blast", "Roost"]),
+    mon("Kommo O", "Life Orb", "Bulletproof", "Jolly", ["Scale Shot", "Close Combat", "Poison Jab", "Swords Dance"]),
+    mon("Kingdra", "Wacan Berry", "Swift Swim", "Modest", ["Hydro Pump", "Draco Meteor", "Ice Beam", "Rain Dance"]),
 ]
 
 # --- Rival (Silver): TRAINER_RIVAL_<his starter>_<n>_HNS ------------------------------------------
 # 2nd battle: Azalea Town after Bugsy (2 badges, cap 21). 3rd: Burned Tower (3 badges, cap 25).
 RIVAL_STARTER = {
-    2: {"CYNDAQUIL": mon("Quilava", 19, "Sitrus Berry", "Blaze", "Timid", ["Lava Plume", "Extrasensory", "Quick Attack", "Smokescreen"]),
-        "TOTODILE": mon("Croconaw", 19, "Sitrus Berry", "Sheer Force", "Adamant", ["Ice Fang", "Bite", "Aqua Jet", "Scary Face"]),
-        "CHIKORITA": mon("Bayleef", 19, "Sitrus Berry", "Overgrow", "Bold", ["Razor Leaf", "Reflect", "Poison Powder", "Synthesis"])},
-    3: {"CYNDAQUIL": mon("Quilava", 24, "Sitrus Berry", "Blaze", "Timid", ["Lava Plume", "Extrasensory", "Flame Charge", "Smokescreen"]),
-        "TOTODILE": mon("Croconaw", 24, "Sitrus Berry", "Sheer Force", "Adamant", ["Aqua Tail", "Ice Fang", "Crunch", "Dragon Dance"]),
-        "CHIKORITA": mon("Bayleef", 24, "Sitrus Berry", "Overgrow", "Bold", ["Magical Leaf", "Leech Seed", "Reflect", "Synthesis"])},
+    2: {"CYNDAQUIL": mon("Quilava", "Sitrus Berry", "Blaze", "Timid", ["Lava Plume", "Extrasensory", "Quick Attack", "Smokescreen"]),
+        "TOTODILE": mon("Croconaw", "Sitrus Berry", "Sheer Force", "Adamant", ["Ice Fang", "Bite", "Aqua Jet", "Scary Face"]),
+        "CHIKORITA": mon("Bayleef", "Sitrus Berry", "Overgrow", "Bold", ["Razor Leaf", "Reflect", "Poison Powder", "Synthesis"])},
+    3: {"CYNDAQUIL": mon("Quilava", "Sitrus Berry", "Blaze", "Timid", ["Lava Plume", "Extrasensory", "Flame Charge", "Smokescreen"]),
+        "TOTODILE": mon("Croconaw", "Sitrus Berry", "Sheer Force", "Adamant", ["Aqua Tail", "Ice Fang", "Crunch", "Dragon Dance"]),
+        "CHIKORITA": mon("Bayleef", "Sitrus Berry", "Overgrow", "Bold", ["Magical Leaf", "Leech Seed", "Reflect", "Synthesis"])},
 }
 RIVAL_TEAM = {
-    2: [mon("Golbat", 17, "Eviolite", "Inner Focus", "Jolly", ["Wing Attack", "Bite", "Confuse Ray", "Toxic"]),
-        mon("Larvitar", 18, "Eviolite", "Guts", "Adamant", ["Rock Slide", "Bite", "Bulldoze", "Scary Face"]),
-        mon("Sneasel", 18, "Oran Berry", "Inner Focus", "Jolly", ["Faint Attack", "Ice Shard", "Quick Attack", "Icy Wind"])],
-    3: [mon("Golbat", 22, "Eviolite", "Inner Focus", "Jolly", ["Air Cutter", "Bite", "Confuse Ray", "Toxic"]),
-        mon("Sneasel", 22, "Razor Claw", "Inner Focus", "Jolly", ["Fake Out", "Ice Punch", "Faint Attack", "Ice Shard"]),
-        mon("Weepinbell", 23, "Eviolite", "Chlorophyll", "Adamant", ["Bullet Seed", "Poison Jab", "Sleep Powder", "Knock Off"]),
-        mon("Larvitar", 23, "Eviolite", "Guts", "Adamant", ["Rock Slide", "Crunch", "Bulldoze", "Dragon Dance"])],
+    2: [mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Wing Attack", "Bite", "Confuse Ray", "Toxic"]),
+        mon("Larvitar", "Eviolite", "Guts", "Adamant", ["Rock Slide", "Bite", "Bulldoze", "Scary Face"]),
+        mon("Sneasel", "Oran Berry", "Inner Focus", "Jolly", ["Faint Attack", "Ice Shard", "Quick Attack", "Icy Wind"])],
+    3: [mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Air Cutter", "Bite", "Confuse Ray", "Toxic"]),
+        mon("Sneasel", "Razor Claw", "Inner Focus", "Jolly", ["Fake Out", "Ice Punch", "Faint Attack", "Ice Shard"]),
+        mon("Weepinbell", "Eviolite", "Chlorophyll", "Adamant", ["Bullet Seed", "Poison Jab", "Sleep Powder", "Knock Off"]),
+        mon("Larvitar", "Eviolite", "Guts", "Adamant", ["Rock Slide", "Crunch", "Bulldoze", "Dragon Dance"])],
 }
 
 # --- Team Rocket: Proton in Slowpoke Well (1 badge, cap 16) -----------------------------------------
 PROTON_1 = [
-    mon("Koffing", 13, "Eviolite", "Levitate", "Bold", ["Sludge", "Will O Wisp", "Clear Smog", "Smokescreen"]),
-    mon("Slowpoke", 14, "Eviolite", "Regenerator", "Relaxed", ["Water Pulse", "Confusion", "Yawn", "Slack Off"]),
-    mon("Houndour", 15, "Charcoal", "Flash Fire", "Timid", ["Incinerate", "Snarl", "Smog", "Nasty Plot"]),
+    mon("Koffing", "Eviolite", "Levitate", "Bold", ["Sludge", "Will O Wisp", "Clear Smog", "Smokescreen"]),
+    mon("Slowpoke", "Eviolite", "Regenerator", "Relaxed", ["Water Pulse", "Confusion", "Yawn", "Slack Off"]),
+    mon("Houndour", "Charcoal", "Flash Fire", "Timid", ["Incinerate", "Snarl", "Smog", "Nasty Plot"]),
 ]
 
-# --- Team Rocket: Rocket Hideout (5 or 6 badges, cap 36 or 38: aces at 36) ------------------------
+# --- Team Rocket: Rocket Hideout (4 badges at the earliest: the Lake of Rage needs Surf; cap 31) ------
 PETREL_1 = [
-    mon("Weezing", 34, "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Fire Blast"]),
-    mon("Forretress", 34, "Leftovers", "Sturdy", "Relaxed", ["Spikes", "Volt Switch", "Gyro Ball", "Rapid Spin"]),
-    mon("Pupitar", 35, "Eviolite", "Shed Skin", "Adamant", ["Rock Slide", "Crunch", "Earthquake", "Dragon Dance"]),
-    mon("Drapion", 36, "Black Glasses", "Sniper", "Jolly", ["Knock Off", "Poison Jab", "Earthquake", "Swords Dance"]),
+    mon("Weezing", "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Fire Blast"]),
+    mon("Forretress", "Leftovers", "Sturdy", "Relaxed", ["Spikes", "Volt Switch", "Gyro Ball", "Rapid Spin"]),
+    mon("Pupitar", "Eviolite", "Shed Skin", "Adamant", ["Rock Slide", "Crunch", "Earthquake", "Dragon Dance"]),
+    mon("Drapion", "Black Glasses", "Sniper", "Jolly", ["Knock Off", "Poison Jab", "Earthquake", "Swords Dance"]),
 ]
 ARIANA_1 = [
-    mon("Arbok", 34, "Black Sludge", "Intimidate", "Adamant", ["Gunk Shot", "Sucker Punch", "Glare", "Earthquake"]),
-    mon("Persian", 34, "Silk Scarf", "Technician", "Jolly", ["Fake Out", "Faint Attack", "U Turn", "Hypnosis"]),
-    mon("Vileplume", 35, "Black Sludge", "Effect Spore", "Calm", ["Giga Drain", "Sludge Bomb", "Sleep Powder", "Strength Sap"]),
-    mon("Honchkrow", 36, "Scope Lens", "Super Luck", "Adamant", ["Brave Bird", "Night Slash", "Sucker Punch", "Heat Wave"]),
+    mon("Arbok", "Black Sludge", "Intimidate", "Adamant", ["Gunk Shot", "Sucker Punch", "Glare", "Earthquake"]),
+    mon("Persian", "Silk Scarf", "Technician", "Jolly", ["Fake Out", "Faint Attack", "U Turn", "Hypnosis"]),
+    mon("Vileplume", "Black Sludge", "Effect Spore", "Calm", ["Giga Drain", "Sludge Bomb", "Sleep Powder", "Strength Sap"]),
+    mon("Honchkrow", "Scope Lens", "Super Luck", "Adamant", ["Brave Bird", "Night Slash", "Sucker Punch", "Heat Wave"]),
 ]
 
 # --- Team Rocket: Radio Tower (7 badges, cap 45) ----------------------------------------------------
 PROTON_2 = [
-    mon("Muk", 42, "Black Sludge", "Poison Touch", "Adamant", ["Gunk Shot", "Shadow Sneak", "Knock Off", "Curse"]),
-    mon("Nidoqueen", 42, "Life Orb", "Sheer Force", "Modest", ["Earth Power", "Sludge Wave", "Ice Beam", "Flamethrower"]),
-    mon("Weezing", 43, "Rocky Helmet", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Toxic Spikes"]),
-    mon("Nidoking", 43, "Life Orb", "Sheer Force", "Timid", ["Earth Power", "Sludge Wave", "Ice Beam", "Thunderbolt"]),
-    mon("Rhydon", 44, "Eviolite", "Lightning Rod", "Adamant", ["Stone Edge", "Earthquake", "Megahorn", "Swords Dance"]),
+    mon("Muk", "Black Sludge", "Poison Touch", "Adamant", ["Gunk Shot", "Shadow Sneak", "Knock Off", "Curse"]),
+    mon("Nidoqueen", "Life Orb", "Sheer Force", "Modest", ["Earth Power", "Sludge Wave", "Ice Beam", "Flamethrower"]),
+    mon("Weezing", "Rocky Helmet", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Toxic Spikes"]),
+    mon("Nidoking", "Life Orb", "Sheer Force", "Timid", ["Earth Power", "Sludge Wave", "Ice Beam", "Thunderbolt"]),
+    mon("Rhydon", "Eviolite", "Lightning Rod", "Adamant", ["Stone Edge", "Earthquake", "Megahorn", "Swords Dance"]),
 ]
 PETREL_2 = [
-    mon("Forretress", 43, "Leftovers", "Sturdy", "Relaxed", ["Spikes", "Volt Switch", "Gyro Ball", "Rapid Spin"]),
-    mon("Weezing Galar", 43, "Black Sludge", "Neutralizing Gas", "Bold", ["Strange Steam", "Sludge Bomb", "Will O Wisp", "Pain Split"]),
-    mon("Pupitar", 43, "Eviolite", "Shed Skin", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
-    mon("Cloyster", 44, "Focus Sash", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Shell Smash", "Liquidation"]),
-    mon("Drapion", 44, "Black Glasses", "Sniper", "Jolly", ["Knock Off", "Poison Jab", "Earthquake", "Swords Dance"]),
+    mon("Forretress", "Leftovers", "Sturdy", "Relaxed", ["Spikes", "Volt Switch", "Gyro Ball", "Rapid Spin"]),
+    mon("Weezing Galar", "Black Sludge", "Neutralizing Gas", "Bold", ["Strange Steam", "Sludge Bomb", "Will O Wisp", "Pain Split"]),
+    mon("Pupitar", "Eviolite", "Shed Skin", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
+    mon("Cloyster", "Focus Sash", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Shell Smash", "Liquidation"]),
+    mon("Drapion", "Black Glasses", "Sniper", "Jolly", ["Knock Off", "Poison Jab", "Earthquake", "Swords Dance"]),
 ]
 ARIANA_2 = [
-    mon("Arbok", 43, "Black Sludge", "Intimidate", "Adamant", ["Gunk Shot", "Sucker Punch", "Glare", "Earthquake"]),
-    mon("Persian", 43, "Silk Scarf", "Technician", "Jolly", ["Fake Out", "Faint Attack", "U Turn", "Hypnosis"]),
-    mon("Vileplume", 43, "Black Sludge", "Effect Spore", "Calm", ["Giga Drain", "Sludge Bomb", "Sleep Powder", "Strength Sap"]),
-    mon("Gyarados", 44, "Sitrus Berry", "Intimidate", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Dragon Dance"]),
-    mon("Honchkrow", 44, "Scope Lens", "Super Luck", "Adamant", ["Brave Bird", "Night Slash", "Sucker Punch", "Heat Wave"]),
+    mon("Arbok", "Black Sludge", "Intimidate", "Adamant", ["Gunk Shot", "Sucker Punch", "Glare", "Earthquake"]),
+    mon("Persian", "Silk Scarf", "Technician", "Jolly", ["Fake Out", "Faint Attack", "U Turn", "Hypnosis"]),
+    mon("Vileplume", "Black Sludge", "Effect Spore", "Calm", ["Giga Drain", "Sludge Bomb", "Sleep Powder", "Strength Sap"]),
+    mon("Gyarados", "Sitrus Berry", "Intimidate", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Dragon Dance"]),
+    mon("Honchkrow", "Scope Lens", "Super Luck", "Adamant", ["Brave Bird", "Night Slash", "Sucker Punch", "Heat Wave"]),
 ]
 ARCHER = [
-    mon("Porygon Z", 43, "Choice Specs", "Adaptability", "Modest", ["Tri Attack", "Thunderbolt", "Ice Beam", "Shadow Ball"]),
-    mon("Tauros", 43, "Life Orb", "Intimidate", "Jolly", ["Double Edge", "Earthquake", "Rock Slide", "Zen Headbutt"]),
-    mon("Crawdaunt", 44, "Life Orb", "Adaptability", "Adamant", ["Crabhammer", "Knock Off", "Aqua Jet", "Swords Dance"]),
-    mon("Slowbro", 44, "Leftovers", "Regenerator", "Bold", ["Scald", "Psyshock", "Slack Off", "Calm Mind"]),
-    mon("Bisharp", 44, "Black Glasses", "Defiant", "Adamant", ["Sucker Punch", "Iron Head", "Knock Off", "Swords Dance"]),
-    mon("Houndoom", 45, "Houndoominite", "Flash Fire", "Timid", ["Fire Blast", "Dark Pulse", "Sludge Bomb", "Nasty Plot"]),
+    mon("Porygon Z", "Choice Specs", "Adaptability", "Modest", ["Tri Attack", "Thunderbolt", "Ice Beam", "Shadow Ball"]),
+    mon("Tauros", "Life Orb", "Intimidate", "Jolly", ["Double Edge", "Earthquake", "Rock Slide", "Zen Headbutt"]),
+    mon("Crawdaunt", "Life Orb", "Adaptability", "Adamant", ["Crabhammer", "Knock Off", "Aqua Jet", "Swords Dance"]),
+    mon("Slowbro", "Leftovers", "Regenerator", "Bold", ["Scald", "Psyshock", "Slack Off", "Calm Mind"]),
+    mon("Bisharp", "Black Glasses", "Defiant", "Adamant", ["Sucker Punch", "Iron Head", "Knock Off", "Swords Dance"]),
+    mon("Houndoom", "Houndoominite", "Flash Fire", "Timid", ["Fire Blast", "Dark Pulse", "Sludge Bomb", "Nasty Plot"]),
 ]
 
 # --- Rival: Goldenrod Underground (7 badges, cap 45) and Victory Road (8 badges, cap 56) -------------
 RIVAL_STARTER[4] = {
-    "CYNDAQUIL": mon("Typhlosion", 45, "Choice Scarf", "Flash Fire", "Timid", ["Eruption", "Fire Blast", "Focus Blast", "Extrasensory"]),
-    "TOTODILE": mon("Feraligatr", 45, "Life Orb", "Sheer Force", "Adamant", ["Liquidation", "Ice Punch", "Crunch", "Dragon Dance"]),
-    "CHIKORITA": mon("Meganium", 45, "Leftovers", "Overgrow", "Bold", ["Energy Ball", "Earth Power", "Leech Seed", "Synthesis"]),
+    "CYNDAQUIL": mon("Typhlosion", "Choice Scarf", "Flash Fire", "Timid", ["Eruption", "Fire Blast", "Focus Blast", "Extrasensory"]),
+    "TOTODILE": mon("Feraligatr", "Life Orb", "Sheer Force", "Adamant", ["Liquidation", "Ice Punch", "Crunch", "Dragon Dance"]),
+    "CHIKORITA": mon("Meganium", "Leftovers", "Overgrow", "Bold", ["Energy Ball", "Earth Power", "Leech Seed", "Synthesis"]),
 }
 RIVAL_STARTER[5] = {
-    "CYNDAQUIL": mon("Typhlosion", 56, "Choice Scarf", "Flash Fire", "Timid", ["Eruption", "Fire Blast", "Focus Blast", "Extrasensory"]),
-    "TOTODILE": mon("Feraligatr", 56, "Life Orb", "Sheer Force", "Adamant", ["Liquidation", "Ice Punch", "Crunch", "Dragon Dance"]),
-    "CHIKORITA": mon("Meganium", 56, "Leftovers", "Overgrow", "Bold", ["Energy Ball", "Earth Power", "Leech Seed", "Synthesis"]),
+    "CYNDAQUIL": mon("Typhlosion", "Choice Scarf", "Flash Fire", "Timid", ["Eruption", "Fire Blast", "Focus Blast", "Extrasensory"]),
+    "TOTODILE": mon("Feraligatr", "Life Orb", "Sheer Force", "Adamant", ["Liquidation", "Ice Punch", "Crunch", "Dragon Dance"]),
+    "CHIKORITA": mon("Meganium", "Leftovers", "Overgrow", "Bold", ["Energy Ball", "Earth Power", "Leech Seed", "Synthesis"]),
 }
 RIVAL_TEAM[4] = [
-    mon("Crobat", 43, "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
-    mon("Weavile", 43, "Life Orb", "Pressure", "Jolly", ["Knock Off", "Ice Punch", "Ice Shard", "Low Kick"]),
-    mon("Victreebel", 44, "Black Sludge", "Chlorophyll", "Adamant", ["Power Whip", "Sucker Punch", "Poison Jab", "Sleep Powder"]),
-    mon("Pupitar", 44, "Eviolite", "Shed Skin", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
+    mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
+    mon("Weavile", "Life Orb", "Pressure", "Jolly", ["Knock Off", "Ice Punch", "Ice Shard", "Low Kick"]),
+    mon("Victreebel", "Black Sludge", "Chlorophyll", "Adamant", ["Power Whip", "Sucker Punch", "Poison Jab", "Sleep Powder"]),
+    mon("Pupitar", "Eviolite", "Shed Skin", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
 ]
 RIVAL_TEAM[5] = [
-    mon("Crobat", 54, "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
-    mon("Weavile", 54, "Life Orb", "Pressure", "Jolly", ["Knock Off", "Ice Punch", "Ice Shard", "Low Kick"]),
-    mon("Victreebel", 55, "Black Sludge", "Chlorophyll", "Adamant", ["Power Whip", "Sucker Punch", "Poison Jab", "Sleep Powder"]),
-    mon("Ursaring", 55, "Flame Orb", "Guts", "Adamant", ["Facade", "Close Combat", "Crunch", "Swords Dance"]),
-    mon("Tyranitar", 55, "Tyranitarite", "Sand Stream", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
+    mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
+    mon("Weavile", "Life Orb", "Pressure", "Jolly", ["Knock Off", "Ice Punch", "Ice Shard", "Low Kick"]),
+    mon("Victreebel", "Black Sludge", "Chlorophyll", "Adamant", ["Power Whip", "Sucker Punch", "Poison Jab", "Sleep Powder"]),
+    mon("Ursaring", "Flame Orb", "Guts", "Adamant", ["Facade", "Close Combat", "Crunch", "Swords Dance"]),
+    mon("Tyranitar", "Tyranitarite", "Sand Stream", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
 ]
 
 # --- Kimono Girls: Ecruteak Dance Theater, one after another (8 badges, cap 56) ----------------------
 KIMONO = {
-    "TRAINER_ZUKI_HNS": [mon("Umbreon", 54, "Leftovers", "Inner Focus", "Calm", ["Foul Play", "Moonlight", "Protect", "Toxic"])],
-    "TRAINER_NAOKO_HNS": [mon("Espeon", 54, "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"])],
-    "TRAINER_MIKI_HNS": [mon("Flareon", 55, "Toxic Orb", "Guts", "Adamant", ["Flare Blitz", "Facade", "Superpower", "Quick Attack"])],
-    "TRAINER_SAYO_HNS": [mon("Jolteon", 55, "Choice Specs", "Volt Absorb", "Timid", ["Thunderbolt", "Shadow Ball", "Volt Switch", "Hyper Voice"])],
-    "TRAINER_KUNI_HNS": [mon("Vaporeon", 56, "Leftovers", "Water Absorb", "Bold", ["Scald", "Ice Beam", "Wish", "Protect"])],
+    "TRAINER_ZUKI_HNS": [mon("Umbreon", "Leftovers", "Inner Focus", "Calm", ["Foul Play", "Moonlight", "Protect", "Toxic"])],
+    "TRAINER_NAOKO_HNS": [mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"])],
+    "TRAINER_MIKI_HNS": [mon("Flareon", "Toxic Orb", "Guts", "Adamant", ["Flare Blitz", "Facade", "Superpower", "Quick Attack"])],
+    "TRAINER_SAYO_HNS": [mon("Jolteon", "Choice Specs", "Volt Absorb", "Timid", ["Thunderbolt", "Shadow Ball", "Volt Switch", "Hyper Voice"])],
+    "TRAINER_KUNI_HNS": [mon("Vaporeon", "Leftovers", "Water Absorb", "Bold", ["Scald", "Ice Beam", "Wish", "Protect"])],
 }
 
 # --- Elite Four and Lance (8 badges, cap 56) -----------------------------------------------------------
 WILL = [
-    mon("Xatu", 54, "Light Clay", "Magic Bounce", "Timid", ["Psychic", "Air Slash", "Roost", "Reflect"]),
-    mon("Slowbro", 54, "Leftovers", "Regenerator", "Bold", ["Scald", "Psyshock", "Slack Off", "Calm Mind"]),
-    mon("Bronzong", 54, "Leftovers", "Levitate", "Relaxed", ["Trick Room", "Gyro Ball", "Earthquake", "Stealth Rock"]),
-    mon("Farigiraf", 55, "Sitrus Berry", "Armor Tail", "Modest", ["Twin Beam", "Hyper Voice", "Shadow Ball", "Nasty Plot"]),
-    mon("Gardevoir", 55, "Choice Scarf", "Trace", "Timid", ["Moonblast", "Psychic", "Mystical Fire", "Focus Blast"]),
-    mon("Alakazam", 55, "Alakazite", "Magic Guard", "Timid", ["Psychic", "Shadow Ball", "Focus Blast", "Calm Mind"]),
+    mon("Xatu", "Light Clay", "Magic Bounce", "Timid", ["Psychic", "Air Slash", "Roost", "Reflect"]),
+    mon("Slowbro", "Leftovers", "Regenerator", "Bold", ["Scald", "Psyshock", "Slack Off", "Calm Mind"]),
+    mon("Bronzong", "Leftovers", "Levitate", "Relaxed", ["Trick Room", "Gyro Ball", "Earthquake", "Stealth Rock"]),
+    mon("Farigiraf", "Sitrus Berry", "Armor Tail", "Modest", ["Twin Beam", "Hyper Voice", "Shadow Ball", "Nasty Plot"]),
+    mon("Gardevoir", "Choice Scarf", "Trace", "Timid", ["Moonblast", "Psychic", "Mystical Fire", "Focus Blast"]),
+    mon("Alakazam", "Alakazite", "Magic Guard", "Timid", ["Psychic", "Shadow Ball", "Focus Blast", "Calm Mind"]),
 ]
 KOGA = [
-    mon("Toxapex", 54, "Black Sludge", "Regenerator", "Bold", ["Scald", "Toxic", "Recover", "Haze"]),
-    mon("Muk Alola", 54, "Black Sludge", "Poison Touch", "Adamant", ["Knock Off", "Poison Jab", "Ice Punch", "Shadow Sneak"]),
-    mon("Toxicroak", 54, "Life Orb", "Dry Skin", "Jolly", ["Gunk Shot", "Drain Punch", "Sucker Punch", "Swords Dance"]),
-    mon("Venomoth", 55, "Focus Sash", "Tinted Lens", "Timid", ["Quiver Dance", "Bug Buzz", "Sludge Bomb", "Sleep Powder"]),
-    mon("Beedrill", 55, "Beedrillite", "Sniper", "Jolly", ["Poison Jab", "U Turn", "Drill Run", "Swords Dance"]),
-    mon("Crobat", 55, "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
+    mon("Toxapex", "Black Sludge", "Regenerator", "Bold", ["Scald", "Toxic", "Recover", "Haze"]),
+    mon("Muk Alola", "Black Sludge", "Poison Touch", "Adamant", ["Knock Off", "Poison Jab", "Ice Punch", "Shadow Sneak"]),
+    mon("Toxicroak", "Life Orb", "Dry Skin", "Jolly", ["Gunk Shot", "Drain Punch", "Sucker Punch", "Swords Dance"]),
+    mon("Venomoth", "Focus Sash", "Tinted Lens", "Timid", ["Quiver Dance", "Bug Buzz", "Sludge Bomb", "Sleep Powder"]),
+    mon("Beedrill", "Beedrillite", "Sniper", "Jolly", ["Poison Jab", "U Turn", "Drill Run", "Swords Dance"]),
+    mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
 ]
 BRUNO = [
-    mon("Hitmontop", 55, "Rocky Helmet", "Intimidate", "Impish", ["Fake Out", "Close Combat", "Sucker Punch", "Rapid Spin"]),
-    mon("Steelix", 55, "Leftovers", "Sturdy", "Impish", ["Heavy Slam", "Earthquake", "Stone Edge", "Stealth Rock"]),
-    mon("Hitmonlee", 55, "Life Orb", "Reckless", "Jolly", ["High Jump Kick", "Knock Off", "Blaze Kick", "Fake Out"]),
-    mon("Hitmonchan", 55, "Punching Glove", "Iron Fist", "Adamant", ["Drain Punch", "Ice Punch", "Thunder Punch", "Mach Punch"]),
-    mon("Machamp", 55, "Sitrus Berry", "No Guard", "Adamant", ["Close Combat", "Stone Edge", "Knock Off", "Bullet Punch"]),
-    mon("Lucario", 56, "Lucarionite", "Inner Focus", "Adamant", ["Close Combat", "Meteor Mash", "Extreme Speed", "Swords Dance"]),
+    mon("Hitmontop", "Rocky Helmet", "Intimidate", "Impish", ["Fake Out", "Close Combat", "Sucker Punch", "Rapid Spin"]),
+    mon("Steelix", "Leftovers", "Sturdy", "Impish", ["Heavy Slam", "Earthquake", "Stone Edge", "Stealth Rock"]),
+    mon("Hitmonlee", "Life Orb", "Reckless", "Jolly", ["High Jump Kick", "Knock Off", "Blaze Kick", "Fake Out"]),
+    mon("Hitmonchan", "Punching Glove", "Iron Fist", "Adamant", ["Drain Punch", "Ice Punch", "Thunder Punch", "Mach Punch"]),
+    mon("Machamp", "Sitrus Berry", "No Guard", "Adamant", ["Close Combat", "Stone Edge", "Knock Off", "Bullet Punch"]),
+    mon("Lucario", "Lucarionite", "Inner Focus", "Adamant", ["Close Combat", "Meteor Mash", "Extreme Speed", "Swords Dance"]),
 ]
 KAREN = [
-    mon("Umbreon", 55, "Leftovers", "Inner Focus", "Calm", ["Foul Play", "Wish", "Protect", "Toxic"]),
-    mon("Vileplume", 55, "Black Sludge", "Effect Spore", "Bold", ["Giga Drain", "Sludge Bomb", "Sleep Powder", "Strength Sap"]),
-    mon("Gengar", 55, "Life Orb", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Focus Blast", "Nasty Plot"]),
-    mon("Honchkrow", 55, "Scope Lens", "Super Luck", "Adamant", ["Brave Bird", "Night Slash", "Sucker Punch", "Heat Wave"]),
-    mon("Absol", 55, "Absolite", "Super Luck", "Adamant", ["Knock Off", "Sucker Punch", "Play Rough", "Swords Dance"]),
-    mon("Houndoom", 56, "Black Glasses", "Flash Fire", "Timid", ["Fire Blast", "Dark Pulse", "Sludge Bomb", "Nasty Plot"]),
+    mon("Umbreon", "Leftovers", "Inner Focus", "Calm", ["Foul Play", "Wish", "Protect", "Toxic"]),
+    mon("Vileplume", "Black Sludge", "Effect Spore", "Bold", ["Giga Drain", "Sludge Bomb", "Sleep Powder", "Strength Sap"]),
+    mon("Gengar", "Life Orb", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Focus Blast", "Nasty Plot"]),
+    mon("Honchkrow", "Scope Lens", "Super Luck", "Adamant", ["Brave Bird", "Night Slash", "Sucker Punch", "Heat Wave"]),
+    mon("Absol", "Absolite", "Super Luck", "Adamant", ["Knock Off", "Sucker Punch", "Play Rough", "Swords Dance"]),
+    mon("Houndoom", "Black Glasses", "Flash Fire", "Timid", ["Fire Blast", "Dark Pulse", "Sludge Bomb", "Nasty Plot"]),
 ]
 # Lance leads Mega Gyarados (tools/emurun/tests/mega_evolution.emu checks it Mega Evolves on turn 1)
 # One Dragon Dance sweeper (Dragonite): with Mega Gyarados and Salamence also setting up, the
 # prepared six of the bosses_m4 play test lost all of six tries. Charizard attacks instead of
 # Roosting: with the Full Restores it outlasted every team built for Lance in the play tests.
 LANCE = [
-    mon("Gyarados", 55, "Gyaradosite", "Intimidate", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Thunder Wave"]),
-    mon("Aerodactyl", 55, "Focus Sash", "Unnerve", "Jolly", ["Stone Edge", "Earthquake", "Taunt", "Stealth Rock"]),
-    mon("Charizard", 55, "Charcoal", "Solar Power", "Timid", ["Fire Blast", "Air Slash", "Focus Blast", "Dragon Pulse"]),
-    mon("Salamence", 56, "Life Orb", "Intimidate", "Jolly", ["Outrage", "Earthquake", "Fire Fang", "Dual Wingbeat"]),
-    mon("Garchomp", 56, "Rocky Helmet", "Rough Skin", "Jolly", ["Earthquake", "Dragon Claw", "Stone Edge", "Swords Dance"]),
-    mon("Dragonite", 56, "Lum Berry", "Multiscale", "Adamant", ["Extreme Speed", "Dragon Dance", "Earthquake", "Outrage"]),
+    mon("Gyarados", "Gyaradosite", "Intimidate", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Thunder Wave"]),
+    mon("Aerodactyl", "Focus Sash", "Unnerve", "Jolly", ["Stone Edge", "Earthquake", "Taunt", "Stealth Rock"]),
+    mon("Charizard", "Charcoal", "Solar Power", "Timid", ["Fire Blast", "Air Slash", "Focus Blast", "Dragon Pulse"]),
+    mon("Salamence", "Life Orb", "Intimidate", "Jolly", ["Outrage", "Earthquake", "Fire Fang", "Dual Wingbeat"]),
+    mon("Garchomp", "Rocky Helmet", "Rough Skin", "Jolly", ["Earthquake", "Dragon Claw", "Stone Edge", "Swords Dance"]),
+    mon("Dragonite", "Lum Berry", "Multiscale", "Adamant", ["Extreme Speed", "Dragon Dance", "Earthquake", "Outrage"]),
 ]
 
 # --- Kanto Gym Leaders and Blue (after the Johto League: cap 70, any order) ------------------------
 BROCK = [
-    mon("Golem", 68, "Leftovers", "Sturdy", "Adamant", ["Stealth Rock", "Earthquake", "Stone Edge", "Explosion"]),
-    mon("Omastar", 68, "White Herb", "Swift Swim", "Modest", ["Shell Smash", "Hydro Pump", "Ice Beam", "Earth Power"]),
-    mon("Kabutops", 68, "Life Orb", "Swift Swim", "Adamant", ["Stone Edge", "Liquidation", "Swords Dance", "Aqua Jet"]),
-    mon("Relicanth", 69, "Choice Band", "Rock Head", "Adamant", ["Head Smash", "Liquidation", "Earthquake", "Double Edge"]),
-    mon("Kleavor", 69, "Focus Sash", "Sharpness", "Jolly", ["Stone Axe", "X Scissor", "Close Combat", "Swords Dance"]),
-    mon("Aerodactyl", 70, "Aerodactylite", "Unnerve", "Jolly", ["Stone Edge", "Earthquake", "Crunch", "Ice Fang"]),
+    mon("Golem", "Leftovers", "Sturdy", "Adamant", ["Stealth Rock", "Earthquake", "Stone Edge", "Explosion"]),
+    mon("Omastar", "White Herb", "Swift Swim", "Modest", ["Shell Smash", "Hydro Pump", "Ice Beam", "Earth Power"]),
+    mon("Kabutops", "Life Orb", "Swift Swim", "Adamant", ["Stone Edge", "Liquidation", "Swords Dance", "Aqua Jet"]),
+    mon("Relicanth", "Choice Band", "Rock Head", "Adamant", ["Head Smash", "Liquidation", "Earthquake", "Double Edge"]),
+    mon("Kleavor", "Focus Sash", "Sharpness", "Jolly", ["Stone Axe", "X Scissor", "Close Combat", "Swords Dance"]),
+    mon("Aerodactyl", "Aerodactylite", "Unnerve", "Jolly", ["Stone Edge", "Earthquake", "Crunch", "Ice Fang"]),
 ]
 MISTY = [
-    mon("Pelipper", 68, "Damp Rock", "Drizzle", "Bold", ["Scald", "Hurricane", "U Turn", "Roost"]),
-    mon("Golduck", 68, "Life Orb", "Swift Swim", "Timid", ["Hydro Pump", "Ice Beam", "Psychic", "Nasty Plot"]),
-    mon("Lapras", 68, "Leftovers", "Water Absorb", "Modest", ["Freeze Dry", "Hydro Pump", "Thunderbolt", "Ice Shard"]),
-    mon("Milotic", 69, "Leftovers", "Competitive", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"]),
-    mon("Blastoise", 69, "Blastoisinite", "Torrent", "Modest", ["Water Pulse", "Aura Sphere", "Dark Pulse", "Ice Beam"]),
-    mon("Starmie", 70, "Wise Glasses", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Thunderbolt", "Ice Beam"]),
+    mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Scald", "Hurricane", "U Turn", "Roost"]),
+    mon("Golduck", "Life Orb", "Swift Swim", "Timid", ["Hydro Pump", "Ice Beam", "Psychic", "Nasty Plot"]),
+    mon("Lapras", "Leftovers", "Water Absorb", "Modest", ["Freeze Dry", "Hydro Pump", "Thunderbolt", "Ice Shard"]),
+    mon("Milotic", "Leftovers", "Competitive", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"]),
+    mon("Blastoise", "Blastoisinite", "Torrent", "Modest", ["Water Pulse", "Aura Sphere", "Dark Pulse", "Ice Beam"]),
+    mon("Starmie", "Wise Glasses", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Thunderbolt", "Ice Beam"]),
 ]
 LT_SURGE = [
-    mon("Electrode", 68, "Focus Sash", "Aftermath", "Timid", ["Thunderbolt", "Volt Switch", "Taunt", "Explosion"]),
-    mon("Magnezone", 68, "Choice Specs", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Body Press"]),
-    mon("Lanturn", 68, "Leftovers", "Volt Absorb", "Bold", ["Scald", "Discharge", "Ice Beam", "Heal Bell"]),
-    mon("Electivire", 69, "Life Orb", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Earthquake", "Cross Chop"]),
-    mon("Manectric", 69, "Manectite", "Lightning Rod", "Timid", ["Thunderbolt", "Overheat", "Snarl", "Volt Switch"]),
-    mon("Raichu", 70, "Magnet", "Lightning Rod", "Timid", ["Thunderbolt", "Focus Blast", "Nasty Plot", "Grass Knot"]),
+    mon("Electrode", "Focus Sash", "Aftermath", "Timid", ["Thunderbolt", "Volt Switch", "Taunt", "Explosion"]),
+    mon("Magnezone", "Choice Specs", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Body Press"]),
+    mon("Lanturn", "Leftovers", "Volt Absorb", "Bold", ["Scald", "Discharge", "Ice Beam", "Heal Bell"]),
+    mon("Electivire", "Life Orb", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Earthquake", "Cross Chop"]),
+    mon("Manectric", "Manectite", "Lightning Rod", "Timid", ["Thunderbolt", "Overheat", "Snarl", "Volt Switch"]),
+    mon("Raichu", "Magnet", "Lightning Rod", "Timid", ["Thunderbolt", "Focus Blast", "Nasty Plot", "Grass Knot"]),
 ]
 ERIKA = [
-    mon("Jumpluff", 68, "Leftovers", "Infiltrator", "Jolly", ["Sleep Powder", "Leech Seed", "Acrobatics", "U Turn"]),
-    mon("Roserade", 68, "Life Orb", "Technician", "Timid", ["Giga Drain", "Sludge Bomb", "Shadow Ball", "Spikes"]),
-    mon("Tangrowth", 68, "Rocky Helmet", "Regenerator", "Relaxed", ["Giga Drain", "Knock Off", "Earthquake", "Sleep Powder"]),
-    mon("Victreebel", 69, "Black Sludge", "Chlorophyll", "Adamant", ["Power Whip", "Sucker Punch", "Poison Jab", "Weather Ball"]),
-    mon("Bellossom", 69, "Sitrus Berry", "Chlorophyll", "Modest", ["Quiver Dance", "Giga Drain", "Moonblast", "Strength Sap"]),
-    mon("Venusaur", 70, "Venusaurite", "Chlorophyll", "Modest", ["Giga Drain", "Sludge Bomb", "Earth Power", "Synthesis"]),
+    mon("Jumpluff", "Leftovers", "Infiltrator", "Jolly", ["Sleep Powder", "Leech Seed", "Acrobatics", "U Turn"]),
+    mon("Roserade", "Life Orb", "Technician", "Timid", ["Giga Drain", "Sludge Bomb", "Shadow Ball", "Spikes"]),
+    mon("Tangrowth", "Rocky Helmet", "Regenerator", "Relaxed", ["Giga Drain", "Knock Off", "Earthquake", "Sleep Powder"]),
+    mon("Victreebel", "Black Sludge", "Chlorophyll", "Adamant", ["Power Whip", "Sucker Punch", "Poison Jab", "Weather Ball"]),
+    mon("Bellossom", "Sitrus Berry", "Chlorophyll", "Modest", ["Quiver Dance", "Giga Drain", "Moonblast", "Strength Sap"]),
+    mon("Venusaur", "Venusaurite", "Chlorophyll", "Modest", ["Giga Drain", "Sludge Bomb", "Earth Power", "Synthesis"]),
 ]
 JANINE = [
-    mon("Weezing", 68, "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Toxic Spikes"]),
-    mon("Nidoqueen", 68, "Life Orb", "Sheer Force", "Modest", ["Earth Power", "Sludge Wave", "Ice Beam", "Flamethrower"]),
-    mon("Muk", 68, "Leftovers", "Poison Touch", "Adamant", ["Gunk Shot", "Knock Off", "Shadow Sneak", "Curse"]),
-    mon("Crobat", 69, "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
-    mon("Venomoth", 69, "Focus Sash", "Tinted Lens", "Timid", ["Quiver Dance", "Bug Buzz", "Sludge Bomb", "Sleep Powder"]),
-    mon("Gengar", 70, "Gengarite", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Focus Blast", "Nasty Plot"]),
+    mon("Weezing", "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Toxic Spikes"]),
+    mon("Nidoqueen", "Life Orb", "Sheer Force", "Modest", ["Earth Power", "Sludge Wave", "Ice Beam", "Flamethrower"]),
+    mon("Muk", "Leftovers", "Poison Touch", "Adamant", ["Gunk Shot", "Knock Off", "Shadow Sneak", "Curse"]),
+    mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
+    mon("Venomoth", "Focus Sash", "Tinted Lens", "Timid", ["Quiver Dance", "Bug Buzz", "Sludge Bomb", "Sleep Powder"]),
+    mon("Gengar", "Gengarite", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Focus Blast", "Nasty Plot"]),
 ]
 SABRINA = [
-    mon("Mr Mime", 68, "Light Clay", "Filter", "Timid", ["Light Screen", "Reflect", "Psychic", "Dazzling Gleam"]),
-    mon("Wobbuffet", 68, "Sitrus Berry", "Shadow Tag", "Bold", ["Counter", "Mirror Coat", "Encore", "Destiny Bond"]),
-    mon("Slowbro", 68, "Leftovers", "Regenerator", "Bold", ["Scald", "Psyshock", "Slack Off", "Thunder Wave"]),
-    mon("Espeon", 69, "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"]),
-    mon("Alakazam", 69, "Twisted Spoon", "Magic Guard", "Timid", ["Psychic", "Shadow Ball", "Focus Blast", "Calm Mind"]),
-    mon("Metagross", 70, "Metagrossite", "Clear Body", "Jolly", ["Meteor Mash", "Zen Headbutt", "Earthquake", "Bullet Punch"]),
+    mon("Mr Mime", "Light Clay", "Filter", "Timid", ["Light Screen", "Reflect", "Psychic", "Dazzling Gleam"]),
+    mon("Wobbuffet", "Sitrus Berry", "Shadow Tag", "Bold", ["Counter", "Mirror Coat", "Encore", "Destiny Bond"]),
+    mon("Slowbro", "Leftovers", "Regenerator", "Bold", ["Scald", "Psyshock", "Slack Off", "Thunder Wave"]),
+    mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"]),
+    mon("Alakazam", "Twisted Spoon", "Magic Guard", "Timid", ["Psychic", "Shadow Ball", "Focus Blast", "Calm Mind"]),
+    mon("Metagross", "Metagrossite", "Clear Body", "Jolly", ["Meteor Mash", "Zen Headbutt", "Earthquake", "Bullet Punch"]),
 ]
 BLAINE = [
-    mon("Torkoal", 68, "Heat Rock", "Drought", "Bold", ["Lava Plume", "Stealth Rock", "Rapid Spin", "Yawn"]),
-    mon("Rapidash", 68, "Life Orb", "Flash Fire", "Jolly", ["Flare Blitz", "Wild Charge", "High Horsepower", "Morning Sun"]),
-    mon("Magmortar", 68, "Expert Belt", "Vital Spirit", "Modest", ["Fire Blast", "Thunderbolt", "Focus Blast", "Psychic"]),
-    mon("Volcarona", 69, "Charcoal", "Flame Body", "Timid", ["Quiver Dance", "Fiery Dance", "Bug Buzz", "Giga Drain"]),
-    mon("Arcanine Hisui", 69, "Choice Band", "Rock Head", "Adamant", ["Head Smash", "Flare Blitz", "Extreme Speed", "Wild Charge"]),
-    mon("Camerupt", 70, "Cameruptite", "Solid Rock", "Modest", ["Fire Blast", "Earth Power", "Ancient Power", "Stealth Rock"]),
+    mon("Torkoal", "Heat Rock", "Drought", "Bold", ["Lava Plume", "Stealth Rock", "Rapid Spin", "Yawn"]),
+    mon("Rapidash", "Life Orb", "Flash Fire", "Jolly", ["Flare Blitz", "Wild Charge", "High Horsepower", "Morning Sun"]),
+    mon("Magmortar", "Expert Belt", "Vital Spirit", "Modest", ["Fire Blast", "Thunderbolt", "Focus Blast", "Psychic"]),
+    mon("Volcarona", "Charcoal", "Flame Body", "Timid", ["Quiver Dance", "Fiery Dance", "Bug Buzz", "Giga Drain"]),
+    mon("Arcanine Hisui", "Choice Band", "Rock Head", "Adamant", ["Head Smash", "Flare Blitz", "Extreme Speed", "Wild Charge"]),
+    mon("Camerupt", "Cameruptite", "Solid Rock", "Modest", ["Fire Blast", "Earth Power", "Ancient Power", "Stealth Rock"]),
 ]
 # Machamp has Close Combat, not No Guard Dynamic Punch: with the guaranteed confusion, Blue beat
 # every play-test team in all six tries (Bruno's Machamp likewise).
 BLUE = [
-    mon("Machamp", 69, "Sitrus Berry", "No Guard", "Adamant", ["Close Combat", "Stone Edge", "Knock Off", "Bullet Punch"]),
-    mon("Exeggutor", 69, "Sitrus Berry", "Harvest", "Modest", ["Leaf Storm", "Psychic", "Sludge Bomb", "Trick Room"]),
-    mon("Rhyperior", 69, "Weakness Policy", "Solid Rock", "Adamant", ["Stone Edge", "Earthquake", "Megahorn", "Rock Polish"]),
-    mon("Arcanine", 70, "Choice Band", "Intimidate", "Adamant", ["Flare Blitz", "Extreme Speed", "Wild Charge", "Close Combat"]),
-    mon("Tyranitar", 70, "Leftovers", "Sand Stream", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
-    mon("Pidgeot", 70, "Pidgeotite", "Keen Eye", "Timid", ["Hurricane", "Heat Wave", "U Turn", "Roost"]),
+    mon("Machamp", "Sitrus Berry", "No Guard", "Adamant", ["Close Combat", "Stone Edge", "Knock Off", "Bullet Punch"]),
+    mon("Exeggutor", "Sitrus Berry", "Harvest", "Modest", ["Leaf Storm", "Psychic", "Sludge Bomb", "Trick Room"]),
+    mon("Rhyperior", "Weakness Policy", "Solid Rock", "Adamant", ["Stone Edge", "Earthquake", "Megahorn", "Rock Polish"]),
+    mon("Arcanine", "Choice Band", "Intimidate", "Adamant", ["Flare Blitz", "Extreme Speed", "Wild Charge", "Close Combat"]),
+    mon("Tyranitar", "Leftovers", "Sand Stream", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
+    mon("Pidgeot", "Pidgeotite", "Keen Eye", "Timid", ["Hurricane", "Heat Wave", "U Turn", "Roost"]),
 ]
 
 # --- Red on Mt. Silver: the hardest battle in the game (DECISIONS.md D27) ------------------------
-# No level cap once the player is Kanto Champion. His first battle is at 96-100, the rematch after
-# the Sinjoh storyline (TRAINER_RED_POSTOBC_HNS) all at 100; every Pokemon has a competitive EV
-# spread, which Minimal Grinding leaves him (src/pokemon.c).
+# Red battles only the Kanto Champion, when no level cap is left: all six at 100, in his first
+# battle and in the rematch after the Sinjoh storyline (TRAINER_RED_POSTOBC_HNS). Every Pokemon has
+# a competitive EV spread, which Minimal Grinding leaves him (src/pokemon.c).
 RED_SIX = [
-    mon("Pikachu", None, "Light Ball", "Lightning Rod", "Hasty", ["Volt Tackle", "Surf", "Knock Off", "Fake Out"],
+    mon("Pikachu", "Light Ball", "Lightning Rod", "Hasty", ["Volt Tackle", "Surf", "Knock Off", "Fake Out"],
         "252 Atk / 4 SpA / 252 Spe"),
-    mon("Espeon", None, "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"],
+    mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"],
         "4 HP / 252 SpA / 252 Spe"),
-    mon("Snorlax", None, "Leftovers", "Thick Fat", "Careful", ["Curse", "Body Slam", "Rest", "Sleep Talk"],
+    mon("Snorlax", "Leftovers", "Thick Fat", "Careful", ["Curse", "Body Slam", "Rest", "Sleep Talk"],
         "252 HP / 4 Atk / 252 SpD"),
-    mon("Venusaur", None, "Life Orb", "Chlorophyll", "Modest", ["Sleep Powder", "Growth", "Giga Drain", "Sludge Bomb"],
+    mon("Venusaur", "Life Orb", "Chlorophyll", "Modest", ["Sleep Powder", "Growth", "Giga Drain", "Sludge Bomb"],
         "4 HP / 252 SpA / 252 Spe"),
-    mon("Blastoise", None, "White Herb", "Torrent", "Modest", ["Shell Smash", "Hydro Pump", "Ice Beam", "Aura Sphere"],
+    mon("Blastoise", "White Herb", "Torrent", "Modest", ["Shell Smash", "Hydro Pump", "Ice Beam", "Aura Sphere"],
         "4 HP / 252 SpA / 252 Spe"),
-    mon("Charizard", None, "Charizardite Y", "Solar Power", "Timid", ["Fire Blast", "Solar Beam", "Focus Blast", "Air Slash"],
+    mon("Charizard", "Charizardite Y", "Solar Power", "Timid", ["Fire Blast", "Solar Beam", "Focus Blast", "Air Slash"],
         "4 HP / 252 SpA / 252 Spe"),
 ]
-RED = team([96, 96, 97, 97, 98, 100], RED_SIX)
-RED_REMATCH = team([100] * 6, RED_SIX)
 RED_ITEMS = "Full Restore / Full Restore / Full Restore / Full Restore"
 
+# Trainer -> (stage, bag items, Pokemon[, AI]). The stage is the earliest point in the game the
+# battle can happen: its NORMAL level cap is every Pokemon's level.
 TEAMS = {
-    "TRAINER_BROCK_HNS": ("Full Restore / Full Restore", BROCK),
-    "TRAINER_MISTY_HNS": ("Full Restore / Full Restore", MISTY),
-    "TRAINER_LTSURGE_HNS": ("Full Restore / Full Restore", LT_SURGE),
-    "TRAINER_ERIKA_HNS": ("Full Restore / Full Restore", ERIKA),
-    "TRAINER_JANINE_HNS": ("Full Restore / Full Restore", JANINE),
-    "TRAINER_SABRINA_HNS": ("Full Restore / Full Restore", SABRINA),
-    "TRAINER_BLAINE_HNS": ("Full Restore / Full Restore", BLAINE),
-    "TRAINER_BLUE_HNS": ("Full Restore / Full Restore", BLUE),
-    "TRAINER_RED_HNS": (RED_ITEMS, RED, RED_AI),
-    "TRAINER_RED_POSTOBC_HNS": (RED_ITEMS, RED_REMATCH, RED_AI),
-    "TRAINER_PETREL_1_HNS": ("Full Restore / Full Restore", PETREL_1),
-    "TRAINER_ARIANA_1_HNS": ("Full Restore / Full Restore", ARIANA_1),
-    "TRAINER_PROTON_2_HNS": ("Full Restore / Full Restore", PROTON_2),
-    "TRAINER_PETREL_2_HNS": ("Full Restore / Full Restore", PETREL_2),
-    "TRAINER_ARIANA_2_HNS": ("Full Restore / Full Restore", ARIANA_2),
-    "TRAINER_ARCHER_HNS": ("Full Restore / Full Restore", ARCHER),
-    "TRAINER_WILL_1_HNS": ("Full Restore / Full Restore", WILL),
-    "TRAINER_KOGA_1_HNS": ("Full Restore / Full Restore", KOGA),
-    "TRAINER_BRUNO_1_HNS": ("Full Restore / Full Restore", BRUNO),
-    "TRAINER_KAREN_1_HNS": ("Full Restore / Full Restore", KAREN),
-    "TRAINER_LANCE_1_HNS": ("Full Restore / Full Restore", LANCE),
-    "TRAINER_PROTON_1_HNS": ("Super Potion", PROTON_1),
-    "TRAINER_MORTY_1_HNS": ("Hyper Potion / Hyper Potion", MORTY),
-    "TRAINER_CHUCK_1_HNS": ("Hyper Potion / Hyper Potion", team([29, 29, 30, 30, 31], five_of_six(CHUCK, 2))),
-    "TRAINER_CHUCK_1_2_HNS": ("Full Restore / Full Restore", team([34, 34, 35, 35, 35, 36], CHUCK)),
-    "TRAINER_CHUCK_1_3_HNS": ("Full Restore / Full Restore", team([36, 36, 37, 37, 37, 38], CHUCK)),
-    "TRAINER_JASMINE_1_HNS": ("Hyper Potion / Hyper Potion", team([29, 29, 30, 30, 31], five_of_six(JASMINE, 2))),
-    "TRAINER_JASMINE_1_2_HNS": ("Full Restore / Full Restore", team([34, 34, 35, 35, 35, 36], JASMINE)),
-    "TRAINER_JASMINE_1_3_HNS": ("Full Restore / Full Restore", team([36, 36, 37, 37, 37, 38], JASMINE)),
-    "TRAINER_PRYCE_1_HNS": ("Hyper Potion / Hyper Potion", team([29, 29, 30, 30, 31], five_of_six(PRYCE, 1))),
-    "TRAINER_PRYCE_1_2_HNS": ("Full Restore / Full Restore", team([34, 34, 35, 35, 35, 36], PRYCE)),
-    "TRAINER_PRYCE_1_3_HNS": ("Full Restore / Full Restore", team([36, 36, 37, 37, 37, 38], PRYCE)),
-    "TRAINER_CLAIR_1_HNS": ("Full Restore / Full Restore", CLAIR),
+    "TRAINER_BROCK_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", BROCK),
+    "TRAINER_MISTY_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", MISTY),
+    "TRAINER_LTSURGE_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", LT_SURGE),
+    "TRAINER_ERIKA_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", ERIKA),
+    "TRAINER_JANINE_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", JANINE),
+    "TRAINER_SABRINA_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SABRINA),
+    "TRAINER_BLAINE_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", BLAINE),
+    "TRAINER_BLUE_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", BLUE),
+    "TRAINER_RED_HNS": (KANTO_CHAMPION, RED_ITEMS, RED_SIX, RED_AI),
+    "TRAINER_RED_POSTOBC_HNS": (KANTO_CHAMPION, RED_ITEMS, RED_SIX, RED_AI),
+    "TRAINER_PETREL_1_HNS": (4, "Full Restore / Full Restore", PETREL_1),
+    "TRAINER_ARIANA_1_HNS": (4, "Full Restore / Full Restore", ARIANA_1),
+    "TRAINER_PROTON_2_HNS": (7, "Full Restore / Full Restore", PROTON_2),
+    "TRAINER_PETREL_2_HNS": (7, "Full Restore / Full Restore", PETREL_2),
+    "TRAINER_ARIANA_2_HNS": (7, "Full Restore / Full Restore", ARIANA_2),
+    "TRAINER_ARCHER_HNS": (7, "Full Restore / Full Restore", ARCHER),
+    "TRAINER_WILL_1_HNS": (8, "Full Restore / Full Restore", WILL),
+    "TRAINER_KOGA_1_HNS": (8, "Full Restore / Full Restore", KOGA),
+    "TRAINER_BRUNO_1_HNS": (8, "Full Restore / Full Restore", BRUNO),
+    "TRAINER_KAREN_1_HNS": (8, "Full Restore / Full Restore", KAREN),
+    "TRAINER_LANCE_1_HNS": (8, "Full Restore / Full Restore", LANCE),
+    "TRAINER_PROTON_1_HNS": (1, "Super Potion", PROTON_1),
+    "TRAINER_MORTY_1_HNS": (3, "Hyper Potion / Hyper Potion", MORTY),
+    "TRAINER_CHUCK_1_HNS": (4, "Hyper Potion / Hyper Potion", five_of_six(CHUCK, 2)),
+    "TRAINER_CHUCK_1_2_HNS": (5, "Full Restore / Full Restore", CHUCK),
+    "TRAINER_CHUCK_1_3_HNS": (6, "Full Restore / Full Restore", CHUCK),
+    "TRAINER_JASMINE_1_HNS": (4, "Hyper Potion / Hyper Potion", five_of_six(JASMINE, 2)),
+    "TRAINER_JASMINE_1_2_HNS": (5, "Full Restore / Full Restore", JASMINE),
+    "TRAINER_JASMINE_1_3_HNS": (6, "Full Restore / Full Restore", JASMINE),
+    "TRAINER_PRYCE_1_HNS": (4, "Hyper Potion / Hyper Potion", five_of_six(PRYCE, 1)),
+    "TRAINER_PRYCE_1_2_HNS": (5, "Full Restore / Full Restore", PRYCE),
+    "TRAINER_PRYCE_1_3_HNS": (6, "Full Restore / Full Restore", PRYCE),
+    "TRAINER_CLAIR_1_HNS": (7, "Full Restore / Full Restore", CLAIR),
 }
-TEAMS.update({tid: ("", mons) for tid, mons in KIMONO.items()})
-for _n, _items in ((2, "Super Potion"), (3, "Super Potion / Super Potion"), (4, "Full Restore / Full Restore"),
-                   (5, "Full Restore / Full Restore")):
+TEAMS.update({tid: (8, "", mons) for tid, mons in KIMONO.items()})
+for _n, _stage, _items in ((2, 2, "Super Potion"), (3, 3, "Super Potion / Super Potion"),
+                           (4, 7, "Full Restore / Full Restore"), (5, 8, "Full Restore / Full Restore")):
     for _starter, _ace in RIVAL_STARTER[_n].items():
-        TEAMS[f"TRAINER_RIVAL_{_starter}_{_n}_HNS"] = (_items, RIVAL_TEAM[_n] + [_ace])
+        TEAMS[f"TRAINER_RIVAL_{_starter}_{_n}_HNS"] = (_stage, _items, RIVAL_TEAM[_n] + [_ace])
+
+# Heart & Soul's own teams for the other bosses: only their levels change, to the cap of the stage.
+#   Sprout Tower (Li), Falkner, the rival in Cherrygrove: no badges. Bugsy: 1. Whitney: 2. Eusine in
+#   Cianwood: 4 (Cianwood needs Surf, the 4th badge's field move). The rival on Mt. Moon and at the
+#   Indigo Plateau, the Johto leaders' rematches in the Fighting Dojo and the Kanto League (the
+#   Elite Four's and Lance's _2 teams) come after the Johto League; every _POSTOBC rematch after
+#   the Kanto League. Not here: the bonus storylines' trainers (New Sinjoh, Melemele, Steven,
+#   Giovanni), who are at or above the cap where they can first be fought, and the unused or
+#   debug-only teams (validate.py lists them).
+JOHTO_LEADERS = ["FALKNER", "BUGSY", "WHITNEY", "MORTY", "CHUCK", "JASMINE", "PRYCE", "CLAIR"]
+KANTO_LEADERS = ["BROCK", "MISTY", "LTSURGE", "ERIKA", "JANINE", "SABRINA", "BLAINE", "BLUE"]
+ELITE_FOUR = ["WILL", "KOGA", "BRUNO", "KAREN", "LANCE"]
+STARTERS = ["CYNDAQUIL", "TOTODILE", "CHIKORITA"]
+LEVEL_ONLY = {"TRAINER_LI_HNS": 0, "TRAINER_FALKNER_1_HNS": 0, "TRAINER_BUGSY_1_HNS": 1,
+              "TRAINER_WHITNEY_1_HNS": 2, "TRAINER_EUSINE_HNS": 4}
+LEVEL_ONLY.update({f"TRAINER_RIVAL_{s}_1_HNS": 0 for s in STARTERS})
+LEVEL_ONLY.update({f"TRAINER_RIVAL_{s}_{n}_HNS": JOHTO_CHAMPION for s in STARTERS for n in (6, 7)})
+LEVEL_ONLY.update({f"TRAINER_{l}_2_HNS": JOHTO_CHAMPION for l in JOHTO_LEADERS + ELITE_FOUR})
+LEVEL_ONLY.update({f"TRAINER_{l}_POSTOBC_HNS": KANTO_CHAMPION for l in JOHTO_LEADERS + KANTO_LEADERS + ELITE_FOUR})
+
+# Every boss and its stage
+STAGES = {tid: entry[0] for tid, entry in TEAMS.items()}
+STAGES.update(LEVEL_ONLY)
 
 
-def render(tid, header, items, mons, ai=BOSS_AI):
+def render(tid, header, stage, items, mons, ai=BOSS_AI):
     lines = []
     for line in header.splitlines():
         if line.startswith("AI:"):
@@ -389,7 +439,7 @@ def render(tid, header, items, mons, ai=BOSS_AI):
     out = "\n".join(lines) + "\n"
     for m in mons:
         out += f"\n{m['species']} @ {m['item']}\n"
-        out += f"Level: {m['level']}\n"
+        out += f"Level: {cap(stage)}\n"
         out += "IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe\n"
         if m.get("evs"):
             out += f"EVs: {m['evs']}\n"
@@ -399,22 +449,50 @@ def render(tid, header, items, mons, ai=BOSS_AI):
     return out
 
 
+def set_levels(block, level):
+    """A party block with every Pokemon's Level line set to level."""
+    header, sep, body = block.partition("\n\n")
+    mons = re.split(r"(\n\s*\n)", body)
+    for i in range(0, len(mons), 2):
+        lines = mons[i].split("\n")
+        if not lines[0].strip():
+            continue
+        levels = [j for j, l in enumerate(lines) if re.match(r"\s*Level\s*:", l)]
+        if levels:
+            lines[levels[0]] = f"Level: {level}"
+        else:
+            lines.insert(1, f"Level: {level}")
+        mons[i] = "\n".join(lines)
+    return header + sep + "".join(mons)
+
+
 def apply(text):
     blocks = re.split(r"(?m)^(?==== )", text)
     seen = set()
     for i, block in enumerate(blocks):
         m = re.match(r"=== (\w+) ===", block)
-        if not m or m.group(1) not in TEAMS:
+        if not m or m.group(1) not in STAGES:
             continue
         tid = m.group(1)
         seen.add(tid)
-        header = block.split("\n\n", 1)[0]
-        items, mons, *ai = TEAMS[tid]
-        blocks[i] = render(tid, header, items, mons, *ai) + "\n"
-    missing = set(TEAMS) - seen
+        if tid in TEAMS:
+            header = block.split("\n\n", 1)[0]
+            blocks[i] = render(tid, header, *TEAMS[tid]) + "\n"
+        else:
+            blocks[i] = set_levels(block, cap(LEVEL_ONLY[tid]))
+    missing = set(STAGES) - seen
     if missing:
         sys.exit(f"trainers not found: {sorted(missing)}")
     return "".join(blocks)
+
+
+def boss_list():
+    out = ("// Generated by tools/crystal_imperium/boss_teams.py: do not edit.\n"
+           "// Every boss: CreateNPCTrainerParty (src/battle_main.c) raises their Pokemon to the player's\n"
+           "// NORMAL level cap when that is above the party's levels (DECISIONS.md D21).\n"
+           "static const u16 sLevelCapBosses[] =\n{\n")
+    out += "".join(f"    {tid},\n" for tid in sorted(STAGES))
+    return out + "};\n"
 
 
 def main():
@@ -423,16 +501,21 @@ def main():
     args = ap.parse_args()
     text = open(PARTY, encoding="utf-8").read()
     new = apply(text)
+    old_list = open(BOSS_LIST, encoding="utf-8").read() if os.path.exists(BOSS_LIST) else ""
+    new_list = boss_list()
     if args.check:
-        if new != text:
-            print("src/data/trainers_hns.party is out of date: run tools/crystal_imperium/boss_teams.py")
+        stale = [os.path.relpath(p, ROOT) for p, a, b in ((PARTY, text, new), (BOSS_LIST, old_list, new_list)) if a != b]
+        if stale:
+            print(f"{', '.join(stale)} out of date: run tools/crystal_imperium/boss_teams.py")
             return 1
         return 0
     if new != text:
         open(PARTY, "w", encoding="utf-8").write(new)
-        print(f"updated {len(TEAMS)} boss parties")
+        print(f"updated {len(TEAMS)} boss parties and the levels of {len(LEVEL_ONLY)} more")
+    if new_list != old_list:
+        open(BOSS_LIST, "w", encoding="utf-8").write(new_list)
+        print(f"wrote {os.path.relpath(BOSS_LIST, ROOT)} ({len(STAGES)} bosses)")
     return 0
-
 
 if __name__ == "__main__":
     sys.exit(main())

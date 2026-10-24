@@ -12,15 +12,15 @@ Unknown species/move/item/ability names are already rejected at build time by
 trainerproc and the C compiler; this script adds the semantic checks:
   * trainer abilities must be one of the species' abilities (the engine
     silently falls back to slot 0 otherwise)
-  * each Gym Leader's ace may not exceed the NORMAL level cap in force when
-    the player challenges them, and the cap after a badge must match the next
-    leader's ace (src/caps.c)
+  * every boss's Pokemon are all at the NORMAL level cap (src/caps.c) of the earliest point the
+    battle can happen (its stage in tools/crystal_imperium/boss_teams.py), every version of a
+    Gym Leader has the stage of the badges the player can have, and every trainer of a boss
+    pattern is in boss_teams.py's list unless it is listed below as never fought
   * boss trainers must define four moves for every Pokemon
   * reworked bosses (tools/crystal_imperium/boss_teams.py) may only use moves their species or a
-    pre-evolution can learn in some game (src/data/pokemon/all_learnables.json), and every
-    version of a Gym Leader keeps its ace at the cap for the badges the player can have
-  * Red is the hardest battle: both his parties have the highest average level of all
-    trainers, EVs on all six Pokemon, the prediction AI and four Full Restores
+    pre-evolution can learn in some game (src/data/pokemon/all_learnables.json)
+  * Red is the hardest battle: no trainer has a higher average level than his parties, which
+    have EVs on all six Pokemon, the prediction AI and more Full Restores than anyone else
   * every evolution family should be obtainable (reported, not fatal: the
     Gen 4-9 roll-out is ongoing work)
 """
@@ -50,11 +50,15 @@ GYM_LEADERS = [
 # Trainers that count as bosses: four explicit moves required, listed in the balance table
 BOSS_PATTERNS = [
     r"TRAINER_(FALKNER|BUGSY|WHITNEY|MORTY|CHUCK|JASMINE|PRYCE|CLAIR)_\w+",
-    r"TRAINER_(BROCK|MISTY|LT_SURGE|SURGE|ERIKA|JANINE|SABRINA|BLAINE|BLUE)_\w+",
+    r"TRAINER_(BROCK|MISTY|LTSURGE|ERIKA|JANINE|SABRINA|BLAINE|BLUE)_\w+",
     r"TRAINER_(WILL|KOGA|BRUNO|KAREN|LANCE|RED)_\w*",
     r"TRAINER_RIVAL_\w+",
-    r"TRAINER_LI_HNS",
+    r"TRAINER_(LI|EUSINE)_HNS",
+    r"TRAINER_(PROTON|PETREL|ARIANA|ARCHER)_\w+",
 ]
+# Boss-pattern trainers no script battles in normal play (unused, or the debug menu's only)
+NEVER_FOUGHT = {"TRAINER_BLUE_2_HNS", "TRAINER_LANCE_3_HNS", "TRAINER_CLAIR_3_HNS",
+                "TRAINER_ARCHER_1_HNS", "TRAINER_ARCHER_4_HNS", "TRAINER_ARCHER_5_HNS"}
 # Bosses already reworked for Crystal Imperium; the four-move and learnable-move rules are enforced
 # only for these (the later bosses come from boss_teams.py)
 REWORKED = {"TRAINER_FALKNER_1_HNS", "TRAINER_LI_HNS", "TRAINER_BUGSY_1_HNS", "TRAINER_WHITNEY_1_HNS"}
@@ -63,7 +67,7 @@ import boss_teams  # noqa: E402
 REWORKED |= set(boss_teams.TEAMS)
 
 # Gym Leader versions HnS picks by badge count: Chuck, Jasmine and Pryce can be the 5th, 6th or
-# 7th Gym (_1, _1_2, _1_3), so each version's ace must match the cap for 4, 5 or 6 badges
+# 7th Gym (_1, _1_2, _1_3), so the versions' stages are 4, 5 and 6 badges
 GYM_VERSIONS = {"TRAINER_" + leader + suffix: badges
                 for leader in ("CHUCK", "JASMINE", "PRYCE")
                 for suffix, badges in (("_1_HNS", 4), ("_1_2_HNS", 5), ("_1_3_HNS", 6))}
@@ -191,6 +195,15 @@ def parse_level_caps():
     return [int(v) for v in re.findall(r"\]\s*=\s*(\d+)", m.group(1))]
 
 
+def stage_cap(stage, caps):
+    """The NORMAL level cap at a boss stage of boss_teams.py (cross-checks its cap())."""
+    if stage == boss_teams.KANTO_CHAMPION:
+        return 100
+    if stage == boss_teams.JOHTO_CHAMPION:
+        return int(re.search(r"#define KANTO_MAX_LEVEL (\d+)", read("src/caps.c")).group(1))
+    return caps[stage]
+
+
 def learnable_moves(species):
     """SPECIES_X -> the MOVE_ constants it or a pre-evolution can learn in some game."""
     data = json.loads(read("src/data/pokemon/all_learnables.json"))
@@ -288,20 +301,24 @@ def main():
             if boss and "level" not in mon:
                 errors.append(f"{tid}: {mon['species']} has no Level (trainerproc defaults it)")
 
-    # Level caps vs Gym aces: cap with N badges is the cap for the (N+1)th leader
+    # Boss levels: every Pokemon at the cap of the boss's stage (DECISIONS.md D21)
     for badge, (leader, tid) in enumerate(GYM_LEADERS):
         if tid not in trainers:
             errors.append(f"missing Gym Leader trainer {tid}")
     for tid, badges in sorted(GYM_VERSIONS.items()):
+        if boss_teams.STAGES.get(tid) != badges:
+            errors.append(f"{tid}: stage {boss_teams.STAGES.get(tid)!r} in boss_teams.py; HnS fights it with {badges} badges")
+    for tid in sorted(trainers):
+        if any(re.fullmatch(p, tid) for p in BOSS_PATTERNS) and tid not in boss_teams.STAGES and tid not in NEVER_FOUGHT:
+            errors.append(f"{tid}: a boss missing from boss_teams.py's STAGES")
+    for tid, stage in sorted(boss_teams.STAGES.items()):
         if tid not in trainers:
-            errors.append(f"missing Gym Leader trainer {tid}")
+            errors.append(f"missing boss trainer {tid}")
             continue
-        ace = max(m.get("level", 0) for m in trainers[tid]["mons"])
-        if ace > caps[badges]:
-            errors.append(f"{tid}: ace level {ace} exceeds the NORMAL level cap {caps[badges]} for {badges} badges")
-        elif ace < caps[badges]:
-            (errors if tid in REWORKED else notes).append(
-                f"{tid}: ace level {ace} is below the NORMAL cap {caps[badges]} for {badges} badges")
+        want = stage_cap(stage, caps)
+        off = [f"{m['species']} {m.get('level')}" for m in trainers[tid]["mons"] if m.get("level") != want]
+        if off:
+            errors.append(f"{tid}: not at the cap {want} for its stage ({stage}): {', '.join(off)}")
 
     # Red is the last and hardest battle (DECISIONS.md D27). His EVs are the only trainer EVs that
     # Minimal Grinding keeps (src/pokemon.c).
@@ -310,20 +327,24 @@ def main():
     def average_level(t):
         return sum(m.get("level", 0) for m in t["mons"]) / len(t["mons"])
 
+    def full_restores(t):
+        return t.get("items", "").count("Full Restore")
+
     top_level, top_tid = max((average_level(t), tid) for tid, t in trainers.items() if tid not in red and t["mons"])
+    top_items, top_items_tid = max((full_restores(t), tid) for tid, t in trainers.items() if tid not in red)
     for tid in red:
         t = trainers.get(tid)
         if t is None or not t["mons"]:
             errors.append(f"missing Red trainer {tid}")
             continue
-        if average_level(t) <= top_level:
-            errors.append(f"{tid}: average level {average_level(t):.1f} is not above {top_tid} ({top_level:.1f})")
+        if average_level(t) < top_level:
+            errors.append(f"{tid}: average level {average_level(t):.1f} is below {top_tid} ({top_level:.1f})")
         if len(t["mons"]) != 6 or not all("evs" in m for m in t["mons"]):
             errors.append(f"{tid}: Red needs six Pokemon, each with EVs")
         if "Prediction" not in t.get("ai", ""):
             errors.append(f"{tid}: Red needs the prediction AI")
-        if t.get("items", "").count("Full Restore") < 4:
-            errors.append(f"{tid}: Red needs four Full Restores")
+        if full_restores(t) <= top_items:
+            errors.append(f"{tid}: {full_restores(t)} Full Restores, no more than {top_items_tid} ({top_items})")
 
     # Family availability
     fam = families(species)

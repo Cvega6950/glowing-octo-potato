@@ -1,6 +1,6 @@
 # Crystal Imperium play test: the DIFFICULTY option (challenge menu > Difficulty tab).
-# Falkner's party is Pidgey Lv 9 / Rookidee Lv 10 / Noctowl Lv 11 on NORMAL (see falkner.emu).
-# EASY scales trainer levels to 90% (8 / 9 / 9), HARD to 110% rounded (10 / 11 / 12).
+# Falkner's party is Pidgey / Rookidee / Noctowl, all at the level cap (11) on NORMAL (D21).
+# EASY scales trainer levels to 90% (9 / 9 / 9), HARD to 110% rounded (12 / 12 / 12).
 # Each new game is picked in the menu, then Falkner's lead is read from gBattleMons in battle.
 # BattlePokemon: species +0, level +44; the opponent is battler 1 (+136).
 
@@ -18,7 +18,7 @@ press A
 wait 220
 shot 02_easy_falkner.png
 expect16 {gBattleMons+136} 16 falkner_leads_pidgey_easy
-expect8 {gBattleMons+180} 8 easy_pidgey_is_level_8
+expect8 {gBattleMons+180} 9 easy_pidgey_is_level_9
 # Enemy party: Rookidee is the second Pokemon (level at +84)
 expect8 {gEnemyParty+184} 9 easy_rookidee_is_level_9
 expect8 {gEnemyParty+284} 9 easy_noctowl_is_level_9
@@ -37,6 +37,6 @@ press A
 wait 220
 shot 03_hard_falkner.png
 expect16 {gBattleMons+136} 16 falkner_leads_pidgey_hard
-expect8 {gBattleMons+180} 10 hard_pidgey_is_level_10
-expect8 {gEnemyParty+184} 11 hard_rookidee_is_level_11
+expect8 {gBattleMons+180} 12 hard_pidgey_is_level_12
+expect8 {gEnemyParty+184} 12 hard_rookidee_is_level_12
 expect8 {gEnemyParty+284} 12 hard_noctowl_is_level_12
