@@ -5,6 +5,7 @@
 #include "coord_event_weather.h"
 #include "daycare.h"
 #include "debug.h"
+#include "care_packages.h"
 #include "dexnav.h"
 #include "faraway_island.h"
 #include "event_data.h"
@@ -269,6 +270,11 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
             SetPlayerAvatarTransitionFlags(PLAYER_AVATAR_FLAG_MACH_BIKE);
         }
         PlaySE(SE_BIKE_BELL);
+    }
+    // Crystal Imperium: off the bike, R searches for the Pokemon registered in the DexNav
+    else if (input->pressedRButton && TryStartDexNavSearch())
+    {
+        return TRUE;
     }
 #else
     if (input->pressedRButton && TryStartDexNavSearch())
@@ -730,6 +736,8 @@ static bool8 TryStartStepBasedScript(struct MapPosition *position, u16 metatileB
         return TRUE;
 #if IS_HNS
     if (Mom_TryTriggerGiftCall() == TRUE)
+        return TRUE;
+    if (TryStartCarePackageScript())
         return TRUE;
 #endif
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_FORCED_MOVE) && !MetatileBehavior_IsForcedMovementTile(metatileBehavior) && UpdateRepelCounter() == TRUE)

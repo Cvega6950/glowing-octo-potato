@@ -110,10 +110,10 @@
 // --- Free in the HnS build. Verified: no C in src/ and no script that runs in
 // --- the HnS build reads or writes these addresses. Safe to claim.
 #define VAR_UNUSED_HNS_0x40B4                            0x40B4 // Emerald VAR_SS_TIDAL_STATE - reads gated on FLAG_SYS_CRUISE_MODE / MAP_SS_TIDAL_CORRIDOR
-#define VAR_UNUSED_HNS_0x40C2                            0x40C2 // Emerald VAR_PACIFIDLOG_TM_RECEIVED_DAY - PacifidlogTown_House2 only (Emerald-gated map)
+#define VAR_DEXNAV_SPECIES                               0x40C2 // Crystal Imperium (was Emerald VAR_PACIFIDLOG_TM_RECEIVED_DAY, Emerald-gated map)
 #define VAR_UNUSED_HNS_0x40C6                            0x40C6 // Emerald VAR_STEVENS_HOUSE_STATE - written in hall_of_fame.inc, reached only from EverGrandeCity_HallOfFame
-#define VAR_UNUSED_HNS_0x40C9                            0x40C9 // Emerald VAR_SCOTT_PETALBURG_ENCOUNTER - PetalburgCity only (Emerald-gated map)
-#define VAR_UNUSED_HNS_0x40CA                            0x40CA // Emerald VAR_SKY_PILLAR_STATE - overworld.c reads only, both behind MAP_GROUP(MAP_SOOTOPOLIS_CITY)
+#define VAR_DEXNAV_STEP_COUNTER                          0x40C9 // Crystal Imperium (was Emerald VAR_SCOTT_PETALBURG_ENCOUNTER, Emerald-gated map)
+#define VAR_CARE_PACKAGES                                0x40CA // Crystal Imperium (was Emerald VAR_SKY_PILLAR_STATE, reads behind MAP_GROUP(MAP_SOOTOPOLIS_CITY))
 
 #define VAR_UNUSED_HNS_0x40D8                           0x40D8 // Emerald VAR_SOOTOPOLIS_WALLACE_STATE - SootopolisCity/scripts.inc, linked for labels, map not in HnS build
 #define VAR_UNUSED_HNS_0x40D9                           0x40D9 // Emerald VAR_HAS_TALKED_TO_SEAFLOOR_CAVERN_ENTRANCE_GRUNT - SeafloorCavern_Entrance only

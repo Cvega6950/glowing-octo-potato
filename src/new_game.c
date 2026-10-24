@@ -17,6 +17,7 @@
 #include "berry.h"
 #include "rtc.h"
 #include "easy_chat.h"
+#include "dexnav.h"
 #include "event_data.h"
 #include "money.h"
 #include "mom_savings.h"
@@ -156,6 +157,8 @@ void SetDefaultChallengeSettings(void)
     gSaveblock3.challengeSettings.tx_Challenges_LevelCap        = 1; // next gym's highest level
     gSaveblock3.challengeSettings.tx_Challenges_ExpMultiplier   = 1; // x1.5
 
+    // Crystal Imperium — EASY CATCH and WILD VARIETY (30%) are on with their stored value 0
+
     // Randomizer defaults (shown when Randomizer is ON)
     gSaveblock3.challengeSettings.tx_Random_Similar          = 1;
     gSaveblock3.challengeSettings.tx_Random_MapBased         = 1;
@@ -222,15 +225,32 @@ void ResetMenuAndMonGlobals(void)
 
 // Crystal Imperium: Emerald Imperium-style key items are part of normal play, not a Nuzlocke option.
 // Also called when a save is continued, so saves started before these existed receive them once.
+// Crystal Imperium key items and the DexNav, there from the start of the game. Continue also hands out
+// any of them that a save from an older build is missing.
+static const u16 sQoLKeyItems[] =
+{
+    ITEM_INFINITE_RARE_CANDIES,
+    ITEM_INFINITE_REPEL,
+    ITEM_POKEMON_BOX_LINK,
+    ITEM_TRAINING_KIT,
+    ITEM_POKE_VIAL,
+};
+
 void GiveQoLKeyItems(void)
 {
-    if (FlagGet(FLAG_RECEIVED_QOL_KEY_ITEMS))
-        return;
-    AddBagItem(ITEM_INFINITE_RARE_CANDIES, 1);
-    AddBagItem(ITEM_INFINITE_REPEL, 1);
-    AddBagItem(ITEM_POKEMON_BOX_LINK, 1);
-    AddBagItem(ITEM_TRAINING_KIT, 1);
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sQoLKeyItems); i++)
+    {
+        if (!CheckBagHasItem(sQoLKeyItems[i], 1))
+            AddBagItem(sQoLKeyItems[i], 1);
+    }
     FlagSet(FLAG_RECEIVED_QOL_KEY_ITEMS);
+    // The DexNav, with hidden Pokemon detection, comes with them
+    FlagSet(DN_FLAG_DEXNAV_GET);
+    FlagSet(DN_FLAG_DETECTOR_MODE);
+    // A search's state is not saved, so a game saved mid-search must not load as searching
+    FlagClear(DN_FLAG_SEARCHING);
 }
 
 void NewGameInitData(void)

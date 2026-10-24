@@ -1081,6 +1081,7 @@ enum __attribute__((packed)) Item
     ITEM_UNUSED_BERRY_3,
     ITEM_AZURE_FLUTE,
     ITEM_TRAINING_KIT, // Crystal Imperium
+    ITEM_POKE_VIAL, // Crystal Imperium
 
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,

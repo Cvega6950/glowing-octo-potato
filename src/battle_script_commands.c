@@ -10878,6 +10878,9 @@ static u32 ComputeCaptureOdds(u32 wildMonBattler, u32 playerBattler)
 
     if (ball.guaranteedCapture)
         return CAPTURE_GUARANTEED;
+    // Crystal Imperium: the EASY CATCH option makes every ball work like a Master Ball
+    if (!gSaveBlock3Ptr->challengeSettings.tx_Features_EasyCatchOff)
+        return CAPTURE_GUARANTEED;
     struct BattlePokemon *battleMon = &gBattleMons[wildMonBattler];
     u32 odds = (battleMon->maxHP * 3 -  battleMon->hp * 2);
     s32 catchRate;

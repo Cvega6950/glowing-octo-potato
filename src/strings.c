@@ -1263,6 +1263,7 @@ const u8 gText_Berries[] = _("BERRIES");
 const u8 gText_Obtained999RareCandies[] = _("You obtained 999 RARE\nCANDIES!{PAUSE_UNTIL_PRESS}");
 const u8 gText_InfiniteRepelOn[] = _("The INFINITE REPEL is now ON.\nWeaker wild {PKMN} will stay away.{PAUSE_UNTIL_PRESS}");
 const u8 gText_InfiniteRepelOff[] = _("The INFINITE REPEL is now OFF.{PAUSE_UNTIL_PRESS}");
+const u8 gText_PokeVialHealed[] = _("Your {PKMN} were fully healed!{PAUSE_UNTIL_PRESS}");
 const u8 gText_ExpShareOn[] = _("The Exp. Share has been turned on.{PAUSE_UNTIL_PRESS}");
 const u8 gText_ExpShareOff[] = _("The Exp. Share has been turned off.{PAUSE_UNTIL_PRESS}");
 ALIGNED(4) const u8 gText_Ghost[] = _("GHOST");

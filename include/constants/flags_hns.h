@@ -848,7 +848,7 @@
 #define FLAG_OLIVINE_GYM_NPC_TRADE_COMPLETED         0x302
 #define FLAG_ENABLE_CONDITION                       0x303
 #define FLAG_UNUSED_36                              0x304
-#define FLAG_RECEIVED_QOL_KEY_ITEMS                 0x305 // Crystal Imperium: Rare Candy Box, Infinite Repel, Box Link given
+#define FLAG_RECEIVED_QOL_KEY_ITEMS                 0x305 // Crystal Imperium: the QoL key items were given (set by GiveQoLKeyItems; not read)
 #define FLAG_INFINITE_REPEL_ON                      0x306 // Crystal Imperium: Infinite Repel switched on
 #define FLAG_RECEIVED_MEGA_RING                     0x307 // Crystal Imperium
 #define HNS_UNUSED_COUNT                            40
@@ -960,9 +960,9 @@
 #define FLAG_HIDE_SLOWPOKE_WELL_TAILLESS_SLOWPOKES                    (HNS_EXTENDED_CONTENT_START + 76)
 #define FLAG_ULAULA_MOVE_TUTOR_PAID                 (HNS_EXTENDED_CONTENT_START + 77) // paid the Ula'ula move tutor his 5 HEART SCALES
 #define FLAG_USED_TELEPORTER                    (HNS_EXTENDED_CONTENT_START + 78)
-#define FLAG_UNUSED_EXTENDED_79                   (HNS_EXTENDED_CONTENT_START + 79)
-#define FLAG_UNUSED_EXTENDED_80                    (HNS_EXTENDED_CONTENT_START + 80)
-#define FLAG_UNUSED_EXTENDED_81                    (HNS_EXTENDED_CONTENT_START + 81)
+#define FLAG_DEXNAV_SEARCHING                     (HNS_EXTENDED_CONTENT_START + 79) // Crystal Imperium: DexNav search running
+#define FLAG_SYS_DEXNAV_GET                        (HNS_EXTENDED_CONTENT_START + 80) // Crystal Imperium: DexNav in the start menu
+#define FLAG_DEXNAV_DETECTOR_MODE                  (HNS_EXTENDED_CONTENT_START + 81) // Crystal Imperium: hidden Pokemon can be found
 #define FLAG_UNUSED_EXTENDED_82                    (HNS_EXTENDED_CONTENT_START + 82)
 #define FLAG_UNUSED_EXTENDED_83                     (HNS_EXTENDED_CONTENT_START + 83)
 #define FLAG_UNUSED_EXTENDED_84                     (HNS_EXTENDED_CONTENT_START + 84)

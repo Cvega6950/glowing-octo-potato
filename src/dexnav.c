@@ -60,6 +60,8 @@
 #include "constants/rgb.h"
 #include "constants/region_map_sections.h"
 #include "gba/m4a_internal.h"
+#include "list_menu.h"
+#include "wild_variety.h"
 
 #if DEXNAV_ENABLED
 STATIC_ASSERT(DN_FLAG_SEARCHING != 0, DNFlagSearching_Must_Not_Be_Zero);
@@ -129,6 +131,14 @@ struct DexNavGUI
     u8 potential;
     u8 typeIconSpriteIds[2];
     u8 starSpriteIds[3];
+    // Crystal Imperium: SELECT opens a list of every Pokemon Wild Variety can turn up
+    u8 pickerWindowId;
+    u8 pickerListTaskId;
+    u16 pickerCount;
+    u16 pickerScroll;
+    u16 pickerRow;
+    u16 *pickerSpecies;
+    struct ListMenuItem *pickerItems;
 };
 
 // RAM
@@ -143,6 +153,9 @@ EWRAM_DATA u16 gDexNavSpecies = SPECIES_NONE;
 static void Task_DexNavWaitFadeIn(u8 taskId);
 static void Task_DexNavMain(u8 taskId);
 static void PrintCurrentSpeciesInfo(void);
+static void PrintSpeciesInfo(u16 species, bool32 showUnseen);
+static void Task_DexNavPicker(u8 taskId);
+static bool32 OpenSpeciesPicker(void);
 // SEARCH
 static bool8 TryStartHiddenMonFieldEffect(enum EncounterType environment, u8 xSize, u8 ySize, bool8 smallScan);
 static void DexNavGenerateMoveset(u16 species, u8 searchLevel, u8 encounterLevel, u16 *moveDst);
@@ -183,7 +196,8 @@ static const u32 sHiddenMonIconGfx[] = INCBIN_U32("graphics/dexnav/hidden.4bpp.s
 // strings
 static const u8 sText_DexNav_NoInfo[] = _("--------");
 static const u8 sText_DexNav_CaptureToSee[] = _("Capture first!");
-static const u8 sText_DexNav_PressRToRegister[] = _("R TO REGISTER!");
+static const u8 sText_DexNav_PressRToRegister[] = _("REGISTER  SELECT: ANY {PKMN}");
+static const u8 sText_DexNav_PickerHelp[] = _("A SEARCH  START REGISTER");
 static const u8 sText_DexNav_SearchForRegisteredSpecies[] = _("Search {STR_VAR_1}");
 static const u8 sText_DexNav_NotFoundHere[] = _("This Pokémon cannot be found here!");
 static const u8 sText_ThreeQmarks[] = _("???");
@@ -224,6 +238,20 @@ static const struct WindowTemplate sDexNavGuiWindowTemplates[] =
     },
     DUMMY_WIN_TEMPLATE
 };
+
+// Crystal Imperium: the "any Pokemon" list, over the area lists (left of the info panel)
+static const struct WindowTemplate sDexNavPickerWindowTemplate =
+{
+    .bg = 0,
+    .tilemapLeft = 1,
+    .tilemapTop = 3,
+    .width = 18,
+    .height = 16,
+    .paletteNum = 15,
+    .baseBlock = 260,
+};
+
+#define PICKER_MAX 1100
 
 //gui font
 static const u8 sFontColor_Black[3] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
@@ -593,6 +621,11 @@ static bool8 DexNavPickTile(enum EncounterType environment, u8 areaX, u8 areaY, 
     u8 *yPos = AllocZeroed((botX - topX) * (botY - topY) * sizeof(u8));
     u32 iter = 0;
     bool32 ret = FALSE;
+    // Crystal Imperium: a random suitable tile, used when the weighted pick finds none, so a
+    // search in a small patch of grass doesn't fail just by chance
+    bool8 eligible;
+    u32 numEligible = 0;
+    s16 fallbackX = 0, fallbackY = 0;
 
     // loop through every tile in area and evaluate
     while (topY < botY)
@@ -631,6 +664,7 @@ static bool8 DexNavPickTile(enum EncounterType environment, u8 areaX, u8 areaY, 
             }
 
             weight = 0; // initiliaze weight
+            eligible = FALSE;
             switch (environment)
             {
             case ENCOUNTER_TYPE_LAND:
@@ -643,13 +677,15 @@ static bool8 DexNavPickTile(enum EncounterType environment, u8 areaX, u8 areaY, 
                             break; //occurs at same z coord
 
                         scale = 440 - (smallScan * 200) - (GetPlayerDistance(topX, topY) / 2)  - (2 * (topX + topY));
-                        weight = ((Random() % scale) < 1) && !MapGridGetCollisionAt(topX, topY);
+                        eligible = !MapGridGetCollisionAt(topX, topY);
+                        weight = ((Random() % scale) < 1) && eligible;
                     }
                     else
                     {
                         // outdoors: grass
                         scale = 100 - (GetPlayerDistance(topX, topY) * 2);
-                        weight = (Random() % scale <= 5) && !MapGridGetCollisionAt(topX, topY);
+                        eligible = !MapGridGetCollisionAt(topX, topY);
+                        weight = (Random() % scale <= 5) && eligible;
                     }
                 }
                 break;
@@ -660,11 +696,18 @@ static bool8 DexNavPickTile(enum EncounterType environment, u8 areaX, u8 areaY, 
                     if (IsElevationMismatchAt(gObjectEvents[gPlayerAvatar.spriteId].currentElevation, topX, topY))
                         break;
 
-                    weight = (Random() % scale <= 1) && !MapGridGetCollisionAt(topX, topY);
+                    eligible = !MapGridGetCollisionAt(topX, topY);
+                    weight = (Random() % scale <= 1) && eligible;
                 }
                 break;
             default:
                 break;
+            }
+
+            if (eligible && Random() % ++numEligible == 0)
+            {
+                fallbackX = topX;
+                fallbackY = topY;
             }
 
             if (weight > 0)
@@ -686,6 +729,12 @@ static bool8 DexNavPickTile(enum EncounterType environment, u8 areaX, u8 areaY, 
         i = Random() % iter;
         sDexNavSearchDataPtr->tileX = xPos[i];
         sDexNavSearchDataPtr->tileY = yPos[i];
+        ret = TRUE;
+    }
+    else if (numEligible > 0)
+    {
+        sDexNavSearchDataPtr->tileX = fallbackX;
+        sDexNavSearchDataPtr->tileY = fallbackY;
         ret = TRUE;
     }
 
@@ -784,7 +833,7 @@ static u8 GetSearchLevel(u16 species)
 {
     u8 searchLevel;
 #if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    searchLevel = gSaveBlock3Ptr->dexNavSearchLevels[species];
+    searchLevel = gSaveBlock3Ptr->dexNavSearchLevels[SpeciesToNationalPokedexNum(species)];
 #else
     searchLevel = 0;
 #endif
@@ -1483,6 +1532,37 @@ static u8 DexNavGeneratePotential(u8 searchLevel)
     return 0;   // No potential
 }
 
+// Crystal Imperium: Wild Variety Pokemon are found at the levels of the area's own Pokemon
+static u8 GetVarietyEncounterLevel(enum EncounterType environment)
+{
+    u32 headerId = GetCurrentMapWildMonHeaderId();
+    const struct WildPokemonInfo *info = NULL;
+    u32 i, count = 0;
+    u8 min = MAX_LEVEL, max = 0;
+
+    if (headerId == HEADER_NONE)
+        return MON_LEVEL_NONEXISTENT;
+    if (environment == ENCOUNTER_TYPE_LAND)
+    {
+        info = gWildMonHeaders[headerId].encounterTypes[GetTimeOfDayForEncounters(headerId, WILD_AREA_LAND)].landMonsInfo;
+        count = LAND_WILD_COUNT;
+    }
+    else if (environment == ENCOUNTER_TYPE_WATER)
+    {
+        info = gWildMonHeaders[headerId].encounterTypes[GetTimeOfDayForEncounters(headerId, WILD_AREA_WATER)].waterMonsInfo;
+        count = WATER_WILD_COUNT;
+    }
+    if (info == NULL)
+        return MON_LEVEL_NONEXISTENT;
+
+    for (i = 0; i < count; i++)
+    {
+        min = min < info->wildPokemon[i].minLevel ? min : info->wildPokemon[i].minLevel;
+        max = max > info->wildPokemon[i].maxLevel ? max : info->wildPokemon[i].maxLevel;
+    }
+    return RandomUniform(RNG_DEXNAV_ENCOUNTER_LEVEL, min, max);
+}
+
 static u8 GetEncounterLevelFromMapData(u16 species, enum EncounterType environment)
 {
     u32 headerId = GetCurrentMapWildMonHeaderId();
@@ -1555,7 +1635,11 @@ static u8 GetEncounterLevelFromMapData(u16 species, enum EncounterType environme
     }
 
     if (max == 0)
+    {
+        if (WildVariety_IsSearchable(species))
+            return GetVarietyEncounterLevel(environment);
         return MON_LEVEL_NONEXISTENT;
+    }
 
     return RandomUniform(RNG_DEXNAV_ENCOUNTER_LEVEL, min, max);
 }
@@ -1832,6 +1916,8 @@ static void DexNav_InitWindows(void)
 
 static void DexNavGuiFreeResources(void)
 {
+    TRY_FREE_AND_SET_NULL(sDexNavUiDataPtr->pickerSpecies);
+    TRY_FREE_AND_SET_NULL(sDexNavUiDataPtr->pickerItems);
     Free(sDexNavUiDataPtr);
     Free(sBg1TilemapBuffer);
     FreeAllWindowBuffers();
@@ -2095,11 +2181,16 @@ static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 
 static void PrintCurrentSpeciesInfo(void)
 {
-    u16 species = DexNavGetSpecies();
+    PrintSpeciesInfo(DexNavGetSpecies(), FALSE);
+}
+
+// showUnseen: the "any Pokemon" list names every Pokemon, seen or not
+static void PrintSpeciesInfo(u16 species, bool32 showUnseen)
+{
     enum NationalDexOrder dexNum = SpeciesToNationalPokedexNum(species);
     enum Type type1, type2;
 
-    if (!GetSetPokedexFlag(dexNum, FLAG_GET_SEEN))
+    if (!showUnseen && !GetSetPokedexFlag(dexNum, FLAG_GET_SEEN))
         species = SPECIES_NONE;
 
     // clear windows
@@ -2445,6 +2536,19 @@ static void Task_DexNavMain(u8 taskId)
         PlaySE(SE_RG_BAG_CURSOR);
         UpdateCursorPosition();
     }
+    else if (JOY_NEW(SELECT_BUTTON))
+    {
+        // Crystal Imperium: search for any Pokemon
+        if (OpenSpeciesPicker())
+        {
+            PlaySE(SE_SELECT);
+            task->func = Task_DexNavPicker;
+        }
+        else
+        {
+            PlaySE(SE_FAILURE);
+        }
+    }
     else if (JOY_NEW(R_BUTTON))
     {
         // check selection is valid. Play sound if invalid
@@ -2480,6 +2584,162 @@ static void Task_DexNavMain(u8 taskId)
             BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
             task->func = Task_DexNavExitAndSearch;
         }
+    }
+}
+
+////////////////////////////////////
+//// ANY POKEMON (Crystal Imperium) ////
+////////////////////////////////////
+// SELECT in DexNav lists every Pokemon Wild Variety can turn up. A searches for the chosen one
+// right away, START registers it for the R button, B goes back. DexNav finds it at the levels of
+// the area's own Pokemon: on the water if it is Water-type and the area has water encounters.
+static bool32 GetPickerEnvironment(u16 species, enum EncounterType *environment)
+{
+    u32 headerId = GetCurrentMapWildMonHeaderId();
+    bool32 land, water;
+
+    if (headerId == HEADER_NONE)
+        return FALSE;
+    land = gWildMonHeaders[headerId].encounterTypes[GetTimeOfDayForEncounters(headerId, WILD_AREA_LAND)].landMonsInfo != NULL;
+    water = gWildMonHeaders[headerId].encounterTypes[GetTimeOfDayForEncounters(headerId, WILD_AREA_WATER)].waterMonsInfo != NULL;
+    if (water && (IsSpeciesOfType(species, TYPE_WATER) || !land))
+        *environment = ENCOUNTER_TYPE_WATER;
+    else if (land)
+        *environment = ENCOUNTER_TYPE_LAND;
+    else
+        return FALSE;
+    return TRUE;
+}
+
+static void PickerMoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *list)
+{
+    PrintSpeciesInfo(sDexNavUiDataPtr->pickerSpecies[itemIndex], TRUE);
+}
+
+static void PrintPickerHelp(void)
+{
+    FillWindowPixelBuffer(WINDOW_REGISTERED, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
+    AddTextPrinterParameterized3(WINDOW_REGISTERED, FONT_NORMAL, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, sText_DexNav_PickerHelp);
+    CopyWindowToVram(WINDOW_REGISTERED, COPYWIN_GFX);
+}
+
+static bool32 OpenSpeciesPicker(void)
+{
+    struct ListMenuTemplate template = {0};
+    u32 i, count;
+
+    if (GetCurrentMapWildMonHeaderId() == HEADER_NONE)
+        return FALSE;
+    sDexNavUiDataPtr->pickerSpecies = Alloc(PICKER_MAX * sizeof(u16));
+    sDexNavUiDataPtr->pickerItems = Alloc(PICKER_MAX * sizeof(struct ListMenuItem));
+    count = 0;
+    if (sDexNavUiDataPtr->pickerSpecies != NULL && sDexNavUiDataPtr->pickerItems != NULL)
+        count = WildVariety_GetSearchableSpecies(sDexNavUiDataPtr->pickerSpecies, PICKER_MAX);
+    if (count == 0)
+    {
+        TRY_FREE_AND_SET_NULL(sDexNavUiDataPtr->pickerSpecies);
+        TRY_FREE_AND_SET_NULL(sDexNavUiDataPtr->pickerItems);
+        return FALSE;
+    }
+    for (i = 0; i < count; i++)
+    {
+        sDexNavUiDataPtr->pickerItems[i].name = GetSpeciesName(sDexNavUiDataPtr->pickerSpecies[i]);
+        sDexNavUiDataPtr->pickerItems[i].id = i;
+    }
+    sDexNavUiDataPtr->pickerCount = count;
+
+    // Sprites (the area's Pokemon icons, the cursor) are hidden behind the list
+    SetGpuReg(REG_OFFSET_WIN0H, WIN_RANGE(8, 152));
+    SetGpuReg(REG_OFFSET_WIN0V, WIN_RANGE(24, 152));
+    SetGpuReg(REG_OFFSET_WININ, WININ_WIN0_BG_ALL);
+    SetGpuReg(REG_OFFSET_WINOUT, WINOUT_WIN01_BG_ALL | WINOUT_WIN01_OBJ);
+    SetGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
+
+    sDexNavUiDataPtr->pickerWindowId = AddWindow(&sDexNavPickerWindowTemplate);
+    FillWindowPixelBuffer(sDexNavUiDataPtr->pickerWindowId, PIXEL_FILL(TEXT_COLOR_WHITE));
+    PutWindowTilemap(sDexNavUiDataPtr->pickerWindowId);
+
+    template.items = sDexNavUiDataPtr->pickerItems;
+    template.moveCursorFunc = PickerMoveCursor;
+    template.totalItems = count;
+    template.maxShowed = 8;
+    template.windowId = sDexNavUiDataPtr->pickerWindowId;
+    template.item_X = 8;
+    template.upText_Y = 1;
+    template.cursorPal = TEXT_COLOR_DARK_GRAY;
+    template.fillValue = TEXT_COLOR_WHITE;
+    template.cursorShadowPal = TEXT_COLOR_LIGHT_GRAY;
+    template.scrollMultiple = LIST_MULTIPLE_SCROLL_L_R;
+    template.fontId = FONT_NORMAL;
+    template.cursorKind = CURSOR_BLACK_ARROW;
+    if (sDexNavUiDataPtr->pickerScroll + sDexNavUiDataPtr->pickerRow >= count)
+        sDexNavUiDataPtr->pickerScroll = sDexNavUiDataPtr->pickerRow = 0;
+    sDexNavUiDataPtr->pickerListTaskId = ListMenuInit(&template, sDexNavUiDataPtr->pickerScroll, sDexNavUiDataPtr->pickerRow);
+    CopyWindowToVram(sDexNavUiDataPtr->pickerWindowId, COPYWIN_FULL);
+    PrintPickerHelp();
+    return TRUE;
+}
+
+static void CloseSpeciesPicker(void)
+{
+    DestroyListMenuTask(sDexNavUiDataPtr->pickerListTaskId, &sDexNavUiDataPtr->pickerScroll, &sDexNavUiDataPtr->pickerRow);
+    ClearWindowTilemap(sDexNavUiDataPtr->pickerWindowId);
+    RemoveWindow(sDexNavUiDataPtr->pickerWindowId);
+    ScheduleBgCopyTilemapToVram(0);
+    ClearGpuRegBits(REG_OFFSET_DISPCNT, DISPCNT_WIN0_ON);
+    TRY_FREE_AND_SET_NULL(sDexNavUiDataPtr->pickerSpecies);
+    TRY_FREE_AND_SET_NULL(sDexNavUiDataPtr->pickerItems);
+    PrintSearchableSpecies(VarGet(DN_VAR_SPECIES) & DEXNAV_MASK_SPECIES);
+    CopyWindowToVram(WINDOW_REGISTERED, COPYWIN_GFX);
+    PrintCurrentSpeciesInfo();
+}
+
+static void Task_DexNavPicker(u8 taskId)
+{
+    s32 input = ListMenu_ProcessInput(sDexNavUiDataPtr->pickerListTaskId);
+    enum EncounterType environment;
+    u16 species, scroll, row;
+
+    if (JOY_NEW(START_BUTTON))
+    {
+        ListMenuGetScrollAndRow(sDexNavUiDataPtr->pickerListTaskId, &scroll, &row);
+        species = sDexNavUiDataPtr->pickerSpecies[scroll + row];
+        if (!GetPickerEnvironment(species, &environment))
+        {
+            PlaySE(SE_FAILURE);
+            return;
+        }
+        VarSet(DN_VAR_SPECIES, (environment << 14) | species);
+        PlayCry_Script(species, 0);
+        CloseSpeciesPicker();
+        gTasks[taskId].func = Task_DexNavMain;
+        return;
+    }
+
+    switch (input)
+    {
+    case LIST_NOTHING_CHOSEN:
+        break;
+    case LIST_CANCEL:
+        PlaySE(SE_SELECT);
+        CloseSpeciesPicker();
+        gTasks[taskId].func = Task_DexNavMain;
+        break;
+    default:
+        species = sDexNavUiDataPtr->pickerSpecies[input];
+        if (!GetPickerEnvironment(species, &environment))
+        {
+            PlaySE(SE_FAILURE);
+            break;
+        }
+        CloseSpeciesPicker();
+        gSpecialVar_0x8000 = species;
+        gSpecialVar_0x8001 = environment;
+        gSpecialVar_0x8002 = FALSE;
+        PlaySE(SE_DEX_SEARCH);
+        BeginNormalPaletteFade(0xFFFFFFFF, 0, 0, 16, RGB_BLACK);
+        gTasks[taskId].func = Task_DexNavExitAndSearch;
+        break;
     }
 }
 
@@ -2671,8 +2931,9 @@ u32 CalculateDexNavShinyRolls(void)
 void TryIncrementSpeciesSearchLevel()
 {
 #if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gSaveBlock3Ptr->dexNavSearchLevels[gDexNavSpecies] < 255)
-        gSaveBlock3Ptr->dexNavSearchLevels[gDexNavSpecies]++;
+    u32 dexNum = SpeciesToNationalPokedexNum(gDexNavSpecies);
+    if (gMapHeader.regionMapSectionId != MAPSEC_BATTLE_FRONTIER && gSaveBlock3Ptr->dexNavSearchLevels[dexNum] < 255)
+        gSaveBlock3Ptr->dexNavSearchLevels[dexNum]++;
 #endif
 }
 

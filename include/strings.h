@@ -2409,6 +2409,7 @@ extern const u8 gText_Cancel3[];
 extern const u8 gText_Obtained999RareCandies[];
 extern const u8 gText_InfiniteRepelOn[];
 extern const u8 gText_InfiniteRepelOff[];
+extern const u8 gText_PokeVialHealed[];
 
 // Exp. Share
 extern const u8 gText_ExpShareOn[];

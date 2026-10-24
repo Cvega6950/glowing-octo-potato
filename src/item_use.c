@@ -1609,6 +1609,28 @@ void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
         DisplayItemMessage(taskId, FONT_NORMAL, message, CloseItemMessage);
 }
 
+// Crystal Imperium: a Pokemon Center heal that works anywhere, as often as needed.
+// With a Nuzlocke running, fainted Pokemon stay fainted.
+void ItemUseOutOfBattle_PokeVial(u8 taskId)
+{
+    u32 i;
+    bool32 nuzlocke = IsNuzlockeActive() || IsNuzlockeEasyActive();
+
+    for (i = 0; i < gPlayerPartyCount; i++)
+    {
+        if (nuzlocke && GetMonData(&gPlayerParty[i], MON_DATA_HP) == 0
+         && !GetMonData(&gPlayerParty[i], MON_DATA_IS_EGG))
+            continue;
+        HealPokemon(&gPlayerParty[i]);
+    }
+    PlaySE(SE_USE_ITEM);
+
+    if (gTasks[taskId].tUsingRegisteredKeyItem)
+        DisplayItemMessageOnField(taskId, gText_PokeVialHealed, Task_CloseCantUseKeyItemMessage);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_PokeVialHealed, CloseItemMessage);
+}
+
 void ItemUseOutOfBattle_PokeBall(u8 taskId)
 {
     gItemUseCB = ItemUseCB_PokeBall;

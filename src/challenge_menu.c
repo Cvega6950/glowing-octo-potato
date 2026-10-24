@@ -64,6 +64,8 @@ enum {
 };
 
 enum {
+    ITEM_FEATURES_EASY_CATCH,
+    ITEM_FEATURES_WILD_VARIETY,
     ITEM_FEATURES_RTC_TYPE,
     ITEM_FEATURES_SHINY_CHANCE,
     ITEM_FEATURES_SHINY_COLOR,
@@ -661,7 +663,41 @@ static const u8 *const sDesc_FeaturesNext[] = {
     COMPOUND_STRING("Continue to Randomizer options."),
 };
 
+static const u8 *const sDesc_EasyCatch[] = {
+    COMPOUND_STRING("Catch rates work as usual."),
+    COMPOUND_STRING("Every POKé BALL catches the wild\n{PKMN} on the first throw."),
+};
+
+static const u8 *const sChoices_WildVariety[] = {
+    COMPOUND_STRING("OFF"),
+    COMPOUND_STRING("15%"),
+    COMPOUND_STRING("30%"),
+    COMPOUND_STRING("60%"),
+};
+static const u8 *const sDesc_WildVariety[] = {
+    COMPOUND_STRING("Only the usual {PKMN} of each area."),
+    COMPOUND_STRING("15% of wild {PKMN} can be any {PKMN}\nof Gen 1-9, at the area's level."),
+    COMPOUND_STRING("30% of wild {PKMN} can be any {PKMN}\nof Gen 1-9, at the area's level."),
+    COMPOUND_STRING("60% of wild {PKMN} can be any {PKMN}\nof Gen 1-9, at the area's level."),
+};
+
+// The menu lists OFF / 15% / 30% / 60%; the save stores 30% as 0 so older saves get it
+static const u8 sWildVarietyFromMenu[] = { 2, 3, 0, 1 };
+static const u8 sWildVarietyToMenu[] = { 2, 3, 0, 1 };
+
 static const struct ChallengeMenuItem sTabItems_Features[] = {
+    [ITEM_FEATURES_EASY_CATCH] = {
+        .name         = COMPOUND_STRING("EASY CATCH"),
+        .descriptions = sDesc_EasyCatch,
+        .numChoices   = 2,
+        .choiceNames  = sChoices_OffOn,
+    },
+    [ITEM_FEATURES_WILD_VARIETY] = {
+        .name         = COMPOUND_STRING("WILD VARIETY"),
+        .descriptions = sDesc_WildVariety,
+        .numChoices   = 4,
+        .choiceNames  = sChoices_WildVariety,
+    },
     [ITEM_FEATURES_RTC_TYPE] = {
         .name         = COMPOUND_STRING("CLOCK TYPE"),
         .descriptions = sDesc_RtcType,
@@ -2029,6 +2065,8 @@ static void Task_ConfirmSaveYes(u8 taskId)
     cs->genOneRecharge             = *GetSelectionPtr(TAB_MODE, ITEM_MODE_GEN_ONE_RECHARGE);
 
     // Features tab
+    cs->tx_Features_EasyCatchOff   = !*GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_EASY_CATCH);
+    cs->tx_Features_WildVariety    = sWildVarietyFromMenu[*GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_WILD_VARIETY)];
     cs->tx_Features_RTCType        = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_TYPE);
     cs->tx_Features_ShinyChance    = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_SHINY_CHANCE);
     cs->tx_Features_WildMonDropItems = *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_ITEM_DROP);
@@ -2270,6 +2308,8 @@ void CB2_InitChallengeMenu(void)
                 *GetSelectionPtr(TAB_MODE, ITEM_MODE_GAMEMODE) = 1; // CUSTOM
 
             // Features tab
+            *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_EASY_CATCH)   = !cs->tx_Features_EasyCatchOff;
+            *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_WILD_VARIETY) = sWildVarietyToMenu[cs->tx_Features_WildVariety];
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_RTC_TYPE)     = cs->tx_Features_RTCType;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_SHINY_CHANCE) = cs->tx_Features_ShinyChance;
             *GetSelectionPtr(TAB_FEATURES, ITEM_FEATURES_ITEM_DROP)    = cs->tx_Features_WildMonDropItems;

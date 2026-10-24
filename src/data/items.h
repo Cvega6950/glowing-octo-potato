@@ -16491,6 +16491,22 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_Mint,
         .iconPalette = gItemIconPalette_GreenMint,
     },
+
+    [ITEM_POKE_VIAL] =
+    {
+        .name = ITEM_NAME("POKéVIAL"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Fully heals the\n"
+            "party outside battle.\n"
+            "Never runs out."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_PokeVial,
+        .iconPic = gItemIcon_LargePotion,
+        .iconPalette = gItemIconPalette_FullRestore,
+    },
 };
 
 #undef ITEM_NAME
