@@ -247,10 +247,23 @@ the Cyndaquil versions are shown.
 
 ### Notes from the play tests
 
-- **Lance** first had three Dragon Dance users (Mega Gyarados, Salamence, Dragonite). The
-  all-round prepared six (no held items, one move per Pokémon, never switching) lost all six
-  tries even after the change to one, while a six built for him (Electric, Fairy and Ice
-  attackers) wins about one in three. He is the wall of the Johto League on purpose: bring
-  counters to Dragons and Mega Gyarados.
+The autopilot plays naively (no switching, no items, one move per Pokémon), so its win
+counts are lower bounds. Counts are mGBA / VBA-M (the emulators' battle RNG differs).
+
+- **Elite Four** (`bosses_e4`, six tries each at cap 56): the all-round prepared six beat Will
+  2 / 1 times and Koga 5 / 5 times. Bruno, Karen and Lance need a plan: sixes built for them
+  (Psychic and Flying attackers for Bruno; Fairy, Fighting and Rock for Karen; Fairy and Ice
+  for Lance) beat Bruno 2 / 3 times, Karen 2 / 1 times and Lance 2 / 1 times in six.
+- **Lance** first had three Dragon Dance users (Mega Gyarados, Salamence, Dragonite): the
+  all-round six lost all six tries on mGBA. With only Dragonite setting up, his Charizard still
+  Roosted behind two Full Restores, and three different sixes built for him lost all nine tries
+  on VBA-M. Now Charizard attacks (Dragon Pulse instead of Roost), and a six built for him wins
+  2 / 1 times in six. He is still the wall of the Johto League: bring answers to Dragons and
+  Mega Gyarados.
+- **Bruno's and Blue's Machamp** have Close Combat instead of No Guard Dynamic Punch, which
+  confused a non-switching team every turn (Blue beat every team in all six tries before).
 - **Kanto** is level 70 everywhere, so the leaders can be taken in any order. In one try each
-  at the cap, the prepared six beat Lt. Surge, Erika and Sabrina and lost to the others.
+  at the cap, the prepared six beat Lt. Surge and Erika on both emulators, Sabrina on mGBA and
+  Blaine on VBA-M, and lost to the others. A six built for Blue beats him 2 / 1 times in 3.
+- **Red** is the postgame superboss: a six built for him lost at level 90 and won 2 / 2 of
+  3 tries at level 100 (there is no level cap after the Kanto League).

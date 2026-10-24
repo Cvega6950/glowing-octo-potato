@@ -41,9 +41,10 @@ expect16 {gBattleMons} 921 player_mega_evolved_to_ampharos_mega
 # Leave the battle: the debug battle menu is not needed, just lose the rest by soft reset
 reset
 
-# Boss AI Mega Evolution: Lance's lead Gyarados holds Gyaradosite
+# Boss AI Mega Evolution: Lance's lead Gyarados holds Gyaradosite. The player leads with Golem,
+# which Gyarados beats, so the smart AI stays in (against an Electric type it may switch out)
 !new_game()
-!give_mon(181, 50)
+!give_mon(76, 50)
 !battle_trainer(441)
 wait 300
 press A

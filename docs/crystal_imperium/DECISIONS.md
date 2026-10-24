@@ -289,12 +289,24 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
     held items, one move per Pokémon, never switching) wins at least one of three against each
     Johto Gym Leader, and every boss Mega Evolution happens.
   - `bosses_m4`: every Rocket executive, rival and Kimono Girl battle plays to a result against
-    the prepared six at the cap; it beats each Elite Four member and Lance at least once in
-    three tries; every Mega Evolution happens.
-  - `bosses_m5`: every Kanto battle plays to a result at the cap, and the win counts are
-    reported in TESTING.md (the prepared six, which never switches, loses most of them; a
-    player who switches and heals does better). With the six at level 100 every battle reaches
-    the boss's ace and every Mega Evolution happens.
+    the prepared six at the cap, and Archer's and the rival's Megas happen.
+  - `bosses_e4`: six tries each at cap 56. The prepared six beat Will 2 and 1 times (mGBA,
+    VBA-M) and Koga 5 and 5 times; sixes built for them beat Bruno 2 and 3 times, Karen 2 and
+    1 times and Lance 2 and 1 times. Every Mega Evolution happens.
+  - `bosses_m5`: at cap 70 the prepared six won one try each against Lt. Surge and Erika on
+    both emulators, Sabrina on mGBA and Blaine on VBA-M, and lost the others; a six built for
+    Blue beat him 2 and 1 times in 3. A six built for Red lost at level 90 and beat him 2 times
+    in 3 at level 100. With the prepared six at level 100 every Kanto leader's and Blue's Mega
+    Evolution happens.
+- The autopilot never switches, uses one move per Pokémon and holds no items, so these are
+  lower bounds; a player who switches, heals and uses held items does better. Each boss was
+  checked to be beatable by some team without items; the ones it couldn't beat were changed:
+  - Lance first had three Dragon Dance users, and the all-round six lost all six tries. With
+    only Dragonite setting up, his Roosting Charizard and two Full Restores still beat three
+    different sixes built for him in all nine tries on VBA-M. Now Mega Gyarados has Thunder
+    Wave, Salamence Dual Wingbeat, and Charizard Dragon Pulse instead of Roost.
+  - Blue's and Bruno's Machamp have Close Combat instead of No Guard Dynamic Punch (a
+    guaranteed confusion every turn): Blue had beaten every team in all six tries.
 - Still Heart & Soul teams (with the smart AI): Gym Leader and Elite Four rematches and the
   other postgame battles.
 

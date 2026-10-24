@@ -27,37 +27,44 @@ cartridge clock starts at a fixed time (2026-10-24 01:30 UTC, night in the game)
 with emulated time on both emulators. Battle results depend on the RNG, which depends on the
 code and on the emulator, so balance checks sample several battles and accept a range.
 
-Results on the 0.4.1 ROM (SHA-1 `7b01c7490944acdbfd80a7d6994fca55a478ec44`), 2026-10-24:
-all 23 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
+Results on the 0.5.0 ROM (SHA-1 `0272546c92c463b4254086267ce95ac4ac3cfa70`), 2026-10-24:
+all 30 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
 that each test requires to be inside its accepted range.
 
 | Test | Covers | mGBA | VBA-M (Delta's core) |
 |---|---|---|---|
 | `autorun` | Real story path (clock scene, Mom's Running Shoes); AUTORUN off: walk, B runs; on: run, B walks | **PASS** | **PASS** |
-| `bug_contest` | Wild Variety is skipped in Bug-Catching Contest mode (0 of 12) and applies outside it | **PASS** (variety_in_contest 0/12, variety_outside_contest 8/12) | **PASS** (variety_in_contest 0/12, variety_outside_contest 9/12) |
-| `bugsy` | Bugsy leads Spinarak; naive team wins some, not all, of 5 sampled battles | **PASS** (wins_vs_404 3/5) | **PASS** (wins_vs_404 3/5) |
+| `bosses_e4` | Elite Four and Lance at cap 56, six tries each: Will and Koga vs the prepared six, Bruno, Karen and Lance vs sixes built for them; each beaten at least once; every Mega happens | **PASS** (wins vs Will 2/6, wins vs Koga 5/6, wins vs Bruno 2/6, wins vs Karen 2/6, wins vs Lance 2/6) | **PASS** (wins vs Will 1/6, wins vs Koga 5/6, wins vs Bruno 3/6, wins vs Karen 1/6, wins vs Lance 1/6) |
+| `bosses_m3` | Proton, the rival (Azalea, Burned Tower), Morty, every version of Chuck/Jasmine/Pryce, Clair: each battle plays to a result; the naive team loses; a prepared six at the cap beats each Gym Leader at least once in 3; every boss Mega Evolves | **PASS** (wins vs Morty 2/3, wins vs Chuck 2/3, wins vs Jasmine 2/3, wins vs Pryce 1/3, wins vs Clair 2/3) | **PASS** (wins vs Morty 2/3, wins vs Chuck 3/3, wins vs Jasmine 3/3, wins vs Pryce 1/3, wins vs Clair 2/3) |
+| `bosses_m4` | Rocket executives (Hideout, Radio Tower), rival 4–5, the five Kimono Girls: each battle plays to a result against the prepared six at the cap; Archer's and the rival's Megas happen | **PASS** | **PASS** |
+| `bosses_m5` | Kanto leaders at cap 70 vs the prepared six (one try each, tallied); a six built for Blue beats him at least once in 3; a six built for Red, once at level 90 (tallied) and at least once in 3 at level 100; with the six at 100, every leader's and Blue's Mega happens | **PASS** (wins vs Brock 0/1, wins vs Misty 0/1, wins vs Lt. Surge 1/1, wins vs Erika 1/1, wins vs Janine 0/1, wins vs Sabrina 1/1, wins vs Blaine 0/1, wins vs Blue 2/3, wins vs Red (level 90) 0/1, wins vs Red (level 100) 2/3) | **PASS** (wins vs Brock 0/1, wins vs Misty 0/1, wins vs Lt. Surge 1/1, wins vs Erika 1/1, wins vs Janine 0/1, wins vs Sabrina 0/1, wins vs Blaine 1/1, wins vs Blue 1/3, wins vs Red (level 90) 0/1, wins vs Red (level 100) 2/3) |
+| `bug_contest` | Wild Variety is skipped in Bug-Catching Contest mode (0 of 12) and applies outside it | **PASS** (variety_in_contest 0/12, variety_outside_contest 6/12) | **PASS** (variety_in_contest 0/12, variety_outside_contest 9/12) |
+| `bugsy` | Bugsy leads Spinarak; naive team wins some, not all, of 5 sampled battles | **PASS** (wins vs Bugsy 3/5) | **PASS** (wins vs Bugsy 3/5) |
 | `care_packages` | 8 badge packages, one per step, then the Champion package; bag contents checked | **PASS** | **PASS** |
 | `dexnav` | With nothing seen, the area's Pokémon are shown; register Rattata with R, R-search, walk up (no sneaking), battle, catch; search level and chain rise | **PASS** | **PASS** |
 | `dexnav_any` | Hidden row on Route 29; SELECT lists all 1,074 Pokémon (Ivysaur, Mewtwo); jump 100; register Squirtle; search Charmander, run up with Auto Run, battle | **PASS** | **PASS** |
-| `dexnav_hidden` | Detector mode finds hidden Pokémon while walking; creeping up starts the battle | **PASS** (hidden_detected 3/12, hidden_battle 3/12) | **PASS** (hidden_detected 4/12, hidden_battle 4/12) |
+| `dexnav_hidden` | Detector mode finds hidden Pokémon while walking; creeping up starts the battle | **PASS** (hidden_detected 1/12, hidden_battle 1/12) | **PASS** (hidden_detected 4/12, hidden_battle 4/12) |
 | `difficulty` | Falkner's party at 90% levels on EASY and 110% on HARD | **PASS** | **PASS** |
 | `easy_catch` | Catch rate 3 caught by one Poké Ball with EASY CATCH on; two balls fail with it off | **PASS** | **PASS** |
 | `falkner` | Minimal Grinding stats (31 IV / 0 EV); Falkner leads Pidgey; battle against the real AI runs to a result | **PASS** | **PASS** |
 | `flower_shop` | Goldenrod Flower Shop sells Mints, Ability Capsule and Ability Patch after badge 3 | **PASS** | **PASS** |
 | `gym_trainers_m2` | All eight Azalea/Goldenrod Gym trainer battles load; the singles play to a result | **PASS** | **PASS** |
+| `hm_field_moves` | A lone Magikarp (can't learn the moves) cuts the Route 29 tree, opens the Fly map from its party menu and surfs, with only the HMs and badges | **PASS** | **PASS** |
 | `infinite_repel` | Infinite Repel on: 80 grass steps without a battle; off: a battle | **PASS** | **PASS** |
-| `mega_evolution` | Player's Ampharos Mega Evolves with R; Lance's Gyarados Mega Evolves on turn 1 | **PASS** | **PASS** |
+| `mega_evolution` | Player's Ampharos Mega Evolves with R; Lance's Gyarados Mega Evolves on turn 1 (against a Golem lead) | **PASS** | **PASS** |
 | `mega_specialist` | Mega Ring gift after badge 3; stone shop tiers | **PASS** | **PASS** |
 | `pokevial` | PokéVial in the bag from a new game; heals HP and poison, twice | **PASS** | **PASS** |
 | `qol_items` | Rare Candy Box gives 999 candies and stops at the level cap; Box Link opens the PC on a route | **PASS** | **PASS** |
 | `relearner_training_kit` | Training Kit natures and ability (checked in battle); party-menu relearner teaches an egg move | **PASS** | **PASS** |
 | `save_load` | In-game save, hard reset, Continue | **PASS** | **PASS** |
 | `story_opening` | Real story path, no debug: Elm's intro, Cyndaquil from the middle ball, Elm's errand, the aide's Potion, Route 29 and a wild battle | **PASS** | **PASS** |
-| `tm_reusable` | One TM teaches two Pokémon and stays in the bag; the move is used in battle | **PASS** | **PASS** |
-| `whitney` | Whitney leads Clefairy; naive team wins some, not all, of 12 sampled battles | **PASS** (wins_vs_406 3/12) | **PASS** (wins_vs_406 5/12) |
-| `wild_variety` | Route 29 at 30%: other Gen 1–9 Pokémon appear; OFF: none | **PASS** (variety_30 4/12, variety_off 0/12) | **PASS** (variety_30 3/12, variety_off 0/12) |
+| `tm_case` | TM163 Temper Flare teaches Cyndaquil (used in battle); all 198 TMs and 8 HMs fill the case; save, reset and Continue keep them | **PASS** | **PASS** |
+| `tm_reusable` | One TM teaches two Pokémon and stays in the bag, then a third through the party menu's relearner; the move is used in battle | **PASS** | **PASS** |
+| `tm_shop` | Goldenrod 5F TM shop: 71 / 155 / 178 / 198 TMs at 0 / 3 / 6 (without Jasmine's badge) / 8 badges; buying TM03 and TM01 works | **PASS** | **PASS** |
+| `whitney` | Whitney leads Clefairy; naive team wins some, not all, of 12 sampled battles | **PASS** (wins vs Whitney 3/12) | **PASS** (wins vs Whitney 3/12) |
+| `wild_variety` | Route 29 at 30%: other Gen 1–9 Pokémon appear; OFF: none | **PASS** (variety_30 5/12, variety_off 0/12) | **PASS** (variety_30 3/12, variety_off 0/12) |
 
-Save compatibility (`old_save_test.sh`), same ROM, on mGBA and on VBA-M: OLDSAVE_RESULT.
+Save compatibility (`old_save_test.sh`), same ROM, on mGBA and on VBA-M: **PASS** on both.
 - A Heart & Soul 2.0.6 save (new game, one Pokémon, TM70, TM03 and HM01 from the debug menu,
   saved) continues in Crystal Imperium.
 - The party is kept.
