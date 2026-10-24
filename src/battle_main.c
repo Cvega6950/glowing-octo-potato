@@ -2001,6 +2001,27 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
+// Crystal Imperium difficulty selection: trainers that have no dedicated Easy/Hard party in the
+// .party data use their Normal party, scaled to 90% (EASY) or 110% (HARD) of its levels.
+static bool8 sScaleTrainerLevels;
+
+static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
+{
+    if (!sScaleTrainerLevels)
+        return level;
+    switch (GetCurrentDifficultyLevel())
+    {
+    case DIFFICULTY_EASY:
+        level = (level * 9) / 10;
+        return level < 1 ? 1 : level;
+    case DIFFICULTY_HARD:
+        level = (level * 11 + 5) / 10;
+        return level > MAX_LEVEL ? MAX_LEVEL : level;
+    default:
+        return level;
+    }
+}
+
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
@@ -2064,7 +2085,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 #if RANDOMIZER_AVAILABLE == TRUE
                 species = RandomizeTrainerMon(trainer->trainerClass, i, monsCount, species);
                 #endif
-                CreateMon(&party[i], species, partyData[monIndex].lvl, personalityValue, otId);
+                CreateMon(&party[i], species, GetDifficultyAdjustedTrainerLevel(partyData[monIndex].lvl), personalityValue, otId);
             }
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
@@ -2181,6 +2202,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 retVal;
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
+    sScaleTrainerLevels = (!gIsDebugBattle
+                           && GetCurrentDifficultyLevel() != DIFFICULTY_NORMAL
+                           && GetTrainerDifficultyLevel(trainerNum) == DIFFICULTY_NORMAL);
     if (GetTrainerStructFromId(trainerNum)->overrideTrainer)
     {
         struct Trainer tempTrainer;
@@ -2199,6 +2223,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     {
         retVal = CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum), firstTrainer, gBattleTypeFlags);
     }
+    sScaleTrainerLevels = FALSE;
     return retVal;
 }
 

@@ -28,10 +28,17 @@ def number(target, initial=1):
     return out
 
 
-def new_game():
-    """Power-on to the bedroom in New Bark Town with default settings (Minimal Grinding ON)."""
+def new_game(difficulty=None):
+    """Power-on to the bedroom in New Bark Town with default settings (Minimal Grinding ON).
+    difficulty="EASY" or "HARD" picks that DIFFICULTY in the challenge menu's Difficulty tab."""
     out = ["wait 1300", "press START", "wait 60", "press A", "wait 500", "mash A 900", "mash A 900", "mash A 700"]
-    out += ["press R", "wait 20"] * 5 + ["wait 10", "press UP", "wait 30", "press A", "wait 120", "press A", "wait 120"]
+    if difficulty:
+        # Difficulty tab; DIFFICULTY is its first row and starts at NORMAL (EASY / NORMAL / HARD)
+        out += ["press R", "wait 20"] * 4 + ["press " + {"EASY": "LEFT", "HARD": "RIGHT"}[difficulty], "wait 20",
+                                               "shot difficulty_tab.png", "press R", "wait 20"]
+    else:
+        out += ["press R", "wait 20"] * 5
+    out += ["wait 10", "press UP", "wait 30", "press A", "wait 120", "press A", "wait 120"]
     out += ["mash A 1500", "mash A 1200", "wait 300"]
     return out
 
@@ -45,6 +52,34 @@ def start_menu(entry):
     return ["press START", "wait 40",
             f"menuselect {{sStartMenuCursorPos}} {{sCurrentStartMenuActions}} {{sNumStartMenuActions}} {START_MENU[entry]}",
             "wait 120"]
+
+
+def leave_bedroom_get_running_shoes():
+    """From the new-game bedroom: the wall-clock scene, downstairs, Mom's intro (Pokegear and
+    Running Shoes), then out of the front door into New Bark Town at (20, 12). Real story path."""
+    out = walkto(6, 6) + walkto(6, 4, "yx") + walkto(9, 4) + walkto(9, 3, "yx", soft=True)
+    # "The clock is stopped..." -> clock screen: confirm, answer YES to "Is this the correct time?"
+    out += ["wait 200", "mash A 400", "press A", "wait 120", "press UP", "wait 20", "press A", "wait 200",
+            "mash A 200", "wait 300"]
+    # The stairs are entered by walking left from (9, 2)
+    out += walkto(9, 2, soft=True) + ["hold LEFT 16", "wait 200"]
+    # 1F: stepping to (10, 3) starts Mom's intro
+    out += walkto(10, 3, soft=True) + ["wait 100", "mash A 1500", "mash A 1500"]
+    out += walkto(9, 8, soft=True) + ["hold DOWN 16", "wait 200"]
+    return out
+
+
+OPTION_ROWS = {"TEXTSPEED": 0, "BATTLESCENE": 1, "BATTLESTYLE": 2, "BUTTONMODE": 3, "FOLLOWER": 4,
+               "LARGE_FOLLOWER": 5, "AUTORUN": 6}
+
+
+def option_set(row, choice):
+    """START > OPTION, move to `row` (main tab) and set it to choice index `choice` (0 = left-most,
+    e.g. ON in an ON/OFF row). Leaving with B saves the options."""
+    out = start_menu("OPTION") + ["press DOWN", "wait 10"] * OPTION_ROWS[row]
+    out += ["press LEFT", "wait 10"] * 3 + ["press RIGHT", "wait 10"] * choice
+    out += [f"shot option_{row.lower()}.png", "press B", "wait 120", "press B", "wait 60"]
+    return out
 
 
 def battle_style_set():

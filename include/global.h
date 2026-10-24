@@ -340,7 +340,14 @@ struct ChallengeSettings
     u8 tx_Features_ShinyChance:4;
     // Crystal Imperium: uses spare bits of the byte above, so older saves read it as OFF
     u8 tx_Difficulty_MinimalGrinding:1;
+    u8 tx_Difficulty_Preset:2; // CHALLENGE_DIFFICULTY_*; stored 0 is NORMAL so older saves keep it
 };
+
+// Crystal Imperium difficulty selection as stored in ChallengeSettings.tx_Difficulty_Preset.
+// GetCurrentDifficultyLevel() maps it onto the engine's enum DifficultyLevel.
+#define CHALLENGE_DIFFICULTY_NORMAL 0
+#define CHALLENGE_DIFFICULTY_EASY   1
+#define CHALLENGE_DIFFICULTY_HARD   2
 
 struct SaveBlock3
 {

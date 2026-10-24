@@ -107,6 +107,7 @@ enum {
 };
 
 enum {
+    ITEM_DIFFICULTY_PRESET,
     ITEM_DIFFICULTY_MIN_GRINDING,
     ITEM_DIFFICULTY_PARTY_LIMIT,
     ITEM_DIFFICULTY_LEVEL_CAP,
@@ -208,6 +209,7 @@ static const u8 sMidGameLockPolicy[TAB_COUNT * MAX_ITEMS_PER_TAB] = {
     [TAB_NUZLOCKE * MAX_ITEMS_PER_TAB + ITEM_NUZLOCKE_DELETION]       = LOCK_ONEWAY_DOWN,
     [TAB_NUZLOCKE * MAX_ITEMS_PER_TAB + ITEM_NUZLOCKE_RARE_CANDY]     = LOCK_FULL,
     // TAB_DIFFICULTY
+    [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_PRESET]         = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_MIN_GRINDING]   = LOCK_FREE,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_PARTY_LIMIT]    = LOCK_ONEWAY_DOWN,
     [TAB_DIFFICULTY * MAX_ITEMS_PER_TAB + ITEM_DIFFICULTY_LEVEL_CAP]      = LOCK_ONEWAY_DOWN,
@@ -968,6 +970,21 @@ static const struct ChallengeMenuItem sTabItems_Nuzlocke[] = {
 // DIFFICULTY descriptions + table
 // =============================================================================
 
+static const u8 *const sChoices_DifficultyPreset[] = {
+    COMPOUND_STRING("EASY"),
+    COMPOUND_STRING("NORMAL"),
+    COMPOUND_STRING("HARD"),
+};
+static const u8 *const sDesc_DifficultyPreset[] = {
+    COMPOUND_STRING("Trainer {PKMN} are 10% lower level\nand trainers can't use items."),
+    COMPOUND_STRING("Crystal Imperium as designed:\ncompetitive teams at fair levels."),
+    COMPOUND_STRING("Trainer {PKMN} are 10% higher level\nand level caps are HARD."),
+};
+
+// The menu lists EASY / NORMAL / HARD; the save stores NORMAL as 0 so older saves stay NORMAL.
+static const u8 sDifficultyPresetFromMenu[] = { CHALLENGE_DIFFICULTY_EASY, CHALLENGE_DIFFICULTY_NORMAL, CHALLENGE_DIFFICULTY_HARD };
+static const u8 sDifficultyPresetToMenu[] = { [CHALLENGE_DIFFICULTY_NORMAL] = 1, [CHALLENGE_DIFFICULTY_EASY] = 0, [CHALLENGE_DIFFICULTY_HARD] = 2 };
+
 static const u8 *const sDesc_MinGrinding[] = {
     COMPOUND_STRING("IVs and EVs work as usual for all\n{PKMN}."),
     COMPOUND_STRING("All {PKMN} battle as if they had\nperfect IVs and zero EVs. No grind!"),
@@ -1029,6 +1046,12 @@ static const u8 *const sDesc_DifficultyNext[] = {
 };
 
 static const struct ChallengeMenuItem sTabItems_Difficulty[] = {
+    [ITEM_DIFFICULTY_PRESET] = {
+        .name         = COMPOUND_STRING("DIFFICULTY"),
+        .descriptions = sDesc_DifficultyPreset,
+        .numChoices   = 3,
+        .choiceNames  = sChoices_DifficultyPreset,
+    },
     [ITEM_DIFFICULTY_MIN_GRINDING] = {
         .name         = COMPOUND_STRING("MIN. GRINDING"),
         .descriptions = sDesc_MinGrinding,
@@ -1833,6 +1856,15 @@ static void ProcessLeftRight(void)
         if (sMenu->currentTab == TAB_MODE && itemIndex == ITEM_MODE_GAMEMODE && *sel == 0)
             ApplyRecommendedPresets();
 
+        // Difficulty presets also set the related HnS options
+        if (sMenu->currentTab == TAB_DIFFICULTY && itemIndex == ITEM_DIFFICULTY_PRESET)
+        {
+            if (*sel == 0) // EASY
+                *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_ITEM_TRAINER) = 1; // trainers: NO items
+            else if (*sel == 2) // HARD
+                *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_LEVEL_CAP) = 2; // HARD caps
+        }
+
         // Minimal Grinding ON — pair it with progression level caps and faster EXP
         if (sMenu->currentTab == TAB_DIFFICULTY && itemIndex == ITEM_DIFFICULTY_MIN_GRINDING && *sel == 1)
         {
@@ -2078,6 +2110,7 @@ static void Task_ConfirmSaveYes(u8 taskId)
     }
 
     // Difficulty tab
+    cs->tx_Difficulty_Preset          = sDifficultyPresetFromMenu[*GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_PRESET)];
     cs->tx_Difficulty_MinimalGrinding = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_MIN_GRINDING);
     cs->tx_Challenges_PartyLimit      = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_PARTY_LIMIT);
     cs->tx_Challenges_LevelCap        = *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_LEVEL_CAP);
@@ -2285,6 +2318,7 @@ void CB2_InitChallengeMenu(void)
             *GetSelectionPtr(TAB_NUZLOCKE, ITEM_NUZLOCKE_RARE_CANDY)     = !cs->tx_Nuzlocke_RareCandy;
 
             // Difficulty tab
+            *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_PRESET)         = sDifficultyPresetToMenu[cs->tx_Difficulty_Preset];
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_MIN_GRINDING)   = cs->tx_Difficulty_MinimalGrinding;
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_PARTY_LIMIT)    = cs->tx_Challenges_PartyLimit;
             *GetSelectionPtr(TAB_DIFFICULTY, ITEM_DIFFICULTY_LEVEL_CAP)      = cs->tx_Challenges_LevelCap;

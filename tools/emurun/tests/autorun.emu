@@ -1,0 +1,32 @@
+# Crystal Imperium play test: Auto Run, toggled in START > OPTION > AUTORUN.
+# The Running Shoes come from Mom's intro on the real story path. Then, on New Bark Town's open
+# row y = 13, the player holds LEFT for 32 frames per check: walking covers 2 tiles, running 4.
+#   AUTORUN OFF: LEFT walks, B+LEFT runs.   AUTORUN ON: LEFT runs, B+LEFT walks.
+# SaveBlock1 pos is at +4 (x) / +6 (y).
+!new_game()
+!leave_bedroom_get_running_shoes()
+!expect_flag("FLAG_SYS_B_DASH", 1, "mom_gives_running_shoes")
+expect16 *{gSaveBlock1Ptr}+4 20 outside_player_house_x
+expect16 *{gSaveBlock1Ptr}+6 12 outside_player_house_y
+!walkto(24, 13, "yx")
+# One step left so the player faces left
+!walkto(23, 13)
+
+# Auto Run OFF (fresh new game; the default is OFF and the menu says so)
+!option_set("AUTORUN", 1)
+hold LEFT 32
+wait 30
+expect16 *{gSaveBlock1Ptr}+4 21 autorun_off_left_walks_2_tiles
+hold B+LEFT 32
+wait 30
+expect16 *{gSaveBlock1Ptr}+4 17 autorun_off_b_runs_4_tiles
+
+# Auto Run ON
+!option_set("AUTORUN", 0)
+hold LEFT 32
+wait 30
+expect16 *{gSaveBlock1Ptr}+4 13 autorun_on_left_runs_4_tiles
+hold B+LEFT 32
+wait 30
+expect16 *{gSaveBlock1Ptr}+4 11 autorun_on_b_walks_2_tiles
+shot autorun_done.png

@@ -11,6 +11,7 @@
 //   peek8/peek16/peek32 ADDR [LABEL]   print memory value
 //   expect8/expect16/expect32 ADDR VALUE [LABEL]   fail (exit 2) if mismatch
 //   expectne8/expectne16/expectne32 ADDR VALUE [LABEL]   fail (exit 2) if equal
+//   (peek/expect ADDR may be *PTR+OFF: the pointer stored at PTR plus OFF, e.g. *{gSaveBlock1Ptr}+4)
 //   savestate/loadstate FILE   write or restore a full emulator state
 //   poke8/poke16/poke32 ADDR VALUE   write memory
 //   reset                  soft reset the core
@@ -141,6 +142,18 @@ static uint32_t Peek(int size, uint32_t addr)
     case 16: return core->busRead16(core, addr);
     default: return core->busRead32(core, addr);
     }
+}
+
+// An address is a number, or *PTR+OFF: the 32-bit pointer stored at PTR, plus OFF
+static uint32_t ParseAddr(const char *text)
+{
+    char *end;
+    if (text[0] != '*')
+        return strtoul(text, NULL, 0);
+    uint32_t addr = Peek(32, strtoul(text + 1, &end, 0));
+    if (*end == '+')
+        addr += strtoul(end + 1, NULL, 0);
+    return addr;
 }
 
 // Battle autopilot. Reads the game's battle state each frame and answers whatever input it is
@@ -363,14 +376,14 @@ int main(int argc, char **argv)
         else if (!strncmp(cmd, "peek", 4))
         {
             int size = atoi(cmd + 4);
-            uint32_t addr = strtoul(a1, NULL, 0);
+            uint32_t addr = ParseAddr(a1);
             printf("[frame %lu] %s @0x%08X = 0x%X (%u)\n", frameCount, n > 2 ? a2 : "peek", addr, Peek(size, addr), Peek(size, addr));
         }
         else if (!strncmp(cmd, "expectne", 8) || (!strncmp(cmd, "expect", 6) && cmd[6] >= '0' && cmd[6] <= '9'))
         {
             int negate = !strncmp(cmd, "expectne", 8);
             int size = atoi(cmd + (negate ? 8 : 6));
-            uint32_t addr = strtoul(a1, NULL, 0), want = strtoul(a2, NULL, 0), got = Peek(size, addr);
+            uint32_t addr = ParseAddr(a1), want = strtoul(a2, NULL, 0), got = Peek(size, addr);
             int ok = negate ? got != want : got == want;
             printf("[frame %lu] %s %s: @0x%08X = 0x%X (%s 0x%X)\n", frameCount, ok ? "PASS" : "FAIL",
                    n > 3 ? a3 : "expect", addr, got, negate ? "must not be" : "want", want);
