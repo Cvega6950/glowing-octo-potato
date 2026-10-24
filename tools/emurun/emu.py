@@ -180,6 +180,21 @@ def expect_bag_has(pocket, item, label=None):
     return [f"expectfind16 *{{gSaveBlock1Ptr}}+{v['off']} {v['count']} {v['stride']} {v[item]} {label or 'bag_has_' + item.lower()}"]
 
 
+def fill_pocket(pocket, item):
+    """Fill every slot of a bag pocket (struct Bag field) with one item, so no other item fits."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock1, bag.{pocket})",
+                       "count": f"ARRAY_COUNT(((struct SaveBlock1 *)0)->bag.{pocket})",
+                       "stride": "sizeof(struct ItemSlot)", item: item})
+    return [f"poke16 *{{gSaveBlock1Ptr}}+{v['off'] + i * v['stride']} {v[item]}" for i in range(v["count"])]
+
+
+def expect_pc_has(item, label=None):
+    """Check that the PC's item storage (SaveBlock1 pcItems) holds the item."""
+    v = probe.resolve({"off": "offsetof(struct SaveBlock1, pcItems)", "count": "PC_ITEMS_COUNT",
+                       "stride": "sizeof(struct ItemSlot)", item: item})
+    return [f"expectfind16 *{{gSaveBlock1Ptr}}+{v['off']} {v['count']} {v['stride']} {v[item]} {label or 'pc_has_' + item.lower()}"]
+
+
 def care_package_steps(count):
     """Step back and forth on Route 29's (33,11)-(34,11) and read through each package that arrives."""
     out = []
@@ -433,9 +448,15 @@ def give_mon_complex(species, level, nature, ability_slot, moves):
     return out
 
 
-def prepared_team(level):
+# Held items for the prepared six (prepared_team with items=True), in party order: all from the
+# first three care packages, so a player has them from the 3rd badge on (DECISIONS.md D16)
+PREPARED_TEAM_ITEMS = ["ITEM_LIFE_ORB", "ITEM_LEFTOVERS", "ITEM_CHOICE_SPECS", "ITEM_FOCUS_SASH",
+                       "ITEM_CHOICE_BAND", "ITEM_EXPERT_BELT"]
+
+
+def prepared_team(level, items=False):
     """A strong, well-built six: what a player can put together with DexNav, Rare Candies, the
-    relearner, TMs and the Training Kit. No held items."""
+    relearner, TMs and the Training Kit. With items, each holds one of PREPARED_TEAM_ITEMS."""
     out = []
     for sp, nature, ability, moves in (
             ("SPECIES_TYRANITAR", "NATURE_ADAMANT", 0, ["MOVE_CRUNCH", "MOVE_STONE_EDGE", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"]),
@@ -445,6 +466,9 @@ def prepared_team(level):
             ("SPECIES_ARCANINE", "NATURE_ADAMANT", 0, ["MOVE_FLARE_BLITZ", "MOVE_EXTREME_SPEED", "MOVE_WILD_CHARGE", "MOVE_CRUNCH"]),
             ("SPECIES_AMPHAROS", "NATURE_MODEST", 0, ["MOVE_THUNDERBOLT", "MOVE_DRAGON_PULSE", "MOVE_FOCUS_BLAST", "MOVE_POWER_GEM"])):
         out += give_mon_complex(sp, level, nature, ability, moves)
+    if items:
+        for slot, item in enumerate(PREPARED_TEAM_ITEMS):
+            out += hold_item(item, slot)
     return out
 
 

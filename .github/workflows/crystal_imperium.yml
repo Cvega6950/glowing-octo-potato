@@ -24,6 +24,7 @@ jobs:
         run: |
           python3 tools/crystal_imperium/validate.py --check
           python3 tools/crystal_imperium/boss_teams.py --check
+          python3 tools/crystal_imperium/care_packages.py --check
           python3 tools/crystal_imperium/tm_list.py --check
 
       - name: Build ROM

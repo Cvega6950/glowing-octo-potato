@@ -2,18 +2,44 @@
 # A package arrives on the first step (on a route or in a town) after each milestone: every
 # Gym Badge and becoming Champion. VAR_CARE_PACKAGES counts the packages received. The badges
 # and the Champion flag are set with the debug menu here; the delivery is the real game code.
+# Each package lists its contents, then fills the Bag with battle gear (held items, PP Max,
+# X items, Berries) besides supplies and evolution items; an item whose pocket is full goes to
+# the PC (tools/crystal_imperium/care_packages.py writes the script). A save from before 0.7.0,
+# whose packages came without the gear, gets it one package per step (VAR_CARE_PACKAGE_GEAR).
 !new_game()
 !give_mon(155, 5)
 !warp(0, 11, 0)
 !walkto(33, 11)
 !walkto(34, 11)
 !expect_var("VAR_CARE_PACKAGES", 0, "no_package_without_milestones")
+savestate route29.ss
 
 # The eight Johto badges: one package per step until all eight have arrived
 !debug_flags_menu(10)
 !care_package_steps(8)
 shot 01_after_badge_packages.png
 !expect_var("VAR_CARE_PACKAGES", 8, "eight_badge_packages")
+# Held items
+!expect_bag_has("items", "ITEM_LEFTOVERS")
+!expect_bag_has("items", "ITEM_LIFE_ORB")
+!expect_bag_has("items", "ITEM_FOCUS_SASH")
+!expect_bag_has("items", "ITEM_CHOICE_SCARF")
+!expect_bag_has("items", "ITEM_ASSAULT_VEST")
+!expect_bag_has("items", "ITEM_HEAVY_DUTY_BOOTS")
+!expect_bag_has("items", "ITEM_WEAKNESS_POLICY")
+!expect_bag_has("items", "ITEM_BOOSTER_ENERGY")
+!expect_bag_has("items", "ITEM_FAIRY_FEATHER")
+# PP and battle items
+!expect_bag_has("medicine", "ITEM_PP_UP")
+!expect_bag_has("medicine", "ITEM_PP_MAX")
+!expect_bag_has("medicine", "ITEM_MAX_ELIXIR")
+!expect_bag_has("medicine", "ITEM_X_ATTACK")
+# Berries: Sitrus, Lum and the type-resist ones
+!expect_bag_has("berries", "ITEM_SITRUS_BERRY")
+!expect_bag_has("berries", "ITEM_LUM_BERRY")
+!expect_bag_has("berries", "ITEM_OCCA_BERRY")
+!expect_bag_has("berries", "ITEM_ROSELI_BERRY")
+# Evolution items found nowhere else
 !expect_bag_has("items", "ITEM_LINKING_CORD")
 !expect_bag_has("items", "ITEM_UPGRADE")
 !expect_bag_has("items", "ITEM_PRISM_SCALE")
@@ -31,3 +57,50 @@ shot 02_after_champion_package.png
 !expect_var("VAR_CARE_PACKAGES", 9, "champion_package")
 !expect_bag_has("pokeBalls", "ITEM_MASTER_BALL")
 !expect_bag_has("keyItems", "ITEM_SCROLL_OF_DARKNESS")
+!expect_bag_has("berries", "ITEM_LIECHI_BERRY")
+!expect_bag_has("items", "ITEM_CHOICE_BAND")
+!expect_var("VAR_CARE_PACKAGE_GEAR", 9, "new_game_gear_keeps_up")
+
+# A full Berries pocket: the first package's Berries go to the PC, the rest to the Bag
+loadstate route29.ss
+!fill_pocket("berries", "ITEM_CHERI_BERRY")
+!set_flag("FLAG_BADGE01_GET")
+!walkto(33, 11, soft=True)
+wait 150
+press A
+wait 200
+shot 03_package_contents.png
+mash A 2400
+!expect_var("VAR_CARE_PACKAGES", 1, "first_package_with_full_berry_pocket")
+!expect_pc_has("ITEM_SITRUS_BERRY", "sitrus_berries_sent_to_pc")
+!expect_pc_has("ITEM_LUM_BERRY", "lum_berries_sent_to_pc")
+!expect_bag_has("items", "ITEM_LEFTOVERS", "leftovers_still_in_bag")
+!expect_bag_has("medicine", "ITEM_PP_MAX", "pp_max_still_in_bag")
+
+# A save from before 0.7.0: eight packages received, with their earlier contents and no gear.
+# The next eight steps bring each one's battle gear; then the Champion's package arrives whole.
+loadstate route29.ss
+!debug_flags_menu(10)
+!set_var("VAR_CARE_PACKAGES", 8)
+!walkto(33, 11, soft=True)
+wait 150
+shot 04_old_save_gear.png
+mash A 2400
+!expect_var("VAR_CARE_PACKAGE_GEAR", 1, "old_save_first_gear")
+!expect_var("VAR_CARE_PACKAGES", 8, "old_save_no_new_package_yet")
+!expect_bag_has("items", "ITEM_LEFTOVERS", "old_save_gets_leftovers")
+!walkto(34, 11, soft=True)
+wait 30
+mash A 2400
+!care_package_steps(6)
+!expect_var("VAR_CARE_PACKAGE_GEAR", 8, "old_save_all_eight_gears")
+!expect_var("VAR_CARE_PACKAGES", 8, "old_save_still_eight_packages")
+!expect_bag_has("items", "ITEM_BOOSTER_ENERGY", "old_save_gets_booster_energy")
+!expect_bag_has("medicine", "ITEM_PP_MAX", "old_save_gets_pp_max")
+!debug_flags_menu(11)
+!walkto(33, 11, soft=True)
+wait 30
+mash A 2400
+!expect_var("VAR_CARE_PACKAGES", 9, "old_save_champion_package")
+!expect_var("VAR_CARE_PACKAGE_GEAR", 9, "old_save_gear_caught_up")
+!expect_bag_has("pokeBalls", "ITEM_MASTER_BALL", "old_save_champion_master_ball")

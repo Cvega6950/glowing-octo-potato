@@ -135,7 +135,7 @@
 #define VAR_UNUSED_HNS_0x40E3                            0x40E3 // Emerald VAR_GIFT_UNUSED_6 - see Mystery Gift block above
 #define VAR_UNUSED_HNS_0x40E4                            0x40E4 // Emerald VAR_GIFT_UNUSED_7 - see Mystery Gift block above
 
-#define VAR_UNUSED_HNS_0x40E5                            0x40E5 // Emerald VAR_UNUSED_0x40E5 - no references in any build
+#define VAR_CARE_PACKAGE_GEAR                            0x40E5 // Crystal Imperium: care packages whose 0.7.0 gear has arrived (was Emerald VAR_UNUSED_0x40E5, no references in any build)
 
 // !!! UNSAFE: daily counters. Written by universal engine code that runs during
 // !!! normal HnS gameplay. Do NOT claim these addresses for HnS content.

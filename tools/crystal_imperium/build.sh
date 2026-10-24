@@ -5,6 +5,8 @@
 set -eu
 cd "$(dirname "$0")/../.."
 python3 tools/crystal_imperium/validate.py --check
+python3 tools/crystal_imperium/boss_teams.py --check
+python3 tools/crystal_imperium/care_packages.py --check
 make -j"$(nproc)" hns
 cp pokehns.gba CrystalImperium.gba
 echo "Built CrystalImperium.gba ($(sha1sum CrystalImperium.gba | cut -d' ' -f1))"
