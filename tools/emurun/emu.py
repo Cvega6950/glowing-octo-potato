@@ -194,6 +194,12 @@ def use_key_item(index):
     return out
 
 
+def set_flag(flag, value=1):
+    """Set (1) or clear (0) an event flag by constant name, e.g. set_flag("FLAG_SYS_GAME_CLEAR")."""
+    v = probe.resolve({"flags": "offsetof(struct SaveBlock1, flags)", flag: flag})
+    return [f"setflag {{gSaveBlock1Ptr}} {v['flags']} {v[flag]} {value}"]
+
+
 def expect_flag(flag, want, label=None):
     """Check an event flag by constant name, e.g. expect_flag("FLAG_INFINITE_REPEL_ON", 1)."""
     v = probe.resolve({"flags": "offsetof(struct SaveBlock1, flags)", flag: flag})
@@ -220,16 +226,21 @@ def tally_species_not_in(name, *species):
 
 
 ROUTE29_SPECIES = ("SPECIES_PIDGEY", "SPECIES_SENTRET", "SPECIES_HOPPIP", "SPECIES_RATTATA", "SPECIES_HOOTHOOT")
+NATIONAL_PARK_SPECIES = ("SPECIES_CATERPIE", "SPECIES_NIDORAN_F", "SPECIES_NIDORAN_M", "SPECIES_SCYTHER", "SPECIES_SUNKERN",
+                         "SPECIES_WEEDLE", "SPECIES_HOOTHOOT", "SPECIES_MURKROW", "SPECIES_PSYDUCK", "SPECIES_SPINARAK",
+                         "SPECIES_VENONAT")
 
 
-def wild_variety_sample(name, runs, state="route29.ss"):
-    """From a saved state at Route 29's grass edge, walk into the grass until a wild battle
-    starts, `runs` times at different frame offsets, tallying wild Pokemon that are not one of
-    Route 29's own. Each battle is left by loading the state again."""
+def wild_variety_sample(name, runs, state="route29.ss", grass=(24, 21, 25, 14), species=ROUTE29_SPECIES):
+    """From a saved state at a grass edge, walk into the grass until a wild battle starts, `runs`
+    times at different frame offsets, tallying wild Pokemon that are not one of the area's own
+    `species`. grass = (entry x, pace from x, pace to x, row y), Route 29's by default. Each
+    battle is left by loading the state again."""
+    entry, x1, x2, y = grass
     out = []
     for k in range(runs):
-        out += [f"loadstate {state}", f"wait {1 + 23 * k}"] + walkto(24, 14, soft=True) + pace(21, 25, 14, 10, soft=True)
-        out += ["wait 300", f"shot {name}_{k:02d}.png"] + tally_species_not_in(name, *ROUTE29_SPECIES)
+        out += [f"loadstate {state}", f"wait {1 + 23 * k}"] + walkto(entry, y, soft=True) + pace(x1, x2, y, 10, soft=True)
+        out += ["wait 300", f"shot {name}_{k:02d}.png"] + tally_species_not_in(name, *species)
     return out
 
 

@@ -28,6 +28,7 @@
 //                          walls. X/Y may be @ADDR~BIAS: an s16 in memory minus BIAS
 //   expectfind16 BASE COUNT STRIDE VALUE [LABEL]   fail unless one of COUNT entries STRIDE bytes apart
 //                          from BASE (which may be *PTR+OFF) holds the 16-bit VALUE
+//   setflag SB1PTR FLAGSOFF FLAG VALUE   set (1) or clear (0) event flag FLAG in (*SB1PTR)->flags
 //   expectflag SB1PTR FLAGSOFF FLAG WANT [LABEL]   check event flag FLAG (0/1) in (*SB1PTR)->flags
 //   seek8/seek16 ADDR TARGET KEYUP KEYDOWN   tap KEYUP while the value at ADDR is below TARGET and
 //                          KEYDOWN while above, until it equals TARGET (at most 32 taps)
@@ -579,6 +580,18 @@ int main(int argc, char **argv)
                    value, i < count ? "found" : "not found");
             if (i == count)
                 failures++;
+        }
+        else if (!strcmp(cmd, "setflag"))
+        {
+            // setflag SB1PTR FLAGSOFF FLAG VALUE: set or clear one event flag in (*SB1PTR)->flags
+            char a4[16] = {0};
+            sscanf(line, "%*s %*s %*s %*s %15s", a4);
+            uint32_t flag = strtoul(a3, NULL, 0);
+            uint32_t addr = Peek(32, strtoul(a1, NULL, 0)) + strtoul(a2, NULL, 0) + flag / 8;
+            uint32_t byte = Peek(8, addr);
+            byte = atoi(a4) ? byte | (1u << (flag % 8)) : byte & ~(1u << (flag % 8));
+            Backend_Write(8, addr, byte);
+            printf("[frame %lu] setflag %u = %d\n", frameCount, flag, atoi(a4) ? 1 : 0);
         }
         else if (!strcmp(cmd, "expectflag"))
         {

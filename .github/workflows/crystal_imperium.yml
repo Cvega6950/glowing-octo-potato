@@ -43,3 +43,27 @@ jobs:
             CrystalImperium.gba
             build/emurun/**/*.png
           retention-days: 30
+
+  # The same play tests on VBA-M at the commit Delta's GBA core (GBADeltaCore) pins, so every
+  # push is also checked on the emulator code Delta runs on iOS.
+  delta-core:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends binutils-arm-none-eabi gcc-arm-none-eabi \
+            libnewlib-arm-none-eabi libpng-dev libmgba-dev python3 g++ zlib1g-dev
+
+      - name: Build ROM
+        run: make -j$(nproc) hns
+
+      - name: Build VBA-M libretro core (Delta's pinned commit)
+        run: tools/emurun/build_vbam_core.sh build/vbam
+
+      - name: Emulator play tests on VBA-M
+        run: EMURUN_CORE=$PWD/build/vbam/src/libretro/vbam_libretro.so tools/emurun/run_all.sh vbam
+

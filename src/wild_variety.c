@@ -6,10 +6,14 @@
 // Pokemon join it after the player becomes Champion. Besides that, DexNav can search for any
 // Pokemon at all, in any evolution stage, on any route with wild encounters.
 #include "global.h"
+#include "battle_pike.h"
+#include "battle_pyramid.h"
+#include "bug_contest.h"
 #include "event_data.h"
 #include "pokemon.h"
 #include "random.h"
 #include "wild_variety.h"
+#include "constants/battle_pyramid.h"
 #include "constants/flags.h"
 
 #define VARIETY_POOL_SIZE 1100
@@ -158,6 +162,9 @@ u16 WildVariety_TryReplaceSpecies(u16 species, u8 level, enum WildPokemonArea ar
     bool32 water = (area == WILD_AREA_WATER || area == WILD_AREA_FISHING);
 
     if (percent == 0 || (area != WILD_AREA_LAND && !water))
+        return species;
+    // The Bug-Catching Contest and the Battle Frontier keep their own Pokemon
+    if (GetBugContestFlag() || InBattlePike() || CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
         return species;
     if (Random() % 100 >= percent)
         return species;

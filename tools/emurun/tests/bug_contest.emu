@@ -1,0 +1,21 @@
+# Crystal Imperium play test: Wild Variety leaves the Bug-Catching Contest alone.
+# Wild Variety skips encounters while FLAG_SYS_BUG_CONTEST_MODE is set. On the National Park
+# (group 24, number 14; its own Pokemon are NATIONAL_PARK_SPECIES), with WILD VARIETY at 60%,
+# twelve wild battles in contest mode (the flag set directly) must all be the park's own
+# Pokemon; the same twelve battles with the flag clear must include other Pokemon.
+# Entrance (12,49); grass rows 28-31, x 10-31.
+!new_game(variety="60%")
+!give_mon(155, 20)
+!warp(24, 14, 0)
+!walkto(20, 32, path=True)
+!set_flag("FLAG_SYS_BUG_CONTEST_MODE", 1)
+savestate contest.ss
+!wild_variety_sample("variety_in_contest", 12, state="contest.ss", grass=(20, 14, 26, 29), species=NATIONAL_PARK_SPECIES)
+expecttally variety_in_contest 0 0
+
+# Same battles without contest mode: Wild Variety applies
+loadstate contest.ss
+!set_flag("FLAG_SYS_BUG_CONTEST_MODE", 0)
+savestate park.ss
+!wild_variety_sample("variety_outside_contest", 12, state="park.ss", grass=(20, 14, 26, 29), species=NATIONAL_PARK_SPECIES)
+expecttally variety_outside_contest 1 12
