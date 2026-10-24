@@ -8,7 +8,7 @@ emurun: emurun.c backend_mgba.c backend.h
 	$(CC) -O2 -Wall -o $@ emurun.c backend_mgba.c -lmgba -lpng
 
 emurun-libretro: emurun.c backend_libretro.c backend.h libretro.h
-	$(CC) -O2 -Wall -o $@ emurun.c backend_libretro.c -ldl -lpng
+	$(CC) -O2 -Wall -Wl,--export-dynamic-symbol=time -o $@ emurun.c backend_libretro.c -ldl -lpng
 
 clean:
 	rm -f emurun emurun-libretro

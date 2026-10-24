@@ -5,6 +5,10 @@
 
 #include <stdint.h>
 
+// The cartridge clock (RTC) starts at this time (2026-10-24 01:30 UTC, night in the game) and
+// advances with emulated time, so play tests behave the same at any hour and on any host
+#define EMURUN_EPOCH 1792805400
+
 // Loads the ROM; `save` (may be NULL) is the cartridge save file, created if missing and
 // written back by Backend_Deinit.
 int Backend_Init(const char *rom, const char *save);

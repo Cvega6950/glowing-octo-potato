@@ -1,8 +1,9 @@
 # Crystal Imperium play test: DexNav finds any Pokemon, and lists hidden Pokemon.
 # On Route 29 the DexNav's HIDDEN row lists three Pokemon from the generated hidden tables
-# (sDexNavUiDataPtr->hiddenSpecies, +40). SELECT opens the list of every Pokemon Wild Variety can
-# turn up, in National Dex order: A searches for one right away, START registers it.
-# Charmander (second on the list) is searched for and battled on Route 29, at Route 29's levels.
+# (sDexNavUiDataPtr->hiddenSpecies, +40). SELECT opens the list of every Pokemon (every stage,
+# Legendaries included) in National Dex order: A searches for one right away, START registers it,
+# LEFT / RIGHT jump 100 entries. Charmander (fourth on the list) is searched for and battled on
+# Route 29, at Route 29's levels. The list (pickerSpecies, a pointer at +64) is read in memory.
 !new_game()
 !give_mon(155, 5)
 !warp(0, 11, 0)
@@ -18,11 +19,16 @@ press SELECT
 wait 60
 shot 02_any_pokemon_list.png
 !expect_const("**{sDexNavUiDataPtr}+64+0", "SPECIES_BULBASAUR", "list_starts_with_bulbasaur")
-# Squirtle (third) is registered with START; Route 29 has no water, so DexNav looks in the grass
-press DOWN
-wait 10
-press DOWN
-wait 10
+!expect_const("**{sDexNavUiDataPtr}+64+2", "SPECIES_IVYSAUR", "evolved_forms_listed")
+!expect_const("**{sDexNavUiDataPtr}+64+298", "SPECIES_MEWTWO", "legendaries_listed_from_the_start")
+# RIGHT jumps 100 entries: No. 101 Electrode; LEFT jumps back
+press RIGHT
+wait 30
+shot 03_jump_100.png
+press LEFT
+wait 30
+# Squirtle (seventh) is registered with START; Route 29 has no water, so DexNav looks in the grass
+!["press DOWN", "wait 10"] * 6
 shot 03_squirtle.png
 press START
 wait 60
@@ -30,8 +36,7 @@ wait 60
 # The list opens again where it was left; up to Charmander and A searches right away
 press SELECT
 wait 60
-press UP
-wait 10
+!["press UP", "wait 10"] * 3
 shot 04_charmander.png
 press A
 wait 300
@@ -46,9 +51,9 @@ press A
 wait 300
 !expect_battler(1, "species", "SPECIES_CHARMANDER", "wild_charmander")
 
-# After becoming Champion, Legendary and Mythical Pokemon join the list (pickerCount, u16 at +58
-# in DexNav's GUI data): 445 base forms before, 567 after (Legendary, Mythical, Ultra Beast and
-# Paradox Pokemon). The numbers follow the species data; update them if it changes.
+# Every Pokemon is listed from the start: the list size (pickerCount, u16 at +58) is 1,074 (1,025
+# National Dex species plus regional forms; update it if the species data changes), the same
+# before and after becoming Champion
 reset
 !new_game()
 !give_mon(155, 5)
@@ -57,7 +62,7 @@ reset
 wait 120
 press SELECT
 wait 60
-expect16 *{sDexNavUiDataPtr}+58 445 list_size_before_champion
+expect16 *{sDexNavUiDataPtr}+58 1074 list_size_before_champion
 shot 07_list_before_champion.png
 press B
 wait 60
@@ -70,5 +75,5 @@ wait 60
 wait 120
 press SELECT
 wait 60
-expect16 *{sDexNavUiDataPtr}+58 567 list_size_after_champion
+expect16 *{sDexNavUiDataPtr}+58 1074 list_size_after_champion
 shot 08_list_after_champion.png

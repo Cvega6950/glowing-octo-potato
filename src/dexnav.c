@@ -139,6 +139,7 @@ struct DexNavGUI
     u16 pickerRow;
     u16 *pickerSpecies;
     struct ListMenuItem *pickerItems;
+    struct ListMenuTemplate pickerTemplate;
 };
 
 // RAM
@@ -197,7 +198,7 @@ static const u32 sHiddenMonIconGfx[] = INCBIN_U32("graphics/dexnav/hidden.4bpp.s
 static const u8 sText_DexNav_NoInfo[] = _("--------");
 static const u8 sText_DexNav_CaptureToSee[] = _("Capture first!");
 static const u8 sText_DexNav_PressRToRegister[] = _("REGISTER  SELECT: ANY {PKMN}");
-static const u8 sText_DexNav_PickerHelp[] = _("A SEARCH  START REGISTER");
+static const u8 sText_DexNav_PickerHelp[] = _("A SEARCH START REGISTER {DPAD_LEFTRIGHT}{PLUS}100");
 static const u8 sText_DexNav_SearchForRegisteredSpecies[] = _("Search {STR_VAR_1}");
 static const u8 sText_DexNav_NotFoundHere[] = _("This Pokémon cannot be found here!");
 static const u8 sText_ThreeQmarks[] = _("???");
@@ -251,7 +252,9 @@ static const struct WindowTemplate sDexNavPickerWindowTemplate =
     .baseBlock = 260,
 };
 
-#define PICKER_MAX 1100
+#define PICKER_MAX 1300
+#define PICKER_ROWS 8
+#define PICKER_JUMP 100 // LEFT / RIGHT
 
 //gui font
 static const u8 sFontColor_Black[3] = {TEXT_COLOR_TRANSPARENT, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
@@ -2590,9 +2593,11 @@ static void Task_DexNavMain(u8 taskId)
 ////////////////////////////////////
 //// ANY POKEMON (Crystal Imperium) ////
 ////////////////////////////////////
-// SELECT in DexNav lists every Pokemon Wild Variety can turn up. A searches for the chosen one
-// right away, START registers it for the R button, B goes back. DexNav finds it at the levels of
-// the area's own Pokemon: on the water if it is Water-type and the area has water encounters.
+// SELECT in DexNav lists every Pokemon of Gen 1-9 (main and regional forms, every evolution stage,
+// Legendaries included), in National Dex order. A searches for the chosen one right away, START
+// registers it for the R button, LEFT / RIGHT jump 100 entries, L / R a page, B goes back. DexNav
+// finds it at the levels of the area's own Pokemon: on the water if it is Water-type and the area
+// has water encounters, otherwise in the grass.
 static bool32 GetPickerEnvironment(u16 species, enum EncounterType *environment)
 {
     u32 headerId = GetCurrentMapWildMonHeaderId();
@@ -2625,7 +2630,7 @@ static void PrintPickerHelp(void)
 
 static bool32 OpenSpeciesPicker(void)
 {
-    struct ListMenuTemplate template = {0};
+    struct ListMenuTemplate *template = &sDexNavUiDataPtr->pickerTemplate;
     u32 i, count;
 
     if (GetCurrentMapWildMonHeaderId() == HEADER_NONE)
@@ -2659,22 +2664,23 @@ static bool32 OpenSpeciesPicker(void)
     FillWindowPixelBuffer(sDexNavUiDataPtr->pickerWindowId, PIXEL_FILL(TEXT_COLOR_WHITE));
     PutWindowTilemap(sDexNavUiDataPtr->pickerWindowId);
 
-    template.items = sDexNavUiDataPtr->pickerItems;
-    template.moveCursorFunc = PickerMoveCursor;
-    template.totalItems = count;
-    template.maxShowed = 8;
-    template.windowId = sDexNavUiDataPtr->pickerWindowId;
-    template.item_X = 8;
-    template.upText_Y = 1;
-    template.cursorPal = TEXT_COLOR_DARK_GRAY;
-    template.fillValue = TEXT_COLOR_WHITE;
-    template.cursorShadowPal = TEXT_COLOR_LIGHT_GRAY;
-    template.scrollMultiple = LIST_MULTIPLE_SCROLL_L_R;
-    template.fontId = FONT_NORMAL;
-    template.cursorKind = CURSOR_BLACK_ARROW;
+    memset(template, 0, sizeof(*template));
+    template->items = sDexNavUiDataPtr->pickerItems;
+    template->moveCursorFunc = PickerMoveCursor;
+    template->totalItems = count;
+    template->maxShowed = PICKER_ROWS;
+    template->windowId = sDexNavUiDataPtr->pickerWindowId;
+    template->item_X = 8;
+    template->upText_Y = 1;
+    template->cursorPal = TEXT_COLOR_DARK_GRAY;
+    template->fillValue = TEXT_COLOR_WHITE;
+    template->cursorShadowPal = TEXT_COLOR_LIGHT_GRAY;
+    template->scrollMultiple = LIST_MULTIPLE_SCROLL_L_R;
+    template->fontId = FONT_NORMAL;
+    template->cursorKind = CURSOR_BLACK_ARROW;
     if (sDexNavUiDataPtr->pickerScroll + sDexNavUiDataPtr->pickerRow >= count)
         sDexNavUiDataPtr->pickerScroll = sDexNavUiDataPtr->pickerRow = 0;
-    sDexNavUiDataPtr->pickerListTaskId = ListMenuInit(&template, sDexNavUiDataPtr->pickerScroll, sDexNavUiDataPtr->pickerRow);
+    sDexNavUiDataPtr->pickerListTaskId = ListMenuInit(template, sDexNavUiDataPtr->pickerScroll, sDexNavUiDataPtr->pickerRow);
     CopyWindowToVram(sDexNavUiDataPtr->pickerWindowId, COPYWIN_FULL);
     PrintPickerHelp();
     return TRUE;
@@ -2694,12 +2700,42 @@ static void CloseSpeciesPicker(void)
     PrintCurrentSpeciesInfo();
 }
 
+// LEFT / RIGHT: move the cursor 100 entries, by opening the list again at the new position
+static void PickerJump(s32 delta)
+{
+    s32 count = sDexNavUiDataPtr->pickerCount, index, scroll;
+    u16 oldScroll, oldRow;
+
+    ListMenuGetScrollAndRow(sDexNavUiDataPtr->pickerListTaskId, &oldScroll, &oldRow);
+    index = oldScroll + oldRow + delta;
+    if (index < 0)
+        index = 0;
+    if (index > count - 1)
+        index = count - 1;
+    scroll = index;
+    if (scroll > count - PICKER_ROWS)
+        scroll = count - PICKER_ROWS;
+    if (scroll < 0)
+        scroll = 0;
+    DestroyListMenuTask(sDexNavUiDataPtr->pickerListTaskId, NULL, NULL);
+    sDexNavUiDataPtr->pickerListTaskId = ListMenuInit(&sDexNavUiDataPtr->pickerTemplate, scroll, index - scroll);
+    CopyWindowToVram(sDexNavUiDataPtr->pickerWindowId, COPYWIN_FULL);
+    PlaySE(SE_SELECT);
+}
+
 static void Task_DexNavPicker(u8 taskId)
 {
-    s32 input = ListMenu_ProcessInput(sDexNavUiDataPtr->pickerListTaskId);
+    s32 input;
     enum EncounterType environment;
     u16 species, scroll, row;
 
+    if (JOY_NEW(DPAD_LEFT) || JOY_NEW(DPAD_RIGHT))
+    {
+        PickerJump(JOY_NEW(DPAD_RIGHT) ? PICKER_JUMP : -PICKER_JUMP);
+        return;
+    }
+
+    input = ListMenu_ProcessInput(sDexNavUiDataPtr->pickerListTaskId);
     if (JOY_NEW(START_BUTTON))
     {
         ListMenuGetScrollAndRow(sDexNavUiDataPtr->pickerListTaskId, &scroll, &row);

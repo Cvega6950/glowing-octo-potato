@@ -165,5 +165,4 @@ CarePackage_Text_Champion:
 	.string "PROF. ELM: Congratulations,\n"
 	.string "CHAMPION!\p"
 	.string "Word is that rare and legendary {PKMN}\n"
-	.string "now show up in the wild, and on the\l"
-	.string "DEXNAV's list of every {PKMN}.$"
+	.string "now show up in the wild!$"

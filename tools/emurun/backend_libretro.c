@@ -8,12 +8,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #define WIDTH 240
 #define HEIGHT 160
 #define MAX_DESCRIPTORS 32
 
 static void *sCore;
+static unsigned long sFrames;
 static const char *sSavePath;
 static unsigned sKeys;
 static uint32_t sVideo[WIDTH * HEIGHT];
@@ -230,6 +232,17 @@ void Backend_RunFrame(unsigned keys)
 {
     sKeys = keys;
     pRun();
+    sFrames++;
+}
+
+// VBA-M's cartridge clock reads time(). The executable exports this definition (see the
+// Makefile), so the core's calls resolve to it: EMURUN_EPOCH plus the emulated time.
+time_t time(time_t *t)
+{
+    time_t now = EMURUN_EPOCH + sFrames / 60;
+    if (t)
+        *t = now;
+    return now;
 }
 
 static uint8_t *Locate(uint32_t addr, int size)

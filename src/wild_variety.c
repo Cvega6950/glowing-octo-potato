@@ -1,10 +1,10 @@
 // Crystal Imperium: Wild Variety.
 // Every Gen 1-9 Pokemon can be found on every route. A share of wild encounters (the WILD VARIETY
 // option) is replaced by a random Pokemon from the variety pool, evolved as far as its level
-// allows, and DexNav can search for any Pokemon in the pool on any route with wild encounters.
-// The pool holds every base form (no pre-evolution), regional base forms included, but not
-// battle-only forms or cosmetic form duplicates. Legendary, Mythical, Ultra Beast and Paradox
-// Pokemon join it after the player becomes Champion.
+// allows. The pool holds every base form (no pre-evolution), regional base forms included, but
+// not battle-only forms or cosmetic form duplicates; Legendary, Mythical, Ultra Beast and Paradox
+// Pokemon join it after the player becomes Champion. Besides that, DexNav can search for any
+// Pokemon at all, in any evolution stage, on any route with wild encounters.
 #include "global.h"
 #include "event_data.h"
 #include "pokemon.h"
@@ -101,12 +101,6 @@ static void BuildPoolIfNeeded(void)
         BuildPool();
 }
 
-static u32 GetSearchablePoolCount(void)
-{
-    BuildPoolIfNeeded();
-    return FlagGet(FLAG_SYS_GAME_CLEAR) ? sPoolCount : sLegendStart;
-}
-
 // The level a wild Pokemon of the given evolution stage (0 = base form) needs to have evolved
 // by this method. Level-up evolutions use their own level; friendship and other condition-only
 // level-ups, stones, trades and special methods use fixed levels.
@@ -188,33 +182,32 @@ u16 WildVariety_TryReplaceSpecies(u16 species, u8 level, enum WildPokemonArea ar
     return species;
 }
 
+// DexNav can search for every Pokemon of Gen 1-9, in its main form and its regional forms
 bool32 WildVariety_IsSearchable(u16 species)
 {
-    u32 i, count = GetSearchablePoolCount();
-
-    for (i = 0; i < count; i++)
-    {
-        if (sPool[i] == species)
-            return TRUE;
-    }
-    return FALSE;
+    return species > SPECIES_NONE && species < NUM_SPECIES && IsWildForm(species)
+        && SpeciesToNationalPokedexNum(species) != 0;
 }
 
-// Fills `species` with every Pokemon DexNav can search for, in National Dex order
+// Fills `species` with every Pokemon DexNav can search for, in National Dex order. HnS gives
+// regional forms their own National Dex numbers, after Pecharunt's.
 u32 WildVariety_GetSearchableSpecies(u16 *species, u32 max)
 {
-    u32 i, j, count = GetSearchablePoolCount();
+    u32 j, count = 0;
+    u16 entry;
 
-    if (count > max)
-        count = max;
-    for (i = 0; i < count; i++)
+    for (entry = SPECIES_NONE + 1; entry < NUM_SPECIES && count < max; entry++)
     {
-        // Insertion sort by National Dex number; regional forms follow their main form
-        u16 entry = sPool[i];
-        u32 dexNum = SpeciesToNationalPokedexNum(entry);
-        for (j = i; j > 0 && SpeciesToNationalPokedexNum(species[j - 1]) > dexNum; j--)
+        u32 dexNum;
+
+        if (!WildVariety_IsSearchable(entry))
+            continue;
+        // Insertion sort; species constants are almost in National Dex order already
+        dexNum = SpeciesToNationalPokedexNum(entry);
+        for (j = count; j > 0 && SpeciesToNationalPokedexNum(species[j - 1]) > dexNum; j--)
             species[j] = species[j - 1];
         species[j] = entry;
+        count++;
     }
     return count;
 }

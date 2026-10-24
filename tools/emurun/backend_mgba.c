@@ -30,6 +30,9 @@ int Backend_Init(const char *rom, const char *save)
         return -1;
     }
     mCoreInitConfig(core, NULL);
+    // Cartridge clock: EMURUN_EPOCH plus the emulated time (milliseconds)
+    core->rtc.override = RTC_FAKE_EPOCH;
+    core->rtc.value = EMURUN_EPOCH * 1000LL;
     core->desiredVideoDimensions(core, &width, &height);
     videoBuffer = calloc(width * height, BYTES_PER_PIXEL);
     core->setVideoBuffer(core, videoBuffer, width);
