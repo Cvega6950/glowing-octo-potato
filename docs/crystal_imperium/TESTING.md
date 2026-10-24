@@ -27,8 +27,8 @@ cartridge clock starts at a fixed time (2026-10-24 01:30 UTC, night in the game)
 with emulated time on both emulators. Battle results depend on the RNG, which depends on the
 code and on the emulator, so balance checks sample several battles and accept a range.
 
-Results on the 0.5.0 ROM (SHA-1 `0272546c92c463b4254086267ce95ac4ac3cfa70`), 2026-10-24:
-all 30 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
+Results on the 0.5.1 ROM (SHA-1 `0c8daf2504c509fe5733b469b724a174ed750149`), 2026-10-24:
+all 33 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
 that each test requires to be inside its accepted range.
 
 | Test | Covers | mGBA | VBA-M (Delta's core) |
@@ -44,6 +44,9 @@ that each test requires to be inside its accepted range.
 | `dexnav` | With nothing seen, the area's Pokémon are shown; register Rattata with R, R-search, walk up (no sneaking), battle, catch; search level and chain rise | **PASS** | **PASS** |
 | `dexnav_any` | Hidden row on Route 29; SELECT lists all 1,074 Pokémon (Ivysaur, Mewtwo); jump 100; register Squirtle; search Charmander, run up with Auto Run, battle | **PASS** | **PASS** |
 | `dexnav_hidden` | Detector mode finds hidden Pokémon while walking; creeping up starts the battle | **PASS** (hidden_detected 1/12, hidden_battle 1/12) | **PASS** (hidden_detected 4/12, hidden_battle 4/12) |
+| `dexnav_randomizer` | Randomizer on for wild Pokémon (map-seeded): DexNav lists Route 29's randomized Pokémon, not Hoothoot and Rattata, and every battle is listed | **PASS** (unrandomized 2/2, random_not_listed 0/12) | **PASS** (unrandomized 2/2, random_not_listed 0/12) |
+| `dexnav_water_match` | New Bark Town: the water row lists Tentacool and 3 Water-type Wild Variety Pokémon; every surfing battle is listed; fishing gives the town's fishing Pokémon or listed ones | **PASS** (fish_battles 7/10, fish 0/10, surf 6/12, surf_not_listed 0/12) | **PASS** (fish_battles 6/10, fish 0/10, surf 5/12, surf_not_listed 0/12) |
+| `dexnav_wild_match` | Route 29: DexNav lists the 2 own and 6 Wild Variety Pokémon and every battle is listed; the next day's set is new and its battles listed; the same day gives the same set; a listed Wild Variety Pokémon is searched for and battled; an outbreak is listed and met | **PASS** (day_a 6/12, day_a_not_listed 0/12, new_on_day_b 6/6, day_b_not_listed 0/8, changed_on_day_a 0/12, search_target 0/1, battle_target 0/1) | **PASS** (day_a 4/12, day_a_not_listed 0/12, new_on_day_b 6/6, day_b_not_listed 0/8, changed_on_day_a 0/12, search_target 0/1, battle_target 0/1) |
 | `difficulty` | Falkner's party at 90% levels on EASY and 110% on HARD | **PASS** | **PASS** |
 | `easy_catch` | Catch rate 3 caught by one Poké Ball with EASY CATCH on; two balls fail with it off | **PASS** | **PASS** |
 | `falkner` | Minimal Grinding stats (31 IV / 0 EV); Falkner leads Pidgey; battle against the real AI runs to a result | **PASS** | **PASS** |
@@ -62,7 +65,7 @@ that each test requires to be inside its accepted range.
 | `tm_reusable` | One TM teaches two Pokémon and stays in the bag, then a third through the party menu's relearner; the move is used in battle | **PASS** | **PASS** |
 | `tm_shop` | Goldenrod 5F TM shop: 71 / 155 / 178 / 198 TMs at 0 / 3 / 6 (without Jasmine's badge) / 8 badges; buying TM03 and TM01 works | **PASS** | **PASS** |
 | `whitney` | Whitney leads Clefairy; naive team wins some, not all, of 12 sampled battles | **PASS** (wins vs Whitney 3/12) | **PASS** (wins vs Whitney 3/12) |
-| `wild_variety` | Route 29 at 30%: other Gen 1–9 Pokémon appear; OFF: none | **PASS** (variety_30 5/12, variety_off 0/12) | **PASS** (variety_30 3/12, variety_off 0/12) |
+| `wild_variety` | Route 29 at 30%: other Gen 1–9 Pokémon appear; OFF: none, and DexNav lists only the route's own Pokémon | **PASS** (variety_30 5/12, variety_off 0/12) | **PASS** (variety_30 3/12, variety_off 0/12) |
 
 Save compatibility (`old_save_test.sh`), same ROM, on mGBA and on VBA-M: **PASS** on both.
 - A Heart & Soul 2.0.6 save (new game, one Pokémon, TM70, TM03 and HM01 from the debug menu,

@@ -68,7 +68,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | Feature | Status | Evidence / notes |
 |---|---|---|
 | Gen 1–9 species data, Fairy type, Hidden Abilities, sprites | Existing | All `P_GEN_*_POKEMON TRUE`. Fairy type is an option (default ON). |
-| Gen 1–9 Pokémon on every route: Wild Variety (default 30%), a daily set per area | Done | emu: `wild_variety` (5 of 12 Route 29 battles were Wild Variety Pokémon; none with it OFF, and DexNav lists none), `dexnav_wild_match` (a new set the next day, the same set on the same day). D14, D24. |
+| Gen 1–9 Pokémon on every route: Wild Variety (default 30%), a daily set per area | Done | emu: `wild_variety` (5 of 12 Route 29 battles on mGBA, 3 on VBA-M, were Wild Variety Pokémon; none with it OFF, and DexNav lists none), `dexnav_wild_match` (a new set the next day, the same set on the same day). D14, D24. |
 | Search for any Pokémon anywhere (DexNav list) | Done | emu: `dexnav_any` (all 1,074 Pokémon listed from the start, including Ivysaur and Mewtwo; LEFT/RIGHT jump 100; Charmander searched for and battled on Route 29). |
 | Legendary and Mythical Pokémon | Done | On the DexNav list from the start (`dexnav_any`); after becoming Champion, a quarter of the day's Wild Variety sets end with one (4 of 16 days on Route 29 in a check run). HnS's own legendary events are unchanged. D24. |
 | Cheat menu (any Pokémon or item) | Existing | HnS's debug menu, compiled in: hold R and press START in the overworld (the play tests use it). |

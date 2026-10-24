@@ -421,8 +421,8 @@ DexNav shows and that wild encounters draw from:
   battles are listed; the first day's set comes back unchanged; a Wild Variety Pokémon picked
   in DexNav is searched for and battled; an outbreak's Pikachu is listed and met),
   `dexnav_water_match` (New Bark Town: Tentacool and three Water-type Wild Variety Pokémon
-  listed; 12 surfing battles all listed; 7 bites in 10 casts, all the town's fishing Pokémon or
-  listed ones), `dexnav_randomizer` (randomized Route 29: 12 Pokémon listed, 12 battles all
+  listed; 12 surfing battles all listed; 7 bites in 10 casts on mGBA, 6 on VBA-M, all the town's
+  fishing Pokémon or listed ones), `dexnav_randomizer` (randomized Route 29: 12 Pokémon listed, 12 battles all
   listed) and `wild_variety` (OFF: only the route's own Pokémon listed and met). On the 0.5.0
   ROM the same checks found 6 of 12 and 12 of 12 battles unlisted. Over 16 days after becoming
   Champion, 4 of Route 29's sets had a legend.
