@@ -21,7 +21,7 @@ From the first step of a new game:
     ones per area. Pick any of them: A searches, R registers.
   - SELECT lists **every** Gen 1–9 Pokémon (all 1,074: every evolution stage, regional
     forms, Legendaries), and you can search for any of them anywhere. LEFT/RIGHT jump 100.
-  - Sneaking up on a Pokémon found by searching (hold A) starts a battle.
+  - Walk or run up to a Pokémon found by searching to battle it: no sneaking needed.
   - R repeats a search for the registered Pokémon.
   - Hidden Pokémon are also detected while walking.
   - Search levels improve the chances of egg moves, Hidden Abilities and held items.

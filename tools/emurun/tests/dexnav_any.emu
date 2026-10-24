@@ -4,9 +4,11 @@
 # Legendaries included) in National Dex order: A searches for one right away, START registers it,
 # LEFT / RIGHT jump 100 entries. Charmander (fourth on the list) is searched for and battled on
 # Route 29, at Route 29's levels. The list (pickerSpecies, a pointer at +64) is read in memory.
+# Auto Run is on, so the player runs up to Charmander; DexNav doesn't need sneaking.
 !new_game()
 !give_mon(155, 5)
 !warp(0, 11, 0)
+!option_set("AUTORUN", 0)
 !use_key_item(1)
 !walkto(34, 14, "yx")
 !walkto(24, 14)
@@ -43,7 +45,7 @@ wait 300
 shot 05_searching_charmander.png
 !expect_flag("FLAG_DEXNAV_SEARCHING", 1, "search_started")
 !expect_const("*{sDexNavSearchDataPtr}+0", "SPECIES_CHARMANDER", "searching_for_charmander")
-!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", creep=True, path=True, soft=True)
+!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", path=True, soft=True)
 wait 400
 shot 06_charmander_battle.png
 expect32 {gMain+4} {BattleMainCB2+1} dexnav_battle_started

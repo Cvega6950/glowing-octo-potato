@@ -221,5 +221,18 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 - Two things still depend on the Pokédex: the Hidden Ability line says "Capture first!" until
   the Pokémon is caught, and DexNav only gives Hidden Abilities to Pokémon caught before
   (upstream rules that reward catching).
-- A hidden Pokémon detected while walking (detector mode) still starts as ???; R or sneaking
+- A hidden Pokémon detected while walking (detector mode) still starts as ???; R or getting
   close reveals it. That is the detector's surprise, not a seen rule.
+
+## D19. DexNav needs no sneaking
+
+- Upstream DexNav ends a search with "The Pokémon got away! Try moving more slowly." when the
+  player walks normally within 2 tiles of the Pokémon (sneaking means holding A) or runs or
+  bikes within 4 tiles. With Auto Run on, the player runs by default, and holding A doesn't
+  sneak (the run takes precedence in the movement code), so searches always failed. The user
+  reported it.
+- Both rules are removed: walking, running and biking all reach the Pokémon, and holding A
+  still sneaks for those who like it. The search ends only when the player moves more than
+  20 tiles away or after `DEXNAV_TIMEOUT`, raised from 15 to 30 seconds.
+- In caves and on water the Pokémon still moves away up to twice when the player gets close
+  at low search levels (upstream behaviour).

@@ -1,8 +1,8 @@
 # Crystal Imperium play test: the DexNav, in the start menu from a new game.
 # Route 29 at night lists Hoothoot and Rattata (second land icon). DexNav shows every Pokemon
 # in the area, seen or not: nothing has been seen yet, and Rattata is registered with R anyway.
-# Close DexNav, press R in the grass to search, creep (hold A) to the rustling tile, and the
-# DexNav battle starts.
+# Close DexNav, press R in the grass to search, walk normally (no sneaking with A) to the
+# rustling tile, and the DexNav battle starts.
 # Catching the DexNav Rattata raises its search level and the DexNav chain. The Infinite Repel
 # keeps random encounters away; it does not stop DexNav encounters.
 # The search target is sDexNavSearchDataPtr: species +0, tileX +18, tileY +20 (map coords + 7).
@@ -41,7 +41,7 @@ wait 200
 shot 03_dexnav_search.png
 !expect_flag("FLAG_DEXNAV_SEARCHING", 1, "r_starts_dexnav_search")
 expect16 *{sDexNavSearchDataPtr}+0 19 searching_for_rattata
-!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", creep=True, path=True, soft=True)
+!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", path=True, soft=True)
 wait 400
 shot 04_dexnav_battle.png
 expect32 {gMain+4} {BattleMainCB2+1} dexnav_battle_started

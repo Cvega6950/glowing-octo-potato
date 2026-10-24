@@ -81,7 +81,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | DexNav in the start menu from the start | Done | emu: `dexnav`. |
 | Area lists (land, water, hidden) | Done | emu: `dexnav`, `dexnav_any` (hidden row on Route 29). |
 | Register (R in DexNav) and search with R in the overworld | Done | emu: `dexnav`. |
-| Search, sneak up (hold A), battle | Done | emu: `dexnav`, `dexnav_any`. |
+| Search, walk or run up (no sneaking needed), battle | Done | emu: `dexnav` (walking), `dexnav_any` (Auto Run), `dexnav_hidden` (sneaking with A). D19. |
 | Search levels and chain | Done | emu: `dexnav` (search level 1 and chain 1 after one DexNav catch). Stored per National Dex number (D13). |
 | Hidden Pokémon detection while walking | Done | emu: `dexnav_hidden` (detections lead to battles). |
 | Area lists show every Pokémon, seen or not (no question marks) | Done | emu: `dexnav` (nothing seen yet; Rattata is shown, registered with R, searched and caught). D18. |

@@ -7,10 +7,17 @@
   of the area's Pokémon (land, water and hidden rows) can be registered with R and searched
   for with A right away. The top bar now reads SELECT: ALL, for the list of every Pokémon.
   A hidden Pokémon detected while walking still shows ??? until R is pressed or the player
-  sneaks close.
+  gets close.
+- **DexNav searches no longer fail with "The Pokémon got away! Try moving more slowly."**
+  Walking, running (Auto Run included) and biking all reach the Pokémon; sneaking with A is
+  optional. Before, walking normally within 2 tiles or running/biking within 4 tiles scared
+  it off, and with Auto Run on there was no way to sneak. A search now lasts 30 seconds
+  (was 15).
 
 ### Tooling
-- `dexnav` registers, searches for and catches a Rattata that has not been seen.
+- `dexnav` registers, searches for and catches a Rattata that has not been seen, walking up
+  to it normally. `dexnav_any` turns Auto Run on and runs up to the Charmander it searched
+  for. Both failed with "Try moving more slowly" before the fix.
 
 ## 0.4.0-experimental (2026-10-24)
 
