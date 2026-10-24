@@ -1014,7 +1014,7 @@ static const u8 *const sChoices_DifficultyPreset[] = {
 static const u8 *const sDesc_DifficultyPreset[] = {
     COMPOUND_STRING("Trainer {PKMN} are 10% lower level\nand trainers can't use items."),
     COMPOUND_STRING("Crystal Imperium as designed:\ncompetitive teams at fair levels."),
-    COMPOUND_STRING("Trainer {PKMN} are 10% higher level\nand level caps are HARD."),
+    COMPOUND_STRING("+10% trainer levels, HARD level caps,\nSET style, no Bag in trainer battles."),
 };
 
 // The menu lists EASY / NORMAL / HARD; the save stores NORMAL as 0 so older saves stay NORMAL.

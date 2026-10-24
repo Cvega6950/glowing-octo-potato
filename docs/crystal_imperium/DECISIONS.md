@@ -426,3 +426,53 @@ DexNav shows and that wild encounters draw from:
   listed) and `wild_variety` (OFF: only the route's own Pokémon listed and met). On the 0.5.0
   ROM the same checks found 6 of 12 and 12 of 12 battles unlisted. Over 16 days after becoming
   Champion, 4 of Route 29's sets had a legend.
+
+## D25. HARD plays by Emerald Imperium's and Radical Red's rules
+
+- The user asked for HARD to match Emerald Imperium's or Radical Red's settings, with no
+  "Will you switch Pokémon?" prompt. Emerald Imperium's main mode forces the SET battle style
+  and disables the Bag in trainer battles (its Easy mode allows both)
+  ([difficulty modes](https://pkmnemeraldimperium.com/difficulty-mode/)); Radical Red's
+  Hardcore mode is described the same way by its community wiki. Radical Red's restrictions on
+  the player's own moves and abilities are left out: the user asked for the battle settings.
+- On HARD, `ClearSetBScriptingStruct` sets `gBattleScripting.battleStyle` to SET whatever the
+  option says (the fainted-Pokémon script reads it before asking), and `IsAllowedToUseBag`
+  refuses the Bag in trainer battles with the engine's "Items can't be used now." Wild battles
+  keep the Bag (Poké Balls, healing). The options menu shows BATTLE STYLE as SET and grayed
+  out on HARD.
+- HARD keeps +10% trainer levels and HARD level caps (D11). EASY and NORMAL are unchanged.
+- Evidence: `hard_mode_rules` (HARD: a trainer battle and a wild battle play SET; BAG in the
+  trainer battle is refused and the battle continues; in the wild battle the Bag opens; a
+  NORMAL wild battle keeps the option's SHIFT).
+
+## D26. A Gen 5 look: BW battle interface and BW summary screen
+
+- The user asked for the screens to have a Gen 5-and-up feel, like Radical Red. Two community
+  feature branches for pokeemerald-expansion give the two most-used screens a Black/White
+  look, and their authors allow use with credit (README credits):
+  - **BW Battle UI** by mudskip (`mudskipper13/pokeemerald`, branch `feature/bwBattleUI`, on
+    expansion 1.15.3, ours is 1.15.2): healthboxes, text box, the FIGHT / BAG / POKÉMON / RUN
+    box, the move box with types, PP and effectiveness, party-ball bars, ability pop-ups,
+    outlined fonts.
+  - **BW Summary Screen** by RavePossum (`ravepossum/pokeemerald-expansion`, branch
+    `bw_summary_screen_expansion`, on expansion 1.14.0) and the contributors it credits.
+- Porting: the branches' changes were applied over Heart & Soul's code by hand where they
+  conflicted. Their `INCGFX` graphics (a newer build-system feature) became `INCBIN` with
+  explicit `graphics_file_rules.mk` rules. The summary screen was adapted to expansion 1.15's
+  APIs (stats, Poké Ball sprites, Pokérus, the naming screen, the move relearner), and the
+  vanilla summary entry points forward to it, so every caller (party menu, PC, evolution,
+  move learning, relearner, trades) opens the BW screen. Pokémon opened from the PC show no
+  relearner prompt (the PC has its own).
+- Settings: IVs and EVs show as exact numbers on the skills page (Heart & Soul showed them);
+  move info moved from START to L, which the BW move box labels; Gen 4+ move order in battle
+  (`B_MOVE_REARRANGEMENT_IN_BATTLE`), which the BW interface requires. Heart & Soul's BATTLE UI
+  option (GEN 3 / GEN 4 healthboxes) is removed and `UseGen4BattleUI()` returns FALSE.
+- Cost: about 180 KB of ROM (98.82% → 99.36% of 32 MB, about 209 KB left) and no extra EWRAM in the
+  overworld; the summary screen allocates its data when it opens.
+- Not changed: the party menu, bag, start menu and Pokédex keep Heart & Soul's look. A
+  Gen 5-style party menu exists for vanilla pokeemerald (Archie's), but its colors and tiles
+  don't match Heart & Soul's party graphics or the BW screens.
+- Evidence: `bw_ui` (the BW summary screen opens from the party menu and shows IVs; the battle
+  action box is the BW one; FIGHT opens the BW move box), the whole suite on both emulators,
+  and screenshots of every page.
+

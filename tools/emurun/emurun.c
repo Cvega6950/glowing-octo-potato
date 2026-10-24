@@ -37,6 +37,9 @@
 //   tallynotin NAME ADDR V1,V2,...  like tally, but a hit is a 16-bit value at ADDR not in the list;
 //                          an entry @LIST stands for every value of a list remembered by snap16
 //   snap16 LIST ADDR COUNT   remember COUNT 16-bit values from ADDR (e.g. a DexNav row) as LIST
+//   waituntil32 ADDR VALUE MAXFRAMES [KEY] [LABEL]   run until the 32-bit value at ADDR is VALUE
+//                          (the Thumb bit ignored, for function pointers), tapping KEY every 16 frames
+//                          while it isn't; fail if it isn't within MAXFRAMES
 //   expecttally NAME MIN MAX   fail unless the matching count of NAME is within [MIN, MAX]
 //   expectseen SPECIES [LABEL]   fail unless an autobattle since the last seenreset saw the
 //                          opponent's battler as SPECIES (e.g. a boss's Mega Evolved form)
@@ -725,6 +728,46 @@ int main(int argc, char **argv)
                 printf("[frame %lu] tally %s: run %d value %u %s (%d/%d)\n", frameCount, a1, *runs, value,
                        hit ? "hit" : "miss", *hits, *runs);
             }
+        }
+        else if (!strcmp(cmd, "dump"))
+        {
+            // dump ADDR LEN FILE: write LEN bytes of memory from ADDR to FILE (for debugging)
+            uint32_t addr = ParseAddr(a1), len = strtoul(a2, NULL, 0);
+            FILE *f = fopen(a3, "wb");
+            if (f)
+            {
+                for (uint32_t i = 0; i < len; i++)
+                    fputc(Peek(8, addr + i), f);
+                fclose(f);
+            }
+            printf("[frame %lu] dump 0x%08X+%u -> %s%s\n", frameCount, addr, len, a3, f ? "" : " (failed)");
+        }
+        else if (!strcmp(cmd, "waituntil32"))
+        {
+            char a4[64] = {0}, a5[128] = {0};
+            sscanf(line, "%*s %*s %*s %*s %63s %127s", a4, a5);
+            uint32_t addr = ParseAddr(a1), want = strtoul(a2, NULL, 0) & ~1u;
+            unsigned long maxFrames = strtoul(a3, NULL, 0), start = frameCount;
+            unsigned key = 0;
+            const char *label = a5;
+            // KEY is optional: a 4th word that isn't a key name is the label
+            if (a4[0])
+            {
+                key = ParseKeys(a4);
+                if (!key)
+                    label = a4;
+            }
+            while ((Peek(32, addr) & ~1u) != want && frameCount - start < maxFrames)
+            {
+                if (key)
+                    Tap(key);
+                RunFrames(0, 10);
+            }
+            int ok = (Peek(32, addr) & ~1u) == want;
+            printf("[frame %lu] %s %s: @0x%08X = 0x%X after %lu frames%s\n", frameCount, ok ? "PASS" : "FAIL",
+                   label[0] ? label : "waituntil32", addr, Peek(32, addr), frameCount - start, ok ? "" : " (timed out)");
+            if (!ok)
+                failures++;
         }
         else if (!strcmp(cmd, "snap16"))
         {

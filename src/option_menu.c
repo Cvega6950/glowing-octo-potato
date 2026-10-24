@@ -22,6 +22,7 @@
 #include "constants/songs.h"
 #include "event_data.h"
 #include "constants/flags.h"
+#include "difficulty.h"
 
 // =============================================================================
 // Tab definitions
@@ -59,7 +60,6 @@ enum {
     ITEM_BATTLE_FAST_INTRO,
     ITEM_BATTLE_FAST_BATTLES,
     ITEM_BATTLE_NEW_BACKGROUNDS,
-    ITEM_BATTLE_NEW_BATTLEUI,
     ITEM_BATTLE_BALL_PROMPT,
     ITEM_BATTLE_RUN_TYPE,
     ITEM_BATTLE_LR_RUN,
@@ -237,11 +237,6 @@ static const u8 *const sChoices_OldModern[] = {
     COMPOUND_STRING("MODERN"),
 };
 
-static const u8 *const sChoices_Gen3Gen4[] = {
-    COMPOUND_STRING("GEN 3"),
-    COMPOUND_STRING("GEN 4"),
-};
-
 static const u8 *const sChoices_RunType[] = {
     COMPOUND_STRING("NO"),
     COMPOUND_STRING("L+R+A"),
@@ -274,6 +269,7 @@ static const u8 *const sDesc_BattleScene[] = {
     COMPOUND_STRING("Show the {PKMN} animations\nand attack animations."),
     COMPOUND_STRING("Skip the {PKMN} animations\nand attack animations."),
 };
+static const u8 sText_HardBattleStyle[] = _("HARD difficulty always plays SET:\nno free switch after a knockout.");
 static const u8 *const sDesc_BattleStyle[] = {
     COMPOUND_STRING("Get the option to switch your\n{PKMN} after the enemies faints."),
     COMPOUND_STRING("No free switch after fainting the\nenemies {PKMN}."),
@@ -329,10 +325,6 @@ static const u8 *const sDesc_FastBattles[] = {
 static const u8 *const sDesc_NewBackgrounds[] = {
     COMPOUND_STRING("Original battle terrain backgrounds."),
     COMPOUND_STRING("Modernized battle terrain\nbackgrounds, from HnS."),
-};
-static const u8 *const sDesc_NewBattleUI[] = {
-    COMPOUND_STRING("Original GEN III Battle UI."),
-    COMPOUND_STRING("Modernized GEN IV Battle UI."),
 };
 static const u8 *const sDesc_BallPrompt[] = {
     COMPOUND_STRING("Press {R_BUTTON} in battle to use Pokeballs.\nHold {L_BUTTON}/{R_BUTTON} to swap {PKMN}BALLS."),
@@ -469,12 +461,6 @@ static const struct OptionMenuItem sTabItems_Battle[] = {
         .numChoices   = 2,
         .choiceNames  = sChoices_OldModern,
     },
-    [ITEM_BATTLE_NEW_BATTLEUI] = {
-        .name         = COMPOUND_STRING("BATTLE UI"),
-        .descriptions = sDesc_NewBattleUI,
-        .numChoices   = 2,
-        .choiceNames  = sChoices_Gen3Gen4,
-    },
     [ITEM_BATTLE_BALL_PROMPT] = {
         .name         = COMPOUND_STRING("BALL PROMPT"),
         .descriptions = sDesc_BallPrompt,
@@ -586,6 +572,9 @@ static const struct OptionMenuItem *GetCurrentTabItems(void)
 
 static bool8 CheckConditions(u8 tab, u8 itemIndex)
 {
+    // Crystal Imperium: HARD always plays SET, like Emerald Imperium and Radical Red
+    if (tab == TAB_MAIN && itemIndex == ITEM_MAIN_BATTLESTYLE)
+        return GetCurrentDifficultyLevel() != DIFFICULTY_HARD;
     if (tab == TAB_BATTLE && itemIndex == ITEM_BATTLE_LR_RUN)
     {
         u8 runType = *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_RUN_TYPE);
@@ -873,6 +862,9 @@ static void DrawDescription(void)
             descIndex = 0;
 
         const u8 *desc = items[itemIndex].descriptions[descIndex];
+        // Crystal Imperium: say why BATTLE STYLE can't be changed on HARD
+        if (!CheckConditions(sMenu->currentTab, itemIndex) && sMenu->currentTab == TAB_MAIN && itemIndex == ITEM_MAIN_BATTLESTYLE)
+            desc = sText_HardBattleStyle;
         if (desc != NULL)
         {
             AddTextPrinterParameterized4(WIN_DESCRIPTION, FONT_NORMAL,
@@ -1088,7 +1080,7 @@ static void Task_Save(u8 taskId)
     cs->fastIntro          = *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_FAST_INTRO);
     cs->fastBattle         = *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_FAST_BATTLES);
     cs->newBackgrounds     = *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_NEW_BACKGROUNDS);
-    cs->newBattleUI        = *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_NEW_BATTLEUI);
+    // Crystal Imperium: the battle UI is always the BW one (newBattleUI is no longer read)
     cs->ballPrompt         = *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_BALL_PROMPT);
     cs->lrToRun            = *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_LR_RUN);
     cs->runType            = *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_RUN_TYPE);
@@ -1177,7 +1169,8 @@ void CB2_InitOptionMenu(void)
         // Load SaveBlock2 options
         *GetSelectionPtr(TAB_MAIN, ITEM_MAIN_TEXTSPEED)    = gSaveBlock2Ptr->optionsTextSpeed;
         *GetSelectionPtr(TAB_MAIN, ITEM_MAIN_BATTLESCENE)  = gSaveBlock2Ptr->optionsBattleSceneOff;
-        *GetSelectionPtr(TAB_MAIN, ITEM_MAIN_BATTLESTYLE)  = gSaveBlock2Ptr->optionsBattleStyle;
+        *GetSelectionPtr(TAB_MAIN, ITEM_MAIN_BATTLESTYLE)  = GetCurrentDifficultyLevel() == DIFFICULTY_HARD
+                                                           ? OPTIONS_BATTLE_STYLE_SET : gSaveBlock2Ptr->optionsBattleStyle;
         *GetSelectionPtr(TAB_MAIN, ITEM_MAIN_BUTTONMODE)   = gSaveBlock2Ptr->optionsButtonMode;
         *GetSelectionPtr(TAB_MAIN, ITEM_MAIN_FRAMETYPE)    = gSaveBlock2Ptr->optionsWindowFrameType;
         *GetSelectionPtr(TAB_SOUND, ITEM_SOUND_SOUND)      = gSaveBlock2Ptr->optionsSound;
@@ -1196,7 +1189,6 @@ void CB2_InitOptionMenu(void)
         *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_FAST_INTRO)      = cs->fastIntro;
         *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_FAST_BATTLES)    = cs->fastBattle;
         *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_NEW_BACKGROUNDS) = cs->newBackgrounds;
-        *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_NEW_BATTLEUI)    = cs->newBattleUI;
         *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_BALL_PROMPT)     = cs->ballPrompt;
         *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_LR_RUN)          = cs->lrToRun;
         *GetSelectionPtr(TAB_BATTLE, ITEM_BATTLE_RUN_TYPE)        = cs->runType;

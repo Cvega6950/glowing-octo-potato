@@ -26,3 +26,6 @@
 | 22 | DexNav | With the randomizer's MAP SEEDED off or CHAOS on, every wild encounter is a new random Pokémon; DexNav lists the area's own Pokémon then. | By design (D24) |
 | 23 | DexNav | Fishing Pokémon have no DexNav row (as in the expansion's DexNav), and roaming Pokémon aren't listed. Fishing's Wild Variety Pokémon are the water row's. | By design (D24) |
 | 24 | Wild Variety | The grass set can include Pokémon that live in water (e.g. Goldeen, Dondozo): only the water set is limited to Water-types. | By design (D14: every Pokémon on every route) |
+| 25 | UI | The party menu, bag, start menu and Pokédex keep Heart & Soul's look; only battles and the summary screen are Black/White-style. | Open (D26) |
+| 26 | Battle UI | Moves can't be reordered with SELECT in battle any more (Gen 4+ behaviour, required by the BW interface); the summary screen still reorders them. | By design (D26) |
+| 27 | Battle UI | Move info is on L; with BUTTON MODE set to L=A, L acts as A and move info isn't available in battle. | By design (D26) |

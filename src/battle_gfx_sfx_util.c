@@ -25,6 +25,10 @@
 #include "load_save.h"
 #include "palette.h"
 #include "contest.h"
+// start bwBattleUI
+#include "bw_battle_ui.h"
+#include "config/bw_battle_ui.h"
+// end bwBattleUI
 #include "trainer_pokemon_sprites.h"
 #include "constants/songs.h"
 #include "constants/rgb.h"
@@ -34,6 +38,9 @@
 
 bool8 UseGen4BattleUI(void)
 {
+    // Crystal Imperium: the BW battle UI replaces Heart & Soul's GEN 3 / GEN 4 choice
+    if (BW_BATTLE_UI)
+        return FALSE;
     return gSaveblock3.challengeSettings.newBattleUI;
 }
 
@@ -797,6 +804,13 @@ void BattleLoadAllHealthBoxesGfxAtOnce(void)
 
 bool8 BattleLoadAllHealthBoxesGfx(u8 state)
 {
+    // start bwBattleUI
+    if (BW_BATTLE_UI && BW_BATTLE_UI_HEALTHBOX)
+    {
+        return BattleUI_LoadAllHealthboxGfx(state);
+    }
+    // end bwBattleUI
+
     bool8 retVal = FALSE;
     struct CompressedSpriteSheet sheet;
     struct CompressedSpriteSheet doublesSheets[2];

@@ -1,0 +1,42 @@
+# Crystal Imperium play test: the Gen 5 look.
+# The summary screen is RavePossum's BW summary screen (its own main callback,
+# bw_summary_screen.c's MainCB2); A on the skills page shows IVs, then EVs.
+# Battles use mudskip's BW battle UI: the FIGHT / BAG / POKEMON / RUN box is the BW one (the
+# action menu window starts at tile column 13; the Gen 3 UI's starts at 17), and FIGHT opens the
+# BW move box.
+!new_game()
+!give_mon(157, 36)
+!set_var("VAR_CARE_PACKAGES", 17)
+!start_menu("POKEMON")
+wait 60
+press A
+wait 30
+press A
+wait 150
+shot 01_summary_info.png
+expect32 {gMain+4} {MainCB2@bw_summary_screen+1} bw_summary_screen
+press RIGHT
+wait 90
+shot 02_summary_skills.png
+press A
+wait 60
+shot 03_summary_ivs.png
+press RIGHT
+wait 90
+shot 04_summary_moves.png
+press B
+wait 150
+mash B 300
+wait 60
+
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!walkto(24, 14, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 A action_menu
+shot 05_battle_action_box.png
+!expect_window("B_WIN_ACTION_MENU", "tilemapLeft", 13, "bw_action_box")
+press A
+wait 60
+shot 06_battle_move_box.png
+expect32 {gBattlerControllerFuncs} {HandleInputChooseMove+1} move_box_open

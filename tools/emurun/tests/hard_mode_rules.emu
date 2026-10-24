@@ -1,0 +1,73 @@
+# Crystal Imperium play test: HARD plays by Emerald Imperium's and Radical Red's rules.
+# On HARD every battle uses the SET style whatever START > OPTION says (gBattleScripting's
+# battleStyle, which the fainted-Pokemon script checks before asking "Will you switch?"), and
+# the Bag can't be opened in trainer battles; wild battles keep it. The options menu shows
+# BATTLE STYLE as SET and grayed out. A new game's option is SHIFT, so without the rule the
+# battles below would be SHIFT.
+!new_game(difficulty="HARD")
+!give_mon(157, 40)
+!set_var("VAR_CARE_PACKAGES", 17)
+
+# START > OPTION: BATTLE STYLE (third row) reads SET and doesn't change
+!start_menu("OPTION")
+press DOWN
+wait 10
+press DOWN
+wait 10
+press LEFT
+wait 20
+shot 01_options_battle_style_set.png
+press B
+wait 120
+press B
+wait 60
+
+# A trainer battle (Falkner): SET style, and BAG (top right of the action menu) is refused.
+# B moves the intro text on until the action menu is up (B does nothing there in a trainer battle).
+!battle("TRAINER_FALKNER_1_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B trainer_action_menu
+shot 02_trainer_battle.png
+expect32 {gMain+4} {BattleMainCB2+1} trainer_battle_started
+!expect_battle_style("OPTIONS_BATTLE_STYLE_SET", "hard_trainer_battle_is_set_style")
+press RIGHT
+wait 20
+expect8 {gActionSelectionCursor} 1 cursor_on_bag
+press A
+wait 60
+shot 03_bag_refused.png
+wait 140
+expect32 {gMain+4} {BattleMainCB2+1} bag_does_not_open_in_trainer_battle
+
+# A wild battle on Route 29: SET style too, and the Bag opens
+reset
+!new_game(difficulty="HARD")
+!give_mon(157, 40)
+!set_var("VAR_CARE_PACKAGES", 17)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!walkto(24, 14, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 A wild_action_menu
+shot 04_wild_battle.png
+expect32 {gMain+4} {BattleMainCB2+1} wild_battle_started
+!expect_battle_style("OPTIONS_BATTLE_STYLE_SET", "hard_wild_battle_is_set_style")
+press RIGHT
+wait 20
+expect8 {gActionSelectionCursor} 1 cursor_on_bag_wild
+press A
+wait 200
+shot 05_bag_opens_in_wild_battle.png
+expectne32 {gMain+4} {BattleMainCB2+1} bag_opens_in_wild_battle
+
+# The same wild battle on NORMAL keeps the option's SHIFT style
+reset
+!new_game()
+!give_mon(157, 40)
+!set_var("VAR_CARE_PACKAGES", 17)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!walkto(24, 14, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+wait 300
+expect32 {gMain+4} {BattleMainCB2+1} normal_wild_battle_started
+!expect_battle_style("OPTIONS_BATTLE_STYLE_SHIFT", "normal_battle_keeps_shift_style")

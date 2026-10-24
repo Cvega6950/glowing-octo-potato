@@ -10814,6 +10814,10 @@ bool32 IsBattlerInvalidForSpreadMove(enum BattlerId battlerAtk, enum BattlerId b
 
 bool32 IsAllowedToUseBag(void)
 {
+    // Crystal Imperium: on HARD the Bag is for wild battles only, like Emerald Imperium and Radical Red
+    if (GetCurrentDifficultyLevel() == DIFFICULTY_HARD && (gBattleTypeFlags & BATTLE_TYPE_TRAINER))
+        return FALSE;
+
     switch (VarGet(B_VAR_NO_BAG_USE))
     {
     case NO_BAG_RESTRICTION:

@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.5.1-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.6.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team, the TM
 > list is Emerald Imperium's, and HMs work without being taught. Nobody has played the whole
@@ -36,6 +36,12 @@ From the first step of a new game:
 - **Minimal Grinding Mode** (every Pokémon battles as if it had 31 IVs and 0 EVs), **level caps**,
   ×1.5 EXP, an **EASY / NORMAL / HARD** difficulty selection, **Auto Run**
   (START > OPTION > AUTORUN), and a **move relearner** in the party menu.
+- **HARD plays by Emerald Imperium's and Radical Red's rules:** the SET battle style (no "Will
+  you switch Pokémon?" after a knockout) and no Bag in trainer battles, on top of +10% trainer
+  levels and HARD level caps.
+- **A Gen 5 look:** Black/White-style battles (healthboxes, text box, FIGHT / BAG / POKÉMON /
+  RUN buttons, a move box with types, PP and effectiveness) and a Black/White-style summary
+  screen (A on the skills page shows IVs and EVs).
 - **Emerald Imperium's TMs:** 198 reusable TMs. TM01–TM172 are Imperium's list in its order
   (without its two custom moves), TM173–TM198 the Heart & Soul TMs Imperium doesn't have. The
   Goldenrod Dept. Store 5F sells all of them, more with each badge tier (3, 6 and 8 badges).
@@ -68,7 +74,7 @@ your house), except Auto Run, which is in the Options menu.
 | 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden`; the lists match the wild Pokémon you meet (`dexnav_wild_match`, `dexnav_water_match`, `dexnav_randomizer`) |
 | 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym) |
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
-| 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies) |
+| 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies); HARD's Imperium / Radical Red rules (`hard_mode_rules`) |
 | 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs (`tm_case`, `tm_shop`) and HMs without teaching (`hm_field_moves`) |
 | 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | The story scripts are Heart & Soul's. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29), and every reworked boss battle is started from the debug menu and played to a result (`falkner`, `bugsy`, `whitney`, `bosses_m3`, `bosses_m4`, `bosses_e4`, `bosses_m5`); no full playthrough has been done. |
 | 8 | Works on Delta (iOS) | **Passes on Delta's emulator core; no iPhone test** | The play tests and the save-compatibility test run on VBA-M at the commit Delta's GBA core pins, as on mGBA (results in TESTING.md). A device test is still needed for Delta's own app layer. |
@@ -153,6 +159,11 @@ Grinding starts OFF for HnS saves and can be turned on from the settings PC.
 - **Pokémon Emerald Imperium** (iriv24 and team): the design inspiration for Minimal Grinding
   Mode, Sleep Clause, the QoL key items, competitive trainer philosophy and the TM list (from
   its public TM guide). No Imperium code or assets are used.
+- **BW Battle UI** by **mudskip** (mudskipper13), and **BW Summary Screen** by **RavePossum**
+  with tiles by Againsts, grade sprites by Sphericalice, auto-format code by Vexx, IV/EV code by
+  Buffelsaft, nature colors by DizzyEgg, wrapping by Zeturic, reference code by Greenphx9, the
+  heart indicator by Skeli, Tera type icons by Zatsu and status icons by Lhea. Both are
+  community feature branches for pokeemerald-expansion, used with credit as their authors ask.
 - **VBA-M** (play tests on Delta's emulator core) and **mGBA** (play tests), **Flips** (BPS patch).
 - Pokémon is © Nintendo / Creatures Inc. / GAME FREAK inc. This is a non-commercial fan
   project; do not sell or redistribute ROM files.

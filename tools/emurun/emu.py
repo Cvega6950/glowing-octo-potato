@@ -257,6 +257,20 @@ def set_save(block, field, value, size=8):
     return [f"poke{size} *{{{ptr}}}+{v['off']} {v['value'] & ((1 << size) - 1)}"]
 
 
+def expect_battle_style(const, label):
+    """In battle: the style the battle plays (gBattleScripting.battleStyle) is OPTIONS_BATTLE_STYLE_SET
+    or _SHIFT."""
+    v = probe.resolve({"off": "offsetof(struct BattleScripting, battleStyle)", const: const})
+    return [f"expect8 {{gBattleScripting+{v['off']}}} {v[const]} {label}"]
+
+
+def expect_window(window, field, want, label):
+    """A window's template field (e.g. tilemapLeft) in gWindows; window is a constant such as
+    B_WIN_ACTION_MENU."""
+    v = probe.resolve({"off": f"offsetof(struct Window, window.{field}) + sizeof(struct Window) * {window}"})
+    return [f"expect8 {{gWindows+{v['off']}}} {want} {label}"]
+
+
 def expect_listed(base, count, const, label):
     """One of `count` 16-bit entries from `base` (e.g. a DexNav row) is the game constant `const`."""
     v = probe.resolve({const: const})

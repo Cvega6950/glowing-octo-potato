@@ -1,5 +1,33 @@
 # Crystal Imperium changelog
 
+## 0.6.0-experimental (2026-10-24)
+
+### Gameplay
+- **HARD plays by Emerald Imperium's and Radical Red's rules.** On HARD every battle uses the
+  SET style, so the game never asks "Will you switch Pokémon?" after you knock one out, and
+  the Bag can't be used in trainer battles ("Items can't be used now."). Wild battles keep the
+  Bag. START > OPTION shows BATTLE STYLE as SET, grayed out. HARD still raises trainer levels
+  by 10% and uses HARD level caps. EASY and NORMAL are unchanged.
+- **A Gen 5 look:**
+  - **Battles** use mudskip's Black/White-style interface: BW healthboxes and text box,
+    FIGHT / BAG / POKÉMON / RUN buttons, a move box with each move's type, PP and
+    effectiveness, the party-ball bars and ability pop-ups.
+  - **The summary screen** is RavePossum's Black/White-style one: a scrolling background, the
+    Pokémon with a shadow and idle animation, Gen 5 type and status icons and move
+    categories. A on the skills page cycles stats, IVs and EVs. START on the moves pages opens
+    the move relearner, as before.
+  - Move info in battle is on L (the BW box labels it L; Heart & Soul used START). R still
+    toggles Mega Evolution, and throws the last-used ball from the action menu.
+  - Moves can no longer be reordered with SELECT during a battle (Gen 4 and later behave this
+    way, and the BW interface needs it); reorder them on the summary screen.
+  - The options menu's BATTLE UI row (Heart & Soul's GEN 3 / GEN 4 healthboxes) is gone; the
+    BW interface replaces both.
+
+### Tooling
+- emurun: `waituntil32` runs until a value matches (e.g. the battle controller reaching the
+  action menu), tapping a key meanwhile. Harness: `expect_battle_style`, `expect_window`.
+- New tests: `hard_mode_rules`, `bw_ui`.
+
 ## 0.5.1-experimental (2026-10-24)
 
 ### Fixes

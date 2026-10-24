@@ -17,6 +17,9 @@ shot 01_dexnav_route29.png
 !snap_dexnav_rows("day_a")
 expectne16 *{sDexNavUiDataPtr}+20 0 route29_lists_variety_pokemon
 expect16 *{sDexNavUiDataPtr}+22 0 two_own_and_six_variety_pokemon
+# The variety pool (sPool, VARIETY_POOL_SIZE entries) holds 445 Pokemon, then 122 legends
+expect16 {sPoolCount} 567 variety_pool_size
+expect16 {sLegendStart} 445 variety_pool_legends_start
 press B
 wait 200
 press B

@@ -4,6 +4,7 @@
 #include "challenge_menu.h"
 #include "battle_interface.h"
 #include "bg.h"
+#include "bw_summary_screen.h" // bwSummaryScreen
 #include "cable_club.h"
 #include "data.h"
 #include "daycare.h"
@@ -44,6 +45,7 @@
 #include "union_room.h"
 #include "util.h"
 #include "window.h"
+#include "bw_battle_ui.h" // bwBattleUI
 #include "constants/contest.h"
 #include "constants/items.h"
 #include "constants/moves.h"
@@ -1550,9 +1552,19 @@ static void CB_ShowTradeMonSummaryScreen(void)
     if (!gPaletteFade.active)
     {
         if (sTradeMenu->cursorPosition < PARTY_SIZE)
-            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gPlayerParty, sTradeMenu->cursorPosition, sTradeMenu->partyCounts[TRADE_PLAYER] - 1, CB2_ReturnToTradeMenu);
+        {
+            if (BW_SUMMARY_SCREEN)
+                ShowPokemonSummaryScreen_BW(SUMMARY_MODE_LOCK_MOVES, gPlayerParty, sTradeMenu->cursorPosition, sTradeMenu->partyCounts[TRADE_PLAYER] - 1, CB2_ReturnToTradeMenu);
+            else
+                ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gPlayerParty, sTradeMenu->cursorPosition, sTradeMenu->partyCounts[TRADE_PLAYER] - 1, CB2_ReturnToTradeMenu);
+        }
         else
-            ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, sTradeMenu->cursorPosition - PARTY_SIZE, sTradeMenu->partyCounts[TRADE_PARTNER] - 1, CB2_ReturnToTradeMenu);
+        {
+            if (BW_SUMMARY_SCREEN)
+                ShowPokemonSummaryScreen_BW(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, sTradeMenu->cursorPosition - PARTY_SIZE, sTradeMenu->partyCounts[TRADE_PARTNER] - 1, CB2_ReturnToTradeMenu);
+            else
+                ShowPokemonSummaryScreen(SUMMARY_MODE_LOCK_MOVES, gEnemyParty, sTradeMenu->cursorPosition - PARTY_SIZE, sTradeMenu->partyCounts[TRADE_PARTNER] - 1, CB2_ReturnToTradeMenu);
+        }
         FreeAllWindowBuffers();
     }
 }
@@ -2948,9 +2960,11 @@ static void TradeAnimInit_LoadGfx(void)
     SetBgTilemapBuffer(3, Alloc(BG_SCREEN_SIZE));
     DeactivateAllTextPrinters();
     // Doing the graphics load.
-    DecompressAndLoadBgGfxUsingHeap(0, gBattleTextboxTiles, 0, 0, 0);
-    DecompressAndCopyToBgTilemapBuffer(0, gBattleTextboxTilemap, BG_SCREEN_SIZE, 0);
-    LoadPalette(gBattleTextboxPalette, BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+    // start bwBattleUI
+    DecompressAndLoadBgGfxUsingHeap(0, BattleUI_GetTextboxTiles(), 0, 0, 0);
+    DecompressAndCopyToBgTilemapBuffer(0, BattleUI_GetTextboxTilemap(), BG_SCREEN_SIZE, 0);
+    LoadPalette(BattleUI_GetTextboxPalette(), BG_PLTT_ID(0), PLTT_SIZE_4BPP);
+    // end bwBattleUI
     InitWindows(sTradeSequenceWindowTemplates);
 }
 

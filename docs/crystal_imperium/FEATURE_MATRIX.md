@@ -28,6 +28,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | Feature | Status | Evidence / notes |
 |---|---|---|
 | Difficulty selection EASY / NORMAL / HARD | Done | emu: `difficulty` (Falkner's party 8/9/9 on EASY, 10/11/12 on HARD; NORMAL is 9/10/11). DECISIONS.md D11. |
+| HARD: SET battle style and no Bag in trainer battles (Emerald Imperium / Radical Red rules) | Done | emu: `hard_mode_rules` (SET in trainer and wild battles, BAG refused in a trainer battle and open in a wild one; NORMAL keeps SHIFT). D25. |
 | Smart AI for every trainer (omniscient, smart switching, HP aware) | Done | NORMAL/HARD; EASY keeps HnS's AI. D20. emu: whole suite; no extra time per turn. |
 | Sleep Clause | Done | build. Imperium behaviour, both sides. |
 | Falkner competitive team | Done | emu: `falkner`. See BALANCE.md. |
@@ -108,6 +109,9 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | Fast surf, fast battle text, follower Pokémon | Existing | HnS options. |
 | HM field moves without teaching | Done | Carrying the HM and its badge is enough for any Pokémon (HnS needed one that could learn the move). emu: `hm_field_moves` (a Magikarp cuts, flies, surfs). D23. |
 | HGSS-style Pokédex | Existing | `POKEDEX_PLUS_HGSS TRUE`. |
+| Gen 5 look: BW battle interface | Done | mudskip's BW Battle UI. emu: `bw_ui` (BW action box, BW move box); every battle test. D26. |
+| Gen 5 look: BW summary screen (IVs/EVs on the skills page) | Done | RavePossum's BW Summary Screen. emu: `bw_ui` (opens from the party menu, A shows IVs). D26. |
+| Gen 5 look: party menu, bag, start menu | Missing | Heart & Soul's look (KNOWN_ISSUES 25). |
 | Clean difficulty options UI | Done | All new options live in HnS's existing challenge menu. |
 
 ## Postgame (Section 13)
