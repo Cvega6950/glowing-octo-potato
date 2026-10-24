@@ -3743,6 +3743,15 @@ bool32 IsMinimalGrindingMode(void)
     return gSaveBlock3Ptr != NULL && gSaveBlock3Ptr->challengeSettings.tx_Difficulty_MinimalGrinding;
 }
 
+// Crystal Imperium: Red keeps his EVs under Minimal Grinding, which makes his the hardest battle
+// in the game (DECISIONS.md D27). His party is in gEnemyParty during his battle.
+static bool32 IsRedsPokemon(struct Pokemon *mon)
+{
+    return (gBattleTypeFlags & BATTLE_TYPE_TRAINER)
+        && mon >= &gEnemyParty[0] && mon < &gEnemyParty[PARTY_SIZE]
+        && (TRAINER_BATTLE_PARAM.opponentA == TRAINER_RED_HNS || TRAINER_BATTLE_PARAM.opponentA == TRAINER_RED_POSTOBC_HNS);
+}
+
 void CalculateMonStats(struct Pokemon *mon)
 {
     s32 oldMaxHP = GetMonData(mon, MON_DATA_MAX_HP);
@@ -3761,6 +3770,7 @@ void CalculateMonStats(struct Pokemon *mon)
 
     u32 equalizedBst = GetBaseStatEqualizerValue();
     bool32 minimalGrinding = IsMinimalGrindingMode();
+    bool32 keepEvs = minimalGrinding && IsRedsPokemon(mon);
     bool32 hyperTrained[NUM_STATS]; //In a battle test, hyper training flag indicates a fixed stat
     s32 iv[NUM_STATS];
     s32 ev[NUM_STATS];
@@ -3770,11 +3780,13 @@ void CalculateMonStats(struct Pokemon *mon)
         iv[i] = GetMonData(mon, MON_DATA_HP_IV + i);
         ev[i] = GetMonData(mon, MON_DATA_HP_EV + i);
 
-        // Minimal Grinding: every Pokémon (player, trainer and wild) uses perfect IVs and no EVs
+        // Minimal Grinding: every Pokémon (player, trainer and wild) uses perfect IVs and no EVs,
+        // except Red's, which keep their EVs
         if (minimalGrinding)
         {
             iv[i] = MAX_PER_STAT_IVS;
-            ev[i] = 0;
+            if (!keepEvs)
+                ev[i] = 0;
         }
 
         if (hyperTrained[i])

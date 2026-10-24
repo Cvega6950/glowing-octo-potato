@@ -128,6 +128,16 @@ def give_item(item_id, quantity=1):
     return out
 
 
+def hold_item(item, party_slot=0, pocket="POCKET_ITEMS"):
+    """Give the party Pokemon in party_slot an item to hold: the debug menu puts it in the bag,
+    then Bag > pocket > its first item > GIVE (right of USE in the 2x2 menu) > the Pokemon. The
+    pocket must hold no other item (give and hold one item at a time)."""
+    out = give_item(item) + open_bag_at(pocket, 0)
+    out += ["press A", "wait 20", "press RIGHT", "wait 10", "press A", "wait 120"]
+    out += ["press DOWN", "wait 10"] * party_slot
+    return out + ["press A", "wait 120", "mash B 200", "wait 60"]
+
+
 def dex_flags_from_party():
     """Debug menu > Flags & Vars > Pokedex Flags Reset: the Pokedex lists exactly the Pokemon in
     the party and boxes as seen and caught (debug-given Pokemon are not registered otherwise)."""
@@ -467,10 +477,14 @@ def turn(*moves, shots=None, decline_switch=False):
     return out
 
 
-def autobattle(moves, max_frames=60000):
+def autobattle(moves, max_frames=60000, plan=None):
     """Play the current battle to the end. moves: per party slot, the move slot (0-3) to use,
     e.g. "2,3,1,2"; add 'm' to Mega Evolve first ("2m"). Forced switches pick the first healthy
-    Pokemon. Prints the outcome, turn count and remaining party HP."""
+    Pokemon. Prints the outcome, turn count and remaining party HP.
+    plan: a game plan, {opponent species constant: (party slot, move slot), or a list of them}:
+    against that Pokemon, a party Pokemon with a rule attacks with its move; otherwise the first
+    listed Pokemon that can still fight is switched in (once each time the opponent comes in),
+    and forced switches send it in too."""
     keys = ["main={gMain}", "outcome={gBattleOutcome}", "ctrl={gBattlerControllerFuncs}",
             "act={HandleInputChooseAction@battle_controller_player}", "mov={HandleInputChooseMove}",
             "actcur={gActionSelectionCursor}", "movcur={gMoveSelectionCursor}",
@@ -478,20 +492,26 @@ def autobattle(moves, max_frames=60000):
             "mons={gBattleMons}", "pmenu={gPartyMenu}",
             "pmenucb2={CB2_UpdatePartyMenu}", "battlecb2={BattleMainCB2}"]
     keys.append("ppoff=%d" % probe.resolve({"ppoff": "offsetof(struct BattlePokemon, pp)"})["ppoff"])
+    if plan:
+        ids = probe.resolve({sp: sp for sp in plan})
+        rules = [(sp, r) for sp, rs in plan.items() for r in (rs if isinstance(rs, list) else [rs])]
+        keys.append("plan=" + "/".join(f"{ids[sp]}:{slot}.{move}" for sp, (slot, move) in rules))
     return [f"autobattle {moves} {max_frames} " + " ".join(keys)]
 
 
-def sample_battle(trainer_id, moves, runs=5, min_wins=1, max_wins=None, state="team.ss", tag=""):
+def sample_battle(trainer_id, moves, runs=5, min_wins=1, max_wins=None, state="team.ss", tag="", plan=None,
+                  max_frames=60000):
     """Fight trainer_id (a number or a TRAINER_ constant) `runs` times from the saved team state,
     starting each battle a few frames later so the battle RNG differs, and require between
     min_wins and max_wins wins. Save the team first with `savestate team.ss` (paths are relative
-    to the output directory). A tag keeps two samples against the same trainer apart."""
+    to the output directory). A tag keeps two samples against the same trainer apart. plan and
+    max_frames go to autobattle."""
     if isinstance(trainer_id, str):
         trainer_id = probe.resolve({trainer_id: trainer_id})[trainer_id]
     name = f"wins_vs_{trainer_id}{tag}"
     out = []
     for k in range(runs):
-        out += [f"loadstate {state}", f"wait {1 + 37 * k}"] + battle_trainer(trainer_id) + autobattle(moves)
+        out += [f"loadstate {state}", f"wait {1 + 37 * k}"] + battle_trainer(trainer_id) + autobattle(moves, max_frames, plan)
         out += [f"tally {name} {{gBattleOutcome}} 1"]
     out.append(f"expecttally {name} {min_wins} {runs if max_wins is None else max_wins}")
     return out

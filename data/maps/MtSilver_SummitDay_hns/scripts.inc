@@ -31,7 +31,8 @@ MtSilver_SummitDay_EventScript_Red::
 	faceplayer
 	msgbox MtSilver_SummitDay_Text_Red, MSGBOX_DEFAULT
 	closemessage
-	goto_if_unset FLAG_IS_KANTO_CHAMPION, MtSilver_SummitDay_EventScript_RedStandard
+	@ Crystal Imperium: Red is the last and hardest battle, for the Kanto Champion (DECISIONS.md D27)
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, MtSilver_SummitDay_EventScript_RedNotYet
 	goto_if_ge VAR_SINJOH_STORYLINE, 13, MtSilver_SummitDay_EventScript_RedPostOBC
 
 MtSilver_SummitDay_EventScript_RedStandard::
@@ -62,11 +63,22 @@ MtSilver_SummitDay_EventScript_RedOnDefeat::
 	releaseall
 	end
 
+MtSilver_SummitDay_EventScript_RedNotYet::
+	msgbox MtSilver_SummitDay_Text_RedNotYet, MSGBOX_DEFAULT
+	release
+	end
+
 MtSilver_SummitDay_Text_Red:
 	.string ".........................\n"
 	.string ".........................$"
 
 MtSilver_SummitDay_Text_RedBeaten:
 	.string "...!$"
+
+MtSilver_SummitDay_Text_RedNotYet:
+	.string "RED seems to be waiting for\n"
+	.string "the KANTO CHAMPION.\p"
+	.string "(Win the KANTO LEAGUE at the\n"
+	.string "INDIGO PLATEAU first.)$"
 
 

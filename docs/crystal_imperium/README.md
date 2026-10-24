@@ -62,6 +62,10 @@ From the first step of a new game:
   Victory Road, Team Rocket's executives, the Kimono Girls, the Elite Four and Lance, the eight
   Kanto leaders, Blue and Red. Aces at the level cap, held items, natures, abilities,
   competitive moves, and Mega Evolutions from the 5th Gym on.
+- **Red is the hardest battle in the game:** levels 96–100, competitive EVs that only his
+  Pokémon keep under Minimal Grinding, the boss AI with move and switch prediction, four Full
+  Restores, and a sun team around Mega Charizard Y. He battles only the Kanto Champion, so win
+  the Kanto League first (the level cap is gone by then).
 
 All of these are in the challenge menu at the start of a new game (and on the settings PC in
 your house), except Auto Run, which is in the Options menu.
@@ -76,7 +80,7 @@ your house), except Auto Run, which is in the Options menu.
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
 | 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies); HARD's Imperium / Radical Red rules (`hard_mode_rules`) |
 | 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs (`tm_case`, `tm_shop`) and HMs without teaching (`hm_field_moves`) |
-| 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | The story scripts are Heart & Soul's. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29), and every reworked boss battle is started from the debug menu and played to a result (`falkner`, `bugsy`, `whitney`, `bosses_m3`, `bosses_m4`, `bosses_e4`, `bosses_m5`); no full playthrough has been done. |
+| 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | The story scripts are Heart & Soul's. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29), and every reworked boss battle is started from the debug menu and played to a result (`falkner`, `bugsy`, `whitney`, `bosses_m3`, `bosses_m4`, `bosses_e4`, `bosses_m5`, `red`; Red is also talked to on the Mt. Silver summit); no full playthrough has been done. |
 | 8 | Works on Delta (iOS) | **Passes on Delta's emulator core; no iPhone test** | The play tests and the save-compatibility test run on VBA-M at the commit Delta's GBA core pins, as on mGBA (results in TESTING.md). A device test is still needed for Delta's own app layer. |
 
 Also asked for and done: DexNav and Rare Candy before the first Gym (both are there from the

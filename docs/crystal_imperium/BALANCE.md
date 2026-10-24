@@ -11,7 +11,8 @@ explains the *why*.
    for Kanto and uncapped after the Kanto League. A leader's ace sits *at* the cap, so a
    capped player is never under-levelled. Difficulty comes from teams, not levels.
 2. **Bosses have perfect IVs, defined natures, abilities, items and four chosen moves.**
-   With Minimal Grinding on (the default), every Pokémon battles at 31 IVs / 0 EVs anyway.
+   With Minimal Grinding on (the default), every Pokémon battles at 31 IVs / 0 EVs anyway,
+   except Red's, which keep their EVs (D27).
 3. **Each boss has a signature strategy and a fair counter** that the player can catch
    before the fight. The counter should cost planning, not be a free win.
 4. **Verify in the emulator.** Every reworked Gym Leader gets a play test with a realistic
@@ -20,7 +21,11 @@ explains the *why*.
    deliberately naive line: no items, no voluntary switching, one fixed move per Pokémon.
    For each Starter, at least one line obtainable at the cap must win, and a naive line
    should win some but not all of its RNG samples (five, or twelve where the naive win rate
-   is low). A human who heals and switches does better than these numbers.
+   is low). For the Elite Four from Will on, Blue and Red the autopilot plays a simple game
+   plan instead, as a player would: for each of the boss's Pokémon some of the team have a
+   move to use, and one of them is switched in when the Pokémon out has none. The number of
+   tries follows the measured win rate, so that a correct game passes all but about one run in
+   a hundred. A human who heals, switches and reads the opponent does better than these numbers.
 
 ## Progression snapshot
 
@@ -31,7 +36,7 @@ explains the *why*.
 | Late Johto (Radio Tower, rival 4, Clair, Kimono Girls, Victory Road) | 45 / 56 | Reworked (`bosses_m3`, `bosses_m4`) |
 | Elite Four / Lance | 56 → 70 after the title | Reworked (`bosses_e4`) |
 | Kanto leaders, Blue | 70 | Reworked (`bosses_m5`) |
-| Red (Mt. Silver) | uncapped; ace 90 | Reworked (`bosses_m5`) |
+| Red (Mt. Silver) | after the Kanto League, uncapped; 96–100 | Reworked: the hardest battle (`red`) |
 | Rematches and other postgame battles | 70 / uncapped | HnS teams with the smart AI |
 
 ## Early Johto: the path to Falkner
@@ -198,7 +203,7 @@ Every boss from `tools/crystal_imperium/boss_teams.py` (the file has the natures
 moves). Each team's last Pokémon is its ace, kept back until the others are down. Healing items:
 Super Potions for Proton in Slowpoke Well and the rival in Azalea and at the Burned Tower, two
 Hyper Potions for Morty and the 5th-Gym versions, two Full Restores for everyone after that
-except the Kimono Girls, who carry none. The rival's team follows the player's starter choice;
+except the Kimono Girls, who carry none, and Red, who carries four. The rival's team follows the player's starter choice;
 the Cyndaquil versions are shown.
 
 | Boss | Levels | Team (held item) |
@@ -243,17 +248,20 @@ the Cyndaquil versions are shown.
 | Sabrina | 68–70 | Mr Mime (Light Clay), Wobbuffet (Sitrus Berry), Slowbro (Leftovers), Espeon (Life Orb), Alakazam (Twisted Spoon), Metagross (Metagrossite) |
 | Blaine | 68–70 | Torkoal (Heat Rock), Rapidash (Life Orb), Magmortar (Expert Belt), Volcarona (Charcoal), Arcanine Hisui (Choice Band), Camerupt (Cameruptite) |
 | Blue | 69–70 | Machamp (Sitrus Berry), Exeggutor (Sitrus Berry), Rhyperior (Weakness Policy), Arcanine (Choice Band), Tyranitar (Leftovers), Pidgeot (Pidgeotite) |
-| Red | 86–90 | Pikachu (Light Ball), Espeon (Life Orb), Snorlax (Leftovers), Venusaur (Black Sludge), Blastoise (Leftovers), Charizard (Charizardite Y) |
+| Red | 96–100 (rematch: 100) | Pikachu (Light Ball), Espeon (Life Orb), Snorlax (Leftovers), Venusaur (Life Orb), Blastoise (White Herb), Charizard (Charizardite Y); EVs on all six |
 
 ### Notes from the play tests
 
-The autopilot plays naively (no switching, no items, one move per Pokémon), so its win
-counts are lower bounds. Counts are mGBA / VBA-M (the emulators' battle RNG differs).
+The naive autopilot (no switching, no items, one move per Pokémon) and the game-plan autopilot
+both play worse than a person, so their win counts are lower bounds. The regression's counts
+for both emulators are in TESTING.md.
 
-- **Elite Four** (`bosses_e4`, six tries each at cap 56): the all-round prepared six beat Will
-  2 / 1 times and Koga 5 / 5 times. Bruno, Karen and Lance need a plan: sixes built for them
-  (Psychic and Flying attackers for Bruno; Fairy, Fighting and Rock for Karen; Fairy and Ice
-  for Lance) beat Bruno 2 / 3 times, Karen 2 / 1 times and Lance 2 / 1 times in six.
+- **The Elite Four** (`bosses_e4`, cap 56): the prepared six beats Koga most of the time
+  played naively. Naive play rarely beat Will (3 of 60 tries with the prepared six, on two ROM
+  builds) or Lance (13 of 60 with a six built for him), and its results against Bruno and Karen
+  swung between the emulators (5 and 0 of 6; 2 and 0 of 6). Played with a game plan, sixes
+  built for them beat Will 3 times in 6, Bruno 5 in 6, Karen 3 in 6 and Lance 3 in 12, so the
+  test gives them 8, 6, 8 and 24 tries.
 - **Lance** first had three Dragon Dance users (Mega Gyarados, Salamence, Dragonite): the
   all-round six lost all six tries on mGBA. With only Dragonite setting up, his Charizard still
   Roosted behind two Full Restores, and three different sixes built for him lost all nine tries
@@ -264,6 +272,14 @@ counts are lower bounds. Counts are mGBA / VBA-M (the emulators' battle RNG diff
   confused a non-switching team every turn (Blue beat every team in all six tries before).
 - **Kanto** is level 70 everywhere, so the leaders can be taken in any order. In one try each
   at the cap, the prepared six beat Lt. Surge and Erika on both emulators, Sabrina on mGBA and
-  Blaine on VBA-M, and lost to the others. A six built for Blue beats him 2 / 1 times in 3.
-- **Red** is the postgame superboss: a six built for him lost at level 90 and won 2 / 2 of
-  3 tries at level 100 (there is no level cap after the Kanto League).
+  Blaine on VBA-M, and lost to the others. A six built for Blue beat him once in 12 tries
+  played naively and 10 times in 12 with a game plan.
+- **Red** is the hardest battle (D27). Every team at level 100 played naively lost: 30 tries
+  with five different sixes, among them six legendary Dragons, and 24 more against weaker
+  versions of Red (two Full Restores, or no prediction AI). A game plan without held items lost
+  12 of 12. A six with held items and a Mega played with a game plan (Life Orb Garchomp for
+  Pikachu, Kingambit for Espeon, Flame Orb Conkeldurr for Snorlax, Talonflame with Safety
+  Goggles against Sleep Powder for Venusaur, Mega Ampharos for Blastoise, Assault Vest
+  Tyranitar for Charizard) beat him 4 times in 12; before Talonflame had the goggles, 6 times
+  in 48. With two Full Restores and no EVs the plan without items won 2 of 6 and the naive six
+  1 of 6, against none of 6 each with the EVs: the EVs are what set him apart.

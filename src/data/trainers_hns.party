@@ -11135,12 +11135,13 @@ Pic: Red Hns
 Gender: Male
 Music: Hg Champion
 Double Battle: No
-AI: Smart Trainer / Ace Pokemon / HP Aware
-Items: Full Restore / Full Restore
+AI: Smart Trainer / Prediction / Ace Pokemon / HP Aware
+Items: Full Restore / Full Restore / Full Restore / Full Restore
 
 Pikachu @ Light Ball
-Level: 88
+Level: 96
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpA / 252 Spe
 Ability: Lightning Rod
 Nature: Hasty
 - Volt Tackle
@@ -11149,8 +11150,9 @@ Nature: Hasty
 - Fake Out
 
 Espeon @ Life Orb
-Level: 86
+Level: 96
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magic Bounce
 Nature: Timid
 - Psychic
@@ -11159,8 +11161,9 @@ Nature: Timid
 - Calm Mind
 
 Snorlax @ Leftovers
-Level: 86
+Level: 97
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Thick Fat
 Nature: Careful
 - Curse
@@ -11168,29 +11171,32 @@ Nature: Careful
 - Rest
 - Sleep Talk
 
-Venusaur @ Black Sludge
-Level: 87
+Venusaur @ Life Orb
+Level: 97
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Chlorophyll
 Nature: Modest
 - Sleep Powder
-- Leech Seed
-- Sludge Bomb
+- Growth
 - Giga Drain
+- Sludge Bomb
 
-Blastoise @ Leftovers
-Level: 87
+Blastoise @ White Herb
+Level: 98
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Rain Dish
-Nature: Bold
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Torrent
+Nature: Modest
+- Shell Smash
 - Hydro Pump
 - Ice Beam
-- Rapid Spin
 - Aura Sphere
 
 Charizard @ Charizardite Y
-Level: 90
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Solar Power
 Nature: Timid
 - Fire Blast
@@ -16802,58 +16808,72 @@ Pic: Red Hns
 Gender: Male
 Music: Hg Champion
 Double Battle: No
-AI: Smart Trainer / Prediction
-Items: Full Restore / Full Restore
+AI: Smart Trainer / Prediction / Ace Pokemon / HP Aware
+Items: Full Restore / Full Restore / Full Restore / Full Restore
 
-Pikachu-Starter @ Light Ball  
+Pikachu @ Light Ball
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpA / 252 Spe
 Ability: Lightning Rod
-Level: 95
-- Volt Tackle  
-- Surf  
-- Iron Tail  
-- Double Team  
+Nature: Hasty
+- Volt Tackle
+- Surf
+- Knock Off
+- Fake Out
 
-Snorlax @ Chesto Berry  
-Ability: Immunity  
-Level: 85
-- Belly Drum  
-- Earthquake  
-- Rest  
-- Heavy Slam  
+Espeon @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Magic Bounce
+Nature: Timid
+- Psychic
+- Dazzling Gleam
+- Shadow Ball
+- Calm Mind
+
+Snorlax @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Ability: Thick Fat
+Nature: Careful
+- Curse
+- Body Slam
+- Rest
+- Sleep Talk
+
+Venusaur @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Chlorophyll
+Nature: Modest
+- Sleep Powder
+- Growth
+- Giga Drain
+- Sludge Bomb
+
+Blastoise @ White Herb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Torrent
+Nature: Modest
+- Shell Smash
+- Hydro Pump
+- Ice Beam
+- Aura Sphere
 
 Charizard @ Charizardite Y
-Ability: Blaze  
-Level: 87  
-- Fire Blast  
-- Seismic Toss  
-- Outrage  
-- Steel Wing  
-
-Venusaur @ Blunder Policy  
-Ability: Chlorophyll  
-Level: 87  
-Tera Type: Grass  
-EVs: 252 Spe  
-IVs: 0 Atk  
-- Sunny Day  
-- Solar Beam  
-- Earth Power  
-- Sleep Powder 
-
-Blastoise @ Leftovers  
-Ability: Torrent  
-Level: 86
-- Hydro Cannon  
-- Skull Bash  
-- Ice Beam  
-- Flash Cannon  
-
-Tauros-Paldea-Combat @ Sitrus Berry  
-Ability: Cud Chew  
-Level: 85  
-Tera Type: Fighting  
-- Raging Bull  
-- Wild Charge  
-- Bulk Up  
-- Throat Chop
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Solar Power
+Nature: Timid
+- Fire Blast
+- Solar Beam
+- Focus Blast
+- Air Slash
 

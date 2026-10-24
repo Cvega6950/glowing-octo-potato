@@ -266,11 +266,24 @@ static unsigned PathStep(uint32_t layout, const int *dist, int x, int y)
 //   key=ADDR pairs (emu.py fills these from the ELF): main outcome ctrl act mov actcur movcur
 //          partyidx party count pmenu pmenucb2 battlecb2 mons (gBattleMons, for the turn log)
 //          ppoff (offsetof(struct BattlePokemon, pp))
-// Forced switches send out the first party Pokemon that still has HP and is not already active.
+//   plan=S:P.M/S:P.M...: a game plan, like a player's: against opponent species S, party slot P
+//          uses move M. If the Pokemon that is out has a rule for the opponent it attacks with that
+//          move; otherwise the first rule's Pokemon that still has HP is switched in (once per
+//          opponent switch-in, at most 12 times a battle). Opponents without a rule get the MOVES
+//          entry of whoever is out.
+// Forced switches send out the plan's Pokemon for the opponent if it can, else the first party
+// Pokemon that still has HP and is not already active.
 // A move slot out of PP is replaced by the first slot that still has PP.
 struct AutoSyms
 {
     uint32_t main, outcome, ctrl, act, mov, actcur, movcur, partyidx, party, count, pmenu, pmenucb2, battlecb2, mons, ppoff;
+};
+
+#define MAX_PLAN 16
+struct PlanRule
+{
+    unsigned species;
+    int slot, move;
 };
 
 static void Tap(unsigned keys)
@@ -301,7 +314,29 @@ static int PartyHp(const struct AutoSyms *sy, int slot)
     return Peek(16, sy->party + slot * 100 + 86);
 }
 
-static void AutoBattle(const char *movesArg, unsigned long maxFrames, const struct AutoSyms *sy)
+// The party menu puts gPlayerParty in battle order while it is open, so a Pokemon is found there
+// by its personality value and OT ID (struct Pokemon +0 and +4, not encrypted), taken in field
+// order. Its stats would not do: Mega Evolution changes them.
+static uint64_t PartySignature(const struct AutoSyms *sy, int slot)
+{
+    return (uint64_t)Peek(32, sy->party + slot * 100) << 32 | Peek(32, sy->party + slot * 100 + 4);
+}
+
+// The rule for this opponent and party slot (slot -1: the first rule for the opponent whose
+// Pokemon still has HP)
+static const struct PlanRule *FindPlanRule(const struct AutoSyms *sy, const struct PlanRule *plan, int nPlan,
+                                           unsigned species, int slot)
+{
+    for (int i = 0; i < nPlan; i++)
+    {
+        if (plan[i].species == species && (slot >= 0 ? plan[i].slot == slot : PartyHp(sy, plan[i].slot) > 0))
+            return &plan[i];
+    }
+    return NULL;
+}
+
+static void AutoBattle(const char *movesArg, unsigned long maxFrames, const struct AutoSyms *sy,
+                       const struct PlanRule *plan, int nPlan)
 {
     int moves[6] = {0}, mega[6] = {0};
     const char *p = movesArg;
@@ -320,6 +355,13 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
 
     unsigned long start = frameCount, idle = 0;
     int turns = 0, switches = 0, megaPressed = 0, shownMoves = 0;
+    // voluntary: 1 once POKEMON is chosen for a planned switch, 2 once the party menu has taken it
+    int planMove = -1, switchTarget = -1, planSwitches = 0, voluntary = 0, triedMask = 0, movTries = 0;
+    unsigned switchedFor = 0;
+    unsigned long attemptFrame = 0;
+    uint64_t sig[6] = {0};
+    for (int i = 0; i < 6; i++)
+        sig[i] = PartySignature(sy, i);
     uint32_t outcome = 0;
     while (frameCount - start < maxFrames)
     {
@@ -330,13 +372,48 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
             break;
         if (cb2 == sy->battlecb2)
             NoteSeen(Peek(16, sy->mons + 0x88));
-        if (cb2 == sy->pmenucb2)
+        if (cb2 != sy->pmenucb2)
         {
-            // Skip the active battler: it may still have HP after a voluntary switch (U-turn, Teleport)
-            int target = -1, count = Peek(8, sy->count), active = Peek(8, sy->partyidx);
-            for (int i = 0; i < count && i < 6; i++)
+            triedMask = 0;
+            if (voluntary == 2)
+                voluntary = 0;
+        }
+        if (cb2 == sy->pmenucb2 && voluntary == 2)
+        {
+            // Still in the menu two seconds after the planned switch: it was refused (e.g. a
+            // trapped Pokemon), so back out to the action menu
+            if (frameCount - attemptFrame > 120)
             {
-                if (PartyHp(sy, i) > 0 && i != active)
+                Tap(1u << 1);
+                RunFrames(0, 30);
+                voluntary = 0;
+            }
+            else
+            {
+                RunFrames(0, 1);
+            }
+            idle = 0;
+        }
+        else if (cb2 == sy->pmenucb2)
+        {
+            // The menu is in battle order: the active battler (gBattlerPartyIndexes, field order) is
+            // found by its personality value and skipped (it may still have HP after U-turn or
+            // Teleport). A menu slot the game refused (e.g. a fainted Pokemon) isn't tried twice.
+            int target = -1, count = Peek(8, sy->count), active = Peek(8, sy->partyidx);
+            uint64_t activeSig = sig[active < 6 ? active : 0];
+            const struct PlanRule *r = FindPlanRule(sy, plan, nPlan, Peek(16, sy->mons + 0x88), -1);
+            int want = switchTarget >= 0 ? switchTarget : r ? r->slot : -1;
+            for (int i = 0; want >= 0 && want != active && i < count && i < 6; i++)
+            {
+                if (PartyHp(sy, i) > 0 && PartySignature(sy, i) == sig[want] && !(triedMask & (1 << i)))
+                {
+                    target = i;
+                    break;
+                }
+            }
+            for (int i = 0; target < 0 && i < count && i < 6; i++)
+            {
+                if (PartyHp(sy, i) > 0 && PartySignature(sy, i) != activeSig && !(triedMask & (1 << i)))
                 {
                     target = i;
                     break;
@@ -345,12 +422,25 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
             int slot = (int8_t)Peek(8, sy->pmenu + 9);
             if (target < 0 || slot == target)
             {
+                if (slot >= 0 && slot < 6)
+                    triedMask |= 1 << slot;
                 Tap(1u << 0); // A: choose the Pokemon
                 RunFrames(0, 30);
                 Tap(1u << 0); // A: SEND OUT
                 RunFrames(0, 60);
-                switches++;
-                printf("[frame %lu] autobattle: switch to party slot %d\n", frameCount, target);
+                if (switchTarget >= 0)
+                {
+                    planSwitches++;
+                    printf("[frame %lu] autobattle: plan: switch in party slot %d\n", frameCount, switchTarget);
+                    switchTarget = -1;
+                    voluntary = 2;
+                    attemptFrame = frameCount;
+                }
+                else
+                {
+                    switches++;
+                    printf("[frame %lu] autobattle: switch to party slot %d\n", frameCount, target);
+                }
             }
             else
             {
@@ -360,16 +450,51 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
         }
         else if (ctrl == sy->act)
         {
-            if (Peek(8, sy->actcur) != 0)
-                Tap(1u << 6 | 1u << 5); // UP+LEFT: back to BATTLE
+            unsigned opp = Peek(16, sy->mons + 0x88);
+            int active = Peek(8, sy->partyidx), action = 0, cur = Peek(8, sy->actcur);
+            const struct PlanRule *r = FindPlanRule(sy, plan, nPlan, opp, active);
+            planMove = -1;
+            movTries = 0;
+            if (voluntary == 1)
+            {
+                // POKEMON was chosen but no party menu opened (the game refused the switch)
+                voluntary = 0;
+                switchTarget = -1;
+            }
+            if (r)
+                planMove = r->move;
+            else if ((r = FindPlanRule(sy, plan, nPlan, opp, -1)) && r->slot < 6 && switchedFor != opp && planSwitches < 12)
+                action = 2; // POKEMON (at most 12 planned switches a battle, so two plans can't ping-pong forever)
+            if (cur != action)
+            {
+                if ((cur ^ action) & 1)
+                    Tap((action & 1) ? 1u << 4 : 1u << 5); // RIGHT / LEFT
+                else
+                    Tap((action & 2) ? 1u << 7 : 1u << 6); // DOWN / UP
+            }
             else
+            {
+                if (action == 2)
+                {
+                    switchTarget = r->slot;
+                    switchedFor = opp;
+                    voluntary = 1;
+                }
                 Tap(1u << 0);
+            }
             idle = 0;
         }
         else if (ctrl == sy->mov)
         {
             int slot = Peek(8, sy->partyidx);
-            int want = moves[slot < 6 ? slot : 0], cur = Peek(8, sy->movcur);
+            int want = planMove >= 0 ? planMove : moves[slot < 6 ? slot : 0], cur = Peek(8, sy->movcur);
+            // The game refused the move (Choice lock, Taunt, Encore, Disable...): try the next one
+            for (int n = movTries / 3; n > 0; n--)
+            {
+                do
+                    want = (want + 1) & 3;
+                while (Peek(16, sy->mons + 12 + 2 * want) == 0);
+            }
             if (sy->ppoff && Peek(8, sy->mons + sy->ppoff + want) == 0)
             {
                 for (int m = 0; m < 4; m++)
@@ -410,6 +535,7 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
                        Peek(16, sy->mons + 0x88), Peek(16, sy->mons + 0x88 + 42), Peek(16, sy->mons + 0x88 + 46));
                 Tap(1u << 0);
                 turns++;
+                movTries++;
             }
             idle = 0;
         }
@@ -424,8 +550,11 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
     // Let the post-battle text and fade finish
     for (int i = 0; i < 40 && (Peek(32, sy->main + 4) & ~1u) == sy->battlecb2; i++)
         Tap(1u << 0);
-    printf("[frame %lu] autobattle: outcome=%u (1=won 2=lost) turns=%d forced_switches=%d party_hp=",
+    printf("[frame %lu] autobattle: outcome=%u (1=won 2=lost) turns=%d forced_switches=%d",
            frameCount, outcome, turns, switches);
+    if (nPlan)
+        printf(" plan_switches=%d", planSwitches);
+    printf(" party_hp=");
     for (int i = 0; i < (int)Peek(8, sy->count) && i < 6; i++)
         printf("%s%d", i ? "/" : "", PartyHp(sy, i));
     printf("\n");
@@ -519,6 +648,8 @@ int main(int argc, char **argv)
         else if (!strcmp(cmd, "autobattle"))
         {
             struct AutoSyms sy = {0};
+            struct PlanRule plan[MAX_PLAN];
+            int nPlan = 0;
             char *rest = line;
             for (int skip = 0; skip < 3 && rest; skip++)
             {
@@ -548,8 +679,22 @@ int main(int argc, char **argv)
                 else if (!strcmp(tok, "pmenucb2")) sy.pmenucb2 = v;
                 else if (!strcmp(tok, "battlecb2")) sy.battlecb2 = v;
                 else if (!strcmp(tok, "ppoff")) sy.ppoff = strtoul(eq + 1, NULL, 0);
+                else if (!strcmp(tok, "plan"))
+                {
+                    for (char *r = eq + 1; *r && nPlan < MAX_PLAN; )
+                    {
+                        unsigned sp, sl, mv;
+                        int n = 0;
+                        if (sscanf(r, "%u:%u.%u%n", &sp, &sl, &mv, &n) != 3)
+                            break;
+                        plan[nPlan++] = (struct PlanRule){sp, (int)sl, (int)mv};
+                        r += n;
+                        if (*r == '/')
+                            r++;
+                    }
+                }
             }
-            AutoBattle(a1, strtoul(a2, NULL, 0), &sy);
+            AutoBattle(a1, strtoul(a2, NULL, 0), &sy, plan, nPlan);
         }
         else if (!strcmp(cmd, "menuselect"))
         {

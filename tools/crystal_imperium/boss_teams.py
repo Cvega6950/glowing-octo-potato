@@ -13,6 +13,8 @@ Design rules (DECISIONS.md D21):
     can learn (validate.py checks abilities and moves)
   * IVs are 31 (Minimal Grinding gives every Pokemon 31 IVs anyway; this covers games with it off)
   * from the 5th Gym on, each boss has one Mega Evolution, normally the ace
+  * Red is the hardest battle in the game (D27): the highest levels, competitive EVs (which he
+    keeps under Minimal Grinding), the prediction AI and four Full Restores; validate.py checks it
 """
 import argparse
 import os
@@ -23,10 +25,12 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 PARTY = os.path.join(ROOT, "src", "data", "trainers_hns.party")
 
 BOSS_AI = "Smart Trainer / Ace Pokemon / HP Aware"
+RED_AI = "Smart Trainer / Prediction / Ace Pokemon / HP Aware"
 
 
-def mon(species, level, item, ability, nature, moves):
-    return {"species": species, "level": level, "item": item, "ability": ability, "nature": nature, "moves": moves}
+def mon(species, level, item, ability, nature, moves, evs=None):
+    return {"species": species, "level": level, "item": item, "ability": ability, "nature": nature, "moves": moves,
+            "evs": evs}
 
 
 def team(levels, mons):
@@ -306,15 +310,27 @@ BLUE = [
     mon("Pidgeot", 70, "Pidgeotite", "Keen Eye", "Timid", ["Hurricane", "Heat Wave", "U Turn", "Roost"]),
 ]
 
-# --- Red on Mt. Silver (after the Kanto League, no level cap) --------------------------------------
-RED = [
-    mon("Pikachu", 88, "Light Ball", "Lightning Rod", "Hasty", ["Volt Tackle", "Surf", "Knock Off", "Fake Out"]),
-    mon("Espeon", 86, "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"]),
-    mon("Snorlax", 86, "Leftovers", "Thick Fat", "Careful", ["Curse", "Body Slam", "Rest", "Sleep Talk"]),
-    mon("Venusaur", 87, "Black Sludge", "Chlorophyll", "Modest", ["Sleep Powder", "Leech Seed", "Sludge Bomb", "Giga Drain"]),
-    mon("Blastoise", 87, "Leftovers", "Rain Dish", "Bold", ["Hydro Pump", "Ice Beam", "Rapid Spin", "Aura Sphere"]),
-    mon("Charizard", 90, "Charizardite Y", "Solar Power", "Timid", ["Fire Blast", "Solar Beam", "Focus Blast", "Air Slash"]),
+# --- Red on Mt. Silver: the hardest battle in the game (DECISIONS.md D27) ------------------------
+# No level cap once the player is Kanto Champion. His first battle is at 96-100, the rematch after
+# the Sinjoh storyline (TRAINER_RED_POSTOBC_HNS) all at 100; every Pokemon has a competitive EV
+# spread, which Minimal Grinding leaves him (src/pokemon.c).
+RED_SIX = [
+    mon("Pikachu", None, "Light Ball", "Lightning Rod", "Hasty", ["Volt Tackle", "Surf", "Knock Off", "Fake Out"],
+        "252 Atk / 4 SpA / 252 Spe"),
+    mon("Espeon", None, "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Snorlax", None, "Leftovers", "Thick Fat", "Careful", ["Curse", "Body Slam", "Rest", "Sleep Talk"],
+        "252 HP / 4 Atk / 252 SpD"),
+    mon("Venusaur", None, "Life Orb", "Chlorophyll", "Modest", ["Sleep Powder", "Growth", "Giga Drain", "Sludge Bomb"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Blastoise", None, "White Herb", "Torrent", "Modest", ["Shell Smash", "Hydro Pump", "Ice Beam", "Aura Sphere"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Charizard", None, "Charizardite Y", "Solar Power", "Timid", ["Fire Blast", "Solar Beam", "Focus Blast", "Air Slash"],
+        "4 HP / 252 SpA / 252 Spe"),
 ]
+RED = team([96, 96, 97, 97, 98, 100], RED_SIX)
+RED_REMATCH = team([100] * 6, RED_SIX)
+RED_ITEMS = "Full Restore / Full Restore / Full Restore / Full Restore"
 
 TEAMS = {
     "TRAINER_BROCK_HNS": ("Full Restore / Full Restore", BROCK),
@@ -325,7 +341,8 @@ TEAMS = {
     "TRAINER_SABRINA_HNS": ("Full Restore / Full Restore", SABRINA),
     "TRAINER_BLAINE_HNS": ("Full Restore / Full Restore", BLAINE),
     "TRAINER_BLUE_HNS": ("Full Restore / Full Restore", BLUE),
-    "TRAINER_RED_HNS": ("Full Restore / Full Restore", RED),
+    "TRAINER_RED_HNS": (RED_ITEMS, RED, RED_AI),
+    "TRAINER_RED_POSTOBC_HNS": (RED_ITEMS, RED_REMATCH, RED_AI),
     "TRAINER_PETREL_1_HNS": ("Full Restore / Full Restore", PETREL_1),
     "TRAINER_ARIANA_1_HNS": ("Full Restore / Full Restore", ARIANA_1),
     "TRAINER_PROTON_2_HNS": ("Full Restore / Full Restore", PROTON_2),
@@ -357,11 +374,11 @@ for _n, _items in ((2, "Super Potion"), (3, "Super Potion / Super Potion"), (4, 
         TEAMS[f"TRAINER_RIVAL_{_starter}_{_n}_HNS"] = (_items, RIVAL_TEAM[_n] + [_ace])
 
 
-def render(tid, header, items, mons):
+def render(tid, header, items, mons, ai=BOSS_AI):
     lines = []
     for line in header.splitlines():
         if line.startswith("AI:"):
-            line = "AI: " + BOSS_AI
+            line = "AI: " + ai
         elif line.startswith("Items:"):
             if not items:
                 continue
@@ -374,6 +391,8 @@ def render(tid, header, items, mons):
         out += f"\n{m['species']} @ {m['item']}\n"
         out += f"Level: {m['level']}\n"
         out += "IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe\n"
+        if m.get("evs"):
+            out += f"EVs: {m['evs']}\n"
         out += f"Ability: {m['ability']}\n"
         out += f"Nature: {m['nature']}\n"
         out += "".join(f"- {mv}\n" for mv in m["moves"])
@@ -390,8 +409,8 @@ def apply(text):
         tid = m.group(1)
         seen.add(tid)
         header = block.split("\n\n", 1)[0]
-        items, mons = TEAMS[tid]
-        blocks[i] = render(tid, header, items, mons) + "\n"
+        items, mons, *ai = TEAMS[tid]
+        blocks[i] = render(tid, header, items, mons, *ai) + "\n"
     missing = set(TEAMS) - seen
     if missing:
         sys.exit(f"trainers not found: {sorted(missing)}")

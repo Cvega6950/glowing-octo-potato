@@ -1,0 +1,82 @@
+# Crystal Imperium play test: Red is the last and hardest battle in the game (DECISIONS.md D27).
+# - Red battles only the Kanto Champion: before the Kanto League he doesn't battle, after it his
+#   summit battle is TRAINER_RED_HNS, and after the Sinjoh story his rematch, TRAINER_RED_POSTOBC_HNS.
+# - His Pokemon keep their EVs under Minimal Grinding (on by default; everyone else's are 0): his
+#   lead Pikachu (level 96, Hasty, 252 Speed EVs) has 294 Speed, not 227.
+# - A level-100 six with held items and a Mega, played with a game plan (autobattle in emu.py:
+#   counters for each of Red's Pokemon, switched in when the one out has no move for him), beats
+#   him at least once in 12 tries; it won 4 of 12 when the plan was worked out. Charizard Mega
+#   Evolves (Y). Sixes without items played naively lost all 30 tries (D27).
+!new_game()
+!battle_style_set()
+!give_mon(25, 50)
+!set_var("VAR_CARE_PACKAGES", 17)
+!set_flag("FLAG_HIDE_MTSILVER_RED", 0)
+!warp(24, 79, 0)
+!walkto(10, 7, path=True)
+press UP
+wait 20
+savestate summit.ss
+shot 01_summit.png
+
+# Not the Kanto Champion yet: Red doesn't battle
+press A
+wait 200
+press B
+wait 200
+shot 02_red_not_yet.png
+mash B 300
+wait 200
+expectne32 {gMain+4} {BattleMainCB2+1} no_battle_before_kanto_league
+
+# The Kanto Champion: the summit battle
+loadstate summit.ss
+!set_flag("FLAG_IS_KANTO_CHAMPION")
+press A
+wait 200
+mash B 200
+wait 600
+shot 03_red_battle.png
+expect32 {gMain+4} {BattleMainCB2+1} kanto_champion_battles_red
+![f"expect16 {{gTrainerBattleParameter+{probe.resolve({'o': 'offsetof(TrainerBattleParameter, params.opponentA)'})['o']}}} {probe.resolve({'t': 'TRAINER_RED_HNS'})['t']} summit_battle_is_trainer_red_hns"]
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B red_action_menu
+!expect_battler(1, "species", "SPECIES_PIKACHU", "red_leads_with_pikachu")
+!expect_battler(1, "speed", "294", "pikachu_keeps_252_speed_evs")
+
+# After the Sinjoh story: the rematch
+loadstate summit.ss
+!set_flag("FLAG_IS_KANTO_CHAMPION")
+!set_var("VAR_SINJOH_STORYLINE", 13)
+press A
+wait 200
+mash B 200
+wait 600
+expect32 {gMain+4} {BattleMainCB2+1} rematch_battle_started
+![f"expect16 {{gTrainerBattleParameter+{probe.resolve({'o': 'offsetof(TrainerBattleParameter, params.opponentA)'})['o']}}} {probe.resolve({'t': 'TRAINER_RED_POSTOBC_HNS'})['t']} rematch_is_trainer_red_postobc_hns"]
+
+# A six built for him at level 100: Ground for Pikachu, Dark for Espeon, Fighting for Snorlax,
+# Flying with Safety Goggles (no Sleep Powder) for Venusaur, Mega Ampharos for Blastoise, Rock for
+# Charizard. Every Pokemon has a move for some of the others.
+reset
+!new_game()
+!battle_style_set()
+!give_mon_complex("SPECIES_GARCHOMP", 100, "NATURE_JOLLY", 1, ['MOVE_EARTHQUAKE', 'MOVE_DRAGON_CLAW', 'MOVE_STONE_EDGE', 'MOVE_FIRE_FANG'])
+!give_mon_complex("SPECIES_KINGAMBIT", 100, "NATURE_ADAMANT", 0, ['MOVE_KOWTOW_CLEAVE', 'MOVE_IRON_HEAD', 'MOVE_SUCKER_PUNCH', 'MOVE_SWORDS_DANCE'])
+!give_mon_complex("SPECIES_CONKELDURR", 100, "NATURE_ADAMANT", 0, ['MOVE_DRAIN_PUNCH', 'MOVE_MACH_PUNCH', 'MOVE_KNOCK_OFF', 'MOVE_ICE_PUNCH'])
+!give_mon_complex("SPECIES_TALONFLAME", 100, "NATURE_ADAMANT", 1, ['MOVE_BRAVE_BIRD', 'MOVE_FLARE_BLITZ', 'MOVE_U_TURN', 'MOVE_ROOST'])
+!give_mon_complex("SPECIES_AMPHAROS", 100, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
+!give_mon_complex("SPECIES_TYRANITAR", 100, "NATURE_ADAMANT", 0, ['MOVE_STONE_EDGE', 'MOVE_CRUNCH', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
+!hold_item("ITEM_LIFE_ORB", 0)
+!hold_item("ITEM_BLACK_GLASSES", 1)
+!hold_item("ITEM_FLAME_ORB", 2)
+!hold_item("ITEM_SAFETY_GOGGLES", 3)
+!hold_item("ITEM_AMPHAROSITE", 4)
+!hold_item("ITEM_ASSAULT_VEST", 5)
+!give_item("ITEM_MEGA_RING")
+savestate red100.ss
+!battle("TRAINER_RED_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B team_action_menu
+![f"expect16 {{gBattleMons+{probe.resolve({'i': 'offsetof(struct BattlePokemon, item)'})['i']}}} {probe.resolve({'c': 'ITEM_LIFE_ORB'})['c']} garchomp_holds_life_orb"]
+seenreset
+!sample_battle("TRAINER_RED_HNS", "0,0,0,0,0m,0", 12, 1, 12, "red100.ss", plan={"SPECIES_PIKACHU": [(0, 0), (5, 2), (2, 0), (1, 0)], "SPECIES_ESPEON": [(1, 0), (5, 1), (2, 2)], "SPECIES_SNORLAX": [(2, 0), (1, 0), (5, 0)], "SPECIES_VENUSAUR": [(3, 0), (0, 3), (4, 1)], "SPECIES_BLASTOISE": [(4, 0), (0, 1), (2, 0), (1, 0)], "SPECIES_CHARIZARD": [(5, 0), (0, 2), (4, 3)], "SPECIES_CHARIZARD_MEGA_Y": [(5, 0), (0, 2), (4, 3)]}, max_frames=90000)
+!expect_const_seen("SPECIES_CHARIZARD_MEGA_Y", "red_mega_charizard_y")

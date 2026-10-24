@@ -90,26 +90,28 @@ expectne8 {gBattleOutcome} 0 clair_resolved
 
 # Winnable with a well-built team: six fully evolved Pokemon at the cap with good natures and
 # moves but no held items (prepared_team), played by the autopilot (one move per Pokemon, no
-# switching), wins at least one of three tries. The bosses' Mega Evolutions happen.
+# switching), wins at least once: in eight tries, sixteen against Pryce (it won 5, 6, 6, 3 and 4 of
+# 8 against Morty, Chuck, Jasmine, Pryce and Clair when the tries were sized). The bosses' Mega
+# Evolutions happen.
 loadstate base.ss
 !prepared_team(25)
 savestate prep25.ss
-!sample_battle("TRAINER_MORTY_1_HNS", "0,0,1,0,3,0", 3, 1, 3, "prep25.ss")
+!sample_battle("TRAINER_MORTY_1_HNS", "0,0,1,0,3,0", 8, 1, 8, "prep25.ss")
 loadstate base.ss
 !prepared_team(31)
 savestate prep31.ss
 seenreset
-!sample_battle("TRAINER_CHUCK_1_HNS", "1,0,1,0,0,0", 3, 1, 3, "prep31.ss")
+!sample_battle("TRAINER_CHUCK_1_HNS", "1,0,1,0,0,0", 8, 1, 8, "prep31.ss")
 !expect_const_seen("SPECIES_HERACROSS_MEGA", "chuck_mega_heracross")
 seenreset
-!sample_battle("TRAINER_JASMINE_1_HNS", "1,2,2,0,0,2", 3, 1, 3, "prep31.ss")
+!sample_battle("TRAINER_JASMINE_1_HNS", "1,2,2,0,0,2", 8, 1, 8, "prep31.ss")
 !expect_const_seen("SPECIES_STEELIX_MEGA", "jasmine_mega_steelix")
 seenreset
-!sample_battle("TRAINER_PRYCE_1_HNS", "1,0,2,1,0,2", 3, 1, 3, "prep31.ss")
+!sample_battle("TRAINER_PRYCE_1_HNS", "1,0,2,1,0,2", 16, 1, 16, "prep31.ss")
 !expect_const_seen("SPECIES_ABOMASNOW_MEGA", "pryce_mega_abomasnow")
 loadstate base.ss
 !prepared_team(45)
 savestate prep45.ss
 seenreset
-!sample_battle("TRAINER_CLAIR_1_HNS", "1,1,0,1,3,1", 3, 1, 3, "prep45.ss")
+!sample_battle("TRAINER_CLAIR_1_HNS", "1,1,0,1,3,1", 8, 1, 8, "prep45.ss")
 !expect_const_seen("SPECIES_ALTARIA_MEGA", "clair_mega_altaria")

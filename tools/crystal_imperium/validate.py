@@ -19,6 +19,8 @@ trainerproc and the C compiler; this script adds the semantic checks:
   * reworked bosses (tools/crystal_imperium/boss_teams.py) may only use moves their species or a
     pre-evolution can learn in some game (src/data/pokemon/all_learnables.json), and every
     version of a Gym Leader keeps its ace at the cap for the badges the player can have
+  * Red is the hardest battle: both his parties have the highest average level of all
+    trainers, EVs on all six Pokemon, the prediction AI and four Full Restores
   * every evolution family should be obtainable (reported, not fatal: the
     Gen 4-9 roll-out is ongoing work)
 """
@@ -300,6 +302,28 @@ def main():
         elif ace < caps[badges]:
             (errors if tid in REWORKED else notes).append(
                 f"{tid}: ace level {ace} is below the NORMAL cap {caps[badges]} for {badges} badges")
+
+    # Red is the last and hardest battle (DECISIONS.md D27). His EVs are the only trainer EVs that
+    # Minimal Grinding keeps (src/pokemon.c).
+    red = ("TRAINER_RED_HNS", "TRAINER_RED_POSTOBC_HNS")
+
+    def average_level(t):
+        return sum(m.get("level", 0) for m in t["mons"]) / len(t["mons"])
+
+    top_level, top_tid = max((average_level(t), tid) for tid, t in trainers.items() if tid not in red and t["mons"])
+    for tid in red:
+        t = trainers.get(tid)
+        if t is None or not t["mons"]:
+            errors.append(f"missing Red trainer {tid}")
+            continue
+        if average_level(t) <= top_level:
+            errors.append(f"{tid}: average level {average_level(t):.1f} is not above {top_tid} ({top_level:.1f})")
+        if len(t["mons"]) != 6 or not all("evs" in m for m in t["mons"]):
+            errors.append(f"{tid}: Red needs six Pokemon, each with EVs")
+        if "Prediction" not in t.get("ai", ""):
+            errors.append(f"{tid}: Red needs the prediction AI")
+        if t.get("items", "").count("Full Restore") < 4:
+            errors.append(f"{tid}: Red needs four Full Restores")
 
     # Family availability
     fam = families(species)

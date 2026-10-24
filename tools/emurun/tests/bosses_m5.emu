@@ -1,12 +1,12 @@
 # Crystal Imperium play test for the third batch of Imperium-style bosses
 # (tools/crystal_imperium/boss_teams.py): the eight Kanto Gym Leaders and Blue (cap 70 after the
-# Johto Champion) and Red (no cap; his ace is level 90). The autopilot uses one move per Pokemon and
-# never switches; no team holds items.
-# - The prepared all-round six at the cap fights each Gym Leader once: every battle plays to a
-#   result, and the wins are tallied and reported, not required.
-# - A six built for Blue beats him at least once in three tries at the cap.
-# - A six built for Red fights him once at level 90 (tallied) and beats him at least once in three
-#   tries at level 100 (there is no cap left by then).
+# Johto Champion). No team holds items. Red has his own test (red).
+# - The prepared all-round six at the cap fights each Gym Leader once, played naively (one move
+#   per Pokemon, never switching): every battle plays to a result, and the wins are tallied and
+#   reported, not required.
+# - A six built for Blue, played with a game plan (autobattle in emu.py: for each of his Pokemon
+#   some of the six have a move, and one of them is switched in if the Pokemon out has none),
+#   beats him at least once in six tries (10 of 12 when the plan was worked out; naively 1 of 12).
 # - The prepared six at level 100 reaches each leader's and Blue's ace: every Mega Evolution happens.
 !new_game()
 !battle_style_set()
@@ -30,7 +30,8 @@ expectne8 {gBattleOutcome} 0 sabrina_resolved
 !sample_battle("TRAINER_BLAINE_HNS", "1,0,1,0,2,3", 1, 0, 1, "prep70.ss")
 expectne8 {gBattleOutcome} 0 blaine_resolved
 
-# Blue: a six built for him (Water, Fairy, Fighting, Bug, Electric)
+# Blue: a six built for him (Fairy for Machamp, Bug for Exeggutor, Water for Rhyperior and Arcanine,
+# Fighting for Tyranitar, Electric for Pidgeot)
 loadstate base.ss
 !give_mon_complex("SPECIES_SWAMPERT", 70, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_EARTHQUAKE', 'MOVE_ICE_PUNCH', 'MOVE_STEALTH_ROCK'])
 !give_mon_complex("SPECIES_GARDEVOIR", 70, "NATURE_MODEST", 0, ['MOVE_MOONBLAST', 'MOVE_PSYCHIC', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
@@ -39,30 +40,7 @@ loadstate base.ss
 !give_mon_complex("SPECIES_AMPHAROS", 70, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
 !give_mon_complex("SPECIES_GYARADOS", 70, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_ICE_FANG', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
 savestate blue70.ss
-!sample_battle("TRAINER_BLUE_HNS", "1,0,0,0,0,0", 3, 1, 3, "blue70.ss")
-
-# Red: a six built for him, at his ace's level and at 100
-loadstate base.ss
-!give_mon_complex("SPECIES_GARCHOMP", 90, "NATURE_JOLLY", 1, ['MOVE_EARTHQUAKE', 'MOVE_DRAGON_CLAW', 'MOVE_FIRE_FANG', 'MOVE_SWORDS_DANCE'])
-!give_mon_complex("SPECIES_TYRANITAR", 90, "NATURE_ADAMANT", 0, ['MOVE_CRUNCH', 'MOVE_STONE_EDGE', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
-!give_mon_complex("SPECIES_CONKELDURR", 90, "NATURE_ADAMANT", 0, ['MOVE_DRAIN_PUNCH', 'MOVE_MACH_PUNCH', 'MOVE_KNOCK_OFF', 'MOVE_ICE_PUNCH'])
-!give_mon_complex("SPECIES_MAMOSWINE", 90, "NATURE_ADAMANT", 1, ['MOVE_ICICLE_CRASH', 'MOVE_EARTHQUAKE', 'MOVE_ICE_SHARD', 'MOVE_STEALTH_ROCK'])
-!give_mon_complex("SPECIES_AMPHAROS", 90, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
-!give_mon_complex("SPECIES_RHYPERIOR", 90, "NATURE_ADAMANT", 1, ['MOVE_STONE_EDGE', 'MOVE_EARTHQUAKE', 'MOVE_MEGAHORN', 'MOVE_ROCK_POLISH'])
-savestate red90.ss
-!sample_battle("TRAINER_RED_HNS", "0,0,0,0,0,0", 1, 0, 1, "red90.ss", "_lv90")
-expectne8 {gBattleOutcome} 0 red_resolved
-loadstate base.ss
-!give_mon_complex("SPECIES_GARCHOMP", 100, "NATURE_JOLLY", 1, ['MOVE_EARTHQUAKE', 'MOVE_DRAGON_CLAW', 'MOVE_FIRE_FANG', 'MOVE_SWORDS_DANCE'])
-!give_mon_complex("SPECIES_TYRANITAR", 100, "NATURE_ADAMANT", 0, ['MOVE_CRUNCH', 'MOVE_STONE_EDGE', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
-!give_mon_complex("SPECIES_CONKELDURR", 100, "NATURE_ADAMANT", 0, ['MOVE_DRAIN_PUNCH', 'MOVE_MACH_PUNCH', 'MOVE_KNOCK_OFF', 'MOVE_ICE_PUNCH'])
-!give_mon_complex("SPECIES_MAMOSWINE", 100, "NATURE_ADAMANT", 1, ['MOVE_ICICLE_CRASH', 'MOVE_EARTHQUAKE', 'MOVE_ICE_SHARD', 'MOVE_STEALTH_ROCK'])
-!give_mon_complex("SPECIES_AMPHAROS", 100, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
-!give_mon_complex("SPECIES_RHYPERIOR", 100, "NATURE_ADAMANT", 1, ['MOVE_STONE_EDGE', 'MOVE_EARTHQUAKE', 'MOVE_MEGAHORN', 'MOVE_ROCK_POLISH'])
-savestate red100.ss
-seenreset
-!sample_battle("TRAINER_RED_HNS", "0,0,0,0,0,0", 3, 1, 3, "red100.ss", "_lv100")
-!expect_const_seen("SPECIES_CHARIZARD_MEGA_Y", "red_mega_charizard_y")
+!sample_battle("TRAINER_BLUE_HNS", "0,0,0,0,0,0", 6, 1, 6, "blue70.ss", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (5, 1), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 0), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 0)], "SPECIES_TYRANITAR": [(2, 0), (0, 0), (5, 0), (1, 0)], "SPECIES_PIDGEOT": [(4, 0), (0, 2), (5, 1)], "SPECIES_PIDGEOT_MEGA": [(4, 0), (0, 2), (5, 1)]})
 
 # Every leader's and Blue's Mega Evolution, with the prepared six at level 100
 loadstate base.ss

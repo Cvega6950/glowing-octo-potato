@@ -48,7 +48,8 @@ can decide a fight. This applies to both sides, like Emerald Imperium.
 
 - Gym Leaders and mini-bosses: `Smart Trainer / Ace Pokemon / HP Aware`. Smart Trainer is
   omniscient, switches smartly and avoids PP stalling.
-- Elite Four, Champion, Red and postgame bosses also get `Prediction`.
+- Red and Heart & Soul's postgame rematch teams also get `Prediction` (D20 explains why the
+  rest don't; D27).
 - Ordinary trainers keep HnS's cheaper AI. AI time per turn matters on hardware and on phones.
 
 ## D6. Level caps stay tied to Gym aces
@@ -275,7 +276,7 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   - Chuck, Jasmine and Pryce have three versions each, picked by how many of the three the
     player has beaten (HnS's `_1`, `_1_2`, `_1_3`): caps 31, 36 and 38.
   - The Kanto leaders and Blue are at 68–70 (the cap is 70 for all of Kanto). Red, with no cap
-    left, is at 86–90.
+    left, was at 86–90; since 0.6.0 he is the hardest battle, at 96–100 (D27).
 - Done: Proton (Slowpoke Well and Radio Tower), Petrel and Ariana (Rocket Hideout and Radio
   Tower), Archer; the rival's 2nd–5th battles (Azalea, Burned Tower, Goldenrod Underground,
   Victory Road; all three starter versions); Morty, Chuck, Jasmine, Pryce, Clair; the five
@@ -288,18 +289,22 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 - Evidence:
   - `bosses_m3`: the naive play-test team (3–5 Pokémon at the cap with their default moves)
     loses every one of these battles; a prepared six at the cap (good natures and moves, no
-    held items, one move per Pokémon, never switching) wins at least one of three against each
-    Johto Gym Leader, and every boss Mega Evolution happens.
+    held items, one move per Pokémon, never switching) wins at least one of eight tries
+    against each Johto Gym Leader (sixteen against Pryce; three before 0.6.0), and every boss
+    Mega Evolution happens.
   - `bosses_m4`: every Rocket executive, rival and Kimono Girl battle plays to a result against
     the prepared six at the cap, and Archer's and the rival's Megas happen.
-  - `bosses_e4`: six tries each at cap 56. The prepared six beat Will 2 and 1 times (mGBA,
-    VBA-M) and Koga 5 and 5 times; sixes built for them beat Bruno 2 and 3 times, Karen 2 and
-    1 times and Lance 2 and 1 times. Every Mega Evolution happens.
+  - `bosses_e4`: at cap 56. In 0.5.0 the prepared six beat Will 2 and 1 times in six
+    (mGBA, VBA-M) and Koga 5 and 5 times; sixes built for them beat Bruno 2 and 3 times, Karen
+    2 and 1 times and Lance 2 and 1 times. Those naive samples turned out too unreliable to
+    require a win (Will about 1 try in 20 over 60 tries), so since 0.6.0 Will, Bruno, Karen and
+    Lance face sixes played with a game plan, in 8, 6, 8 and 24 tries (D27). Every Mega
+    Evolution happens.
   - `bosses_m5`: at cap 70 the prepared six won one try each against Lt. Surge and Erika on
     both emulators, Sabrina on mGBA and Blaine on VBA-M, and lost the others; a six built for
-    Blue beat him 2 and 1 times in 3. A six built for Red lost at level 90 and beat him 2 times
-    in 3 at level 100. With the prepared six at level 100 every Kanto leader's and Blue's Mega
-    Evolution happens.
+    Blue beat him 2 and 1 times in 3 (0.5.0; since 0.6.0 it plays a game plan, 10 of 12). With
+    the prepared six at level 100 every Kanto leader's and Blue's Mega Evolution happens. Red,
+    reworked as the hardest battle in 0.6.0, has his own test (`red`, D27).
 - The autopilot never switches, uses one move per Pokémon and holds no items, so these are
   lower bounds; a player who switches, heals and uses held items does better. Each boss was
   checked to be beatable by some team without items; the ones it couldn't beat were changed:
@@ -467,8 +472,12 @@ DexNav shows and that wild encounters draw from:
   move info moved from START to L, which the BW move box labels; Gen 4+ move order in battle
   (`B_MOVE_REARRANGEMENT_IN_BATTLE`), which the BW interface requires. Heart & Soul's BATTLE UI
   option (GEN 3 / GEN 4 healthboxes) is removed and `UseGen4BattleUI()` returns FALSE.
-- Cost: about 180 KB of ROM (98.82% → 99.36% of 32 MB, about 209 KB left) and no extra EWRAM in the
-  overworld; the summary screen allocates its data when it opens.
+- Cost: about 180 KB of ROM (98.82% → 99.37% of 32 MB, about 208 KB left). The BW battle
+  windows (the move box, the action box, the move-name windows) take about 8 KB more heap
+  during a battle; with Heart & Soul's heap, battles that decompress big graphics mid-battle
+  ran out of memory (Blaine's Drought lead, Will's Farigiraf, Archer and Proton in the play
+  tests). The heap is 8 KB larger (0x1E500), and the Wild Variety pool was cut to the 567
+  Pokémon it holds, so EWRAM is 99.12% used (about 2.3 KB free).
 - Not changed: the party menu, bag, start menu and Pokédex keep Heart & Soul's look. A
   Gen 5-style party menu exists for vanilla pokeemerald (Archie's), but its colors and tiles
   don't match Heart & Soul's party graphics or the BW screens.
@@ -476,3 +485,43 @@ DexNav shows and that wild encounters draw from:
   action box is the BW one; FIGHT opens the BW move box), the whole suite on both emulators,
   and screenshots of every page.
 
+## D27. Red is the hardest battle in the game
+
+- The user asked for the battle with Red to be the hardest in the game. Red's two parties
+  (`TRAINER_RED_HNS`, and `TRAINER_RED_POSTOBC_HNS` after the Sinjoh story) are the strongest in
+  the game, and `validate.py` keeps them so:
+  - Levels 96–100, the rematch all 100. No other trainer's average reaches 80; the Kanto
+    League rematch is at 76–79.
+  - Competitive EVs on all six, and Red's are the only Pokémon whose EVs Minimal Grinding keeps
+    (`IsRedsPokemon` in `CalculateMonStats`, `src/pokemon.c`). Everyone else, the player
+    included, battles at 31 IVs and 0 EVs when it is on (the default). His lead Pikachu has 294
+    Speed instead of 227.
+  - The boss AI with `Prediction` (it predicts switches and moves and punishes them), Ace
+    Pokémon and HP Aware, and four Full Restores (other bosses carry two).
+  - A sun team: Mega Charizard Y's Drought powers Venusaur's Chlorophyll and Growth and
+    Charizard's Solar Beam; Light Ball Pikachu leads with Fake Out; Magic Bounce Espeon, a
+    Curse/Rest Snorlax and a White Herb Shell Smash Blastoise.
+- **Red battles only the Kanto Champion.** Oak opens Mt. Silver and the Kanto League at the
+  same time (16 badges), and the level cap stays at 70 until the Kanto League is won; at the
+  cap a level-96–100 team with EVs is out of reach. Before the Kanto League Red now stays
+  silent ("RED seems to be waiting for the KANTO CHAMPION."), so he is the last battle and the
+  player can bring a level-100 team. Heart & Soul let him be fought after 16 badges.
+- **How hard, and is he beatable?** The battle autopilot can't prove a person's chances, but
+  its numbers bound them (BALANCE.md has the details):
+  - Played naively (one move per Pokémon, no switching, no items) every team at level 100
+    lost all 30 tries, legendary Dragons included. Against the other bosses naive teams win
+    some tries at those bosses' caps.
+  - With a game plan (a counter for each of Red's Pokémon, switched in when needed) and no
+    held items it lost 12 of 12. With held items and a Mega, as a player would bring, it won
+    4 of 12 (`red` requires at least one win in 12 tries).
+  - Two Full Restores instead of four, or no prediction AI, still lost every try; without
+    the EVs naive and planned teams won some. The EVs are the biggest single factor.
+- The autopilot's game-plan mode (`plan=` in emurun's autobattle, `plan` in `emu.py`) was
+  written for this and is now also used for the hardest Elite Four battles and Blue, whose
+  naive samples were too unreliable to require a win (Will was beaten about 1 try in 20).
+  Expansion's own AI-vs-AI mode (`B_FLAG_AI_VS_AI_BATTLE`) was tried first; in this build
+  the player's side stops after its first Pokémon faints, so it isn't used.
+- Evidence: `red` (no battle before the Kanto League; the summit battle is `TRAINER_RED_HNS`
+  and after the Sinjoh story `TRAINER_RED_POSTOBC_HNS`; Pikachu's EV Speed; the game-plan win;
+  Mega Charizard Y); `validate.py` (highest average level, EVs on all six, prediction AI,
+  four Full Restores).

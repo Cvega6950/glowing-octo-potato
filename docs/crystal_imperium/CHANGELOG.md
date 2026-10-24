@@ -22,11 +22,39 @@
     way, and the BW interface needs it); reorder them on the summary screen.
   - The options menu's BATTLE UI row (Heart & Soul's GEN 3 / GEN 4 healthboxes) is gone; the
     BW interface replaces both.
+- **Red is the hardest battle in the game** (DECISIONS.md D27):
+  - Levels 96–100 (the rematch after the Sinjoh story: all 100). Pikachu has Light Ball,
+    Espeon Life Orb, Snorlax Leftovers, Venusaur Life Orb, Blastoise White Herb and Charizard
+    Charizardite Y.
+  - Competitive EVs on all six, and his are the only Pokémon that keep their EVs under
+    Minimal Grinding.
+  - The boss AI with move and switch prediction, and four Full Restores.
+  - A sun team: Mega Charizard Y's Drought powers Chlorophyll Venusaur and Solar Beam.
+  - He battles only the Kanto Champion: before the Kanto League he waits ("RED seems to be
+    waiting for the KANTO CHAMPION."), so the level cap is gone when you fight him.
+
+### Technical
+- The heap is 8 KB larger (EWRAM 99.12% used): the BW battle windows take about 8 KB more
+  during a battle, and without it boss battles that decompress big graphics mid-battle ran
+  out of memory in the play tests. The Wild Variety pool shrank to the 567 Pokémon it holds.
 
 ### Tooling
 - emurun: `waituntil32` runs until a value matches (e.g. the battle controller reaching the
-  action menu), tapping a key meanwhile. Harness: `expect_battle_style`, `expect_window`.
-- New tests: `hard_mode_rules`, `bw_ui`.
+  action menu), tapping a key meanwhile; `dump` writes memory to a file (the heap dump found
+  the out-of-memory cause). Harness: `expect_battle_style`, `expect_window`.
+- The battle autopilot can play a **game plan** (`plan=` in `autobattle`): for each of the
+  opponent's Pokémon, which of yours attack it with which move, and which to switch in when
+  the one out has none. `hold_item` gives a party Pokémon a held item; `sample_battle` takes
+  a plan and a frame limit.
+- Autopilot fixes: a forced switch compared menu slots (battle order) with party slots (field
+  order) and could keep choosing a fainted Pokémon until the battle timed out; it now finds
+  Pokémon by personality value and never retries a slot the game refused. A move the game
+  refuses (Choice lock, Taunt, Encore) no longer stalls a battle.
+- New tests: `hard_mode_rules`, `bw_ui`, `red`; `dexnav_wild_match` checks the variety pool's
+  size. The boss samples got more tries, sized by measured win rates (`bosses_m3`: 8, Pryce
+  16; Lance 24). Will, Bruno, Karen, Lance (`bosses_e4`) and Blue (`bosses_m5`) are fought by sixes
+  playing a game plan. Red moved from `bosses_m5` to `red`. `validate.py` checks that Red's
+  parties stay the strongest in the game.
 
 ## 0.5.1-experimental (2026-10-24)
 
