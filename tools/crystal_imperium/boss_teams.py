@@ -214,7 +214,7 @@ BRUNO = [
     mon("Steelix", 55, "Leftovers", "Sturdy", "Impish", ["Heavy Slam", "Earthquake", "Stone Edge", "Stealth Rock"]),
     mon("Hitmonlee", 55, "Life Orb", "Reckless", "Jolly", ["High Jump Kick", "Knock Off", "Blaze Kick", "Fake Out"]),
     mon("Hitmonchan", 55, "Punching Glove", "Iron Fist", "Adamant", ["Drain Punch", "Ice Punch", "Thunder Punch", "Mach Punch"]),
-    mon("Machamp", 55, "Sitrus Berry", "No Guard", "Adamant", ["Dynamic Punch", "Stone Edge", "Knock Off", "Bullet Punch"]),
+    mon("Machamp", 55, "Sitrus Berry", "No Guard", "Adamant", ["Close Combat", "Stone Edge", "Knock Off", "Bullet Punch"]),
     mon("Lucario", 56, "Lucarionite", "Inner Focus", "Adamant", ["Close Combat", "Meteor Mash", "Extreme Speed", "Swords Dance"]),
 ]
 KAREN = [
@@ -227,11 +227,12 @@ KAREN = [
 ]
 # Lance leads Mega Gyarados (tools/emurun/tests/mega_evolution.emu checks it Mega Evolves on turn 1)
 # One Dragon Dance sweeper (Dragonite): with Mega Gyarados and Salamence also setting up, the
-# prepared six of the bosses_m4 play test lost all of six tries.
+# prepared six of the bosses_m4 play test lost all of six tries. Charizard attacks instead of
+# Roosting: with the Full Restores it outlasted every team built for Lance in the play tests.
 LANCE = [
     mon("Gyarados", 55, "Gyaradosite", "Intimidate", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Thunder Wave"]),
     mon("Aerodactyl", 55, "Focus Sash", "Unnerve", "Jolly", ["Stone Edge", "Earthquake", "Taunt", "Stealth Rock"]),
-    mon("Charizard", 55, "Charcoal", "Solar Power", "Timid", ["Fire Blast", "Air Slash", "Focus Blast", "Roost"]),
+    mon("Charizard", 55, "Charcoal", "Solar Power", "Timid", ["Fire Blast", "Air Slash", "Focus Blast", "Dragon Pulse"]),
     mon("Salamence", 56, "Life Orb", "Intimidate", "Jolly", ["Outrage", "Earthquake", "Fire Fang", "Dual Wingbeat"]),
     mon("Garchomp", 56, "Rocky Helmet", "Rough Skin", "Jolly", ["Earthquake", "Dragon Claw", "Stone Edge", "Swords Dance"]),
     mon("Dragonite", 56, "Lum Berry", "Multiscale", "Adamant", ["Extreme Speed", "Dragon Dance", "Earthquake", "Outrage"]),
@@ -295,7 +296,7 @@ BLAINE = [
     mon("Camerupt", 70, "Cameruptite", "Solid Rock", "Modest", ["Fire Blast", "Earth Power", "Ancient Power", "Stealth Rock"]),
 ]
 # Machamp has Close Combat, not No Guard Dynamic Punch: with the guaranteed confusion, Blue beat
-# every play-test team in all six tries.
+# every play-test team in all six tries (Bruno's Machamp likewise).
 BLUE = [
     mon("Machamp", 69, "Sitrus Berry", "No Guard", "Adamant", ["Close Combat", "Stone Edge", "Knock Off", "Bullet Punch"]),
     mon("Exeggutor", 69, "Sitrus Berry", "Harvest", "Modest", ["Leaf Storm", "Psychic", "Sludge Bomb", "Trick Room"]),

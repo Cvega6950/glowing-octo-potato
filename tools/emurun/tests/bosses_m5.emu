@@ -50,7 +50,7 @@ loadstate base.ss
 !give_mon_complex("SPECIES_AMPHAROS", 90, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
 !give_mon_complex("SPECIES_RHYPERIOR", 90, "NATURE_ADAMANT", 1, ['MOVE_STONE_EDGE', 'MOVE_EARTHQUAKE', 'MOVE_MEGAHORN', 'MOVE_ROCK_POLISH'])
 savestate red90.ss
-!sample_battle("TRAINER_RED_HNS", "0,0,0,0,0,0", 1, 0, 1, "red90.ss")
+!sample_battle("TRAINER_RED_HNS", "0,0,0,0,0,0", 1, 0, 1, "red90.ss", "_lv90")
 expectne8 {gBattleOutcome} 0 red_resolved
 loadstate base.ss
 !give_mon_complex("SPECIES_GARCHOMP", 100, "NATURE_JOLLY", 1, ['MOVE_EARTHQUAKE', 'MOVE_DRAGON_CLAW', 'MOVE_FIRE_FANG', 'MOVE_SWORDS_DANCE'])
@@ -61,7 +61,7 @@ loadstate base.ss
 !give_mon_complex("SPECIES_RHYPERIOR", 100, "NATURE_ADAMANT", 1, ['MOVE_STONE_EDGE', 'MOVE_EARTHQUAKE', 'MOVE_MEGAHORN', 'MOVE_ROCK_POLISH'])
 savestate red100.ss
 seenreset
-!sample_battle("TRAINER_RED_HNS", "0,0,0,0,0,0", 3, 1, 3, "red100.ss")
+!sample_battle("TRAINER_RED_HNS", "0,0,0,0,0,0", 3, 1, 3, "red100.ss", "_lv100")
 !expect_const_seen("SPECIES_CHARIZARD_MEGA_Y", "red_mega_charizard_y")
 
 # Every leader's and Blue's Mega Evolution, with the prepared six at level 100

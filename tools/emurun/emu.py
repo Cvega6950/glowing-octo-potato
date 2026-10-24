@@ -420,18 +420,19 @@ def autobattle(moves, max_frames=60000):
     return [f"autobattle {moves} {max_frames} " + " ".join(keys)]
 
 
-def sample_battle(trainer_id, moves, runs=5, min_wins=1, max_wins=None, state="team.ss"):
+def sample_battle(trainer_id, moves, runs=5, min_wins=1, max_wins=None, state="team.ss", tag=""):
     """Fight trainer_id (a number or a TRAINER_ constant) `runs` times from the saved team state,
     starting each battle a few frames later so the battle RNG differs, and require between
     min_wins and max_wins wins. Save the team first with `savestate team.ss` (paths are relative
-    to the output directory)."""
+    to the output directory). A tag keeps two samples against the same trainer apart."""
     if isinstance(trainer_id, str):
         trainer_id = probe.resolve({trainer_id: trainer_id})[trainer_id]
+    name = f"wins_vs_{trainer_id}{tag}"
     out = []
     for k in range(runs):
         out += [f"loadstate {state}", f"wait {1 + 37 * k}"] + battle_trainer(trainer_id) + autobattle(moves)
-        out += [f"tally wins_vs_{trainer_id} {{gBattleOutcome}} 1"]
-    out.append(f"expecttally wins_vs_{trainer_id} {min_wins} {runs if max_wins is None else max_wins}")
+        out += [f"tally {name} {{gBattleOutcome}} 1"]
+    out.append(f"expecttally {name} {min_wins} {runs if max_wins is None else max_wins}")
     return out
 
 
