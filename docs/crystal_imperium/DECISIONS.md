@@ -56,7 +56,9 @@ can decide a fight. This applies to both sides, like Emerald Imperium.
 
 HnS's NORMAL cap table (`src/caps.c`) equals the next Gym Leader's highest level. Reworked
 leaders keep their ace at that cap, so the player can always match the ace's level.
-`tools/crystal_imperium/validate.py` enforces this.
+`tools/crystal_imperium/validate.py` enforces this. Since 0.7.0 every boss Pokémon is at the
+cap, and since 0.7.1 at the player's own cap table, HARD caps included (D21); nothing else the
+player meets is above the cap (D28).
 
 ## D7. ROM budget
 
@@ -110,7 +112,11 @@ leaders keep their ace at that cap, so the player can always match the ace's lev
   `ChallengeSettings` bits with 0 meaning NORMAL (older saves stay NORMAL).
 - `GetCurrentDifficultyLevel()` returns it, so the engine's per-difficulty trainer parties are
   used where they exist. Trainers without one keep their NORMAL party at 90% (EASY) or 110%
-  (HARD) of its levels. EASY also turns trainer items off; HARD selects HARD level caps.
+  (HARD) of its levels, never above the player's level cap (D28). EASY also turns trainer
+  items off; HARD selects HARD level caps.
+- Since 0.7.1 bosses aren't scaled: they are at the player's level cap on every difficulty
+  (D21). On HARD that is the HARD cap; before, HARD's 10% was added on top of the NORMAL cap
+  and put Falkner at 12 against a cap of 8.
 - Mid-game the setting can only be made easier (the menu's one-way lock).
 
 ## D12. Easy Catch is on by default
@@ -300,21 +306,31 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 
 - `tools/crystal_imperium/boss_teams.py` holds the reworked bosses and writes them into
   `src/data/trainers_hns.party`, keeping each trainer's header. Rules:
-  - **Every Pokémon is at the NORMAL level cap** (since 0.7.0; before, only the ace was, and the
-    others were one or two levels below). The user asked for every boss's and Gym Leader's
+  - **Every Pokémon is at the player's level cap** (since 0.7.0; before, only the ace was, and
+    the others were one or two levels below). The user asked for every boss's and Gym Leader's
     Pokémon to be at the level cap, to make the game harder. Each boss has a *stage*, the
     earliest point in the game its battle can happen (a badge count, the Johto League won or the
-    Kanto League won), and its levels are that stage's cap from `src/caps.c` (11, 16, 21, 25, 31,
-    36, 38, 45, 56, then 70 and 100). With the Rare Candy Box the player can always be at the cap.
-  - **A boss fought later is raised to the cap then.** `CreateNPCTrainerParty`
-    (`src/battle_main.c`) raises a boss's Pokémon to the player's NORMAL cap (whatever the level
-    cap setting) when that is above the party's levels; the list of bosses is generated into
-    `src/data/level_cap_bosses.h`. This covers the battles whose badge count varies: the Rocket
-    Hideout (the Lake of Rage needs Surf, so four to six badges: 31, 36 or 38), Eusine in
-    Cianwood, and the battles that are also rematches after the Kanto League (the Kanto Gym
-    teams in the Fighting Dojo, the Johto leaders' and the Elite Four's `_2` teams before the
-    Sinjoh story, the rival at the Indigo Plateau): at 100 then. EASY and HARD still scale the
-    result to 90% and 110%. Other trainers are untouched (`boss_levels` checks a Grunt).
+    Kanto League won). The party file holds that stage's NORMAL cap from `src/caps.c` (11, 16,
+    21, 25, 31, 36, 38, 45, 56, then 70 and 100). With the Rare Candy Box the player can always
+    be at the cap.
+  - **The battle sets the level from the player's cap table** (0.7.1). `CreateNPCTrainerParty`
+    (`src/battle_main.c`) puts every Pokémon of a boss at `GetBossLevel` (`src/caps.c`): the cap
+    at the boss's stage or the player's, whichever is later, from the HARD table when the LEVEL
+    CAP option is HARD (the HARD preset picks it) and the NORMAL table otherwise (also with the
+    cap OFF). The bosses and their stages are generated into `src/data/level_cap_bosses.h`.
+    - In 0.7.0 the battle used the NORMAL table whatever the setting, and EASY and HARD scaled
+      the result to 90% and 110%. A player on HARD met Falkner at 12 with a cap of 8, and
+      reported that the level cap didn't match the bosses' levels. Bosses now aren't scaled by
+      the difficulty: on HARD caps Falkner is at 8, on NORMAL caps at 11, on every difficulty.
+    - A boss fought later than its stage is raised to the player's cap then. This covers the
+      battles whose badge count varies: the Rocket Hideout (the Lake of Rage needs Surf, so four
+      to six badges: 31, 36 or 38 on NORMAL caps), Eusine in Cianwood, and the battles that are
+      also rematches after the Kanto League (the Kanto Gym teams in the Fighting Dojo, the Johto
+      leaders' and the Elite Four's `_2` teams before the Sinjoh story, the rival at the Indigo
+      Plateau): at 100 then.
+    - Other trainers keep their levels (scaled by EASY and HARD) but are never above the
+      player's cap (D28): `boss_levels` checks a Grunt's level-20 Koffing, at 20 with six badges
+      and at the cap (11, or 8 on HARD caps) with none.
   - Heart & Soul's own teams for the other bosses keep their Pokémon and only get the levels
     (`LEVEL_ONLY` in `boss_teams.py`): Li, Falkner, Bugsy, Whitney, the first rival battle and
     Eusine; the rival on Mt. Moon and at the Indigo Plateau, the Fighting Dojo rematches and the
@@ -343,7 +359,9 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   Manectric, Erika's Venusaur, Janine's Gengar, Sabrina's Metagross, Blaine's Camerupt, Blue's
   Pidgeot, Red's Charizard (Y).
 - Evidence (since 0.7.0 the player's test teams hold items from the care packages the player
-  has by then, D16; `boss_levels` checks the raise to the cap, `validate.py` every level):
+  has by then, D16; `boss_levels` checks the bosses at the player's NORMAL and HARD caps and the
+  raise to the cap, `difficulty` that EASY and HARD leave bosses at the cap, `validate.py` every
+  level in the party file):
   - `bosses_m3`: the naive play-test team (3–5 Pokémon at the cap with their default moves)
     loses every one of these battles. A prepared six at the cap (good natures and moves, items
     from the first three packages, one move per Pokémon, never switching) wins at least once
@@ -591,3 +609,40 @@ DexNav shows and that wild encounters draw from:
   and after the Sinjoh story `TRAINER_RED_POSTOBC_HNS`; Pikachu's EV Speed; the game-plan win;
   Mega Charizard Y); `validate.py` (no trainer with a higher average level, EVs on all six,
   prediction AI, more Full Restores than any other trainer).
+
+## D28. Nothing above the level cap
+
+- With a level cap on (LEVEL CAP NORMAL or HARD), no Pokémon the player meets or is given is
+  above it (0.7.1). A player reported catching a level-12 Turtwig with DexNav at a cap of 8:
+  DexNav adds a fifth of the DexNav chain to the area's level, and in 4% of searches 10 more,
+  and nothing checked the cap. The player can't level past the cap, so a Pokémon above it
+  could only be caught, not raised, and gave a head start the cap is meant to prevent.
+- `src/caps.c`: `GetLevelWithinCap` holds a level at `GetCurrentLevelCap()` (no change with the
+  cap OFF). Levels are only lowered, never raised.
+- Battles where catching is off (`FLAG_NO_WILD_CATCHING`) are held at the cap too: the player
+  asked for the bosses to match the level cap, and those are wild boss battles. They are Route
+  41's level-100 Tentacruel (a joke for poking it three times; it heals the party after), the
+  post-game wild bosses (Alola's totems at 60, the Hisuian Pokémon such as Kleavor and
+  Ursaluna at 75–80, the Sinjoh Ruins' Arceus at 80 and 100: held only when met before the Kanto
+  League, at 70) and the Saffron Fighting Dojo's level-1 training battles (below every cap).
+- Where it applies:
+  - Random encounters, fishing, Rock Smash, mass outbreaks, Wild Variety and the randomizer's
+    Pokémon: `CreateWildMon` (`src/wild_encounter.c`).
+  - DexNav: the search's level (shown in the search window) and the battle
+    (`DexNavTryGenerateMonLevel`, `src/dexnav.c`).
+  - Scripted wild battles (`setwildbattle`, berry trees, the Bug-Catching Contest's area) and
+    legendaries and other event Pokémon (`seteventmon`): `src/script_pokemon_util.c` and
+    `CreateEnemyEventMon` (`src/pokemon.c`). E.g. Zapdos (50) is met at 11 with no badges.
+  - Roaming Pokémon (`CreateRoamerMonInstance`, `src/roamer.c`). A roamer keeps its own level
+    and HP between meetings; met below its level it has at most that level's max HP, and if it
+    is left unhurt its stored HP doesn't drop (`UpdateRoamerHPStatus`).
+  - Gift Pokémon from `givemon` (e.g. the Cianwood Pokémon Center fisher's level-25 Tentacool,
+    Mt. Mortar's Tyrogue, the revived fossils). The debug menu's Give Pokémon isn't held, so the
+    play tests can still give any level.
+  - Trainers (D11, D21): bosses are at the cap; other trainers' levels, after EASY's or HARD's
+    scaling, are held at the cap. This also holds Steven at Sinjoh Ruins (77–79) at 70 when he
+    is fought before the Kanto League (KNOWN_ISSUES #34).
+- In-game trades keep the level of the player's Pokémon traded away, which is within the cap.
+- Evidence: `level_cap_wild` (DexNav with a chain of 100, a level-50 outbreak with catching on
+  and off, Zapdos, the Tentacool gift; 11 on NORMAL caps and 8 on HARD caps), `boss_levels` and
+  `difficulty` for trainers.

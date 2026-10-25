@@ -27,7 +27,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 
 | Feature | Status | Evidence / notes |
 |---|---|---|
-| Difficulty selection EASY / NORMAL / HARD | Done | emu: `difficulty` (Falkner's party 8/9/9 on EASY, 10/11/12 on HARD; NORMAL is 9/10/11). DECISIONS.md D11. |
+| Difficulty selection EASY / NORMAL / HARD | Done | emu: `difficulty` (bosses stay at the cap: Falkner 11/11/11 on EASY with NORMAL caps, 8/8/8 on HARD with HARD caps; Youngster Albert's level-7 Pokémon at 6 on EASY and 8 on HARD; a Grunt's level-20 Koffing held at the cap, 8). DECISIONS.md D11. |
 | HARD: SET battle style and no Bag in trainer battles (Emerald Imperium / Radical Red rules) | Done | emu: `hard_mode_rules` (SET in trainer and wild battles, BAG refused in a trainer battle and open in a wild one; NORMAL keeps SHIFT). D25. |
 | Smart AI for every trainer (omniscient, smart switching, HP aware) | Done | NORMAL/HARD; EASY keeps HnS's AI. D20. emu: whole suite; no extra time per turn. |
 | Sleep Clause | Done | build. Imperium behaviour, both sides. |
@@ -40,7 +40,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | 8 Kanto leaders, Blue | Done | emu: `bosses_m5` (every battle plays to a result at cap 70; a six built for Blue, played with a game plan, beats him ≥1 of 6; each Mega triggers). D21. |
 | Rival (Azalea, Burned Tower), Proton (Slowpoke Well) | Done | emu: `bosses_m3`. D21. |
 | Rival (Goldenrod Underground, Victory Road), Petrel, Ariana, Proton, Archer, Kimono Girls | Done | emu: `bosses_m4` (every battle plays to a result at the cap; Archer's and the rival's Megas trigger against a level-100 six). D21. |
-| Every boss Pokémon at the level cap (raised to the player's cap when fought later) | Done | `validate.py` (every boss at its stage's cap, none missing); emu: `boss_levels` (Rocket Hideout with six badges at 38, Brock at 70, then 100 after the Kanto League; a Grunt unchanged), `difficulty`. D21. |
+| Every boss Pokémon at the player's level cap, NORMAL or HARD caps (raised to the player's cap when fought later) | Done | `validate.py` (every boss at its stage's cap, none missing); emu: `boss_levels` (Rocket Hideout with six badges at 38, Brock at 70, then 100 after the Kanto League; with HARD caps Falkner at 8 and Petrel at 29, 37 with six badges; a Grunt at 20 with six badges and held at the cap with none), `difficulty`. D21. |
 | Elite Four, Lance | Done | emu: `bosses_e4` (cap 56: Koga by the prepared six; Will, Bruno, Karen and Lance by sixes built for them, played with a game plan; all holding care-package items; each beaten at least once in 6–24 tries; Megas trigger). D21. |
 | Red: the hardest battle (all six at level 100, EVs kept under Minimal Grinding, prediction AI, four Full Restores; only for the Kanto Champion) | Done | emu: `red` (no battle before the Kanto League; summit battle and rematch IDs; Pikachu's EV Speed; a level-100 six with items and a Mega beats him ≥1 of 12; Mega Charizard Y); `validate.py` keeps his parties the strongest. D27. |
 | Gym Leader and Elite Four rematches, other postgame battles | Existing | HnS rematch teams with the smart AI. Not reworked. |
@@ -52,6 +52,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 |---|---|---|
 | Minimal Grinding Mode (default ON) | Done | emu: `falkner` (Lv 11 Cyndaquil 32 max HP = 31 IV / 0 EV). |
 | Level caps (optional, NORMAL by default) | Existing, defaulted ON | emu: `qol_items` (Rare Candies stop at the cap), 0 EXP at the cap in battle. |
+| Nothing above the level cap: trainers, wild, DexNav, legendary and gift Pokémon | Done | emu: `level_cap_wild` (DexNav with a chain of 100, a level-50 outbreak with catching on and off, Zapdos and the Cianwood Tentacool gift, all at 11 with NORMAL caps and the DexNav and gift checks at 8 with HARD caps), `boss_levels`, `difficulty`. Roaming Pokémon are covered by the code only. D28. |
 | Rare Candy Box: unlimited Rare Candies from the start, regardless of Nuzlocke | Done | emu: `qol_items` (new game, no Nuzlocke, before the first Gym). |
 | Infinite Repel (on/off) | Done | emu: `infinite_repel` (80 grass steps without a battle when on, a battle when off). |
 | Portable PC (Pokémon Box Link) | Done | emu: `qol_items` (opens Pokémon Storage on Route 29). |

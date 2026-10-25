@@ -1,5 +1,37 @@
 # Crystal Imperium changelog
 
+## 0.7.1-experimental (2026-10-25)
+
+### Gameplay
+- **Bosses are at your level cap, HARD caps included** (DECISIONS.md D21). Every boss Pokémon
+  is at the cap from your own LEVEL CAP setting: NORMAL (11, 16, 21, 25, 31, 36, 38, 45, 56,
+  then 70) or HARD (8, 15, 20, 23, 29, 33, 37, 42, 54, then 70), on every difficulty. 0.7.0 used
+  the NORMAL caps whatever the setting and added HARD's 10%, so with HARD caps Falkner was 12
+  against your cap of 8; now he is 8. EASY no longer lowers bosses either (Falkner 11 with
+  NORMAL caps); it still lowers other trainers by 10% and takes their items away.
+- **Nothing is above your level cap** (D28). DexNav's level bonus (a fifth of the DexNav chain,
+  and in 4% of searches 10 more) could give a Pokémon above the cap, such as a level-12 Turtwig
+  at a cap of 8. Every Pokémon you meet or are given is now held at the cap:
+  - DexNav (the level in the search window too), random encounters, fishing, Rock Smash, mass
+    outbreaks, scripted wild battles, legendaries (e.g. Zapdos, 50, is met at 11 with no badges),
+    roaming Pokémon, and gifts such as the Cianwood fisher's level-25 Tentacool.
+  - Other trainers: their levels (after EASY's or HARD's scaling) are held at your cap. E.g. a
+    Rocket Grunt's level-20 Koffing is 11 if you meet him with no badges (8 on HARD caps).
+  - Wild battles where catching is off too: Route 41's level-100 Tentacruel and the post-game
+    wild bosses (up to 100) are at the cap if you meet them before it reaches their level.
+  - Levels are only ever lowered, never raised, and nothing changes with LEVEL CAP OFF.
+- The challenge menu's descriptions say so: LEVEL CAP lists each table's caps ("Bosses are at
+  the cap."), and EASY and HARD say their ±10% leaves bosses alone.
+
+### Tooling
+- `boss_teams.py` writes each boss's stage into `src/data/level_cap_bosses.h`; the battle
+  computes the boss's level from the player's cap table (`GetBossLevel`, `src/caps.c`).
+- Harness: `new_game(level_cap=...)` picks LEVEL CAP in the Difficulty tab.
+- New test `level_cap_wild` (DexNav with a chain of 100, a level-50 outbreak, Zapdos and the
+  Tentacool gift at the cap, on NORMAL and HARD caps). `boss_levels` adds HARD caps (Falkner at
+  8, Petrel at 29 and 37) and a Grunt held at the cap; `difficulty` checks that EASY and HARD
+  leave Falkner at the cap and scale Youngster Albert.
+
 ## 0.7.0-experimental (2026-10-25)
 
 ### Gameplay

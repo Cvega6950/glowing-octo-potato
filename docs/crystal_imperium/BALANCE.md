@@ -10,8 +10,11 @@ explains the *why*.
    (`src/caps.c`) is the next Gym ace's level: 11, 16, 21, 25, 31, 36, 38, 45, 56; then 70
    for Kanto and uncapped (100) after the Kanto League. **Every boss Pokémon sits at the cap**
    of the earliest point its battle can happen (since 0.7.0; before, only the ace did), and a
-   boss fought later is raised to the player's cap then (D21). With the Rare Candy Box the
-   player can always match it, never beat it: difficulty comes from teams, not levels.
+   boss fought later is raised to the player's cap then (D21). With HARD level caps (8, 15, 20,
+   23, 29, 33, 37, 42, 54) the bosses are at those, on every difficulty (since 0.7.1), and
+   nothing else the player meets is above the cap (D28). With the Rare Candy Box the player can
+   always match a boss, never beat it: difficulty comes from teams, not levels. The win rates
+   below were measured at the NORMAL caps.
 2. **Bosses have perfect IVs, defined natures, abilities, items and four chosen moves.**
    With Minimal Grinding on (the default), every Pokémon battles at 31 IVs / 0 EVs anyway,
    except Red's, which keep their EVs (D27).

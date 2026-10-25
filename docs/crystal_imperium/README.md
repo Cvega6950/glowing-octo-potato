@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.7.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.7.1-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
 > of its Pokémon at the level cap, the TM list is Emerald Imperium's, and HMs work without being
@@ -37,6 +37,9 @@ From the first step of a new game:
 - **Minimal Grinding Mode** (every Pokémon battles as if it had 31 IVs and 0 EVs), **level caps**,
   ×1.5 EXP, an **EASY / NORMAL / HARD** difficulty selection, **Auto Run**
   (START > OPTION > AUTORUN), and a **move relearner** in the party menu.
+- **The level cap is the level of every boss, and nothing is above it:** bosses are at your cap
+  (NORMAL or HARD caps, on every difficulty), and no trainer's, wild, DexNav, legendary or gift
+  Pokémon is above it.
 - **HARD plays by Emerald Imperium's and Radical Red's rules:** the SET battle style (no "Will
   you switch Pokémon?" after a knockout) and no Bag in trainer battles, on top of +10% trainer
   levels and HARD level caps.
@@ -66,10 +69,11 @@ From the first step of a new game:
 - **Imperium-style bosses for the whole story:** every Johto Gym Leader (Chuck, Jasmine and
   Pryce in three versions, for whichever order you take them), the rival from Azalea to
   Victory Road, Team Rocket's executives, the Kimono Girls, the Elite Four and Lance, the eight
-  Kanto leaders, Blue and Red. **Every boss Pokémon is at the level cap** (not just the ace),
-  with held items, natures, abilities, competitive moves, and Mega Evolutions from the 5th Gym
-  on. A boss you fight later than usual (the Rocket Hideout with six badges, a rematch after the
-  Kanto League) is raised to your cap then; rematches after the Kanto League are at 100.
+  Kanto leaders, Blue and Red. **Every boss Pokémon is at your level cap** (not just the ace;
+  with HARD level caps, the HARD cap), with held items, natures, abilities, competitive moves,
+  and Mega Evolutions from the 5th Gym on. A boss you fight later than usual (the Rocket Hideout
+  with six badges, a rematch after the Kanto League) is raised to your cap then; rematches after
+  the Kanto League are at 100.
 - **Red is the hardest battle in the game:** all six at level 100, competitive EVs that only his
   Pokémon keep under Minimal Grinding, the boss AI with move and switch prediction, four Full
   Restores, and a sun team around Mega Charizard Y. He battles only the Kanto Champion, so win
@@ -86,7 +90,7 @@ your house), except Auto Run, which is in the Options menu.
 | 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden`; the lists match the wild Pokémon you meet (`dexnav_wild_match`, `dexnav_water_match`, `dexnav_randomizer`) |
 | 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym) |
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
-| 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies); HARD's Imperium / Radical Red rules (`hard_mode_rules`) |
+| 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies), `boss_levels` and `level_cap_wild` (bosses at the cap, nothing above it); HARD's Imperium / Radical Red rules (`hard_mode_rules`) |
 | 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs (`tm_case`, `tm_shop`) and HMs without teaching (`hm_field_moves`) |
 | 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | The story scripts are Heart & Soul's. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29), and every reworked boss battle is started from the debug menu and played to a result (`falkner`, `bugsy`, `whitney`, `bosses_m3`, `bosses_m4`, `bosses_e4`, `bosses_m5`, `red`; Red is also talked to on the Mt. Silver summit); no full playthrough has been done. |
 | 8 | Works on Delta (iOS) | **Passes on Delta's emulator core; no iPhone test** | The play tests and the save-compatibility test run on VBA-M at the commit Delta's GBA core pins, as on mGBA (results in TESTING.md). A device test is still needed for Delta's own app layer. |
