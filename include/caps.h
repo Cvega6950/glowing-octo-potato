@@ -18,8 +18,16 @@
 #error "Invalid choice for B_EV_CAP_TYPE, must be one of [EV_CAP_NONE, EV_CAP_FLAG_LIST, EV_CAP_VARIABLE, EV_CAP_NO_GAIN]"
 #endif
 
+// Level cap stages after the eighth badge (GetLevelCapStage): the Johto League won (cap 70) and
+// the Kanto League won (no cap)
+#define LEVEL_CAP_STAGE_JOHTO_CHAMPION 9
+#define LEVEL_CAP_STAGE_KANTO_CHAMPION 10
+
 u32 GetCurrentLevelCap(void);
-u32 GetBossLevelCap(void);
+u32 GetLevelCapStage(void);
+u32 GetLevelCapAtStage(u32 stage);
+u32 GetBossLevel(u32 bossStage);
+u32 GetLevelWithinCap(u32 level);
 u32 GetSoftLevelCapExpValue(u32 level, u32 expValue);
 u32 GetCurrentEVCap(void);
 u16 GetBadgeCount(void);

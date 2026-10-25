@@ -1,0 +1,141 @@
+# Crystal Imperium play test: no Pokemon met in the wild or given is above the level cap
+# (DECISIONS.md D28). DexNav adds a fifth of the DexNav chain to a Pokemon's level, and sometimes
+# 10 more: that had turned up a level-12 Turtwig at a level cap of 8. With no badges the cap is
+# 11 on NORMAL level caps and 8 on HARD level caps.
+# - DexNav with a chain of 100 (+20 levels on Route 29's Rattata): the search's level
+#   (sDexNavSearchDataPtr->monLevel, +15) and the battle's.
+# - A level-50 mass outbreak on Route 29 (a random encounter), also in a battle where catching
+#   is off (FLAG_NO_WILD_CATCHING, as for Route 41's level-100 Tentacruel and the post-game wild
+#   boss battles).
+# - Zapdos behind Route 10's Power Plant, a level-50 legendary (seteventmon).
+# - The level-25 Tentacool the Cianwood Pokemon Center fisher gives a player with no Surf user.
+# gEnemyParty and gPlayerParty: 100 bytes a Pokemon, level at +84.
+!new_game()
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+savestate route29.ss
+
+# DexNav: Rattata (second land icon) with a chain of 100. The Infinite Repel (Key Item 1) keeps
+# random battles away.
+!use_key_item(1)
+!walkto(24, 14)
+!set_save(3, "dexNavChain", 100)
+!start_menu("DEXNAV")
+wait 120
+press RIGHT
+wait 20
+press R
+wait 60
+press B
+wait 200
+press B
+wait 60
+press R
+wait 200
+shot 01_dexnav_search_normal_caps.png
+!expect_flag("FLAG_DEXNAV_SEARCHING", 1, "dexnav_search_started")
+expect16 *{sDexNavSearchDataPtr}+0 19 searching_for_rattata
+expect8 *{sDexNavSearchDataPtr}+15 11 dexnav_search_level_at_cap_11
+!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", path=True, soft=True)
+wait 400
+expect32 {gMain+4} {BattleMainCB2+1} dexnav_battle_started
+press A
+wait 300
+shot 02_dexnav_battle_normal_caps.png
+!expect_battler(1, "species", "SPECIES_RATTATA", "dexnav_rattata")
+expect8 {gEnemyParty+84} 11 dexnav_rattata_at_cap_11
+
+# A level-50 mass outbreak of Pikachu on Route 29 (map group 0, number 11)
+loadstate route29.ss
+!set_save(1, "outbreakPokemonSpecies", "SPECIES_PIKACHU", 16)
+!set_save(1, "outbreakLocationMapNum", 11)
+!set_save(1, "outbreakLocationMapGroup", 0)
+!set_save(1, "outbreakPokemonLevel", 50)
+!set_save(1, "outbreakPokemonProbability", 100)
+savestate outbreak.ss
+!walkto(24, 14, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+wait 300
+shot 03_outbreak_normal_caps.png
+!expect_battler(1, "species", "SPECIES_PIKACHU", "outbreak_pikachu")
+expect8 {gEnemyParty+84} 11 outbreak_pikachu_at_cap_11
+
+# With catching off too
+loadstate outbreak.ss
+!set_flag("FLAG_NO_WILD_CATCHING")
+!walkto(24, 14, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+wait 300
+!expect_battler(1, "species", "SPECIES_PIKACHU", "no_catching_pikachu")
+expect8 {gEnemyParty+84} 11 no_catching_pikachu_at_cap_11
+
+# Zapdos at (5, 48) on Route 10 (map group 0, number 50), from the Power Plant's back door
+loadstate route29.ss
+!warp(0, 50, 3)
+!use_key_item(1)
+!walkto(5, 49, path=True)
+press UP
+wait 30
+press A
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B zapdos_action_menu
+shot 04_zapdos_normal_caps.png
+!expect_battler(1, "species", "SPECIES_ZAPDOS", "zapdos")
+expect8 {gEnemyParty+84} 11 zapdos_at_cap_11
+
+# The Cianwood Pokemon Center (map group 8, number 0) fisher at (14, 6)
+loadstate route29.ss
+!warp(8, 0, 0)
+!walkto(13, 6, path=True)
+press RIGHT
+wait 30
+press A
+wait 60
+mash B 1500
+shot 05_gift_tentacool_normal_caps.png
+expect8 {gPlayerPartyCount} 2 tentacool_given
+expect8 {gPlayerParty+184} 11 gift_tentacool_at_cap_11
+
+# HARD level caps: 8
+reset
+!new_game(level_cap="HARD")
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+savestate hard_route29.ss
+!use_key_item(1)
+!walkto(24, 14)
+!set_save(3, "dexNavChain", 100)
+!start_menu("DEXNAV")
+wait 120
+press RIGHT
+wait 20
+press R
+wait 60
+press B
+wait 200
+press B
+wait 60
+press R
+wait 200
+shot 06_dexnav_search_hard_caps.png
+expect16 *{sDexNavSearchDataPtr}+0 19 hard_caps_searching_for_rattata
+expect8 *{sDexNavSearchDataPtr}+15 8 hard_caps_dexnav_search_level_at_cap_8
+!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", path=True, soft=True)
+wait 400
+expect32 {gMain+4} {BattleMainCB2+1} hard_caps_dexnav_battle_started
+press A
+wait 300
+shot 07_dexnav_battle_hard_caps.png
+expect8 {gEnemyParty+84} 8 hard_caps_dexnav_rattata_at_cap_8
+
+loadstate hard_route29.ss
+!warp(8, 0, 0)
+!walkto(13, 6, path=True)
+press RIGHT
+wait 30
+press A
+wait 60
+mash B 1500
+expect8 {gPlayerPartyCount} 2 hard_caps_tentacool_given
+expect8 {gPlayerParty+184} 8 hard_caps_gift_tentacool_at_cap_8

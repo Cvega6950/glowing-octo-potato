@@ -2,6 +2,7 @@
 #include "battle_setup.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
+#include "caps.h"
 #include "event_data.h"
 #include "fieldmap.h"
 #include "fishing.h"
@@ -583,8 +584,10 @@ static void TryApplyPokeblockBonus(struct Pokemon *mon, u16 species)
     CalculateMonStats(mon);
 }
 
+// Crystal Imperium: a wild Pokemon is never above the level cap (src/caps.c)
 void CreateWildMon(u16 species, u8 level)
 {
+    level = GetLevelWithinCap(level);
     ZeroEnemyPartyMons();
     u32 personality = GetMonPersonality(species, GetSynchronizedGender(WILDMON_ORIGIN, species), PickWildMonNature(species), RANDOM_UNOWN_LETTER);
     CreateMonWithIVs(&gEnemyParty[0], species, level, personality, OTID_STRUCT_PLAYER_ID, USE_RANDOM_IVS);

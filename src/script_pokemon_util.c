@@ -147,6 +147,8 @@ void CreateScriptedWildMon(u16 species, u8 level, enum Item item)
 {
     u8 heldItem[2];
 
+    level = GetLevelWithinCap(level);
+
     #if RANDOMIZER_AVAILABLE
     if (RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON))
         species = RandomizeMon(RANDOMIZER_REASON_FIXED_ENCOUNTER, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), Random32(), species);
@@ -190,6 +192,8 @@ void CreateShinyScriptedMon(u16 species, u8 level, enum Item item)
 {
     u8 heldItem[2];
 
+    level = GetLevelWithinCap(level);
+
     #if RANDOMIZER_AVAILABLE
     if (RandomizerFeatureEnabled(RANDOMIZE_FIXED_MON))
         species = RandomizeMon(RANDOMIZER_REASON_FIXED_ENCOUNTER, GetRandomizerOption(RANDOMIZER_OPTION_SPECIES_MODE), Random32(), species);
@@ -222,6 +226,8 @@ void CreateShinyScriptedMon(u16 species, u8 level, enum Item item)
 void CreateScriptedWildBossMon(u16 species, u8 level, enum Item item, enum Move moves[MAX_MON_MOVES])
 {
     u8 heldItem[2];
+
+    level = GetLevelWithinCap(level);
 
     ZeroEnemyPartyMons();
     u32 personality = GetMonPersonality(species, GetSynchronizedGender(STATIC_WILDMON_ORIGIN, species),
@@ -256,6 +262,8 @@ void CreateScriptedDoubleWildBossMon(u16 species1, u8 level1, enum Item item1, e
     u8 heldItem2[2];
     struct Pokemon *mon;
     u32 personality;
+    level1 = GetLevelWithinCap(level1);
+    level2 = GetLevelWithinCap(level2);
     ZeroEnemyPartyMons();
 
     personality = GetMonPersonality(species1, GetSynchronizedGender(STATIC_WILDMON_ORIGIN, species1),
@@ -311,6 +319,9 @@ void CreateScriptedDoubleWildMon(u16 species1, u8 level1, enum Item item1, u16 s
 {
     u8 heldItem1[2];
     u8 heldItem2[2];
+
+    level1 = GetLevelWithinCap(level1);
+    level2 = GetLevelWithinCap(level2);
 
     ZeroEnemyPartyMons();
     u32 personality = GetMonPersonality(species1,
@@ -810,6 +821,8 @@ void ScrCmd_createmon(struct ScriptContext *ctx)
     if (nature == NATURE_MAY_SYNCHRONIZE)
         nature = GetSynchronizedNature(origin, species);
 
+    // Crystal Imperium: a gift (side 0) or a scripted wild Pokemon (side 1) is never above the level cap
+    level = GetLevelWithinCap(level);
     gSpecialVar_Result = ScriptGiveMonParameterized(side, slot, species, level, item, ball, nature, abilityNum, gender, evs, ivs, moves, shinyMode, gmaxFactor, teraType, dmaxLevel);
 }
 

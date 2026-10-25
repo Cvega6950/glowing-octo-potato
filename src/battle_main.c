@@ -2003,34 +2003,32 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
-// Crystal Imperium: every boss's Pokemon are at the player's NORMAL level cap (DECISIONS.md D21).
-// Their parties are at the cap of the earliest point the battle can happen; a boss fought later
-// (e.g. the Rocket Hideout with six badges, a rematch after the Kanto League) is raised to the
-// cap then. sBossLevelCap is that cap while a boss's party is created, 0 otherwise.
+// Crystal Imperium: every boss's Pokemon are at the player's level cap, on every difficulty
+// (DECISIONS.md D21): the cap of the boss's stage or of the player's progress, whichever is later,
+// from the player's cap table (HARD caps on HARD). Other trainers keep the difficulty's levels but
+// are never above the player's cap. While a party is created, sBossLevel is the boss's level (0
+// for other trainers) and sTrainerLevelCap the player's cap (0: no party being created).
 #include "data/level_cap_bosses.h"
 
-static u8 sBossLevelCap;
+static u8 sBossLevel;
+static u8 sTrainerLevelCap;
 
-static bool32 IsLevelCapBoss(u16 trainerNum)
+static u32 GetLevelCapBossLevel(u16 trainerNum)
 {
     for (u32 i = 0; i < ARRAY_COUNT(sLevelCapBosses); i++)
     {
-        if (sLevelCapBosses[i] == trainerNum)
-            return TRUE;
+        if (sLevelCapBosses[i].trainerId == trainerNum)
+            return GetBossLevel(sLevelCapBosses[i].stage);
     }
-    return FALSE;
+    return 0;
 }
 
 // Crystal Imperium difficulty selection: trainers that have no dedicated Easy/Hard party in the
 // .party data use their Normal party, scaled to 90% (EASY) or 110% (HARD) of its levels.
 static bool8 sScaleTrainerLevels;
 
-static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
+static u8 GetDifficultyScaledTrainerLevel(u8 level)
 {
-    if (level < sBossLevelCap)
-        level = sBossLevelCap;
-    if (!sScaleTrainerLevels)
-        return level;
     switch (GetCurrentDifficultyLevel())
     {
     case DIFFICULTY_EASY:
@@ -2042,6 +2040,17 @@ static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
     default:
         return level;
     }
+}
+
+static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
+{
+    if (sBossLevel)
+        return sBossLevel;
+    if (sScaleTrainerLevels)
+        level = GetDifficultyScaledTrainerLevel(level);
+    if (sTrainerLevelCap && level > sTrainerLevelCap)
+        level = sTrainerLevelCap;
+    return level;
 }
 
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
@@ -2227,7 +2236,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     sScaleTrainerLevels = (!gIsDebugBattle
                            && GetCurrentDifficultyLevel() != DIFFICULTY_NORMAL
                            && GetTrainerDifficultyLevel(trainerNum) == DIFFICULTY_NORMAL);
-    sBossLevelCap = IsLevelCapBoss(trainerNum) ? GetBossLevelCap() : 0;
+    sBossLevel = GetLevelCapBossLevel(trainerNum);
+    sTrainerLevelCap = GetCurrentLevelCap();
     if (GetTrainerStructFromId(trainerNum)->overrideTrainer)
     {
         struct Trainer tempTrainer;
@@ -2247,7 +2257,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         retVal = CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum), firstTrainer, gBattleTypeFlags);
     }
     sScaleTrainerLevels = FALSE;
-    sBossLevelCap = 0;
+    sBossLevel = 0;
+    sTrainerLevelCap = 0;
     return retVal;
 }
 

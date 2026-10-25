@@ -29,12 +29,13 @@ def number(target, initial=1):
     return out
 
 
-def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False):
+def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, level_cap=None):
     """Power-on to the bedroom in New Bark Town with default settings (Minimal Grinding, Easy
     Catch and Wild Variety 30% ON). difficulty="EASY" or "HARD" picks that DIFFICULTY in the
     Difficulty tab; easy_catch=False turns EASY CATCH (first row of the Features tab) off;
     variety="OFF"/"15%"/"60%" sets WILD VARIETY (second row); random_wild=True turns the
-    RANDOMIZER on with WILD randomized (MAP SEEDED stays ON)."""
+    RANDOMIZER on with WILD randomized (MAP SEEDED stays ON); level_cap="OFF"/"NORMAL"/"HARD"
+    sets LEVEL CAP (fourth row of the Difficulty tab; NORMAL, or HARD with the HARD preset)."""
     out = ["wait 1300", "press START", "wait 60", "press A", "wait 500", "mash A 900", "mash A 900", "mash A 700"]
     # Tabs: MODE, FEATURES, RANDOMIZER, NUZLOCKE, DIFFICULTY, CHALLENGES (confirm)
     out += ["press R", "wait 20"]
@@ -55,6 +56,12 @@ def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False):
     if difficulty:
         # DIFFICULTY is the first row and starts at NORMAL (EASY / NORMAL / HARD)
         out += ["press " + {"EASY": "LEFT", "HARD": "RIGHT"}[difficulty], "wait 20", "shot difficulty_tab.png"]
+    if level_cap:
+        caps = ["OFF", "NORMAL", "HARD"]
+        steps = caps.index(level_cap) - caps.index("HARD" if difficulty == "HARD" else "NORMAL")
+        out += ["press DOWN", "wait 20"] * 3
+        out += ["press " + ("RIGHT" if steps > 0 else "LEFT"), "wait 20"] * abs(steps)
+        out += ["shot level_cap_row.png"]
     out += ["press R", "wait 20"]
     out += ["wait 10", "press UP", "wait 30", "press A", "wait 120", "press A", "wait 120"]
     out += ["mash A 1500", "mash A 1200", "wait 300"]

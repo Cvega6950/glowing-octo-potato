@@ -1,4 +1,5 @@
 #include "global.h"
+#include "caps.h"
 #include "event_data.h"
 #include "event_object_movement.h"
 #include "field_effect.h"
@@ -450,14 +451,19 @@ bool8 IsRoamerAt(u32 roamerIndex, u8 mapGroup, u8 mapNum)
         return FALSE;
 }
 
+// Crystal Imperium: a roamer met below its level because of the level cap (src/caps.c) keeps its
+// damage, up to the lower level's max HP
 void CreateRoamerMonInstance(u32 roamerIndex)
 {
     u32 status = ROAMER(roamerIndex)->statusA + (ROAMER(roamerIndex)->statusB << 8);
     struct Pokemon *mon = &gEnemyParty[0];
+    u16 hp = ROAMER(roamerIndex)->hp;
     ZeroEnemyPartyMons();
-    CreateMonWithIVsPersonality(mon, ROAMER(roamerIndex)->species, ROAMER(roamerIndex)->level, ROAMER(roamerIndex)->ivs, ROAMER(roamerIndex)->personality);
+    CreateMonWithIVsPersonality(mon, ROAMER(roamerIndex)->species, GetLevelWithinCap(ROAMER(roamerIndex)->level), ROAMER(roamerIndex)->ivs, ROAMER(roamerIndex)->personality);
+    if (hp > GetMonData(mon, MON_DATA_MAX_HP))
+        hp = GetMonData(mon, MON_DATA_MAX_HP);
     SetMonData(mon, MON_DATA_STATUS, &status);
-    SetMonData(mon, MON_DATA_HP, &ROAMER(roamerIndex)->hp);
+    SetMonData(mon, MON_DATA_HP, &hp);
     SetMonData(mon, MON_DATA_COOL, &ROAMER(roamerIndex)->cool);
     SetMonData(mon, MON_DATA_BEAUTY, &ROAMER(roamerIndex)->beauty);
     SetMonData(mon, MON_DATA_CUTE, &ROAMER(roamerIndex)->cute);
@@ -485,8 +491,12 @@ bool8 TryStartRoamerEncounter(void)
 void UpdateRoamerHPStatus(struct Pokemon *mon)
 {
     u32 status = GetMonData(mon, MON_DATA_STATUS);
+    u16 hp = GetMonData(mon, MON_DATA_HP);
 
-    ROAMER(gEncounteredRoamerIndex)->hp = GetMonData(mon, MON_DATA_HP);
+    // Crystal Imperium: a roamer met at full HP below its level (CreateRoamerMonInstance) and left
+    // unhurt keeps its full HP for its own level
+    if (hp < GetMonData(mon, MON_DATA_MAX_HP) || ROAMER(gEncounteredRoamerIndex)->hp < hp)
+        ROAMER(gEncounteredRoamerIndex)->hp = hp;
     ROAMER(gEncounteredRoamerIndex)->statusA = status;
     ROAMER(gEncounteredRoamerIndex)->statusB = status >> 8;
 

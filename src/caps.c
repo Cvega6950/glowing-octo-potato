@@ -53,24 +53,54 @@ static const u8 sLevelCapTable_Hard[] =
 // 70 for the Kanto half, and only beating the Kanto league removes it entirely.
 #define KANTO_MAX_LEVEL 70
 
-// Crystal Imperium: the NORMAL level cap for the player's progress, whatever the level cap
-// setting. Every boss's Pokemon are at least at this level (DECISIONS.md D21).
-u32 GetBossLevelCap(void)
+// Crystal Imperium: the stage of the game the level caps go by: the badge count (0-8), then the
+// Johto League won and the Kanto League won (include/caps.h)
+u32 GetLevelCapStage(void)
 {
     u8 badgeCount = GetCurrentBadgeCount();
 
 #if IS_HNS
     if (FlagGet(FLAG_IS_KANTO_CHAMPION))
-        return MAX_LEVEL;
+        return LEVEL_CAP_STAGE_KANTO_CHAMPION;
     if (FlagGet(FLAG_IS_CHAMPION))
-        return KANTO_MAX_LEVEL;
+        return LEVEL_CAP_STAGE_JOHTO_CHAMPION;
 #else
     if (FlagGet(FLAG_IS_CHAMPION))
-        return MAX_LEVEL;
+        return LEVEL_CAP_STAGE_KANTO_CHAMPION;
 #endif
-    if (badgeCount > 8)
-        badgeCount = 8;
-    return sLevelCapTable_Normal[badgeCount];
+    return badgeCount > 8 ? 8 : badgeCount;
+}
+
+// The level cap at a stage with the player's level cap setting: the HARD table when it is HARD,
+// the NORMAL table otherwise (also when the cap is off, so bosses keep their levels then)
+u32 GetLevelCapAtStage(u32 stage)
+{
+    if (stage >= LEVEL_CAP_STAGE_KANTO_CHAMPION)
+        return MAX_LEVEL;
+    if (stage == LEVEL_CAP_STAGE_JOHTO_CHAMPION)
+        return KANTO_MAX_LEVEL;
+    if (gSaveBlock3Ptr->challengeSettings.tx_Challenges_LevelCap == 2)
+        return sLevelCapTable_Hard[stage];
+    return sLevelCapTable_Normal[stage];
+}
+
+// The level of every Pokemon of a boss (DECISIONS.md D21): the level cap at the boss's stage (the
+// earliest point its battle can happen) or at the player's, whichever comes later. In play that
+// is the player's own level cap, HARD caps included.
+u32 GetBossLevel(u32 bossStage)
+{
+    u32 stage = GetLevelCapStage();
+
+    return GetLevelCapAtStage(stage > bossStage ? stage : bossStage);
+}
+
+// Crystal Imperium: with a level cap on, no Pokemon the player meets or is given is above it
+// (DECISIONS.md D28; DexNav's level bonuses had turned up a level-12 Turtwig at cap 8)
+u32 GetLevelWithinCap(u32 level)
+{
+    u32 cap = GetCurrentLevelCap();
+
+    return level > cap ? cap : level;
 }
 
 u32 GetCurrentLevelCap(void)

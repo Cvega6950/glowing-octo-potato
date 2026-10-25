@@ -3671,10 +3671,11 @@ enum TrainerClassID GetUnionRoomTrainerClass(void)
     return gFacilityClassToTrainerClass[gUnionRoomFacilityClasses[arrId]];
 }
 
+// Crystal Imperium: a legendary or other event Pokemon is never above the level cap (src/caps.c)
 void CreateEnemyEventMon(void)
 {
     s32 species = gSpecialVar_0x8004;
-    s32 level = gSpecialVar_0x8005;
+    s32 level = GetLevelWithinCap(gSpecialVar_0x8005);
     s32 itemId = gSpecialVar_0x8006;
 
     #if RANDOMIZER_AVAILABLE
