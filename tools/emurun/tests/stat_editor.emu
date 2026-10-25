@@ -1,0 +1,92 @@
+# Crystal Imperium play test: the stat editor (Emerald Imperium's Stat Editor, DECISIONS.md D34),
+# in the L menu's STATS with the Training Kit's NATURE and ABILITY. With Minimal Grinding off, IVs
+# and EVs count: a level-50 HARDY Cyndaquil (base HP 39, Attack 52, Defense 43) has 114 HP with
+# 31 IVs and no EVs, 99 with an HP IV of 0 and 130 with 252 HP EVs on top. In the editor UP/DOWN
+# change a value by one, going round (31 UP is 0), LEFT/RIGHT by ten, A keeps it and B puts it
+# back; START sets every IV to 31. EVs stop at 252 a stat and 510 in all.
+# Party stats (struct Pokemon): maxHP +88, attack +90, defense +92.
+!new_game(minimal_grinding=False)
+!give_mon(155, 50)
+!warp(0, 11, 0)
+
+# STATS > NATURE > Cyndaquil > HARDY (the first), so no nature changes the stats below
+!l_menu("STATS")
+shot 01_stats_menu.png
+press A
+wait 120
+press A
+wait 120
+press A
+wait 60
+mash A 120
+wait 60
+
+# STATS > IVs & EVs (third) > Cyndaquil
+!l_menu("STATS")
+press DOWN
+wait 10
+press DOWN
+wait 10
+press A
+wait 120
+press A
+wait 200
+shot 02_editor.png
+
+# START: every IV 31
+press START
+wait 30
+expect16 {gPlayerParty+88} 114 all_ivs_31_hp_114
+# HP IV: UP from 31 goes round to 0, A keeps it
+press A
+wait 10
+press UP
+wait 10
+press A
+wait 10
+expect16 {gPlayerParty+88} 99 hp_iv_0_hp_99
+# DOWN goes round to 31, B puts the 0 back
+press A
+wait 10
+press DOWN
+wait 10
+expect16 {gPlayerParty+88} 114 hp_iv_back_to_31_while_editing
+press B
+wait 10
+expect16 {gPlayerParty+88} 99 b_puts_the_old_iv_back
+# HP EVs: RIGHT moves to the EV column; RIGHT adds ten, up to 252
+press RIGHT
+wait 10
+press A
+wait 10
+!["press RIGHT", "wait 4"] * 26
+shot 03_editing_hp_ev.png
+press A
+wait 10
+expect16 {gPlayerParty+88} 130 hp_ev_252_hp_130
+# Attack EVs to 252: 104 Attack
+press DOWN
+wait 10
+press A
+wait 10
+!["press RIGHT", "wait 4"] * 26
+press A
+wait 10
+expect16 {gPlayerParty+90} 104 attack_ev_252_attack_104
+# Defense EVs stop at the 6 left of 510: one more Defense point (63 -> 64), not 32
+press DOWN
+wait 10
+press A
+wait 10
+!["press RIGHT", "wait 4"] * 26
+press A
+wait 10
+shot 04_ev_total_510.png
+expect16 {gPlayerParty+92} 64 defense_ev_6_of_510
+# B leaves; the changes stay
+press B
+wait 60
+shot 05_closed.png
+expect8 {sLockFieldControls} 0 editor_closed
+expect16 {gPlayerParty+88} 130 hp_kept
+expect16 {gPlayerParty+86} 130 hp_full

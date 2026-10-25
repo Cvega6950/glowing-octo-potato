@@ -40,6 +40,7 @@ void ItemUseOutOfBattle_InfiniteRareCandies(u8 taskId);
 void ItemUseOutOfBattle_InfiniteRepel(u8 taskId);
 void ItemUseOutOfBattle_TrainingKit(u8 taskId);
 void ItemUseOutOfBattle_PokeVial(u8 taskId);
+void HealPartyWithPokeVial(void);
 void ItemUseOutOfBattle_PokeBall(u8 taskId);
 void ItemUseOutOfBattle_CannotUse(u8 taskId);
 void ItemUseOutOfBattle_GBPlayer(u8 taskId);

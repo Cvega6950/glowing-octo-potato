@@ -1,0 +1,143 @@
+# Crystal Imperium play test: the L menu's TIME (Emerald Imperium's time changer, DECISIONS.md D34).
+# MORNING, DAY, EVENING and NIGHT move the clock forward to 8:00 AM, 12:00 PM, 6:30 PM and 8:00 PM:
+# the same day while that time is still ahead, otherwise the next day, so the clock never goes back
+# (berry trees and daily events only see time pass). The map reloads where the player stands, so
+# its light, the Pokemon seen by day or by night (hidden by FLAG_NIGHT_POKEMON / FLAG_DAY_POKEMON)
+# and time-based events follow; the DexNav chain is kept. Choosing the time of day it already is
+# changes nothing. The harness clock starts at 1:3x AM (night) on day 9794.
+# gLocalTime: days +0 (16 bits), hours +2, minutes +3.
+!new_game()
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!set_save3("dexNavChain", 7)
+expect8 {gTimeOfDay} 3 night_at_first
+shot 01_night.png
+
+# The cursor starts at the time of day it is (NIGHT); MORNING is three up
+!l_menu("TIME")
+shot 02_time_menu.png
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+press A
+wait 400
+shot 03_morning.png
+expect16 {gLocalTime} 9794 morning_the_same_day
+expect8 {gLocalTime+2} 8 morning_at_8_am
+expect8 {gLocalTime+3} 0 morning_on_the_hour
+expect8 {gTimeOfDay} 0 time_of_day_morning
+!expect_flag("FLAG_NIGHT_POKEMON", 1, "night_pokemon_hidden")
+!expect_flag("FLAG_DAY_POKEMON", 0, "day_pokemon_shown")
+!expect_save3("dexNavChain", 7, "dexnav_chain_kept")
+expect32 {gMain+4} {CB2_Overworld+1} map_reloaded
+expect8 {sLockFieldControls} 0 field_controls_back
+
+# DAY: noon, the same day
+!l_menu("TIME")
+press DOWN
+wait 10
+press A
+wait 400
+shot 04_day.png
+expect16 {gLocalTime} 9794 day_the_same_day
+expect8 {gLocalTime+2} 12 day_at_noon
+expect8 {gTimeOfDay} 1 time_of_day_day
+
+# EVENING: 6:30 PM
+!l_menu("TIME")
+press DOWN
+wait 10
+press A
+wait 400
+shot 05_evening.png
+expect8 {gLocalTime+2} 18 evening_at_6_pm
+expect8 {gLocalTime+3} 30 evening_at_half_past
+expect8 {gTimeOfDay} 2 time_of_day_evening
+
+# NIGHT: 8 PM, the same day
+!l_menu("TIME")
+press DOWN
+wait 10
+press A
+wait 400
+shot 06_night_again.png
+expect16 {gLocalTime} 9794 night_the_same_day
+expect8 {gLocalTime+2} 20 night_at_8_pm
+expect8 {gTimeOfDay} 3 time_of_day_night
+!expect_flag("FLAG_NIGHT_POKEMON", 0, "night_pokemon_shown")
+!expect_flag("FLAG_DAY_POKEMON", 1, "day_pokemon_hidden")
+
+# NIGHT while it is night: nothing changes, the L menu stays open
+!l_menu("TIME")
+press A
+wait 60
+expect8 {gLocalTime+2} 20 night_unchanged
+expect8 {sLockFieldControls} 1 still_in_the_l_menu
+press B
+wait 60
+
+# MORNING from 8 PM: 8 AM the next day, never back
+!l_menu("TIME")
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+press A
+wait 400
+shot 07_next_morning.png
+expect16 {gLocalTime} 9795 morning_the_next_day
+expect8 {gLocalTime+2} 8 next_morning_at_8_am
+!expect_save3("dexNavChain", 7, "dexnav_chain_still_kept")
+
+# On the water: after the reload the player still surfs on the same tile. New Bark Town's water
+# starts at x 25 (HM03 and the Fog Badge let any Pokemon surf, the badge's care package is
+# skipped), and at night the way to it is clear (dexnav_surf); the L menu's REPEL keeps wild
+# Pokemon away.
+# gPlayerAvatar.flags (its first byte): PLAYER_AVATAR_FLAG_SURFING = 8.
+!give_mon(129, 10)
+!give_item("ITEM_HM_SURF")
+!set_flag("FLAG_BADGE04_GET")
+!no_care_packages()
+!l_menu("REPEL")
+press B
+wait 40
+!l_menu("TIME")
+press DOWN
+wait 10
+press DOWN
+wait 10
+press DOWN
+wait 10
+press A
+wait 400
+!warp(0, 0, 1)
+!walkto(24, 12, order="yx")
+press RIGHT
+wait 20
+press A
+wait 90
+press A
+wait 60
+mash A 120
+wait 120
+expect16 *{gSaveBlock1Ptr}+4 25 surfing_at_x_25
+expectbits8 {gPlayerAvatar} 8 8 surfing_before
+!l_menu("TIME")
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+press A
+wait 400
+shot 08_surfing_in_the_morning.png
+expect8 {gTimeOfDay} 0 morning_on_the_water
+expect16 *{gSaveBlock1Ptr}+4 25 same_tile_x
+expect16 *{gSaveBlock1Ptr}+6 12 same_tile_y
+expectbits8 {gPlayerAvatar} 8 8 still_surfing

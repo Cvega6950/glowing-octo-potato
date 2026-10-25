@@ -180,6 +180,7 @@ gSpecials::
 	def_special ChoosePartyMon
 	def_special TrainingKit_SetNature
 	def_special TrainingKit_CycleAbility
+	def_special OpenStatEditor
 	def_special GetFirstFreePokeblockSlot
 	def_special DoBerryBlending
 	def_special PlayRoulette

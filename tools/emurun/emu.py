@@ -29,13 +29,15 @@ def number(target, initial=1):
     return out
 
 
-def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, level_cap=None):
+def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, level_cap=None,
+             minimal_grinding=True):
     """Power-on to the bedroom in New Bark Town with default settings (Minimal Grinding, Easy
     Catch and Wild Variety 30% ON). difficulty="EASY" or "HARD" picks that DIFFICULTY in the
     Difficulty tab; easy_catch=False turns EASY CATCH (first row of the Features tab) off;
     variety="OFF"/"15%"/"60%" sets WILD VARIETY (second row); random_wild=True turns the
     RANDOMIZER on with WILD randomized (MAP SEEDED stays ON); level_cap="OFF"/"NORMAL"/"HARD"
-    sets LEVEL CAP (fourth row of the Difficulty tab; NORMAL, or HARD with the HARD preset)."""
+    sets LEVEL CAP (fourth row of the Difficulty tab; NORMAL, or HARD with the HARD preset);
+    minimal_grinding=False turns MIN. GRINDING (second row of the Difficulty tab) off."""
     out = ["wait 1300", "press START", "wait 60", "press A", "wait 500", "mash A 900", "mash A 900", "mash A 700"]
     # Tabs: MODE, FEATURES, RANDOMIZER, NUZLOCKE, DIFFICULTY, CHALLENGES (confirm)
     out += ["press R", "wait 20"]
@@ -56,10 +58,15 @@ def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, 
     if difficulty:
         # DIFFICULTY is the first row and starts at NORMAL (EASY / NORMAL / HARD)
         out += ["press " + {"EASY": "LEFT", "HARD": "RIGHT"}[difficulty], "wait 20", "shot difficulty_tab.png"]
+    row = 0
+    if not minimal_grinding:
+        # OFF / ON, starting at ON
+        out += ["press DOWN", "wait 20", "press LEFT", "wait 20", "shot min_grinding_row.png"]
+        row = 1
     if level_cap:
         caps = ["OFF", "NORMAL", "HARD"]
         steps = caps.index(level_cap) - caps.index("HARD" if difficulty == "HARD" else "NORMAL")
-        out += ["press DOWN", "wait 20"] * 3
+        out += ["press DOWN", "wait 20"] * (3 - row)
         out += ["press " + ("RIGHT" if steps > 0 else "LEFT"), "wait 20"] * abs(steps)
         out += ["shot level_cap_row.png"]
     out += ["press R", "wait 20"]
@@ -76,6 +83,17 @@ def start_menu(entry):
     """Open the start menu and choose an entry by name, wherever the cursor was left."""
     return ["press START", "wait 40",
             f"menuselect {{sStartMenuCursorPos}} {{sCurrentStartMenuActions}} {{sNumStartMenuActions}} {START_MENU[entry]}",
+            "wait 120"]
+
+
+L_MENU = {"POKEVIAL": 0, "PC": 1, "DEXNAV": 2, "TIME": 3, "STATS": 4, "REPEL": 5, "FOLLOWER": 6, "AUTO_RUN": 7}
+
+
+def l_menu(entry, open=True):
+    """Open the L menu (src/l_menu.c) and choose an entry by name, wherever the cursor was left
+    (open=False: the menu is open already)."""
+    return (["press L", "wait 40"] if open else []) + [
+            f"menuselect {{sLMenuCursorPos}} {{sLMenuActions}} {{sNumLMenuActions}} {L_MENU[entry]}",
             "wait 120"]
 
 
@@ -339,10 +357,29 @@ def expect_save1(field, want, label, size=8):
     return [f"expect{size} *{{gSaveBlock1Ptr}}+{v['off']} {v['want']} {label}"]
 
 
+def set_save2(field, value, size=8):
+    """Write a SaveBlock2 field, e.g. set_save2("optionsButtonMode", "OPTIONS_BUTTON_MODE_L_EQUALS_A")."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock2, {field})", "value": str(value)})
+    return [f"poke{size} *{{gSaveBlock2Ptr}}+{v['off']} {v['value']}"]
+
+
+def set_save3(field, value, size=8):
+    """Write a SaveBlock3 field, e.g. set_save3("dexNavChain", 7)."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock3, {field})", "value": str(value)})
+    return [f"poke{size} *{{gSaveBlock3Ptr}}+{v['off']} {v['value']}"]
+
+
 def expect_save3(field, want, label, size=8):
     """Check a SaveBlock3 field, e.g. expect_save3("dexNavSearchLevels[19]", 1, "label")."""
     v = probe.resolve({"off": f"offsetof(struct SaveBlock3, {field})", "want": str(want)})
     return [f"expect{size} *{{gSaveBlock3Ptr}}+{v['off']} {v['want']} {label}"]
+
+
+def expect_follower(on, label):
+    """Check the follower Pokemon setting: followerEnable, the first bit of ChallengeSettings, is 0
+    when a Pokemon follows (on=True)."""
+    v = probe.resolve({"off": "offsetof(struct SaveBlock3, challengeSettings)"})
+    return [f"expectbits8 *{{gSaveBlock3Ptr}}+{v['off']} 1 {0 if on else 1} {label}"]
 
 
 def tally_species_not_in(name, *species, addr="{gBattleMons+136}"):
@@ -434,6 +471,13 @@ def expect_battler(battler, field, const, label=None):
                        "bm_size": "sizeof(struct BattlePokemon)", const: const})
     off = v[f"bm_{field}".replace("[", "_").replace("]", "")] + battler * v["bm_size"]
     return [f"expect16 {{gBattleMons+{off}}} {v[const]} {label or field + '_is_' + const.lower()}"]
+
+
+def expect_battler_ivs(battler, want, label):
+    """Check a battler's six IVs (gBattleMons: 5-bit fields hpIV..spDefenseIV, lowest bits first,
+    in the word before statStages) against `want` (the low 30 bits)."""
+    v = probe.resolve({"ivs": "offsetof(struct BattlePokemon, statStages) - 4", "bm_size": "sizeof(struct BattlePokemon)"})
+    return [f"expectbits32 {{gBattleMons+{v['ivs'] + battler * v['bm_size']}}} 0x3FFFFFFF {want:#x} {label}"]
 
 
 def walkto(x, y, order="xy", soft=False, creep=False, path=False):

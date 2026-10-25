@@ -1,4 +1,4 @@
-# Crystal Imperium play test: the DexNav, in the start menu from a new game.
+# Crystal Imperium play test: the DexNav, in the L menu from a new game (the start menu until 0.10.0).
 # Route 29 at night lists Hoothoot and Rattata (second land icon). DexNav shows every Pokemon
 # in the area, seen or not: nothing has been seen yet, and Rattata is registered with R anyway.
 # Close DexNav, press R in the grass to search, walk normally (no sneaking with A) to the
@@ -19,7 +19,7 @@ expect32 {gMain+4} {CB2_Overworld+1} in_route29_grass
 
 # Nothing seen yet (the debug-given Cyndaquil is not registered in the Pokedex either), but the
 # area's Pokemon are shown, not question marks, and Rattata can be registered
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 expect32 {gMain+4} {DexNav_MainCB+1} dexnav_opens
 shot 01_dexnav_nothing_seen.png
@@ -29,7 +29,7 @@ press R
 wait 60
 shot 02_dexnav_rattata_registered.png
 !expect_var("VAR_DEXNAV_SPECIES", "(ENCOUNTER_TYPE_LAND << 14) | SPECIES_RATTATA", "unseen_rattata_registered")
-# B leaves DexNav for the start menu; B again closes it
+# B leaves DexNav for the L menu; B again closes it
 press B
 wait 200
 press B
@@ -40,6 +40,18 @@ press R
 wait 200
 shot 03_dexnav_search.png
 !expect_flag("FLAG_DEXNAV_SEARCHING", 1, "r_starts_dexnav_search")
+# L ends the search (it opens the L menu, as in Emerald Imperium) and keeps the DexNav chain
+!set_save3("dexNavChain", 3)
+press L
+wait 40
+!expect_flag("FLAG_DEXNAV_SEARCHING", 0, "l_ends_the_search")
+!expect_save3("dexNavChain", 3, "l_keeps_the_chain")
+press B
+wait 40
+!set_save3("dexNavChain", 0)
+press R
+wait 200
+!expect_flag("FLAG_DEXNAV_SEARCHING", 1, "r_searches_again")
 expect16 *{sDexNavSearchDataPtr}+0 19 searching_for_rattata
 !walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", path=True, soft=True)
 wait 400

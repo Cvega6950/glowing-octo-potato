@@ -11,7 +11,7 @@
 !warp(0, 11, 0)
 !walkto(34, 14, "yx")
 !set_save(2, "localTimeOffset.days", 0, 16)
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 shot 01_dexnav_route29.png
 !snap_dexnav_rows("day_a")
@@ -32,7 +32,7 @@ expecttally day_a_not_listed 0 0
 # The next day: a new set (at least one of the six is new), and the battles are on the new list
 loadstate route29_a.ss
 !set_save(2, "localTimeOffset.days", -1, 16)
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 shot 02_dexnav_next_day.png
 !snap_dexnav_rows("day_b")
@@ -49,7 +49,7 @@ expecttally day_b_not_listed 0 0
 # Back to the first day: the same list as before
 loadstate route29_b.ss
 !set_save(2, "localTimeOffset.days", 0, 16)
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 shot 03_dexnav_first_day_again.png
 ![f"tallynotin changed_on_day_a *{{sDexNavUiDataPtr}}+{6 + 2 * i} @day_a" for i in range(0, 12)]
@@ -66,7 +66,7 @@ loadstate route29_a.ss
 !set_save(1, "outbreakLocationMapGroup", 0)
 !set_save(1, "outbreakPokemonLevel", 5)
 !set_save(1, "outbreakPokemonProbability", 100)
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 shot 04_dexnav_outbreak.png
 !expect_listed("*{sDexNavUiDataPtr}+6", 12, "SPECIES_PIKACHU", "outbreak_listed")
@@ -85,7 +85,7 @@ shot 05_outbreak_battle.png
 loadstate route29_a.ss
 !use_key_item(1)
 !walkto(24, 14)
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 press RIGHT
 wait 20

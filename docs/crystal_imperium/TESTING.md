@@ -82,12 +82,12 @@ Save compatibility (`old_save_test.sh`), same ROM, on mGBA and on VBA-M: **PASS*
 - A Heart & Soul 2.0.6 save (new game, one Pokémon, TM70, TM03 and HM01 from the debug menu,
   saved) continues in Crystal Imperium.
 - The party is kept.
-- The five key items and the DexNav are given.
+- The five key items and the DexNav are given, so the L menu has all eight entries.
 - DexNav search levels read 0.
 - The TMs keep their moves under the new numbering: TM70 Rock Climb is TM192 and TM03 Water
   Pulse is TM160 in the TM case (not TM70 Triple Axel or TM03 Flip Turn), HM01 is kept, and the
   old SaveBlock1 slots are cleared.
-- DexNav opens.
+- DexNav opens from the L menu.
 
 The BPS patch applied to the HnS 2.0.6 ROM gives this ROM byte for byte (`make_patches.sh`).
 The source patch series applied with `git am` to tag 2.0.6 gives a tree identical to the branch.
@@ -150,6 +150,8 @@ Status: ☐ not yet tested · ☑ tested and passed · ☒ tested and failed
 - ☑ TMs: teaching a TM past TM100, the full TM case through a save, the 5F shop tiers
   (`tm_case`, `tm_shop`, `tm_reusable`)
 - ☑ HMs without teaching: Cut, Fly and Surf with a Pokémon that can't learn them (`hm_field_moves`)
+- ☑ The L menu (every entry, the time changer, the IV/EV editor) and a start menu that fits the
+  screen (`l_menu`, `l_menu_time`, `stat_editor`, `stat_editor_mgm`)
 - ☑ Save / reset / Continue (mGBA, VBA-M)
 - ☐ Save survives a full-story playthrough across major map transitions
 - ☐ Credits / Hall of Fame
@@ -162,9 +164,10 @@ tried on a phone yet.
 2. The title screen appears and START responds.
 3. New Game reaches the bedroom; the settings menu shows MIN. GRINDING ON, EASY CATCH ON and
    WILD VARIETY 30%.
-4. START shows DEXNAV; on Route 29 it shows the route's Pokémon (not question marks), and
-   SELECT opens the list of every Pokémon. The bag's Key Items hold the Rare Candy Box,
-   Infinite Repel, Box Link, Training Kit and PokéVial.
+4. The START menu fits on the screen (EXIT is visible). L opens the L menu (Delta's L button);
+   its DEXNAV on Route 29 shows the route's Pokémon (not question marks), and SELECT opens the
+   list of every Pokémon. The bag's Key Items hold the Rare Candy Box, Infinite Repel, Box
+   Link, Training Kit and PokéVial.
 5. Save in-game (START → SAVE), close Delta completely, reopen, choose CONTINUE: the game resumes.
 6. Fight one wild battle and one trainer battle.
 7. Check the in-game clock behaves. HnS can use the real-time clock or the ROM's fake clock

@@ -34,6 +34,7 @@
 #include "io_reg.h"
 #include "item.h"
 #include "item_icon.h"
+#include "l_menu.h"
 #include "link.h"
 #include "link_rfu.h"
 #include "load_save.h"
@@ -2149,6 +2150,14 @@ void CB2_ReturnToFieldWithOpenMenu(void)
 {
     FieldClearVBlankHBlankCallbacks();
     gFieldCallback2 = FieldCB_ReturnToFieldOpenStartMenu;
+    CB2_ReturnToField();
+}
+
+// Crystal Imperium: back to the L menu (l_menu.c), from the DexNav opened there
+void CB2_ReturnToFieldWithOpenLMenu(void)
+{
+    FieldClearVBlankHBlankCallbacks();
+    gFieldCallback2 = FieldCB_ReturnToFieldOpenLMenu;
     CB2_ReturnToField();
 }
 

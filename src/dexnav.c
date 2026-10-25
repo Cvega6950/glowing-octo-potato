@@ -20,6 +20,7 @@
 #include "graphics.h"
 #include "item.h"
 #include "international_string_util.h"
+#include "l_menu.h"
 #include "m4a.h"
 #include "map_name_popup.h"
 #include "main.h"
@@ -2307,6 +2308,17 @@ void Task_OpenDexNavFromStartMenu(u8 taskId)
     {
         CleanupOverworldWindowsAndTilemaps();
         DexNavGuiInit(CB2_ReturnToFieldWithOpenMenu);
+        DestroyTask(taskId);
+    }
+}
+
+// Crystal Imperium: the DexNav is in the L menu, and B goes back to it
+void Task_OpenDexNavFromLMenu(u8 taskId)
+{
+    if (!gPaletteFade.active)
+    {
+        CleanupOverworldWindowsAndTilemaps();
+        DexNavGuiInit(CB2_ReturnToFieldWithOpenLMenu);
         DestroyTask(taskId);
     }
 }

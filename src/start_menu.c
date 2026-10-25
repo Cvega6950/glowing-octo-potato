@@ -357,8 +357,8 @@ static void BuildNormalStartMenu(void)
     if (FlagGet(FLAG_SYS_POKEDEX_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEDEX);
 
-    if (DN_FLAG_DEXNAV_GET != 0 && FlagGet(DN_FLAG_DEXNAV_GET))
-        AddStartMenuAction(MENU_ACTION_DEXNAV);
+    // Crystal Imperium: the DexNav is in the L menu (l_menu.c). A ninth entry ran the menu off
+    // the bottom of the screen, which has room for eight.
 
     if (FlagGet(FLAG_SYS_POKEMON_GET) == TRUE)
         AddStartMenuAction(MENU_ACTION_POKEMON);
@@ -1610,18 +1610,24 @@ static void HideStartMenuWindow(void)
     UnlockPlayerFieldControls();
 }
 
+// Sets VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE to 0 if the player is in Mt. Silver,
+// which is used to restart the SE_Blizzard which is stopped after opening the menu.
+// Ideal fix would be to create a new Background Music file of the Blizzard
+// music or similar sound effect that doesn't stop when the menu is opened.
+// WARNING: VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE should not be used for anything else
+// in MAPSEC_MT_SILVER, as it will be set to 0 when the start menu is opened and closed.
+// Check variable aliases in vars_hns.h to ensire temporary variable is not used for anything else.
+// Crystal Imperium: the L menu closes the same way.
+void ResumeMtSilverBlizzardAfterMenu(void)
+{
+    if (gMapHeader.regionMapSectionId == MAPSEC_MT_SILVER && (gMapHeader.mapLayoutId == LAYOUT_MT_SILVER_SUMMIT_DAY_HNS || gMapHeader.mapLayoutId == LAYOUT_MT_SILVER_SUMMIT_NIGHT_HNS))
+        VarSet(VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE, 0);
+}
+
 void HideStartMenu(void)
 {
     PlaySE(SE_SELECT);
-    // Sets VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE to 0 if the player is in Mt. Silver,
-    // which is used to restart the SE_Blizzard which is stopped after opening the menu.
-    // Ideal fix would be to create a new Background Music file of the Blizzard
-    // music or similar sound effect that doesn't stop when the menu is opened.
-    // WARNING: VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE should not be used for anything else
-    // in MAPSEC_MT_SILVER, as it will be set to 0 when the start menu is opened and closed.
-    // Check variable aliases in vars_hns.h to ensire temporary variable is not used for anything else.
-    if (gMapHeader.regionMapSectionId == MAPSEC_MT_SILVER && (gMapHeader.mapLayoutId == LAYOUT_MT_SILVER_SUMMIT_DAY_HNS || gMapHeader.mapLayoutId == LAYOUT_MT_SILVER_SUMMIT_NIGHT_HNS))
-        VarSet(VAR_TEMP_MTSILVER_RESUME_BLIZZARD_SE, 0);
+    ResumeMtSilverBlizzardAfterMenu();
     HideStartMenuWindow();
 }
 

@@ -1174,6 +1174,7 @@ EventScript_SetBrineyLocation_Route109::
 	.include "data/scripts/record_mix.inc"
 	.include "data/scripts/pc.inc"
 	.include "data/scripts/training_kit.inc"
+	.include "data/scripts/l_menu.inc"
 	.include "data/scripts/care_packages.inc"
 .if IS_HNS
 	.include "data/scripts/tm_shop_hns.inc"

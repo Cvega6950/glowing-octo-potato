@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.9.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.10.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
 > of its Pokémon at the level cap, the TM list is Emerald Imperium's, and HMs work without being
@@ -16,14 +16,24 @@ competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Po
 From the first step of a new game:
 
 - **Key items:** Rare Candy Box (unlimited Rare Candies up to the level cap), Infinite Repel (an
-  on/off switch), Pokémon Box Link (the PC anywhere), Training Kit (change nature or ability
-  any time), PokéVial (full heal outside battle, never runs out).
+  on/off switch), Pokémon Box Link (the PC anywhere), Training Kit (change nature, ability, IVs
+  and EVs any time), PokéVial (full heal outside battle, never runs out).
+- **The L menu**, as in Emerald Imperium: press **L** in the field for the PokéVial, a PC (all
+  of a Pokémon Center's), the DexNav, **TIME** (make it morning, day, evening or night: the
+  clock moves forward to that time and the map follows at once), **STATS** (the Training Kit:
+  nature, ability, and an IV and EV editor) and the **REPEL**, **FOLLOWER** and **AUTO RUN**
+  switches (green when on), with the clock at the top right. Nothing needs the bag. (Not with
+  BUTTON MODE L=A, where L is the A button.)
+- **IV and EV editor** (L > STATS > IVs & EVs): each stat's IV, EV and value, Hidden Power's
+  type and the EVs used; A changes a value (UP/DOWN by 1, LEFT/RIGHT by 10), START sets every
+  IV to 31. EVs stop at 252 a stat and 510 in all. With Minimal Grinding on, the EVs are locked
+  and the IVs only set Hidden Power's type, as in Emerald Imperium.
 - **Quick Rare Candies:** choose a Pokémon and how many to use (at first, all of them up to the
   level cap); they are used at once, with one message, no stat pages, and no level-up jingle,
   so the music keeps playing. Moves of every level passed are still learned.
 - **Fast Egg hatching:** an Egg cycle is 8 steps instead of 256, so most Eggs hatch in a
   short walk (a Togepi Egg in about 90 steps).
-- **DexNav** (START menu):
+- **DexNav** (L menu):
   - It shows each area's Pokémon by icon and name, seen or not: the area's own, the day's
     Wild Variety Pokémon and three hidden ones. What you run into in the grass or on the water
     is on the list (with Heart & Soul's randomizer on, the randomized Pokémon are). Pick any
@@ -33,7 +43,8 @@ From the first step of a new game:
   - Walk or run up to a Pokémon found by searching to battle it: no sneaking needed. It stays
     where it appeared, in caves and on water too. In Dark Cave, Flash lights the whole cave, as
     in Gold, Silver and Crystal, and DexNav works there.
-  - R repeats a search for the registered Pokémon.
+  - R repeats a search for the registered Pokémon; L (or START) ends a search and keeps the
+    DexNav chain.
   - Hidden Pokémon are also detected while walking.
   - Search levels improve the chances of egg moves, Hidden Abilities and held items.
 - **Wild Variety:** every area gets a daily set of other Gen 1–9 Pokémon (up to six in the
@@ -43,7 +54,7 @@ From the first step of a new game:
 - **Easy Catch:** every Poké Ball catches (can be turned off).
 - **Minimal Grinding Mode** (every Pokémon battles as if it had 31 IVs and 0 EVs), **level caps**,
   ×1.5 EXP, an **EASY / NORMAL / HARD** difficulty selection, **Auto Run**
-  (START > OPTION > AUTORUN), and a **move relearner** in the party menu.
+  (START > OPTION > AUTORUN, or the L menu), and a **move relearner** in the party menu.
 - **Emerald Imperium-style level caps:** 15 before the first Gym, then 24, 33, 42, 50, 58, 66,
   75 and **85 for the Elite Four**, 90 in Kanto, and no cap after the Kanto League (HARD caps: a
   few levels lower until the Elite Four). Other trainers follow the same curve.
@@ -95,9 +106,9 @@ From the first step of a new game:
   the Kanto League first (the level cap is gone by then).
 
 All of these are in the challenge menu at the start of a new game (and on the settings PC in
-your house), except Auto Run, which is in the Options menu.
+your house), except Auto Run, which is in the Options menu and the L menu.
 
-## Requirement status (2026-10-24)
+## Requirement status (2026-10-25)
 
 | # | Requirement | Status | Evidence |
 |---|---|---|---|
@@ -106,13 +117,13 @@ your house), except Auto Run, which is in the Options menu.
 | 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym); several at a time, no jingle or stat pages (`rare_candy`) |
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
 | 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies), `boss_levels` and `level_cap_wild` (bosses at the cap, nothing above it); HARD's Imperium / Radical Red rules (`hard_mode_rules`) |
-| 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs at ¥100 (`tm_case`, `tm_shop`, `tm_clerk`) and HMs without teaching (`hm_field_moves`) |
+| 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs at ¥100 (`tm_case`, `tm_shop`, `tm_clerk`) and HMs without teaching (`hm_field_moves`); everything in Emerald Imperium's L menu, with an IV/EV editor and a time changer (`l_menu`, `l_menu_time`, `stat_editor`, `stat_editor_mgm`) |
 | 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | The story scripts are Heart & Soul's. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29), and every reworked boss battle is started from the debug menu and played to a result (`falkner`, `bugsy`, `whitney`, `bosses_m3`, `bosses_m4`, `bosses_e4`, `bosses_m5`, `red`; Red is also talked to on the Mt. Silver summit); no full playthrough has been done. |
 | 8 | Works on Delta (iOS) | **Passes on Delta's emulator core; no iPhone test** | The play tests and the save-compatibility test run on VBA-M at the commit Delta's GBA core pins, as on mGBA (results in TESTING.md). A device test is still needed for Delta's own app layer. |
 
 Also asked for and done: DexNav and Rare Candy before the first Gym (both are there from the
-first step), Easy Catch, an unlimited PokéVial given with the Rare Candy Box, and milestone care
-packages.
+first step), Easy Catch, an unlimited PokéVial given with the Rare Candy Box, milestone care
+packages, and Emerald Imperium's L menu (with a start menu that fits on the screen again).
 
 **Not done yet:** a full story playthrough; a test on a real iPhone; Imperium-style teams for
 the postgame rematches (they have Heart & Soul's teams with the smart AI); Emerald Imperium's
@@ -175,7 +186,7 @@ in [TESTING.md](TESTING.md).
 ## Saves
 
 Saves from Heart & Soul 2.0.6 and from earlier Crystal Imperium builds load. On Continue they
-receive any key items they are missing and the DexNav, and their TMs keep their moves under the
+receive any key items they are missing and the DexNav (so their L menu is complete), and their TMs keep their moves under the
 new numbering (Heart & Soul's TM70 Rock Climb becomes TM192, for example). Easy Catch and Wild Variety (30%) are on
 for them, and any care packages for badges already earned arrive one per step. Minimal
 Grinding starts OFF for HnS saves and can be turned on from the settings PC.

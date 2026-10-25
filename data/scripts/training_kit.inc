@@ -1,13 +1,15 @@
-@ Crystal Imperium: Training Kit key item. Change a party Pokemon's nature (any of the 25) or
-@ cycle its ability through the species' abilities, including the Hidden Ability. Free and unlimited.
+@ Crystal Imperium: Training Kit key item, also STATS in the L menu. Change a party Pokemon's nature
+@ (any of the 25), cycle its ability through the species' abilities, including the Hidden Ability,
+@ or edit its IVs and EVs (OpenStatEditor, Imperium's Stat Editor). Free and unlimited.
 EventScript_TrainingKit::
 	lockall
 	message TrainingKit_Text_WhatToChange
 	waitmessage
-	dynmultichoice 18, 6, FALSE, 3, 0, DYN_MULTICHOICE_CB_NONE, TrainingKit_Text_OptNature, TrainingKit_Text_OptAbility, TrainingKit_Text_OptCancel
+	dynmultichoice 18, 4, FALSE, 4, 0, DYN_MULTICHOICE_CB_NONE, TrainingKit_Text_OptNature, TrainingKit_Text_OptAbility, TrainingKit_Text_OptIvsEvs, TrainingKit_Text_OptCancel
 	switch VAR_RESULT
 	case 0, TrainingKit_EventScript_Nature
 	case 1, TrainingKit_EventScript_Ability
+	case 2, TrainingKit_EventScript_IvsEvs
 	goto TrainingKit_EventScript_End
 
 TrainingKit_EventScript_Nature::
@@ -28,6 +30,12 @@ TrainingKit_EventScript_Ability::
 	goto_if_eq VAR_RESULT, FALSE, TrainingKit_EventScript_OnlyOneAbility
 	playse SE_SUCCESS
 	msgbox TrainingKit_Text_AbilityChanged, MSGBOX_DEFAULT
+	goto TrainingKit_EventScript_End
+
+TrainingKit_EventScript_IvsEvs::
+	call TrainingKit_EventScript_ChooseMon
+	special OpenStatEditor
+	waitstate
 	goto TrainingKit_EventScript_End
 
 TrainingKit_EventScript_OnlyOneAbility::
@@ -56,6 +64,8 @@ TrainingKit_Text_OptNature:
 	.string "NATURE$"
 TrainingKit_Text_OptAbility:
 	.string "ABILITY$"
+TrainingKit_Text_OptIvsEvs:
+	.string "IVs & EVs$"
 TrainingKit_Text_OptCancel:
 	.string "CANCEL$"
 TrainingKit_Text_WhichNature:

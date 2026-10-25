@@ -16485,9 +16485,9 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("TRAINING KIT"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "Changes a Pokémon's\n"
-            "nature or ability,\n"
-            "as often as needed."),
+            "Edits a Pokémon's\n"
+            "IVs, EVs, nature and\n"
+            "ability (L: STATS)."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_FIELD,

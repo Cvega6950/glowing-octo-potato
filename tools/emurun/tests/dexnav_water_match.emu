@@ -14,7 +14,7 @@
 !walkto(24, 12, order="yx")
 press RIGHT
 wait 20
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 shot 01_dexnav_water_row.png
 !snap_dexnav_rows("water")

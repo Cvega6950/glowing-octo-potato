@@ -7,7 +7,7 @@
 | 3 | Tests | The HnS test suite runs, but about 1.4k tests fail because the zeroed test save leaves HnS's runtime toggles in non-default states. `mgba-rom-test-hydra` also grew to about 13 GB RAM before one worker hung. | Open |
 | 4 | Balance | Pryce's ace (Lv 33) is below the NORMAL level cap for 6 badges (38), so capped players can out-level him. | **Fixed**: every version of every Gym Leader is at its cap, all six Pokémon (0.7.0, D21) |
 | 5 | Data | `TRAINER_FALKNER_2_HNS` (rematch) gives Swellow no `Level:` line, so trainerproc's default applies. | **Fixed**: `boss_teams.py` sets every rematch Pokémon's level (0.7.0) |
-| 6 | ROM budget | ROM 99.42% of 32 MB (about 190 KB free); EWRAM 99.12% (about 2.3 KB free, after the BW battle UI's +8 KB heap); SaveBlock3 1,548 of 1,624 bytes. New graphics and EWRAM buffers must be budgeted. | Constraint (DECISIONS.md D7, D9, D26) |
+| 6 | ROM budget | ROM 99.45% of 32 MB (about 180 KB free); EWRAM 99.13% (about 2.2 KB free, after the BW battle UI's +8 KB heap); SaveBlock3 1,548 of 1,624 bytes. New graphics and EWRAM buffers must be budgeted. | Constraint (DECISIONS.md D7, D9, D26) |
 | 7 | Build | Interrupting `make` (e.g. piping it into `head`) can leave an empty object such as `build/hns/src/region_map.o`, which breaks the link. Delete that object and rebuild. | Note |
 | 8 | Platform | Delta's emulator core (VBA-M at GBADeltaCore's pinned commit) runs the full play-test suite, but the Delta app itself (touch controls, its save-file handling, suspend/resume) has not been tested on an iPhone. | Open (needs a device) |
 | 9 | Branding | The title screen and ROM header still say Heart & Soul / `POKEMON HNS`. | Open (cosmetic) |
@@ -19,7 +19,7 @@
 | 15 | Tests | `falkner` replayed fixed battle inputs, which fell out of step on VBA-M (different RNG seed). | **Fixed**: the battle autopilot plays it |
 | 16 | DexNav | A Pokémon chosen from the "any Pokémon" list appears at the area's level as chosen, so an evolved Pokémon (e.g. Garchomp) can be found at a low level early on (never above the level cap since 0.7.1, D28). | By design (the user asked for no limits); see D14 |
 | 17 | Wild Variety | Random variety encounters can be baby Pokémon (e.g. Pichu) where the main games would use the middle stage, because the pool holds base forms. | By design (D14) |
-| 18 | Options | Auto Run is OFF on a new game (Heart & Soul's default); turn it on in START > OPTION > AUTORUN. | Note |
+| 18 | Options | Auto Run is OFF on a new game (Heart & Soul's default); turn it on in START > OPTION > AUTORUN or with AUTO RUN in the L menu. | Note |
 | 19 | Cheats | HnS's debug menu (R + START) is reachable in normal play. It can break the story if story flags are changed. | Note (documented as a cheat menu) |
 | 20 | Validator | Counts of families are by evolution family root from the source headers; species defined through nested macros (e.g. Alcremie's forms) are matched through their pre-evolution. | Note |
 | 21 | DexNav | DexNav's lists didn't match the wild Pokémon met: Wild Variety picked from the whole pool, and the randomizer's Pokémon weren't shown. | **Fixed** in 0.5.1 (D24) |
@@ -44,3 +44,7 @@
 | 40 | DexNav | In Dark Cave DexNav said it was too dark to search even after Flash: Flash left the widest lit circle (flash level 1), and DexNav searches only at flash level 0. | **Fixed** in 0.8.1: Flash lights the whole cave, as in Gold, Silver and Crystal, and a save made there after Flash continues lit (D31) |
 | 41 | DexNav | In caves and on water the DexNav Pokémon moved to another tile, up to twice, when the player came within 2 to 4 tiles, so it seemed to run away. | **Fixed** in 0.8.1: it stays on its tile, as in grass (D31) |
 | 42 | Items | Rare Candies used several at a time evolve a Pokémon once, at the end. One that passed two evolution levels (Caterpie to 15) needs one more candy for its second stage; at the cap that candy gives no level, only the evolution. Exp. Candies are still used one at a time. | By design (D33) |
+| 43 | UI | With the Pokédex and the Pokégear the start menu had nine entries (the DexNav was the ninth), and EXIT ran off the bottom of the screen, which has room for eight. | **Fixed** in 0.10.0: the DexNav is in the new L menu (D34) |
+| 44 | L menu | With BUTTON MODE L=A (OPTION), L is the A button and the L menu doesn't open; NORMAL or LR brings it back. | By design (D34) |
+| 45 | L menu | TIME reloads the map, as walking back into it would: moved boulders and other temporary map state reset (the DexNav chain is kept). The clock only moves forward, at most to the next day, so daily events and berry growth come sooner. | By design (D34) |
+| 46 | Stat editor | With Minimal Grinding on (the default), the EVs can't be edited and the IVs only change Hidden Power's type: every Pokémon battles at 31 IVs and 0 EVs (D3). Turn Minimal Grinding off on the settings PC for IVs and EVs that count. | By design (D34, as in Emerald Imperium) |

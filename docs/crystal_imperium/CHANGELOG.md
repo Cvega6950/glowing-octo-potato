@@ -1,5 +1,41 @@
 # Crystal Imperium changelog
 
+## 0.10.0-experimental (2026-10-25)
+
+### Fixes
+- **The start menu fits on the screen again** (DECISIONS.md D34). With the Pokédex and the
+  Pokégear it had nine entries and EXIT ran off the bottom; the screen has room for eight. The
+  DexNav moved to the new L menu.
+
+### Quality of life
+- **The L menu, after Emerald Imperium's** (D34). Press **L** in the field for:
+  - **POKéVIAL**: heal the party.
+  - **PC**: a Pokémon Center's whole PC (Pokémon boxes, item storage, challenges).
+  - **DEXNAV**: B in it comes back to the L menu. Pressing L during a DexNav search ends it
+    and keeps the chain.
+  - **TIME**: MORNING, DAY, EVENING or NIGHT moves the clock forward to 8:00 AM, 12:00 PM,
+    6:30 PM or 8:00 PM (the next day if that time has passed; the clock never goes back). The
+    map reloads where you stand, so the light, the Pokémon seen by day or by night and the
+    people who come at certain times follow at once.
+  - **STATS**: the Training Kit (nature, ability) and a new **IVs & EVs** editor, Emerald
+    Imperium's Stat Editor. A window shows each stat's IV, EV and value, Hidden Power's type and
+    the EVs used; the d-pad picks one, A changes it (UP/DOWN by 1, LEFT/RIGHT by 10), START
+    sets every IV to 31. EVs stop at 252 a stat and 510 in all. With Minimal Grinding on (the
+    default) every Pokémon battles at 31 IVs and 0 EVs, so, as in Imperium, the EVs are locked
+    and the IVs only set Hidden Power's type.
+  - **REPEL**, **FOLLOWER** and **AUTO RUN** switches, green when on.
+  - The clock and the time of day at the top right.
+
+  It opens once you have a Pokémon, but not in link rooms, the Safari Zone, the Bug Catching
+  Contest or the Battle Pike and Pyramid, nor with BUTTON MODE L=A (L is the A button then).
+- The Training Kit in the bag has the IVs & EVs editor too.
+
+### Tooling
+- New tests `l_menu`, `l_menu_time`, `stat_editor` and `stat_editor_mgm`; `dexnav` checks that
+  L ends a search and keeps the chain, and every DexNav test opens it from the L menu, as does
+  `old_save_test.sh`. `emurun` gains `expectbits8/16/32` (bitfields); `emu.py` gains `l_menu`,
+  `set_save2`, `set_save3`, `expect_follower`, `expect_battler_ivs` and `new_game(minimal_grinding=False)`.
+
 ## 0.9.0-experimental (2026-10-25)
 
 ### Quality of life

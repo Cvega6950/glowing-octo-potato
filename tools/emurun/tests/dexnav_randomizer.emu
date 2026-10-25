@@ -6,7 +6,7 @@
 !give_mon(155, 5)
 !warp(0, 11, 0)
 !walkto(34, 14, "yx")
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 shot 01_dexnav_randomized.png
 !snap_dexnav_rows("randomized")

@@ -13,7 +13,7 @@
 !walkto(34, 14, "yx")
 !walkto(24, 14)
 
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 shot 01_dexnav_hidden_row.png
 expectne16 *{sDexNavUiDataPtr}+40 0 route29_lists_hidden_pokemon
@@ -60,7 +60,7 @@ reset
 !new_game()
 !give_mon(155, 5)
 !warp(0, 11, 0)
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 press SELECT
 wait 60
@@ -73,7 +73,7 @@ wait 200
 press B
 wait 60
 !debug_flags_menu(11)
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 press SELECT
 wait 60

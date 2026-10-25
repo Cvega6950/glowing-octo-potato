@@ -25,11 +25,16 @@ expect8 {gPlayerPartyCount} 1 party_kept
 !expect_save3("tmHmCounts[69]", 0, "no_triple_axel", size=16)
 !expect_save3("tmHmCounts[2]", 0, "no_flip_turn", size=16)
 !["expect16 *{gSaveBlock1Ptr}+" + str(probe.resolve({"o": "offsetof(struct SaveBlock1, bag.TMsHMs)"})["o"]) + " 0 old_tm_slots_cleared"]
-# The clock window shown after Continue closes on its own; DexNav opens where there are wild
-# Pokemon (not in the bedroom), so warp to Route 29
+# The clock window shown after Continue closes on its own; DexNav (in the L menu, which has every
+# entry on the old save) opens where there are wild Pokemon (not in the bedroom), so warp to Route 29
 wait 400
 !warp(0, 11, 0)
-!start_menu("DEXNAV")
+press L
+wait 40
+expect8 {sNumLMenuActions} 8 l_menu_complete_on_old_save
+press B
+wait 40
+!l_menu("DEXNAV")
 wait 120
 shot 04_ci_dexnav.png
 expect32 {gMain+4} {DexNav_MainCB+1} dexnav_opens_on_old_save

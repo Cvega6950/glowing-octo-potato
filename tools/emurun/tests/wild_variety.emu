@@ -18,7 +18,7 @@ reset
 !warp(0, 11, 0)
 !walkto(34, 14, "yx")
 savestate route29_off.ss
-!start_menu("DEXNAV")
+!l_menu("DEXNAV")
 wait 120
 shot dexnav_variety_off.png
 expectne16 *{sDexNavUiDataPtr}+8 0 off_lists_own_pokemon

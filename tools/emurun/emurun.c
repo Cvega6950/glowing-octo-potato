@@ -13,6 +13,8 @@
 //   peek8/peek16/peek32 ADDR [LABEL]   print memory value
 //   expect8/expect16/expect32 ADDR VALUE [LABEL]   fail (exit 2) if mismatch
 //   expectne8/expectne16/expectne32 ADDR VALUE [LABEL]   fail (exit 2) if equal
+//   expectbits8/expectbits16/expectbits32 ADDR MASK VALUE [LABEL]   fail (exit 2) unless the value's
+//                          MASK bits equal VALUE (for bitfields)
 //   (peek/expect ADDR may be *PTR+OFF: the pointer stored at PTR plus OFF, e.g. *{gSaveBlock1Ptr}+4)
 //   savestate/loadstate FILE   write or restore a full emulator state
 //   poke8/poke16/poke32 ADDR VALUE   write memory
@@ -632,6 +634,18 @@ int main(int argc, char **argv)
             int size = atoi(cmd + 4);
             uint32_t addr = ParseAddr(a1);
             printf("[frame %lu] %s @0x%08X = 0x%X (%u)\n", frameCount, n > 2 ? a2 : "peek", addr, Peek(size, addr), Peek(size, addr));
+        }
+        else if (!strncmp(cmd, "expectbits", 10))
+        {
+            char a4[64] = "expectbits";
+            sscanf(line, "%*s %*s %*s %*s %63s", a4);
+            uint32_t addr = ParseAddr(a1), mask = strtoul(a2, NULL, 0), want = strtoul(a3, NULL, 0);
+            uint32_t got = Peek(atoi(cmd + 10), addr) & mask;
+            int ok = got == want;
+            printf("[frame %lu] %s %s: @0x%08X & 0x%X = 0x%X (want 0x%X)\n", frameCount, ok ? "PASS" : "FAIL",
+                   a4, addr, mask, got, want);
+            if (!ok)
+                failures++;
         }
         else if (!strncmp(cmd, "expectne", 8) || (!strncmp(cmd, "expect", 6) && cmd[6] >= '0' && cmd[6] <= '9'))
         {

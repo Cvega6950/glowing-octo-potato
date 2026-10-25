@@ -1,0 +1,45 @@
+# Crystal Imperium play test: the stat editor with Minimal Grinding on (the default, DECISIONS.md
+# D3 and D34). Every Pokemon battles at 31 IVs and 0 EVs, so as in Emerald Imperium the EVs are
+# locked (LEFT/RIGHT stay on the IVs) and the IVs only set Hidden Power's type: an HP IV of 30
+# with the rest at 31 makes it Dragon. The IVs reach the battle (gBattleMons: the six IVs are 5-bit
+# fields of the word before statStages), the stats don't change.
+!new_game()
+!give_mon(155, 5)
+!warp(0, 11, 0)
+expect16 {gPlayerParty+88} 20 hp_20_at_31_ivs_0_evs
+!l_menu("STATS")
+press DOWN
+wait 10
+press DOWN
+wait 10
+press A
+wait 120
+press A
+wait 200
+press START
+wait 30
+# HP IV 31 -> 30
+press A
+wait 10
+press DOWN
+wait 10
+press A
+wait 10
+# RIGHT doesn't reach the EVs: this edit is the HP IV again (30 + 10 stops at 31), and B puts the 30 back
+press RIGHT
+wait 10
+press A
+wait 10
+press RIGHT
+wait 10
+press B
+wait 10
+shot 01_editor_minimal_grinding.png
+press B
+wait 60
+expect16 {gPlayerParty+88} 20 stats_unchanged
+!battle_trainer(402)
+wait 1100
+!expect_battler(0, "species", "SPECIES_CYNDAQUIL")
+!expect_battler_ivs(0, 0x3FFFFFFE, "ivs_in_battle_hp_30_others_31")
+shot 02_battle.png

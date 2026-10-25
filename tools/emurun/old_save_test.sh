@@ -1,6 +1,6 @@
 #!/bin/sh
 # Save compatibility: make a save with Heart & Soul 2.0.6, then Continue it in Crystal Imperium
-# (party kept, the key items and DexNav handed out, DexNav search levels at 0).
+# (party kept, the key items and DexNav handed out, the L menu complete, DexNav search levels at 0).
 # Usage: tools/emurun/old_save_test.sh [HNS_DIR]   HNS_DIR holds pokehns.gba/.elf built from
 #        HnS tag 2.0.6 (tools/crystal_imperium/make_patches.sh builds it in build/release-work).
 #        EMURUN_EMULATOR=vbam (with EMURUN_CORE) runs it on VBA-M.

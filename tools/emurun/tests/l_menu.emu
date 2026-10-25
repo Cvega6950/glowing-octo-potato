@@ -1,0 +1,126 @@
+# Crystal Imperium play test: the L menu (Emerald Imperium's L button menu, DECISIONS.md D34) and
+# a start menu that fits on the screen. In the field, L opens POKéVIAL, PC, DEXNAV, TIME, STATS
+# and the REPEL, FOLLOWER and AUTO RUN switches (green when on), with the clock at the top right.
+# With the Pokédex and the Pokégear the start menu had nine entries and ran off the bottom of the
+# screen, which has room for eight: the DexNav moved to the L menu.
+# TIME is checked by l_menu_time, STATS by stat_editor and DEXNAV by the dexnav tests.
+# Pokemon: status +80, hp +86, maxHP +88 (STATUS1_POISON = 8).
+!new_game()
+!give_mon(155, 5)
+!set_flag("FLAG_SYS_POKEDEX_GET")
+!set_flag("FLAG_SYS_POKENAV_GET")
+!warp(0, 11, 0)
+
+# Start menu: POKéDEX, POKéMON, BAG, POKéGEAR, the player, SAVE, OPTION, EXIT
+press START
+wait 60
+shot 01_start_menu.png
+expect8 {sNumStartMenuActions} 8 start_menu_has_eight_entries
+expect8 {sCurrentStartMenuActions+1} 1 pokemon_after_pokedex_no_dexnav
+expect8 {sCurrentStartMenuActions+7} 7 exit_is_the_eighth
+press B
+wait 40
+
+# L menu: every entry, and the switches as a new game sets them (Infinite Repel off, a Pokemon
+# following, Auto Run off). challengeSettings.autoRun is 0 for running without B.
+press L
+wait 60
+shot 02_l_menu.png
+expect8 {sNumLMenuActions} 8 l_menu_has_eight_entries
+expect8 {sLMenuActions+0} 0 pokevial_first
+expect8 {sLMenuActions+2} 2 dexnav_third
+expect8 {sLMenuActions+7} 7 auto_run_last
+!expect_flag("FLAG_INFINITE_REPEL_ON", 0, "repel_off")
+!expect_follower(True, "follower_on")
+!expect_save3("challengeSettings.autoRun", 1, "auto_run_off")
+# A flips a switch; the menu stays open
+!l_menu("REPEL", open=False)
+!expect_flag("FLAG_INFINITE_REPEL_ON", 1, "repel_switched_on")
+!l_menu("FOLLOWER", open=False)
+!expect_follower(False, "follower_switched_off")
+!l_menu("AUTO_RUN", open=False)
+!expect_save3("challengeSettings.autoRun", 0, "auto_run_switched_on")
+expect8 {sLockFieldControls} 1 menu_still_open
+shot 03_switched.png
+# B closes the menu, and so does L
+press B
+wait 60
+expect8 {sLockFieldControls} 0 b_closes_the_menu
+press L
+wait 40
+press L
+wait 40
+expect8 {sLockFieldControls} 0 l_closes_the_menu
+shot 04_closed.png
+# And back
+press L
+wait 40
+!l_menu("REPEL", open=False)
+!l_menu("FOLLOWER", open=False)
+!l_menu("AUTO_RUN", open=False)
+!expect_flag("FLAG_INFINITE_REPEL_ON", 0, "repel_switched_off")
+!expect_follower(True, "follower_switched_on")
+!expect_save3("challengeSettings.autoRun", 1, "auto_run_switched_off")
+press B
+wait 60
+
+# With the L=A button mode (OPTION > BUTTON MODE), L is the A button: no menu
+!set_save2("optionsButtonMode", "OPTIONS_BUTTON_MODE_L_EQUALS_A")
+press L
+wait 40
+expect8 {sLockFieldControls} 0 l_is_a_with_l_equals_a
+!set_save2("optionsButtonMode", "OPTIONS_BUTTON_MODE_NORMAL")
+
+# POKéVIAL: heals the party, here a Cyndaquil at 1 HP and poisoned
+poke16 {gPlayerParty+86} 1
+poke32 {gPlayerParty+80} 8
+!l_menu("POKEVIAL")
+shot 05_pokevial.png
+expect16 {gPlayerParty+86} 20 pokevial_heals_hp
+expect32 {gPlayerParty+80} 0 pokevial_cures_poison
+mash A 120
+wait 60
+expect8 {sLockFieldControls} 0 message_closed
+
+# PC: the whole PC of a Pokemon Center, in the middle of Route 29. SOMEONE'S PC opens the
+# Pokemon Storage System
+!l_menu("PC")
+shot 06_pc_booted.png
+press A
+wait 120
+shot 07_which_pc.png
+waituntil32 {gMain+4} {CB2_PokeStorage+1} 3000 A pc_opens_pokemon_storage
+wait 120
+shot 08_storage.png
+# Out of the boxes ("Continue BOX operations?" B), the storage menu and the PC, back in the field
+press B
+wait 60
+shot 09_continue_box.png
+press B
+wait 200
+shot 10_storage_menu.png
+press B
+wait 120
+shot 11_which_pc.png
+press B
+wait 120
+shot 12_pc_off.png
+expect32 {gMain+4} {CB2_Overworld+1} back_in_the_field
+expect8 {sLockFieldControls} 0 pc_logged_off
+
+# AUTO RUN works like OPTION > AUTORUN (autorun): on New Bark Town's open row y = 13, holding
+# LEFT for 32 frames walks 2 tiles with it off and runs 4 with it on
+!set_flag("FLAG_SYS_B_DASH")
+!warp(0, 0, 1)
+!walkto(24, 13, "yx")
+!walkto(23, 13)
+hold LEFT 32
+wait 30
+expect16 *{gSaveBlock1Ptr}+4 21 auto_run_off_walks_2_tiles
+!l_menu("AUTO_RUN")
+shot 13_auto_run_on.png
+press B
+wait 40
+hold LEFT 32
+wait 30
+expect16 *{gSaveBlock1Ptr}+4 17 auto_run_on_runs_4_tiles

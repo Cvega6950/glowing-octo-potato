@@ -71,6 +71,7 @@ enum EncounterType
 
 void EndDexNavSearch(void);
 void Task_OpenDexNavFromStartMenu(u8 taskId);
+void Task_OpenDexNavFromLMenu(u8 taskId);
 bool32 TryStartDexNavSearch(void);
 void TryIncrementSpeciesSearchLevel(void);
 void ResetDexNavSearch(void);

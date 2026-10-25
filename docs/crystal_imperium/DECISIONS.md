@@ -98,8 +98,9 @@ Imperium-style (D29).
 
 - A new game starts with five key items: **Rare Candy Box** (999 Rare Candies whenever used,
   capped by the level cap; used several at a time since 0.9.0, D33), **Infinite Repel** (a switch), **Pokémon Box Link** (the PC
-  anywhere), **Training Kit** (nature and ability changes) and **PokéVial** (full party heal
-  outside battle, unlimited). The **DexNav** is in the start menu from the same moment.
+  anywhere), **Training Kit** (nature and ability changes, and IVs and EVs since 0.10.0) and
+  **PokéVial** (full party heal outside battle, unlimited). The **DexNav** is in the start menu
+  from the same moment (in the L menu since 0.10.0, with the other tools, D34).
 - They are handed out by `GiveQoLKeyItems()` on New Game and again on every Continue, which
   adds only what the bag is missing. Saves from older builds therefore get new items without a
   new game. `FLAG_RECEIVED_QOL_KEY_ITEMS` (0x305) is still set but no longer read; it stays
@@ -821,3 +822,68 @@ DexNav shows and that wild encounters draw from:
 - Evidence: `rare_candy` (Magikarp: 10 at first, 9 with DOWN, used at once with no fanfare,
   then one more with no question; B uses none; Caterpie: 10 at once, Bug Bite on the way,
   Metapod, then Butterfree with one more candy at the cap), `qol_items` (the cap stops them).
+
+## D34. The L menu, and a start menu that fits
+
+- The user's start menu ran off the bottom of the screen. With the Pokédex and the Pokégear it
+  had nine entries (POKéDEX, DEXNAV, POKéMON, BAG, POKéGEAR, the player, SAVE, OPTION, EXIT);
+  the window starts on the second tile row and takes two rows an entry plus its frame, so the
+  20-row screen has room for eight, and EXIT and the frame's bottom were off it. The DexNav
+  entry (D13) was the ninth. The user asked for Emerald Imperium's L button menu instead, "with
+  all the options available without having to go in the bag".
+- What Imperium's L menu has, from its guides and changelog: the DexNav, the Infinite Repel and
+  the PokéVial are "accessed by pressing the L button", and it can "access your PC instantly,
+  change the time of day, set yourself to always run, or change the Pokémon you have following
+  you" ([Retro Dodo](https://retrododo.com/pokemon-emerald-imperium-cheats/)); 1.3 made the whole
+  PC available from the L menu's "PC" and added a NuzVial, and in 1.2 L or START cancels a
+  DexNav search "which will not break a DexNav chain"
+  ([changelog](https://pokemonemeraldimperium.com/changelog/)); its Stat Editor edits EVs and
+  IVs, and with Minimal Grinding on it "can only change IVs" and "cannot change EVs"
+  ([features](https://pokemonemeraldimperium.com/features/)). The user's screenshot showed
+  PokéVial, PC, DexNav, Time and Stats, then Repel, Follower and Auto Run in green. As with
+  everything from Imperium (D2), this is our own code.
+- **L in the field** opens it (`src/l_menu.c`): on the left POKéVIAL, PC, DEXNAV, TIME, STATS,
+  then the REPEL, FOLLOWER and AUTO RUN switches with ON or OFF, green when on; at the top right
+  the clock and the time of day. B or L closes it. It opens once you have a Pokémon, not where
+  the start menu is cut down (link rooms, the Safari Zone, the Bug Catching Contest, the Battle
+  Pike and Pyramid), and not with BUTTON MODE L=A, where L is the A button.
+  - POKéVIAL heals the party like the key item (fainted Pokémon stay fainted in a Nuzlocke, so
+    there is no separate NuzVial).
+  - PC is a Pokémon Center's whole PC (SOMEONE'S PC, the player's PC with item storage,
+    CHALLENGES, and the HALL OF FAME after the League), with nothing on the map to light up.
+  - DEXNAV is the DexNav, gone from the start menu; B in it comes back to the L menu, and on a
+    map without wild Pokémon it says so. Pressing L during a search ends it, as START does, and
+    keeps the DexNav chain.
+  - TIME asks for MORNING, DAY, EVENING or NIGHT and moves the clock **forward** to 8:00 AM,
+    12:00 PM, 6:30 PM or 8:00 PM: the same day if that time is still ahead, otherwise the next
+    day. Those are the times each one shows best (`UpdateTimeOfDay` blends night into morning
+    until 8:00, and the hour before evening and night). The clock never goes back, so berry
+    trees and daily events only see time pass; Imperium documents its time changer no further.
+    Choosing the time of day it already is changes nothing. Then the map reloads where the player
+    stands (as the debug menu's time change does), surfing or biking as before, so its light,
+    the Pokémon seen by day or by night (`FLAG_DAY_POKEMON` / `FLAG_NIGHT_POKEMON`) and the
+    time-based people and events follow at once. The DexNav chain is kept; anything else a map
+    reset resets on re-entering (moved boulders, temporary flags) resets too.
+  - STATS is the Training Kit's menu, now NATURE, ABILITY and **IVs & EVs**, Imperium's Stat
+    Editor: a window with the IV, EV and stat of each of the six, the nature's raised and
+    lowered stats in red and blue, Hidden Power's type, and the EVs used. The d-pad picks an IV
+    or an EV; A changes it (UP/DOWN by 1, going round, LEFT/RIGHT by 10), A keeps it, B puts it
+    back; START sets every IV to 31; B leaves. EVs stay within 252 a stat and 510 in all, and
+    editing an IV clears that stat's Hyper Training. With Minimal Grinding on (the default, D3)
+    every Pokémon battles at 31 IVs and 0 EVs anyway, so, as in Imperium, the EVs are locked
+    (grayed, LEFT/RIGHT stay on the IVs) and the IVs only set Hidden Power's type. Like the
+    other tools it is there from the start (D10); the Training Kit in the bag opens the same menu.
+  - REPEL is the Infinite Repel, FOLLOWER the setting of the party menu's FOLLOWER (and the
+    options' follower setting), AUTO RUN that of OPTION > AUTORUN.
+- **The start menu** keeps Heart & Soul's entries without DEXNAV: eight at most, which fit.
+- Not included: a Rare Candy entry (Imperium keeps its Infinite Candy in the bag too).
+- Save compatibility: nothing new is saved. Saves from older builds get the key items when
+  they are loaded (D10), so their L menu is complete.
+- Evidence: `l_menu` (eight start menu entries without DEXNAV; the L menu's entries and
+  switches, B and L close it, no menu with L=A; the PokéVial heals and cures; the PC opens the
+  Pokémon Storage System; AUTO RUN changes walking into running), `l_menu_time` (the clock
+  moves forward, the same day or the next; light, time of day and day/night Pokémon follow; the
+  DexNav chain is kept; still surfing on the same tile), `stat_editor` (with Minimal Grinding off:
+  IV and EV changes in the stats, going round, undo, the 510 limit), `stat_editor_mgm` (EVs
+  locked, the IVs in battle), `dexnav` (L ends a search and keeps the chain; every DexNav test
+  opens it from the L menu), `old_save_test.sh` (the L menu complete on a Heart & Soul save).
