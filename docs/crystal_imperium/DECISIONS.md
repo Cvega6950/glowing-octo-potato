@@ -54,11 +54,12 @@ can decide a fight. This applies to both sides, like Emerald Imperium.
 
 ## D6. Level caps stay tied to Gym aces
 
-HnS's NORMAL cap table (`src/caps.c`) equals the next Gym Leader's highest level. Reworked
+HnS's NORMAL cap table (`src/caps.c`) equaled the next Gym Leader's highest level. Reworked
 leaders keep their ace at that cap, so the player can always match the ace's level.
 `tools/crystal_imperium/validate.py` enforces this. Since 0.7.0 every boss Pokémon is at the
 cap, and since 0.7.1 at the player's own cap table, HARD caps included (D21); nothing else the
-player meets is above the cap (D28).
+player meets is above the cap (D28). Since 0.8.0 the tables themselves are Emerald
+Imperium-style (D29).
 
 ## D7. ROM budget
 
@@ -310,9 +311,9 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
     the others were one or two levels below). The user asked for every boss's and Gym Leader's
     Pokémon to be at the level cap, to make the game harder. Each boss has a *stage*, the
     earliest point in the game its battle can happen (a badge count, the Johto League won or the
-    Kanto League won). The party file holds that stage's NORMAL cap from `src/caps.c` (11, 16,
-    21, 25, 31, 36, 38, 45, 56, then 70 and 100). With the Rare Candy Box the player can always
-    be at the cap.
+    Kanto League won). The party file holds that stage's NORMAL cap from `src/caps.c` (15, 24,
+    33, 42, 50, 58, 66, 75, 85, then 90 and 100 since 0.8.0, D29). With the Rare Candy Box the
+    player can always be at the cap.
   - **The battle sets the level from the player's cap table** (0.7.1). `CreateNPCTrainerParty`
     (`src/battle_main.c`) puts every Pokémon of a boss at `GetBossLevel` (`src/caps.c`): the cap
     at the boss's stage or the player's, whichever is later, from the HARD table when the LEVEL
@@ -321,33 +322,38 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
     - In 0.7.0 the battle used the NORMAL table whatever the setting, and EASY and HARD scaled
       the result to 90% and 110%. A player on HARD met Falkner at 12 with a cap of 8, and
       reported that the level cap didn't match the bosses' levels. Bosses now aren't scaled by
-      the difficulty: on HARD caps Falkner is at 8, on NORMAL caps at 11, on every difficulty.
+      the difficulty: on HARD caps Falkner is at 12, on NORMAL caps at 15 (8 and 11 in 0.7.1),
+      on every difficulty.
     - A boss fought later than its stage is raised to the player's cap then. This covers the
       battles whose badge count varies: the Rocket Hideout (the Lake of Rage needs Surf, so four
-      to six badges: 31, 36 or 38 on NORMAL caps), Eusine in Cianwood, and the battles that are
+      to six badges: 50, 58 or 66 on NORMAL caps), Eusine in Cianwood, and the battles that are
       also rematches after the Kanto League (the Kanto Gym teams in the Fighting Dojo, the Johto
       leaders' and the Elite Four's `_2` teams before the Sinjoh story, the rival at the Indigo
       Plateau): at 100 then.
-    - Other trainers keep their levels (scaled by EASY and HARD) but are never above the
-      player's cap (D28): `boss_levels` checks a Grunt's level-20 Koffing, at 20 with six badges
-      and at the cap (11, or 8 on HARD caps) with none.
+    - Other trainers' Heart & Soul levels are mapped onto the cap curve (D29) and scaled by EASY
+      and HARD, and are never above the player's cap (D28): `boss_levels` checks a Grunt's
+      level-20 Koffing, at 31 with six badges and at the cap (15, or 12 on HARD caps) with none.
   - Heart & Soul's own teams for the other bosses keep their Pokémon and only get the levels
-    (`LEVEL_ONLY` in `boss_teams.py`): Li, Falkner, Bugsy, Whitney, the first rival battle and
-    Eusine; the rival on Mt. Moon and at the Indigo Plateau, the Fighting Dojo rematches and the
-    Kanto League (70); and every rematch after it (`_POSTOBC`: 100). The bonus storylines'
+    (`LEVEL_ONLY` in `boss_teams.py`): Li and the first rival battle; the rival on Mt. Moon and
+    at the Indigo Plateau, the Fighting Dojo rematches and the Kanto League (90); and every
+    rematch after it (`_POSTOBC`: 100). Falkner, Bugsy, Whitney and Eusine had Heart & Soul's
+    teams until 0.8.0 (D29, D30). The bonus storylines'
     trainers (New Sinjoh, Samson Oak, Steven, Giovanni) are at or above the cap where they can
     first be fought and keep their levels; the unused and debug-only teams too.
   - Every Pokémon has a held item, a nature, an ability chosen for the set and four moves its
     species or a pre-evolution can learn (`validate.py` checks abilities, moves, that every
     boss is at its stage's cap and that no boss trainer is missing from the list).
-  - Team size grows: 3–4 for early story bosses, 5 for Morty and for a 5th Gym, 6 after that.
+  - Six Pokémon for every Gym Leader, the rival from his second battle, Proton, Petrel, Ariana,
+    Archer, Eusine, the Elite Four, Lance, Blue and Red (since 0.8.0, D30; before, 3–4 for the
+    early story bosses and 5 for Morty and a 5th Gym). Li keeps three, the first rival battle his
+    starter, and each Kimono Girl her one Eeveelution.
   - From the 5th Gym on, each boss has one Mega Evolution with a stone from the Mega shop's
     tiers (D9). The stone isn't always on sale before the boss who uses it: Steelixite and
     Abomasite come with the 6th badge, and Jasmine or Pryce can be the 5th Gym. Morty has none
     (the player's Mega Ring arrives only one badge earlier).
   - Chuck, Jasmine and Pryce have three versions each, picked by how many of the three the
-    player has beaten (HnS's `_1`, `_1_2`, `_1_3`): caps 31, 36 and 38.
-  - The Kanto leaders and Blue are at 70 (the cap for all of Kanto). Red, with no cap left, was
+    player has beaten (HnS's `_1`, `_1_2`, `_1_3`): caps 50, 58 and 66.
+  - The Kanto leaders and Blue are at 90 (the cap for all of Kanto). Red, with no cap left, was
     at 86–90; since 0.6.0 he is the hardest battle, and since 0.7.0 all six are at 100 (D27).
 - Done: Proton (Slowpoke Well and Radio Tower), Petrel and Ariana (Rocket Hideout and Radio
   Tower), Archer; the rival's 2nd–5th battles (Azalea, Burned Tower, Goldenrod Underground,
@@ -586,10 +592,11 @@ DexNav shows and that wild encounters draw from:
     Charizard's Solar Beam; Light Ball Pikachu leads with Fake Out; Magic Bounce Espeon, a
     Curse/Rest Snorlax and a White Herb Shell Smash Blastoise.
 - **Red battles only the Kanto Champion.** Oak opens Mt. Silver and the Kanto League at the
-  same time (16 badges), and the level cap stays at 70 until the Kanto League is won; at the
-  cap a level-100 team with EVs is out of reach. Before the Kanto League Red now stays
-  silent ("RED seems to be waiting for the KANTO CHAMPION."), so he is the last battle and the
-  player can bring a level-100 team. Heart & Soul let him be fought after 16 badges.
+  same time (16 badges), and the level cap stays at 90 (70 before 0.8.0) until the Kanto League
+  is won; at the cap a level-100 team with EVs is out of reach. Before the Kanto League Red
+  now stays silent ("RED seems to be waiting for the KANTO CHAMPION."), so he is the last
+  battle and the player can bring a level-100 team. Heart & Soul let him be fought after 16
+  badges.
 - **How hard, and is he beatable?** The battle autopilot can't prove a person's chances, but
   its numbers bound them (BALANCE.md has the details):
   - Played naively (one move per Pokémon, no switching, no items) every team at level 100
@@ -624,7 +631,7 @@ DexNav shows and that wild encounters draw from:
   41's level-100 Tentacruel (a joke for poking it three times; it heals the party after), the
   post-game wild bosses (Alola's totems at 60, the Hisuian Pokémon such as Kleavor and
   Ursaluna at 75–80, the Sinjoh Ruins' Arceus at 80 and 100: held only when met before the Kanto
-  League, at 70) and the Saffron Fighting Dojo's level-1 training battles (below every cap).
+  League, at 90) and the Saffron Fighting Dojo's level-1 training battles (below every cap).
 - Where it applies:
   - Random encounters, fishing, Rock Smash, mass outbreaks, Wild Variety and the randomizer's
     Pokémon: `CreateWildMon` (`src/wild_encounter.c`).
@@ -632,7 +639,7 @@ DexNav shows and that wild encounters draw from:
     (`DexNavTryGenerateMonLevel`, `src/dexnav.c`).
   - Scripted wild battles (`setwildbattle`, berry trees, the Bug-Catching Contest's area) and
     legendaries and other event Pokémon (`seteventmon`): `src/script_pokemon_util.c` and
-    `CreateEnemyEventMon` (`src/pokemon.c`). E.g. Zapdos (50) is met at 11 with no badges.
+    `CreateEnemyEventMon` (`src/pokemon.c`). E.g. Zapdos (50) is met at 15 with no badges.
   - Roaming Pokémon (`CreateRoamerMonInstance`, `src/roamer.c`). A roamer keeps its own level
     and HP between meetings; met below its level it has at most that level's max HP, and if it
     is left unhurt its stored HP doesn't drop (`UpdateRoamerHPStatus`).
@@ -640,9 +647,93 @@ DexNav shows and that wild encounters draw from:
     Mt. Mortar's Tyrogue, the revived fossils). The debug menu's Give Pokémon isn't held, so the
     play tests can still give any level.
   - Trainers (D11, D21): bosses are at the cap; other trainers' levels, after EASY's or HARD's
-    scaling, are held at the cap. This also holds Steven at Sinjoh Ruins (77–79) at 70 when he
-    is fought before the Kanto League (KNOWN_ISSUES #34).
+    scaling, are held at the cap. This also holds Steven at Sinjoh Ruins (77–79, 92–93 on the
+    0.8.0 cap curve) at 90 when he is fought before the Kanto League (KNOWN_ISSUES #34).
 - In-game trades keep the level of the player's Pokémon traded away, which is within the cap.
 - Evidence: `level_cap_wild` (DexNav with a chain of 100, a level-50 outbreak with catching on
-  and off, Zapdos, the Tentacool gift; 11 on NORMAL caps and 8 on HARD caps), `boss_levels` and
+  and off, Zapdos, the Tentacool gift; 15 on NORMAL caps and 12 on HARD caps), `boss_levels` and
   `difficulty` for trainers.
+
+## D29. Emerald Imperium-style level caps
+
+- The user asked for higher level caps, as in Emerald Imperium, where the highest cap before
+  the Elite Four is first beaten is 85. Heart & Soul's caps topped out at 56 for the Elite Four
+  and 70 for Kanto. Emerald Imperium publishes no cap table (its site lists built-in level caps
+  and a nurse that sets Pokémon to the cap), so the curve ends at that 85 and climbs to it in
+  steps of 8–10 levels a badge:
+
+  | Stage | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 (Elite Four) | Johto League won (Kanto) | Kanto League won |
+  |---|---|---|---|---|---|---|---|---|---|---|---|
+  | NORMAL | 15 | 24 | 33 | 42 | 50 | 58 | 66 | 75 | 85 | 90 | none (100) |
+  | HARD | 12 | 21 | 30 | 39 | 47 | 55 | 63 | 72 | 85 | 90 | none (100) |
+  | Heart & Soul | 11 | 16 | 21 | 25 | 31 | 36 | 38 | 45 | 56 | 70 | none |
+
+  - The Elite Four's cap is 85 on HARD caps too: the user plays with them and asked for 85.
+    Before it, HARD stays 3 levels lower. Lower caps are harder although the bosses are at the
+    cap as well, because a boss's moves and evolutions don't depend on its level and the
+    player's do.
+  - Kanto is at 90: above the Johto League, below Red's 100 (D27). As in Heart & Soul, the Kanto
+    badges don't raise it; winning the Kanto League removes the cap.
+- **Bosses** are at the cap (D21), so they move with the table: `boss_teams.py` reads it from
+  `src/caps.c` and writes every boss's levels.
+- **Other trainers** keep their Heart & Soul party data. Their levels were made a few levels
+  under Heart & Soul's caps, so at battle time `GetLevelOnCapCurve` (`src/caps.c`) maps a level
+  linearly between the caps of the stages around it onto the player's table: a trainer half
+  way between the 1- and 2-badge caps (16 and 21) stays half way (24 and 33). E.g. Route 30's
+  2–4 stay 2–5, the Azalea Gym's 12–14 become 17–20, a Rocket Grunt's 20 becomes 31, Routes
+  26–27's 42–50 become 71–80. EASY and HARD then scale them by 10%, and the cap holds them
+  (D28). Without the mapping the regular trainers late in Johto would have been up to 35 levels
+  below the bosses and the player. Phone rematches pick their team by Heart & Soul's levels and badges
+  (`sRematchLevelCeilingByBadges`), so they come at the same points of the game as before.
+  Prize money uses the party data's levels (KNOWN_ISSUES #39).
+- **Wild Pokémon** keep Heart & Soul's levels, as Emerald Imperium's do: the player catches
+  them low and brings them up with the Rare Candy Box (Emerald Imperium has a nurse that sets
+  the party to the cap). They are never above the cap (D28).
+- Early bosses with Heart & Soul's own teams fell behind at the higher caps. Their teams kept
+  their early moves while the player's level-up moves got stronger:
+  - Bugsy got an Imperium-style team (BALANCE.md): the naive test line had beaten Heart & Soul's
+    team 19 times in 20.
+  - Whitney keeps Heart & Soul's team and moves, now with held items: without them the same
+    line won 13 of 20.
+  - Li and the first rival keep Heart & Soul's teams; Falkner and Eusine got six-Pokémon
+    teams with the other bosses (D30).
+
+## D30. Six-Pokémon bosses and route mini-bosses
+
+- The user asked for most big boss battles, especially the Gym Leaders, to have six Pokémon, and
+  for strong trainers with competitive teams on the routes, as in Emerald Imperium (its route
+  mini-bosses).
+- **Six Pokémon** (`boss_teams.py`) for every Gym Leader (Falkner, Bugsy, Whitney and Morty
+  were at 3, 4, 4 and 5; Chuck, Jasmine and Pryce as the 5th Gym at 5), the rival from his
+  second battle on (4–5 before), the Rocket executives in all their battles (Proton at the
+  Slowpoke Well 3, Petrel and Ariana 4–5) and Eusine (3).
+  - Falkner keeps Heart & Soul's Pidgey, Rookidee and Noctowl and adds Magic Bounce Natu, Gale Wings
+    Fletchling and Prankster Murkrow; Bugsy adds Butterfree and Yanma, his Spinarak now an Ariados,
+    with new sets (BALANCE.md); Whitney Furret and Girafarig; Morty Mimikyu; Proton Golbat, Grimer
+    and Raticate; the rival Haunter and Magneton (Azalea), Haunter (Burned Tower), Alakazam
+    (Goldenrod Underground); Petrel Golbat and Houndoom, then Toxapex; Ariana Liepard and Gyarados,
+    then Skuntank; Proton at the Radio Tower Toxicroak. Eusine has a rain team (Drizzle Politoed,
+    Thunder from Electrode and Lanturn) instead of Heart & Soul's three with 2 IVs.
+  - Unchanged: Li (three, before the first Gym), the first rival battle (his starter, just after
+    the player gets theirs) and the Kimono Girls (one Eeveelution each, five battles in a row).
+- **Route mini-bosses** (`ROUTE_BOSSES` in `boss_teams.py`): 28 existing route trainers, 16 in
+  Johto and 12 in Kanto, have competitive teams like the bosses': a held item, nature, ability
+  and four chosen moves on every Pokémon, themed by the trainer's class (a Hiker's Rock and
+  Ground types, a Swimmer's rain team, a Psychic's Psychic types), with the boss AI.
+  - They are bosses for the level code (D21): at the level cap. Their stage is the earliest
+    point their route can be reached, set low where it isn't certain (Route 26 and 27 can be
+    reached with Surf before the 8th badge), so a mini-boss is never above the player's cap and
+    is raised to it when met later.
+  - Team size grows with the stage: 3 before the first badge (Routes 30 and 32), 4 on Routes 34
+    to 39, 5 in the rest of Johto, 6 on Routes 26, 27 and 45 and in Kanto.
+  - Chosen from trainers without phone rematches (whose later teams would still be Heart &
+    Soul's) and without double battles, one per route: Route 30 Mikey, 32 Roland, 34 Kate, 35
+    Bryan, 37 Greg, 38 Valerie, 39 Eugene, 40 Simon, 41 George, 42 Benjamin, 43 Ben, 44 Cybil, 45
+    Kelly, 47 Devin, 26 Jake, 27 Blake; in Kanto Route 1 Quinn, 3 Otis, 8 Dwayne, 9 Tim, 10
+    Robert, 11 Herman, 12 Stephen, 13 Bret, 15 Colette, 18 Boris, 20 Lori, 25 Kevin.
+  - Their names, places and lines are Heart & Soul's; only the teams changed.
+- `validate.py` checks them like the bosses (moves, abilities, levels at the stage's cap); it now
+  reads a form's learnset from its base species when the form has none of its own (Mimikyu).
+- Evidence: `route_bosses` (every mini-boss's team size, its lead's and ace's levels at the cap,
+  and a battle against the prepared six to a result), `boss_levels`, `bosses_m3`, `bosses_m4`,
+  `bugsy` and `whitney` for the six-Pokémon bosses.

@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.7.1-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.8.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
 > of its Pokémon at the level cap, the TM list is Emerald Imperium's, and HMs work without being
@@ -37,6 +37,12 @@ From the first step of a new game:
 - **Minimal Grinding Mode** (every Pokémon battles as if it had 31 IVs and 0 EVs), **level caps**,
   ×1.5 EXP, an **EASY / NORMAL / HARD** difficulty selection, **Auto Run**
   (START > OPTION > AUTORUN), and a **move relearner** in the party menu.
+- **Emerald Imperium-style level caps:** 15 before the first Gym, then 24, 33, 42, 50, 58, 66,
+  75 and **85 for the Elite Four**, 90 in Kanto, and no cap after the Kanto League (HARD caps: a
+  few levels lower until the Elite Four). Other trainers follow the same curve.
+- **Six Pokémon for every Gym Leader** and the big story bosses, and **28 route mini-bosses**:
+  strong trainers on the routes with competitive teams at your level cap, as in Emerald
+  Imperium.
 - **The level cap is the level of every boss, and nothing is above it:** bosses are at your cap
   (NORMAL or HARD caps, on every difficulty), and no trainer's, wild, DexNav, legendary or gift
   Pokémon is above it.

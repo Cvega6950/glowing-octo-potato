@@ -1,5 +1,50 @@
 # Crystal Imperium changelog
 
+## 0.8.0-experimental (2026-10-25)
+
+### Gameplay
+- **Emerald Imperium-style level caps** (DECISIONS.md D29): the cap is 85 before you beat the
+  Elite Four the first time, as in Emerald Imperium, and climbs to it gym by gym:
+
+  | Stage | No badges | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 (Elite Four) | Kanto | After the Kanto League |
+  |---|---|---|---|---|---|---|---|---|---|---|---|
+  | NORMAL caps | 15 | 24 | 33 | 42 | 50 | 58 | 66 | 75 | 85 | 90 | none (100) |
+  | HARD caps | 12 | 21 | 30 | 39 | 47 | 55 | 63 | 72 | 85 | 90 | none (100) |
+  | 0.7.x NORMAL | 11 | 16 | 21 | 25 | 31 | 36 | 38 | 45 | 56 | 70 | none |
+
+  Every boss is at the cap (D21), so Falkner is 15, Clair 75, the Elite Four and Lance 85, the
+  Kanto Gym Leaders and Blue 90, and Red stays at 100.
+- **Other trainers follow the new curve.** Heart & Soul's trainers were made a few levels below
+  its old caps; at battle time their levels are mapped onto the new caps in proportion (a
+  Rocket Grunt's level-20 Koffing is 31 now; on Routes 26 and 27, the way to the Indigo
+  Plateau, trainers go from 42–50 to 71–80). EASY and HARD still scale them by 10%, and none is
+  above your cap.
+- Wild Pokémon keep Heart & Soul's levels, as in Emerald Imperium: catch them and use the Rare
+  Candy Box to bring them up to the cap. They are never above the cap.
+- **Every Gym Leader has six Pokémon** (D30), and so do the rival from his second battle on, the
+  Rocket executives in all their battles and Eusine. Falkner adds Natu, Fletchling and Murkrow
+  to Heart & Soul's three; Bugsy has an Imperium-style team (Ariados, Pineco, Ledian,
+  Butterfree, Yanma, Scyther); Whitney adds Furret and Girafarig and her team holds items;
+  Morty adds Mimikyu; Chuck, Jasmine and Pryce bring all six as the 5th Gym too; Eusine has a
+  rain team.
+- **Route mini-bosses, as in Emerald Imperium** (D30): 28 trainers on the routes, 16 in Johto
+  and 12 in Kanto, now have competitive teams at your level cap: held items, natures, abilities
+  and chosen moves, themed by their class (a Hiker's Rock types, a Swimmer's rain team), with
+  the smart boss AI. They have 3 Pokémon on the first routes, up to 6 later on and in Kanto.
+  BALANCE.md lists them.
+
+### Tooling
+- `GetLevelOnCapCurve` (`src/caps.c`) maps a Heart & Soul level onto the current cap curve;
+  `boss_teams.py` has the six-Pokémon teams and the route mini-bosses (`ROUTE_BOSSES`), 126
+  bosses in all. `validate.py` reads a form's learnset from its base species when the form has
+  none of its own.
+- New test `route_bosses` (every mini-boss's team size and levels at the cap, and a battle to a
+  result). Tests follow the new levels; `bugsy` and `whitney` bring six Pokémon (`bugsy` with
+  the first care package's Charcoal and Eviolites, in 40 tries; `whitney` in 24), `whitney`'s
+  Pokémon keep moves a player at 33 would keep (the default movesets at 33 drop Quilava's Fire
+  moves), and `bosses_m5` checks Blue's Mega with the six built for him and gives each Kanto
+  leader up to three battles to bring out the Mega.
+
 ## 0.7.1-experimental (2026-10-25)
 
 ### Gameplay
