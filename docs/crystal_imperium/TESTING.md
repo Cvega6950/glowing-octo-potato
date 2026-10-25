@@ -27,14 +27,14 @@ cartridge clock starts at a fixed time (2026-10-24 01:30 UTC, night in the game)
 with emulated time on both emulators. Battle results depend on the RNG, which depends on the
 code and on the emulator, so balance checks sample several battles and accept a range.
 
-Results on the 0.7.0 ROM (SHA-1 `a439475fc2f5737889381239dcb3610dae58ab9d`), 2026-10-25:
-All 37 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
+Results on the 0.7.1 ROM (SHA-1 `24606cfd422f2661ac0918ee70be3b10f7f0884d`), 2026-10-25:
+All 38 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
 that each test requires to be inside its accepted range.
 
 | Test | Covers | mGBA | VBA-M (Delta's core) |
 |---|---|---|---|
 | `autorun` | Real story path (clock scene, Mom's Running Shoes); AUTORUN off: walk, B runs; on: run, B walks | **PASS** | **PASS** |
-| `boss_levels` | Boss Pokémon raised to the player's cap at the start of a battle: Petrel at 31 with no badges, 38 with six; Brock at 70 as Johto Champion, 100 as Kanto Champion; a Rocket Grunt stays at 20 | **PASS** | **PASS** |
+| `boss_levels` | Boss Pokémon at the player's cap at the start of a battle: Petrel at 31 with no badges, 38 with six; Brock at 70 as Johto Champion, 100 as Kanto Champion; a Rocket Grunt's Koffing at 20 with six badges, held at 11 with none. HARD level caps: Falkner at 8, Petrel at 29, 37 with six badges, the Grunt's Koffing at 8 | **PASS** | **PASS** |
 | `bosses_e4` | Elite Four and Lance, every Pokémon at the cap (56): Koga vs the prepared six (naive, 6 tries); Will, Bruno, Karen and Lance vs sixes built for them playing a game plan (8, 12, 12 and 24 tries); all hold care-package items; each beaten at least once; every Mega happens | **PASS** (wins vs Koga 4/6, wins vs Will 2/8, wins vs Bruno 7/12, wins vs Karen 8/12, wins vs Lance 6/24) | **PASS** (wins vs Koga 6/6, wins vs Will 6/8, wins vs Bruno 7/12, wins vs Karen 10/12, wins vs Lance 10/24) |
 | `bosses_m3` | Proton, the rival (Azalea, Burned Tower), Morty, every version of Chuck/Jasmine/Pryce, Clair, every Pokémon at the cap: each battle plays to a result; the naive team loses; the prepared six with care-package items beats Morty and Jasmine at least once in 8 and Clair in 16; sixes built for Chuck and Pryce, playing a game plan, beat them at least once in 8; every boss Mega Evolves | **PASS** (wins vs Morty 6/8, wins vs Jasmine 8/8, wins vs Chuck 8/8, wins vs Pryce 6/8, wins vs Clair 8/16) | **PASS** (wins vs Morty 7/8, wins vs Jasmine 8/8, wins vs Chuck 8/8, wins vs Pryce 8/8, wins vs Clair 6/16) |
 | `bosses_m4` | Rocket executives (Hideout, Radio Tower), rival 4–5, the five Kimono Girls: each battle plays to a result against the prepared six at the cap, holding care-package items; with the six at 100, Archer's and the rival's Megas happen | **PASS** | **PASS** |
@@ -49,7 +49,7 @@ that each test requires to be inside its accepted range.
 | `dexnav_randomizer` | Randomizer on for wild Pokémon (map-seeded): DexNav lists Route 29's randomized Pokémon, not Hoothoot and Rattata, and every battle is listed | **PASS** (unrandomized 2/2, random_not_listed 0/12) | **PASS** (unrandomized 2/2, random_not_listed 0/12) |
 | `dexnav_water_match` | New Bark Town: the water row lists Tentacool and 3 Water-type Wild Variety Pokémon; every surfing battle is listed; fishing gives the town's fishing Pokémon or listed ones | **PASS** (fish_battles 7/10, fish 0/10, surf 6/12, surf_not_listed 0/12) | **PASS** (fish_battles 6/10, fish 0/10, surf 5/12, surf_not_listed 0/12) |
 | `dexnav_wild_match` | Route 29: DexNav lists the 2 own and 6 Wild Variety Pokémon and every battle is listed; the next day's set is new and its battles listed; the same day gives the same set; a listed Wild Variety Pokémon is searched for and battled; an outbreak is listed and met | **PASS** (day_a 6/12, day_a_not_listed 0/12, new_on_day_b 6/6, day_b_not_listed 0/8, changed_on_day_a 0/12, search_target 0/1, battle_target 0/1) | **PASS** (day_a 4/12, day_a_not_listed 0/12, new_on_day_b 6/6, day_b_not_listed 0/8, changed_on_day_a 0/12, search_target 0/1, battle_target 0/1) |
-| `difficulty` | Falkner's party (all at the cap, 11) at 90% levels on EASY and 110% on HARD | **PASS** | **PASS** |
+| `difficulty` | Bosses stay at the cap on every difficulty: Falkner's party at 11 on EASY (NORMAL caps), 8 on HARD (HARD caps); Youngster Albert's level-7 Pokémon at 6 (EASY) and 8 (HARD); a Grunt's level-20 Koffing held at the cap, 8, on HARD | **PASS** | **PASS** |
 | `easy_catch` | Catch rate 3 caught by one Poké Ball with EASY CATCH on; two balls fail with it off | **PASS** | **PASS** |
 | `falkner` | Minimal Grinding stats (31 IV / 0 EV); Falkner leads Pidgey; battle against the real AI runs to a result | **PASS** | **PASS** |
 | `flower_shop` | Goldenrod Flower Shop sells Mints, Ability Capsule and Ability Patch after badge 3 | **PASS** | **PASS** |
@@ -57,6 +57,7 @@ that each test requires to be inside its accepted range.
 | `hard_mode_rules` | HARD: trainer and wild battles play SET; BAG is refused in a trainer battle and opens in a wild one; NORMAL keeps SHIFT; the options menu shows SET, grayed out | **PASS** | **PASS** |
 | `hm_field_moves` | A lone Magikarp (can't learn the moves) cuts the Route 29 tree, opens the Fly map from its party menu and surfs, with only the HMs and badges | **PASS** | **PASS** |
 | `infinite_repel` | Infinite Repel on: 80 grass steps without a battle; off: a battle | **PASS** | **PASS** |
+| `level_cap_wild` | Nothing above the level cap: DexNav with a chain of 100 (search window and battle), a level-50 outbreak (also with catching off), Zapdos and the Cianwood fisher's Tentacool gift all at 11 with NORMAL caps; the DexNav Pokémon and the gift at 8 with HARD caps | **PASS** | **PASS** |
 | `mega_evolution` | Player's Ampharos Mega Evolves with R; Lance's Gyarados Mega Evolves on turn 1 (against a Golem lead) | **PASS** | **PASS** |
 | `mega_specialist` | Mega Ring gift after badge 3; stone shop tiers | **PASS** | **PASS** |
 | `pokevial` | PokéVial in the bag from a new game; heals HP and poison, twice | **PASS** | **PASS** |
@@ -70,12 +71,6 @@ that each test requires to be inside its accepted range.
 | `tm_shop` | Goldenrod 5F TM shop: 71 / 155 / 178 / 198 TMs at 0 / 3 / 6 (without Jasmine's badge) / 8 badges; buying TM03 and TM01 works | **PASS** | **PASS** |
 | `whitney` | Whitney (all at the cap, 21) leads Clefairy; the naive team, Machop holding the first care package's Eviolite, wins some, not all, of 24 sampled battles | **PASS** (wins vs Whitney 8/24) | **PASS** (wins vs Whitney 4/24) |
 | `wild_variety` | Route 29 at 30%: other Gen 1–9 Pokémon appear; OFF: none, and DexNav lists only the route's own Pokémon | **PASS** (variety_30 5/12, variety_off 0/12) | **PASS** (variety_30 3/12, variety_off 0/12) |
-
-Two tests were re-run on the same ROM. `red` on mGBA: its first run predated the test fix that
-marks the care packages' gear as received in tests that skip the packages (`no_care_packages`),
-so gear deliveries interrupted the walk to the summit. `bosses_e4` on both emulators: Bruno's
-tries went from 6 to 12 after he was beaten 2 and 1 times in 6 (the first six tries are the same
-battles).
 
 Save compatibility (`old_save_test.sh`), same ROM, on mGBA and on VBA-M: **PASS** on both.
 - A Heart & Soul 2.0.6 save (new game, one Pokémon, TM70, TM03 and HM01 from the debug menu,
