@@ -1,5 +1,16 @@
 # Crystal Imperium changelog
 
+## 0.10.1-experimental (2026-10-25)
+
+### Fixes
+- **Battle health box names** (DECISIONS.md D26). After a switch, a shorter name kept the end of
+  the longer one before it ("LARVITAR -|" after FERALIGATR, reported on Delta). The Black/White
+  battle interface fits a name into 7 tiles but cleared only 6 of them first; now it clears all 7.
+
+### Tooling
+- New test `battle_healthbox_names` (it fails on the 0.10.0 ROM). `emurun` gains `snaprect` and
+  `expectrect`, which compare a rectangle of the screen with the same rectangle earlier.
+
 ## 0.10.0-experimental (2026-10-25)
 
 ### Fixes

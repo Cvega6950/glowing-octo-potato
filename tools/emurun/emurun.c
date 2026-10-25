@@ -47,6 +47,8 @@
 //   expectseen SPECIES [LABEL]   fail unless an autobattle since the last seenreset saw the
 //                          opponent's battler as SPECIES (e.g. a boss's Mega Evolved form)
 //   seenreset              forget the opponent species seen so far
+//   snaprect NAME X Y W H  remember the frame's pixels in that screen rectangle as NAME
+//   expectrect NAME [LABEL]   fail unless the frame's pixels in NAME's rectangle are as remembered
 // KEY: A B SELECT START RIGHT LEFT UP DOWN R L
 #include "backend.h"
 #include <png.h>
@@ -57,6 +59,9 @@
 
 static unsigned long frameCount;
 static int failures;
+
+#define MAX_RECTS 8
+static struct { char name[64]; unsigned x, y, w, h; uint32_t *pixels; } sRects[MAX_RECTS];
 
 #define MAX_TALLIES 16
 static struct { char name[64]; int hits, runs; } sTallies[MAX_TALLIES];
@@ -628,6 +633,52 @@ int main(int argc, char **argv)
                 fprintf(stderr, "line %d: could not write %s\n", lineNo, a1);
             else
                 printf("[frame %lu] shot %s\n", frameCount, a1);
+        }
+        else if (!strcmp(cmd, "snaprect") || !strcmp(cmd, "expectrect"))
+        {
+            unsigned width, height, x = 0, y = 0, w = 0, h = 0;
+            const uint32_t *video = Backend_Video(&width, &height);
+            int i, slot = -1;
+            for (i = 0; i < MAX_RECTS; i++)
+                if (sRects[i].pixels && !strcmp(sRects[i].name, a1))
+                    slot = i;
+            if (cmd[0] == 's')
+            {
+                sscanf(line, "%*s %*s %u %u %u %u", &x, &y, &w, &h);
+                for (i = 0; slot < 0 && i < MAX_RECTS; i++)
+                    if (!sRects[i].pixels)
+                        slot = i;
+                if (slot < 0 || w == 0 || h == 0 || x + w > width || y + h > height)
+                {
+                    fprintf(stderr, "line %d: bad snaprect\n", lineNo);
+                    failures++;
+                    continue;
+                }
+                free(sRects[slot].pixels);
+                snprintf(sRects[slot].name, sizeof(sRects[slot].name), "%s", a1);
+                sRects[slot].x = x, sRects[slot].y = y, sRects[slot].w = w, sRects[slot].h = h;
+                sRects[slot].pixels = malloc(w * h * sizeof(uint32_t));
+                for (unsigned row = 0; row < h; row++)
+                    memcpy(sRects[slot].pixels + row * w, video + (y + row) * width + x, w * sizeof(uint32_t));
+                printf("[frame %lu] snaprect %s %ux%u at (%u,%u)\n", frameCount, a1, w, h, x, y);
+            }
+            else
+            {
+                unsigned diff = 0;
+                if (slot < 0)
+                {
+                    fprintf(stderr, "line %d: no snaprect %s\n", lineNo, a1);
+                    failures++;
+                    continue;
+                }
+                for (unsigned row = 0; row < sRects[slot].h; row++)
+                    for (unsigned col = 0; col < sRects[slot].w; col++)
+                        diff += video[(sRects[slot].y + row) * width + sRects[slot].x + col] != sRects[slot].pixels[row * sRects[slot].w + col];
+                printf("[frame %lu] %s %s: %u of %u pixels differ from %s\n", frameCount, diff ? "FAIL" : "PASS",
+                       n > 2 ? a2 : "expectrect", diff, sRects[slot].w * sRects[slot].h, a1);
+                if (diff)
+                    failures++;
+            }
         }
         else if (!strncmp(cmd, "peek", 4))
         {

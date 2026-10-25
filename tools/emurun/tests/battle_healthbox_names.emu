@@ -1,0 +1,47 @@
+# Crystal Imperium play test: the battle health box's name after a switch (BW battle UI). A name
+# is printed in the font that fits it into 7 tiles, and on the player's side it runs into the
+# health box's second sprite; until 0.10.1 only 6 tiles were cleared first, so after FERALIGATR
+# a shorter name kept the tail of its R ("LARVITAR -|", reported on Delta). Here ONIX is sent out,
+# switched for FERALIGATR and back: its name strip (y 74-87, below the opponent's Pokemon, which
+# the AI may switch), 30 frames into the action menu each time (the health box bobs in step with
+# the menu), must look exactly as the first time.
+# Action menu cursor: 0 FIGHT, 1 BAG, 2 POKEMON, 3 RUN; it is back on FIGHT every turn.
+!new_game()
+!give_mon(95, 21)
+!give_mon(160, 21)
+!no_care_packages()
+!battle_trainer(402)
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 A onix_action_menu
+wait 30
+shot 01_onix.png
+snaprect onix_name 136 74 78 14
+# POKEMON > FERALIGATR (second slot) > SHIFT
+press DOWN
+wait 10
+press A
+wait 90
+press DOWN
+wait 10
+press A
+wait 30
+press A
+wait 60
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B feraligatr_action_menu
+wait 30
+shot 02_feraligatr.png
+# And back to ONIX
+press DOWN
+wait 10
+press A
+wait 90
+press DOWN
+wait 10
+press A
+wait 30
+press A
+wait 60
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B onix_again_action_menu
+wait 30
+shot 03_onix_again.png
+!expect_battler(0, "species", "SPECIES_ONIX", "onix_back_in")
+expectrect onix_name no_leftover_of_feraligatr

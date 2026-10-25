@@ -588,6 +588,12 @@ DexNav shows and that wild encounters draw from:
 - Evidence: `bw_ui` (the BW summary screen opens from the party menu and shows IVs; the battle
   action box is the BW one; FIGHT opens the BW move box), the whole suite on both emulators,
   and screenshots of every page.
+- Fix (0.10.1): the battle health box clears all 7 tiles a Pokémon's name can take (the BW
+  battle UI cleared 6, so a shorter name kept the end of a longer one after a switch, e.g.
+  "LARVITAR -|" after FERALIGATR). None of the four health boxes (singles and doubles, player
+  and opponent) has art there; the Safari box, which has, doesn't print a name. Evidence:
+  `battle_healthbox_names` (ONIX's name strip, after switching to FERALIGATR and back, matches
+  the first one pixel for pixel; 8 pixels differ on the 0.10.0 ROM).
 
 ## D27. Red is the hardest battle in the game
 

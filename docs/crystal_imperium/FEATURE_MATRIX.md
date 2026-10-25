@@ -123,7 +123,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | Fast surf, fast battle text, follower Pokémon | Existing | HnS options. |
 | HM field moves without teaching | Done | Carrying the HM and its badge is enough for any Pokémon (HnS needed one that could learn the move). emu: `hm_field_moves` (a Magikarp cuts, flies, surfs), `dexnav_caves` (a Cyndaquil uses Flash, which lights the whole cave since 0.8.1). D23, D31. |
 | HGSS-style Pokédex | Existing | `POKEDEX_PLUS_HGSS TRUE`. |
-| Gen 5 look: BW battle interface | Done | mudskip's BW Battle UI. emu: `bw_ui` (BW action box, BW move box); every battle test. D26. |
+| Gen 5 look: BW battle interface | Done | mudskip's BW Battle UI. emu: `bw_ui` (BW action box, BW move box), `battle_healthbox_names` (a name after a switch keeps nothing of the longer one before it); every battle test. D26. |
 | Gen 5 look: BW summary screen (IVs/EVs on the skills page) | Done | RavePossum's BW Summary Screen. emu: `bw_ui` (opens from the party menu, A shows IVs). D26. |
 | Gen 5 look: party menu, bag, start menu | Missing | Heart & Soul's look (KNOWN_ISSUES 25). |
 | Clean difficulty options UI | Done | All new options live in HnS's existing challenge menu. |
