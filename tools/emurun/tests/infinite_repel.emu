@@ -3,15 +3,16 @@
 !new_game()
 !battle_style_set()
 !give_mon(157, 50)
-# Route 29, arriving at the Route 46 gate door (34,10); tall grass starts at x=25 on row 14
+# Route 29, arriving at the Route 46 gate door (34,10); tall grass starts at x=25 on row 14.
+# The repel goes on before the first grass step, which could otherwise start a battle.
 !warp(0, 11, 0)
 !walkto(34, 14, "yx")
-!walkto(24, 14)
-shot 01_in_grass.png
 # Key Items: 0 RARECANDY BOX, 1 INFIN. REPEL, 2 BOX LINK
 !use_key_item(1)
 shot 02_repel_on.png
 !expect_flag("FLAG_INFINITE_REPEL_ON", 1, "infinite_repel_switched_on")
+!walkto(24, 14)
+shot 01_in_grass.png
 # 10 laps = 80 grass steps with the repel on
 !pace(21, 25, 14, 10)
 shot 03_walked_with_repel.png
