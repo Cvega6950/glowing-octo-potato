@@ -3,9 +3,11 @@
 # Surfing up to the tile where it appeared, the Pokemon stays there and the battle starts (Heart
 # & Soul's DexNav moved it to another tile up to twice on water and in caves). HM03 and the Fog
 # Badge let the Magikarp surf. The search target is sDexNavSearchDataPtr: species +0, tileX +18,
-# tileY +20 (map coords + 7).
+# tileY +20 (map coords + 7). The Infinite Repel works like a Repel that never wears off: it keeps
+# away wild Pokemon below the lead's level, so the Magikarp is level 30, above the town's water
+# Pokemon (25-29); DexNav encounters ignore it.
 !new_game()
-!give_mon(129, 10)
+!give_mon(129, 30)
 !give_item(1, 10)
 !give_item("ITEM_HM_SURF")
 !set_flag("FLAG_BADGE04_GET")
