@@ -25,6 +25,10 @@ Short records of decisions that shape the project. Newest last.
   competitive trainers, cheap team-building items) as original code and data. We copy no
   Imperium source or assets unless the authors grant permission, which is tracked as a blocker
   in [FEATURE_MATRIX.md](FEATURE_MATRIX.md).
+- Lists of facts about the game are design data, not code or assets: its TM list (D22), and
+  since 0.11.0, at the user's request, which abilities and moves each species has (D35), taken
+  from the public Radical Red dex that Imperium's own documentation follows. Base stats, sprites
+  and Imperium's own Megas, moves and abilities stay out.
 
 ## D3. Minimal Grinding Mode is symmetric
 
@@ -232,6 +236,24 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   `VAR_CARE_PACKAGES`, each step on a route or in a town brings one package's missing gear ("PROF.
   ELM sent the battle gear an earlier package didn't have!") before any new package. A package
   received since 0.7.0 brings its gear itself and moves both counters.
+- **Stacks (0.11.0).** The user wanted "more gifted items after each badge, like 10x charcoal etc
+  like emerald imperium". Imperium's own badge rewards aren't documented (its documented battle
+  rewards are single items: [battle rewards](https://pokemonemeraldimperium.com/battle-rewards/)),
+  so the packages follow the user's example: every item now comes at least `STACKS` times in
+  the generator. 10 of each type-boosting item, 5 of each type-resist Berry, 10 Sitrus and Lum
+  Berries, 5 of each pinch Berry (3 Starf, 3 Lansat); 5 of each held item that is used up or
+  that a team wants several of (Focus Sash, Eviolite, Air Balloon, the Herbs, Red Card, Eject
+  Button and Pack, Weakness Policy, Booster Energy, the Terrain Seeds, ...), 3 of each staple
+  (Leftovers, Life Orb, Assault Vest, Rocky Helmet, Heavy-Duty Boots, Expert Belt, the Orbs and
+  Rocks, ...), 2 of each Choice item and of the rarer ones; 20 Poké Balls of a kind, 10 PP Max a
+  package, 5 of each X item. The packages hold 2,541 items now (1,650 before): after the eighth
+  badge the Bag has 10 Charcoal, 9 Leftovers, 10 Focus Sashes and 20 Sitrus Berries.
+- **Saves from before 0.11.0 get the stacks too.** `VAR_CARE_PACKAGE_BULK` (0x40F7, never
+  referenced before) counts the packages whose stacks have arrived; while it is behind
+  `VAR_CARE_PACKAGES`, each step on a route or in a town brings the rest of one package ("PROF.
+  ELM sent more of the gear from an earlier package!"), after the 0.7.0 gear (which a save from
+  before 0.7.0 gets first) and before any new package. `GEAR_PACKAGES` in the generator keeps what
+  the packages held from 0.7.0 to 0.10.x.
 - The evolution items found nowhere else in HnS stay where they were: Linking Cord, Upgrade,
   Sachet, Whipped Dream, Prism Scale, Sun Stone, Sweet/Tart/Syrupy Apple, the Alcremie Sweets,
   Cracked/Chipped Pot, both Teacups, Leader's Crest, both Armors, Metal Alloy, 999 Gimmighoul
@@ -450,6 +472,8 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   - 8 badges: the rest, 110+ power and Explosion (198).
 
   The badges are counted (Gyms 5–7 come in any order, so a badge flag alone wouldn't do).
+  Since 0.11.0 the shop has a list for every badge count and every Poké Mart has a TM clerk with
+  the same lists (D36).
   Every TM costs ¥100 since 0.9.0, Emerald Imperium's price (its TM vendors and Game Corner
   counter: [PokéMarts guide](https://pokemonemeraldimperium.com/pokemarts-guide/)); before,
   ₽1,500 / 3,000 / 5,000 / 8,000 by tier, and Heart & Soul charged ₽10,000 for its 5F TMs.
@@ -893,3 +917,95 @@ DexNav shows and that wild encounters draw from:
   IV and EV changes in the stats, going round, undo, the 510 limit), `stat_editor_mgm` (EVs
   locked, the IVs in battle), `dexnav` (L ends a search and keeps the chain; every DexNav test
   opens it from the L menu), `old_save_test.sh` (the L menu complete on a Heart & Soul save).
+
+## D35. Emerald Imperium's abilities and movesets
+
+- The user asked to "mirror the movesets and abilities from emerald imperium". Imperium takes its
+  Pokémon data from Radical Red: its documentation sends players to the Radical Red dex for
+  Pokémon information, and its list of changes is written as "Differences from Radical Red", "as
+  this game is heavily inspired by it" ([New Mega Evolutions](https://pokemonemeraldimperium.com/new-mega-evolutions/)).
+  So Crystal Imperium mirrors Radical Red's abilities and moves, with Imperium's documented
+  changes on top.
+- **Source.** The Radical Red dex's data file ([JwowSquared/Radical-Red-Pokedex](https://github.com/JwowSquared/Radical-Red-Pokedex)
+  `data.js`, SHA-256 `04c9dc94…5596df9`), read by `tools/crystal_imperium/imperium_species.py`.
+  The file isn't kept in this repository; what the script writes is. It is design data (D2):
+  which abilities and moves each species has, not code or assets.
+- **What it writes**, for the 1,244 species and forms both games have:
+  - every species' three ability slots (`species_info/imperium_abilities.h`: 491 species whose
+    abilities change; the others already had Radical Red's ability for each slot, or their
+    lists differ only where the game falls back to another slot, as a Mega's empty slots do);
+  - the level-up moves, evolution moves included (`level_up_learnsets/imperium.h`: 1,098
+    learnsets; Heart & Soul's Gen 7 ones, `gen_7.h`, for the rest);
+  - the Egg Moves (`egg_moves_imperium.h`: 415 lists).
+  `P_IMPERIUM_SPECIES_DATA` in `include/config/pokemon.h` switches them on. The ability lines
+  override the species table at its end (`-Woverride-init` is silenced for it). ROM: +896 bytes.
+- The data file lists the hidden ability first: Bulbasaur is "Chlorophyll, Overgrow, —" and
+  Geodude "Sand Veil, Rock Head, Sturdy". Every species checked fits [hidden, 1st, 2nd].
+- **Radical Red's own content isn't in this engine:**
+  - 11 abilities it made (Feline Prowess, Striker, Fatal Precision, Sage Power, Bone Zone, Bull
+    Rush, Quill Rush, Self Sufficient, Blazing Soul, Phoenix Down, Bad Company). That slot keeps
+    one of the species' Heart & Soul abilities not already in its list: Typhlosion has Flash
+    Fire and Blaze for Radical Red's Flash Fire and Blazing Soul.
+  - 6 moves it made (Aqua Fang, Draco Barrage, Soul Robbery, Forbidden Spell, Sonic Slash, Dark
+    Hole) are left out of the learnsets.
+  - 43 forms it made (its Sevii forms, the Megas of Butterfree, Machamp, Kingler, Lapras, Snorlax
+    and other Gigantamax Pokémon, Primal Dialga, Surfing and Flying Pikachu, Chillet).
+  - Names cut to its 12 letters are matched to the full ones: Disarm Cry (Disarming Voice),
+    Drain Kiss, Crafty Guard, Flower Guard, Prism Laser, Inferno Parade, Neutralize Gas,
+    Wandering Soul, WaterCompaction, ThermalExchange, Electromrphosis, SupremeOverlord,
+    OrichalcumPulse. Abilities that share a Radical Red ID work the same there, so they map to
+    the official one; its Valiant Shield ("Raises Defense on entry") is Dauntless Shield.
+- **Imperium's changes**, from its list: Torchic, Combusken and Blaziken get Blaze and Early
+  Bird without Speed Boost (its third, Striker, isn't in the engine, so they have no hidden
+  ability rather than Speed Boost); Blaziken learns Thunderous Kick at 64; Latios and Latias
+  learn Memento and Healing Wish at 71, not 61; Urshifu learns Wicked Blow or Surging Strikes
+  on evolving; Alolan Marowak has Battle Armor instead of Bone Zone. Its TM-only changes
+  (Jirachi's Moonblast, Dragapult's Shadow Claw, Galarian Moltres's Trick Room) don't apply.
+- **Kept:** an ability a form change needs stays (`form_change_tables.h`). Radical Red gives
+  Silvally Battle Armor, but here its Memories change its type only with RKS System, so all
+  Silvally keep their abilities. Gigantamax and cosmetic forms that had their base form's
+  abilities and level-up moves follow its new ones (Unown's letters, Vivillon's patterns).
+- **Not mirrored:** TM and tutor compatibility (Crystal Imperium's TM list is its own, D22, and
+  Radical Red's has 128 TMs), base stats and types (not asked for). Engine limits: a level-up
+  list holds 40 moves and an Egg Move list 19 (the Day-Care's buffer), so Farfetch'd keeps 19 of
+  its 20 Egg Moves.
+- **Trainers.** Fifty trainer Pokémon had an ability their species no longer has, which the
+  engine would silently swap for slot 0 (`validate.py` checks this). Each now has the ability in
+  the slot its old one had, which is what happens to a player's Pokémon: Falkner's Pidgey goes
+  from Big Pecks to No Guard, the rival's Golbat from Inner Focus to Infiltrator, Blaine's
+  postgame Blaziken from Speed Boost to Blaze. `boss_teams.py` has the same changes. Bosses list
+  their moves; other trainers get the last moves of their new learnsets.
+- **Save compatibility.** A Pokémon keeps its ability slot, so a saved Pokémon has its species'
+  new ability for that slot (a Pidgey with Keen Eye now has Frisk). Known moves stay, and new
+  ones come from the new learnsets.
+- Evidence: the built ROM's species table read back (Pidgey "Frisk, —, No Guard" with Radical
+  Red's moves; Cyndaquil "Blaze, —, Flash Fire" with Fury Swipes first among its Egg Moves);
+  `validate.py`; `imperium_species.py --check`; the whole play-test suite on both emulators.
+
+## D36. A TM clerk in every Poké Mart
+
+- The user asked to "add someone to every pokemart that you can buy progressive tms from".
+  Emerald Imperium sells TMs at $100 from vendors in its towns, stronger ones further on: seven
+  in Dewford after its first Gym, then the Mauville Game Corner's 23, then Lavaridge's Ice Beam,
+  Thunderbolt, Flamethrower, Sludge Bomb, Energy Ball, Dark Pulse and Hyper Voice after its third
+  Gym ([PokéMarts guide](https://pokemonemeraldimperium.com/pokemarts-guide/)).
+- **Where.** Every Poké Mart (Cherrygrove, Violet, Azalea, Ecruteak, Olivine, Blackthorn,
+  Viridian, Pewter, Cerulean, Vermilion, Lavender, Saffron, Fuchsia) has a TM clerk at (2,2),
+  behind the counter next to the clerk, talked to across it. The Indigo Plateau's shop has one at
+  (11,10). The Goldenrod Dept. Store 5F and Celadon's 3F TM counter sell the same lists. Violet's
+  clerk (D22) now sells them too, from the start, and still gives its four TMs once with the
+  Zephyr Badge. Mahogany's shop has no clerk: it sells evolution items and has no free spot
+  behind its counter.
+- **What.** One shop (`EventScript_TMShop`, written by `tools/crystal_imperium/tm_list.py`)
+  with a list for every badge count. From the start come status moves and moves below 70 power,
+  with Heart & Soul's own 5F stock (71 TMs). Then one band a badge: multi-hit and variable-power
+  moves and 70–79 power with the 1st (115); strong setup and hazard moves and 80–89 with the 2nd
+  (155); 90–99 with the 3rd, as Imperium's Lavaridge vendor (173); then 100–109 (178),
+  110–119 (181), 120–129 (191), 130 and more (196), and Explosion and Misty Explosion with the
+  8th (all 198). That is earlier than D22's tiers (3, 6 and 8 badges): Thunderbolt at 3 badges
+  instead of 6, Close Combat at 6 instead of 8. ¥100 each, as before.
+- A TM the player has shows OWNED instead of its price. SOLD OUT ran into the longest names
+  ("TM01 FOCUS PUNCH").
+- Evidence: `tm_clerks` (Cherrygrove with no badges 71, Azalea with two 155, Pewter with eight
+  198 and a purchase, Indigo Plateau 198), `tm_shop` (Goldenrod 5F: 71, 115, 173, 191, 198, the
+  badge count deciding), `tm_clerk` (Violet: 71 before the badge, then the gift once and 115).

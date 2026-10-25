@@ -1,5 +1,48 @@
 # Crystal Imperium changelog
 
+## 0.11.0-experimental (2026-10-25)
+
+### Pokémon
+- **Emerald Imperium's abilities and movesets** (DECISIONS.md D35). Imperium takes its Pokémon
+  data from Radical Red, so every species both games have now has Radical Red's abilities, level-up
+  moves (evolution moves included) and Egg Moves, with Imperium's own changes (Blaziken's line has
+  Blaze and Early Bird instead of Speed Boost and learns Thunderous Kick, Latios and Latias learn
+  Memento and Healing Wish at 71). That is 1,098 learnsets, 415 Egg Move lists, and new abilities
+  for 491 species: Pidgey has Frisk and No Guard, Spearow Technician, Golbat Infiltrator, Sniper
+  and Corrosion. The few abilities and moves Radical Red made itself aren't in this engine: that
+  ability slot keeps a Heart & Soul ability, and those moves are left out. TM compatibility, base
+  stats and types are unchanged.
+- Pokémon in a save keep their ability slot, so they take the new ability of that slot.
+- 50 trainer Pokémon had an ability their species no longer has; each gets the one now in its
+  slot (Falkner's Pidgey: No Guard).
+
+### Quality of life
+- **A TM clerk in every Poké Mart** (D36), behind the counter next to the clerk, in all 13 marts and
+  at the Indigo Plateau. Their stock grows with every badge: 71 TMs with none, 115 with one, 155,
+  173 (Ice Beam, Thunderbolt and Flamethrower with three, as in Imperium), 178, 181, 191, 196, and
+  all 198 with eight. ¥100 each. The Goldenrod Dept. Store 5F and Celadon's TM counter sell the same.
+  The Violet City clerk now sells from the start and still gives its four TMs with the Zephyr Badge.
+- **Bigger badge packages** (D16): everything comes in stacks, enough for a whole team. That
+  means 10 of each type-boosting item (10 Charcoal, 10 Mystic Water, 10 Miracle Seed in the first),
+  10 Sitrus and Lum Berries, 5 of each type-resist Berry, 3 to 5 of each staple held item
+  (Leftovers, Life Orb, Focus Sash, Eviolite, Assault Vest, ...) and 20 Poké Balls. The packages
+  hold 2,541 items now, up from 1,650. A save that already has some packages gets the rest of each,
+  one per step ("PROF. ELM sent more of the gear from an earlier package!").
+
+### Fixes
+- **The summary shows the nature set with the Training Kit.** It showed the nature the Pokémon
+  was born with, while its stats (and the summary's red and blue stat names) followed the new one.
+- In shops, a TM you have shows OWNED; SOLD OUT ran into long TM names ("TM01 FOCUS PUNCH").
+
+### Tooling
+- `tools/crystal_imperium/imperium_species.py` writes the Imperium species data from the Radical
+  Red dex's data file (`--rr-data`, not kept in the repository; `--report` lists what was left
+  out). `validate.py` reads the new abilities.
+- New tests `summary_nature` (fails on 0.10.1) and `tm_clerks`. `care_packages` checks
+  quantities and the top-up for older saves; `tm_shop` and `tm_clerk` check the per-badge lists.
+  `emurun` gains `expectqty16` (Bag quantities, which the game stores XORed with a key) and
+  `expectsame32`.
+
 ## 0.10.1-experimental (2026-10-25)
 
 ### Fixes

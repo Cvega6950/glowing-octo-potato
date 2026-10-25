@@ -4,11 +4,11 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.10.1-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.11.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
-> of its Pokémon at the level cap, the TM list is Emerald Imperium's, and HMs work without being
-> taught. Nobody has played the whole story through yet, and the postgame rematches still have
+> of its Pokémon at the level cap, the Pokémon have Emerald Imperium's abilities and movesets,
+> the TM list is Emerald Imperium's, and HMs work without being taught. Nobody has played the whole story through yet, and the postgame rematches still have
 > Heart & Soul's teams (at the level cap too).
 
 ## What you get
@@ -67,22 +67,30 @@ From the first step of a new game:
 - **HARD plays by Emerald Imperium's and Radical Red's rules:** the SET battle style (no "Will
   you switch Pokémon?" after a knockout) and no Bag in trainer battles, on top of +10% trainer
   levels and HARD level caps.
+- **Emerald Imperium's abilities and movesets:** every Pokémon has Imperium's abilities,
+  level-up moves and Egg Moves (Radical Red's, which Imperium follows, with Imperium's own
+  changes), so Pidgey has No Guard, Golbat Infiltrator and Typhlosion Flash Fire. A few
+  abilities and moves Radical Red made itself aren't in this engine; TM compatibility is
+  unchanged.
 - **A Gen 5 look:** Black/White-style battles (healthboxes, text box, FIGHT / BAG / POKÉMON /
   RUN buttons, a move box with types, PP and effectiveness) and a Black/White-style summary
   screen (A on the skills page shows IVs and EVs).
 - **Emerald Imperium's TMs:** 198 reusable TMs. TM01–TM172 are Imperium's list in its order
   (without its two custom moves), TM173–TM198 the Heart & Soul TMs Imperium doesn't have. Every
-  TM costs ¥100, Imperium's price. The Goldenrod Dept. Store 5F sells all of them, more with
-  each badge tier (3, 6 and 8 badges). From the first badge, a TM clerk in the Violet City Mart
-  sells Imperium's first vendor TMs and, the first time, gives four TMs for free.
+  TM costs ¥100, Imperium's price. **Every Poké Mart has a TM clerk** next to its clerk, and
+  their stock grows with every badge: 71 TMs with none, 115 with one, 155 with two, 173 with
+  three (Ice Beam, Thunderbolt, Flamethrower), up to all 198 with eight. The Goldenrod Dept.
+  Store 5F sells the same. With the first badge, the Violet City Mart's clerk also gives four TMs
+  for free, once.
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
 - **Care packages** from Prof. Elm after every badge and after becoming Champion, full of
-  battle gear the Emerald Imperium way: competitive held items (Leftovers, Life Orb, Focus Sash,
-  Choice items, Assault Vest, Heavy-Duty Boots, Booster Energy and dozens more, the staples
-  several times), every type-boosting item, every type-resist and pinch Berry, 93 PP Max over the
-  game, X items and Elixirs, besides supplies and every evolution item the game doesn't
-  otherwise have. Each package lists what's inside; if a Bag pocket is full, the rest goes to
+  battle gear the Emerald Imperium way, in stacks for a whole team: 10 of each type-boosting
+  item (10 Charcoal, Mystic Water and Miracle Seed after the first badge), 10 Sitrus and Lum
+  Berries, every type-resist and pinch Berry, competitive held items 3 to 5 at a time (Leftovers,
+  Life Orb, Focus Sash, Eviolite, Assault Vest, Heavy-Duty Boots, Booster Energy and dozens
+  more), 10 PP Max a package, X items and Elixirs, besides supplies and every evolution item the
+  game doesn't otherwise have. Each package lists what's inside; if a Bag pocket is full, the rest goes to
   your PC.
 - **Mega Evolution** (48 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F).
 - Legendary and Mythical Pokémon are on the DexNav list from the start. Once you are
@@ -112,23 +120,25 @@ your house), except Auto Run, which is in the Options menu and the L menu.
 
 | # | Requirement | Status | Evidence |
 |---|---|---|---|
-| 1 | Gen 1–9 Pokémon, abilities, moves, evolution methods, sprites, wild encounters | **Done** | Engine data for all 1,025 species. Wild Variety on every route (`wild_variety`). The DexNav list of any Pokémon (`dexnav_any`). Hidden slots for the 258 families that had no source. Care packages hold the missing evolution items (`care_packages`). Every trade evolution has a non-trade method. |
+| 1 | Gen 1–9 Pokémon, abilities, moves, evolution methods, sprites, wild encounters | **Done** | Engine data for all 1,025 species, with Emerald Imperium's abilities, level-up moves and Egg Moves (D35; `validate.py`, `summary_nature`). Wild Variety on every route (`wild_variety`). The DexNav list of any Pokémon (`dexnav_any`). Hidden slots for the 258 families that had no source. Care packages hold the missing evolution items (`care_packages`). Every trade evolution has a non-trade method. |
 | 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden`; the lists match the wild Pokémon you meet (`dexnav_wild_match`, `dexnav_water_match`, `dexnav_randomizer`); caves, Dark Cave after Flash and water (`dexnav_caves`, `dexnav_surf`) |
 | 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym); several at a time, no jingle or stat pages (`rare_candy`) |
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
 | 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies), `boss_levels` and `level_cap_wild` (bosses at the cap, nothing above it); HARD's Imperium / Radical Red rules (`hard_mode_rules`) |
-| 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs at ¥100 (`tm_case`, `tm_shop`, `tm_clerk`) and HMs without teaching (`hm_field_moves`); everything in Emerald Imperium's L menu, with an IV/EV editor and a time changer (`l_menu`, `l_menu_time`, `stat_editor`, `stat_editor_mgm`) |
+| 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs at ¥100, more with each badge, from a TM clerk in every Poké Mart (`tm_case`, `tm_shop`, `tm_clerk`, `tm_clerks`) and HMs without teaching (`hm_field_moves`); everything in Emerald Imperium's L menu, with an IV/EV editor and a time changer (`l_menu`, `l_menu_time`, `stat_editor`, `stat_editor_mgm`) |
 | 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | The story scripts are Heart & Soul's. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29), and every reworked boss battle is started from the debug menu and played to a result (`falkner`, `bugsy`, `whitney`, `bosses_m3`, `bosses_m4`, `bosses_e4`, `bosses_m5`, `red`; Red is also talked to on the Mt. Silver summit); no full playthrough has been done. |
 | 8 | Works on Delta (iOS) | **Passes on Delta's emulator core; no iPhone test** | The play tests and the save-compatibility test run on VBA-M at the commit Delta's GBA core pins, as on mGBA (results in TESTING.md). A device test is still needed for Delta's own app layer. |
 
 Also asked for and done: DexNav and Rare Candy before the first Gym (both are there from the
 first step), Easy Catch, an unlimited PokéVial given with the Rare Candy Box, milestone care
-packages, and Emerald Imperium's L menu (with a start menu that fits on the screen again).
+packages (in stacks since 0.11.0), Emerald Imperium's L menu (with a start menu that fits on
+the screen again), Emerald Imperium's abilities and movesets, and a TM clerk in every Poké Mart.
 
 **Not done yet:** a full story playthrough; a test on a real iPhone; Imperium-style teams for
 the postgame rematches (they have Heart & Soul's teams with the smart AI); Emerald Imperium's
 custom Megas and its two custom TM moves, Dark Hole and Draco Barrage (no permission to use
-Imperium's own content, DECISIONS.md D2).
+Imperium's own content, DECISIONS.md D2); the abilities and moves Radical Red made itself, which
+the engine doesn't have (D35).
 
 Details: [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [TESTING.md](TESTING.md) ·
 [DECISIONS.md](DECISIONS.md) · [BALANCE.md](BALANCE.md) · [KNOWN_ISSUES.md](KNOWN_ISSUES.md) ·
