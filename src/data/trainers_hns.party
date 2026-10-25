@@ -486,7 +486,7 @@ AI: Basic Trainer
 Pidgey
 Level: 8
 IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
-Ability: Keen Eye
+Ability: Frisk
 - Gust
 - Quick Attack
 - Sand Attack
@@ -522,7 +522,7 @@ Ability: Insomnia
 Spearow @ Oran Berry
 Level: 9
 IVs: 20 HP / 20 Atk / 20 Def / 20 SpA / 20 SpD / 20 Spe
-Ability: Keen Eye
+Ability: Frisk
 - Peck
 - Fury Attack
 - Leer
@@ -560,7 +560,7 @@ Nature: Jolly
 Fearow @ Sharp Beak
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Keen Eye
+Ability: Frisk
 Nature: Jolly
 - Drill Peck
 - Drill Run
@@ -725,7 +725,7 @@ Nature: Adamant
 Corviknight @ Leftovers
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Mirror Armor
+Ability: Pressure
 Nature: Impish
 - Brave Bird
 - Iron Head
@@ -1538,7 +1538,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Gengar @ Focus Sash
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Cursed Body
+Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Bomb
@@ -1844,7 +1844,7 @@ Nature: Jolly
 Froslass @ Focus Sash
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Cursed Body
+Ability: Stakeout
 Nature: Timid
 - Ice Beam
 - Shadow Ball
@@ -4193,7 +4193,7 @@ Nature: Bold
 Floatzel @ Life Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Swift Swim
+Ability: Water Veil
 Nature: Adamant
 - Waterfall
 - Aqua Jet
@@ -4203,7 +4203,7 @@ Nature: Adamant
 Seaking @ Mystic Water
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Swift Swim
+Ability: Lightning Rod
 Nature: Adamant
 - Waterfall
 - Megahorn
@@ -8228,7 +8228,7 @@ Mugshot: Dark Red
 Flareon @ Toxic Orb
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
+Ability: Toxic Boost
 Nature: Adamant
 - Flare Blitz
 - Facade
@@ -8483,7 +8483,7 @@ Mugshot: Light Blue
 Pidgey @ Oran Berry
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Big Pecks
+Ability: No Guard
 Nature: Timid
 - Tailwind
 - Gust
@@ -8523,7 +8523,7 @@ Nature: Calm
 Rookidee @ Eviolite
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Keen Eye
+Ability: Frisk
 Nature: Adamant
 - Hone Claws
 - Power Trip
@@ -8613,7 +8613,7 @@ Items: Potion / Potion
 Ariados @ Black Sludge
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Insomnia
+Ability: No Guard
 Nature: Adamant
 - Sticky Web
 - Toxic Thread
@@ -8633,7 +8633,7 @@ Nature: Relaxed
 Ledian @ Light Clay
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Early Bird
+Ability: Iron Fist
 Nature: Calm
 - Reflect
 - Light Screen
@@ -10093,7 +10093,7 @@ Mugshot: Yellow
 Electrode @ Focus Sash
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Aftermath
+Ability: Galvanize
 Nature: Timid
 - Thunderbolt
 - Volt Switch
@@ -10164,7 +10164,7 @@ Items: Full Restore / Full Restore
 Jumpluff @ Leftovers
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Infiltrator
+Ability: Aerilate
 Nature: Jolly
 - Sleep Powder
 - Leech Seed
@@ -10397,7 +10397,7 @@ Nature: Jolly
 Magmortar @ Expert Belt
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Vital Spirit
+Ability: Mega Launcher
 Nature: Modest
 - Fire Blast
 - Thunderbolt
@@ -10498,7 +10498,7 @@ Nature: Adamant
 Pidgeot @ Pidgeotite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Keen Eye
+Ability: Frisk
 Nature: Timid
 - Hurricane
 - Heat Wave
@@ -11306,7 +11306,7 @@ Items: Super Potion
 Golbat @ Eviolite
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+Ability: Infiltrator
 Nature: Jolly
 - Wing Attack
 - Bite
@@ -11377,7 +11377,7 @@ Items: Super Potion / Super Potion
 Golbat @ Eviolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+Ability: Infiltrator
 Nature: Jolly
 - Air Cutter
 - Bite
@@ -11722,7 +11722,7 @@ Items: Super Potion
 Golbat @ Eviolite
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+Ability: Infiltrator
 Nature: Jolly
 - Wing Attack
 - Bite
@@ -11793,7 +11793,7 @@ Items: Super Potion / Super Potion
 Golbat @ Eviolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+Ability: Infiltrator
 Nature: Jolly
 - Air Cutter
 - Bite
@@ -12138,7 +12138,7 @@ Items: Super Potion
 Golbat @ Eviolite
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+Ability: Infiltrator
 Nature: Jolly
 - Wing Attack
 - Bite
@@ -12209,7 +12209,7 @@ Items: Super Potion / Super Potion
 Golbat @ Eviolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+Ability: Infiltrator
 Nature: Jolly
 - Air Cutter
 - Bite
@@ -12636,7 +12636,7 @@ Nature: Calm
 Electrode @ Focus Sash
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Aftermath
+Ability: Galvanize
 Nature: Timid
 - Thunder
 - Volt Switch
@@ -12756,7 +12756,7 @@ Nature: Bold
 Golbat @ Eviolite
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+Ability: Infiltrator
 Nature: Jolly
 - Wing Attack
 - Bite
@@ -13116,7 +13116,7 @@ Nature: Bold
 Golbat @ Eviolite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+Ability: Infiltrator
 Nature: Jolly
 - Cross Poison
 - Crunch
@@ -15964,7 +15964,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Pelipper  
-Ability: Keen Eye  
+Ability: Frisk
 Level: 63  
 IVs: 0 Atk  
 - Surf  
@@ -15981,7 +15981,7 @@ Level: 63
 - Power-Up Punch  
 
 Huntail @ White Herb  
-Ability: Water Veil  
+Ability: Defiant
 Level: 68  
 - Shell Smash  
 - Super Fang  
@@ -16047,7 +16047,7 @@ IVs: 0 Spe
 - Sucker Punch  
 
 Octillery @ Leftovers  
-Ability: Moody  
+Ability: Skill Link
 Level: 65  
 - Protect  
 - Octazooka  
@@ -16109,7 +16109,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Gorebyss  
-Ability: Hydration  
+Ability: Regenerator
 Level: 63   
 EVs: 252 Def / 248 Spe  
 Timid Nature  
@@ -16263,7 +16263,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Swellow  
-Ability: Scrappy  
+Ability: Aerilate
 Level: 63  
 - Boomburst  
 - Brave Bird  
@@ -16457,7 +16457,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Swellow  
-Ability: Scrappy  
+Ability: Aerilate
 Level: 61  
 IVs: 0 Atk  
 - Heat Wave  
@@ -16566,7 +16566,7 @@ Double Battle: No
 AI: Check Bad Move
 
 Skarmory  
-Ability: Keen Eye  
+Ability: Frisk
 Level: 61 
 - Iron Defense  
 - Autotomize  
@@ -16839,7 +16839,7 @@ IVs: 0 Atk
 - Agility  
 
 Exeggutor-Alola @ White Herb  
-Ability: Frisk  
+Ability: Chlorophyll
 Level: 70 
 - Light Screen  
 - Draco Meteor  
@@ -16899,7 +16899,7 @@ IVs: 0 Atk
 - Hydro Cannon  
 
 Huntail @ Shell Bell
-Ability: Swift Swim  
+Ability: Intimidate
 Level: 70    
 EVs: 252 Atk / 252 Spe  
 Jolly Nature  
@@ -17008,7 +17008,7 @@ Adamant Nature
 - Earthquake  
 
 Crobat @ Big Root  
-Ability: Inner Focus  
+Ability: Infiltrator
 Level: 70 
 EVs: 252 HP / 252 Atk / 4 SpD  
 Adamant Nature  
@@ -17058,7 +17058,7 @@ IVs: 0 Atk
 - Hyper Voice  
 
 Skarmory  
-Ability: Keen Eye  
+Ability: Frisk
 Level: 100
 - Drill Peck  
 - Steel Wing  
@@ -17082,7 +17082,7 @@ Level: 100
 - Roost  
 
 Pidgeot  
-Ability: Keen Eye  
+Ability: Frisk
 Level: 100
 - Extreme Speed  
 - Fly  
@@ -17197,7 +17197,7 @@ Level: 100
 - Aerial Ace  
 
 Ursaluna-Bloodmoon  
-Ability: Mind's Eye  
+Ability: Scrappy
 Level: 100
 IVs: 0 Atk  
 - Blood Moon  
@@ -17277,7 +17277,7 @@ IVs: 0 Atk
 - Shadow Ball  
 
 Gengar @ Sitrus Berry  
-Ability: Cursed Body  
+Ability: Levitate
 Level: 100
 IVs: 0 Atk  
 - Hex  
@@ -17356,7 +17356,7 @@ Mugshot: Yellow
 Items: Full Restore / Full Restore
 
 Skarmory  
-Ability: Keen Eye  
+Ability: Frisk
 Level: 100
 - Drill Peck  
 - Torment  
@@ -17364,7 +17364,7 @@ Level: 100
 - Stealth Rock  
 
 Sandslash-Alola  
-Ability: Snow Cloak  
+Ability: Slush Rush
 Level: 100
 - Curse  
 - Avalanche  
@@ -17462,7 +17462,7 @@ Level: 100
 - Ice Shard  
 
 Froslass (F)  
-Ability: Snow Cloak  
+Ability: Ice Body
 Level: 100
 IVs: 0 Atk  
 - Shadow Ball  
@@ -17637,7 +17637,7 @@ IVs: 0 Atk
 - Sleep Talk  
 
 Lapras  
-Ability: Shell Armor  
+Ability: Hydration
 Level: 100
 IVs: 0 Atk  
 - Freeze-Dry  
@@ -17754,7 +17754,7 @@ IVs: 0 Atk
 - Poison Powder  
 
 Electrode-Hisui @ Miracle Seed  
-Ability: Aftermath  
+Ability: Reckless
 Level: 100
 IVs: 0 Atk  
 - Chloroblast  
@@ -17879,7 +17879,7 @@ IVs: 0 Atk
 - Power Gem  
 
 Rapidash-Galar  
-Ability: Pastel Veil  
+Ability: Immunity
 Level: 100
 - Play Rough  
 - Psycho Cut  
@@ -17934,7 +17934,7 @@ IVs: 0 Atk
 - Clear Smog  
 
 Blaziken @ Scope Lens  
-Ability: Speed Boost  
+Ability: Blaze
 Level: 100
 - Blaze Kick  
 - Power-Up Punch  
@@ -17987,7 +17987,7 @@ Level: 100
 - Stealth Rock  
 
 Pidgeot @ Quick Claw  
-Ability: Keen Eye  
+Ability: Frisk
 Level: 100
 - Feather Dance  
 - Air Slash  
@@ -18111,7 +18111,7 @@ Level: 100
 - Curse  
 
 Overqwil @ Black Sludge  
-Ability: Poison Point  
+Ability: Poison Touch
 Level: 100
 - Barb Barrage  
 - Lash Out  
@@ -18147,7 +18147,7 @@ IVs: 0 Atk
 - Disable  
 
 Crobat  
-Ability: Inner Focus  
+Ability: Infiltrator
 Level: 100
 - Acrobatics  
 - Cross Poison  

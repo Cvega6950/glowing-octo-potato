@@ -14,29 +14,17 @@ CeladonDept3_EventScript_Gbakid2::
 CeladonDept3_EventScript_SuperNerd::
 	msgbox CeladonDeptStore3F_Text_SuperNerd, MSGBOX_NPC
 	end
+@ Crystal Imperium: Heart & Soul's ten TMs here are among the TM shop's (EventScript_TMShop,
+@ data/scripts/tm_shop_hns.inc), the one every Poke Mart's TM clerk has: all of them by now.
 CeladonDept3_EventScript_Clerk::
 	lock
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	pokemart CeladonDept3_Pokemart
+	call EventScript_TMShop
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end
-
-	.align 2
-CeladonDept3_Pokemart:
-	.2byte ITEM_TM_SAFEGUARD
-	.2byte ITEM_TM_CAPTIVATE
-	.2byte ITEM_TM_STEALTH_ROCK
-	.2byte ITEM_TM_BRINE
-	.2byte ITEM_TM_AVALANCHE
-	.2byte ITEM_TM_DARK_PULSE
-	.2byte ITEM_TM_GYRO_BALL
-	.2byte ITEM_TM_DREAM_EATER
-	.2byte ITEM_TM_GIGA_IMPACT
-	.2byte ITEM_TM_ENDURE
-	pokemartlistend
 
 CeladonDept3_EventScript_Directory::
 	msgbox CeladonDeptStore3F_Text_Directory, MSGBOX_SIGN

@@ -70,11 +70,11 @@ def mon(species, item, ability, nature, moves, evs=None):
 # Heart & Soul's Pidgey, Rookidee and Noctowl, and since 0.8.0 a full six: Magic Bounce Natu,
 # Gale Wings Fletchling and Prankster Murkrow (Thunder Wave) for Speed control.
 FALKNER = [
-    mon("Pidgey", "Oran Berry", "Big Pecks", "Timid", ["Tailwind", "Gust", "Sand Attack", "Quick Attack"]),
+    mon("Pidgey", "Oran Berry", "No Guard", "Timid", ["Tailwind", "Gust", "Sand Attack", "Quick Attack"]),
     mon("Natu", "Eviolite", "Magic Bounce", "Bold", ["Night Shade", "Peck", "Confuse Ray", "Wish"]),
     mon("Fletchling", "Eviolite", "Gale Wings", "Jolly", ["Acrobatics", "Quick Attack", "Agility", "Flail"]),
     mon("Murkrow", "Eviolite", "Prankster", "Calm", ["Foul Play", "Peck", "Thunder Wave", "Haze"]),
-    mon("Rookidee", "Eviolite", "Keen Eye", "Adamant", ["Hone Claws", "Power Trip", "Peck", "Rock Smash"]),
+    mon("Rookidee", "Eviolite", "Frisk", "Adamant", ["Hone Claws", "Power Trip", "Peck", "Rock Smash"]),
     mon("Noctowl", "Sitrus Berry", "Tinted Lens", "Modest", ["Hypnosis", "Air Cutter", "Reflect", "Mud Slap"]),
 ]
 
@@ -84,9 +84,9 @@ FALKNER = [
 # Thread from the lead, Rock coverage for the Fire and Flying types sent against him, screens,
 # Sleep Powder, a Speed Boost Yanma and a Technician Scyther as the ace (six since D30).
 BUGSY = [
-    mon("Ariados", "Black Sludge", "Insomnia", "Adamant", ["Sticky Web", "Toxic Thread", "Sucker Punch", "Lunge"]),
+    mon("Ariados", "Black Sludge", "No Guard", "Adamant", ["Sticky Web", "Toxic Thread", "Sucker Punch", "Lunge"]),
     mon("Pineco", "Sitrus Berry", "Sturdy", "Relaxed", ["Stealth Rock", "Rock Tomb", "Bug Bite", "Explosion"]),
-    mon("Ledian", "Light Clay", "Early Bird", "Calm", ["Reflect", "Light Screen", "Silver Wind", "Mach Punch"]),
+    mon("Ledian", "Light Clay", "Iron Fist", "Calm", ["Reflect", "Light Screen", "Silver Wind", "Mach Punch"]),
     mon("Butterfree", "Silver Powder", "Compound Eyes", "Timid", ["Sleep Powder", "Bug Buzz", "Air Slash", "Psybeam"]),
     mon("Yanma", "Sitrus Berry", "Speed Boost", "Modest", ["Ancient Power", "Air Slash", "Bug Buzz", "Protect"]),
     mon("Scyther", "Eviolite", "Technician", "Jolly", ["Bug Bite", "Aerial Ace", "Quick Attack", "Fury Cutter"]),
@@ -165,12 +165,12 @@ RIVAL_STARTER = {
         "CHIKORITA": mon("Bayleef", "Sitrus Berry", "Overgrow", "Bold", ["Magical Leaf", "Leech Seed", "Reflect", "Synthesis"])},
 }
 RIVAL_TEAM = {
-    2: [mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Wing Attack", "Bite", "Confuse Ray", "Toxic"]),
+    2: [mon("Golbat", "Eviolite", "Infiltrator", "Jolly", ["Wing Attack", "Bite", "Confuse Ray", "Toxic"]),
         mon("Haunter", "Eviolite", "Levitate", "Timid", ["Hex", "Sludge Bomb", "Hypnosis", "Dazzling Gleam"]),
         mon("Magneton", "Eviolite", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Thunder Wave", "Volt Switch"]),
         mon("Larvitar", "Eviolite", "Guts", "Adamant", ["Rock Slide", "Bite", "Bulldoze", "Scary Face"]),
         mon("Sneasel", "Oran Berry", "Inner Focus", "Jolly", ["Faint Attack", "Ice Shard", "Quick Attack", "Icy Wind"])],
-    3: [mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Air Cutter", "Bite", "Confuse Ray", "Toxic"]),
+    3: [mon("Golbat", "Eviolite", "Infiltrator", "Jolly", ["Air Cutter", "Bite", "Confuse Ray", "Toxic"]),
         mon("Sneasel", "Razor Claw", "Inner Focus", "Jolly", ["Fake Out", "Ice Punch", "Faint Attack", "Ice Shard"]),
         mon("Haunter", "Eviolite", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Hypnosis", "Dazzling Gleam"]),
         mon("Weepinbell", "Eviolite", "Chlorophyll", "Adamant", ["Bullet Seed", "Poison Jab", "Sleep Powder", "Knock Off"]),
@@ -180,7 +180,7 @@ RIVAL_TEAM = {
 # --- Team Rocket: Proton in Slowpoke Well (1 badge, cap 24) -----------------------------------------
 PROTON_1 = [
     mon("Koffing", "Eviolite", "Levitate", "Bold", ["Sludge", "Will O Wisp", "Clear Smog", "Smokescreen"]),
-    mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Wing Attack", "Bite", "Confuse Ray", "Toxic"]),
+    mon("Golbat", "Eviolite", "Infiltrator", "Jolly", ["Wing Attack", "Bite", "Confuse Ray", "Toxic"]),
     mon("Slowpoke", "Eviolite", "Regenerator", "Relaxed", ["Water Pulse", "Confusion", "Yawn", "Slack Off"]),
     mon("Grimer", "Eviolite", "Poison Touch", "Adamant", ["Poison Jab", "Shadow Sneak", "Disable", "Rock Tomb"]),
     mon("Raticate", "Silk Scarf", "Hustle", "Jolly", ["Super Fang", "Sucker Punch", "Crunch", "Quick Attack"]),
@@ -191,7 +191,7 @@ PROTON_1 = [
 PETREL_1 = [
     mon("Forretress", "Leftovers", "Sturdy", "Relaxed", ["Spikes", "Volt Switch", "Gyro Ball", "Rapid Spin"]),
     mon("Weezing", "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Fire Blast"]),
-    mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Cross Poison", "Crunch", "Confuse Ray", "U Turn"]),
+    mon("Golbat", "Eviolite", "Infiltrator", "Jolly", ["Cross Poison", "Crunch", "Confuse Ray", "U Turn"]),
     mon("Houndoom", "Black Glasses", "Flash Fire", "Timid", ["Dark Pulse", "Flamethrower", "Sludge Bomb", "Nasty Plot"]),
     mon("Pupitar", "Eviolite", "Shed Skin", "Adamant", ["Rock Slide", "Crunch", "Earthquake", "Dragon Dance"]),
     mon("Drapion", "Black Glasses", "Sniper", "Jolly", ["Knock Off", "Poison Jab", "Earthquake", "Swords Dance"]),
@@ -211,7 +211,7 @@ ARIANA_1 = [
 EUSINE = [
     mon("Politoed", "Damp Rock", "Drizzle", "Bold", ["Scald", "Ice Beam", "Hypnosis", "Encore"]),
     mon("Hypno", "Leftovers", "Insomnia", "Calm", ["Psychic", "Thunder Wave", "Focus Blast", "Nasty Plot"]),
-    mon("Electrode", "Focus Sash", "Aftermath", "Timid", ["Thunder", "Volt Switch", "Thunder Wave", "Explosion"]),
+    mon("Electrode", "Focus Sash", "Galvanize", "Timid", ["Thunder", "Volt Switch", "Thunder Wave", "Explosion"]),
     mon("Lanturn", "Sitrus Berry", "Volt Absorb", "Modest", ["Thunder", "Scald", "Ice Beam", "Volt Switch"]),
     mon("Gengar", "Black Sludge", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Thunderbolt", "Destiny Bond"]),
     mon("Starmie", "Life Orb", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Thunder", "Rapid Spin"]),
@@ -281,7 +281,7 @@ RIVAL_TEAM[5] = [
 KIMONO = {
     "TRAINER_ZUKI_HNS": [mon("Umbreon", "Leftovers", "Inner Focus", "Calm", ["Foul Play", "Moonlight", "Protect", "Toxic"])],
     "TRAINER_NAOKO_HNS": [mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"])],
-    "TRAINER_MIKI_HNS": [mon("Flareon", "Toxic Orb", "Guts", "Adamant", ["Flare Blitz", "Facade", "Superpower", "Quick Attack"])],
+    "TRAINER_MIKI_HNS": [mon("Flareon", "Toxic Orb", "Toxic Boost", "Adamant", ["Flare Blitz", "Facade", "Superpower", "Quick Attack"])],
     "TRAINER_SAYO_HNS": [mon("Jolteon", "Choice Specs", "Volt Absorb", "Timid", ["Thunderbolt", "Shadow Ball", "Volt Switch", "Hyper Voice"])],
     "TRAINER_KUNI_HNS": [mon("Vaporeon", "Leftovers", "Water Absorb", "Bold", ["Scald", "Ice Beam", "Wish", "Protect"])],
 }
@@ -350,7 +350,7 @@ MISTY = [
     mon("Starmie", "Wise Glasses", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Thunderbolt", "Ice Beam"]),
 ]
 LT_SURGE = [
-    mon("Electrode", "Focus Sash", "Aftermath", "Timid", ["Thunderbolt", "Volt Switch", "Taunt", "Explosion"]),
+    mon("Electrode", "Focus Sash", "Galvanize", "Timid", ["Thunderbolt", "Volt Switch", "Taunt", "Explosion"]),
     mon("Magnezone", "Choice Specs", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Body Press"]),
     mon("Lanturn", "Leftovers", "Volt Absorb", "Bold", ["Scald", "Discharge", "Ice Beam", "Heal Bell"]),
     mon("Electivire", "Life Orb", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Earthquake", "Cross Chop"]),
@@ -358,7 +358,7 @@ LT_SURGE = [
     mon("Raichu", "Magnet", "Lightning Rod", "Timid", ["Thunderbolt", "Focus Blast", "Nasty Plot", "Grass Knot"]),
 ]
 ERIKA = [
-    mon("Jumpluff", "Leftovers", "Infiltrator", "Jolly", ["Sleep Powder", "Leech Seed", "Acrobatics", "U Turn"]),
+    mon("Jumpluff", "Leftovers", "Aerilate", "Jolly", ["Sleep Powder", "Leech Seed", "Acrobatics", "U Turn"]),
     mon("Roserade", "Life Orb", "Technician", "Timid", ["Giga Drain", "Sludge Bomb", "Shadow Ball", "Spikes"]),
     mon("Tangrowth", "Rocky Helmet", "Regenerator", "Relaxed", ["Giga Drain", "Knock Off", "Earthquake", "Sleep Powder"]),
     mon("Victreebel", "Black Sludge", "Chlorophyll", "Adamant", ["Power Whip", "Sucker Punch", "Poison Jab", "Weather Ball"]),
@@ -384,7 +384,7 @@ SABRINA = [
 BLAINE = [
     mon("Torkoal", "Heat Rock", "Drought", "Bold", ["Lava Plume", "Stealth Rock", "Rapid Spin", "Yawn"]),
     mon("Rapidash", "Life Orb", "Flash Fire", "Jolly", ["Flare Blitz", "Wild Charge", "High Horsepower", "Morning Sun"]),
-    mon("Magmortar", "Expert Belt", "Vital Spirit", "Modest", ["Fire Blast", "Thunderbolt", "Focus Blast", "Psychic"]),
+    mon("Magmortar", "Expert Belt", "Mega Launcher", "Modest", ["Fire Blast", "Thunderbolt", "Focus Blast", "Psychic"]),
     mon("Volcarona", "Charcoal", "Flame Body", "Timid", ["Quiver Dance", "Fiery Dance", "Bug Buzz", "Giga Drain"]),
     mon("Arcanine Hisui", "Choice Band", "Rock Head", "Adamant", ["Head Smash", "Flare Blitz", "Extreme Speed", "Wild Charge"]),
     mon("Camerupt", "Cameruptite", "Solid Rock", "Modest", ["Fire Blast", "Earth Power", "Ancient Power", "Stealth Rock"]),
@@ -397,7 +397,7 @@ BLUE = [
     mon("Rhyperior", "Weakness Policy", "Solid Rock", "Adamant", ["Stone Edge", "Earthquake", "Megahorn", "Rock Polish"]),
     mon("Arcanine", "Choice Band", "Intimidate", "Adamant", ["Flare Blitz", "Extreme Speed", "Wild Charge", "Close Combat"]),
     mon("Tyranitar", "Leftovers", "Sand Stream", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
-    mon("Pidgeot", "Pidgeotite", "Keen Eye", "Timid", ["Hurricane", "Heat Wave", "U Turn", "Roost"]),
+    mon("Pidgeot", "Pidgeotite", "Frisk", "Timid", ["Hurricane", "Heat Wave", "U Turn", "Roost"]),
 ]
 
 # --- Route mini-bosses (DECISIONS.md D30) -----------------------------------------------------------
@@ -430,7 +430,7 @@ ROUTE_BOSSES = {
     "TRAINER_BRYAN_HNS": (1, [
         mon("Swablu", "Eviolite", "Natural Cure", "Bold", ["Dragon Breath", "Peck", "Sing", "Roost"]),
         mon("Farfetchd", "Leek", "Inner Focus", "Jolly", ["Leaf Blade", "Brave Bird", "Night Slash", "Swords Dance"]),
-        mon("Fearow", "Sharp Beak", "Keen Eye", "Jolly", ["Drill Peck", "Drill Run", "Pursuit", "Quick Attack"]),
+        mon("Fearow", "Sharp Beak", "Frisk", "Jolly", ["Drill Peck", "Drill Run", "Pursuit", "Quick Attack"]),
         mon("Noctowl", "Sitrus Berry", "Tinted Lens", "Modest", ["Air Slash", "Extrasensory", "Hypnosis", "Roost"]),
     ]),
     # Route 37, Psychic Greg
@@ -457,8 +457,8 @@ ROUTE_BOSSES = {
     # Route 40, Swimmer Simon: rain
     "TRAINER_SIMON_HNS": (3, [
         mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Scald", "Hurricane", "U Turn", "Roost"]),
-        mon("Floatzel", "Life Orb", "Swift Swim", "Adamant", ["Waterfall", "Aqua Jet", "Crunch", "Bulk Up"]),
-        mon("Seaking", "Mystic Water", "Swift Swim", "Adamant", ["Waterfall", "Megahorn", "Drill Run", "Agility"]),
+        mon("Floatzel", "Life Orb", "Water Veil", "Adamant", ["Waterfall", "Aqua Jet", "Crunch", "Bulk Up"]),
+        mon("Seaking", "Mystic Water", "Lightning Rod", "Adamant", ["Waterfall", "Megahorn", "Drill Run", "Agility"]),
         mon("Golduck", "Wise Glasses", "Swift Swim", "Modest", ["Hydro Pump", "Ice Beam", "Psychic", "Calm Mind"]),
         mon("Quagsire", "Leftovers", "Unaware", "Impish", ["Earthquake", "Waterfall", "Recover", "Toxic"]),
     ]),
@@ -524,7 +524,7 @@ ROUTE_BOSSES = {
     "TRAINER_KELLY_HNS": (6, [
         mon("Roserade", "Focus Sash", "Technician", "Timid", ["Giga Drain", "Sludge Bomb", "Shadow Ball", "Sleep Powder"]),
         mon("Lopunny", "Life Orb", "Limber", "Jolly", ["Return", "High Jump Kick", "Fake Out", "Ice Punch"]),
-        mon("Froslass", "Focus Sash", "Cursed Body", "Timid", ["Ice Beam", "Shadow Ball", "Spikes", "Destiny Bond"]),
+        mon("Froslass", "Focus Sash", "Stakeout", "Timid", ["Ice Beam", "Shadow Ball", "Spikes", "Destiny Bond"]),
         mon("Azumarill", "Choice Band", "Huge Power", "Adamant", ["Play Rough", "Aqua Jet", "Waterfall", "Superpower"]),
         mon("Gardevoir", "Choice Scarf", "Trace", "Timid", ["Moonblast", "Psychic", "Mystical Fire", "Thunderbolt"]),
         mon("Milotic", "Leftovers", "Marvel Scale", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"]),
@@ -616,7 +616,7 @@ ROUTE_BOSSES = {
         mon("Skarmory", "Rocky Helmet", "Sturdy", "Impish", ["Spikes", "Brave Bird", "Roost", "Whirlwind"]),
         mon("Staraptor", "Choice Band", "Reckless", "Jolly", ["Brave Bird", "Close Combat", "U Turn", "Double Edge"]),
         mon("Talonflame", "Sharp Beak", "Gale Wings", "Adamant", ["Brave Bird", "Flare Blitz", "U Turn", "Roost"]),
-        mon("Corviknight", "Leftovers", "Mirror Armor", "Impish", ["Brave Bird", "Iron Head", "Bulk Up", "Roost"]),
+        mon("Corviknight", "Leftovers", "Pressure", "Impish", ["Brave Bird", "Iron Head", "Bulk Up", "Roost"]),
         mon("Togekiss", "Choice Scarf", "Serene Grace", "Timid", ["Air Slash", "Dazzling Gleam", "Aura Sphere", "Flamethrower"]),
         mon("Dragonite", "Lum Berry", "Multiscale", "Adamant", ["Dragon Dance", "Extreme Speed", "Earthquake", "Fire Punch"]),
     ]),
@@ -631,7 +631,7 @@ ROUTE_BOSSES = {
     ]),
     # Route 25, Cooltrainer Kevin
     "TRAINER_KEVIN_HNS": (JOHTO_CHAMPION, [
-        mon("Gengar", "Focus Sash", "Cursed Body", "Timid", ["Shadow Ball", "Sludge Bomb", "Focus Blast", "Nasty Plot"]),
+        mon("Gengar", "Focus Sash", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Focus Blast", "Nasty Plot"]),
         mon("Scizor", "Life Orb", "Technician", "Adamant", ["Bullet Punch", "U Turn", "Knock Off", "Swords Dance"]),
         mon("Ferrothorn", "Leftovers", "Iron Barbs", "Relaxed", ["Gyro Ball", "Power Whip", "Leech Seed", "Spikes"]),
         mon("Crawdaunt", "Life Orb", "Adaptability", "Adamant", ["Crabhammer", "Knock Off", "Aqua Jet", "Swords Dance"]),

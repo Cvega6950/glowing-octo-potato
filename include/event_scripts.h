@@ -557,6 +557,7 @@ extern const u8 LMenu_EventScript_PokeVial[];
 extern const u8 LMenu_EventScript_NoDexNav[];
 extern const u8 EventScript_CarePackage[];
 extern const u8 EventScript_CarePackageGear[];
+extern const u8 EventScript_CarePackageBulk[];
 extern const u8 EventScript_TestSignpostMsg[];
 extern const u8 EventScript_HiddenItemScript[];
 extern const u8 EventScript_TV[];

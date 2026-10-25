@@ -11,14 +11,14 @@ VioletCity_Mart_EventScript_Clerk::
 	release
 	end
 
-@ Crystal Imperium: a TM clerk, Emerald Imperium-style (its first TM vendors, after its first Gym).
-@ From the Zephyr Badge on, seven TMs at ¥100 each; the list is data/scripts/tm_shop_hns.inc
-@ (tools/crystal_imperium/tm_list.py). The first time, the clerk also gives the four TMs Emerald
-@ Imperium gives away before its second Gym (Bullet Seed, Bulldoze, Bug Bite, Stomping Tantrum).
+@ Crystal Imperium: the TM clerk every Poke Mart has (EventScript_TMShop, data/scripts/tm_shop_hns.inc:
+@ more TMs with each badge, ¥100 each). Here, with the Zephyr Badge, the clerk also gives the four
+@ TMs Emerald Imperium gives away before its second Gym (Bullet Seed, Bulldoze, Bug Bite, Stomping
+@ Tantrum) the first time.
 VioletCity_Mart_EventScript_TMClerk::
 	lock
 	faceplayer
-	goto_if_unset FLAG_BADGE01_GET, VioletCity_Mart_EventScript_TMClerkNoBadge
+	goto_if_unset FLAG_BADGE01_GET, VioletCity_Mart_EventScript_TMClerkShop
 	goto_if_set FLAG_RECEIVED_VIOLET_TMS, VioletCity_Mart_EventScript_TMClerkShop
 	msgbox VioletCity_Mart_Text_TMClerkGift, MSGBOX_DEFAULT
 	additem ITEM_TM_BULLET_SEED
@@ -32,15 +32,10 @@ VioletCity_Mart_EventScript_TMClerk::
 	waitfanfare
 	waitbuttonpress
 VioletCity_Mart_EventScript_TMClerkShop::
-	message VioletCity_Mart_Text_TMClerk
+	message TMShop_Text_Welcome
 	waitmessage
-	pokemart VioletCity_Mart_TMs
+	call EventScript_TMShop
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
-	release
-	end
-
-VioletCity_Mart_EventScript_TMClerkNoBadge::
-	msgbox VioletCity_Mart_Text_TMClerkNoBadge, MSGBOX_DEFAULT
 	release
 	end
 
@@ -74,11 +69,6 @@ VioletCity_Mart_Text_CooltrainerM:
 	.string "But they don't appear to know\n"
 	.string "how to use man-made items.$"
 
-VioletCity_Mart_Text_TMClerk:
-	.string "Welcome! This counter sells TMs to\n"
-	.string "TRAINERS with a GYM BADGE.\p"
-	.string "Every TM is ¥100!$"
-
 VioletCity_Mart_Text_TMClerkGift:
 	.string "Oh! You have the ZEPHYRBADGE!\p"
 	.string "Here, a few TMs on the house\n"
@@ -89,8 +79,3 @@ VioletCity_Mart_Text_TMClerkGiftReceived:
 	.string "TM96 BULLDOZE, TM109 BUG BITE and\l"
 	.string "TM110 STOMPING TANTRUM!$"
 
-VioletCity_Mart_Text_TMClerkNoBadge:
-	.string "This counter sells TMs to TRAINERS\n"
-	.string "with a GYM BADGE.\p"
-	.string "FALKNER at the GYM gives out the\n"
-	.string "ZEPHYRBADGE. Come back with it!$"

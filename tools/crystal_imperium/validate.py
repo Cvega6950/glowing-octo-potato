@@ -159,6 +159,12 @@ def parse_species():
                 entry["abilities"].update(a.strip() for a in abl.split(",") if a.strip() and a.strip() != "ABILITY_NONE")
             for evo in macro_arguments(body, ".evolutions", "EVOLUTION"):
                 entry["evolutions"] += re.findall(r"SPECIES_\w+", evo)
+    # Emerald Imperium's abilities (DECISIONS.md D35) replace these species' lists
+    if re.search(r"#define\s+P_IMPERIUM_SPECIES_DATA\s+TRUE", read("include/config/pokemon.h")):
+        overrides = read("src/data/pokemon/species_info/imperium_abilities.h")
+        for name, abl in re.findall(r"\[(SPECIES_\w+)\]\.abilities\s*=\s*\{([^}]*)\}", overrides):
+            species.setdefault(name, {"abilities": set(), "evolutions": []})["abilities"] = {
+                a.strip() for a in abl.split(",") if a.strip() and a.strip() != "ABILITY_NONE"}
     return species
 
 

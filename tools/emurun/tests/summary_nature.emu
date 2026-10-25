@@ -1,0 +1,32 @@
+# Crystal Imperium play test: the summary shows the nature set with the Training Kit (L menu >
+# STATS > NATURE), the one the stats follow, not the nature the Pokemon was born with (fixed in
+# 0.11.0: the summary printed the personality's nature).
+!new_game()
+# A Lv 11 Cyndaquil born HARDY (the debug menu sets the personality's nature)
+!give_mon_complex("SPECIES_CYNDAQUIL", 11, "NATURE_HARDY", 0, ["MOVE_TACKLE", "MOVE_LEER", "MOVE_EMBER", "MOVE_NONE"])
+
+# L > STATS > NATURE > Cyndaquil > MODEST (list index 15)
+!l_menu("STATS")
+press A
+wait 120
+press A
+wait 120
+!["press DOWN"] * 15
+press A
+wait 60
+shot 01_modest.png
+mash A 120
+wait 60
+# The stats follow MODEST: Attack 19 x0.9, Sp. Atk 21 x1.1 (party stats after maxHP: +90, +96)
+expect16 {gPlayerParty+90} 17 modest_attack
+expect16 {gPlayerParty+96} 23 modest_spatk
+
+# The summary's first page: "MODEST nature, met at Lv11, ..."
+!start_menu("POKEMON")
+press A
+wait 30
+press A
+wait 120
+shot 02_summary.png
+!expect_summary_nature("NATURE_MODEST", "summary_shows_modest")
+mash B 120

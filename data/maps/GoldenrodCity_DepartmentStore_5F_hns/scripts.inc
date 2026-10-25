@@ -94,28 +94,14 @@ GoldenrodDeptStore_Text_Girl:
 	.string "The lady gave me RETURN!\n"
     .string "My POKéMON must really like me!$"
 
-@ Crystal Imperium: every TM is on sale here, more of them with each badge tier (3, 6 and 8 badges).
-@ The lists are data/scripts/tm_shop_hns.inc (tools/crystal_imperium/tm_list.py).
+@ Crystal Imperium: the TM shop every Poke Mart's TM clerk has, more TMs with each badge
+@ (EventScript_TMShop, data/scripts/tm_shop_hns.inc from tools/crystal_imperium/tm_list.py).
 GoldenrodDeptStore5_EventScript_Clerk::
 	lock
 	faceplayer
 	message gText_HowMayIServeYou
 	waitmessage
-	specialvar VAR_RESULT, GetBadgeCount
-	goto_if_ge VAR_RESULT, 8, GoldenrodDeptStore5_EventScript_TMs3
-	goto_if_ge VAR_RESULT, 6, GoldenrodDeptStore5_EventScript_TMs2
-	goto_if_ge VAR_RESULT, 3, GoldenrodDeptStore5_EventScript_TMs1
-	pokemart GoldenrodDeptStore5_TMs0
-	goto GoldenrodDeptStore5_EventScript_ClerkDone
-GoldenrodDeptStore5_EventScript_TMs1::
-	pokemart GoldenrodDeptStore5_TMs1
-	goto GoldenrodDeptStore5_EventScript_ClerkDone
-GoldenrodDeptStore5_EventScript_TMs2::
-	pokemart GoldenrodDeptStore5_TMs2
-	goto GoldenrodDeptStore5_EventScript_ClerkDone
-GoldenrodDeptStore5_EventScript_TMs3::
-	pokemart GoldenrodDeptStore5_TMs3
-GoldenrodDeptStore5_EventScript_ClerkDone::
+	call EventScript_TMShop
 	msgbox gText_PleaseComeAgain, MSGBOX_DEFAULT
 	release
 	end

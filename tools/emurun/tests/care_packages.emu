@@ -4,8 +4,10 @@
 # and the Champion flag are set with the debug menu here; the delivery is the real game code.
 # Each package lists its contents, then fills the Bag with battle gear (held items, PP Max,
 # X items, Berries) besides supplies and evolution items; an item whose pocket is full goes to
-# the PC (tools/crystal_imperium/care_packages.py writes the script). A save from before 0.7.0,
-# whose packages came without the gear, gets it one package per step (VAR_CARE_PACKAGE_GEAR).
+# the PC (tools/crystal_imperium/care_packages.py writes the script). Since 0.11.0 the gear comes
+# in stacks (10 of each type-boosting item, 10 Sitrus Berries a package...). A save from before
+# 0.7.0, whose packages came without the gear, gets it one package per step (VAR_CARE_PACKAGE_GEAR),
+# and a save from before 0.11.0 the rest of each package's stacks (VAR_CARE_PACKAGE_BULK).
 !new_game()
 !give_mon(155, 5)
 !warp(0, 11, 0)
@@ -45,6 +47,13 @@ shot 01_after_badge_packages.png
 !expect_bag_has("items", "ITEM_PRISM_SCALE")
 !expect_bag_has("items", "ITEM_METAL_ALLOY")
 !expect_bag_has("items", "ITEM_GIMMIGHOUL_COIN")
+# Stacks: 10 of each type-boosting item (Charcoal from the first package, Fairy Feather from the
+# sixth), Leftovers 3 + 3 + 3, Focus Sashes 5 + 5, Sitrus Berries 10 + 10
+!expect_bag_quantity("items", "ITEM_CHARCOAL", 10)
+!expect_bag_quantity("items", "ITEM_FAIRY_FEATHER", 10)
+!expect_bag_quantity("items", "ITEM_LEFTOVERS", 9)
+!expect_bag_quantity("items", "ITEM_FOCUS_SASH", 10)
+!expect_bag_quantity("berries", "ITEM_SITRUS_BERRY", 20)
 # No milestone, no package
 !walkto(33, 11)
 !walkto(34, 11)
@@ -60,6 +69,7 @@ shot 02_after_champion_package.png
 !expect_bag_has("berries", "ITEM_LIECHI_BERRY")
 !expect_bag_has("items", "ITEM_CHOICE_BAND")
 !expect_var("VAR_CARE_PACKAGE_GEAR", 9, "new_game_gear_keeps_up")
+!expect_var("VAR_CARE_PACKAGE_BULK", 9, "new_game_stacks_keep_up")
 
 # A full Berries pocket: the first package's Berries go to the PC, the rest to the Bag
 loadstate route29.ss
@@ -77,14 +87,36 @@ mash A 2400
 !expect_bag_has("items", "ITEM_LEFTOVERS", "leftovers_still_in_bag")
 !expect_bag_has("medicine", "ITEM_PP_MAX", "pp_max_still_in_bag")
 
+# A save from 0.7.0 to 0.10.x: eight packages received, gear and all, but not the stacks. The next
+# eight steps bring the rest of each one (the Bag here only gets what was missing: 9 Charcoal).
+loadstate route29.ss
+!debug_flags_menu(10)
+!set_var("VAR_CARE_PACKAGES", 8)
+!set_var("VAR_CARE_PACKAGE_GEAR", 8)
+!walkto(33, 11, soft=True)
+wait 150
+shot 04_stacks_top_up.png
+mash A 2400
+!expect_var("VAR_CARE_PACKAGE_BULK", 1, "save_0_10_first_top_up")
+!expect_var("VAR_CARE_PACKAGES", 8, "save_0_10_no_new_package_yet")
+!expect_bag_quantity("items", "ITEM_CHARCOAL", 9, "save_0_10_charcoal_topped_up")
+!walkto(34, 11, soft=True)
+wait 30
+mash A 2400
+!care_package_steps(6)
+!expect_var("VAR_CARE_PACKAGE_BULK", 8, "save_0_10_all_eight_topped_up")
+!expect_var("VAR_CARE_PACKAGE_GEAR", 8, "save_0_10_gear_unchanged")
+!expect_bag_quantity("items", "ITEM_FAIRY_FEATHER", 9, "save_0_10_fairy_feather_topped_up")
+
 # A save from before 0.7.0: eight packages received, with their earlier contents and no gear.
-# The next eight steps bring each one's battle gear; then the Champion's package arrives whole.
+# The next eight steps bring each one's battle gear, the eight after the rest of the stacks; then
+# the Champion's package arrives whole.
 loadstate route29.ss
 !debug_flags_menu(10)
 !set_var("VAR_CARE_PACKAGES", 8)
 !walkto(33, 11, soft=True)
 wait 150
-shot 04_old_save_gear.png
+shot 05_old_save_gear.png
 mash A 2400
 !expect_var("VAR_CARE_PACKAGE_GEAR", 1, "old_save_first_gear")
 !expect_var("VAR_CARE_PACKAGES", 8, "old_save_no_new_package_yet")
@@ -97,10 +129,16 @@ mash A 2400
 !expect_var("VAR_CARE_PACKAGES", 8, "old_save_still_eight_packages")
 !expect_bag_has("items", "ITEM_BOOSTER_ENERGY", "old_save_gets_booster_energy")
 !expect_bag_has("medicine", "ITEM_PP_MAX", "old_save_gets_pp_max")
+!expect_var("VAR_CARE_PACKAGE_BULK", 0, "old_save_stacks_after_the_gear")
+!care_package_steps(8)
+!expect_var("VAR_CARE_PACKAGE_BULK", 8, "old_save_all_eight_stacks")
+!expect_var("VAR_CARE_PACKAGES", 8, "old_save_still_eight_after_stacks")
+!expect_bag_quantity("items", "ITEM_CHARCOAL", 10, "old_save_charcoal_like_a_new_game")
 !debug_flags_menu(11)
 !walkto(33, 11, soft=True)
 wait 30
 mash A 2400
 !expect_var("VAR_CARE_PACKAGES", 9, "old_save_champion_package")
 !expect_var("VAR_CARE_PACKAGE_GEAR", 9, "old_save_gear_caught_up")
+!expect_var("VAR_CARE_PACKAGE_BULK", 9, "old_save_stacks_caught_up")
 !expect_bag_has("pokeBalls", "ITEM_MASTER_BALL", "old_save_champion_master_ball")

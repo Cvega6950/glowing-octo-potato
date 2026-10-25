@@ -218,6 +218,23 @@ def expect_bag_has(pocket, item, label=None):
     return [f"expectfind16 *{{gSaveBlock1Ptr}}+{v['off']} {v['count']} {v['stride']} {v[item]} {label or 'bag_has_' + item.lower()}"]
 
 
+def expect_bag_quantity(pocket, item, want, label=None):
+    """Check how many of the item a bag pocket (struct Bag field) holds: quantities are stored XORed
+    with the save's encryption key (src/item.c)."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock1, bag.{pocket})",
+                       "count": f"ARRAY_COUNT(((struct SaveBlock1 *)0)->bag.{pocket})",
+                       "stride": "sizeof(struct ItemSlot)", "key": "offsetof(struct SaveBlock2, encryptionKey)", item: item})
+    return [f"expectqty16 *{{gSaveBlock1Ptr}}+{v['off']} {v['count']} {v['stride']} {v[item]} {want} "
+            f"*{{gSaveBlock2Ptr}}+{v['key']} {label or 'bag_' + item.lower() + '_x' + str(want)}"]
+
+
+def expect_summary_nature(nature, label):
+    """Check the nature the summary screen just put in its text: the dynamic placeholder it is
+    printed through ({DYNAMIC 2}) points at that nature's name (src/bw_summary_screen.c)."""
+    v = probe.resolve({"off": f"{nature} * sizeof(struct NatureInfo) + offsetof(struct NatureInfo, name)"})
+    return [f"expectsame32 {{sStringPointers+8}} {{gNaturesInfo+{v['off']}}} {label}"]
+
+
 def fill_pocket(pocket, item):
     """Fill every slot of a bag pocket (struct Bag field) with one item, so no other item fits."""
     v = probe.resolve({"off": f"offsetof(struct SaveBlock1, bag.{pocket})",
@@ -306,8 +323,8 @@ def set_var(var, value):
 
 
 def no_care_packages():
-    """Mark all 17 care packages and their gear as received, so none arrives during the test."""
-    return set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_GEAR", 17)
+    """Mark all 17 care packages, their gear and their stacks as received, so none arrives during the test."""
+    return set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_GEAR", 17) + set_var("VAR_CARE_PACKAGE_BULK", 17)
 
 
 def expect_var(var, want, label=None):

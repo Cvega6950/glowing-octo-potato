@@ -1319,9 +1319,24 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
         }
 
         if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
+        {
+            // Crystal Imperium: a TM the player has says OWNED, in a font that fits between the
+            // longest names ("TM01 FOCUS PUNCH") and the right edge: SOLD OUT ran into them
+            if (GetItemPocket(itemId) == POCKET_TM_HM)
+            {
+                static const u8 sText_Owned[] = _("OWNED");
+                u32 fontId = GetFontIdToFit(sText_Owned, FONT_NARROW, 0,
+                                            120 - sShopBuyMenuListTemplate.item_X - sShopBuyMenuListTemplate.textNarrowWidth - 2);
+                x = GetStringRightAlignXOffset(fontId, sText_Owned, 120);
+                AddTextPrinterParameterized4(windowId, fontId, x, y, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, sText_Owned);
+                return;
+            }
             StringCopy(gStringVar4, gText_SoldOut);
+        }
         else
+        {
             StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
+        }
         x = GetStringRightAlignXOffset(FONT_NARROW, gStringVar4, 120);
         AddTextPrinterParameterized4(windowId, FONT_NARROW, x, y, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, gStringVar4);
     }

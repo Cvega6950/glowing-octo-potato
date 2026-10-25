@@ -96,6 +96,11 @@
 #define FLIP    0
 #define NO_FLIP 1
 
+#if P_IMPERIUM_SPECIES_DATA
+// Crystal Imperium: species_info/imperium_abilities.h, at the end, replaces some species' abilities
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Woverride-init"
+#endif
 const struct SpeciesInfo gSpeciesInfo[] =
 {
     [SPECIES_NONE] =
@@ -249,7 +254,14 @@ const struct SpeciesInfo gSpeciesInfo[] =
         //.perfectIVCount = NUM_STATS,
     },
     */
+
+#if P_IMPERIUM_SPECIES_DATA
+    #include "species_info/imperium_abilities.h"
+#endif
 };
+#if P_IMPERIUM_SPECIES_DATA
+#pragma GCC diagnostic pop
+#endif
 
 const struct EggData gEggDatas[EGG_ID_COUNT] =
 {

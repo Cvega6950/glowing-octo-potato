@@ -7,7 +7,9 @@
 @ Each package lists its contents in one message, then the items go to the Bag; one whose pocket
 @ is full goes to the PC (VAR_0x8005 counts those).
 @ EventScript_CarePackageGear brings a save from before 0.7.0 the battle gear its packages didn't
-@ have then, one package per step (VAR_CARE_PACKAGE_GEAR counts the packages whose gear arrived).
+@ have then, one package per step (VAR_CARE_PACKAGE_GEAR counts the packages whose gear arrived);
+@ EventScript_CarePackageBulk then brings a save from before 0.11.0 the rest of each package's stacks
+@ (VAR_CARE_PACKAGE_BULK).
 EventScript_CarePackage::
 	lockall
 	playse SE_EXP_MAX
@@ -37,32 +39,32 @@ CarePackage_1::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_1, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_POKE_BALL, 10
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POKE_BALL_10
-	additem ITEM_GREAT_BALL, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GREAT_BALL_5
-	additem ITEM_SUPER_POTION, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SUPER_POTION_5
+	additem ITEM_POKE_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POKE_BALL_20
+	additem ITEM_GREAT_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GREAT_BALL_20
+	additem ITEM_SUPER_POTION, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SUPER_POTION_10
 	additem ITEM_PP_UP, 5
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_UP_5
-	additem ITEM_PP_MAX, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_3
-	additem ITEM_LEFTOVERS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_1
-	additem ITEM_FOCUS_SASH, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_2
-	additem ITEM_EVIOLITE, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EVIOLITE_2
-	additem ITEM_SITRUS_BERRY, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_5
-	additem ITEM_LUM_BERRY, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_3
-	additem ITEM_CHARCOAL, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHARCOAL_1
-	additem ITEM_MYSTIC_WATER, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MYSTIC_WATER_1
-	additem ITEM_MIRACLE_SEED, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MIRACLE_SEED_1
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_LEFTOVERS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_3
+	additem ITEM_FOCUS_SASH, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_5
+	additem ITEM_EVIOLITE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EVIOLITE_5
+	additem ITEM_SITRUS_BERRY, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_10
+	additem ITEM_LUM_BERRY, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_10
+	additem ITEM_CHARCOAL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHARCOAL_10
+	additem ITEM_MYSTIC_WATER, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MYSTIC_WATER_10
+	additem ITEM_MIRACLE_SEED, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MIRACLE_SEED_10
 	additem ITEM_LINKING_CORD, 1
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LINKING_CORD_1
 	additem ITEM_SWEET_APPLE, 1
@@ -75,40 +77,40 @@ CarePackage_2::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_2, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_GREAT_BALL, 10
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GREAT_BALL_10
-	additem ITEM_REVIVE, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_REVIVE_3
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_LIFE_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_1
-	additem ITEM_EXPERT_BELT, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EXPERT_BELT_1
-	additem ITEM_MUSCLE_BAND, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MUSCLE_BAND_1
-	additem ITEM_WISE_GLASSES, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WISE_GLASSES_1
-	additem ITEM_SCOPE_LENS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SCOPE_LENS_1
-	additem ITEM_MAGNET, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAGNET_1
-	additem ITEM_SHARP_BEAK, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHARP_BEAK_1
-	additem ITEM_SILK_SCARF, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SILK_SCARF_1
-	additem ITEM_OCCA_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_OCCA_BERRY_2
-	additem ITEM_PASSHO_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PASSHO_BERRY_2
-	additem ITEM_WACAN_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WACAN_BERRY_2
-	additem ITEM_RINDO_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RINDO_BERRY_2
-	additem ITEM_YACHE_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_YACHE_BERRY_2
-	additem ITEM_CHOPLE_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOPLE_BERRY_2
+	additem ITEM_GREAT_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GREAT_BALL_20
+	additem ITEM_REVIVE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_REVIVE_5
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_LIFE_ORB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_3
+	additem ITEM_EXPERT_BELT, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EXPERT_BELT_3
+	additem ITEM_MUSCLE_BAND, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MUSCLE_BAND_3
+	additem ITEM_WISE_GLASSES, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WISE_GLASSES_3
+	additem ITEM_SCOPE_LENS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SCOPE_LENS_3
+	additem ITEM_MAGNET, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAGNET_10
+	additem ITEM_SHARP_BEAK, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHARP_BEAK_10
+	additem ITEM_SILK_SCARF, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SILK_SCARF_10
+	additem ITEM_OCCA_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_OCCA_BERRY_5
+	additem ITEM_PASSHO_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PASSHO_BERRY_5
+	additem ITEM_WACAN_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WACAN_BERRY_5
+	additem ITEM_RINDO_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RINDO_BERRY_5
+	additem ITEM_YACHE_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_YACHE_BERRY_5
+	additem ITEM_CHOPLE_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOPLE_BERRY_5
 	additem ITEM_UPGRADE, 1
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_UPGRADE_1
 	additem ITEM_SACHET, 1
@@ -123,40 +125,40 @@ CarePackage_3::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_3, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_ULTRA_BALL, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_5
-	additem ITEM_HYPER_POTION, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HYPER_POTION_5
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_CHOICE_BAND, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_BAND_1
-	additem ITEM_CHOICE_SPECS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SPECS_1
-	additem ITEM_CHOICE_SCARF, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_1
-	additem ITEM_ROCKY_HELMET, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROCKY_HELMET_1
-	additem ITEM_BLACK_SLUDGE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_SLUDGE_1
-	additem ITEM_HARD_STONE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HARD_STONE_1
-	additem ITEM_SOFT_SAND, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SOFT_SAND_1
-	additem ITEM_SPELL_TAG, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SPELL_TAG_1
-	additem ITEM_KEBIA_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KEBIA_BERRY_2
-	additem ITEM_SHUCA_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHUCA_BERRY_2
-	additem ITEM_COBA_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COBA_BERRY_2
-	additem ITEM_PAYAPA_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PAYAPA_BERRY_2
-	additem ITEM_TANGA_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TANGA_BERRY_2
-	additem ITEM_CHARTI_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHARTI_BERRY_2
+	additem ITEM_ULTRA_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_20
+	additem ITEM_HYPER_POTION, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HYPER_POTION_10
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_CHOICE_BAND, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_BAND_2
+	additem ITEM_CHOICE_SPECS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SPECS_2
+	additem ITEM_CHOICE_SCARF, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_2
+	additem ITEM_ROCKY_HELMET, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROCKY_HELMET_3
+	additem ITEM_BLACK_SLUDGE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_SLUDGE_2
+	additem ITEM_HARD_STONE, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HARD_STONE_10
+	additem ITEM_SOFT_SAND, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SOFT_SAND_10
+	additem ITEM_SPELL_TAG, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SPELL_TAG_10
+	additem ITEM_KEBIA_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KEBIA_BERRY_5
+	additem ITEM_SHUCA_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHUCA_BERRY_5
+	additem ITEM_COBA_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COBA_BERRY_5
+	additem ITEM_PAYAPA_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PAYAPA_BERRY_5
+	additem ITEM_TANGA_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TANGA_BERRY_5
+	additem ITEM_CHARTI_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHARTI_BERRY_5
 	additem ITEM_PRISM_SCALE, 1
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PRISM_SCALE_1
 	additem ITEM_SUN_STONE, 3
@@ -169,36 +171,36 @@ CarePackage_4::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_4, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_ULTRA_BALL, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_5
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_ASSAULT_VEST, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_2
-	additem ITEM_LEFTOVERS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_1
-	additem ITEM_TOXIC_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TOXIC_ORB_1
-	additem ITEM_FLAME_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FLAME_ORB_1
-	additem ITEM_NEVER_MELT_ICE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_NEVER_MELT_ICE_1
-	additem ITEM_BLACK_BELT, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_BELT_1
-	additem ITEM_TWISTED_SPOON, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TWISTED_SPOON_1
-	additem ITEM_KASIB_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KASIB_BERRY_2
-	additem ITEM_HABAN_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HABAN_BERRY_2
-	additem ITEM_COLBUR_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COLBUR_BERRY_2
-	additem ITEM_BABIRI_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BABIRI_BERRY_2
-	additem ITEM_CHILAN_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHILAN_BERRY_2
-	additem ITEM_ROSELI_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROSELI_BERRY_2
+	additem ITEM_ULTRA_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_20
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_ASSAULT_VEST, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_3
+	additem ITEM_LEFTOVERS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_3
+	additem ITEM_TOXIC_ORB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TOXIC_ORB_3
+	additem ITEM_FLAME_ORB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FLAME_ORB_3
+	additem ITEM_NEVER_MELT_ICE, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_NEVER_MELT_ICE_10
+	additem ITEM_BLACK_BELT, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_BELT_10
+	additem ITEM_TWISTED_SPOON, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TWISTED_SPOON_10
+	additem ITEM_KASIB_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KASIB_BERRY_5
+	additem ITEM_HABAN_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HABAN_BERRY_5
+	additem ITEM_COLBUR_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COLBUR_BERRY_5
+	additem ITEM_BABIRI_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BABIRI_BERRY_5
+	additem ITEM_CHILAN_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHILAN_BERRY_5
+	additem ITEM_ROSELI_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROSELI_BERRY_5
 	additem ITEM_STRAWBERRY_SWEET, 1
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_STRAWBERRY_SWEET_1
 	additem ITEM_BERRY_SWEET, 1
@@ -219,36 +221,36 @@ CarePackage_5::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_5, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_FULL_HEAL, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_HEAL_5
-	additem ITEM_MAX_REVIVE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_1
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_HEAVY_DUTY_BOOTS, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAVY_DUTY_BOOTS_2
-	additem ITEM_LIGHT_CLAY, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIGHT_CLAY_1
-	additem ITEM_AIR_BALLOON, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_AIR_BALLOON_2
-	additem ITEM_WHITE_HERB, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WHITE_HERB_2
-	additem ITEM_POWER_HERB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POWER_HERB_1
-	additem ITEM_MENTAL_HERB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MENTAL_HERB_1
-	additem ITEM_EVIOLITE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EVIOLITE_1
-	additem ITEM_POISON_BARB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POISON_BARB_1
-	additem ITEM_SILVER_POWDER, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SILVER_POWDER_1
-	additem ITEM_DRAGON_FANG, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DRAGON_FANG_1
-	additem ITEM_SITRUS_BERRY, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_5
-	additem ITEM_LUM_BERRY, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_3
+	additem ITEM_FULL_HEAL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_HEAL_10
+	additem ITEM_MAX_REVIVE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_5
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_HEAVY_DUTY_BOOTS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAVY_DUTY_BOOTS_3
+	additem ITEM_LIGHT_CLAY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIGHT_CLAY_3
+	additem ITEM_AIR_BALLOON, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_AIR_BALLOON_5
+	additem ITEM_WHITE_HERB, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WHITE_HERB_5
+	additem ITEM_POWER_HERB, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POWER_HERB_5
+	additem ITEM_MENTAL_HERB, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MENTAL_HERB_5
+	additem ITEM_EVIOLITE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EVIOLITE_5
+	additem ITEM_POISON_BARB, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POISON_BARB_10
+	additem ITEM_SILVER_POWDER, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SILVER_POWDER_10
+	additem ITEM_DRAGON_FANG, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DRAGON_FANG_10
+	additem ITEM_SITRUS_BERRY, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_10
+	additem ITEM_LUM_BERRY, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_10
 	additem ITEM_CRACKED_POT, 1
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CRACKED_POT_1
 	additem ITEM_CHIPPED_POT, 1
@@ -263,44 +265,44 @@ CarePackage_6::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_6, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_ULTRA_BALL, 10
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_10
-	additem ITEM_PP_UP, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_UP_3
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_MAX_ELIXIR, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_3
-	additem ITEM_WEAKNESS_POLICY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WEAKNESS_POLICY_2
-	additem ITEM_LIFE_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_1
-	additem ITEM_CHOICE_SCARF, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_1
-	additem ITEM_RAZOR_CLAW, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RAZOR_CLAW_1
-	additem ITEM_QUICK_CLAW, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_QUICK_CLAW_1
-	additem ITEM_SHELL_BELL, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHELL_BELL_1
-	additem ITEM_BIG_ROOT, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BIG_ROOT_1
-	additem ITEM_BLACK_GLASSES, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_GLASSES_1
-	additem ITEM_METAL_COAT, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_METAL_COAT_1
-	additem ITEM_FAIRY_FEATHER, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FAIRY_FEATHER_1
-	additem ITEM_X_ATTACK, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_ATTACK_3
-	additem ITEM_X_SP_ATK, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_ATK_3
-	additem ITEM_X_SPEED, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SPEED_3
-	additem ITEM_X_DEFENSE, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_DEFENSE_3
-	additem ITEM_X_SP_DEF, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_DEF_3
+	additem ITEM_ULTRA_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_20
+	additem ITEM_PP_UP, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_UP_5
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_MAX_ELIXIR, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_5
+	additem ITEM_WEAKNESS_POLICY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WEAKNESS_POLICY_5
+	additem ITEM_LIFE_ORB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_3
+	additem ITEM_CHOICE_SCARF, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_2
+	additem ITEM_RAZOR_CLAW, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RAZOR_CLAW_2
+	additem ITEM_QUICK_CLAW, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_QUICK_CLAW_3
+	additem ITEM_SHELL_BELL, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHELL_BELL_3
+	additem ITEM_BIG_ROOT, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BIG_ROOT_3
+	additem ITEM_BLACK_GLASSES, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_GLASSES_10
+	additem ITEM_METAL_COAT, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_METAL_COAT_10
+	additem ITEM_FAIRY_FEATHER, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FAIRY_FEATHER_10
+	additem ITEM_X_ATTACK, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_ATTACK_5
+	additem ITEM_X_SP_ATK, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_ATK_5
+	additem ITEM_X_SPEED, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SPEED_5
+	additem ITEM_X_DEFENSE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_DEFENSE_5
+	additem ITEM_X_SP_DEF, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_DEF_5
 	additem ITEM_LEADERS_CREST, 1
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEADERS_CREST_1
 	additem ITEM_AUSPICIOUS_ARMOR, 1
@@ -313,46 +315,46 @@ CarePackage_7::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_7, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_MAX_POTION, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_POTION_5
-	additem ITEM_MAX_REVIVE, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_2
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_RED_CARD, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RED_CARD_1
-	additem ITEM_EJECT_BUTTON, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EJECT_BUTTON_1
-	additem ITEM_EJECT_PACK, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EJECT_PACK_1
-	additem ITEM_SAFETY_GOGGLES, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SAFETY_GOGGLES_1
-	additem ITEM_COVERT_CLOAK, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COVERT_CLOAK_1
-	additem ITEM_CLEAR_AMULET, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CLEAR_AMULET_1
-	additem ITEM_PROTECTIVE_PADS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PROTECTIVE_PADS_1
-	additem ITEM_SHED_SHELL, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHED_SHELL_1
-	additem ITEM_BINDING_BAND, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BINDING_BAND_1
-	additem ITEM_GRIP_CLAW, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GRIP_CLAW_1
-	additem ITEM_DAMP_ROCK, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DAMP_ROCK_1
-	additem ITEM_HEAT_ROCK, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAT_ROCK_1
-	additem ITEM_SMOOTH_ROCK, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SMOOTH_ROCK_1
-	additem ITEM_ICY_ROCK, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ICY_ROCK_1
-	additem ITEM_X_ACCURACY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_ACCURACY_2
-	additem ITEM_DIRE_HIT, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DIRE_HIT_2
-	additem ITEM_GUARD_SPEC, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GUARD_SPEC_2
+	additem ITEM_MAX_POTION, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_POTION_10
+	additem ITEM_MAX_REVIVE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_5
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_RED_CARD, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RED_CARD_5
+	additem ITEM_EJECT_BUTTON, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EJECT_BUTTON_5
+	additem ITEM_EJECT_PACK, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EJECT_PACK_5
+	additem ITEM_SAFETY_GOGGLES, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SAFETY_GOGGLES_3
+	additem ITEM_COVERT_CLOAK, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COVERT_CLOAK_3
+	additem ITEM_CLEAR_AMULET, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CLEAR_AMULET_3
+	additem ITEM_PROTECTIVE_PADS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PROTECTIVE_PADS_3
+	additem ITEM_SHED_SHELL, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHED_SHELL_3
+	additem ITEM_BINDING_BAND, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BINDING_BAND_2
+	additem ITEM_GRIP_CLAW, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GRIP_CLAW_2
+	additem ITEM_DAMP_ROCK, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DAMP_ROCK_3
+	additem ITEM_HEAT_ROCK, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAT_ROCK_3
+	additem ITEM_SMOOTH_ROCK, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SMOOTH_ROCK_3
+	additem ITEM_ICY_ROCK, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ICY_ROCK_3
+	additem ITEM_X_ACCURACY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_ACCURACY_5
+	additem ITEM_DIRE_HIT, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DIRE_HIT_5
+	additem ITEM_GUARD_SPEC, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GUARD_SPEC_5
 	additem ITEM_METAL_ALLOY, 1
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_METAL_ALLOY_1
 	additem ITEM_LINKING_CORD, 1
@@ -363,44 +365,44 @@ CarePackage_8::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_8, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_FULL_RESTORE, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_3
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_ABILITY_PATCH, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_1
-	additem ITEM_FOCUS_SASH, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_2
-	additem ITEM_LEFTOVERS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_1
-	additem ITEM_ASSAULT_VEST, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_1
-	additem ITEM_BOOSTER_ENERGY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BOOSTER_ENERGY_2
-	additem ITEM_LOADED_DICE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LOADED_DICE_1
-	additem ITEM_PUNCHING_GLOVE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PUNCHING_GLOVE_1
-	additem ITEM_MIRROR_HERB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MIRROR_HERB_1
-	additem ITEM_THROAT_SPRAY, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_THROAT_SPRAY_1
-	additem ITEM_BLUNDER_POLICY, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLUNDER_POLICY_1
-	additem ITEM_ELECTRIC_SEED, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ELECTRIC_SEED_1
-	additem ITEM_GRASSY_SEED, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GRASSY_SEED_1
-	additem ITEM_MISTY_SEED, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MISTY_SEED_1
-	additem ITEM_PSYCHIC_SEED, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PSYCHIC_SEED_1
-	additem ITEM_TERRAIN_EXTENDER, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TERRAIN_EXTENDER_1
-	additem ITEM_UTILITY_UMBRELLA, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_UTILITY_UMBRELLA_1
-	additem ITEM_ROOM_SERVICE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROOM_SERVICE_1
+	additem ITEM_FULL_RESTORE, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_10
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_ABILITY_PATCH, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_3
+	additem ITEM_FOCUS_SASH, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_5
+	additem ITEM_LEFTOVERS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_3
+	additem ITEM_ASSAULT_VEST, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_3
+	additem ITEM_BOOSTER_ENERGY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BOOSTER_ENERGY_5
+	additem ITEM_LOADED_DICE, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LOADED_DICE_3
+	additem ITEM_PUNCHING_GLOVE, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PUNCHING_GLOVE_3
+	additem ITEM_MIRROR_HERB, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MIRROR_HERB_5
+	additem ITEM_THROAT_SPRAY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_THROAT_SPRAY_5
+	additem ITEM_BLUNDER_POLICY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLUNDER_POLICY_5
+	additem ITEM_ELECTRIC_SEED, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ELECTRIC_SEED_5
+	additem ITEM_GRASSY_SEED, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GRASSY_SEED_5
+	additem ITEM_MISTY_SEED, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MISTY_SEED_5
+	additem ITEM_PSYCHIC_SEED, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PSYCHIC_SEED_5
+	additem ITEM_TERRAIN_EXTENDER, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TERRAIN_EXTENDER_3
+	additem ITEM_UTILITY_UMBRELLA, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_UTILITY_UMBRELLA_3
+	additem ITEM_ROOM_SERVICE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROOM_SERVICE_5
 	additem ITEM_GIMMIGHOUL_COIN, 999
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GIMMIGHOUL_COIN_999
 	goto CarePackage_End
@@ -416,38 +418,38 @@ CarePackage_9_Items:
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MASTER_BALL_1
 	additem ITEM_PP_MAX, 10
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
-	additem ITEM_ABILITY_PATCH, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_2
-	additem ITEM_LEFTOVERS, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_2
-	additem ITEM_LIFE_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_1
-	additem ITEM_CHOICE_BAND, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_BAND_1
-	additem ITEM_CHOICE_SPECS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SPECS_1
-	additem ITEM_CHOICE_SCARF, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_1
+	additem ITEM_ABILITY_PATCH, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_3
+	additem ITEM_LEFTOVERS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_3
+	additem ITEM_LIFE_ORB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_3
+	additem ITEM_CHOICE_BAND, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_BAND_2
+	additem ITEM_CHOICE_SPECS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SPECS_2
+	additem ITEM_CHOICE_SCARF, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_2
 	additem ITEM_SITRUS_BERRY, 10
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_10
-	additem ITEM_LUM_BERRY, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_5
-	additem ITEM_LIECHI_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIECHI_BERRY_2
-	additem ITEM_GANLON_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GANLON_BERRY_2
-	additem ITEM_SALAC_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SALAC_BERRY_2
-	additem ITEM_PETAYA_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PETAYA_BERRY_2
-	additem ITEM_APICOT_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_APICOT_BERRY_2
-	additem ITEM_STARF_BERRY, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_STARF_BERRY_1
-	additem ITEM_LANSAT_BERRY, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LANSAT_BERRY_1
-	additem ITEM_CUSTAP_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CUSTAP_BERRY_2
+	additem ITEM_LUM_BERRY, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_10
+	additem ITEM_LIECHI_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIECHI_BERRY_5
+	additem ITEM_GANLON_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GANLON_BERRY_5
+	additem ITEM_SALAC_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SALAC_BERRY_5
+	additem ITEM_PETAYA_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PETAYA_BERRY_5
+	additem ITEM_APICOT_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_APICOT_BERRY_5
+	additem ITEM_STARF_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_STARF_BERRY_3
+	additem ITEM_LANSAT_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LANSAT_BERRY_3
+	additem ITEM_CUSTAP_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CUSTAP_BERRY_5
 	additem ITEM_SCROLL_OF_DARKNESS, 1
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SCROLL_OF_DARKNESS_1
 	additem ITEM_SCROLL_OF_WATERS, 1
@@ -458,26 +460,26 @@ CarePackage_10::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_10, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_ULTRA_BALL, 10
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_10
-	additem ITEM_FULL_RESTORE, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_3
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_ROCKY_HELMET, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROCKY_HELMET_1
-	additem ITEM_BLACK_SLUDGE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_SLUDGE_1
-	additem ITEM_ZOOM_LENS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ZOOM_LENS_1
-	additem ITEM_WIDE_LENS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WIDE_LENS_1
-	additem ITEM_KINGS_ROCK, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KINGS_ROCK_1
-	additem ITEM_RAZOR_FANG, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RAZOR_FANG_1
-	additem ITEM_METRONOME, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_METRONOME_1
+	additem ITEM_ULTRA_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_20
+	additem ITEM_FULL_RESTORE, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_10
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_ROCKY_HELMET, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROCKY_HELMET_3
+	additem ITEM_BLACK_SLUDGE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_SLUDGE_2
+	additem ITEM_ZOOM_LENS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ZOOM_LENS_2
+	additem ITEM_WIDE_LENS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WIDE_LENS_2
+	additem ITEM_KINGS_ROCK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KINGS_ROCK_2
+	additem ITEM_RAZOR_FANG, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RAZOR_FANG_2
+	additem ITEM_METRONOME, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_METRONOME_2
 	additem ITEM_LIGHT_BALL, 1
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIGHT_BALL_1
 	additem ITEM_THICK_CLUB, 1
@@ -502,148 +504,148 @@ CarePackage_11::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_11, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_ULTRA_BALL, 10
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_10
-	additem ITEM_MAX_REVIVE, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_3
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_MAX_ELIXIR, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_3
-	additem ITEM_FOCUS_SASH, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_2
-	additem ITEM_HEAVY_DUTY_BOOTS, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAVY_DUTY_BOOTS_2
-	additem ITEM_AIR_BALLOON, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_AIR_BALLOON_2
-	additem ITEM_TOXIC_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TOXIC_ORB_1
-	additem ITEM_FLAME_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FLAME_ORB_1
-	additem ITEM_MUSCLE_BAND, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MUSCLE_BAND_1
-	additem ITEM_WISE_GLASSES, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WISE_GLASSES_1
-	additem ITEM_SCOPE_LENS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SCOPE_LENS_1
+	additem ITEM_ULTRA_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_20
+	additem ITEM_MAX_REVIVE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_5
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_MAX_ELIXIR, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_5
+	additem ITEM_FOCUS_SASH, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_5
+	additem ITEM_HEAVY_DUTY_BOOTS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAVY_DUTY_BOOTS_3
+	additem ITEM_AIR_BALLOON, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_AIR_BALLOON_5
+	additem ITEM_TOXIC_ORB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TOXIC_ORB_3
+	additem ITEM_FLAME_ORB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FLAME_ORB_3
+	additem ITEM_MUSCLE_BAND, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MUSCLE_BAND_3
+	additem ITEM_WISE_GLASSES, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WISE_GLASSES_3
+	additem ITEM_SCOPE_LENS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SCOPE_LENS_3
 	goto CarePackage_End
 
 CarePackage_12::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_12, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_QUICK_BALL, 10
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_QUICK_BALL_10
-	additem ITEM_FULL_RESTORE, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_5
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_LEFTOVERS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_1
-	additem ITEM_ASSAULT_VEST, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_1
-	additem ITEM_EXPERT_BELT, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EXPERT_BELT_1
-	additem ITEM_LUM_BERRY, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_3
-	additem ITEM_X_ATTACK, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_ATTACK_3
-	additem ITEM_X_SP_ATK, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_ATK_3
-	additem ITEM_X_SPEED, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SPEED_3
-	additem ITEM_X_DEFENSE, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_DEFENSE_3
-	additem ITEM_X_SP_DEF, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_DEF_3
+	additem ITEM_QUICK_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_QUICK_BALL_20
+	additem ITEM_FULL_RESTORE, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_10
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_LEFTOVERS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_3
+	additem ITEM_ASSAULT_VEST, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_3
+	additem ITEM_EXPERT_BELT, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EXPERT_BELT_3
+	additem ITEM_LUM_BERRY, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_10
+	additem ITEM_X_ATTACK, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_ATTACK_5
+	additem ITEM_X_SP_ATK, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_ATK_5
+	additem ITEM_X_SPEED, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SPEED_5
+	additem ITEM_X_DEFENSE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_DEFENSE_5
+	additem ITEM_X_SP_DEF, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_DEF_5
 	goto CarePackage_End
 
 CarePackage_13::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_13, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_DUSK_BALL, 10
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DUSK_BALL_10
-	additem ITEM_MAX_ELIXIR, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_3
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_ABILITY_PATCH, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_1
-	additem ITEM_LIFE_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_1
-	additem ITEM_WEAKNESS_POLICY, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WEAKNESS_POLICY_1
-	additem ITEM_WHITE_HERB, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WHITE_HERB_2
-	additem ITEM_ADRENALINE_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ADRENALINE_ORB_1
-	additem ITEM_ABILITY_SHIELD, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_SHIELD_1
-	additem ITEM_JABOCA_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_JABOCA_BERRY_2
-	additem ITEM_ROWAP_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROWAP_BERRY_2
-	additem ITEM_KEE_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KEE_BERRY_2
-	additem ITEM_MARANGA_BERRY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MARANGA_BERRY_2
+	additem ITEM_DUSK_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DUSK_BALL_20
+	additem ITEM_MAX_ELIXIR, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_5
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_ABILITY_PATCH, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_3
+	additem ITEM_LIFE_ORB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_3
+	additem ITEM_WEAKNESS_POLICY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WEAKNESS_POLICY_5
+	additem ITEM_WHITE_HERB, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WHITE_HERB_5
+	additem ITEM_ADRENALINE_ORB, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ADRENALINE_ORB_5
+	additem ITEM_ABILITY_SHIELD, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_SHIELD_3
+	additem ITEM_JABOCA_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_JABOCA_BERRY_5
+	additem ITEM_ROWAP_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROWAP_BERRY_5
+	additem ITEM_KEE_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KEE_BERRY_5
+	additem ITEM_MARANGA_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MARANGA_BERRY_5
 	goto CarePackage_End
 
 CarePackage_14::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_14, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_ULTRA_BALL, 15
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_15
-	additem ITEM_MAX_REVIVE, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_3
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_MAX_ETHER, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ETHER_5
-	additem ITEM_ELIXIR, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ELIXIR_5
-	additem ITEM_CHOICE_BAND, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_BAND_1
-	additem ITEM_CHOICE_SPECS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SPECS_1
-	additem ITEM_CHOICE_SCARF, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_1
-	additem ITEM_POWER_HERB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POWER_HERB_1
-	additem ITEM_MENTAL_HERB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MENTAL_HERB_1
-	additem ITEM_SITRUS_BERRY, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_5
+	additem ITEM_ULTRA_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_20
+	additem ITEM_MAX_REVIVE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_5
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_MAX_ETHER, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ETHER_10
+	additem ITEM_ELIXIR, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ELIXIR_10
+	additem ITEM_CHOICE_BAND, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_BAND_2
+	additem ITEM_CHOICE_SPECS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SPECS_2
+	additem ITEM_CHOICE_SCARF, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_2
+	additem ITEM_POWER_HERB, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POWER_HERB_5
+	additem ITEM_MENTAL_HERB, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MENTAL_HERB_5
+	additem ITEM_SITRUS_BERRY, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_10
 	goto CarePackage_End
 
 CarePackage_15::
 	playfanfare MUS_OBTAIN_ITEM
 	msgbox CarePackage_Text_15, MSGBOX_DEFAULT
 	waitfanfare
-	additem ITEM_LUXURY_BALL, 10
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUXURY_BALL_10
-	additem ITEM_FULL_RESTORE, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_5
-	additem ITEM_MAX_ELIXIR, 3
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_3
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_BOOSTER_ENERGY, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BOOSTER_ENERGY_2
-	additem ITEM_ROCKY_HELMET, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROCKY_HELMET_1
-	additem ITEM_COVERT_CLOAK, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COVERT_CLOAK_1
-	additem ITEM_CLEAR_AMULET, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CLEAR_AMULET_1
-	additem ITEM_LOADED_DICE, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LOADED_DICE_1
-	additem ITEM_EJECT_BUTTON, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EJECT_BUTTON_1
-	additem ITEM_RED_CARD, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RED_CARD_1
+	additem ITEM_LUXURY_BALL, 20
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUXURY_BALL_20
+	additem ITEM_FULL_RESTORE, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_10
+	additem ITEM_MAX_ELIXIR, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_5
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_BOOSTER_ENERGY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BOOSTER_ENERGY_5
+	additem ITEM_ROCKY_HELMET, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROCKY_HELMET_3
+	additem ITEM_COVERT_CLOAK, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COVERT_CLOAK_3
+	additem ITEM_CLEAR_AMULET, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CLEAR_AMULET_3
+	additem ITEM_LOADED_DICE, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LOADED_DICE_3
+	additem ITEM_EJECT_BUTTON, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EJECT_BUTTON_5
+	additem ITEM_RED_CARD, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RED_CARD_5
 	goto CarePackage_End
 
 CarePackage_16::
@@ -654,32 +656,32 @@ CarePackage_16::
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MASTER_BALL_1
 	additem ITEM_MAX_REVIVE, 5
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_5
-	additem ITEM_FULL_RESTORE, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_5
-	additem ITEM_PP_MAX, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
-	additem ITEM_LIGHT_CLAY, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIGHT_CLAY_1
-	additem ITEM_AIR_BALLOON, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_AIR_BALLOON_2
-	additem ITEM_FOCUS_BAND, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_BAND_1
-	additem ITEM_IRON_BALL, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_IRON_BALL_1
-	additem ITEM_LAGGING_TAIL, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LAGGING_TAIL_1
-	additem ITEM_STICKY_BARB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_STICKY_BARB_1
-	additem ITEM_RING_TARGET, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RING_TARGET_1
-	additem ITEM_ABSORB_BULB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABSORB_BULB_1
-	additem ITEM_CELL_BATTERY, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CELL_BATTERY_1
-	additem ITEM_SNOWBALL, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SNOWBALL_1
-	additem ITEM_LUMINOUS_MOSS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUMINOUS_MOSS_1
+	additem ITEM_FULL_RESTORE, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_10
+	additem ITEM_PP_MAX, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
+	additem ITEM_LIGHT_CLAY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIGHT_CLAY_3
+	additem ITEM_AIR_BALLOON, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_AIR_BALLOON_5
+	additem ITEM_FOCUS_BAND, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_BAND_2
+	additem ITEM_IRON_BALL, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_IRON_BALL_2
+	additem ITEM_LAGGING_TAIL, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LAGGING_TAIL_2
+	additem ITEM_STICKY_BARB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_STICKY_BARB_2
+	additem ITEM_RING_TARGET, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RING_TARGET_2
+	additem ITEM_ABSORB_BULB, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABSORB_BULB_5
+	additem ITEM_CELL_BATTERY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CELL_BATTERY_5
+	additem ITEM_SNOWBALL, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SNOWBALL_5
+	additem ITEM_LUMINOUS_MOSS, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUMINOUS_MOSS_5
 	goto CarePackage_End
 
 CarePackage_17::
@@ -690,26 +692,26 @@ CarePackage_17::
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MASTER_BALL_1
 	additem ITEM_PP_MAX, 10
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_10
-	additem ITEM_ABILITY_PATCH, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_2
-	additem ITEM_FULL_RESTORE, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_5
+	additem ITEM_ABILITY_PATCH, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_3
+	additem ITEM_FULL_RESTORE, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_10
 	additem ITEM_MAX_ELIXIR, 5
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_5
-	additem ITEM_LEFTOVERS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_1
-	additem ITEM_LIFE_ORB, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_1
-	additem ITEM_FOCUS_SASH, 2
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_2
-	additem ITEM_ASSAULT_VEST, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_1
-	additem ITEM_HEAVY_DUTY_BOOTS, 1
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAVY_DUTY_BOOTS_1
+	additem ITEM_LEFTOVERS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_3
+	additem ITEM_LIFE_ORB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_3
+	additem ITEM_FOCUS_SASH, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_5
+	additem ITEM_ASSAULT_VEST, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_3
+	additem ITEM_HEAVY_DUTY_BOOTS, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAVY_DUTY_BOOTS_3
 	additem ITEM_SITRUS_BERRY, 10
 	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_10
-	additem ITEM_LUM_BERRY, 5
-	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_5
+	additem ITEM_LUM_BERRY, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_10
 	goto CarePackage_End
 
 CarePackage_End:
@@ -718,6 +720,7 @@ CarePackage_End:
 CarePackage_Done::
 	addvar VAR_CARE_PACKAGES, 1
 	copyvar VAR_CARE_PACKAGE_GEAR, VAR_CARE_PACKAGES
+	copyvar VAR_CARE_PACKAGE_BULK, VAR_CARE_PACKAGES
 	releaseall
 	end
 
@@ -1298,6 +1301,619 @@ CarePackageGear_Done::
 	releaseall
 	end
 
+EventScript_CarePackageBulk::
+	lockall
+	playse SE_EXP_MAX
+	msgbox CarePackage_Text_BulkArrived, MSGBOX_DEFAULT
+	setvar VAR_0x8005, 0
+	switch VAR_CARE_PACKAGE_BULK
+	case 0, CarePackageBulk_1
+	case 1, CarePackageBulk_2
+	case 2, CarePackageBulk_3
+	case 3, CarePackageBulk_4
+	case 4, CarePackageBulk_5
+	case 5, CarePackageBulk_6
+	case 6, CarePackageBulk_7
+	case 7, CarePackageBulk_8
+	case 8, CarePackageBulk_9
+	case 9, CarePackageBulk_10
+	case 10, CarePackageBulk_11
+	case 11, CarePackageBulk_12
+	case 12, CarePackageBulk_13
+	case 13, CarePackageBulk_14
+	case 14, CarePackageBulk_15
+	case 15, CarePackageBulk_16
+	case 16, CarePackageBulk_17
+	goto CarePackageBulk_Done
+
+CarePackageBulk_1::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_1, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_POKE_BALL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POKE_BALL_10
+	additem ITEM_GREAT_BALL, 15
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GREAT_BALL_15
+	additem ITEM_SUPER_POTION, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SUPER_POTION_5
+	additem ITEM_PP_MAX, 7
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_7
+	additem ITEM_LEFTOVERS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_2
+	additem ITEM_FOCUS_SASH, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_3
+	additem ITEM_EVIOLITE, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EVIOLITE_3
+	additem ITEM_SITRUS_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_5
+	additem ITEM_LUM_BERRY, 7
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_7
+	additem ITEM_CHARCOAL, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHARCOAL_9
+	additem ITEM_MYSTIC_WATER, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MYSTIC_WATER_9
+	additem ITEM_MIRACLE_SEED, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MIRACLE_SEED_9
+	goto CarePackageBulk_End
+
+CarePackageBulk_2::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_2, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_GREAT_BALL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GREAT_BALL_10
+	additem ITEM_REVIVE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_REVIVE_2
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_LIFE_ORB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_2
+	additem ITEM_EXPERT_BELT, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EXPERT_BELT_2
+	additem ITEM_MUSCLE_BAND, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MUSCLE_BAND_2
+	additem ITEM_WISE_GLASSES, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WISE_GLASSES_2
+	additem ITEM_SCOPE_LENS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SCOPE_LENS_2
+	additem ITEM_MAGNET, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAGNET_9
+	additem ITEM_SHARP_BEAK, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHARP_BEAK_9
+	additem ITEM_SILK_SCARF, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SILK_SCARF_9
+	additem ITEM_OCCA_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_OCCA_BERRY_3
+	additem ITEM_PASSHO_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PASSHO_BERRY_3
+	additem ITEM_WACAN_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WACAN_BERRY_3
+	additem ITEM_RINDO_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RINDO_BERRY_3
+	additem ITEM_YACHE_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_YACHE_BERRY_3
+	additem ITEM_CHOPLE_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOPLE_BERRY_3
+	goto CarePackageBulk_End
+
+CarePackageBulk_3::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_3, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_ULTRA_BALL, 15
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_15
+	additem ITEM_HYPER_POTION, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HYPER_POTION_5
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_CHOICE_BAND, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_BAND_1
+	additem ITEM_CHOICE_SPECS, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SPECS_1
+	additem ITEM_CHOICE_SCARF, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_1
+	additem ITEM_ROCKY_HELMET, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROCKY_HELMET_2
+	additem ITEM_BLACK_SLUDGE, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_SLUDGE_1
+	additem ITEM_HARD_STONE, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HARD_STONE_9
+	additem ITEM_SOFT_SAND, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SOFT_SAND_9
+	additem ITEM_SPELL_TAG, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SPELL_TAG_9
+	additem ITEM_KEBIA_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KEBIA_BERRY_3
+	additem ITEM_SHUCA_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHUCA_BERRY_3
+	additem ITEM_COBA_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COBA_BERRY_3
+	additem ITEM_PAYAPA_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PAYAPA_BERRY_3
+	additem ITEM_TANGA_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TANGA_BERRY_3
+	additem ITEM_CHARTI_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHARTI_BERRY_3
+	goto CarePackageBulk_End
+
+CarePackageBulk_4::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_4, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_ULTRA_BALL, 15
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_15
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_ASSAULT_VEST, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_1
+	additem ITEM_LEFTOVERS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_2
+	additem ITEM_TOXIC_ORB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TOXIC_ORB_2
+	additem ITEM_FLAME_ORB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FLAME_ORB_2
+	additem ITEM_NEVER_MELT_ICE, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_NEVER_MELT_ICE_9
+	additem ITEM_BLACK_BELT, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_BELT_9
+	additem ITEM_TWISTED_SPOON, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TWISTED_SPOON_9
+	additem ITEM_KASIB_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KASIB_BERRY_3
+	additem ITEM_HABAN_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HABAN_BERRY_3
+	additem ITEM_COLBUR_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COLBUR_BERRY_3
+	additem ITEM_BABIRI_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BABIRI_BERRY_3
+	additem ITEM_CHILAN_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHILAN_BERRY_3
+	additem ITEM_ROSELI_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROSELI_BERRY_3
+	goto CarePackageBulk_End
+
+CarePackageBulk_5::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_5, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_FULL_HEAL, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_HEAL_5
+	additem ITEM_MAX_REVIVE, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_4
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_HEAVY_DUTY_BOOTS, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAVY_DUTY_BOOTS_1
+	additem ITEM_LIGHT_CLAY, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIGHT_CLAY_2
+	additem ITEM_AIR_BALLOON, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_AIR_BALLOON_3
+	additem ITEM_WHITE_HERB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WHITE_HERB_3
+	additem ITEM_POWER_HERB, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POWER_HERB_4
+	additem ITEM_MENTAL_HERB, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MENTAL_HERB_4
+	additem ITEM_EVIOLITE, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EVIOLITE_4
+	additem ITEM_POISON_BARB, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POISON_BARB_9
+	additem ITEM_SILVER_POWDER, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SILVER_POWDER_9
+	additem ITEM_DRAGON_FANG, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DRAGON_FANG_9
+	additem ITEM_SITRUS_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_5
+	additem ITEM_LUM_BERRY, 7
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_7
+	goto CarePackageBulk_End
+
+CarePackageBulk_6::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_6, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_ULTRA_BALL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_10
+	additem ITEM_PP_UP, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_UP_2
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_MAX_ELIXIR, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_2
+	additem ITEM_WEAKNESS_POLICY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WEAKNESS_POLICY_3
+	additem ITEM_LIFE_ORB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_2
+	additem ITEM_CHOICE_SCARF, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_1
+	additem ITEM_RAZOR_CLAW, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RAZOR_CLAW_1
+	additem ITEM_QUICK_CLAW, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_QUICK_CLAW_2
+	additem ITEM_SHELL_BELL, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHELL_BELL_2
+	additem ITEM_BIG_ROOT, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BIG_ROOT_2
+	additem ITEM_BLACK_GLASSES, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_GLASSES_9
+	additem ITEM_METAL_COAT, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_METAL_COAT_9
+	additem ITEM_FAIRY_FEATHER, 9
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FAIRY_FEATHER_9
+	additem ITEM_X_ATTACK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_ATTACK_2
+	additem ITEM_X_SP_ATK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_ATK_2
+	additem ITEM_X_SPEED, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SPEED_2
+	additem ITEM_X_DEFENSE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_DEFENSE_2
+	additem ITEM_X_SP_DEF, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_DEF_2
+	goto CarePackageBulk_End
+
+CarePackageBulk_7::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_7, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_MAX_POTION, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_POTION_5
+	additem ITEM_MAX_REVIVE, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_3
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_RED_CARD, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RED_CARD_4
+	additem ITEM_EJECT_BUTTON, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EJECT_BUTTON_4
+	additem ITEM_EJECT_PACK, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EJECT_PACK_4
+	additem ITEM_SAFETY_GOGGLES, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SAFETY_GOGGLES_2
+	additem ITEM_COVERT_CLOAK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COVERT_CLOAK_2
+	additem ITEM_CLEAR_AMULET, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CLEAR_AMULET_2
+	additem ITEM_PROTECTIVE_PADS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PROTECTIVE_PADS_2
+	additem ITEM_SHED_SHELL, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SHED_SHELL_2
+	additem ITEM_BINDING_BAND, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BINDING_BAND_1
+	additem ITEM_GRIP_CLAW, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GRIP_CLAW_1
+	additem ITEM_DAMP_ROCK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DAMP_ROCK_2
+	additem ITEM_HEAT_ROCK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAT_ROCK_2
+	additem ITEM_SMOOTH_ROCK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SMOOTH_ROCK_2
+	additem ITEM_ICY_ROCK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ICY_ROCK_2
+	additem ITEM_X_ACCURACY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_ACCURACY_3
+	additem ITEM_DIRE_HIT, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DIRE_HIT_3
+	additem ITEM_GUARD_SPEC, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GUARD_SPEC_3
+	goto CarePackageBulk_End
+
+CarePackageBulk_8::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_8, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_FULL_RESTORE, 7
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_7
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_ABILITY_PATCH, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_2
+	additem ITEM_FOCUS_SASH, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_3
+	additem ITEM_LEFTOVERS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_2
+	additem ITEM_ASSAULT_VEST, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_2
+	additem ITEM_BOOSTER_ENERGY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BOOSTER_ENERGY_3
+	additem ITEM_LOADED_DICE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LOADED_DICE_2
+	additem ITEM_PUNCHING_GLOVE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PUNCHING_GLOVE_2
+	additem ITEM_MIRROR_HERB, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MIRROR_HERB_4
+	additem ITEM_THROAT_SPRAY, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_THROAT_SPRAY_4
+	additem ITEM_BLUNDER_POLICY, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLUNDER_POLICY_4
+	additem ITEM_ELECTRIC_SEED, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ELECTRIC_SEED_4
+	additem ITEM_GRASSY_SEED, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GRASSY_SEED_4
+	additem ITEM_MISTY_SEED, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MISTY_SEED_4
+	additem ITEM_PSYCHIC_SEED, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PSYCHIC_SEED_4
+	additem ITEM_TERRAIN_EXTENDER, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TERRAIN_EXTENDER_2
+	additem ITEM_UTILITY_UMBRELLA, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_UTILITY_UMBRELLA_2
+	additem ITEM_ROOM_SERVICE, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROOM_SERVICE_4
+	goto CarePackageBulk_End
+
+CarePackageBulk_9::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_9, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_ABILITY_PATCH, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_1
+	additem ITEM_LEFTOVERS, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_1
+	additem ITEM_LIFE_ORB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_2
+	additem ITEM_CHOICE_BAND, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_BAND_1
+	additem ITEM_CHOICE_SPECS, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SPECS_1
+	additem ITEM_CHOICE_SCARF, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_1
+	additem ITEM_LUM_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_5
+	additem ITEM_LIECHI_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIECHI_BERRY_3
+	additem ITEM_GANLON_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_GANLON_BERRY_3
+	additem ITEM_SALAC_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SALAC_BERRY_3
+	additem ITEM_PETAYA_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PETAYA_BERRY_3
+	additem ITEM_APICOT_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_APICOT_BERRY_3
+	additem ITEM_STARF_BERRY, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_STARF_BERRY_2
+	additem ITEM_LANSAT_BERRY, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LANSAT_BERRY_2
+	additem ITEM_CUSTAP_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CUSTAP_BERRY_3
+	goto CarePackageBulk_End
+
+CarePackageBulk_10::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_10, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_ULTRA_BALL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_10
+	additem ITEM_FULL_RESTORE, 7
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_7
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_ROCKY_HELMET, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROCKY_HELMET_2
+	additem ITEM_BLACK_SLUDGE, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BLACK_SLUDGE_1
+	additem ITEM_ZOOM_LENS, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ZOOM_LENS_1
+	additem ITEM_WIDE_LENS, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WIDE_LENS_1
+	additem ITEM_KINGS_ROCK, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KINGS_ROCK_1
+	additem ITEM_RAZOR_FANG, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RAZOR_FANG_1
+	additem ITEM_METRONOME, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_METRONOME_1
+	goto CarePackageBulk_End
+
+CarePackageBulk_11::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_11, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_ULTRA_BALL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_10
+	additem ITEM_MAX_REVIVE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_2
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_MAX_ELIXIR, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_2
+	additem ITEM_FOCUS_SASH, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_3
+	additem ITEM_HEAVY_DUTY_BOOTS, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAVY_DUTY_BOOTS_1
+	additem ITEM_AIR_BALLOON, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_AIR_BALLOON_3
+	additem ITEM_TOXIC_ORB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_TOXIC_ORB_2
+	additem ITEM_FLAME_ORB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FLAME_ORB_2
+	additem ITEM_MUSCLE_BAND, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MUSCLE_BAND_2
+	additem ITEM_WISE_GLASSES, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WISE_GLASSES_2
+	additem ITEM_SCOPE_LENS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SCOPE_LENS_2
+	goto CarePackageBulk_End
+
+CarePackageBulk_12::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_12, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_QUICK_BALL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_QUICK_BALL_10
+	additem ITEM_FULL_RESTORE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_5
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_LEFTOVERS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_2
+	additem ITEM_ASSAULT_VEST, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_2
+	additem ITEM_EXPERT_BELT, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EXPERT_BELT_2
+	additem ITEM_LUM_BERRY, 7
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_7
+	additem ITEM_X_ATTACK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_ATTACK_2
+	additem ITEM_X_SP_ATK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_ATK_2
+	additem ITEM_X_SPEED, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SPEED_2
+	additem ITEM_X_DEFENSE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_DEFENSE_2
+	additem ITEM_X_SP_DEF, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_X_SP_DEF_2
+	goto CarePackageBulk_End
+
+CarePackageBulk_13::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_13, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_DUSK_BALL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_DUSK_BALL_10
+	additem ITEM_MAX_ELIXIR, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_2
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_ABILITY_PATCH, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_2
+	additem ITEM_LIFE_ORB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_2
+	additem ITEM_WEAKNESS_POLICY, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WEAKNESS_POLICY_4
+	additem ITEM_WHITE_HERB, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_WHITE_HERB_3
+	additem ITEM_ADRENALINE_ORB, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ADRENALINE_ORB_4
+	additem ITEM_ABILITY_SHIELD, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_SHIELD_2
+	additem ITEM_JABOCA_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_JABOCA_BERRY_3
+	additem ITEM_ROWAP_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROWAP_BERRY_3
+	additem ITEM_KEE_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_KEE_BERRY_3
+	additem ITEM_MARANGA_BERRY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MARANGA_BERRY_3
+	goto CarePackageBulk_End
+
+CarePackageBulk_14::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_14, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_ULTRA_BALL, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ULTRA_BALL_5
+	additem ITEM_MAX_REVIVE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_REVIVE_2
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_MAX_ETHER, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ETHER_5
+	additem ITEM_ELIXIR, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ELIXIR_5
+	additem ITEM_CHOICE_BAND, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_BAND_1
+	additem ITEM_CHOICE_SPECS, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SPECS_1
+	additem ITEM_CHOICE_SCARF, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CHOICE_SCARF_1
+	additem ITEM_POWER_HERB, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_POWER_HERB_4
+	additem ITEM_MENTAL_HERB, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MENTAL_HERB_4
+	additem ITEM_SITRUS_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SITRUS_BERRY_5
+	goto CarePackageBulk_End
+
+CarePackageBulk_15::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_15, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_LUXURY_BALL, 10
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUXURY_BALL_10
+	additem ITEM_FULL_RESTORE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_5
+	additem ITEM_MAX_ELIXIR, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_MAX_ELIXIR_2
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_BOOSTER_ENERGY, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_BOOSTER_ENERGY_3
+	additem ITEM_ROCKY_HELMET, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ROCKY_HELMET_2
+	additem ITEM_COVERT_CLOAK, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_COVERT_CLOAK_2
+	additem ITEM_CLEAR_AMULET, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CLEAR_AMULET_2
+	additem ITEM_LOADED_DICE, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LOADED_DICE_2
+	additem ITEM_EJECT_BUTTON, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_EJECT_BUTTON_4
+	additem ITEM_RED_CARD, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RED_CARD_4
+	goto CarePackageBulk_End
+
+CarePackageBulk_16::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_16, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_FULL_RESTORE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_5
+	additem ITEM_PP_MAX, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_PP_MAX_5
+	additem ITEM_LIGHT_CLAY, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIGHT_CLAY_2
+	additem ITEM_AIR_BALLOON, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_AIR_BALLOON_3
+	additem ITEM_FOCUS_BAND, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_BAND_1
+	additem ITEM_IRON_BALL, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_IRON_BALL_1
+	additem ITEM_LAGGING_TAIL, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LAGGING_TAIL_1
+	additem ITEM_STICKY_BARB, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_STICKY_BARB_1
+	additem ITEM_RING_TARGET, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_RING_TARGET_1
+	additem ITEM_ABSORB_BULB, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABSORB_BULB_4
+	additem ITEM_CELL_BATTERY, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_CELL_BATTERY_4
+	additem ITEM_SNOWBALL, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_SNOWBALL_4
+	additem ITEM_LUMINOUS_MOSS, 4
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUMINOUS_MOSS_4
+	goto CarePackageBulk_End
+
+CarePackageBulk_17::
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackageBulk_Text_17, MSGBOX_DEFAULT
+	waitfanfare
+	additem ITEM_ABILITY_PATCH, 1
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ABILITY_PATCH_1
+	additem ITEM_FULL_RESTORE, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FULL_RESTORE_5
+	additem ITEM_LEFTOVERS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LEFTOVERS_2
+	additem ITEM_LIFE_ORB, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LIFE_ORB_2
+	additem ITEM_FOCUS_SASH, 3
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_FOCUS_SASH_3
+	additem ITEM_ASSAULT_VEST, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_ASSAULT_VEST_2
+	additem ITEM_HEAVY_DUTY_BOOTS, 2
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_HEAVY_DUTY_BOOTS_2
+	additem ITEM_LUM_BERRY, 5
+	call_if_eq VAR_RESULT, FALSE, CarePackage_ToPC_LUM_BERRY_5
+	goto CarePackageBulk_End
+
+CarePackageBulk_End:
+	goto_if_eq VAR_0x8005, 0, CarePackageBulk_Done
+	msgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT
+CarePackageBulk_Done::
+	addvar VAR_CARE_PACKAGE_BULK, 1
+	releaseall
+	end
+
 CarePackage_ToPC_ABILITY_PATCH_1:
 	addpcitem ITEM_ABILITY_PATCH, 1
 	addvar VAR_0x8005, 1
@@ -1308,8 +1924,23 @@ CarePackage_ToPC_ABILITY_PATCH_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_ABILITY_PATCH_3:
+	addpcitem ITEM_ABILITY_PATCH, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_ABILITY_SHIELD_1:
 	addpcitem ITEM_ABILITY_SHIELD, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ABILITY_SHIELD_2:
+	addpcitem ITEM_ABILITY_SHIELD, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ABILITY_SHIELD_3:
+	addpcitem ITEM_ABILITY_SHIELD, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1318,8 +1949,28 @@ CarePackage_ToPC_ABSORB_BULB_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_ABSORB_BULB_4:
+	addpcitem ITEM_ABSORB_BULB, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ABSORB_BULB_5:
+	addpcitem ITEM_ABSORB_BULB, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_ADRENALINE_ORB_1:
 	addpcitem ITEM_ADRENALINE_ORB, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ADRENALINE_ORB_4:
+	addpcitem ITEM_ADRENALINE_ORB, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ADRENALINE_ORB_5:
+	addpcitem ITEM_ADRENALINE_ORB, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1328,8 +1979,28 @@ CarePackage_ToPC_AIR_BALLOON_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_AIR_BALLOON_3:
+	addpcitem ITEM_AIR_BALLOON, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_AIR_BALLOON_5:
+	addpcitem ITEM_AIR_BALLOON, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_APICOT_BERRY_2:
 	addpcitem ITEM_APICOT_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_APICOT_BERRY_3:
+	addpcitem ITEM_APICOT_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_APICOT_BERRY_5:
+	addpcitem ITEM_APICOT_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1343,6 +2014,11 @@ CarePackage_ToPC_ASSAULT_VEST_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_ASSAULT_VEST_3:
+	addpcitem ITEM_ASSAULT_VEST, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_AUSPICIOUS_ARMOR_1:
 	addpcitem ITEM_AUSPICIOUS_ARMOR, 1
 	addvar VAR_0x8005, 1
@@ -1350,6 +2026,16 @@ CarePackage_ToPC_AUSPICIOUS_ARMOR_1:
 
 CarePackage_ToPC_BABIRI_BERRY_2:
 	addpcitem ITEM_BABIRI_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BABIRI_BERRY_3:
+	addpcitem ITEM_BABIRI_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BABIRI_BERRY_5:
+	addpcitem ITEM_BABIRI_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1363,8 +2049,23 @@ CarePackage_ToPC_BIG_ROOT_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_BIG_ROOT_2:
+	addpcitem ITEM_BIG_ROOT, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BIG_ROOT_3:
+	addpcitem ITEM_BIG_ROOT, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_BINDING_BAND_1:
 	addpcitem ITEM_BINDING_BAND, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BINDING_BAND_2:
+	addpcitem ITEM_BINDING_BAND, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -1373,8 +2074,28 @@ CarePackage_ToPC_BLACK_BELT_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_BLACK_BELT_9:
+	addpcitem ITEM_BLACK_BELT, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BLACK_BELT_10:
+	addpcitem ITEM_BLACK_BELT, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_BLACK_GLASSES_1:
 	addpcitem ITEM_BLACK_GLASSES, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BLACK_GLASSES_9:
+	addpcitem ITEM_BLACK_GLASSES, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BLACK_GLASSES_10:
+	addpcitem ITEM_BLACK_GLASSES, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1383,8 +2104,23 @@ CarePackage_ToPC_BLACK_SLUDGE_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_BLACK_SLUDGE_2:
+	addpcitem ITEM_BLACK_SLUDGE, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_BLUNDER_POLICY_1:
 	addpcitem ITEM_BLUNDER_POLICY, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BLUNDER_POLICY_4:
+	addpcitem ITEM_BLUNDER_POLICY, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BLUNDER_POLICY_5:
+	addpcitem ITEM_BLUNDER_POLICY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1393,8 +2129,28 @@ CarePackage_ToPC_BOOSTER_ENERGY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_BOOSTER_ENERGY_3:
+	addpcitem ITEM_BOOSTER_ENERGY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_BOOSTER_ENERGY_5:
+	addpcitem ITEM_BOOSTER_ENERGY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_CELL_BATTERY_1:
 	addpcitem ITEM_CELL_BATTERY, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CELL_BATTERY_4:
+	addpcitem ITEM_CELL_BATTERY, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CELL_BATTERY_5:
+	addpcitem ITEM_CELL_BATTERY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1403,13 +2159,43 @@ CarePackage_ToPC_CHARCOAL_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_CHARCOAL_9:
+	addpcitem ITEM_CHARCOAL, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CHARCOAL_10:
+	addpcitem ITEM_CHARCOAL, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_CHARTI_BERRY_2:
 	addpcitem ITEM_CHARTI_BERRY, 2
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_CHARTI_BERRY_3:
+	addpcitem ITEM_CHARTI_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CHARTI_BERRY_5:
+	addpcitem ITEM_CHARTI_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_CHILAN_BERRY_2:
 	addpcitem ITEM_CHILAN_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CHILAN_BERRY_3:
+	addpcitem ITEM_CHILAN_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CHILAN_BERRY_5:
+	addpcitem ITEM_CHILAN_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1423,8 +2209,18 @@ CarePackage_ToPC_CHOICE_BAND_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_CHOICE_BAND_2:
+	addpcitem ITEM_CHOICE_BAND, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_CHOICE_SCARF_1:
 	addpcitem ITEM_CHOICE_SCARF, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CHOICE_SCARF_2:
+	addpcitem ITEM_CHOICE_SCARF, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -1433,13 +2229,38 @@ CarePackage_ToPC_CHOICE_SPECS_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_CHOICE_SPECS_2:
+	addpcitem ITEM_CHOICE_SPECS, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_CHOPLE_BERRY_2:
 	addpcitem ITEM_CHOPLE_BERRY, 2
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_CHOPLE_BERRY_3:
+	addpcitem ITEM_CHOPLE_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CHOPLE_BERRY_5:
+	addpcitem ITEM_CHOPLE_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_CLEAR_AMULET_1:
 	addpcitem ITEM_CLEAR_AMULET, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CLEAR_AMULET_2:
+	addpcitem ITEM_CLEAR_AMULET, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CLEAR_AMULET_3:
+	addpcitem ITEM_CLEAR_AMULET, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1453,13 +2274,43 @@ CarePackage_ToPC_COBA_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_COBA_BERRY_3:
+	addpcitem ITEM_COBA_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_COBA_BERRY_5:
+	addpcitem ITEM_COBA_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_COLBUR_BERRY_2:
 	addpcitem ITEM_COLBUR_BERRY, 2
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_COLBUR_BERRY_3:
+	addpcitem ITEM_COLBUR_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_COLBUR_BERRY_5:
+	addpcitem ITEM_COLBUR_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_COVERT_CLOAK_1:
 	addpcitem ITEM_COVERT_CLOAK, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_COVERT_CLOAK_2:
+	addpcitem ITEM_COVERT_CLOAK, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_COVERT_CLOAK_3:
+	addpcitem ITEM_COVERT_CLOAK, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1473,8 +2324,28 @@ CarePackage_ToPC_CUSTAP_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_CUSTAP_BERRY_3:
+	addpcitem ITEM_CUSTAP_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_CUSTAP_BERRY_5:
+	addpcitem ITEM_CUSTAP_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_DAMP_ROCK_1:
 	addpcitem ITEM_DAMP_ROCK, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_DAMP_ROCK_2:
+	addpcitem ITEM_DAMP_ROCK, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_DAMP_ROCK_3:
+	addpcitem ITEM_DAMP_ROCK, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1493,8 +2364,28 @@ CarePackage_ToPC_DIRE_HIT_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_DIRE_HIT_3:
+	addpcitem ITEM_DIRE_HIT, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_DIRE_HIT_5:
+	addpcitem ITEM_DIRE_HIT, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_DRAGON_FANG_1:
 	addpcitem ITEM_DRAGON_FANG, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_DRAGON_FANG_9:
+	addpcitem ITEM_DRAGON_FANG, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_DRAGON_FANG_10:
+	addpcitem ITEM_DRAGON_FANG, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1503,8 +2394,23 @@ CarePackage_ToPC_DUSK_BALL_10:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_DUSK_BALL_20:
+	addpcitem ITEM_DUSK_BALL, 20
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_EJECT_BUTTON_1:
 	addpcitem ITEM_EJECT_BUTTON, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_EJECT_BUTTON_4:
+	addpcitem ITEM_EJECT_BUTTON, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_EJECT_BUTTON_5:
+	addpcitem ITEM_EJECT_BUTTON, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1513,13 +2419,38 @@ CarePackage_ToPC_EJECT_PACK_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_EJECT_PACK_4:
+	addpcitem ITEM_EJECT_PACK, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_EJECT_PACK_5:
+	addpcitem ITEM_EJECT_PACK, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_ELECTRIC_SEED_1:
 	addpcitem ITEM_ELECTRIC_SEED, 1
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_ELECTRIC_SEED_4:
+	addpcitem ITEM_ELECTRIC_SEED, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ELECTRIC_SEED_5:
+	addpcitem ITEM_ELECTRIC_SEED, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_ELIXIR_5:
 	addpcitem ITEM_ELIXIR, 5
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ELIXIR_10:
+	addpcitem ITEM_ELIXIR, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1533,8 +2464,33 @@ CarePackage_ToPC_EVIOLITE_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_EVIOLITE_3:
+	addpcitem ITEM_EVIOLITE, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_EVIOLITE_4:
+	addpcitem ITEM_EVIOLITE, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_EVIOLITE_5:
+	addpcitem ITEM_EVIOLITE, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_EXPERT_BELT_1:
 	addpcitem ITEM_EXPERT_BELT, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_EXPERT_BELT_2:
+	addpcitem ITEM_EXPERT_BELT, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_EXPERT_BELT_3:
+	addpcitem ITEM_EXPERT_BELT, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1543,8 +2499,28 @@ CarePackage_ToPC_FAIRY_FEATHER_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_FAIRY_FEATHER_9:
+	addpcitem ITEM_FAIRY_FEATHER, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_FAIRY_FEATHER_10:
+	addpcitem ITEM_FAIRY_FEATHER, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_FLAME_ORB_1:
 	addpcitem ITEM_FLAME_ORB, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_FLAME_ORB_2:
+	addpcitem ITEM_FLAME_ORB, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_FLAME_ORB_3:
+	addpcitem ITEM_FLAME_ORB, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1558,8 +2534,23 @@ CarePackage_ToPC_FOCUS_BAND_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_FOCUS_BAND_2:
+	addpcitem ITEM_FOCUS_BAND, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_FOCUS_SASH_2:
 	addpcitem ITEM_FOCUS_SASH, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_FOCUS_SASH_3:
+	addpcitem ITEM_FOCUS_SASH, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_FOCUS_SASH_5:
+	addpcitem ITEM_FOCUS_SASH, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1568,8 +2559,8 @@ CarePackage_ToPC_FULL_HEAL_5:
 	addvar VAR_0x8005, 1
 	return
 
-CarePackage_ToPC_FULL_RESTORE_3:
-	addpcitem ITEM_FULL_RESTORE, 3
+CarePackage_ToPC_FULL_HEAL_10:
+	addpcitem ITEM_FULL_HEAL, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1578,8 +2569,28 @@ CarePackage_ToPC_FULL_RESTORE_5:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_FULL_RESTORE_7:
+	addpcitem ITEM_FULL_RESTORE, 7
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_FULL_RESTORE_10:
+	addpcitem ITEM_FULL_RESTORE, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_GANLON_BERRY_2:
 	addpcitem ITEM_GANLON_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_GANLON_BERRY_3:
+	addpcitem ITEM_GANLON_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_GANLON_BERRY_5:
+	addpcitem ITEM_GANLON_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1593,8 +2604,13 @@ CarePackage_ToPC_GRASSY_SEED_1:
 	addvar VAR_0x8005, 1
 	return
 
-CarePackage_ToPC_GREAT_BALL_5:
-	addpcitem ITEM_GREAT_BALL, 5
+CarePackage_ToPC_GRASSY_SEED_4:
+	addpcitem ITEM_GRASSY_SEED, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_GRASSY_SEED_5:
+	addpcitem ITEM_GRASSY_SEED, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1603,8 +2619,23 @@ CarePackage_ToPC_GREAT_BALL_10:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_GREAT_BALL_15:
+	addpcitem ITEM_GREAT_BALL, 15
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_GREAT_BALL_20:
+	addpcitem ITEM_GREAT_BALL, 20
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_GRIP_CLAW_1:
 	addpcitem ITEM_GRIP_CLAW, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_GRIP_CLAW_2:
+	addpcitem ITEM_GRIP_CLAW, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -1613,8 +2644,28 @@ CarePackage_ToPC_GUARD_SPEC_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_GUARD_SPEC_3:
+	addpcitem ITEM_GUARD_SPEC, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_GUARD_SPEC_5:
+	addpcitem ITEM_GUARD_SPEC, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_HABAN_BERRY_2:
 	addpcitem ITEM_HABAN_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_HABAN_BERRY_3:
+	addpcitem ITEM_HABAN_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_HABAN_BERRY_5:
+	addpcitem ITEM_HABAN_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1623,8 +2674,28 @@ CarePackage_ToPC_HARD_STONE_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_HARD_STONE_9:
+	addpcitem ITEM_HARD_STONE, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_HARD_STONE_10:
+	addpcitem ITEM_HARD_STONE, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_HEAT_ROCK_1:
 	addpcitem ITEM_HEAT_ROCK, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_HEAT_ROCK_2:
+	addpcitem ITEM_HEAT_ROCK, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_HEAT_ROCK_3:
+	addpcitem ITEM_HEAT_ROCK, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1638,8 +2709,18 @@ CarePackage_ToPC_HEAVY_DUTY_BOOTS_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_HEAVY_DUTY_BOOTS_3:
+	addpcitem ITEM_HEAVY_DUTY_BOOTS, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_HYPER_POTION_5:
 	addpcitem ITEM_HYPER_POTION, 5
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_HYPER_POTION_10:
+	addpcitem ITEM_HYPER_POTION, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1648,8 +2729,23 @@ CarePackage_ToPC_ICY_ROCK_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_ICY_ROCK_2:
+	addpcitem ITEM_ICY_ROCK, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ICY_ROCK_3:
+	addpcitem ITEM_ICY_ROCK, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_IRON_BALL_1:
 	addpcitem ITEM_IRON_BALL, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_IRON_BALL_2:
+	addpcitem ITEM_IRON_BALL, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -1658,8 +2754,28 @@ CarePackage_ToPC_JABOCA_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_JABOCA_BERRY_3:
+	addpcitem ITEM_JABOCA_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_JABOCA_BERRY_5:
+	addpcitem ITEM_JABOCA_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_KASIB_BERRY_2:
 	addpcitem ITEM_KASIB_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_KASIB_BERRY_3:
+	addpcitem ITEM_KASIB_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_KASIB_BERRY_5:
+	addpcitem ITEM_KASIB_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1668,8 +2784,28 @@ CarePackage_ToPC_KEBIA_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_KEBIA_BERRY_3:
+	addpcitem ITEM_KEBIA_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_KEBIA_BERRY_5:
+	addpcitem ITEM_KEBIA_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_KEE_BERRY_2:
 	addpcitem ITEM_KEE_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_KEE_BERRY_3:
+	addpcitem ITEM_KEE_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_KEE_BERRY_5:
+	addpcitem ITEM_KEE_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1678,13 +2814,33 @@ CarePackage_ToPC_KINGS_ROCK_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_KINGS_ROCK_2:
+	addpcitem ITEM_KINGS_ROCK, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_LAGGING_TAIL_1:
 	addpcitem ITEM_LAGGING_TAIL, 1
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_LAGGING_TAIL_2:
+	addpcitem ITEM_LAGGING_TAIL, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_LANSAT_BERRY_1:
 	addpcitem ITEM_LANSAT_BERRY, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LANSAT_BERRY_2:
+	addpcitem ITEM_LANSAT_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LANSAT_BERRY_3:
+	addpcitem ITEM_LANSAT_BERRY, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1708,13 +2864,38 @@ CarePackage_ToPC_LEFTOVERS_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_LEFTOVERS_3:
+	addpcitem ITEM_LEFTOVERS, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_LIECHI_BERRY_2:
 	addpcitem ITEM_LIECHI_BERRY, 2
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_LIECHI_BERRY_3:
+	addpcitem ITEM_LIECHI_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LIECHI_BERRY_5:
+	addpcitem ITEM_LIECHI_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_LIFE_ORB_1:
 	addpcitem ITEM_LIFE_ORB, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LIFE_ORB_2:
+	addpcitem ITEM_LIFE_ORB, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LIFE_ORB_3:
+	addpcitem ITEM_LIFE_ORB, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1728,6 +2909,16 @@ CarePackage_ToPC_LIGHT_CLAY_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_LIGHT_CLAY_2:
+	addpcitem ITEM_LIGHT_CLAY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LIGHT_CLAY_3:
+	addpcitem ITEM_LIGHT_CLAY, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_LINKING_CORD_1:
 	addpcitem ITEM_LINKING_CORD, 1
 	addvar VAR_0x8005, 1
@@ -1735,6 +2926,16 @@ CarePackage_ToPC_LINKING_CORD_1:
 
 CarePackage_ToPC_LOADED_DICE_1:
 	addpcitem ITEM_LOADED_DICE, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LOADED_DICE_2:
+	addpcitem ITEM_LOADED_DICE, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LOADED_DICE_3:
+	addpcitem ITEM_LOADED_DICE, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1753,6 +2954,16 @@ CarePackage_ToPC_LUMINOUS_MOSS_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_LUMINOUS_MOSS_4:
+	addpcitem ITEM_LUMINOUS_MOSS, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LUMINOUS_MOSS_5:
+	addpcitem ITEM_LUMINOUS_MOSS, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_LUM_BERRY_3:
 	addpcitem ITEM_LUM_BERRY, 3
 	addvar VAR_0x8005, 1
@@ -1763,13 +2974,38 @@ CarePackage_ToPC_LUM_BERRY_5:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_LUM_BERRY_7:
+	addpcitem ITEM_LUM_BERRY, 7
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_LUM_BERRY_10:
+	addpcitem ITEM_LUM_BERRY, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_LUXURY_BALL_10:
 	addpcitem ITEM_LUXURY_BALL, 10
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_LUXURY_BALL_20:
+	addpcitem ITEM_LUXURY_BALL, 20
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_MAGNET_1:
 	addpcitem ITEM_MAGNET, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MAGNET_9:
+	addpcitem ITEM_MAGNET, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MAGNET_10:
+	addpcitem ITEM_MAGNET, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1783,6 +3019,16 @@ CarePackage_ToPC_MARANGA_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_MARANGA_BERRY_3:
+	addpcitem ITEM_MARANGA_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MARANGA_BERRY_5:
+	addpcitem ITEM_MARANGA_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_MASTERPIECE_TEACUP_1:
 	addpcitem ITEM_MASTERPIECE_TEACUP, 1
 	addvar VAR_0x8005, 1
@@ -1790,6 +3036,11 @@ CarePackage_ToPC_MASTERPIECE_TEACUP_1:
 
 CarePackage_ToPC_MASTER_BALL_1:
 	addpcitem ITEM_MASTER_BALL, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MAX_ELIXIR_2:
+	addpcitem ITEM_MAX_ELIXIR, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -1808,13 +3059,18 @@ CarePackage_ToPC_MAX_ETHER_5:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_MAX_ETHER_10:
+	addpcitem ITEM_MAX_ETHER, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_MAX_POTION_5:
 	addpcitem ITEM_MAX_POTION, 5
 	addvar VAR_0x8005, 1
 	return
 
-CarePackage_ToPC_MAX_REVIVE_1:
-	addpcitem ITEM_MAX_REVIVE, 1
+CarePackage_ToPC_MAX_POTION_10:
+	addpcitem ITEM_MAX_POTION, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1828,6 +3084,11 @@ CarePackage_ToPC_MAX_REVIVE_3:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_MAX_REVIVE_4:
+	addpcitem ITEM_MAX_REVIVE, 4
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_MAX_REVIVE_5:
 	addpcitem ITEM_MAX_REVIVE, 5
 	addvar VAR_0x8005, 1
@@ -1835,6 +3096,16 @@ CarePackage_ToPC_MAX_REVIVE_5:
 
 CarePackage_ToPC_MENTAL_HERB_1:
 	addpcitem ITEM_MENTAL_HERB, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MENTAL_HERB_4:
+	addpcitem ITEM_MENTAL_HERB, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MENTAL_HERB_5:
+	addpcitem ITEM_MENTAL_HERB, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1848,6 +3119,16 @@ CarePackage_ToPC_METAL_COAT_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_METAL_COAT_9:
+	addpcitem ITEM_METAL_COAT, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_METAL_COAT_10:
+	addpcitem ITEM_METAL_COAT, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_METAL_POWDER_1:
 	addpcitem ITEM_METAL_POWDER, 1
 	addvar VAR_0x8005, 1
@@ -1858,8 +3139,23 @@ CarePackage_ToPC_METRONOME_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_METRONOME_2:
+	addpcitem ITEM_METRONOME, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_MIRACLE_SEED_1:
 	addpcitem ITEM_MIRACLE_SEED, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MIRACLE_SEED_9:
+	addpcitem ITEM_MIRACLE_SEED, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MIRACLE_SEED_10:
+	addpcitem ITEM_MIRACLE_SEED, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1868,8 +3164,28 @@ CarePackage_ToPC_MIRROR_HERB_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_MIRROR_HERB_4:
+	addpcitem ITEM_MIRROR_HERB, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MIRROR_HERB_5:
+	addpcitem ITEM_MIRROR_HERB, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_MISTY_SEED_1:
 	addpcitem ITEM_MISTY_SEED, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MISTY_SEED_4:
+	addpcitem ITEM_MISTY_SEED, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MISTY_SEED_5:
+	addpcitem ITEM_MISTY_SEED, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1878,8 +3194,28 @@ CarePackage_ToPC_MUSCLE_BAND_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_MUSCLE_BAND_2:
+	addpcitem ITEM_MUSCLE_BAND, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MUSCLE_BAND_3:
+	addpcitem ITEM_MUSCLE_BAND, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_MYSTIC_WATER_1:
 	addpcitem ITEM_MYSTIC_WATER, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MYSTIC_WATER_9:
+	addpcitem ITEM_MYSTIC_WATER, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_MYSTIC_WATER_10:
+	addpcitem ITEM_MYSTIC_WATER, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1888,8 +3224,28 @@ CarePackage_ToPC_NEVER_MELT_ICE_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_NEVER_MELT_ICE_9:
+	addpcitem ITEM_NEVER_MELT_ICE, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_NEVER_MELT_ICE_10:
+	addpcitem ITEM_NEVER_MELT_ICE, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_OCCA_BERRY_2:
 	addpcitem ITEM_OCCA_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_OCCA_BERRY_3:
+	addpcitem ITEM_OCCA_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_OCCA_BERRY_5:
+	addpcitem ITEM_OCCA_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1898,8 +3254,28 @@ CarePackage_ToPC_PASSHO_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_PASSHO_BERRY_3:
+	addpcitem ITEM_PASSHO_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_PASSHO_BERRY_5:
+	addpcitem ITEM_PASSHO_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_PAYAPA_BERRY_2:
 	addpcitem ITEM_PAYAPA_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_PAYAPA_BERRY_3:
+	addpcitem ITEM_PAYAPA_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_PAYAPA_BERRY_5:
+	addpcitem ITEM_PAYAPA_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1908,8 +3284,28 @@ CarePackage_ToPC_PETAYA_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_PETAYA_BERRY_3:
+	addpcitem ITEM_PETAYA_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_PETAYA_BERRY_5:
+	addpcitem ITEM_PETAYA_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_POISON_BARB_1:
 	addpcitem ITEM_POISON_BARB, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_POISON_BARB_9:
+	addpcitem ITEM_POISON_BARB, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_POISON_BARB_10:
+	addpcitem ITEM_POISON_BARB, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -1918,8 +3314,23 @@ CarePackage_ToPC_POKE_BALL_10:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_POKE_BALL_20:
+	addpcitem ITEM_POKE_BALL, 20
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_POWER_HERB_1:
 	addpcitem ITEM_POWER_HERB, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_POWER_HERB_4:
+	addpcitem ITEM_POWER_HERB, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_POWER_HERB_5:
+	addpcitem ITEM_POWER_HERB, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1943,8 +3354,8 @@ CarePackage_ToPC_PP_MAX_10:
 	addvar VAR_0x8005, 1
 	return
 
-CarePackage_ToPC_PP_UP_3:
-	addpcitem ITEM_PP_UP, 3
+CarePackage_ToPC_PP_UP_2:
+	addpcitem ITEM_PP_UP, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -1963,8 +3374,28 @@ CarePackage_ToPC_PROTECTIVE_PADS_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_PROTECTIVE_PADS_2:
+	addpcitem ITEM_PROTECTIVE_PADS, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_PROTECTIVE_PADS_3:
+	addpcitem ITEM_PROTECTIVE_PADS, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_PSYCHIC_SEED_1:
 	addpcitem ITEM_PSYCHIC_SEED, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_PSYCHIC_SEED_4:
+	addpcitem ITEM_PSYCHIC_SEED, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_PSYCHIC_SEED_5:
+	addpcitem ITEM_PSYCHIC_SEED, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -1973,13 +3404,38 @@ CarePackage_ToPC_PUNCHING_GLOVE_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_PUNCHING_GLOVE_2:
+	addpcitem ITEM_PUNCHING_GLOVE, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_PUNCHING_GLOVE_3:
+	addpcitem ITEM_PUNCHING_GLOVE, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_QUICK_BALL_10:
 	addpcitem ITEM_QUICK_BALL, 10
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_QUICK_BALL_20:
+	addpcitem ITEM_QUICK_BALL, 20
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_QUICK_CLAW_1:
 	addpcitem ITEM_QUICK_CLAW, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_QUICK_CLAW_2:
+	addpcitem ITEM_QUICK_CLAW, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_QUICK_CLAW_3:
+	addpcitem ITEM_QUICK_CLAW, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -1993,8 +3449,18 @@ CarePackage_ToPC_RAZOR_CLAW_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_RAZOR_CLAW_2:
+	addpcitem ITEM_RAZOR_CLAW, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_RAZOR_FANG_1:
 	addpcitem ITEM_RAZOR_FANG, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_RAZOR_FANG_2:
+	addpcitem ITEM_RAZOR_FANG, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -2003,8 +3469,23 @@ CarePackage_ToPC_RED_CARD_1:
 	addvar VAR_0x8005, 1
 	return
 
-CarePackage_ToPC_REVIVE_3:
-	addpcitem ITEM_REVIVE, 3
+CarePackage_ToPC_RED_CARD_4:
+	addpcitem ITEM_RED_CARD, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_RED_CARD_5:
+	addpcitem ITEM_RED_CARD, 5
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_REVIVE_2:
+	addpcitem ITEM_REVIVE, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_REVIVE_5:
+	addpcitem ITEM_REVIVE, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -2018,8 +3499,23 @@ CarePackage_ToPC_RINDO_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_RINDO_BERRY_3:
+	addpcitem ITEM_RINDO_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_RINDO_BERRY_5:
+	addpcitem ITEM_RINDO_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_RING_TARGET_1:
 	addpcitem ITEM_RING_TARGET, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_RING_TARGET_2:
+	addpcitem ITEM_RING_TARGET, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -2028,8 +3524,28 @@ CarePackage_ToPC_ROCKY_HELMET_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_ROCKY_HELMET_2:
+	addpcitem ITEM_ROCKY_HELMET, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ROCKY_HELMET_3:
+	addpcitem ITEM_ROCKY_HELMET, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_ROOM_SERVICE_1:
 	addpcitem ITEM_ROOM_SERVICE, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ROOM_SERVICE_4:
+	addpcitem ITEM_ROOM_SERVICE, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ROOM_SERVICE_5:
+	addpcitem ITEM_ROOM_SERVICE, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -2038,8 +3554,28 @@ CarePackage_ToPC_ROSELI_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_ROSELI_BERRY_3:
+	addpcitem ITEM_ROSELI_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ROSELI_BERRY_5:
+	addpcitem ITEM_ROSELI_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_ROWAP_BERRY_2:
 	addpcitem ITEM_ROWAP_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ROWAP_BERRY_3:
+	addpcitem ITEM_ROWAP_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ROWAP_BERRY_5:
+	addpcitem ITEM_ROWAP_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -2053,13 +3589,43 @@ CarePackage_ToPC_SAFETY_GOGGLES_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_SAFETY_GOGGLES_2:
+	addpcitem ITEM_SAFETY_GOGGLES, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SAFETY_GOGGLES_3:
+	addpcitem ITEM_SAFETY_GOGGLES, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_SALAC_BERRY_2:
 	addpcitem ITEM_SALAC_BERRY, 2
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_SALAC_BERRY_3:
+	addpcitem ITEM_SALAC_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SALAC_BERRY_5:
+	addpcitem ITEM_SALAC_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_SCOPE_LENS_1:
 	addpcitem ITEM_SCOPE_LENS, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SCOPE_LENS_2:
+	addpcitem ITEM_SCOPE_LENS, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SCOPE_LENS_3:
+	addpcitem ITEM_SCOPE_LENS, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -2078,8 +3644,28 @@ CarePackage_ToPC_SHARP_BEAK_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_SHARP_BEAK_9:
+	addpcitem ITEM_SHARP_BEAK, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SHARP_BEAK_10:
+	addpcitem ITEM_SHARP_BEAK, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_SHED_SHELL_1:
 	addpcitem ITEM_SHED_SHELL, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SHED_SHELL_2:
+	addpcitem ITEM_SHED_SHELL, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SHED_SHELL_3:
+	addpcitem ITEM_SHED_SHELL, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -2088,8 +3674,28 @@ CarePackage_ToPC_SHELL_BELL_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_SHELL_BELL_2:
+	addpcitem ITEM_SHELL_BELL, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SHELL_BELL_3:
+	addpcitem ITEM_SHELL_BELL, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_SHUCA_BERRY_2:
 	addpcitem ITEM_SHUCA_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SHUCA_BERRY_3:
+	addpcitem ITEM_SHUCA_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SHUCA_BERRY_5:
+	addpcitem ITEM_SHUCA_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -2098,8 +3704,28 @@ CarePackage_ToPC_SILK_SCARF_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_SILK_SCARF_9:
+	addpcitem ITEM_SILK_SCARF, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SILK_SCARF_10:
+	addpcitem ITEM_SILK_SCARF, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_SILVER_POWDER_1:
 	addpcitem ITEM_SILVER_POWDER, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SILVER_POWDER_9:
+	addpcitem ITEM_SILVER_POWDER, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SILVER_POWDER_10:
+	addpcitem ITEM_SILVER_POWDER, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -2118,8 +3744,28 @@ CarePackage_ToPC_SMOOTH_ROCK_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_SMOOTH_ROCK_2:
+	addpcitem ITEM_SMOOTH_ROCK, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SMOOTH_ROCK_3:
+	addpcitem ITEM_SMOOTH_ROCK, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_SNOWBALL_1:
 	addpcitem ITEM_SNOWBALL, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SNOWBALL_4:
+	addpcitem ITEM_SNOWBALL, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SNOWBALL_5:
+	addpcitem ITEM_SNOWBALL, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -2128,13 +3774,43 @@ CarePackage_ToPC_SOFT_SAND_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_SOFT_SAND_9:
+	addpcitem ITEM_SOFT_SAND, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SOFT_SAND_10:
+	addpcitem ITEM_SOFT_SAND, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_SPELL_TAG_1:
 	addpcitem ITEM_SPELL_TAG, 1
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_SPELL_TAG_9:
+	addpcitem ITEM_SPELL_TAG, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_SPELL_TAG_10:
+	addpcitem ITEM_SPELL_TAG, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_STARF_BERRY_1:
 	addpcitem ITEM_STARF_BERRY, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_STARF_BERRY_2:
+	addpcitem ITEM_STARF_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_STARF_BERRY_3:
+	addpcitem ITEM_STARF_BERRY, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -2145,6 +3821,11 @@ CarePackage_ToPC_STAR_SWEET_1:
 
 CarePackage_ToPC_STICKY_BARB_1:
 	addpcitem ITEM_STICKY_BARB, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_STICKY_BARB_2:
+	addpcitem ITEM_STICKY_BARB, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -2163,6 +3844,11 @@ CarePackage_ToPC_SUPER_POTION_5:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_SUPER_POTION_10:
+	addpcitem ITEM_SUPER_POTION, 10
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_SWEET_APPLE_1:
 	addpcitem ITEM_SWEET_APPLE, 1
 	addvar VAR_0x8005, 1
@@ -2178,6 +3864,16 @@ CarePackage_ToPC_TANGA_BERRY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_TANGA_BERRY_3:
+	addpcitem ITEM_TANGA_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_TANGA_BERRY_5:
+	addpcitem ITEM_TANGA_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_TART_APPLE_1:
 	addpcitem ITEM_TART_APPLE, 1
 	addvar VAR_0x8005, 1
@@ -2185,6 +3881,16 @@ CarePackage_ToPC_TART_APPLE_1:
 
 CarePackage_ToPC_TERRAIN_EXTENDER_1:
 	addpcitem ITEM_TERRAIN_EXTENDER, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_TERRAIN_EXTENDER_2:
+	addpcitem ITEM_TERRAIN_EXTENDER, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_TERRAIN_EXTENDER_3:
+	addpcitem ITEM_TERRAIN_EXTENDER, 3
 	addvar VAR_0x8005, 1
 	return
 
@@ -2198,13 +3904,43 @@ CarePackage_ToPC_THROAT_SPRAY_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_THROAT_SPRAY_4:
+	addpcitem ITEM_THROAT_SPRAY, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_THROAT_SPRAY_5:
+	addpcitem ITEM_THROAT_SPRAY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_TOXIC_ORB_1:
 	addpcitem ITEM_TOXIC_ORB, 1
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_TOXIC_ORB_2:
+	addpcitem ITEM_TOXIC_ORB, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_TOXIC_ORB_3:
+	addpcitem ITEM_TOXIC_ORB, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_TWISTED_SPOON_1:
 	addpcitem ITEM_TWISTED_SPOON, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_TWISTED_SPOON_9:
+	addpcitem ITEM_TWISTED_SPOON, 9
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_TWISTED_SPOON_10:
+	addpcitem ITEM_TWISTED_SPOON, 10
 	addvar VAR_0x8005, 1
 	return
 
@@ -2223,6 +3959,11 @@ CarePackage_ToPC_ULTRA_BALL_15:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_ULTRA_BALL_20:
+	addpcitem ITEM_ULTRA_BALL, 20
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_UNREMARKABLE_TEACUP_1:
 	addpcitem ITEM_UNREMARKABLE_TEACUP, 1
 	addvar VAR_0x8005, 1
@@ -2238,8 +3979,28 @@ CarePackage_ToPC_UTILITY_UMBRELLA_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_UTILITY_UMBRELLA_2:
+	addpcitem ITEM_UTILITY_UMBRELLA, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_UTILITY_UMBRELLA_3:
+	addpcitem ITEM_UTILITY_UMBRELLA, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_WACAN_BERRY_2:
 	addpcitem ITEM_WACAN_BERRY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_WACAN_BERRY_3:
+	addpcitem ITEM_WACAN_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_WACAN_BERRY_5:
+	addpcitem ITEM_WACAN_BERRY, 5
 	addvar VAR_0x8005, 1
 	return
 
@@ -2253,6 +4014,21 @@ CarePackage_ToPC_WEAKNESS_POLICY_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_WEAKNESS_POLICY_3:
+	addpcitem ITEM_WEAKNESS_POLICY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_WEAKNESS_POLICY_4:
+	addpcitem ITEM_WEAKNESS_POLICY, 4
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_WEAKNESS_POLICY_5:
+	addpcitem ITEM_WEAKNESS_POLICY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_WHIPPED_DREAM_1:
 	addpcitem ITEM_WHIPPED_DREAM, 1
 	addvar VAR_0x8005, 1
@@ -2263,8 +4039,23 @@ CarePackage_ToPC_WHITE_HERB_2:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_WHITE_HERB_3:
+	addpcitem ITEM_WHITE_HERB, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_WHITE_HERB_5:
+	addpcitem ITEM_WHITE_HERB, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_WIDE_LENS_1:
 	addpcitem ITEM_WIDE_LENS, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_WIDE_LENS_2:
+	addpcitem ITEM_WIDE_LENS, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -2273,8 +4064,33 @@ CarePackage_ToPC_WISE_GLASSES_1:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_WISE_GLASSES_2:
+	addpcitem ITEM_WISE_GLASSES, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_WISE_GLASSES_3:
+	addpcitem ITEM_WISE_GLASSES, 3
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_X_ACCURACY_2:
 	addpcitem ITEM_X_ACCURACY, 2
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_X_ACCURACY_3:
+	addpcitem ITEM_X_ACCURACY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_X_ACCURACY_5:
+	addpcitem ITEM_X_ACCURACY, 5
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_X_ATTACK_2:
+	addpcitem ITEM_X_ATTACK, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -2283,8 +4099,28 @@ CarePackage_ToPC_X_ATTACK_3:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_X_ATTACK_5:
+	addpcitem ITEM_X_ATTACK, 5
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_X_DEFENSE_2:
+	addpcitem ITEM_X_DEFENSE, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_X_DEFENSE_3:
 	addpcitem ITEM_X_DEFENSE, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_X_DEFENSE_5:
+	addpcitem ITEM_X_DEFENSE, 5
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_X_SPEED_2:
+	addpcitem ITEM_X_SPEED, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -2293,8 +4129,28 @@ CarePackage_ToPC_X_SPEED_3:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_X_SPEED_5:
+	addpcitem ITEM_X_SPEED, 5
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_X_SP_ATK_2:
+	addpcitem ITEM_X_SP_ATK, 2
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_X_SP_ATK_3:
 	addpcitem ITEM_X_SP_ATK, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_X_SP_ATK_5:
+	addpcitem ITEM_X_SP_ATK, 5
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_X_SP_DEF_2:
+	addpcitem ITEM_X_SP_DEF, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -2303,13 +4159,33 @@ CarePackage_ToPC_X_SP_DEF_3:
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_X_SP_DEF_5:
+	addpcitem ITEM_X_SP_DEF, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_YACHE_BERRY_2:
 	addpcitem ITEM_YACHE_BERRY, 2
 	addvar VAR_0x8005, 1
 	return
 
+CarePackage_ToPC_YACHE_BERRY_3:
+	addpcitem ITEM_YACHE_BERRY, 3
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_YACHE_BERRY_5:
+	addpcitem ITEM_YACHE_BERRY, 5
+	addvar VAR_0x8005, 1
+	return
+
 CarePackage_ToPC_ZOOM_LENS_1:
 	addpcitem ITEM_ZOOM_LENS, 1
+	addvar VAR_0x8005, 1
+	return
+
+CarePackage_ToPC_ZOOM_LENS_2:
+	addpcitem ITEM_ZOOM_LENS, 2
 	addvar VAR_0x8005, 1
 	return
 
@@ -2327,181 +4203,199 @@ CarePackage_Text_GearArrived:
 	.string "PROF. ELM sent the battle gear\n"
 	.string "an earlier package didn't have!$"
 
+CarePackage_Text_BulkArrived:
+	.string "PROF. ELM sent more of the gear\n"
+	.string "from an earlier package!$"
+
 CarePackage_Text_SentToPC:
 	.string "Your BAG was full, so some of it\n"
 	.string "was sent to your PC.$"
 
 CarePackage_Text_1:
-	.string "Inside: POKé BALL ×10, GREAT BALL ×5,\n"
-	.string "SUPER POTION ×5, PP UP ×5, PP MAX ×3,\p"
-	.string "LEFTOVERS, FOCUS SASH ×2,\n"
-	.string "EVIOLITE ×2, SITRUS BERRY ×5,\p"
-	.string "LUM BERRY ×3, CHARCOAL, MYSTIC WATER,\n"
-	.string "MIRACLE SEED, LINKING CORD,\p"
+	.string "Inside: POKé BALL ×20,\n"
+	.string "GREAT BALL ×20, SUPER POTION ×10,\p"
+	.string "PP UP ×5, PP MAX ×10, LEFTOVERS ×3,\n"
+	.string "FOCUS SASH ×5, EVIOLITE ×5,\p"
+	.string "SITRUS BERRY ×10, LUM BERRY ×10,\n"
+	.string "CHARCOAL ×10, MYSTIC WATER ×10,\p"
+	.string "MIRACLE SEED ×10, LINKING CORD,\n"
 	.string "SWEET APPLE, TART APPLE.$"
 
 CarePackage_Text_2:
-	.string "Inside: GREAT BALL ×10, REVIVE ×3,\n"
-	.string "PP MAX ×5, LIFE ORB, EXPERT BELT,\p"
-	.string "MUSCLE BAND, WISE GLASSES,\n"
-	.string "SCOPE LENS, MAGNET, SHARP BEAK,\p"
-	.string "SILK SCARF, OCCA BERRY ×2,\n"
-	.string "PASSHO BERRY ×2, WACAN BERRY ×2,\p"
-	.string "RINDO BERRY ×2, YACHE BERRY ×2,\n"
-	.string "CHOPLE BERRY ×2, UPGRADE, SACHET,\p"
+	.string "Inside: GREAT BALL ×20, REVIVE ×5,\n"
+	.string "PP MAX ×10, LIFE ORB ×3,\p"
+	.string "EXPERT BELT ×3, MUSCLE BAND ×3,\n"
+	.string "WISE GLASSES ×3, SCOPE LENS ×3,\p"
+	.string "MAGNET ×10, SHARP BEAK ×10,\n"
+	.string "SILK SCARF ×10, OCCA BERRY ×5,\p"
+	.string "PASSHO BERRY ×5, WACAN BERRY ×5,\n"
+	.string "RINDO BERRY ×5, YACHE BERRY ×5,\p"
+	.string "CHOPLE BERRY ×5, UPGRADE, SACHET,\n"
 	.string "WHIPPED DREAM, SYRUPY APPLE.$"
 
 CarePackage_Text_3:
-	.string "Inside: ULTRA BALL ×5,\n"
-	.string "HYPER POTION ×5, PP MAX ×5,\p"
-	.string "CHOICE BAND, CHOICE SPECS,\n"
-	.string "CHOICE SCARF, ROCKY HELMET,\p"
-	.string "BLACK SLUDGE, HARD STONE, SOFT SAND,\n"
-	.string "SPELL TAG, KEBIA BERRY ×2,\p"
-	.string "SHUCA BERRY ×2, COBA BERRY ×2,\n"
-	.string "PAYAPA BERRY ×2, TANGA BERRY ×2,\p"
-	.string "CHARTI BERRY ×2, PRISM SCALE,\n"
-	.string "SUN STONE ×3, LINKING CORD.$"
+	.string "Inside: ULTRA BALL ×20,\n"
+	.string "HYPER POTION ×10, PP MAX ×10,\p"
+	.string "CHOICE BAND ×2, CHOICE SPECS ×2,\n"
+	.string "CHOICE SCARF ×2, ROCKY HELMET ×3,\p"
+	.string "BLACK SLUDGE ×2, HARD STONE ×10,\n"
+	.string "SOFT SAND ×10, SPELL TAG ×10,\p"
+	.string "KEBIA BERRY ×5, SHUCA BERRY ×5,\n"
+	.string "COBA BERRY ×5, PAYAPA BERRY ×5,\p"
+	.string "TANGA BERRY ×5, CHARTI BERRY ×5,\n"
+	.string "PRISM SCALE, SUN STONE ×3,\p"
+	.string "LINKING CORD.$"
 
 CarePackage_Text_4:
-	.string "Inside: ULTRA BALL ×5, PP MAX ×5,\n"
-	.string "ASSAULT VEST ×2, LEFTOVERS,\p"
-	.string "TOXIC ORB, FLAME ORB, NEVER-MELT ICE,\n"
-	.string "BLACK BELT, TWISTED SPOON,\p"
-	.string "KASIB BERRY ×2, HABAN BERRY ×2,\n"
-	.string "COLBUR BERRY ×2, BABIRI BERRY ×2,\p"
-	.string "CHILAN BERRY ×2, ROSELI BERRY ×2,\n"
-	.string "STRAWBERRY SWEET, BERRY SWEET,\p"
-	.string "LOVE SWEET, STAR SWEET, CLOVER SWEET,\n"
-	.string "FLOWER SWEET, RIBBON SWEET.$"
+	.string "Inside: ULTRA BALL ×20, PP MAX ×10,\n"
+	.string "ASSAULT VEST ×3, LEFTOVERS ×3,\p"
+	.string "TOXIC ORB ×3, FLAME ORB ×3,\n"
+	.string "NEVER-MELT ICE ×10, BLACK BELT ×10,\p"
+	.string "TWISTED SPOON ×10, KASIB BERRY ×5,\n"
+	.string "HABAN BERRY ×5, COLBUR BERRY ×5,\p"
+	.string "BABIRI BERRY ×5, CHILAN BERRY ×5,\n"
+	.string "ROSELI BERRY ×5, STRAWBERRY SWEET,\p"
+	.string "BERRY SWEET, LOVE SWEET, STAR SWEET,\n"
+	.string "CLOVER SWEET, FLOWER SWEET,\p"
+	.string "RIBBON SWEET.$"
 
 CarePackage_Text_5:
-	.string "Inside: FULL HEAL ×5, MAX REVIVE,\n"
-	.string "PP MAX ×5, HEAVY-DUTY BOOTS ×2,\p"
-	.string "LIGHT CLAY, AIR BALLOON ×2,\n"
-	.string "WHITE HERB ×2, POWER HERB,\p"
-	.string "MENTAL HERB, EVIOLITE, POISON BARB,\n"
-	.string "SILVER POWDER, DRAGON FANG,\p"
-	.string "SITRUS BERRY ×5, LUM BERRY ×3,\n"
-	.string "CRACKED POT, CHIPPED POT,\p"
-	.string "UNREMARKABLE TEACUP,\n"
+	.string "Inside: FULL HEAL ×10, MAX REVIVE ×5,\n"
+	.string "PP MAX ×10, HEAVY-DUTY BOOTS ×3,\p"
+	.string "LIGHT CLAY ×3, AIR BALLOON ×5,\n"
+	.string "WHITE HERB ×5, POWER HERB ×5,\p"
+	.string "MENTAL HERB ×5, EVIOLITE ×5,\n"
+	.string "POISON BARB ×10, SILVER POWDER ×10,\p"
+	.string "DRAGON FANG ×10, SITRUS BERRY ×10,\n"
+	.string "LUM BERRY ×10, CRACKED POT,\p"
+	.string "CHIPPED POT, UNREMARKABLE TEACUP,\n"
 	.string "MASTERPIECE TEACUP.$"
 
 CarePackage_Text_6:
-	.string "Inside: ULTRA BALL ×10, PP UP ×3,\n"
-	.string "PP MAX ×5, MAX ELIXIR ×3,\p"
-	.string "WEAKNESS POLICY ×2, LIFE ORB,\n"
-	.string "CHOICE SCARF, RAZOR CLAW, QUICK CLAW,\p"
-	.string "SHELL BELL, BIG ROOT, BLACK GLASSES,\n"
-	.string "METAL COAT, FAIRY FEATHER,\p"
-	.string "X ATTACK ×3, X SP. ATK ×3, X SPEED ×3,\n"
-	.string "X DEFENSE ×3, X SP. DEF ×3,\p"
-	.string "LEADER'S CREST, AUSPICIOUS ARMOR,\n"
+	.string "Inside: ULTRA BALL ×20, PP UP ×5,\n"
+	.string "PP MAX ×10, MAX ELIXIR ×5,\p"
+	.string "WEAKNESS POLICY ×5, LIFE ORB ×3,\n"
+	.string "CHOICE SCARF ×2, RAZOR CLAW ×2,\p"
+	.string "QUICK CLAW ×3, SHELL BELL ×3,\n"
+	.string "BIG ROOT ×3, BLACK GLASSES ×10,\p"
+	.string "METAL COAT ×10, FAIRY FEATHER ×10,\n"
+	.string "X ATTACK ×5, X SP. ATK ×5, X SPEED ×5,\p"
+	.string "X DEFENSE ×5, X SP. DEF ×5,\n"
+	.string "LEADER'S CREST, AUSPICIOUS ARMOR,\p"
 	.string "MALICIOUS ARMOR.$"
 
 CarePackage_Text_7:
-	.string "Inside: MAX POTION ×5, MAX REVIVE ×2,\n"
-	.string "PP MAX ×5, RED CARD, EJECT BUTTON,\p"
-	.string "EJECT PACK, SAFETY GOGGLES,\n"
-	.string "COVERT CLOAK, CLEAR AMULET,\p"
-	.string "PROTECTIVE PADS, SHED SHELL,\n"
-	.string "BINDING BAND, GRIP CLAW, DAMP ROCK,\p"
-	.string "HEAT ROCK, SMOOTH ROCK, ICY ROCK,\n"
-	.string "X ACCURACY ×2, DIRE HIT ×2,\p"
-	.string "GUARD SPEC. ×2, METAL ALLOY,\n"
+	.string "Inside: MAX POTION ×10,\n"
+	.string "MAX REVIVE ×5, PP MAX ×10,\p"
+	.string "RED CARD ×5, EJECT BUTTON ×5,\n"
+	.string "EJECT PACK ×5, SAFETY GOGGLES ×3,\p"
+	.string "COVERT CLOAK ×3, CLEAR AMULET ×3,\n"
+	.string "PROTECTIVE PADS ×3, SHED SHELL ×3,\p"
+	.string "BINDING BAND ×2, GRIP CLAW ×2,\n"
+	.string "DAMP ROCK ×3, HEAT ROCK ×3,\p"
+	.string "SMOOTH ROCK ×3, ICY ROCK ×3,\n"
+	.string "X ACCURACY ×5, DIRE HIT ×5,\p"
+	.string "GUARD SPEC. ×5, METAL ALLOY,\n"
 	.string "LINKING CORD.$"
 
 CarePackage_Text_8:
-	.string "Inside: FULL RESTORE ×3, PP MAX ×5,\n"
-	.string "ABILITY PATCH, FOCUS SASH ×2,\p"
-	.string "LEFTOVERS, ASSAULT VEST,\n"
-	.string "BOOSTER ENERGY ×2, LOADED DICE,\p"
-	.string "PUNCHING GLOVE, MIRROR HERB,\n"
-	.string "THROAT SPRAY, BLUNDER POLICY,\p"
-	.string "ELECTRIC SEED, GRASSY SEED,\n"
-	.string "MISTY SEED, PSYCHIC SEED,\p"
-	.string "TERRAIN EXTENDER, UTILITY UMBRELLA,\n"
-	.string "ROOM SERVICE, GIMMIGHOUL COIN ×999.$"
+	.string "Inside: FULL RESTORE ×10, PP MAX ×10,\n"
+	.string "ABILITY PATCH ×3, FOCUS SASH ×5,\p"
+	.string "LEFTOVERS ×3, ASSAULT VEST ×3,\n"
+	.string "BOOSTER ENERGY ×5, LOADED DICE ×3,\p"
+	.string "PUNCHING GLOVE ×3, MIRROR HERB ×5,\n"
+	.string "THROAT SPRAY ×5, BLUNDER POLICY ×5,\p"
+	.string "ELECTRIC SEED ×5, GRASSY SEED ×5,\n"
+	.string "MISTY SEED ×5, PSYCHIC SEED ×5,\p"
+	.string "TERRAIN EXTENDER ×3,\n"
+	.string "UTILITY UMBRELLA ×3,\p"
+	.string "ROOM SERVICE ×5,\n"
+	.string "GIMMIGHOUL COIN ×999.$"
 
 CarePackage_Text_9:
 	.string "Inside: MASTER BALL, PP MAX ×10,\n"
-	.string "ABILITY PATCH ×2, LEFTOVERS ×2,\p"
-	.string "LIFE ORB, CHOICE BAND, CHOICE SPECS,\n"
-	.string "CHOICE SCARF, SITRUS BERRY ×10,\p"
-	.string "LUM BERRY ×5, LIECHI BERRY ×2,\n"
-	.string "GANLON BERRY ×2, SALAC BERRY ×2,\p"
-	.string "PETAYA BERRY ×2, APICOT BERRY ×2,\n"
-	.string "STARF BERRY, LANSAT BERRY,\p"
-	.string "CUSTAP BERRY ×2, SCROLL OF DARKNESS,\n"
+	.string "ABILITY PATCH ×3, LEFTOVERS ×3,\p"
+	.string "LIFE ORB ×3, CHOICE BAND ×2,\n"
+	.string "CHOICE SPECS ×2, CHOICE SCARF ×2,\p"
+	.string "SITRUS BERRY ×10, LUM BERRY ×10,\n"
+	.string "LIECHI BERRY ×5, GANLON BERRY ×5,\p"
+	.string "SALAC BERRY ×5, PETAYA BERRY ×5,\n"
+	.string "APICOT BERRY ×5, STARF BERRY ×3,\p"
+	.string "LANSAT BERRY ×3, CUSTAP BERRY ×5,\n"
+	.string "SCROLL OF DARKNESS,\p"
 	.string "SCROLL OF WATERS.$"
 
 CarePackage_Text_10:
-	.string "Inside: ULTRA BALL ×10,\n"
-	.string "FULL RESTORE ×3, PP MAX ×5,\p"
-	.string "ROCKY HELMET, BLACK SLUDGE,\n"
-	.string "ZOOM LENS, WIDE LENS, KING'S ROCK,\p"
-	.string "RAZOR FANG, METRONOME, LIGHT BALL,\n"
-	.string "THICK CLUB, LEEK, LUCKY PUNCH,\p"
-	.string "METAL POWDER, QUICK POWDER,\n"
-	.string "DEEP SEA TOOTH, DEEP SEA SCALE,\p"
-	.string "SUN STONE ×3.$"
+	.string "Inside: ULTRA BALL ×20,\n"
+	.string "FULL RESTORE ×10, PP MAX ×10,\p"
+	.string "ROCKY HELMET ×3, BLACK SLUDGE ×2,\n"
+	.string "ZOOM LENS ×2, WIDE LENS ×2,\p"
+	.string "KING'S ROCK ×2, RAZOR FANG ×2,\n"
+	.string "METRONOME ×2, LIGHT BALL, THICK CLUB,\p"
+	.string "LEEK, LUCKY PUNCH, METAL POWDER,\n"
+	.string "QUICK POWDER, DEEP SEA TOOTH,\p"
+	.string "DEEP SEA SCALE, SUN STONE ×3.$"
 
 CarePackage_Text_11:
-	.string "Inside: ULTRA BALL ×10,\n"
-	.string "MAX REVIVE ×3, PP MAX ×5,\p"
-	.string "MAX ELIXIR ×3, FOCUS SASH ×2,\n"
-	.string "HEAVY-DUTY BOOTS ×2, AIR BALLOON ×2,\p"
-	.string "TOXIC ORB, FLAME ORB, MUSCLE BAND,\n"
-	.string "WISE GLASSES, SCOPE LENS.$"
+	.string "Inside: ULTRA BALL ×20,\n"
+	.string "MAX REVIVE ×5, PP MAX ×10,\p"
+	.string "MAX ELIXIR ×5, FOCUS SASH ×5,\n"
+	.string "HEAVY-DUTY BOOTS ×3, AIR BALLOON ×5,\p"
+	.string "TOXIC ORB ×3, FLAME ORB ×3,\n"
+	.string "MUSCLE BAND ×3, WISE GLASSES ×3,\p"
+	.string "SCOPE LENS ×3.$"
 
 CarePackage_Text_12:
-	.string "Inside: QUICK BALL ×10,\n"
-	.string "FULL RESTORE ×5, PP MAX ×5,\p"
-	.string "LEFTOVERS, ASSAULT VEST,\n"
-	.string "EXPERT BELT, LUM BERRY ×3,\p"
-	.string "X ATTACK ×3, X SP. ATK ×3, X SPEED ×3,\n"
-	.string "X DEFENSE ×3, X SP. DEF ×3.$"
+	.string "Inside: QUICK BALL ×20,\n"
+	.string "FULL RESTORE ×10, PP MAX ×10,\p"
+	.string "LEFTOVERS ×3, ASSAULT VEST ×3,\n"
+	.string "EXPERT BELT ×3, LUM BERRY ×10,\p"
+	.string "X ATTACK ×5, X SP. ATK ×5, X SPEED ×5,\n"
+	.string "X DEFENSE ×5, X SP. DEF ×5.$"
 
 CarePackage_Text_13:
-	.string "Inside: DUSK BALL ×10, MAX ELIXIR ×3,\n"
-	.string "PP MAX ×5, ABILITY PATCH, LIFE ORB,\p"
-	.string "WEAKNESS POLICY, WHITE HERB ×2,\n"
-	.string "ADRENALINE ORB, ABILITY SHIELD,\p"
-	.string "JABOCA BERRY ×2, ROWAP BERRY ×2,\n"
-	.string "KEE BERRY ×2, MARANGA BERRY ×2.$"
+	.string "Inside: DUSK BALL ×20, MAX ELIXIR ×5,\n"
+	.string "PP MAX ×10, ABILITY PATCH ×3,\p"
+	.string "LIFE ORB ×3, WEAKNESS POLICY ×5,\n"
+	.string "WHITE HERB ×5, ADRENALINE ORB ×5,\p"
+	.string "ABILITY SHIELD ×3, JABOCA BERRY ×5,\n"
+	.string "ROWAP BERRY ×5, KEE BERRY ×5,\p"
+	.string "MARANGA BERRY ×5.$"
 
 CarePackage_Text_14:
-	.string "Inside: ULTRA BALL ×15,\n"
-	.string "MAX REVIVE ×3, PP MAX ×5,\p"
-	.string "MAX ETHER ×5, ELIXIR ×5, CHOICE BAND,\n"
-	.string "CHOICE SPECS, CHOICE SCARF,\p"
-	.string "POWER HERB, MENTAL HERB,\n"
-	.string "SITRUS BERRY ×5.$"
+	.string "Inside: ULTRA BALL ×20,\n"
+	.string "MAX REVIVE ×5, PP MAX ×10,\p"
+	.string "MAX ETHER ×10, ELIXIR ×10,\n"
+	.string "CHOICE BAND ×2, CHOICE SPECS ×2,\p"
+	.string "CHOICE SCARF ×2, POWER HERB ×5,\n"
+	.string "MENTAL HERB ×5, SITRUS BERRY ×10.$"
 
 CarePackage_Text_15:
-	.string "Inside: LUXURY BALL ×10,\n"
-	.string "FULL RESTORE ×5, MAX ELIXIR ×3,\p"
-	.string "PP MAX ×5, BOOSTER ENERGY ×2,\n"
-	.string "ROCKY HELMET, COVERT CLOAK,\p"
-	.string "CLEAR AMULET, LOADED DICE,\n"
-	.string "EJECT BUTTON, RED CARD.$"
+	.string "Inside: LUXURY BALL ×20,\n"
+	.string "FULL RESTORE ×10, MAX ELIXIR ×5,\p"
+	.string "PP MAX ×10, BOOSTER ENERGY ×5,\n"
+	.string "ROCKY HELMET ×3, COVERT CLOAK ×3,\p"
+	.string "CLEAR AMULET ×3, LOADED DICE ×3,\n"
+	.string "EJECT BUTTON ×5, RED CARD ×5.$"
 
 CarePackage_Text_16:
 	.string "Inside: MASTER BALL, MAX REVIVE ×5,\n"
-	.string "FULL RESTORE ×5, PP MAX ×5,\p"
-	.string "LIGHT CLAY, AIR BALLOON ×2,\n"
-	.string "FOCUS BAND, IRON BALL, LAGGING TAIL,\p"
-	.string "STICKY BARB, RING TARGET,\n"
-	.string "ABSORB BULB, CELL BATTERY, SNOWBALL,\p"
-	.string "LUMINOUS MOSS.$"
+	.string "FULL RESTORE ×10, PP MAX ×10,\p"
+	.string "LIGHT CLAY ×3, AIR BALLOON ×5,\n"
+	.string "FOCUS BAND ×2, IRON BALL ×2,\p"
+	.string "LAGGING TAIL ×2, STICKY BARB ×2,\n"
+	.string "RING TARGET ×2, ABSORB BULB ×5,\p"
+	.string "CELL BATTERY ×5, SNOWBALL ×5,\n"
+	.string "LUMINOUS MOSS ×5.$"
 
 CarePackage_Text_17:
 	.string "Inside: MASTER BALL, PP MAX ×10,\n"
-	.string "ABILITY PATCH ×2, FULL RESTORE ×5,\p"
-	.string "MAX ELIXIR ×5, LEFTOVERS, LIFE ORB,\n"
-	.string "FOCUS SASH ×2, ASSAULT VEST,\p"
-	.string "HEAVY-DUTY BOOTS, SITRUS BERRY ×10,\n"
-	.string "LUM BERRY ×5.$"
+	.string "ABILITY PATCH ×3, FULL RESTORE ×10,\p"
+	.string "MAX ELIXIR ×5, LEFTOVERS ×3,\n"
+	.string "LIFE ORB ×3, FOCUS SASH ×5,\p"
+	.string "ASSAULT VEST ×3,\n"
+	.string "HEAVY-DUTY BOOTS ×3,\p"
+	.string "SITRUS BERRY ×10, LUM BERRY ×10.$"
 
 CarePackageGear_Text_1:
 	.string "Inside: PP UP ×5, PP MAX ×3,\n"
@@ -2642,3 +4536,163 @@ CarePackageGear_Text_17:
 	.string "FOCUS SASH ×2, ASSAULT VEST,\n"
 	.string "HEAVY-DUTY BOOTS, SITRUS BERRY ×10,\p"
 	.string "LUM BERRY ×5.$"
+
+CarePackageBulk_Text_1:
+	.string "Inside: POKé BALL ×10,\n"
+	.string "GREAT BALL ×15, SUPER POTION ×5,\p"
+	.string "PP MAX ×7, LEFTOVERS ×2,\n"
+	.string "FOCUS SASH ×3, EVIOLITE ×3,\p"
+	.string "SITRUS BERRY ×5, LUM BERRY ×7,\n"
+	.string "CHARCOAL ×9, MYSTIC WATER ×9,\p"
+	.string "MIRACLE SEED ×9.$"
+
+CarePackageBulk_Text_2:
+	.string "Inside: GREAT BALL ×10, REVIVE ×2,\n"
+	.string "PP MAX ×5, LIFE ORB ×2,\p"
+	.string "EXPERT BELT ×2, MUSCLE BAND ×2,\n"
+	.string "WISE GLASSES ×2, SCOPE LENS ×2,\p"
+	.string "MAGNET ×9, SHARP BEAK ×9,\n"
+	.string "SILK SCARF ×9, OCCA BERRY ×3,\p"
+	.string "PASSHO BERRY ×3, WACAN BERRY ×3,\n"
+	.string "RINDO BERRY ×3, YACHE BERRY ×3,\p"
+	.string "CHOPLE BERRY ×3.$"
+
+CarePackageBulk_Text_3:
+	.string "Inside: ULTRA BALL ×15,\n"
+	.string "HYPER POTION ×5, PP MAX ×5,\p"
+	.string "CHOICE BAND, CHOICE SPECS,\n"
+	.string "CHOICE SCARF, ROCKY HELMET ×2,\p"
+	.string "BLACK SLUDGE, HARD STONE ×9,\n"
+	.string "SOFT SAND ×9, SPELL TAG ×9,\p"
+	.string "KEBIA BERRY ×3, SHUCA BERRY ×3,\n"
+	.string "COBA BERRY ×3, PAYAPA BERRY ×3,\p"
+	.string "TANGA BERRY ×3, CHARTI BERRY ×3.$"
+
+CarePackageBulk_Text_4:
+	.string "Inside: ULTRA BALL ×15, PP MAX ×5,\n"
+	.string "ASSAULT VEST, LEFTOVERS ×2,\p"
+	.string "TOXIC ORB ×2, FLAME ORB ×2,\n"
+	.string "NEVER-MELT ICE ×9, BLACK BELT ×9,\p"
+	.string "TWISTED SPOON ×9, KASIB BERRY ×3,\n"
+	.string "HABAN BERRY ×3, COLBUR BERRY ×3,\p"
+	.string "BABIRI BERRY ×3, CHILAN BERRY ×3,\n"
+	.string "ROSELI BERRY ×3.$"
+
+CarePackageBulk_Text_5:
+	.string "Inside: FULL HEAL ×5, MAX REVIVE ×4,\n"
+	.string "PP MAX ×5, HEAVY-DUTY BOOTS,\p"
+	.string "LIGHT CLAY ×2, AIR BALLOON ×3,\n"
+	.string "WHITE HERB ×3, POWER HERB ×4,\p"
+	.string "MENTAL HERB ×4, EVIOLITE ×4,\n"
+	.string "POISON BARB ×9, SILVER POWDER ×9,\p"
+	.string "DRAGON FANG ×9, SITRUS BERRY ×5,\n"
+	.string "LUM BERRY ×7.$"
+
+CarePackageBulk_Text_6:
+	.string "Inside: ULTRA BALL ×10, PP UP ×2,\n"
+	.string "PP MAX ×5, MAX ELIXIR ×2,\p"
+	.string "WEAKNESS POLICY ×3, LIFE ORB ×2,\n"
+	.string "CHOICE SCARF, RAZOR CLAW,\p"
+	.string "QUICK CLAW ×2, SHELL BELL ×2,\n"
+	.string "BIG ROOT ×2, BLACK GLASSES ×9,\p"
+	.string "METAL COAT ×9, FAIRY FEATHER ×9,\n"
+	.string "X ATTACK ×2, X SP. ATK ×2, X SPEED ×2,\p"
+	.string "X DEFENSE ×2, X SP. DEF ×2.$"
+
+CarePackageBulk_Text_7:
+	.string "Inside: MAX POTION ×5, MAX REVIVE ×3,\n"
+	.string "PP MAX ×5, RED CARD ×4,\p"
+	.string "EJECT BUTTON ×4, EJECT PACK ×4,\n"
+	.string "SAFETY GOGGLES ×2, COVERT CLOAK ×2,\p"
+	.string "CLEAR AMULET ×2, PROTECTIVE PADS ×2,\n"
+	.string "SHED SHELL ×2, BINDING BAND,\p"
+	.string "GRIP CLAW, DAMP ROCK ×2, HEAT ROCK ×2,\n"
+	.string "SMOOTH ROCK ×2, ICY ROCK ×2,\p"
+	.string "X ACCURACY ×3, DIRE HIT ×3,\n"
+	.string "GUARD SPEC. ×3.$"
+
+CarePackageBulk_Text_8:
+	.string "Inside: FULL RESTORE ×7, PP MAX ×5,\n"
+	.string "ABILITY PATCH ×2, FOCUS SASH ×3,\p"
+	.string "LEFTOVERS ×2, ASSAULT VEST ×2,\n"
+	.string "BOOSTER ENERGY ×3, LOADED DICE ×2,\p"
+	.string "PUNCHING GLOVE ×2, MIRROR HERB ×4,\n"
+	.string "THROAT SPRAY ×4, BLUNDER POLICY ×4,\p"
+	.string "ELECTRIC SEED ×4, GRASSY SEED ×4,\n"
+	.string "MISTY SEED ×4, PSYCHIC SEED ×4,\p"
+	.string "TERRAIN EXTENDER ×2,\n"
+	.string "UTILITY UMBRELLA ×2,\p"
+	.string "ROOM SERVICE ×4.$"
+
+CarePackageBulk_Text_9:
+	.string "Inside: ABILITY PATCH, LEFTOVERS,\n"
+	.string "LIFE ORB ×2, CHOICE BAND,\p"
+	.string "CHOICE SPECS, CHOICE SCARF,\n"
+	.string "LUM BERRY ×5, LIECHI BERRY ×3,\p"
+	.string "GANLON BERRY ×3, SALAC BERRY ×3,\n"
+	.string "PETAYA BERRY ×3, APICOT BERRY ×3,\p"
+	.string "STARF BERRY ×2, LANSAT BERRY ×2,\n"
+	.string "CUSTAP BERRY ×3.$"
+
+CarePackageBulk_Text_10:
+	.string "Inside: ULTRA BALL ×10,\n"
+	.string "FULL RESTORE ×7, PP MAX ×5,\p"
+	.string "ROCKY HELMET ×2, BLACK SLUDGE,\n"
+	.string "ZOOM LENS, WIDE LENS, KING'S ROCK,\p"
+	.string "RAZOR FANG, METRONOME.$"
+
+CarePackageBulk_Text_11:
+	.string "Inside: ULTRA BALL ×10,\n"
+	.string "MAX REVIVE ×2, PP MAX ×5,\p"
+	.string "MAX ELIXIR ×2, FOCUS SASH ×3,\n"
+	.string "HEAVY-DUTY BOOTS, AIR BALLOON ×3,\p"
+	.string "TOXIC ORB ×2, FLAME ORB ×2,\n"
+	.string "MUSCLE BAND ×2, WISE GLASSES ×2,\p"
+	.string "SCOPE LENS ×2.$"
+
+CarePackageBulk_Text_12:
+	.string "Inside: QUICK BALL ×10,\n"
+	.string "FULL RESTORE ×5, PP MAX ×5,\p"
+	.string "LEFTOVERS ×2, ASSAULT VEST ×2,\n"
+	.string "EXPERT BELT ×2, LUM BERRY ×7,\p"
+	.string "X ATTACK ×2, X SP. ATK ×2, X SPEED ×2,\n"
+	.string "X DEFENSE ×2, X SP. DEF ×2.$"
+
+CarePackageBulk_Text_13:
+	.string "Inside: DUSK BALL ×10, MAX ELIXIR ×2,\n"
+	.string "PP MAX ×5, ABILITY PATCH ×2,\p"
+	.string "LIFE ORB ×2, WEAKNESS POLICY ×4,\n"
+	.string "WHITE HERB ×3, ADRENALINE ORB ×4,\p"
+	.string "ABILITY SHIELD ×2, JABOCA BERRY ×3,\n"
+	.string "ROWAP BERRY ×3, KEE BERRY ×3,\p"
+	.string "MARANGA BERRY ×3.$"
+
+CarePackageBulk_Text_14:
+	.string "Inside: ULTRA BALL ×5, MAX REVIVE ×2,\n"
+	.string "PP MAX ×5, MAX ETHER ×5, ELIXIR ×5,\p"
+	.string "CHOICE BAND, CHOICE SPECS,\n"
+	.string "CHOICE SCARF, POWER HERB ×4,\p"
+	.string "MENTAL HERB ×4, SITRUS BERRY ×5.$"
+
+CarePackageBulk_Text_15:
+	.string "Inside: LUXURY BALL ×10,\n"
+	.string "FULL RESTORE ×5, MAX ELIXIR ×2,\p"
+	.string "PP MAX ×5, BOOSTER ENERGY ×3,\n"
+	.string "ROCKY HELMET ×2, COVERT CLOAK ×2,\p"
+	.string "CLEAR AMULET ×2, LOADED DICE ×2,\n"
+	.string "EJECT BUTTON ×4, RED CARD ×4.$"
+
+CarePackageBulk_Text_16:
+	.string "Inside: FULL RESTORE ×5, PP MAX ×5,\n"
+	.string "LIGHT CLAY ×2, AIR BALLOON ×3,\p"
+	.string "FOCUS BAND, IRON BALL, LAGGING TAIL,\n"
+	.string "STICKY BARB, RING TARGET,\p"
+	.string "ABSORB BULB ×4, CELL BATTERY ×4,\n"
+	.string "SNOWBALL ×4, LUMINOUS MOSS ×4.$"
+
+CarePackageBulk_Text_17:
+	.string "Inside: ABILITY PATCH,\n"
+	.string "FULL RESTORE ×5, LEFTOVERS ×2,\p"
+	.string "LIFE ORB ×2, FOCUS SASH ×3,\n"
+	.string "ASSAULT VEST ×2,\p"
+	.string "HEAVY-DUTY BOOTS ×2, LUM BERRY ×5.$"

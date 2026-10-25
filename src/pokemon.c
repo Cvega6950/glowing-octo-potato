@@ -2866,7 +2866,9 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 #include "data/pokemon/trainer_class_lookups.h"
 #include "data/pokemon/experience_tables.h"
 
-#if P_LVL_UP_LEARNSETS >= GEN_9
+#if P_IMPERIUM_SPECIES_DATA
+#include "data/pokemon/level_up_learnsets/imperium.h" // Crystal Imperium: Emerald Imperium's, then Ultra Sun/Ultra Moon
+#elif P_LVL_UP_LEARNSETS >= GEN_9
 #include "data/pokemon/level_up_learnsets/gen_9.h" // Scarlet/Violet
 #elif P_LVL_UP_LEARNSETS >= GEN_8
 #include "data/pokemon/level_up_learnsets/gen_8.h" // Sword/Shield
@@ -2887,7 +2889,11 @@ const struct NatureInfo gNaturesInfo[NUM_NATURES] =
 #endif
 
 #include "data/pokemon/teachable_learnsets.h"
+#if P_IMPERIUM_SPECIES_DATA
+#include "data/pokemon/egg_moves_imperium.h"
+#else
 #include "data/pokemon/egg_moves.h"
+#endif
 #include "data/pokemon/form_species_tables.h"
 #include "data/pokemon/form_change_tables.h"
 #include "data/pokemon/form_change_table_pointers.h"

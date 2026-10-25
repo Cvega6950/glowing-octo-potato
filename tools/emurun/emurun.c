@@ -31,6 +31,11 @@
 //                          @ADDR~BIAS: an s16 in memory minus BIAS
 //   expectfind16 BASE COUNT STRIDE VALUE [LABEL]   fail unless one of COUNT entries STRIDE bytes apart
 //                          from BASE (which may be *PTR+OFF) holds the 16-bit VALUE
+//   expectqty16 BASE COUNT STRIDE VALUE WANT KEY [LABEL]   like expectfind16, and the found entry's next
+//                          16 bits XORed with the 16-bit value at KEY (an address, e.g. the save's
+//                          encryption key for Bag quantities) must be WANT
+//   expectsame32 ADDR1 ADDR2 [LABEL]   fail unless the 32-bit values at ADDR1 and ADDR2 are equal (e.g.
+//                          a text pointer the game set and the table entry it should come from)
 //   setflag SB1PTR FLAGSOFF FLAG VALUE   set (1) or clear (0) event flag FLAG in (*SB1PTR)->flags
 //   expectflag SB1PTR FLAGSOFF FLAG WANT [LABEL]   check event flag FLAG (0/1) in (*SB1PTR)->flags
 //   seek8/seek16 ADDR TARGET KEYUP KEYDOWN   tap KEYUP while the value at ADDR is below TARGET and
@@ -859,6 +864,30 @@ int main(int argc, char **argv)
             printf("[frame %lu] %s %s: 0x%X %s\n", frameCount, i < count ? "PASS" : "FAIL", a5[0] ? a5 : "expectfind16",
                    value, i < count ? "found" : "not found");
             if (i == count)
+                failures++;
+        }
+        else if (!strcmp(cmd, "expectsame32"))
+        {
+            // expectsame32 ADDR1 ADDR2 [LABEL]: the two 32-bit values are equal
+            uint32_t v1 = Peek(32, ParseAddr(a1)), v2 = Peek(32, ParseAddr(a2));
+            printf("[frame %lu] %s %s: 0x%08X vs 0x%08X\n", frameCount, v1 == v2 ? "PASS" : "FAIL",
+                   a3[0] ? a3 : "expectsame32", v1, v2);
+            if (v1 != v2)
+                failures++;
+        }
+        else if (!strcmp(cmd, "expectqty16"))
+        {
+            // expectqty16 BASE COUNT STRIDE VALUE WANT KEY [LABEL]: the entry holding VALUE has WANT after it (XOR KEY)
+            char a4[64] = {0}, a5[64] = {0}, a6[64] = {0}, a7[128] = {0};
+            sscanf(line, "%*s %*s %*s %*s %63s %63s %63s %127s", a4, a5, a6, a7);
+            uint32_t base = ParseAddr(a1), count = strtoul(a2, NULL, 0), stride = strtoul(a3, NULL, 0);
+            uint32_t value = strtoul(a4, NULL, 0), want = strtoul(a5, NULL, 0), key = Peek(16, ParseAddr(a6)), i;
+            for (i = 0; i < count && Peek(16, base + i * stride) != value; i++)
+                ;
+            uint32_t got = i < count ? (Peek(16, base + i * stride + 2) ^ key) : 0;
+            printf("[frame %lu] %s %s: 0x%X x%u (want %u)%s\n", frameCount, i < count && got == want ? "PASS" : "FAIL",
+                   a7[0] ? a7 : "expectqty16", value, got, want, i < count ? "" : " not found");
+            if (i == count || got != want)
                 failures++;
         }
         else if (!strcmp(cmd, "setflag"))

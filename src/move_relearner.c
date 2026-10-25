@@ -31,7 +31,11 @@
 #include "constants/party_menu.h"
 #include "constants/rgb.h"
 #include "constants/songs.h"
+#if P_IMPERIUM_SPECIES_DATA
+#include "data/pokemon/egg_moves_imperium.h"
+#else
 #include "data/pokemon/egg_moves.h"
+#endif
 #include "data/tutor_moves.h"
 
 /*

@@ -26,12 +26,14 @@ static u32 CountMilestones(void)
 
 // Called on each step: the next package arrives while milestones are ahead of the packages
 // received, out on a route or in a town (like Mom's gift calls). A save from before 0.7.0 first
-// gets the battle gear its packages didn't have then, one package per step; a package received
-// since brings its gear itself (VAR_CARE_PACKAGE_GEAR keeps up with VAR_CARE_PACKAGES).
+// gets the battle gear its packages didn't have then, one package per step, and a save from
+// before 0.11.0 the rest of their stacks; a package received since brings both itself
+// (VAR_CARE_PACKAGE_GEAR and VAR_CARE_PACKAGE_BULK keep up with VAR_CARE_PACKAGES).
 bool32 TryStartCarePackageScript(void)
 {
     u32 received = VarGet(VAR_CARE_PACKAGES);
     u32 gear = VarGet(VAR_CARE_PACKAGE_GEAR);
+    u32 bulk = VarGet(VAR_CARE_PACKAGE_BULK);
     u8 mapType = gMapHeader.mapType;
 
     if (mapType != MAP_TYPE_ROUTE && mapType != MAP_TYPE_OCEAN_ROUTE
@@ -41,6 +43,11 @@ bool32 TryStartCarePackageScript(void)
     if (gear < received && gear < CARE_PACKAGE_COUNT)
     {
         ScriptContext_SetupScript(EventScript_CarePackageGear);
+        return TRUE;
+    }
+    if (bulk < received && bulk < CARE_PACKAGE_COUNT)
+    {
+        ScriptContext_SetupScript(EventScript_CarePackageBulk);
         return TRUE;
     }
     if (received >= CARE_PACKAGE_COUNT || received >= CountMilestones())

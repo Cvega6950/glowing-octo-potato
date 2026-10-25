@@ -17,6 +17,9 @@
                                                 // GEN_1/2/3/4/5/6/7: Yellow, Crystal, RSE, HGSS, B2W2, ORAS, USUM learnsets respectively.
                                                 // GEN_8: Use the following priority: BDSP for Gen1-4 Pokémon, then LA for species introduced in that game, then SwSh for species present in those games. Otherwise, use GEN_7.
                                                 // GEN_9: SV For species present in those games. Otherwise use GEN_8.
+#define P_IMPERIUM_SPECIES_DATA     TRUE        // Crystal Imperium: Emerald Imperium's abilities, level-up moves and Egg Moves (Radical Red's,
+                                                // DECISIONS.md D35), written by tools/crystal_imperium/imperium_species.py on top of the GEN_7
+                                                // learnsets above: level_up_learnsets/imperium.h, egg_moves_imperium.h and species_info/imperium_abilities.h.
 #define P_EVOLUTION_LEVEL_1_LEARN   GEN_LATEST  // Since Gen 8, Pokémon evolving while at level 1 do not get the chance to learn their level 1 moves, while before they did.
 
 // Evolution settings

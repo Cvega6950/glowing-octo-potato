@@ -9,7 +9,9 @@ A package arrives after each Gym Badge and after becoming Champion (src/care_pac
 1-8 for the Johto badges, 9 for the Champion, 10-17 for the Kanto badges. Emerald Imperium-style,
 each one is full of battle gear: competitive held items (every staple several times over the game,
 every type-boosting item, every type-resist and pinch Berry), PP Up and PP Max, X items and Elixirs,
-besides Poke Balls, healing and the evolution items found nowhere else in the game.
+besides Poke Balls, healing and the evolution items found nowhere else in the game. Since 0.11.0
+the gear comes in stacks, enough to kit out a whole team (STACKS: 10 of each type-boosting item,
+10 Sitrus and Lum Berries, 3 to 5 of each staple held item, 20 Poke Balls of a kind).
 
 The script shows what's inside in one message, wrapped to the message box with the game's own font
 widths, then adds the items without a message each. An item whose Bag pocket is full goes to the PC
@@ -18,6 +20,8 @@ instead, and the player is told.
 Saves from before 0.7.0 received the packages' earlier contents (EARLIER below, the same in every
 release that had them). VAR_CARE_PACKAGE_GEAR counts the packages whose battle gear has arrived:
 while it is behind VAR_CARE_PACKAGES, the next step brings the gear that package didn't have then.
+Saves from 0.7.0 to 0.10.x received GEAR_PACKAGES (the gear one at a time); VAR_CARE_PACKAGE_BULK
+counts the packages whose stacks have arrived, and the next step brings the rest of one package.
 """
 import argparse
 import os
@@ -38,8 +42,8 @@ RESIST_BERRIES_3 = [("KASIB_BERRY", 2), ("HABAN_BERRY", 2), ("COLBUR_BERRY", 2),
                     ("CHILAN_BERRY", 2), ("ROSELI_BERRY", 2)]
 X_ITEMS = [("X_ATTACK", 3), ("X_SP_ATK", 3), ("X_SPEED", 3), ("X_DEFENSE", 3), ("X_SP_DEF", 3)]
 
-# One list per package: (item without ITEM_, quantity)
-PACKAGES = [
+# One list per package: (item without ITEM_, quantity), as received from 0.7.0 to 0.10.x
+GEAR_PACKAGES = [
     # 1: Zephyr Badge (cap 16)
     [("POKE_BALL", 10), ("GREAT_BALL", 5), ("SUPER_POTION", 5), ("PP_UP", 5), ("PP_MAX", 3),
      ("LEFTOVERS", 1), ("FOCUS_SASH", 2), ("EVIOLITE", 2), ("SITRUS_BERRY", 5), ("LUM_BERRY", 3),
@@ -128,6 +132,40 @@ PACKAGES = [
      ("SITRUS_BERRY", 10), ("LUM_BERRY", 5)],
 ]
 
+# Since 0.11.0 each item comes at least this many times (Emerald Imperium-style stacks)
+TYPE_BOOSTERS = ["CHARCOAL", "MYSTIC_WATER", "MIRACLE_SEED", "MAGNET", "SHARP_BEAK", "SILK_SCARF", "HARD_STONE",
+                 "SOFT_SAND", "SPELL_TAG", "NEVER_MELT_ICE", "BLACK_BELT", "TWISTED_SPOON", "POISON_BARB",
+                 "SILVER_POWDER", "DRAGON_FANG", "BLACK_GLASSES", "METAL_COAT", "FAIRY_FEATHER"]
+RESIST_BERRIES = [b for b, _ in RESIST_BERRIES_1 + RESIST_BERRIES_2 + RESIST_BERRIES_3]
+STACKS = dict(
+    [(item, 10) for item in TYPE_BOOSTERS] + [(berry, 5) for berry in RESIST_BERRIES] +
+    [(ball, 20) for ball in ("POKE_BALL", "GREAT_BALL", "ULTRA_BALL", "QUICK_BALL", "DUSK_BALL", "LUXURY_BALL")] +
+    [(med, 10) for med in ("SUPER_POTION", "HYPER_POTION", "MAX_POTION", "FULL_RESTORE", "FULL_HEAL", "ELIXIR",
+                           "MAX_ETHER", "PP_MAX")] +
+    [(med, 5) for med in ("REVIVE", "MAX_REVIVE", "MAX_ELIXIR", "PP_UP")] +
+    [(x, 5) for x in ("X_ATTACK", "X_SP_ATK", "X_SPEED", "X_DEFENSE", "X_SP_DEF", "X_ACCURACY", "DIRE_HIT", "GUARD_SPEC")] +
+    [("SITRUS_BERRY", 10), ("LUM_BERRY", 10)] +
+    [(berry, 5) for berry in ("LIECHI_BERRY", "GANLON_BERRY", "SALAC_BERRY", "PETAYA_BERRY", "APICOT_BERRY",
+                              "CUSTAP_BERRY", "JABOCA_BERRY", "ROWAP_BERRY", "KEE_BERRY", "MARANGA_BERRY")] +
+    [("STARF_BERRY", 3), ("LANSAT_BERRY", 3)] +
+    # Held items that are used up, then the ones a team wants several of
+    [(item, 5) for item in ("FOCUS_SASH", "EVIOLITE", "AIR_BALLOON", "WHITE_HERB", "POWER_HERB", "MENTAL_HERB",
+                            "RED_CARD", "EJECT_BUTTON", "EJECT_PACK", "WEAKNESS_POLICY", "BOOSTER_ENERGY",
+                            "MIRROR_HERB", "THROAT_SPRAY", "BLUNDER_POLICY", "ROOM_SERVICE", "ADRENALINE_ORB",
+                            "ELECTRIC_SEED", "GRASSY_SEED", "MISTY_SEED", "PSYCHIC_SEED", "ABSORB_BULB",
+                            "CELL_BATTERY", "SNOWBALL", "LUMINOUS_MOSS")] +
+    [(item, 3) for item in ("LEFTOVERS", "LIFE_ORB", "ASSAULT_VEST", "ROCKY_HELMET", "HEAVY_DUTY_BOOTS",
+                            "EXPERT_BELT", "MUSCLE_BAND", "WISE_GLASSES", "SCOPE_LENS", "LIGHT_CLAY", "TOXIC_ORB",
+                            "FLAME_ORB", "SAFETY_GOGGLES", "COVERT_CLOAK", "CLEAR_AMULET", "PROTECTIVE_PADS",
+                            "SHED_SHELL", "DAMP_ROCK", "HEAT_ROCK", "SMOOTH_ROCK", "ICY_ROCK", "QUICK_CLAW",
+                            "SHELL_BELL", "BIG_ROOT", "LOADED_DICE", "PUNCHING_GLOVE", "TERRAIN_EXTENDER",
+                            "UTILITY_UMBRELLA", "ABILITY_SHIELD", "ABILITY_PATCH")] +
+    [(item, 2) for item in ("CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "BLACK_SLUDGE", "RAZOR_CLAW",
+                            "BINDING_BAND", "GRIP_CLAW", "ZOOM_LENS", "WIDE_LENS", "KINGS_ROCK", "RAZOR_FANG",
+                            "METRONOME", "FOCUS_BAND", "IRON_BALL", "LAGGING_TAIL", "STICKY_BARB", "RING_TARGET")])
+
+PACKAGES = [[(item, max(n, STACKS.get(item, 0))) for item, n in package] for package in GEAR_PACKAGES]
+
 # What each package held before 0.7.0 (every earlier release had these), for the catch-up
 EARLIER = [
     [("POKE_BALL", 10), ("GREAT_BALL", 5), ("SUPER_POTION", 5), ("LINKING_CORD", 1), ("SWEET_APPLE", 1),
@@ -153,19 +191,29 @@ EARLIER = [
 ]
 
 
-def gear(k):
-    """What package k (1-17) has beyond its EARLIER contents, in PACKAGES order."""
-    earlier = dict(EARLIER[k - 1])
+def extra(k, before, after, when):
+    """What package k (1-17) has in after beyond before, in after's order."""
+    had = dict(before[k - 1])
     out = []
-    for item, n in PACKAGES[k - 1]:
-        extra = n - earlier.pop(item, 0)
-        if extra < 0:
-            sys.exit(f"package {k}: fewer {item} than before 0.7.0")
-        if extra:
-            out.append((item, extra))
-    if earlier:
-        sys.exit(f"package {k}: no longer has {sorted(earlier)}")
+    for item, n in after[k - 1]:
+        more = n - had.pop(item, 0)
+        if more < 0:
+            sys.exit(f"package {k}: fewer {item} than {when}")
+        if more:
+            out.append((item, more))
+    if had:
+        sys.exit(f"package {k}: no longer has {sorted(had)}")
     return out
+
+
+def gear(k):
+    """The battle gear package k didn't have before 0.7.0."""
+    return extra(k, EARLIER, GEAR_PACKAGES, "before 0.7.0")
+
+
+def bulk(k):
+    """The stacks package k didn't have before 0.11.0."""
+    return extra(k, GEAR_PACKAGES, PACKAGES, "before 0.11.0")
 
 
 HEADER = """\
@@ -178,7 +226,9 @@ HEADER = """\
 @ Each package lists its contents in one message, then the items go to the Bag; one whose pocket
 @ is full goes to the PC (VAR_0x8005 counts those).
 @ EventScript_CarePackageGear brings a save from before 0.7.0 the battle gear its packages didn't
-@ have then, one package per step (VAR_CARE_PACKAGE_GEAR counts the packages whose gear arrived).
+@ have then, one package per step (VAR_CARE_PACKAGE_GEAR counts the packages whose gear arrived);
+@ EventScript_CarePackageBulk then brings a save from before 0.11.0 the rest of each package's stacks
+@ (VAR_CARE_PACKAGE_BULK).
 """
 
 
@@ -252,6 +302,7 @@ MESSAGES = {
     "CarePackage_Text_Champion": ["PROF. ELM: Congratulations,", "CHAMPION!",
                                   "Word is that rare and legendary {PKMN}", "now show up in the wild!"],
     "CarePackage_Text_GearArrived": ["PROF. ELM sent the battle gear", "an earlier package didn't have!"],
+    "CarePackage_Text_BulkArrived": ["PROF. ELM sent more of the gear", "from an earlier package!"],
     "CarePackage_Text_SentToPC": ["Your BAG was full, so some of it", "was sent to your PC."],
 }
 
@@ -274,7 +325,10 @@ def render():
                 sys.exit(f"package {k}: unknown item ITEM_{item}")
     if len(EARLIER) != len(PACKAGES):
         sys.exit("EARLIER needs one entry per package")
+    if len(GEAR_PACKAGES) != len(PACKAGES):
+        sys.exit("GEAR_PACKAGES needs one entry per package")
     gears = [gear(k) for k in range(1, len(PACKAGES) + 1)]
+    bulks = [bulk(k) for k in range(1, len(PACKAGES) + 1)]
     out = HEADER.splitlines()
     out += ["EventScript_CarePackage::", "\tlockall", "\tplayse SE_EXP_MAX",
             "\tmsgbox CarePackage_Text_Arrived, MSGBOX_DEFAULT", "\tsetvar VAR_0x8005, 0",
@@ -291,7 +345,7 @@ def render():
     out += ["CarePackage_End:", "\tgoto_if_eq VAR_0x8005, 0, CarePackage_Done",
             "\tmsgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT",
             "CarePackage_Done::", "\taddvar VAR_CARE_PACKAGES, 1", "\tcopyvar VAR_CARE_PACKAGE_GEAR, VAR_CARE_PACKAGES",
-            "\treleaseall", "\tend", ""]
+            "\tcopyvar VAR_CARE_PACKAGE_BULK, VAR_CARE_PACKAGES", "\treleaseall", "\tend", ""]
     out += ["EventScript_CarePackageGear::", "\tlockall", "\tplayse SE_EXP_MAX",
             "\tmsgbox CarePackage_Text_GearArrived, MSGBOX_DEFAULT", "\tsetvar VAR_0x8005, 0",
             "\tswitch VAR_CARE_PACKAGE_GEAR"]
@@ -304,7 +358,21 @@ def render():
     out += ["CarePackageGear_End:", "\tgoto_if_eq VAR_0x8005, 0, CarePackageGear_Done",
             "\tmsgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT",
             "CarePackageGear_Done::", "\taddvar VAR_CARE_PACKAGE_GEAR, 1", "\treleaseall", "\tend", ""]
-    for item, n in sorted({(item, n) for items in PACKAGES + gears for item, n in items}):
+    out += ["EventScript_CarePackageBulk::", "\tlockall", "\tplayse SE_EXP_MAX",
+            "\tmsgbox CarePackage_Text_BulkArrived, MSGBOX_DEFAULT", "\tsetvar VAR_0x8005, 0",
+            "\tswitch VAR_CARE_PACKAGE_BULK"]
+    out += [f"\tcase {k - 1}, CarePackageBulk_{k}" for k in range(1, len(PACKAGES) + 1) if bulks[k - 1]]
+    out += ["\tgoto CarePackageBulk_Done", ""]
+    for k, items in enumerate(bulks, 1):
+        if not items:
+            continue
+        out += [f"CarePackageBulk_{k}::", "\tplayfanfare MUS_OBTAIN_ITEM",
+                f"\tmsgbox CarePackageBulk_Text_{k}, MSGBOX_DEFAULT", "\twaitfanfare"]
+        out += item_lines(items, "CarePackageBulk_End")
+    out += ["CarePackageBulk_End:", "\tgoto_if_eq VAR_0x8005, 0, CarePackageBulk_Done",
+            "\tmsgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT",
+            "CarePackageBulk_Done::", "\taddvar VAR_CARE_PACKAGE_BULK, 1", "\treleaseall", "\tend", ""]
+    for item, n in sorted({(item, n) for items in PACKAGES + gears + bulks for item, n in items}):
         out += [f"{pc_label(item, n)}:", f"\taddpcitem ITEM_{item}, {n}", "\taddvar VAR_0x8005, 1", "\treturn", ""]
     for label, lines in MESSAGES.items():
         out += [f"{label}:"] + message_lines(lines, widths) + [""]
@@ -312,6 +380,9 @@ def render():
         out += [f"CarePackage_Text_{k}:"] + contents_text(items, names, widths) + [""]
     for k, items in enumerate(gears, 1):
         out += [f"CarePackageGear_Text_{k}:"] + contents_text(items, names, widths) + [""]
+    for k, items in enumerate(bulks, 1):
+        if items:
+            out += [f"CarePackageBulk_Text_{k}:"] + contents_text(items, names, widths) + [""]
     return "\n".join(out).rstrip("\n") + "\n"
 
 
