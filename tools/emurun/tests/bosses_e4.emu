@@ -1,5 +1,5 @@
 # Crystal Imperium play test for the Elite Four and Lance (tools/crystal_imperium/boss_teams.py),
-# at the cap of 56, where every one of their Pokemon is since 0.7.0. The player's sixes hold items
+# at the cap of 85 (56 before 0.8.0), where every one of their Pokemon is since 0.7.0. The player's sixes hold items
 # from the first eight care packages (DECISIONS.md D16), as a player would by then. Koga faces the
 # prepared six of bosses_m3 played naively (one move per Pokemon, never switching). Will, Bruno,
 # Karen and Lance face sixes built for them, played with a game plan like a player's: for each of
@@ -14,88 +14,88 @@
 !new_game()
 !battle_style_set()
 savestate base.ss
-!prepared_team(56, items=True)
-savestate prep56.ss
+!prepared_team(85, items=True)
+savestate prep85.ss
 
 seenreset
-!sample_battle("TRAINER_KOGA_1_HNS", "2,2,1,0,0,0", 6, 1, 6, "prep56.ss")
+!sample_battle("TRAINER_KOGA_1_HNS", "2,2,1,0,0,0", 6, 1, 6, "prep85.ss")
 !expect_const_seen("SPECIES_BEEDRILL_MEGA", "koga_mega_beedrill")
 
 # Will: Dark and Ghost attackers, Fire for Bronzong, Electric for Slowbro, Steel for Gardevoir
 # (Assault Vest Tyranitar, Life Orb Houndoom and Metagross, Expert Belt Ampharos, Focus Sash
 # Weavile, Spell Tag Gengar)
 loadstate base.ss
-!give_mon_complex("SPECIES_TYRANITAR", 56, "NATURE_ADAMANT", 0, ["MOVE_CRUNCH", "MOVE_STONE_EDGE", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"])
-!give_mon_complex("SPECIES_HOUNDOOM", 56, "NATURE_TIMID", 1, ["MOVE_DARK_PULSE", "MOVE_FLAMETHROWER", "MOVE_SLUDGE_BOMB", "MOVE_NASTY_PLOT"])
-!give_mon_complex("SPECIES_AMPHAROS", 56, "NATURE_MODEST", 0, ["MOVE_THUNDERBOLT", "MOVE_DRAGON_PULSE", "MOVE_FOCUS_BLAST", "MOVE_POWER_GEM"])
-!give_mon_complex("SPECIES_METAGROSS", 56, "NATURE_ADAMANT", 0, ["MOVE_METEOR_MASH", "MOVE_ZEN_HEADBUTT", "MOVE_BULLET_PUNCH", "MOVE_EARTHQUAKE"])
-!give_mon_complex("SPECIES_WEAVILE", 56, "NATURE_JOLLY", 0, ["MOVE_KNOCK_OFF", "MOVE_TRIPLE_AXEL", "MOVE_ICE_SHARD", "MOVE_SWORDS_DANCE"])
-!give_mon_complex("SPECIES_GENGAR", 56, "NATURE_TIMID", 0, ["MOVE_SHADOW_BALL", "MOVE_SLUDGE_BOMB", "MOVE_FOCUS_BLAST", "MOVE_NASTY_PLOT"])
+!give_mon_complex("SPECIES_TYRANITAR", 85, "NATURE_ADAMANT", 0, ["MOVE_CRUNCH", "MOVE_STONE_EDGE", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"])
+!give_mon_complex("SPECIES_HOUNDOOM", 85, "NATURE_TIMID", 1, ["MOVE_DARK_PULSE", "MOVE_FLAMETHROWER", "MOVE_SLUDGE_BOMB", "MOVE_NASTY_PLOT"])
+!give_mon_complex("SPECIES_AMPHAROS", 85, "NATURE_MODEST", 0, ["MOVE_THUNDERBOLT", "MOVE_DRAGON_PULSE", "MOVE_FOCUS_BLAST", "MOVE_POWER_GEM"])
+!give_mon_complex("SPECIES_METAGROSS", 85, "NATURE_ADAMANT", 0, ["MOVE_METEOR_MASH", "MOVE_ZEN_HEADBUTT", "MOVE_BULLET_PUNCH", "MOVE_EARTHQUAKE"])
+!give_mon_complex("SPECIES_WEAVILE", 85, "NATURE_JOLLY", 0, ["MOVE_KNOCK_OFF", "MOVE_TRIPLE_AXEL", "MOVE_ICE_SHARD", "MOVE_SWORDS_DANCE"])
+!give_mon_complex("SPECIES_GENGAR", 85, "NATURE_TIMID", 0, ["MOVE_SHADOW_BALL", "MOVE_SLUDGE_BOMB", "MOVE_FOCUS_BLAST", "MOVE_NASTY_PLOT"])
 !hold_item("ITEM_ASSAULT_VEST", 0)
 !hold_item("ITEM_LIFE_ORB", 1)
 !hold_item("ITEM_EXPERT_BELT", 2)
 !hold_item("ITEM_LIFE_ORB", 3)
 !hold_item("ITEM_FOCUS_SASH", 4)
 !hold_item("ITEM_SPELL_TAG", 5)
-savestate will56.ss
+savestate will85.ss
 seenreset
-!sample_battle("TRAINER_WILL_1_HNS", "0,0,0,0,0,0", 8, 1, 8, "will56.ss", plan={"SPECIES_XATU": [(0, 0), (1, 0), (4, 0), (5, 0), (2, 0)], "SPECIES_SLOWBRO": [(2, 0), (5, 0), (1, 0), (4, 0), (0, 0)], "SPECIES_BRONZONG": [(1, 1), (5, 0), (0, 0)], "SPECIES_FARIGIRAF": [(0, 0), (1, 0), (4, 0)], "SPECIES_GARDEVOIR": [(3, 0), (5, 1)], "SPECIES_ALAKAZAM": [(0, 0), (4, 0), (1, 0), (5, 0)], "SPECIES_ALAKAZAM_MEGA": [(0, 0), (4, 0), (1, 0), (5, 0)]})
+!sample_battle("TRAINER_WILL_1_HNS", "0,0,0,0,0,0", 8, 1, 8, "will85.ss", plan={"SPECIES_XATU": [(0, 0), (1, 0), (4, 0), (5, 0), (2, 0)], "SPECIES_SLOWBRO": [(2, 0), (5, 0), (1, 0), (4, 0), (0, 0)], "SPECIES_BRONZONG": [(1, 1), (5, 0), (0, 0)], "SPECIES_FARIGIRAF": [(0, 0), (1, 0), (4, 0)], "SPECIES_GARDEVOIR": [(3, 0), (5, 1)], "SPECIES_ALAKAZAM": [(0, 0), (4, 0), (1, 0), (5, 0)], "SPECIES_ALAKAZAM_MEGA": [(0, 0), (4, 0), (1, 0), (5, 0)]})
 !expect_const_seen("SPECIES_ALAKAZAM_MEGA", "will_mega_alakazam")
 
 # Bruno: Fairy and Psychic for his Fighting-types, Fire and Ground for Steelix and Lucario
 loadstate base.ss
-!give_mon_complex("SPECIES_GARDEVOIR", 56, "NATURE_MODEST", 0, ["MOVE_MOONBLAST", "MOVE_PSYCHIC", "MOVE_MYSTICAL_FIRE", "MOVE_CALM_MIND"])
-!give_mon_complex("SPECIES_ARCANINE", 56, "NATURE_ADAMANT", 0, ["MOVE_FLARE_BLITZ", "MOVE_EXTREME_SPEED", "MOVE_WILD_CHARGE", "MOVE_CRUNCH"])
-!give_mon_complex("SPECIES_TOGEKISS", 56, "NATURE_MODEST", 1, ["MOVE_MOONBLAST", "MOVE_AIR_SLASH", "MOVE_AURA_SPHERE", "MOVE_NASTY_PLOT"])
-!give_mon_complex("SPECIES_ESPEON", 56, "NATURE_MODEST", 0, ["MOVE_PSYCHIC", "MOVE_DAZZLING_GLEAM", "MOVE_SHADOW_BALL", "MOVE_CALM_MIND"])
-!give_mon_complex("SPECIES_GARCHOMP", 56, "NATURE_JOLLY", 1, ["MOVE_EARTHQUAKE", "MOVE_DRAGON_CLAW", "MOVE_FIRE_FANG", "MOVE_SWORDS_DANCE"])
-!give_mon_complex("SPECIES_GYARADOS", 56, "NATURE_ADAMANT", 0, ["MOVE_WATERFALL", "MOVE_ICE_FANG", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"])
+!give_mon_complex("SPECIES_GARDEVOIR", 85, "NATURE_MODEST", 0, ["MOVE_MOONBLAST", "MOVE_PSYCHIC", "MOVE_MYSTICAL_FIRE", "MOVE_CALM_MIND"])
+!give_mon_complex("SPECIES_ARCANINE", 85, "NATURE_ADAMANT", 0, ["MOVE_FLARE_BLITZ", "MOVE_EXTREME_SPEED", "MOVE_WILD_CHARGE", "MOVE_CRUNCH"])
+!give_mon_complex("SPECIES_TOGEKISS", 85, "NATURE_MODEST", 1, ["MOVE_MOONBLAST", "MOVE_AIR_SLASH", "MOVE_AURA_SPHERE", "MOVE_NASTY_PLOT"])
+!give_mon_complex("SPECIES_ESPEON", 85, "NATURE_MODEST", 0, ["MOVE_PSYCHIC", "MOVE_DAZZLING_GLEAM", "MOVE_SHADOW_BALL", "MOVE_CALM_MIND"])
+!give_mon_complex("SPECIES_GARCHOMP", 85, "NATURE_JOLLY", 1, ["MOVE_EARTHQUAKE", "MOVE_DRAGON_CLAW", "MOVE_FIRE_FANG", "MOVE_SWORDS_DANCE"])
+!give_mon_complex("SPECIES_GYARADOS", 85, "NATURE_ADAMANT", 0, ["MOVE_WATERFALL", "MOVE_ICE_FANG", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"])
 !hold_item("ITEM_LIFE_ORB", 0)
 !hold_item("ITEM_LEFTOVERS", 1)
 !hold_item("ITEM_EXPERT_BELT", 2)
 !hold_item("ITEM_LIFE_ORB", 3)
 !hold_item("ITEM_FOCUS_SASH", 4)
 !hold_item("ITEM_LEFTOVERS", 5)
-savestate bruno56.ss
+savestate bruno85.ss
 seenreset
-!sample_battle("TRAINER_BRUNO_1_HNS", "0,0,0,0,0,0", 12, 1, 12, "bruno56.ss", plan={"SPECIES_HITMONTOP": (0, 0), "SPECIES_HITMONLEE": (0, 0), "SPECIES_HITMONCHAN": (0, 0), "SPECIES_MACHAMP": (2, 1), "SPECIES_STEELIX": (1, 0), "SPECIES_LUCARIO": (4, 0), "SPECIES_LUCARIO_MEGA": (4, 0)})
+!sample_battle("TRAINER_BRUNO_1_HNS", "0,0,0,0,0,0", 12, 1, 12, "bruno85.ss", plan={"SPECIES_HITMONTOP": (0, 0), "SPECIES_HITMONLEE": (0, 0), "SPECIES_HITMONCHAN": (0, 0), "SPECIES_MACHAMP": (2, 1), "SPECIES_STEELIX": (1, 0), "SPECIES_LUCARIO": (4, 0), "SPECIES_LUCARIO_MEGA": (4, 0)})
 !expect_const_seen("SPECIES_LUCARIO_MEGA", "bruno_mega_lucario")
 
 # Karen: Fighting and Fairy for her Dark-types, Psychic for Vileplume and Gengar, Electric and
 # Rock for Honchkrow, Ground for Houndoom
 loadstate base.ss
-!give_mon_complex("SPECIES_LUCARIO", 56, "NATURE_ADAMANT", 1, ["MOVE_CLOSE_COMBAT", "MOVE_EXTREME_SPEED", "MOVE_ICE_PUNCH", "MOVE_SWORDS_DANCE"])
-!give_mon_complex("SPECIES_GARCHOMP", 56, "NATURE_JOLLY", 1, ["MOVE_EARTHQUAKE", "MOVE_DRAGON_CLAW", "MOVE_FIRE_FANG", "MOVE_SWORDS_DANCE"])
-!give_mon_complex("SPECIES_GARDEVOIR", 56, "NATURE_MODEST", 0, ["MOVE_MOONBLAST", "MOVE_PSYCHIC", "MOVE_MYSTICAL_FIRE", "MOVE_CALM_MIND"])
-!give_mon_complex("SPECIES_AMPHAROS", 56, "NATURE_MODEST", 0, ["MOVE_THUNDERBOLT", "MOVE_DRAGON_PULSE", "MOVE_FOCUS_BLAST", "MOVE_POWER_GEM"])
-!give_mon_complex("SPECIES_TOGEKISS", 56, "NATURE_MODEST", 1, ["MOVE_MOONBLAST", "MOVE_AIR_SLASH", "MOVE_AURA_SPHERE", "MOVE_NASTY_PLOT"])
-!give_mon_complex("SPECIES_TYRANITAR", 56, "NATURE_ADAMANT", 0, ["MOVE_CRUNCH", "MOVE_STONE_EDGE", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"])
+!give_mon_complex("SPECIES_LUCARIO", 85, "NATURE_ADAMANT", 1, ["MOVE_CLOSE_COMBAT", "MOVE_EXTREME_SPEED", "MOVE_ICE_PUNCH", "MOVE_SWORDS_DANCE"])
+!give_mon_complex("SPECIES_GARCHOMP", 85, "NATURE_JOLLY", 1, ["MOVE_EARTHQUAKE", "MOVE_DRAGON_CLAW", "MOVE_FIRE_FANG", "MOVE_SWORDS_DANCE"])
+!give_mon_complex("SPECIES_GARDEVOIR", 85, "NATURE_MODEST", 0, ["MOVE_MOONBLAST", "MOVE_PSYCHIC", "MOVE_MYSTICAL_FIRE", "MOVE_CALM_MIND"])
+!give_mon_complex("SPECIES_AMPHAROS", 85, "NATURE_MODEST", 0, ["MOVE_THUNDERBOLT", "MOVE_DRAGON_PULSE", "MOVE_FOCUS_BLAST", "MOVE_POWER_GEM"])
+!give_mon_complex("SPECIES_TOGEKISS", 85, "NATURE_MODEST", 1, ["MOVE_MOONBLAST", "MOVE_AIR_SLASH", "MOVE_AURA_SPHERE", "MOVE_NASTY_PLOT"])
+!give_mon_complex("SPECIES_TYRANITAR", 85, "NATURE_ADAMANT", 0, ["MOVE_CRUNCH", "MOVE_STONE_EDGE", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"])
 !hold_item("ITEM_LIFE_ORB", 0)
 !hold_item("ITEM_FOCUS_SASH", 1)
 !hold_item("ITEM_LIFE_ORB", 2)
 !hold_item("ITEM_EXPERT_BELT", 3)
 !hold_item("ITEM_LEFTOVERS", 4)
 !hold_item("ITEM_ASSAULT_VEST", 5)
-savestate karen56.ss
+savestate karen85.ss
 seenreset
-!sample_battle("TRAINER_KAREN_1_HNS", "0,0,0,0,0,0", 12, 1, 12, "karen56.ss", plan={"SPECIES_UMBREON": [(0, 0), (4, 0), (2, 0), (3, 2)], "SPECIES_VILEPLUME": [(2, 1), (4, 1), (1, 2), (0, 2)], "SPECIES_GENGAR": [(2, 1), (5, 0), (1, 1)], "SPECIES_HONCHKROW": [(3, 0), (5, 1), (2, 0), (4, 0)], "SPECIES_ABSOL": [(0, 0), (4, 0), (2, 0)], "SPECIES_ABSOL_MEGA": [(0, 0), (4, 0), (2, 0)], "SPECIES_HOUNDOOM": [(1, 0), (5, 1), (0, 0), (3, 2)]})
+!sample_battle("TRAINER_KAREN_1_HNS", "0,0,0,0,0,0", 12, 1, 12, "karen85.ss", plan={"SPECIES_UMBREON": [(0, 0), (4, 0), (2, 0), (3, 2)], "SPECIES_VILEPLUME": [(2, 1), (4, 1), (1, 2), (0, 2)], "SPECIES_GENGAR": [(2, 1), (5, 0), (1, 1)], "SPECIES_HONCHKROW": [(3, 0), (5, 1), (2, 0), (4, 0)], "SPECIES_ABSOL": [(0, 0), (4, 0), (2, 0)], "SPECIES_ABSOL_MEGA": [(0, 0), (4, 0), (2, 0)], "SPECIES_HOUNDOOM": [(1, 0), (5, 1), (0, 0), (3, 2)]})
 !expect_const_seen("SPECIES_ABSOL_MEGA", "karen_mega_absol")
 
 # Lance: Electric for Gyarados and Aerodactyl, Rock for Charizard, Ice and Fairy for the Dragons
 loadstate base.ss
-!give_mon_complex("SPECIES_AMPHAROS", 56, "NATURE_MODEST", 0, ["MOVE_THUNDERBOLT", "MOVE_DRAGON_PULSE", "MOVE_FOCUS_BLAST", "MOVE_POWER_GEM"])
-!give_mon_complex("SPECIES_MAMOSWINE", 56, "NATURE_ADAMANT", 1, ["MOVE_ICICLE_CRASH", "MOVE_EARTHQUAKE", "MOVE_ICE_SHARD", "MOVE_STEALTH_ROCK"])
-!give_mon_complex("SPECIES_GARDEVOIR", 56, "NATURE_MODEST", 0, ["MOVE_MOONBLAST", "MOVE_PSYCHIC", "MOVE_MYSTICAL_FIRE", "MOVE_CALM_MIND"])
-!give_mon_complex("SPECIES_TOGEKISS", 56, "NATURE_MODEST", 1, ["MOVE_MOONBLAST", "MOVE_AIR_SLASH", "MOVE_AURA_SPHERE", "MOVE_NASTY_PLOT"])
-!give_mon_complex("SPECIES_TYRANITAR", 56, "NATURE_ADAMANT", 0, ["MOVE_CRUNCH", "MOVE_STONE_EDGE", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"])
-!give_mon_complex("SPECIES_WEAVILE", 56, "NATURE_JOLLY", 0, ["MOVE_TRIPLE_AXEL", "MOVE_KNOCK_OFF", "MOVE_ICE_SHARD", "MOVE_SWORDS_DANCE"])
+!give_mon_complex("SPECIES_AMPHAROS", 85, "NATURE_MODEST", 0, ["MOVE_THUNDERBOLT", "MOVE_DRAGON_PULSE", "MOVE_FOCUS_BLAST", "MOVE_POWER_GEM"])
+!give_mon_complex("SPECIES_MAMOSWINE", 85, "NATURE_ADAMANT", 1, ["MOVE_ICICLE_CRASH", "MOVE_EARTHQUAKE", "MOVE_ICE_SHARD", "MOVE_STEALTH_ROCK"])
+!give_mon_complex("SPECIES_GARDEVOIR", 85, "NATURE_MODEST", 0, ["MOVE_MOONBLAST", "MOVE_PSYCHIC", "MOVE_MYSTICAL_FIRE", "MOVE_CALM_MIND"])
+!give_mon_complex("SPECIES_TOGEKISS", 85, "NATURE_MODEST", 1, ["MOVE_MOONBLAST", "MOVE_AIR_SLASH", "MOVE_AURA_SPHERE", "MOVE_NASTY_PLOT"])
+!give_mon_complex("SPECIES_TYRANITAR", 85, "NATURE_ADAMANT", 0, ["MOVE_CRUNCH", "MOVE_STONE_EDGE", "MOVE_EARTHQUAKE", "MOVE_DRAGON_DANCE"])
+!give_mon_complex("SPECIES_WEAVILE", 85, "NATURE_JOLLY", 0, ["MOVE_TRIPLE_AXEL", "MOVE_KNOCK_OFF", "MOVE_ICE_SHARD", "MOVE_SWORDS_DANCE"])
 !hold_item("ITEM_EXPERT_BELT", 0)
 !hold_item("ITEM_FOCUS_SASH", 1)
 !hold_item("ITEM_LIFE_ORB", 2)
 !hold_item("ITEM_LEFTOVERS", 3)
 !hold_item("ITEM_ASSAULT_VEST", 4)
 !hold_item("ITEM_FOCUS_SASH", 5)
-savestate lance56.ss
+savestate lance85.ss
 seenreset
-!sample_battle("TRAINER_LANCE_1_HNS", "0,0,0,0,1,0", 24, 1, 24, "lance56.ss", plan={"SPECIES_GYARADOS": [(0, 0), (2, 0), (3, 0)], "SPECIES_GYARADOS_MEGA": [(0, 0), (2, 0), (3, 0)], "SPECIES_AERODACTYL": [(4, 1), (0, 0), (1, 0), (5, 0)], "SPECIES_CHARIZARD": [(4, 1), (0, 0)], "SPECIES_SALAMENCE": [(1, 0), (5, 0), (2, 0), (3, 0), (4, 1)], "SPECIES_GARCHOMP": [(1, 0), (5, 0), (2, 0), (3, 0)], "SPECIES_DRAGONITE": [(5, 0), (1, 0), (2, 0), (3, 0), (4, 1)]})
+!sample_battle("TRAINER_LANCE_1_HNS", "0,0,0,0,1,0", 24, 1, 24, "lance85.ss", plan={"SPECIES_GYARADOS": [(0, 0), (2, 0), (3, 0)], "SPECIES_GYARADOS_MEGA": [(0, 0), (2, 0), (3, 0)], "SPECIES_AERODACTYL": [(4, 1), (0, 0), (1, 0), (5, 0)], "SPECIES_CHARIZARD": [(4, 1), (0, 0)], "SPECIES_SALAMENCE": [(1, 0), (5, 0), (2, 0), (3, 0), (4, 1)], "SPECIES_GARCHOMP": [(1, 0), (5, 0), (2, 0), (3, 0)], "SPECIES_DRAGONITE": [(5, 0), (1, 0), (2, 0), (3, 0), (4, 1)]})
 !expect_const_seen("SPECIES_GYARADOS_MEGA", "lance_mega_gyarados")

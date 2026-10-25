@@ -1032,8 +1032,8 @@ static const u8 *const sDesc_PartyLimit[] = {
 };
 static const u8 *const sDesc_LevelCap[] = {
     COMPOUND_STRING("No level cap. Overleveling possible.\nBosses use the NORMAL caps."),
-    COMPOUND_STRING("Max level 11, 16, 21, 25, 31, 36, 38,\n45, 56, 70. Bosses are at the cap."),
-    COMPOUND_STRING("Max level 8, 15, 20, 23, 29, 33, 37,\n42, 54, 70. Bosses are at the cap."),
+    COMPOUND_STRING("Max level 15, 24, 33, 42, 50, 58, 66,\n75, 85, 90. Bosses are at the cap."),
+    COMPOUND_STRING("Max level 12, 21, 30, 39, 47, 55, 63,\n72, 85, 90. Bosses are at the cap."),
 };
 static const u8 *const sDesc_ExpMult[] = {
     COMPOUND_STRING("{PKMN} gain normal EXP. Points.\nStacks with HARD MODE EXP."),

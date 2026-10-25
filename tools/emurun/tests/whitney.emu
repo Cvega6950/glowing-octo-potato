@@ -1,19 +1,23 @@
-# Crystal Imperium balance test: Whitney (trainer 406) at the badge-2 level cap (21), where all
-# of her Pokemon are since 0.7.0. Team: Pidgeotto / Quilava / Kadabra / Machop (Machop is kept
-# for Miltank, holding the first care package's Eviolite), never switching voluntarily. 24
-# battles with different RNG must include at least one win and at least two losses. This naive
-# team wins about one battle in five (5 of 20 on mGBA, 4 of 20 on VBA-M when measured for 0.7.0;
-# without the Eviolite 3 of 12 and 1 of 12), so twelve samples could all be losses by chance.
+# Crystal Imperium balance test: Whitney (trainer 406) at the badge-2 level cap (33), with Heart &
+# Soul's four and, since 0.8.0, Furret and Girafarig and held items (boss_teams.py). Team:
+# Pidgeotto / Quilava / Kadabra / Scyther / Primeape / Machoke (Machoke is kept for Miltank,
+# holding the first care package's Eviolite), never switching voluntarily, each with a move a
+# player at 33 would keep (the default movesets at 33 drop Quilava's Fire moves and give Kadabra
+# the physical Psycho Cut). 24 battles with different RNG must include at least one win and at
+# least two losses.
 !new_game()
 !battle_style_set()
-!give_mon(17, 21)
-!give_mon(156, 21)
-!give_mon(64, 21)
-!give_mon(66, 21)
-!hold_item("ITEM_EVIOLITE", 3)
+!give_mon_complex("SPECIES_PIDGEOTTO", 33, "NATURE_HARDY", 0, ['MOVE_WING_ATTACK', 'MOVE_TWISTER', 'MOVE_QUICK_ATTACK', 'MOVE_AGILITY'])
+!give_mon_complex("SPECIES_QUILAVA", 33, "NATURE_HARDY", 0, ['MOVE_FLAME_WHEEL', 'MOVE_SWIFT', 'MOVE_QUICK_ATTACK', 'MOVE_SMOKESCREEN'])
+!give_mon_complex("SPECIES_KADABRA", 33, "NATURE_HARDY", 0, ['MOVE_PSYBEAM', 'MOVE_CONFUSION', 'MOVE_REFLECT', 'MOVE_RECOVER'])
+!give_mon(123, 33)
+!give_mon(57, 33)
+!give_mon_complex("SPECIES_MACHOKE", 33, "NATURE_HARDY", 0, ['MOVE_LOW_SWEEP', 'MOVE_VITAL_THROW', 'MOVE_KNOCK_OFF', 'MOVE_BULK_UP'])
+!hold_item("ITEM_EVIOLITE", 5)
 savestate team.ss
 !battle_trainer(406)
 wait 1100
 expect16 {gBattleMons+136} 35 whitney_leads_clefairy
-# Pidgeotto Gust, Quilava Flame Wheel, Kadabra Psybeam, Machop Low Sweep
-!sample_battle(406, "0,2,3,0", runs=24, min_wins=1, max_wins=22)
+# Pidgeotto Wing Attack, Quilava Flame Wheel, Kadabra Psybeam, Scyther Wing Attack, Primeape Cross
+# Chop, Machoke Low Sweep
+!sample_battle(406, "0,0,0,0,1,0", runs=24, min_wins=1, max_wins=22)

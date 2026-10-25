@@ -7,85 +7,85 @@
 !battle_style_set()
 savestate base.ss
 
-# Proton in Slowpoke Well (cap 16)
-!team(16, "SPECIES_QUILAVA", "SPECIES_CROCONAW", "SPECIES_FLAAFFY")
+# Proton in Slowpoke Well (cap 24)
+!team(24, "SPECIES_QUILAVA", "SPECIES_CROCONAW", "SPECIES_FLAAFFY")
 !battle("TRAINER_PROTON_1_HNS")
-!autobattle("1,0,2")
+!autobattle("1,0,0")
 expectne8 {gBattleOutcome} 0 proton_1_resolved
 
-# Rival in Azalea (cap 21) and at the Burned Tower (cap 25)
+# Rival in Azalea (cap 33) and at the Burned Tower (cap 42)
 loadstate base.ss
-!team(21, "SPECIES_QUILAVA", "SPECIES_CROCONAW", "SPECIES_FLAAFFY")
-savestate lv21.ss
+!team(33, "SPECIES_QUILAVA", "SPECIES_CROCONAW", "SPECIES_FLAAFFY")
+savestate lv33.ss
 !battle("TRAINER_RIVAL_CYNDAQUIL_2_HNS")
-!autobattle("1,0,2")
+!autobattle("3,2,2")
 expectne8 {gBattleOutcome} 0 rival_2_resolved
 loadstate base.ss
-!team(25, "SPECIES_FERALIGATR", "SPECIES_TYPHLOSION", "SPECIES_GYARADOS")
-savestate lv25.ss
+!team(42, "SPECIES_FERALIGATR", "SPECIES_TYPHLOSION", "SPECIES_GYARADOS")
+savestate lv42.ss
 !battle("TRAINER_RIVAL_TOTODILE_3_HNS")
-!autobattle("0,1,3")
+!autobattle("2,3,3")
 expectne8 {gBattleOutcome} 0 rival_3_resolved
 
-# Morty (cap 25)
-loadstate lv25.ss
+# Morty (cap 42)
+loadstate lv42.ss
 !battle("TRAINER_MORTY_1_HNS")
-!autobattle("0,1,3")
+!autobattle("2,3,3")
 expectne8 {gBattleOutcome} 0 morty_resolved
 
-# Chuck, Jasmine, Pryce as the 5th Gym (cap 31)
+# Chuck, Jasmine, Pryce as the 5th Gym (cap 50)
 loadstate base.ss
-!team(31, "SPECIES_FERALIGATR", "SPECIES_GARDEVOIR", "SPECIES_GYARADOS", "SPECIES_TYPHLOSION")
-savestate lv31.ss
+!team(50, "SPECIES_FERALIGATR", "SPECIES_GARDEVOIR", "SPECIES_GYARADOS", "SPECIES_TYPHLOSION")
+savestate lv50.ss
 !battle("TRAINER_CHUCK_1_HNS")
-!autobattle("2,3,3,3")
+!autobattle("0,1,1,3")
 expectne8 {gBattleOutcome} 0 chuck_1_resolved
-loadstate lv31.ss
+loadstate lv50.ss
 !battle("TRAINER_JASMINE_1_HNS")
-!autobattle("2,3,3,3")
+!autobattle("0,1,1,3")
 expectne8 {gBattleOutcome} 0 jasmine_1_resolved
-loadstate lv31.ss
+loadstate lv50.ss
 !battle("TRAINER_PRYCE_1_HNS")
-!autobattle("2,3,3,3")
+!autobattle("0,1,1,3")
 expectne8 {gBattleOutcome} 0 pryce_1_resolved
 
-# ... as the 6th Gym (cap 36)
+# ... as the 6th Gym (cap 58)
 loadstate base.ss
-!team(36, "SPECIES_FERALIGATR", "SPECIES_GARDEVOIR", "SPECIES_GYARADOS", "SPECIES_AMPHAROS")
-savestate lv36.ss
+!team(58, "SPECIES_FERALIGATR", "SPECIES_GARDEVOIR", "SPECIES_GYARADOS", "SPECIES_AMPHAROS")
+savestate lv58.ss
 !battle("TRAINER_CHUCK_1_2_HNS")
-!autobattle("2,2,1,0")
+!autobattle("1,3,1,0")
 expectne8 {gBattleOutcome} 0 chuck_2_resolved
-loadstate lv36.ss
+loadstate lv58.ss
 !battle("TRAINER_JASMINE_1_2_HNS")
-!autobattle("2,2,1,0")
+!autobattle("1,3,1,0")
 expectne8 {gBattleOutcome} 0 jasmine_2_resolved
-loadstate lv36.ss
+loadstate lv58.ss
 !battle("TRAINER_PRYCE_1_2_HNS")
-!autobattle("2,2,1,0")
+!autobattle("1,3,1,0")
 expectne8 {gBattleOutcome} 0 pryce_2_resolved
 
-# ... as the 7th Gym (cap 38)
+# ... as the 7th Gym (cap 66)
 loadstate base.ss
-!team(38, "SPECIES_FERALIGATR", "SPECIES_GARDEVOIR", "SPECIES_GYARADOS", "SPECIES_AMPHAROS")
-savestate lv38.ss
+!team(66, "SPECIES_FERALIGATR", "SPECIES_GARDEVOIR", "SPECIES_GYARADOS", "SPECIES_AMPHAROS")
+savestate lv66.ss
 !battle("TRAINER_CHUCK_1_3_HNS")
-!autobattle("2,2,1,0")
+!autobattle("3,3,1,2")
 expectne8 {gBattleOutcome} 0 chuck_3_resolved
-loadstate lv38.ss
+loadstate lv66.ss
 !battle("TRAINER_JASMINE_1_3_HNS")
-!autobattle("2,2,1,0")
+!autobattle("3,3,1,2")
 expectne8 {gBattleOutcome} 0 jasmine_3_resolved
-loadstate lv38.ss
+loadstate lv66.ss
 !battle("TRAINER_PRYCE_1_3_HNS")
-!autobattle("2,2,1,0")
+!autobattle("3,3,1,2")
 expectne8 {gBattleOutcome} 0 pryce_3_resolved
 
-# Clair (cap 45)
+# Clair (cap 75)
 loadstate base.ss
-!team(45, "SPECIES_GARDEVOIR", "SPECIES_FERALIGATR", "SPECIES_AMPHAROS", "SPECIES_TYPHLOSION", "SPECIES_GYARADOS")
+!team(75, "SPECIES_GARDEVOIR", "SPECIES_FERALIGATR", "SPECIES_AMPHAROS", "SPECIES_TYPHLOSION", "SPECIES_GYARADOS")
 !battle("TRAINER_CLAIR_1_HNS")
-!autobattle("0,1,3,3,1")
+!autobattle("3,2,3,3,1")
 expectne8 {gBattleOutcome} 0 clair_resolved
 
 # Winnable with a well-built team. Since 0.7.0 every boss Pokemon is at the cap, and the player's
@@ -97,59 +97,59 @@ expectne8 {gBattleOutcome} 0 clair_resolved
 # (bosses_e4): they won 16 of 16 and 13 of 16 when built. Each Gym Leader must be beaten at least
 # once in eight tries (Clair sixteen), and every boss Mega Evolution happens.
 loadstate base.ss
-!prepared_team(25, items=True)
-savestate prep25.ss
-!sample_battle("TRAINER_MORTY_1_HNS", "0,0,1,0,3,0", 8, 1, 8, "prep25.ss")
+!prepared_team(42, items=True)
+savestate prep42.ss
+!sample_battle("TRAINER_MORTY_1_HNS", "0,0,1,0,3,0", 8, 1, 8, "prep42.ss")
 loadstate base.ss
-!prepared_team(31, items=True)
-savestate prep31.ss
+!prepared_team(50, items=True)
+savestate prep50.ss
 seenreset
-!sample_battle("TRAINER_JASMINE_1_HNS", "1,2,2,0,0,2", 8, 1, 8, "prep31.ss")
+!sample_battle("TRAINER_JASMINE_1_HNS", "1,2,2,0,0,2", 8, 1, 8, "prep50.ss")
 !expect_const_seen("SPECIES_STEELIX_MEGA", "jasmine_mega_steelix")
 
 # Chuck: Psychic, Flying and Fairy attackers (Talonflame with a Lum Berry against Breloom's Spore)
 loadstate base.ss
-!give_mon_complex("SPECIES_GARDEVOIR", 31, "NATURE_MODEST", 0, ['MOVE_PSYCHIC', 'MOVE_MOONBLAST', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
-!give_mon_complex("SPECIES_TALONFLAME", 31, "NATURE_ADAMANT", 1, ['MOVE_BRAVE_BIRD', 'MOVE_FLARE_BLITZ', 'MOVE_U_TURN', 'MOVE_ROOST'])
-!give_mon_complex("SPECIES_TOGEKISS", 31, "NATURE_MODEST", 1, ['MOVE_AIR_SLASH', 'MOVE_MOONBLAST', 'MOVE_AURA_SPHERE', 'MOVE_NASTY_PLOT'])
-!give_mon_complex("SPECIES_SLOWBRO", 31, "NATURE_MODEST", 0, ['MOVE_PSYCHIC', 'MOVE_SCALD', 'MOVE_ICE_BEAM', 'MOVE_SLACK_OFF'])
-!give_mon_complex("SPECIES_GENGAR", 31, "NATURE_TIMID", 0, ['MOVE_SHADOW_BALL', 'MOVE_SLUDGE_BOMB', 'MOVE_FOCUS_BLAST', 'MOVE_NASTY_PLOT'])
-!give_mon_complex("SPECIES_ALAKAZAM", 31, "NATURE_TIMID", 0, ['MOVE_PSYCHIC', 'MOVE_SHADOW_BALL', 'MOVE_FOCUS_BLAST', 'MOVE_CALM_MIND'])
+!give_mon_complex("SPECIES_GARDEVOIR", 50, "NATURE_MODEST", 0, ['MOVE_PSYCHIC', 'MOVE_MOONBLAST', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
+!give_mon_complex("SPECIES_TALONFLAME", 50, "NATURE_ADAMANT", 1, ['MOVE_BRAVE_BIRD', 'MOVE_FLARE_BLITZ', 'MOVE_U_TURN', 'MOVE_ROOST'])
+!give_mon_complex("SPECIES_TOGEKISS", 50, "NATURE_MODEST", 1, ['MOVE_AIR_SLASH', 'MOVE_MOONBLAST', 'MOVE_AURA_SPHERE', 'MOVE_NASTY_PLOT'])
+!give_mon_complex("SPECIES_SLOWBRO", 50, "NATURE_MODEST", 0, ['MOVE_PSYCHIC', 'MOVE_SCALD', 'MOVE_ICE_BEAM', 'MOVE_SLACK_OFF'])
+!give_mon_complex("SPECIES_GENGAR", 50, "NATURE_TIMID", 0, ['MOVE_SHADOW_BALL', 'MOVE_SLUDGE_BOMB', 'MOVE_FOCUS_BLAST', 'MOVE_NASTY_PLOT'])
+!give_mon_complex("SPECIES_ALAKAZAM", 50, "NATURE_TIMID", 0, ['MOVE_PSYCHIC', 'MOVE_SHADOW_BALL', 'MOVE_FOCUS_BLAST', 'MOVE_CALM_MIND'])
 !hold_item("ITEM_LIFE_ORB", 0)
 !hold_item("ITEM_LUM_BERRY", 1, "POCKET_BERRIES")
 !hold_item("ITEM_LEFTOVERS", 2)
 !hold_item("ITEM_ASSAULT_VEST", 3)
 !hold_item("ITEM_FOCUS_SASH", 4)
 !hold_item("ITEM_FOCUS_SASH", 5)
-savestate chuck31.ss
+savestate chuck50.ss
 seenreset
-!sample_battle("TRAINER_CHUCK_1_HNS", "0,0,0,0,0,0", 8, 1, 8, "chuck31.ss", plan={"SPECIES_HITMONTOP": [(0, 0), (2, 0), (5, 0)], "SPECIES_BRELOOM": [(1, 0), (2, 0), (0, 0)], "SPECIES_PRIMEAPE": [(0, 1), (2, 0), (5, 0)], "SPECIES_POLIWRATH": [(0, 0), (2, 0), (5, 0)], "SPECIES_HERACROSS": [(1, 0), (2, 0)], "SPECIES_HERACROSS_MEGA": [(1, 0), (2, 0)]})
+!sample_battle("TRAINER_CHUCK_1_HNS", "0,0,0,0,0,0", 8, 1, 8, "chuck50.ss", plan={"SPECIES_HITMONTOP": [(0, 0), (2, 0), (5, 0)], "SPECIES_BRELOOM": [(1, 0), (2, 0), (0, 0)], "SPECIES_PRIMEAPE": [(0, 1), (2, 0), (5, 0)], "SPECIES_POLIWRATH": [(0, 0), (2, 0), (5, 0)], "SPECIES_HAWLUCHA": [(0, 0), (2, 0), (5, 0)], "SPECIES_HERACROSS": [(1, 0), (2, 0)], "SPECIES_HERACROSS_MEGA": [(1, 0), (2, 0)]})
 !expect_const_seen("SPECIES_HERACROSS_MEGA", "chuck_mega_heracross")
 
 # Pryce: Electric for Cloyster, Dark for Jynx, Fighting for Weavile, Water for Mamoswine, Fire
 # and Steel for Abomasnow (Assault Vest Magnezone and Tyranitar, Focus Sash Lucario, Choice
 # Band Arcanine, which only uses Flare Blitz)
 loadstate base.ss
-!give_mon_complex("SPECIES_MAGNEZONE", 31, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_FLASH_CANNON', 'MOVE_VOLT_SWITCH', 'MOVE_BODY_PRESS'])
-!give_mon_complex("SPECIES_LUCARIO", 31, "NATURE_ADAMANT", 1, ['MOVE_CLOSE_COMBAT', 'MOVE_METEOR_MASH', 'MOVE_EXTREME_SPEED', 'MOVE_SWORDS_DANCE'])
-!give_mon_complex("SPECIES_ARCANINE", 31, "NATURE_ADAMANT", 0, ['MOVE_FLARE_BLITZ', 'MOVE_EXTREME_SPEED', 'MOVE_WILD_CHARGE', 'MOVE_CRUNCH'])
-!give_mon_complex("SPECIES_GYARADOS", 31, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_ICE_FANG', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
-!give_mon_complex("SPECIES_TYRANITAR", 31, "NATURE_ADAMANT", 0, ['MOVE_CRUNCH', 'MOVE_STONE_EDGE', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
-!give_mon_complex("SPECIES_METAGROSS", 31, "NATURE_ADAMANT", 0, ['MOVE_METEOR_MASH', 'MOVE_ZEN_HEADBUTT', 'MOVE_BULLET_PUNCH', 'MOVE_EARTHQUAKE'])
+!give_mon_complex("SPECIES_MAGNEZONE", 50, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_FLASH_CANNON', 'MOVE_VOLT_SWITCH', 'MOVE_BODY_PRESS'])
+!give_mon_complex("SPECIES_LUCARIO", 50, "NATURE_ADAMANT", 1, ['MOVE_CLOSE_COMBAT', 'MOVE_METEOR_MASH', 'MOVE_EXTREME_SPEED', 'MOVE_SWORDS_DANCE'])
+!give_mon_complex("SPECIES_ARCANINE", 50, "NATURE_ADAMANT", 0, ['MOVE_FLARE_BLITZ', 'MOVE_EXTREME_SPEED', 'MOVE_WILD_CHARGE', 'MOVE_CRUNCH'])
+!give_mon_complex("SPECIES_GYARADOS", 50, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_ICE_FANG', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
+!give_mon_complex("SPECIES_TYRANITAR", 50, "NATURE_ADAMANT", 0, ['MOVE_CRUNCH', 'MOVE_STONE_EDGE', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
+!give_mon_complex("SPECIES_METAGROSS", 50, "NATURE_ADAMANT", 0, ['MOVE_METEOR_MASH', 'MOVE_ZEN_HEADBUTT', 'MOVE_BULLET_PUNCH', 'MOVE_EARTHQUAKE'])
 !hold_item("ITEM_ASSAULT_VEST", 0)
 !hold_item("ITEM_FOCUS_SASH", 1)
 !hold_item("ITEM_CHOICE_BAND", 2)
 !hold_item("ITEM_LEFTOVERS", 3)
 !hold_item("ITEM_ASSAULT_VEST", 4)
 !hold_item("ITEM_LIFE_ORB", 5)
-savestate pryce31.ss
+savestate pryce50.ss
 seenreset
-!sample_battle("TRAINER_PRYCE_1_HNS", "0,0,0,0,0,0", 8, 1, 8, "pryce31.ss", plan={"SPECIES_CLOYSTER": [(0, 0), (1, 0)], "SPECIES_JYNX": [(4, 0), (5, 0)], "SPECIES_WEAVILE": [(1, 0), (2, 0), (5, 0)], "SPECIES_MAMOSWINE": [(3, 0), (1, 0)], "SPECIES_ABOMASNOW": [(2, 0), (5, 0), (0, 1), (1, 0)], "SPECIES_ABOMASNOW_MEGA": [(2, 0), (5, 0), (0, 1), (1, 0)]})
+!sample_battle("TRAINER_PRYCE_1_HNS", "0,0,0,0,0,0", 8, 1, 8, "pryce50.ss", plan={"SPECIES_CLOYSTER": [(0, 0), (1, 0)], "SPECIES_DEWGONG": [(0, 0), (1, 0)], "SPECIES_JYNX": [(4, 0), (5, 0)], "SPECIES_WEAVILE": [(1, 0), (2, 0), (5, 0)], "SPECIES_MAMOSWINE": [(3, 0), (1, 0)], "SPECIES_ABOMASNOW": [(2, 0), (5, 0), (0, 1), (1, 0)], "SPECIES_ABOMASNOW_MEGA": [(2, 0), (5, 0), (0, 1), (1, 0)]})
 !expect_const_seen("SPECIES_ABOMASNOW_MEGA", "pryce_mega_abomasnow")
 
 loadstate base.ss
-!prepared_team(45, items=True)
-savestate prep45.ss
+!prepared_team(75, items=True)
+savestate prep75.ss
 seenreset
-!sample_battle("TRAINER_CLAIR_1_HNS", "1,1,0,1,3,1", 16, 1, 16, "prep45.ss")
+!sample_battle("TRAINER_CLAIR_1_HNS", "1,1,0,1,3,1", 16, 1, 16, "prep75.ss")
 !expect_const_seen("SPECIES_ALTARIA_MEGA", "clair_mega_altaria")

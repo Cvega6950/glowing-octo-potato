@@ -33,7 +33,7 @@ BOSS_LIST = os.path.join(ROOT, "src", "data", "level_cap_bosses.h")
 BOSS_AI = "Smart Trainer / Ace Pokemon / HP Aware"
 RED_AI = "Smart Trainer / Prediction / Ace Pokemon / HP Aware"
 
-# Stages after the eighth badge: the Johto League won (FLAG_IS_CHAMPION; cap 70 for all of Kanto)
+# Stages after the eighth badge: the Johto League won (FLAG_IS_CHAMPION; cap 90 for all of Kanto)
 # and the Kanto League won (FLAG_IS_KANTO_CHAMPION; no cap left)
 JOHTO_CHAMPION = "Johto Champion"
 KANTO_CHAMPION = "Kanto Champion"
@@ -66,18 +66,58 @@ def mon(species, item, ability, nature, moves, evs=None):
     return {"species": species, "item": item, "ability": ability, "nature": nature, "moves": moves, "evs": evs}
 
 
-# --- Morty (4th Gym, 3 badges: cap 25) ------------------------------------------------------------
+# --- Falkner (1st Gym, no badges: cap 15) -----------------------------------------------------------
+# Heart & Soul's Pidgey, Rookidee and Noctowl, and since 0.8.0 a full six: Magic Bounce Natu,
+# Gale Wings Fletchling and Prankster Murkrow (Thunder Wave) for Speed control.
+FALKNER = [
+    mon("Pidgey", "Oran Berry", "Big Pecks", "Timid", ["Tailwind", "Gust", "Sand Attack", "Quick Attack"]),
+    mon("Natu", "Eviolite", "Magic Bounce", "Bold", ["Night Shade", "Peck", "Confuse Ray", "Wish"]),
+    mon("Fletchling", "Eviolite", "Gale Wings", "Jolly", ["Acrobatics", "Quick Attack", "Agility", "Flail"]),
+    mon("Murkrow", "Eviolite", "Prankster", "Calm", ["Foul Play", "Peck", "Thunder Wave", "Haze"]),
+    mon("Rookidee", "Eviolite", "Keen Eye", "Adamant", ["Hone Claws", "Power Trip", "Peck", "Rock Smash"]),
+    mon("Noctowl", "Sitrus Berry", "Tinted Lens", "Modest", ["Hypnosis", "Air Cutter", "Reflect", "Mud Slap"]),
+]
+
+# --- Bugsy (2nd Gym, 1 badge: cap 24) -------------------------------------------------------------
+# Heart & Soul's team (Spinarak, Pineco, Ledian, Scyther with early moves) was no longer a fight at
+# the Emerald Imperium-style caps (D29): a naive team won 19 battles in 20. Sticky Web and Toxic
+# Thread from the lead, Rock coverage for the Fire and Flying types sent against him, screens,
+# Sleep Powder, a Speed Boost Yanma and a Technician Scyther as the ace (six since D30).
+BUGSY = [
+    mon("Ariados", "Black Sludge", "Insomnia", "Adamant", ["Sticky Web", "Toxic Thread", "Sucker Punch", "Lunge"]),
+    mon("Pineco", "Sitrus Berry", "Sturdy", "Relaxed", ["Stealth Rock", "Rock Tomb", "Bug Bite", "Explosion"]),
+    mon("Ledian", "Light Clay", "Early Bird", "Calm", ["Reflect", "Light Screen", "Silver Wind", "Mach Punch"]),
+    mon("Butterfree", "Silver Powder", "Compound Eyes", "Timid", ["Sleep Powder", "Bug Buzz", "Air Slash", "Psybeam"]),
+    mon("Yanma", "Sitrus Berry", "Speed Boost", "Modest", ["Ancient Power", "Air Slash", "Bug Buzz", "Protect"]),
+    mon("Scyther", "Eviolite", "Technician", "Jolly", ["Bug Bite", "Aerial Ace", "Quick Attack", "Fury Cutter"]),
+]
+
+# --- Whitney (3rd Gym, 2 badges: cap 33) ----------------------------------------------------------
+# Heart & Soul's four and their moves, with held items: at the higher caps (D29) her team without
+# items lost 13 battles in 20 to a naive team (0.7.0: 15 in 20 won by her). Furret and Girafarig
+# make six (D30).
+WHITNEY = [
+    mon("Clefairy", "Eviolite", "Magic Guard", "Bold", ["Double Slap", "Metronome", "Encore", "Charm"]),
+    mon("Aipom", "Silk Scarf", "Pickup", "Jolly", ["Fake Out", "Double Hit", "U Turn", "Astonish"]),
+    mon("Furret", "Sitrus Berry", "Frisk", "Jolly", ["Double Edge", "Sucker Punch", "U Turn", "Coil"]),
+    mon("Stantler", "Sitrus Berry", "Intimidate", "Adamant", ["Hypnosis", "Stomp", "Zen Headbutt", "Take Down"]),
+    mon("Girafarig", "Twisted Spoon", "Inner Focus", "Modest", ["Psybeam", "Shadow Ball", "Thunderbolt", "Nasty Plot"]),
+    mon("Miltank", "Leftovers", "Scrappy", "Impish", ["Rollout", "Body Slam", "Milk Drink", "Attract"]),
+]
+
+# --- Morty (4th Gym, 3 badges: cap 42) ------------------------------------------------------------
 MORTY = [
     mon("Sableye", "Sitrus Berry", "Prankster", "Careful", ["Will O Wisp", "Knock Off", "Night Shade", "Recover"]),
     mon("Misdreavus", "Eviolite", "Levitate", "Timid", ["Hex", "Thunder Wave", "Dazzling Gleam", "Pain Split"]),
     mon("Drifblim", "Sitrus Berry", "Unburden", "Modest", ["Shadow Ball", "Air Slash", "Thunderbolt", "Calm Mind"]),
     mon("Marowak Alola", "Thick Club", "Lightning Rod", "Adamant", ["Shadow Bone", "Fire Punch", "Bonemerang", "Thunder Punch"]),
+    mon("Mimikyu", "Life Orb", "Disguise", "Jolly", ["Shadow Claw", "Play Rough", "Shadow Sneak", "Swords Dance"]),
     mon("Gengar", "Spell Tag", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Thunderbolt", "Hypnosis"]),
 ]
 
 # --- Chuck, Jasmine, Pryce (5th to 7th Gym in any order) ------------------------------------------
-# HnS picks the party by how many of the three the player has beaten: _1 with 4 badges (cap 31),
-# _1_2 with 5 (cap 36), _1_3 with 6 (cap 38).
+# HnS picks the party by how many of the three the player has beaten: _1 with 4 badges (cap 50),
+# _1_2 with 5 (cap 58), _1_3 with 6 (cap 66).
 CHUCK = [
     mon("Hitmontop", "Sitrus Berry", "Intimidate", "Adamant", ["Fake Out", "Triple Kick", "Sucker Punch", "Rock Slide"]),
     mon("Breloom", "Focus Sash", "Technician", "Jolly", ["Mach Punch", "Bullet Seed", "Rock Tomb", "Spore"]),
@@ -104,11 +144,7 @@ PRYCE = [
 ]
 
 
-def five_of_six(mons, drop):
-    return [m for i, m in enumerate(mons) if i != drop]
-
-
-# --- Clair (8th Gym, 7 badges: cap 45) ------------------------------------------------------------
+# --- Clair (8th Gym, 7 badges: cap 75) ------------------------------------------------------------
 CLAIR = [
     mon("Druddigon", "Rocky Helmet", "Rough Skin", "Adamant", ["Outrage", "Gunk Shot", "Sucker Punch", "Glare"]),
     mon("Flygon", "Choice Scarf", "Levitate", "Jolly", ["Earthquake", "Dragon Claw", "U Turn", "Fire Punch"]),
@@ -119,7 +155,7 @@ CLAIR = [
 ]
 
 # --- Rival (Silver): TRAINER_RIVAL_<his starter>_<n>_HNS ------------------------------------------
-# 2nd battle: Azalea Town after Bugsy (2 badges, cap 21). 3rd: Burned Tower (3 badges, cap 25).
+# 2nd battle: Azalea Town after Bugsy (2 badges, cap 33). 3rd: Burned Tower (3 badges, cap 42).
 RIVAL_STARTER = {
     2: {"CYNDAQUIL": mon("Quilava", "Sitrus Berry", "Blaze", "Timid", ["Lava Plume", "Extrasensory", "Quick Attack", "Smokescreen"]),
         "TOTODILE": mon("Croconaw", "Sitrus Berry", "Sheer Force", "Adamant", ["Ice Fang", "Bite", "Aqua Jet", "Scary Face"]),
@@ -130,46 +166,70 @@ RIVAL_STARTER = {
 }
 RIVAL_TEAM = {
     2: [mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Wing Attack", "Bite", "Confuse Ray", "Toxic"]),
+        mon("Haunter", "Eviolite", "Levitate", "Timid", ["Hex", "Sludge Bomb", "Hypnosis", "Dazzling Gleam"]),
+        mon("Magneton", "Eviolite", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Thunder Wave", "Volt Switch"]),
         mon("Larvitar", "Eviolite", "Guts", "Adamant", ["Rock Slide", "Bite", "Bulldoze", "Scary Face"]),
         mon("Sneasel", "Oran Berry", "Inner Focus", "Jolly", ["Faint Attack", "Ice Shard", "Quick Attack", "Icy Wind"])],
     3: [mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Air Cutter", "Bite", "Confuse Ray", "Toxic"]),
         mon("Sneasel", "Razor Claw", "Inner Focus", "Jolly", ["Fake Out", "Ice Punch", "Faint Attack", "Ice Shard"]),
+        mon("Haunter", "Eviolite", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Hypnosis", "Dazzling Gleam"]),
         mon("Weepinbell", "Eviolite", "Chlorophyll", "Adamant", ["Bullet Seed", "Poison Jab", "Sleep Powder", "Knock Off"]),
         mon("Larvitar", "Eviolite", "Guts", "Adamant", ["Rock Slide", "Crunch", "Bulldoze", "Dragon Dance"])],
 }
 
-# --- Team Rocket: Proton in Slowpoke Well (1 badge, cap 16) -----------------------------------------
+# --- Team Rocket: Proton in Slowpoke Well (1 badge, cap 24) -----------------------------------------
 PROTON_1 = [
     mon("Koffing", "Eviolite", "Levitate", "Bold", ["Sludge", "Will O Wisp", "Clear Smog", "Smokescreen"]),
+    mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Wing Attack", "Bite", "Confuse Ray", "Toxic"]),
     mon("Slowpoke", "Eviolite", "Regenerator", "Relaxed", ["Water Pulse", "Confusion", "Yawn", "Slack Off"]),
+    mon("Grimer", "Eviolite", "Poison Touch", "Adamant", ["Poison Jab", "Shadow Sneak", "Disable", "Rock Tomb"]),
+    mon("Raticate", "Silk Scarf", "Hustle", "Jolly", ["Super Fang", "Sucker Punch", "Crunch", "Quick Attack"]),
     mon("Houndour", "Charcoal", "Flash Fire", "Timid", ["Incinerate", "Snarl", "Smog", "Nasty Plot"]),
 ]
 
-# --- Team Rocket: Rocket Hideout (4 badges at the earliest: the Lake of Rage needs Surf; cap 31) ------
+# --- Team Rocket: Rocket Hideout (4 badges at the earliest: the Lake of Rage needs Surf; cap 50) ------
 PETREL_1 = [
-    mon("Weezing", "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Fire Blast"]),
     mon("Forretress", "Leftovers", "Sturdy", "Relaxed", ["Spikes", "Volt Switch", "Gyro Ball", "Rapid Spin"]),
+    mon("Weezing", "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Fire Blast"]),
+    mon("Golbat", "Eviolite", "Inner Focus", "Jolly", ["Cross Poison", "Crunch", "Confuse Ray", "U Turn"]),
+    mon("Houndoom", "Black Glasses", "Flash Fire", "Timid", ["Dark Pulse", "Flamethrower", "Sludge Bomb", "Nasty Plot"]),
     mon("Pupitar", "Eviolite", "Shed Skin", "Adamant", ["Rock Slide", "Crunch", "Earthquake", "Dragon Dance"]),
     mon("Drapion", "Black Glasses", "Sniper", "Jolly", ["Knock Off", "Poison Jab", "Earthquake", "Swords Dance"]),
 ]
 ARIANA_1 = [
     mon("Arbok", "Black Sludge", "Intimidate", "Adamant", ["Gunk Shot", "Sucker Punch", "Glare", "Earthquake"]),
     mon("Persian", "Silk Scarf", "Technician", "Jolly", ["Fake Out", "Faint Attack", "U Turn", "Hypnosis"]),
+    mon("Liepard", "Sitrus Berry", "Prankster", "Jolly", ["Foul Play", "Thunder Wave", "U Turn", "Encore"]),
     mon("Vileplume", "Black Sludge", "Effect Spore", "Calm", ["Giga Drain", "Sludge Bomb", "Sleep Powder", "Strength Sap"]),
+    mon("Gyarados", "Sitrus Berry", "Intimidate", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Dragon Dance"]),
     mon("Honchkrow", "Scope Lens", "Super Luck", "Adamant", ["Brave Bird", "Night Slash", "Sucker Punch", "Heat Wave"]),
 ]
 
-# --- Team Rocket: Radio Tower (7 badges, cap 45) ----------------------------------------------------
+# --- Eusine in Cianwood (4 badges at the earliest: cap 50) --------------------------------------------
+# Heart & Soul's Politoed, Hypno and Electrode had 2 IVs and the basic AI. Since 0.8.0 a rain team
+# of six around them: Drizzle Politoed, Thunder from Electrode and Lanturn.
+EUSINE = [
+    mon("Politoed", "Damp Rock", "Drizzle", "Bold", ["Scald", "Ice Beam", "Hypnosis", "Encore"]),
+    mon("Hypno", "Leftovers", "Insomnia", "Calm", ["Psychic", "Thunder Wave", "Focus Blast", "Nasty Plot"]),
+    mon("Electrode", "Focus Sash", "Aftermath", "Timid", ["Thunder", "Volt Switch", "Thunder Wave", "Explosion"]),
+    mon("Lanturn", "Sitrus Berry", "Volt Absorb", "Modest", ["Thunder", "Scald", "Ice Beam", "Volt Switch"]),
+    mon("Gengar", "Black Sludge", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Thunderbolt", "Destiny Bond"]),
+    mon("Starmie", "Life Orb", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Thunder", "Rapid Spin"]),
+]
+
+# --- Team Rocket: Radio Tower (7 badges, cap 75) ----------------------------------------------------
 PROTON_2 = [
     mon("Muk", "Black Sludge", "Poison Touch", "Adamant", ["Gunk Shot", "Shadow Sneak", "Knock Off", "Curse"]),
     mon("Nidoqueen", "Life Orb", "Sheer Force", "Modest", ["Earth Power", "Sludge Wave", "Ice Beam", "Flamethrower"]),
     mon("Weezing", "Rocky Helmet", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Toxic Spikes"]),
     mon("Nidoking", "Life Orb", "Sheer Force", "Timid", ["Earth Power", "Sludge Wave", "Ice Beam", "Thunderbolt"]),
+    mon("Toxicroak", "Life Orb", "Dry Skin", "Jolly", ["Drain Punch", "Gunk Shot", "Sucker Punch", "Swords Dance"]),
     mon("Rhydon", "Eviolite", "Lightning Rod", "Adamant", ["Stone Edge", "Earthquake", "Megahorn", "Swords Dance"]),
 ]
 PETREL_2 = [
     mon("Forretress", "Leftovers", "Sturdy", "Relaxed", ["Spikes", "Volt Switch", "Gyro Ball", "Rapid Spin"]),
     mon("Weezing Galar", "Black Sludge", "Neutralizing Gas", "Bold", ["Strange Steam", "Sludge Bomb", "Will O Wisp", "Pain Split"]),
+    mon("Toxapex", "Black Sludge", "Regenerator", "Bold", ["Scald", "Toxic", "Recover", "Haze"]),
     mon("Pupitar", "Eviolite", "Shed Skin", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
     mon("Cloyster", "Focus Sash", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Shell Smash", "Liquidation"]),
     mon("Drapion", "Black Glasses", "Sniper", "Jolly", ["Knock Off", "Poison Jab", "Earthquake", "Swords Dance"]),
@@ -177,6 +237,7 @@ PETREL_2 = [
 ARIANA_2 = [
     mon("Arbok", "Black Sludge", "Intimidate", "Adamant", ["Gunk Shot", "Sucker Punch", "Glare", "Earthquake"]),
     mon("Persian", "Silk Scarf", "Technician", "Jolly", ["Fake Out", "Faint Attack", "U Turn", "Hypnosis"]),
+    mon("Skuntank", "Black Sludge", "Aftermath", "Adamant", ["Sucker Punch", "Crunch", "Poison Jab", "Fire Blast"]),
     mon("Vileplume", "Black Sludge", "Effect Spore", "Calm", ["Giga Drain", "Sludge Bomb", "Sleep Powder", "Strength Sap"]),
     mon("Gyarados", "Sitrus Berry", "Intimidate", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Dragon Dance"]),
     mon("Honchkrow", "Scope Lens", "Super Luck", "Adamant", ["Brave Bird", "Night Slash", "Sucker Punch", "Heat Wave"]),
@@ -190,7 +251,7 @@ ARCHER = [
     mon("Houndoom", "Houndoominite", "Flash Fire", "Timid", ["Fire Blast", "Dark Pulse", "Sludge Bomb", "Nasty Plot"]),
 ]
 
-# --- Rival: Goldenrod Underground (7 badges, cap 45) and Victory Road (8 badges, cap 56) -------------
+# --- Rival: Goldenrod Underground (7 badges, cap 75) and Victory Road (8 badges, cap 85) -------------
 RIVAL_STARTER[4] = {
     "CYNDAQUIL": mon("Typhlosion", "Choice Scarf", "Flash Fire", "Timid", ["Eruption", "Fire Blast", "Focus Blast", "Extrasensory"]),
     "TOTODILE": mon("Feraligatr", "Life Orb", "Sheer Force", "Adamant", ["Liquidation", "Ice Punch", "Crunch", "Dragon Dance"]),
@@ -204,6 +265,7 @@ RIVAL_STARTER[5] = {
 RIVAL_TEAM[4] = [
     mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
     mon("Weavile", "Life Orb", "Pressure", "Jolly", ["Knock Off", "Ice Punch", "Ice Shard", "Low Kick"]),
+    mon("Alakazam", "Focus Sash", "Magic Guard", "Timid", ["Psychic", "Shadow Ball", "Focus Blast", "Calm Mind"]),
     mon("Victreebel", "Black Sludge", "Chlorophyll", "Adamant", ["Power Whip", "Sucker Punch", "Poison Jab", "Sleep Powder"]),
     mon("Pupitar", "Eviolite", "Shed Skin", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
 ]
@@ -215,7 +277,7 @@ RIVAL_TEAM[5] = [
     mon("Tyranitar", "Tyranitarite", "Sand Stream", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
 ]
 
-# --- Kimono Girls: Ecruteak Dance Theater, one after another (8 badges, cap 56) ----------------------
+# --- Kimono Girls: Ecruteak Dance Theater, one after another (8 badges, cap 85) ----------------------
 KIMONO = {
     "TRAINER_ZUKI_HNS": [mon("Umbreon", "Leftovers", "Inner Focus", "Calm", ["Foul Play", "Moonlight", "Protect", "Toxic"])],
     "TRAINER_NAOKO_HNS": [mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"])],
@@ -224,7 +286,7 @@ KIMONO = {
     "TRAINER_KUNI_HNS": [mon("Vaporeon", "Leftovers", "Water Absorb", "Bold", ["Scald", "Ice Beam", "Wish", "Protect"])],
 }
 
-# --- Elite Four and Lance (8 badges, cap 56) -----------------------------------------------------------
+# --- Elite Four and Lance (8 badges, cap 85) -----------------------------------------------------------
 WILL = [
     mon("Xatu", "Light Clay", "Magic Bounce", "Timid", ["Psychic", "Air Slash", "Roost", "Reflect"]),
     mon("Slowbro", "Leftovers", "Regenerator", "Bold", ["Scald", "Psyshock", "Slack Off", "Calm Mind"]),
@@ -270,7 +332,7 @@ LANCE = [
     mon("Dragonite", "Lum Berry", "Multiscale", "Adamant", ["Extreme Speed", "Dragon Dance", "Earthquake", "Outrage"]),
 ]
 
-# --- Kanto Gym Leaders and Blue (after the Johto League: cap 70, any order) ------------------------
+# --- Kanto Gym Leaders and Blue (after the Johto League: cap 90, any order) ------------------------
 BROCK = [
     mon("Golem", "Leftovers", "Sturdy", "Adamant", ["Stealth Rock", "Earthquake", "Stone Edge", "Explosion"]),
     mon("Omastar", "White Herb", "Swift Swim", "Modest", ["Shell Smash", "Hydro Pump", "Ice Beam", "Earth Power"]),
@@ -338,6 +400,246 @@ BLUE = [
     mon("Pidgeot", "Pidgeotite", "Keen Eye", "Timid", ["Hurricane", "Heat Wave", "U Turn", "Roost"]),
 ]
 
+# --- Route mini-bosses (DECISIONS.md D30) -----------------------------------------------------------
+# Strong trainers on the routes, as in Emerald Imperium: one existing trainer on most routes (none
+# with phone rematches or double battles) gets a competitive team at the level cap, themed by the
+# trainer's class. The stage is the earliest point the route can be reached, so a mini-boss is
+# never above the player's cap and is raised to it when met later. 3 Pokemon before the first
+# badge, 4 to 5 in mid-Johto, 6 from Route 45 on and in Kanto.
+ROUTE_BOSSES = {
+    # Route 30, Youngster Mikey: a Guts Rattata with a Flame Orb
+    "TRAINER_MIKEY_HNS": (0, [
+        mon("Pichu", "Eviolite", "Static", "Timid", ["Nuzzle", "Thunder Shock", "Sweet Kiss", "Fake Out"]),
+        mon("Sentret", "Eviolite", "Frisk", "Jolly", ["U Turn", "Quick Attack", "Fury Swipes", "Defense Curl"]),
+        mon("Rattata", "Flame Orb", "Guts", "Jolly", ["Facade", "Quick Attack", "Bite", "Sucker Punch"]),
+    ]),
+    # Route 32, Camper Roland
+    "TRAINER_ROLAND_HNS": (0, [
+        mon("Bellsprout", "Eviolite", "Chlorophyll", "Adamant", ["Vine Whip", "Sleep Powder", "Acid", "Growth"]),
+        mon("Mareep", "Eviolite", "Static", "Modest", ["Thunder Shock", "Thunder Wave", "Cotton Spore", "Take Down"]),
+        mon("Geodude", "Eviolite", "Sturdy", "Adamant", ["Rock Throw", "Bulldoze", "Stealth Rock", "Rollout"]),
+    ]),
+    # Route 34, Cooltrainer Kate
+    "TRAINER_KATE_HNS": (1, [
+        mon("Shellder", "Eviolite", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Ice Shard", "Protect"]),
+        mon("Growlithe", "Eviolite", "Intimidate", "Adamant", ["Fire Fang", "Bite", "Will O Wisp", "Roar"]),
+        mon("Snubbull", "Eviolite", "Intimidate", "Impish", ["Play Rough", "Bite", "Thunder Wave", "Roar"]),
+        mon("Kadabra", "Eviolite", "Magic Guard", "Timid", ["Psybeam", "Dazzling Gleam", "Calm Mind", "Recover"]),
+    ]),
+    # Route 35, Bird Keeper Bryan: a Leek Farfetch'd for critical hits
+    "TRAINER_BRYAN_HNS": (1, [
+        mon("Swablu", "Eviolite", "Natural Cure", "Bold", ["Dragon Breath", "Peck", "Sing", "Roost"]),
+        mon("Farfetchd", "Leek", "Inner Focus", "Jolly", ["Leaf Blade", "Brave Bird", "Night Slash", "Swords Dance"]),
+        mon("Fearow", "Sharp Beak", "Keen Eye", "Jolly", ["Drill Peck", "Drill Run", "Pursuit", "Quick Attack"]),
+        mon("Noctowl", "Sitrus Berry", "Tinted Lens", "Modest", ["Air Slash", "Extrasensory", "Hypnosis", "Roost"]),
+    ]),
+    # Route 37, Psychic Greg
+    "TRAINER_GREG_HNS": (2, [
+        mon("Xatu", "Light Clay", "Magic Bounce", "Timid", ["Psychic", "Air Slash", "Thunder Wave", "Roost"]),
+        mon("Grumpig", "Leftovers", "Thick Fat", "Modest", ["Psychic", "Shadow Ball", "Power Gem", "Calm Mind"]),
+        mon("Kirlia", "Eviolite", "Trace", "Modest", ["Psychic", "Dazzling Gleam", "Calm Mind", "Thunderbolt"]),
+        mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"]),
+    ]),
+    # Route 38, Beauty Valerie: Fairy types
+    "TRAINER_VALERIE_HNS": (2, [
+        mon("Togetic", "Eviolite", "Serene Grace", "Calm", ["Air Slash", "Dazzling Gleam", "Thunder Wave", "Roost"]),
+        mon("Granbull", "Sitrus Berry", "Intimidate", "Adamant", ["Play Rough", "Crunch", "Thunder Wave", "Bulk Up"]),
+        mon("Azumarill", "Choice Band", "Thick Fat", "Adamant", ["Play Rough", "Aqua Tail", "Aqua Jet", "Superpower"]),
+        mon("Clefable", "Leftovers", "Magic Guard", "Bold", ["Moonblast", "Thunder Wave", "Soft Boiled", "Calm Mind"]),
+    ]),
+    # Route 39, Sailor Eugene
+    "TRAINER_EUGENE_HNS": (2, [
+        mon("Tentacruel", "Black Sludge", "Clear Body", "Timid", ["Scald", "Sludge Bomb", "Toxic Spikes", "Rapid Spin"]),
+        mon("Poliwhirl", "Eviolite", "Water Absorb", "Bold", ["Scald", "Hypnosis", "Ice Beam", "Encore"]),
+        mon("Machoke", "Eviolite", "Guts", "Adamant", ["Dynamic Punch", "Knock Off", "Bullet Punch", "Bulk Up"]),
+        mon("Kingler", "Life Orb", "Sheer Force", "Adamant", ["Crabhammer", "Knock Off", "Rock Slide", "Swords Dance"]),
+    ]),
+    # Route 40, Swimmer Simon: rain
+    "TRAINER_SIMON_HNS": (3, [
+        mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Scald", "Hurricane", "U Turn", "Roost"]),
+        mon("Floatzel", "Life Orb", "Swift Swim", "Adamant", ["Waterfall", "Aqua Jet", "Crunch", "Bulk Up"]),
+        mon("Seaking", "Mystic Water", "Swift Swim", "Adamant", ["Waterfall", "Megahorn", "Drill Run", "Agility"]),
+        mon("Golduck", "Wise Glasses", "Swift Swim", "Modest", ["Hydro Pump", "Ice Beam", "Psychic", "Calm Mind"]),
+        mon("Quagsire", "Leftovers", "Unaware", "Impish", ["Earthquake", "Waterfall", "Recover", "Toxic"]),
+    ]),
+    # Route 41, Swimmer George
+    "TRAINER_GEORGE_HNS": (3, [
+        mon("Mantine", "Leftovers", "Water Absorb", "Calm", ["Scald", "Air Slash", "Haze", "Roost"]),
+        mon("Octillery", "Life Orb", "Sniper", "Modest", ["Hydro Pump", "Ice Beam", "Fire Blast", "Gunk Shot"]),
+        mon("Seadra", "Eviolite", "Sniper", "Modest", ["Hydro Pump", "Dragon Pulse", "Ice Beam", "Focus Energy"]),
+        mon("Lapras", "Sitrus Berry", "Water Absorb", "Modest", ["Freeze Dry", "Surf", "Thunderbolt", "Ice Shard"]),
+        mon("Starmie", "Life Orb", "Analytic", "Timid", ["Surf", "Psychic", "Thunderbolt", "Rapid Spin"]),
+    ]),
+    # Route 42, Hiker Benjamin
+    "TRAINER_BENJAMIN_HNS": (3, [
+        mon("Graveler", "Eviolite", "Sturdy", "Adamant", ["Stealth Rock", "Earthquake", "Rock Slide", "Explosion"]),
+        mon("Onix", "Eviolite", "Sturdy", "Impish", ["Stealth Rock", "Rock Slide", "Earthquake", "Curse"]),
+        mon("Rhyhorn", "Eviolite", "Rock Head", "Adamant", ["Rock Blast", "Earthquake", "Megahorn", "Stealth Rock"]),
+        mon("Piloswine", "Eviolite", "Thick Fat", "Adamant", ["Earthquake", "Icicle Crash", "Ice Shard", "Stealth Rock"]),
+        mon("Sudowoodo", "Choice Band", "Rock Head", "Adamant", ["Head Smash", "Wood Hammer", "Sucker Punch", "Earthquake"]),
+    ]),
+    # Route 43, Pokemaniac Ben: rare Pokemon
+    "TRAINER_BEN_HNS": (3, [
+        mon("Lickitung", "Eviolite", "Own Tempo", "Careful", ["Body Slam", "Knock Off", "Power Whip", "Swords Dance"]),
+        mon("Kangaskhan", "Silk Scarf", "Scrappy", "Adamant", ["Fake Out", "Double Edge", "Sucker Punch", "Earthquake"]),
+        mon("Slowbro", "Leftovers", "Regenerator", "Bold", ["Scald", "Psychic", "Slack Off", "Thunder Wave"]),
+        mon("Aerodactyl", "Focus Sash", "Rock Head", "Jolly", ["Stone Edge", "Double Edge", "Earthquake", "Stealth Rock"]),
+        mon("Dragonair", "Eviolite", "Shed Skin", "Adamant", ["Dragon Dance", "Extreme Speed", "Aqua Tail", "Iron Tail"]),
+    ]),
+    # Route 47, Hiker Devin
+    "TRAINER_DEVIN_HNS": (3, [
+        mon("Gligar", "Eviolite", "Immunity", "Jolly", ["Earthquake", "Knock Off", "U Turn", "Roost"]),
+        mon("Lairon", "Eviolite", "Rock Head", "Adamant", ["Head Smash", "Iron Head", "Earthquake", "Stealth Rock"]),
+        mon("Marowak", "Thick Club", "Rock Head", "Adamant", ["Bonemerang", "Rock Slide", "Fire Punch", "Swords Dance"]),
+        mon("Hariyama", "Flame Orb", "Guts", "Adamant", ["Close Combat", "Knock Off", "Bullet Punch", "Fake Out"]),
+        mon("Golem", "Sitrus Berry", "Sturdy", "Adamant", ["Stealth Rock", "Earthquake", "Stone Edge", "Sucker Punch"]),
+    ]),
+    # Route 44, Cooltrainer Cybil: sun
+    "TRAINER_CYBIL_HNS": (4, [
+        mon("Ninetales", "Heat Rock", "Drought", "Timid", ["Flamethrower", "Solar Beam", "Nasty Plot", "Will O Wisp"]),
+        mon("Jumpluff", "Leftovers", "Chlorophyll", "Jolly", ["Acrobatics", "Sleep Powder", "Leech Seed", "U Turn"]),
+        mon("Butterfree", "Focus Sash", "Tinted Lens", "Timid", ["Quiver Dance", "Bug Buzz", "Sleep Powder", "Air Slash"]),
+        mon("Arcanine", "Choice Band", "Intimidate", "Adamant", ["Flare Blitz", "Extreme Speed", "Wild Charge", "Close Combat"]),
+        mon("Bellossom", "Life Orb", "Chlorophyll", "Modest", ["Quiver Dance", "Giga Drain", "Moonblast", "Sludge Bomb"]),
+    ]),
+    # Route 26, Cooltrainer Jake (the road to the Indigo Plateau; with Surf it can be reached earlier)
+    "TRAINER_JAKE_HNS": (4, [
+        mon("Tangrowth", "Rocky Helmet", "Regenerator", "Relaxed", ["Giga Drain", "Knock Off", "Earthquake", "Sleep Powder"]),
+        mon("Electivire", "Life Orb", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Cross Chop", "Earthquake"]),
+        mon("Magmortar", "Expert Belt", "Flame Body", "Modest", ["Fire Blast", "Thunderbolt", "Focus Blast", "Psychic"]),
+        mon("Togekiss", "Leftovers", "Serene Grace", "Timid", ["Air Slash", "Dazzling Gleam", "Thunder Wave", "Roost"]),
+        mon("Kingdra", "Choice Specs", "Sniper", "Modest", ["Draco Meteor", "Hydro Pump", "Ice Beam", "Flash Cannon"]),
+        mon("Gyarados", "Sitrus Berry", "Intimidate", "Jolly", ["Waterfall", "Earthquake", "Dragon Dance", "Ice Fang"]),
+    ]),
+    # Route 27, Cooltrainer Blake
+    "TRAINER_BLAKE_HNS": (4, [
+        mon("Scizor", "Choice Band", "Technician", "Adamant", ["Bullet Punch", "U Turn", "Knock Off", "Superpower"]),
+        mon("Starmie", "Life Orb", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Ice Beam", "Thunderbolt"]),
+        mon("Ampharos", "Leftovers", "Static", "Modest", ["Thunderbolt", "Dragon Pulse", "Focus Blast", "Volt Switch"]),
+        mon("Houndoom", "Life Orb", "Flash Fire", "Timid", ["Dark Pulse", "Fire Blast", "Sludge Bomb", "Nasty Plot"]),
+        mon("Heracross", "Choice Scarf", "Moxie", "Jolly", ["Megahorn", "Close Combat", "Stone Edge", "Knock Off"]),
+        mon("Nidoking", "Life Orb", "Sheer Force", "Timid", ["Earth Power", "Sludge Wave", "Ice Beam", "Flamethrower"]),
+    ]),
+    # Route 45, Cooltrainer Kelly
+    "TRAINER_KELLY_HNS": (6, [
+        mon("Roserade", "Focus Sash", "Technician", "Timid", ["Giga Drain", "Sludge Bomb", "Shadow Ball", "Sleep Powder"]),
+        mon("Lopunny", "Life Orb", "Limber", "Jolly", ["Return", "High Jump Kick", "Fake Out", "Ice Punch"]),
+        mon("Froslass", "Focus Sash", "Cursed Body", "Timid", ["Ice Beam", "Shadow Ball", "Spikes", "Destiny Bond"]),
+        mon("Azumarill", "Choice Band", "Huge Power", "Adamant", ["Play Rough", "Aqua Jet", "Waterfall", "Superpower"]),
+        mon("Gardevoir", "Choice Scarf", "Trace", "Timid", ["Moonblast", "Psychic", "Mystical Fire", "Thunderbolt"]),
+        mon("Milotic", "Leftovers", "Marvel Scale", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"]),
+    ]),
+    # Kanto (after the Johto League, cap 90)
+    # Route 1, Cooltrainer Quinn: sand
+    "TRAINER_QUINN_HNS": (JOHTO_CHAMPION, [
+        mon("Hippowdon", "Leftovers", "Sand Stream", "Impish", ["Earthquake", "Slack Off", "Stealth Rock", "Whirlwind"]),
+        mon("Excadrill", "Life Orb", "Sand Rush", "Adamant", ["Earthquake", "Iron Head", "Rock Slide", "Swords Dance"]),
+        mon("Gliscor", "Toxic Orb", "Poison Heal", "Impish", ["Earthquake", "Knock Off", "Toxic", "Roost"]),
+        mon("Sandslash", "Focus Sash", "Sand Rush", "Jolly", ["Earthquake", "Knock Off", "Swords Dance", "Rapid Spin"]),
+        mon("Garchomp", "Rocky Helmet", "Rough Skin", "Jolly", ["Earthquake", "Dragon Claw", "Stone Edge", "Swords Dance"]),
+        mon("Tyranitar", "Choice Band", "Sand Stream", "Adamant", ["Stone Edge", "Crunch", "Earthquake", "Ice Punch"]),
+    ]),
+    # Route 3, Firebreather Otis: sun
+    "TRAINER_OTIS_HNS": (JOHTO_CHAMPION, [
+        mon("Ninetales", "Heat Rock", "Drought", "Timid", ["Fire Blast", "Solar Beam", "Nasty Plot", "Will O Wisp"]),
+        mon("Houndoom", "Black Glasses", "Flash Fire", "Timid", ["Dark Pulse", "Fire Blast", "Sludge Bomb", "Nasty Plot"]),
+        mon("Chandelure", "Choice Specs", "Flash Fire", "Modest", ["Shadow Ball", "Fire Blast", "Energy Ball", "Trick"]),
+        mon("Magmortar", "Expert Belt", "Flame Body", "Modest", ["Fire Blast", "Thunderbolt", "Focus Blast", "Psychic"]),
+        mon("Volcarona", "Leftovers", "Flame Body", "Modest", ["Quiver Dance", "Fiery Dance", "Bug Buzz", "Giga Drain"]),
+        mon("Charizard", "Life Orb", "Solar Power", "Timid", ["Fire Blast", "Solar Beam", "Air Slash", "Focus Blast"]),
+    ]),
+    # Route 8, Biker Dwayne
+    "TRAINER_DWAYNE_HNS": (JOHTO_CHAMPION, [
+        mon("Weezing", "Rocky Helmet", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Toxic Spikes"]),
+        mon("Muk", "Black Sludge", "Poison Touch", "Adamant", ["Gunk Shot", "Knock Off", "Shadow Sneak", "Curse"]),
+        mon("Scrafty", "Leftovers", "Intimidate", "Careful", ["Drain Punch", "Knock Off", "Ice Punch", "Bulk Up"]),
+        mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
+        mon("Krookodile", "Choice Scarf", "Moxie", "Jolly", ["Earthquake", "Knock Off", "Stone Edge", "Gunk Shot"]),
+        mon("Hydreigon", "Life Orb", "Levitate", "Timid", ["Dark Pulse", "Draco Meteor", "Flamethrower", "U Turn"]),
+    ]),
+    # Route 9, Hiker Tim
+    "TRAINER_TIM_HNS": (JOHTO_CHAMPION, [
+        mon("Donphan", "Leftovers", "Sturdy", "Adamant", ["Earthquake", "Ice Shard", "Knock Off", "Rapid Spin"]),
+        mon("Steelix", "Leftovers", "Sturdy", "Impish", ["Heavy Slam", "Earthquake", "Stealth Rock", "Curse"]),
+        mon("Golem", "Focus Sash", "Sturdy", "Adamant", ["Stone Edge", "Earthquake", "Sucker Punch", "Explosion"]),
+        mon("Mamoswine", "Life Orb", "Thick Fat", "Adamant", ["Earthquake", "Icicle Crash", "Ice Shard", "Stone Edge"]),
+        mon("Aggron", "Sitrus Berry", "Rock Head", "Adamant", ["Head Smash", "Heavy Slam", "Earthquake", "Rock Polish"]),
+        mon("Rhyperior", "Weakness Policy", "Solid Rock", "Adamant", ["Stone Edge", "Earthquake", "Megahorn", "Ice Punch"]),
+    ]),
+    # Route 10, Pokefan Robert: Fairy types
+    "TRAINER_ROBERT_HNS": (JOHTO_CHAMPION, [
+        mon("Granbull", "Leftovers", "Intimidate", "Impish", ["Play Rough", "Earthquake", "Thunder Wave", "Heal Bell"]),
+        mon("Azumarill", "Choice Band", "Huge Power", "Adamant", ["Play Rough", "Aqua Jet", "Waterfall", "Superpower"]),
+        mon("Mimikyu", "Life Orb", "Disguise", "Jolly", ["Play Rough", "Shadow Claw", "Shadow Sneak", "Swords Dance"]),
+        mon("Togekiss", "Leftovers", "Serene Grace", "Timid", ["Air Slash", "Dazzling Gleam", "Aura Sphere", "Roost"]),
+        mon("Sylveon", "Choice Specs", "Pixilate", "Modest", ["Hyper Voice", "Psyshock", "Shadow Ball", "Mystical Fire"]),
+        mon("Clefable", "Leftovers", "Magic Guard", "Bold", ["Moonblast", "Flamethrower", "Soft Boiled", "Calm Mind"]),
+    ]),
+    # Route 11, Psychic Herman
+    "TRAINER_HERMAN_HNS": (JOHTO_CHAMPION, [
+        mon("Bronzong", "Leftovers", "Levitate", "Relaxed", ["Gyro Ball", "Earthquake", "Stealth Rock", "Hypnosis"]),
+        mon("Hatterene", "Life Orb", "Magic Bounce", "Quiet", ["Psychic", "Dazzling Gleam", "Mystical Fire", "Trick Room"]),
+        mon("Gallade", "Choice Band", "Justified", "Adamant", ["Psycho Cut", "Close Combat", "Leaf Blade", "Knock Off"]),
+        mon("Reuniclus", "Life Orb", "Magic Guard", "Modest", ["Psychic", "Focus Blast", "Shadow Ball", "Calm Mind"]),
+        mon("Alakazam", "Focus Sash", "Magic Guard", "Timid", ["Psychic", "Shadow Ball", "Focus Blast", "Nasty Plot"]),
+        mon("Metagross", "Life Orb", "Clear Body", "Adamant", ["Meteor Mash", "Zen Headbutt", "Bullet Punch", "Earthquake"]),
+    ]),
+    # Route 12, Fisherman Stephen: rain
+    "TRAINER_STEPHEN_HNS": (JOHTO_CHAMPION, [
+        mon("Politoed", "Damp Rock", "Drizzle", "Bold", ["Scald", "Ice Beam", "Encore", "Hypnosis"]),
+        mon("Kingdra", "Life Orb", "Swift Swim", "Modest", ["Hydro Pump", "Draco Meteor", "Ice Beam", "Rain Dance"]),
+        mon("Ludicolo", "Life Orb", "Swift Swim", "Modest", ["Hydro Pump", "Giga Drain", "Ice Beam", "Focus Blast"]),
+        mon("Seismitoad", "Leftovers", "Swift Swim", "Modest", ["Hydro Pump", "Earth Power", "Sludge Wave", "Stealth Rock"]),
+        mon("Lanturn", "Leftovers", "Volt Absorb", "Modest", ["Thunder", "Scald", "Ice Beam", "Volt Switch"]),
+        mon("Gyarados", "Sitrus Berry", "Moxie", "Jolly", ["Waterfall", "Earthquake", "Dragon Dance", "Bounce"]),
+    ]),
+    # Route 13, Juggler Bret: tricks
+    "TRAINER_BRET_HNS": (JOHTO_CHAMPION, [
+        mon("Klefki", "Light Clay", "Prankster", "Bold", ["Spikes", "Thunder Wave", "Foul Play", "Play Rough"]),
+        mon("Sableye", "Leftovers", "Prankster", "Careful", ["Will O Wisp", "Knock Off", "Recover", "Foul Play"]),
+        mon("Ambipom", "Silk Scarf", "Technician", "Jolly", ["Fake Out", "Double Hit", "U Turn", "Knock Off"]),
+        mon("Mr Mime", "Life Orb", "Filter", "Timid", ["Psychic", "Dazzling Gleam", "Focus Blast", "Nasty Plot"]),
+        mon("Rotom", "Leftovers", "Levitate", "Timid", ["Thunderbolt", "Shadow Ball", "Will O Wisp", "Volt Switch"]),
+        mon("Magnezone", "Choice Specs", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Hidden Power"]),
+    ]),
+    # Route 15, Expert Colette: Fighting
+    "TRAINER_COLETTE_HNS": (JOHTO_CHAMPION, [
+        mon("Hawlucha", "White Herb", "Unburden", "Jolly", ["High Jump Kick", "Acrobatics", "Swords Dance", "Roost"]),
+        mon("Breloom", "Focus Sash", "Technician", "Jolly", ["Mach Punch", "Bullet Seed", "Rock Tomb", "Spore"]),
+        mon("Machamp", "Sitrus Berry", "No Guard", "Adamant", ["Dynamic Punch", "Stone Edge", "Knock Off", "Bullet Punch"]),
+        mon("Conkeldurr", "Flame Orb", "Guts", "Adamant", ["Drain Punch", "Mach Punch", "Knock Off", "Ice Punch"]),
+        mon("Infernape", "Life Orb", "Iron Fist", "Jolly", ["Close Combat", "Flare Blitz", "Mach Punch", "U Turn"]),
+        mon("Lucario", "Life Orb", "Justified", "Adamant", ["Close Combat", "Extreme Speed", "Meteor Mash", "Swords Dance"]),
+    ]),
+    # Route 18, Bird Keeper Boris
+    "TRAINER_BORIS_HNS": (JOHTO_CHAMPION, [
+        mon("Skarmory", "Rocky Helmet", "Sturdy", "Impish", ["Spikes", "Brave Bird", "Roost", "Whirlwind"]),
+        mon("Staraptor", "Choice Band", "Reckless", "Jolly", ["Brave Bird", "Close Combat", "U Turn", "Double Edge"]),
+        mon("Talonflame", "Sharp Beak", "Gale Wings", "Adamant", ["Brave Bird", "Flare Blitz", "U Turn", "Roost"]),
+        mon("Corviknight", "Leftovers", "Mirror Armor", "Impish", ["Brave Bird", "Iron Head", "Bulk Up", "Roost"]),
+        mon("Togekiss", "Choice Scarf", "Serene Grace", "Timid", ["Air Slash", "Dazzling Gleam", "Aura Sphere", "Flamethrower"]),
+        mon("Dragonite", "Lum Berry", "Multiscale", "Adamant", ["Dragon Dance", "Extreme Speed", "Earthquake", "Fire Punch"]),
+    ]),
+    # Route 20, Swimmer Lori
+    "TRAINER_LORI_HNS": (JOHTO_CHAMPION, [
+        mon("Araquanid", "Sitrus Berry", "Water Bubble", "Adamant", ["Liquidation", "Leech Life", "Sticky Web", "Mirror Coat"]),
+        mon("Starmie", "Life Orb", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Ice Beam", "Thunderbolt"]),
+        mon("Vaporeon", "Leftovers", "Water Absorb", "Bold", ["Scald", "Ice Beam", "Wish", "Protect"]),
+        mon("Lapras", "Choice Specs", "Water Absorb", "Modest", ["Freeze Dry", "Hydro Pump", "Thunderbolt", "Ice Beam"]),
+        mon("Primarina", "Life Orb", "Liquid Voice", "Modest", ["Sparkling Aria", "Moonblast", "Ice Beam", "Calm Mind"]),
+        mon("Milotic", "Leftovers", "Marvel Scale", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"]),
+    ]),
+    # Route 25, Cooltrainer Kevin
+    "TRAINER_KEVIN_HNS": (JOHTO_CHAMPION, [
+        mon("Gengar", "Focus Sash", "Cursed Body", "Timid", ["Shadow Ball", "Sludge Bomb", "Focus Blast", "Nasty Plot"]),
+        mon("Scizor", "Life Orb", "Technician", "Adamant", ["Bullet Punch", "U Turn", "Knock Off", "Swords Dance"]),
+        mon("Ferrothorn", "Leftovers", "Iron Barbs", "Relaxed", ["Gyro Ball", "Power Whip", "Leech Seed", "Spikes"]),
+        mon("Crawdaunt", "Life Orb", "Adaptability", "Adamant", ["Crabhammer", "Knock Off", "Aqua Jet", "Swords Dance"]),
+        mon("Kommo O", "Life Orb", "Bulletproof", "Jolly", ["Close Combat", "Dragon Claw", "Poison Jab", "Dragon Dance"]),
+        mon("Salamence", "Life Orb", "Intimidate", "Adamant", ["Dragon Dance", "Dual Wingbeat", "Earthquake", "Fire Fang"]),
+    ]),
+}
+
 # --- Red on Mt. Silver: the hardest battle in the game (DECISIONS.md D27) ------------------------
 # Red battles only the Kanto Champion, when no level cap is left: all six at 100, in his first
 # battle and in the rematch after the Sinjoh storyline (TRAINER_RED_POSTOBC_HNS). Every Pokemon has
@@ -383,19 +685,24 @@ TEAMS = {
     "TRAINER_KAREN_1_HNS": (8, "Full Restore / Full Restore", KAREN),
     "TRAINER_LANCE_1_HNS": (8, "Full Restore / Full Restore", LANCE),
     "TRAINER_PROTON_1_HNS": (1, "Super Potion", PROTON_1),
+    "TRAINER_FALKNER_1_HNS": (0, "", FALKNER),
+    "TRAINER_BUGSY_1_HNS": (1, "Potion / Potion", BUGSY),
+    "TRAINER_EUSINE_HNS": (4, "Full Restore / Full Restore", EUSINE),
+    "TRAINER_WHITNEY_1_HNS": (2, "Potion", WHITNEY),
     "TRAINER_MORTY_1_HNS": (3, "Hyper Potion / Hyper Potion", MORTY),
-    "TRAINER_CHUCK_1_HNS": (4, "Hyper Potion / Hyper Potion", five_of_six(CHUCK, 2)),
+    "TRAINER_CHUCK_1_HNS": (4, "Hyper Potion / Hyper Potion", CHUCK),
     "TRAINER_CHUCK_1_2_HNS": (5, "Full Restore / Full Restore", CHUCK),
     "TRAINER_CHUCK_1_3_HNS": (6, "Full Restore / Full Restore", CHUCK),
-    "TRAINER_JASMINE_1_HNS": (4, "Hyper Potion / Hyper Potion", five_of_six(JASMINE, 2)),
+    "TRAINER_JASMINE_1_HNS": (4, "Hyper Potion / Hyper Potion", JASMINE),
     "TRAINER_JASMINE_1_2_HNS": (5, "Full Restore / Full Restore", JASMINE),
     "TRAINER_JASMINE_1_3_HNS": (6, "Full Restore / Full Restore", JASMINE),
-    "TRAINER_PRYCE_1_HNS": (4, "Hyper Potion / Hyper Potion", five_of_six(PRYCE, 1)),
+    "TRAINER_PRYCE_1_HNS": (4, "Hyper Potion / Hyper Potion", PRYCE),
     "TRAINER_PRYCE_1_2_HNS": (5, "Full Restore / Full Restore", PRYCE),
     "TRAINER_PRYCE_1_3_HNS": (6, "Full Restore / Full Restore", PRYCE),
     "TRAINER_CLAIR_1_HNS": (7, "Full Restore / Full Restore", CLAIR),
 }
 TEAMS.update({tid: (8, "", mons) for tid, mons in KIMONO.items()})
+TEAMS.update({tid: (stage, "", mons) for tid, (stage, mons) in ROUTE_BOSSES.items()})
 for _n, _stage, _items in ((2, 2, "Super Potion"), (3, 3, "Super Potion / Super Potion"),
                            (4, 7, "Full Restore / Full Restore"), (5, 8, "Full Restore / Full Restore")):
     for _starter, _ace in RIVAL_STARTER[_n].items():
@@ -413,8 +720,7 @@ JOHTO_LEADERS = ["FALKNER", "BUGSY", "WHITNEY", "MORTY", "CHUCK", "JASMINE", "PR
 KANTO_LEADERS = ["BROCK", "MISTY", "LTSURGE", "ERIKA", "JANINE", "SABRINA", "BLAINE", "BLUE"]
 ELITE_FOUR = ["WILL", "KOGA", "BRUNO", "KAREN", "LANCE"]
 STARTERS = ["CYNDAQUIL", "TOTODILE", "CHIKORITA"]
-LEVEL_ONLY = {"TRAINER_LI_HNS": 0, "TRAINER_FALKNER_1_HNS": 0, "TRAINER_BUGSY_1_HNS": 1,
-              "TRAINER_WHITNEY_1_HNS": 2, "TRAINER_EUSINE_HNS": 4}
+LEVEL_ONLY = {"TRAINER_LI_HNS": 0}
 LEVEL_ONLY.update({f"TRAINER_RIVAL_{s}_1_HNS": 0 for s in STARTERS})
 LEVEL_ONLY.update({f"TRAINER_RIVAL_{s}_{n}_HNS": JOHTO_CHAMPION for s in STARTERS for n in (6, 7)})
 LEVEL_ONLY.update({f"TRAINER_{l}_2_HNS": JOHTO_CHAMPION for l in JOHTO_LEADERS + ELITE_FOUR})

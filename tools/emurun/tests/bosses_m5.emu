@@ -1,5 +1,5 @@
 # Crystal Imperium play test for the third batch of Imperium-style bosses
-# (tools/crystal_imperium/boss_teams.py): the eight Kanto Gym Leaders and Blue (cap 70 after the
+# (tools/crystal_imperium/boss_teams.py): the eight Kanto Gym Leaders and Blue (cap 90 after the
 # Johto Champion). No team holds items. Red has his own test (red).
 # - The prepared all-round six at the cap fights each Gym Leader once, played naively (one move
 #   per Pokemon, never switching): every battle plays to a result, and the wins are tallied and
@@ -13,75 +13,73 @@
 savestate base.ss
 
 # The Gym Leaders at the cap
-!prepared_team(70)
-savestate prep70.ss
-!sample_battle("TRAINER_BROCK_HNS", "2,0,0,0,3,2", 1, 0, 1, "prep70.ss")
+!prepared_team(90)
+savestate prep90.ss
+!sample_battle("TRAINER_BROCK_HNS", "2,0,0,0,3,2", 1, 0, 1, "prep90.ss")
 expectne8 {gBattleOutcome} 0 brock_resolved
-!sample_battle("TRAINER_MISTY_HNS", "0,0,0,1,2,0", 1, 0, 1, "prep70.ss")
+!sample_battle("TRAINER_MISTY_HNS", "0,0,0,1,2,0", 1, 0, 1, "prep90.ss")
 expectne8 {gBattleOutcome} 0 misty_resolved
-!sample_battle("TRAINER_LTSURGE_HNS", "2,2,1,0,0,1", 1, 0, 1, "prep70.ss")
+!sample_battle("TRAINER_LTSURGE_HNS", "2,2,1,0,0,1", 1, 0, 1, "prep90.ss")
 expectne8 {gBattleOutcome} 0 surge_resolved
-!sample_battle("TRAINER_ERIKA_HNS", "1,1,1,2,0,3", 1, 0, 1, "prep70.ss")
+!sample_battle("TRAINER_ERIKA_HNS", "1,1,1,2,0,3", 1, 0, 1, "prep90.ss")
 expectne8 {gBattleOutcome} 0 erika_resolved
-!sample_battle("TRAINER_JANINE_HNS", "0,0,1,1,0,0", 1, 0, 1, "prep70.ss")
+!sample_battle("TRAINER_JANINE_HNS", "0,0,1,1,0,0", 1, 0, 1, "prep90.ss")
 expectne8 {gBattleOutcome} 0 janine_resolved
-!sample_battle("TRAINER_SABRINA_HNS", "0,0,0,0,3,0", 1, 0, 1, "prep70.ss")
+!sample_battle("TRAINER_SABRINA_HNS", "0,0,0,0,3,0", 1, 0, 1, "prep90.ss")
 expectne8 {gBattleOutcome} 0 sabrina_resolved
-!sample_battle("TRAINER_BLAINE_HNS", "1,0,1,0,2,3", 1, 0, 1, "prep70.ss")
+!sample_battle("TRAINER_BLAINE_HNS", "1,0,1,0,2,3", 1, 0, 1, "prep90.ss")
 expectne8 {gBattleOutcome} 0 blaine_resolved
 
 # Blue: a six built for him (Fairy for Machamp, Bug for Exeggutor, Water for Rhyperior and Arcanine,
 # Fighting for Tyranitar, Electric for Pidgeot)
 loadstate base.ss
-!give_mon_complex("SPECIES_SWAMPERT", 70, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_EARTHQUAKE', 'MOVE_ICE_PUNCH', 'MOVE_STEALTH_ROCK'])
-!give_mon_complex("SPECIES_GARDEVOIR", 70, "NATURE_MODEST", 0, ['MOVE_MOONBLAST', 'MOVE_PSYCHIC', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
-!give_mon_complex("SPECIES_LUCARIO", 70, "NATURE_ADAMANT", 1, ['MOVE_CLOSE_COMBAT', 'MOVE_EXTREME_SPEED', 'MOVE_ICE_PUNCH', 'MOVE_SWORDS_DANCE'])
-!give_mon_complex("SPECIES_VOLCARONA", 70, "NATURE_MODEST", 0, ['MOVE_BUG_BUZZ', 'MOVE_FIERY_DANCE', 'MOVE_GIGA_DRAIN', 'MOVE_QUIVER_DANCE'])
-!give_mon_complex("SPECIES_AMPHAROS", 70, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
-!give_mon_complex("SPECIES_GYARADOS", 70, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_ICE_FANG', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
-savestate blue70.ss
-!sample_battle("TRAINER_BLUE_HNS", "0,0,0,0,0,0", 6, 1, 6, "blue70.ss", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (5, 1), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 0), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 0)], "SPECIES_TYRANITAR": [(2, 0), (0, 0), (5, 0), (1, 0)], "SPECIES_PIDGEOT": [(4, 0), (0, 2), (5, 1)], "SPECIES_PIDGEOT_MEGA": [(4, 0), (0, 2), (5, 1)]})
+!give_mon_complex("SPECIES_SWAMPERT", 90, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_EARTHQUAKE', 'MOVE_ICE_PUNCH', 'MOVE_STEALTH_ROCK'])
+!give_mon_complex("SPECIES_GARDEVOIR", 90, "NATURE_MODEST", 0, ['MOVE_MOONBLAST', 'MOVE_PSYCHIC', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
+!give_mon_complex("SPECIES_LUCARIO", 90, "NATURE_ADAMANT", 1, ['MOVE_CLOSE_COMBAT', 'MOVE_EXTREME_SPEED', 'MOVE_ICE_PUNCH', 'MOVE_SWORDS_DANCE'])
+!give_mon_complex("SPECIES_VOLCARONA", 90, "NATURE_MODEST", 0, ['MOVE_BUG_BUZZ', 'MOVE_FIERY_DANCE', 'MOVE_GIGA_DRAIN', 'MOVE_QUIVER_DANCE'])
+!give_mon_complex("SPECIES_AMPHAROS", 90, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
+!give_mon_complex("SPECIES_GYARADOS", 90, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_ICE_FANG', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
+savestate blue90.ss
+!sample_battle("TRAINER_BLUE_HNS", "0,0,0,0,0,0", 6, 1, 6, "blue90.ss", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (5, 1), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 0), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 0)], "SPECIES_TYRANITAR": [(2, 0), (0, 0), (5, 0), (1, 0)], "SPECIES_PIDGEOT": [(4, 0), (0, 2), (5, 1)], "SPECIES_PIDGEOT_MEGA": [(4, 0), (0, 2), (5, 1)]})
 
-# Every leader's and Blue's Mega Evolution, with the prepared six at level 100
+# Every leader's Mega Evolution, with the prepared six at level 100. A leader's Mega is the ace,
+# her or his last Pokemon; at 90 (70 before 0.8.0) a leader can beat the naive six before it comes
+# out, so each gets up to three battles and the Mega has to be seen in one of them.
 loadstate base.ss
 !prepared_team(100)
 savestate prep100.ss
 seenreset
-!battle("TRAINER_BROCK_HNS")
-!autobattle("2,0,0,0,3,2")
+!sample_battle("TRAINER_BROCK_HNS", "2,0,0,0,3,2", 3, 0, 3, "prep100.ss", tag="_mega")
 !expect_const_seen("SPECIES_AERODACTYL_MEGA", "brock_mega_aerodactyl")
-loadstate prep100.ss
 seenreset
-!battle("TRAINER_MISTY_HNS")
-!autobattle("0,0,0,1,2,0")
+!sample_battle("TRAINER_MISTY_HNS", "0,0,0,1,2,0", 3, 0, 3, "prep100.ss", tag="_mega")
 !expect_const_seen("SPECIES_BLASTOISE_MEGA", "misty_mega_blastoise")
-loadstate prep100.ss
 seenreset
-!battle("TRAINER_LTSURGE_HNS")
-!autobattle("2,2,1,0,0,1")
+!sample_battle("TRAINER_LTSURGE_HNS", "2,2,1,0,0,1", 3, 0, 3, "prep100.ss", tag="_mega")
 !expect_const_seen("SPECIES_MANECTRIC_MEGA", "surge_mega_manectric")
-loadstate prep100.ss
 seenreset
-!battle("TRAINER_ERIKA_HNS")
-!autobattle("1,1,1,2,0,3")
+!sample_battle("TRAINER_ERIKA_HNS", "1,1,1,2,0,3", 3, 0, 3, "prep100.ss", tag="_mega")
 !expect_const_seen("SPECIES_VENUSAUR_MEGA", "erika_mega_venusaur")
-loadstate prep100.ss
 seenreset
-!battle("TRAINER_JANINE_HNS")
-!autobattle("0,0,1,1,0,0")
+!sample_battle("TRAINER_JANINE_HNS", "0,0,1,1,0,0", 3, 0, 3, "prep100.ss", tag="_mega")
 !expect_const_seen("SPECIES_GENGAR_MEGA", "janine_mega_gengar")
-loadstate prep100.ss
 seenreset
-!battle("TRAINER_SABRINA_HNS")
-!autobattle("0,0,0,0,3,0")
+!sample_battle("TRAINER_SABRINA_HNS", "0,0,0,0,3,0", 3, 0, 3, "prep100.ss", tag="_mega")
 !expect_const_seen("SPECIES_METAGROSS_MEGA", "sabrina_mega_metagross")
-loadstate prep100.ss
 seenreset
-!battle("TRAINER_BLAINE_HNS")
-!autobattle("1,0,1,0,2,3")
+!sample_battle("TRAINER_BLAINE_HNS", "1,0,1,0,2,3", 3, 0, 3, "prep100.ss", tag="_mega")
 !expect_const_seen("SPECIES_CAMERUPT_MEGA", "blaine_mega_camerupt")
-loadstate prep100.ss
+
+# Blue's Pidgeot is his ace: at 90 (70 before 0.8.0) Blue can beat the naive prepared six at 100
+# before it comes out, so the six built for him, at level 100 and with its game plan, checks it
+loadstate base.ss
+!give_mon_complex("SPECIES_SWAMPERT", 100, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_EARTHQUAKE', 'MOVE_ICE_PUNCH', 'MOVE_STEALTH_ROCK'])
+!give_mon_complex("SPECIES_GARDEVOIR", 100, "NATURE_MODEST", 0, ['MOVE_MOONBLAST', 'MOVE_PSYCHIC', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
+!give_mon_complex("SPECIES_LUCARIO", 100, "NATURE_ADAMANT", 1, ['MOVE_CLOSE_COMBAT', 'MOVE_EXTREME_SPEED', 'MOVE_ICE_PUNCH', 'MOVE_SWORDS_DANCE'])
+!give_mon_complex("SPECIES_VOLCARONA", 100, "NATURE_MODEST", 0, ['MOVE_BUG_BUZZ', 'MOVE_FIERY_DANCE', 'MOVE_GIGA_DRAIN', 'MOVE_QUIVER_DANCE'])
+!give_mon_complex("SPECIES_AMPHAROS", 100, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
+!give_mon_complex("SPECIES_GYARADOS", 100, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_ICE_FANG', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
 seenreset
 !battle("TRAINER_BLUE_HNS")
-!autobattle("0,0,1,0,0,0")
+!autobattle("0,0,0,0,0,0", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (5, 1), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 0), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 0)], "SPECIES_TYRANITAR": [(2, 0), (0, 0), (5, 0), (1, 0)], "SPECIES_PIDGEOT": [(4, 0), (0, 2), (5, 1)], "SPECIES_PIDGEOT_MEGA": [(4, 0), (0, 2), (5, 1)]})
 !expect_const_seen("SPECIES_PIDGEOT_MEGA", "blue_mega_pidgeot")

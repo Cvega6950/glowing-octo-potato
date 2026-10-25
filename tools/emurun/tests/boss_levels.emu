@@ -1,14 +1,14 @@
 # Crystal Imperium play test: every boss's Pokemon are at the player's level cap (DECISIONS.md
-# D21), from the player's own cap table: NORMAL (11, 16, 21, ...) or HARD (8, 15, 20, ...). A
+# D21), from the player's own cap table: NORMAL (15, 24, 33, ...) or HARD (12, 21, 30, ...). A
 # boss's party is at the cap of the earliest point the battle can happen; fought later, the battle
 # code raises it to the player's cap then (src/battle_main.c, src/caps.c).
-# - Petrel in the Rocket Hideout: 31, the cap for four badges (the fewest the hideout can be
-#   reached with); with six badges all four of his Pokemon are 38.
-# - Brock's Gym team, which is also his Fighting Dojo rematch: 70 after the Johto League, 100 after
+# - Petrel in the Rocket Hideout: 50, the cap for four badges (the fewest the hideout can be
+#   reached with); with six badges all four of his Pokemon are 66.
+# - Brock's Gym team, which is also his Fighting Dojo rematch: 90 after the Johto League, 100 after
 #   the Kanto League (no cap left).
-# - A Rocket Grunt isn't a boss: his Koffing stays at 20 with six badges, and is held at the cap
-#   (11) with none.
-# - HARD level caps: Falkner at 8, Petrel at 29 and, with six badges, 37; the Grunt's Koffing at 8.
+# - A Rocket Grunt isn't a boss: his level-20 Koffing (Heart & Soul's level) is on the cap curve,
+#   31, with six badges (D29), and is held at the cap (15) with none.
+# - HARD level caps: Falkner at 12, Petrel at 47 and, with six badges, 63; the Grunt's Koffing at 12.
 # gEnemyParty: 100 bytes a Pokemon, level at +84.
 !new_game()
 !battle_style_set()
@@ -18,16 +18,16 @@ savestate base.ss
 # No badges: the party's own levels
 !battle("TRAINER_PETREL_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B petrel_action_menu
-expect8 {gEnemyParty+84} 31 petrel_lead_at_31
-expect8 {gEnemyParty+384} 31 petrel_ace_at_31
+expect8 {gEnemyParty+84} 50 petrel_lead_at_50
+expect8 {gEnemyParty+384} 50 petrel_ace_at_50
 
-# Not a boss: with no badges the Grunt's level-20 Koffing is held at the cap, 11
+# Not a boss: with no badges the Grunt's Koffing is held at the cap, 15
 loadstate base.ss
 !battle("TRAINER_GRUNT_33_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B grunt_no_badges_action_menu
-expect8 {gEnemyParty+84} 11 grunt_koffing_held_at_cap_11
+expect8 {gEnemyParty+84} 15 grunt_koffing_held_at_cap_15
 
-# Six badges: raised to their cap, 38
+# Six badges: raised to their cap, 66
 loadstate base.ss
 !set_flag("FLAG_BADGE01_GET")
 !set_flag("FLAG_BADGE02_GET")
@@ -39,25 +39,25 @@ savestate six_badges.ss
 !battle("TRAINER_PETREL_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B petrel_six_badges_action_menu
 shot 01_petrel_six_badges.png
-expect8 {gEnemyParty+84} 38 six_badges_petrel_1_at_38
-expect8 {gEnemyParty+184} 38 six_badges_petrel_2_at_38
-expect8 {gEnemyParty+284} 38 six_badges_petrel_3_at_38
-expect8 {gEnemyParty+384} 38 six_badges_petrel_4_at_38
+expect8 {gEnemyParty+84} 66 six_badges_petrel_1_at_66
+expect8 {gEnemyParty+184} 66 six_badges_petrel_2_at_66
+expect8 {gEnemyParty+284} 66 six_badges_petrel_3_at_66
+expect8 {gEnemyParty+384} 66 six_badges_petrel_4_at_66
 
-# Not a boss: the Grunt keeps his level with six badges
+# Not a boss: with six badges the Grunt's Koffing is at its place on the cap curve, 31
 loadstate six_badges.ss
 !battle("TRAINER_GRUNT_33_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B grunt_action_menu
-expect8 {gEnemyParty+84} 20 grunt_koffing_stays_at_20
+expect8 {gEnemyParty+84} 31 grunt_koffing_on_cap_curve_31
 
-# Johto Champion: Brock at 70
+# Johto Champion: Brock at 90
 loadstate base.ss
 !set_flag("FLAG_IS_CHAMPION")
 savestate johto_champion.ss
 !battle("TRAINER_BROCK_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B brock_action_menu
-expect8 {gEnemyParty+84} 70 brock_lead_at_70
-expect8 {gEnemyParty+584} 70 brock_ace_at_70
+expect8 {gEnemyParty+84} 90 brock_lead_at_90
+expect8 {gEnemyParty+584} 90 brock_ace_at_90
 
 # Kanto Champion: the same team at 100
 loadstate johto_champion.ss
@@ -81,20 +81,20 @@ savestate hard_caps.ss
 !battle("TRAINER_FALKNER_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B hard_caps_falkner_action_menu
 shot 03_falkner_hard_caps.png
-expect8 {gEnemyParty+84} 8 hard_caps_falkner_1_at_8
-expect8 {gEnemyParty+184} 8 hard_caps_falkner_2_at_8
-expect8 {gEnemyParty+284} 8 hard_caps_falkner_3_at_8
+expect8 {gEnemyParty+84} 12 hard_caps_falkner_1_at_12
+expect8 {gEnemyParty+184} 12 hard_caps_falkner_2_at_12
+expect8 {gEnemyParty+284} 12 hard_caps_falkner_3_at_12
 
 loadstate hard_caps.ss
 !battle("TRAINER_PETREL_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B hard_caps_petrel_action_menu
-expect8 {gEnemyParty+84} 29 hard_caps_petrel_lead_at_29
-expect8 {gEnemyParty+384} 29 hard_caps_petrel_ace_at_29
+expect8 {gEnemyParty+84} 47 hard_caps_petrel_lead_at_47
+expect8 {gEnemyParty+384} 47 hard_caps_petrel_ace_at_47
 
 loadstate hard_caps.ss
 !battle("TRAINER_GRUNT_33_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B hard_caps_grunt_action_menu
-expect8 {gEnemyParty+84} 8 hard_caps_grunt_koffing_held_at_cap_8
+expect8 {gEnemyParty+84} 12 hard_caps_grunt_koffing_held_at_cap_12
 
 loadstate hard_caps.ss
 !set_flag("FLAG_BADGE01_GET")
@@ -106,7 +106,7 @@ loadstate hard_caps.ss
 !battle("TRAINER_PETREL_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B hard_caps_six_badges_petrel_action_menu
 shot 04_petrel_hard_caps_six_badges.png
-expect8 {gEnemyParty+84} 37 hard_caps_six_badges_petrel_1_at_37
-expect8 {gEnemyParty+184} 37 hard_caps_six_badges_petrel_2_at_37
-expect8 {gEnemyParty+284} 37 hard_caps_six_badges_petrel_3_at_37
-expect8 {gEnemyParty+384} 37 hard_caps_six_badges_petrel_4_at_37
+expect8 {gEnemyParty+84} 63 hard_caps_six_badges_petrel_1_at_63
+expect8 {gEnemyParty+184} 63 hard_caps_six_badges_petrel_2_at_63
+expect8 {gEnemyParty+284} 63 hard_caps_six_badges_petrel_3_at_63
+expect8 {gEnemyParty+384} 63 hard_caps_six_badges_petrel_4_at_63

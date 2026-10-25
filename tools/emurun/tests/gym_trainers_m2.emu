@@ -3,24 +3,24 @@
 # autopilot cannot drive yet, so that battle is only checked to load.
 !new_game()
 !battle_style_set()
-!give_mon(156, 16)
-!give_mon(74, 16)
+!give_mon(156, 24)
+!give_mon(74, 24)
 savestate azalea.ss
-!give_mon(66, 21)
+!give_mon(66, 33)
 savestate goldenrod.ss
 
 # Azalea Gym: Benny 169, Al 170, Josh 171, Amy & May 389
 loadstate azalea.ss
 !battle_trainer(169)
-!autobattle("2,3")
+!autobattle("1,0")
 expectne8 {gBattleOutcome} 0 benny_resolved
 loadstate azalea.ss
 !battle_trainer(170)
-!autobattle("2,3")
+!autobattle("1,0")
 expectne8 {gBattleOutcome} 0 al_resolved
 loadstate azalea.ss
 !battle_trainer(171)
-!autobattle("2,3")
+!autobattle("1,0")
 expectne8 {gBattleOutcome} 0 josh_resolved
 loadstate azalea.ss
 !battle_trainer(389)
@@ -31,17 +31,17 @@ expectne16 {gBattleMons+136} 0 amy_and_may_loaded
 # Goldenrod Gym: Carrie 44, Bridget 45, Victoria 90, Samantha 91
 loadstate goldenrod.ss
 !battle_trainer(44)
-!autobattle("2,3,0")
+!autobattle("1,0,0")
 expectne8 {gBattleOutcome} 0 carrie_resolved
 loadstate goldenrod.ss
 !battle_trainer(45)
-!autobattle("2,3,0")
+!autobattle("1,0,0")
 expectne8 {gBattleOutcome} 0 bridget_resolved
 loadstate goldenrod.ss
 !battle_trainer(90)
-!autobattle("2,3,0")
+!autobattle("1,0,0")
 expectne8 {gBattleOutcome} 0 victoria_resolved
 loadstate goldenrod.ss
 !battle_trainer(91)
-!autobattle("2,3,0")
+!autobattle("1,0,0")
 expectne8 {gBattleOutcome} 0 samantha_resolved

@@ -1,0 +1,306 @@
+# Crystal Imperium play test: the route mini-bosses (DECISIONS.md D30). Each of the 28 strong
+# route trainers loads with its whole team at the player's level cap and plays to a result
+# against the prepared six at that cap. They are fought in groups, at the earliest point their
+# routes can be reached (the badges below; the Kanto trainers after the Johto League).
+# gEnemyParty: 100 bytes a Pokemon, level at +84; gEnemyPartyCount is the team size.
+!new_game()
+!battle_style_set()
+!no_care_packages()
+savestate base.ss
+
+# No badges: cap 15
+loadstate base.ss
+!prepared_team(15, items=True)
+savestate cap15.ss
+!battle("TRAINER_MIKEY_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B mikey_action_menu
+shot 01_mikey.png
+expect8 {gEnemyPartyCount} 3 mikey_has_3
+expect8 {gEnemyParty+84} 15 mikey_lead_at_cap_15
+expect8 {gEnemyParty+284} 15 mikey_ace_at_cap_15
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 mikey_resolved
+loadstate cap15.ss
+!battle("TRAINER_ROLAND_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B roland_action_menu
+shot 02_roland.png
+expect8 {gEnemyPartyCount} 3 roland_has_3
+expect8 {gEnemyParty+84} 15 roland_lead_at_cap_15
+expect8 {gEnemyParty+284} 15 roland_ace_at_cap_15
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 roland_resolved
+
+# One badge: cap 24
+loadstate base.ss
+!set_flag("FLAG_BADGE01_GET")
+!prepared_team(24, items=True)
+savestate cap24.ss
+!battle("TRAINER_KATE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kate_action_menu
+shot 03_kate.png
+expect8 {gEnemyPartyCount} 4 kate_has_4
+expect8 {gEnemyParty+84} 24 kate_lead_at_cap_24
+expect8 {gEnemyParty+384} 24 kate_ace_at_cap_24
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 kate_resolved
+loadstate cap24.ss
+!battle("TRAINER_BRYAN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B bryan_action_menu
+shot 04_bryan.png
+expect8 {gEnemyPartyCount} 4 bryan_has_4
+expect8 {gEnemyParty+84} 24 bryan_lead_at_cap_24
+expect8 {gEnemyParty+384} 24 bryan_ace_at_cap_24
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 bryan_resolved
+
+# Two badges: cap 33
+loadstate base.ss
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!prepared_team(33, items=True)
+savestate cap33.ss
+!battle("TRAINER_GREG_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B greg_action_menu
+shot 05_greg.png
+expect8 {gEnemyPartyCount} 4 greg_has_4
+expect8 {gEnemyParty+84} 33 greg_lead_at_cap_33
+expect8 {gEnemyParty+384} 33 greg_ace_at_cap_33
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 greg_resolved
+loadstate cap33.ss
+!battle("TRAINER_VALERIE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B valerie_action_menu
+shot 06_valerie.png
+expect8 {gEnemyPartyCount} 4 valerie_has_4
+expect8 {gEnemyParty+84} 33 valerie_lead_at_cap_33
+expect8 {gEnemyParty+384} 33 valerie_ace_at_cap_33
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 valerie_resolved
+loadstate cap33.ss
+!battle("TRAINER_EUGENE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B eugene_action_menu
+shot 07_eugene.png
+expect8 {gEnemyPartyCount} 4 eugene_has_4
+expect8 {gEnemyParty+84} 33 eugene_lead_at_cap_33
+expect8 {gEnemyParty+384} 33 eugene_ace_at_cap_33
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 eugene_resolved
+
+# Three badges: cap 42
+loadstate base.ss
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!prepared_team(42, items=True)
+savestate cap42.ss
+!battle("TRAINER_SIMON_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B simon_action_menu
+shot 08_simon.png
+expect8 {gEnemyPartyCount} 5 simon_has_5
+expect8 {gEnemyParty+84} 42 simon_lead_at_cap_42
+expect8 {gEnemyParty+484} 42 simon_ace_at_cap_42
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 simon_resolved
+loadstate cap42.ss
+!battle("TRAINER_GEORGE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B george_action_menu
+shot 09_george.png
+expect8 {gEnemyPartyCount} 5 george_has_5
+expect8 {gEnemyParty+84} 42 george_lead_at_cap_42
+expect8 {gEnemyParty+484} 42 george_ace_at_cap_42
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 george_resolved
+loadstate cap42.ss
+!battle("TRAINER_BENJAMIN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B benjamin_action_menu
+shot 10_benjamin.png
+expect8 {gEnemyPartyCount} 5 benjamin_has_5
+expect8 {gEnemyParty+84} 42 benjamin_lead_at_cap_42
+expect8 {gEnemyParty+484} 42 benjamin_ace_at_cap_42
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 benjamin_resolved
+loadstate cap42.ss
+!battle("TRAINER_BEN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ben_action_menu
+shot 11_ben.png
+expect8 {gEnemyPartyCount} 5 ben_has_5
+expect8 {gEnemyParty+84} 42 ben_lead_at_cap_42
+expect8 {gEnemyParty+484} 42 ben_ace_at_cap_42
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 ben_resolved
+loadstate cap42.ss
+!battle("TRAINER_DEVIN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B devin_action_menu
+shot 12_devin.png
+expect8 {gEnemyPartyCount} 5 devin_has_5
+expect8 {gEnemyParty+84} 42 devin_lead_at_cap_42
+expect8 {gEnemyParty+484} 42 devin_ace_at_cap_42
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 devin_resolved
+
+# Four badges: cap 50
+loadstate base.ss
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_flag("FLAG_BADGE04_GET")
+!prepared_team(50, items=True)
+savestate cap50.ss
+!battle("TRAINER_CYBIL_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B cybil_action_menu
+shot 13_cybil.png
+expect8 {gEnemyPartyCount} 5 cybil_has_5
+expect8 {gEnemyParty+84} 50 cybil_lead_at_cap_50
+expect8 {gEnemyParty+484} 50 cybil_ace_at_cap_50
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 cybil_resolved
+loadstate cap50.ss
+!battle("TRAINER_JAKE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B jake_action_menu
+shot 14_jake.png
+expect8 {gEnemyPartyCount} 6 jake_has_6
+expect8 {gEnemyParty+84} 50 jake_lead_at_cap_50
+expect8 {gEnemyParty+584} 50 jake_ace_at_cap_50
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 jake_resolved
+loadstate cap50.ss
+!battle("TRAINER_BLAKE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B blake_action_menu
+shot 15_blake.png
+expect8 {gEnemyPartyCount} 6 blake_has_6
+expect8 {gEnemyParty+84} 50 blake_lead_at_cap_50
+expect8 {gEnemyParty+584} 50 blake_ace_at_cap_50
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 blake_resolved
+
+# Six badges: cap 66
+loadstate base.ss
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_flag("FLAG_BADGE04_GET")
+!set_flag("FLAG_BADGE05_GET")
+!set_flag("FLAG_BADGE06_GET")
+!prepared_team(66, items=True)
+savestate cap66.ss
+!battle("TRAINER_KELLY_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kelly_action_menu
+shot 16_kelly.png
+expect8 {gEnemyPartyCount} 6 kelly_has_6
+expect8 {gEnemyParty+84} 66 kelly_lead_at_cap_66
+expect8 {gEnemyParty+584} 66 kelly_ace_at_cap_66
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 kelly_resolved
+
+# The johto league won: cap 90
+loadstate base.ss
+!set_flag("FLAG_IS_CHAMPION")
+!prepared_team(90, items=True)
+savestate cap90.ss
+!battle("TRAINER_QUINN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B quinn_action_menu
+shot 17_quinn.png
+expect8 {gEnemyPartyCount} 6 quinn_has_6
+expect8 {gEnemyParty+84} 90 quinn_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 quinn_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 quinn_resolved
+loadstate cap90.ss
+!battle("TRAINER_OTIS_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B otis_action_menu
+shot 18_otis.png
+expect8 {gEnemyPartyCount} 6 otis_has_6
+expect8 {gEnemyParty+84} 90 otis_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 otis_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 otis_resolved
+loadstate cap90.ss
+!battle("TRAINER_DWAYNE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B dwayne_action_menu
+shot 19_dwayne.png
+expect8 {gEnemyPartyCount} 6 dwayne_has_6
+expect8 {gEnemyParty+84} 90 dwayne_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 dwayne_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 dwayne_resolved
+loadstate cap90.ss
+!battle("TRAINER_TIM_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B tim_action_menu
+shot 20_tim.png
+expect8 {gEnemyPartyCount} 6 tim_has_6
+expect8 {gEnemyParty+84} 90 tim_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 tim_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 tim_resolved
+loadstate cap90.ss
+!battle("TRAINER_ROBERT_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B robert_action_menu
+shot 21_robert.png
+expect8 {gEnemyPartyCount} 6 robert_has_6
+expect8 {gEnemyParty+84} 90 robert_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 robert_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 robert_resolved
+loadstate cap90.ss
+!battle("TRAINER_HERMAN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B herman_action_menu
+shot 22_herman.png
+expect8 {gEnemyPartyCount} 6 herman_has_6
+expect8 {gEnemyParty+84} 90 herman_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 herman_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 herman_resolved
+loadstate cap90.ss
+!battle("TRAINER_STEPHEN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B stephen_action_menu
+shot 23_stephen.png
+expect8 {gEnemyPartyCount} 6 stephen_has_6
+expect8 {gEnemyParty+84} 90 stephen_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 stephen_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 stephen_resolved
+loadstate cap90.ss
+!battle("TRAINER_BRET_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B bret_action_menu
+shot 24_bret.png
+expect8 {gEnemyPartyCount} 6 bret_has_6
+expect8 {gEnemyParty+84} 90 bret_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 bret_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 bret_resolved
+loadstate cap90.ss
+!battle("TRAINER_COLETTE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B colette_action_menu
+shot 25_colette.png
+expect8 {gEnemyPartyCount} 6 colette_has_6
+expect8 {gEnemyParty+84} 90 colette_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 colette_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 colette_resolved
+loadstate cap90.ss
+!battle("TRAINER_BORIS_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B boris_action_menu
+shot 26_boris.png
+expect8 {gEnemyPartyCount} 6 boris_has_6
+expect8 {gEnemyParty+84} 90 boris_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 boris_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 boris_resolved
+loadstate cap90.ss
+!battle("TRAINER_LORI_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B lori_action_menu
+shot 27_lori.png
+expect8 {gEnemyPartyCount} 6 lori_has_6
+expect8 {gEnemyParty+84} 90 lori_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 lori_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 lori_resolved
+loadstate cap90.ss
+!battle("TRAINER_KEVIN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kevin_action_menu
+shot 28_kevin.png
+expect8 {gEnemyPartyCount} 6 kevin_has_6
+expect8 {gEnemyParty+84} 90 kevin_lead_at_cap_90
+expect8 {gEnemyParty+584} 90 kevin_ace_at_cap_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 kevin_resolved

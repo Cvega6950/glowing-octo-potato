@@ -211,11 +211,16 @@ def learnable_moves(species):
     for s, e in species.items():
         for child in e["evolutions"]:
             parent.setdefault(child, s)
+    def learnset(name):
+        # A form without its own entry (e.g. MIMIKYU_DISGUISED) learns what its base species does
+        while name not in data and "_" in name:
+            name = name.rsplit("_", 1)[0]
+        return data.get(name, [])
     def moves(sp):
         out, seen = set(), set()
         while sp and sp not in seen:
             seen.add(sp)
-            out |= set(data.get(sp[len("SPECIES_"):], []))
+            out |= set(learnset(sp[len("SPECIES_"):]))
             sp = parent.get(sp)
         return out
     return moves

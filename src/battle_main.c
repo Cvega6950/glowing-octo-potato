@@ -2005,9 +2005,10 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
 
 // Crystal Imperium: every boss's Pokemon are at the player's level cap, on every difficulty
 // (DECISIONS.md D21): the cap of the boss's stage or of the player's progress, whichever is later,
-// from the player's cap table (HARD caps on HARD). Other trainers keep the difficulty's levels but
-// are never above the player's cap. While a party is created, sBossLevel is the boss's level (0
-// for other trainers) and sTrainerLevelCap the player's cap (0: no party being created).
+// from the player's cap table (HARD caps on HARD). Other trainers' Heart & Soul levels are mapped
+// onto the player's cap curve (D29), then scaled by the difficulty, and are never above the
+// player's cap. While a party is created, sBossLevel is the boss's level (0 for other trainers)
+// and sTrainerLevelCap the player's cap (0: no party being created).
 #include "data/level_cap_bosses.h"
 
 static u8 sBossLevel;
@@ -2046,6 +2047,8 @@ static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
 {
     if (sBossLevel)
         return sBossLevel;
+    if (sTrainerLevelCap)
+        level = GetLevelOnCapCurve(level);
     if (sScaleTrainerLevels)
         level = GetDifficultyScaledTrainerLevel(level);
     if (sTrainerLevelCap && level > sTrainerLevelCap)

@@ -10,65 +10,65 @@
 !battle_style_set()
 savestate base.ss
 
-# Rocket Hideout (4 badges at the earliest: cap 31)
-!prepared_team(31, items=True)
-savestate prep31.ss
+# Rocket Hideout (4 badges at the earliest: cap 50)
+!prepared_team(50, items=True)
+savestate prep50.ss
 !battle("TRAINER_PETREL_1_HNS")
 !autobattle("2,0,1,0,0,0")
 expectne8 {gBattleOutcome} 0 petrel_1_resolved
-loadstate prep31.ss
+loadstate prep50.ss
 !battle("TRAINER_ARIANA_1_HNS")
 !autobattle("1,1,1,0,0,0")
 expectne8 {gBattleOutcome} 0 ariana_1_resolved
 
-# Radio Tower and the Goldenrod Underground (7 badges, cap 45)
+# Radio Tower and the Goldenrod Underground (7 badges, cap 75)
 loadstate base.ss
-!prepared_team(45, items=True)
-savestate prep45.ss
+!prepared_team(75, items=True)
+savestate prep75.ss
 !battle("TRAINER_PROTON_2_HNS")
 !autobattle("2,0,1,0,0,2")
 expectne8 {gBattleOutcome} 0 proton_2_resolved
-loadstate prep45.ss
+loadstate prep75.ss
 !battle("TRAINER_PETREL_2_HNS")
 !autobattle("2,0,1,0,0,0")
 expectne8 {gBattleOutcome} 0 petrel_2_resolved
-loadstate prep45.ss
+loadstate prep75.ss
 !battle("TRAINER_ARIANA_2_HNS")
 !autobattle("1,1,1,0,0,0")
 expectne8 {gBattleOutcome} 0 ariana_2_resolved
-loadstate prep45.ss
+loadstate prep75.ss
 !battle("TRAINER_ARCHER_HNS")
 !autobattle("0,0,0,0,2,2")
 expectne8 {gBattleOutcome} 0 archer_resolved
-loadstate prep45.ss
+loadstate prep75.ss
 !battle("TRAINER_RIVAL_CHIKORITA_4_HNS")
 !autobattle("1,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 rival_4_resolved
 
-# Victory Road rival, Kimono Girls, Elite Four and Lance (8 badges, cap 56)
+# Victory Road rival, Kimono Girls, Elite Four and Lance (8 badges, cap 85)
 loadstate base.ss
-!prepared_team(56, items=True)
-savestate prep56.ss
+!prepared_team(85, items=True)
+savestate prep85.ss
 !battle("TRAINER_RIVAL_CYNDAQUIL_5_HNS")
 !autobattle("1,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 rival_5_resolved
-loadstate prep56.ss
+loadstate prep85.ss
 !battle("TRAINER_ZUKI_HNS")
 !autobattle("1,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 zuki_resolved
-loadstate prep56.ss
+loadstate prep85.ss
 !battle("TRAINER_NAOKO_HNS")
 !autobattle("0,0,0,0,3,0")
 expectne8 {gBattleOutcome} 0 naoko_resolved
-loadstate prep56.ss
+loadstate prep85.ss
 !battle("TRAINER_MIKI_HNS")
 !autobattle("1,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 miki_resolved
-loadstate prep56.ss
+loadstate prep85.ss
 !battle("TRAINER_SAYO_HNS")
 !autobattle("2,2,0,0,0,0")
 expectne8 {gBattleOutcome} 0 sayo_resolved
-loadstate prep56.ss
+loadstate prep85.ss
 !battle("TRAINER_KUNI_HNS")
 !autobattle("0,0,0,0,2,0")
 expectne8 {gBattleOutcome} 0 kuni_resolved

@@ -1,5 +1,5 @@
 # Crystal Imperium play test: boot -> new game -> settings -> Falkner (trainer 402).
-# Team: Cyndaquil / Mareep / Geodude at the pre-Falkner level cap (11), given via the debug menu.
+# Team: Cyndaquil / Mareep / Geodude at the pre-Falkner level cap (15), given via the debug menu.
 # Passes when the battle against the real AI and party data runs to a result.
 
 # Title screen and Oak's intro (name entry is filled by mashing A)
@@ -39,13 +39,14 @@ shot 03_overworld.png
 !battle_style_set()
 
 # Team at the level cap
-!give_mon(155, 11)
-!give_mon(179, 11)
-!give_mon(74, 11)
+!give_mon(155, 15)
+!give_mon(179, 15)
+!give_mon(74, 15)
 expect8 {gPlayerPartyCount} 3 party_has_three_mons
-# Minimal Grinding: Lv11 Cyndaquil with 31 IVs / 0 EVs has exactly 32 max HP (maxHP is at offset 88)
-expect16 {gPlayerParty+88} 32 cyndaquil_max_hp_31iv_0ev
-expect16 {gPlayerParty+288} 33 geodude_max_hp_31iv_0ev
+# Minimal Grinding: Lv15 Cyndaquil and Geodude with 31 IVs / 0 EVs have exactly 41 max HP (maxHP
+# is at offset 88)
+expect16 {gPlayerParty+88} 41 cyndaquil_max_hp_31iv_0ev
+expect16 {gPlayerParty+288} 41 geodude_max_hp_31iv_0ev
 
 # Falkner
 !battle_trainer(402)
@@ -59,9 +60,11 @@ wait 220
 shot 04_falkner_start.png
 expect16 {gBattleMons+136} 16 falkner_leads_pidgey
 # The battle is played by the autopilot (it follows the battle state, so it also runs on other
-# emulators, whose RNG seed differs): Cyndaquil Ember, Mareep Thunder Shock, Geodude Rollout.
+# emulators, whose RNG seed differs): Cyndaquil Ember, Mareep Thunder Shock, Geodude Rollout
+# (move slots at level 15: Leer / Ember / Smokescreen / Quick Attack, Thunder Wave / Thunder Shock
+# / Cotton Spore / Charge, Mud Sport / Rock Polish / Rollout / Magnitude).
 # The hand-played winning line is in docs/crystal_imperium/BALANCE.md.
-!autobattle("2,2,3")
+!autobattle("1,1,2")
 shot 07_result.png
 peek8 {gBattleOutcome} battle_outcome_1_win_2_loss
 expectne8 {gBattleOutcome} 0 battle_ran_to_completion
