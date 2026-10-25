@@ -27,8 +27,8 @@ cartridge clock starts at a fixed time (2026-10-24 01:30 UTC, night in the game)
 with emulated time on both emulators. Battle results depend on the RNG, which depends on the
 code and on the emulator, so balance checks sample several battles and accept a range.
 
-Results on the 0.8.0 ROM (SHA-1 `39a08748fd6e204dd868d8e98259ef411f7c3346`), 2026-10-25:
-All 39 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
+Results on the 0.8.1 ROM (SHA-1 `5fd97bab2f78756685087b8196c7aaf5252062bd`), 2026-10-25:
+All 41 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
 that each test requires to be inside its accepted range.
 
 | Test | Covers | mGBA | VBA-M (Delta's core) |
@@ -45,8 +45,10 @@ that each test requires to be inside its accepted range.
 | `care_packages` | 8 badge packages, one per step, then the Champion package; held items, PP Max, X items, Berries and evolution items in the Bag; a full Berries pocket sends the Berries to the PC; a save with eight packages and no gear gets each package's gear, then the Champion package | **PASS** | **PASS** |
 | `dexnav` | With nothing seen, the area's Pokémon are shown; register Rattata with R, R-search, walk up (no sneaking), battle, catch; search level and chain rise | **PASS** | **PASS** |
 | `dexnav_any` | Hidden row on Route 29; SELECT lists all 1,074 Pokémon (Ivysaur, Mewtwo); jump 100; register Squirtle; search Charmander, run up with Auto Run, battle | **PASS** | **PASS** |
+| `dexnav_caves` | Dark Cave: DexNav is too dark before Flash; Flash from the party menu (HM05, Zephyr Badge) lights the whole cave and DexNav searches; a save made there with the old lit circle continues fully lit; Union Cave 1F: the DexNav Geodude stays on its tile, the battle starts, caught | **PASS** | **PASS** |
 | `dexnav_hidden` | Detector mode finds hidden Pokémon while walking; creeping up starts the battle | **PASS** (hidden_detected 1/12, hidden_battle 1/12) | **PASS** (hidden_detected 4/12, hidden_battle 4/12) |
 | `dexnav_randomizer` | Randomizer on for wild Pokémon (map-seeded): DexNav lists Route 29's randomized Pokémon, not Hoothoot and Rattata, and every battle is listed | **PASS** (unrandomized 2/2, random_not_listed 0/12) | **PASS** (unrandomized 2/2, random_not_listed 0/12) |
+| `dexnav_surf` | New Bark Town: Tentacool registered from the water row; surfing up to the tile where it appeared, it stays there, the battle starts, caught | **PASS** | **PASS** |
 | `dexnav_water_match` | New Bark Town: the water row lists Tentacool and 3 Water-type Wild Variety Pokémon; every surfing battle is listed; fishing gives the town's fishing Pokémon or listed ones | **PASS** (fish_battles 7/10, fish 0/10, surf 6/12, surf_not_listed 0/12) | **PASS** (fish_battles 6/10, fish 0/10, surf 5/12, surf_not_listed 0/12) |
 | `dexnav_wild_match` | Route 29: DexNav lists the 2 own and 6 Wild Variety Pokémon and every battle is listed; the next day's set is new and its battles listed; the same day gives the same set; a listed Wild Variety Pokémon is searched for and battled; an outbreak is listed and met | **PASS** (day_a 6/12, day_a_not_listed 0/12, new_on_day_b 6/6, day_b_not_listed 0/8, changed_on_day_a 0/12, search_target 0/1, battle_target 0/1) | **PASS** (day_a 4/12, day_a_not_listed 0/12, new_on_day_b 6/6, day_b_not_listed 0/8, changed_on_day_a 0/12, search_target 0/1, battle_target 0/1) |
 | `difficulty` | Bosses stay at the cap on every difficulty: Falkner's party at 15 on EASY (NORMAL caps), 12 on HARD (HARD caps); Youngster Albert's level-7 Pokémon on the cap curve, then scaled: 8 (EASY) and 9 (HARD); a Grunt's Koffing held at the cap, 12, on HARD | **PASS** | **PASS** |
