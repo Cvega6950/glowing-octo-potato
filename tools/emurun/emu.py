@@ -314,6 +314,18 @@ def expect_listed(base, count, const, label):
     return [f"expectfind16 {base} {count} 2 {v[const]} {label}"]
 
 
+def set_save1(field, value, size=8):
+    """Write a SaveBlock1 field, e.g. set_save1("flashLevel", 1)."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock1, {field})", "value": str(value)})
+    return [f"poke{size} *{{gSaveBlock1Ptr}}+{v['off']} {v['value']}"]
+
+
+def expect_save1(field, want, label, size=8):
+    """Check a SaveBlock1 field, e.g. expect_save1("flashLevel", 0, "label")."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock1, {field})", "want": str(want)})
+    return [f"expect{size} *{{gSaveBlock1Ptr}}+{v['off']} {v['want']} {label}"]
+
+
 def expect_save3(field, want, label, size=8):
     """Check a SaveBlock3 field, e.g. expect_save3("dexNavSearchLevels[19]", 1, "label")."""
     v = probe.resolve({"off": f"offsetof(struct SaveBlock3, {field})", "want": str(want)})
@@ -414,8 +426,9 @@ def expect_battler(battler, field, const, label=None):
 def walkto(x, y, order="xy", soft=False, creep=False, path=False):
     """Walk to map coordinates (x, y), reading the player's position from the save block.
     soft=True: being stopped (e.g. by a wild battle) is not a test failure. creep=True holds A
-    (sneaking up on a DexNav target). path=True finds a way around walls and trees using the
-    loaded map's collision. x/y may be "@ADDR~BIAS" to read the target from memory."""
+    (sneaking up on a DexNav target). path=True finds a way around walls, trees and water using
+    the loaded map's collision and elevation. x/y may be "@ADDR~BIAS" to read the target from
+    memory."""
     return [f"walkto {{gSaveBlock1Ptr}} {x} {y} {order}" + (" soft" if soft else "") + (" creep" if creep else "")
             + (" path={gBackupMapLayout}" if path else "")]
 

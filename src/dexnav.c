@@ -1028,16 +1028,6 @@ static void EndDexNavSearchSetupScript(const u8 *script)
     ScriptContext_SetupScript(script);
 }
 
-static u8 GetMovementProximityBySearchLevel(void)
-{
-    if (sDexNavSearchDataPtr->searchLevel < 20)
-        return 2;
-    else if (sDexNavSearchDataPtr->searchLevel < 50)
-        return 3;
-    else
-        return 4;
-}
-
 static void RevealHiddenMon(void)
 {
     u16 species = sDexNavSearchDataPtr->species;
@@ -1125,21 +1115,8 @@ bool32 OnStep_DexNavSearch(void)
         return FALSE;
     }
 
-    //Caves and water the pokemon moves around
-    if ((sDexNavSearchDataPtr->environment == ENCOUNTER_TYPE_WATER || GetCurrentMapType() == MAP_TYPE_UNDERGROUND)
-        && sDexNavSearchDataPtr->proximity < GetMovementProximityBySearchLevel() && sDexNavSearchDataPtr->movementCount < 2
-        && !sDexNavSearchDataPtr->hiddenSearch)
-    {
-        FieldEffectStop(&gSprites[sDexNavSearchDataPtr->fldEffSpriteId], sDexNavSearchDataPtr->fldEffId);
-
-        if (!TryStartHiddenMonFieldEffect(sDexNavSearchDataPtr->environment, 10, 10, TRUE))
-        {
-            EndDexNavSearchSetupScript(EventScript_PokemonGotAway);
-            return TRUE;
-        }
-
-        sDexNavSearchDataPtr->movementCount++;
-    }
+    // Crystal Imperium: the Pokemon stays on its tile. Upstream, in caves and on water, it moved to
+    // another tile up to twice when the player came within 2 to 4 tiles, so it seemed to run away.
     return FALSE;
 }
 

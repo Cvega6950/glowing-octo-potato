@@ -1141,12 +1141,13 @@ bool32 Overworld_IsBikingAllowed(void)
 // Flash level of 1 is the largest flash radius
 // Flash level of 7 is the smallest flash radius
 // Flash level of 8 is fully black
+// Crystal Imperium: a cave lit by Flash is fully bright (Heart & Soul: flash level 1)
 void SetDefaultFlashLevel(void)
 {
     if (!gMapHeader.cave)
         gSaveBlock1Ptr->flashLevel = 0;
     else if (FlagGet(FLAG_SYS_USE_FLASH))
-        gSaveBlock1Ptr->flashLevel = 1;
+        gSaveBlock1Ptr->flashLevel = 0;
     else
         gSaveBlock1Ptr->flashLevel = gMaxFlashLevel - 1;
 }
@@ -2203,6 +2204,9 @@ void CB2_ContinueSavedGame(void)
     DoTimeBasedEvents();
     UpdateMiscOverworldStates();
     GiveQoLKeyItems();
+    // Crystal Imperium: a save made in a cave already lit by Flash kept Heart & Soul's lit circle
+    if (gMapHeader.cave && FlagGet(FLAG_SYS_USE_FLASH))
+        SetFlashLevel(0);
     if ((gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR || gMapHeader.mapLayoutId == LAYOUT_BATTLE_FRONTIER_BATTLE_PYRAMID_FLOOR_HNS))
         InitBattlePyramidMap(TRUE);
     else if (trainerHillMapId != 0)

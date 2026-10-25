@@ -1,5 +1,21 @@
 # Crystal Imperium changelog
 
+## 0.8.1-experimental (2026-10-25)
+
+### Fixes
+- **DexNav works in Dark Cave after Flash** (DECISIONS.md D31). It said it was too dark to
+  search even after Flash, because Flash only widened the lit circle. Flash now lights the
+  whole cave, as in Gold, Silver and Crystal. A save made in Dark Cave after Flash continues
+  fully lit.
+- **The DexNav Pokémon no longer runs away in caves and on water** (D31). It moved to another
+  tile, up to twice, as you came close. Now it stays where it appeared, as in grass.
+
+### Tooling
+- New tests `dexnav_caves` (Dark Cave before and after Flash, a save made there before 0.8.1,
+  Union Cave) and `dexnav_surf` (a DexNav search while surfing). Both fail on the 0.8.0 ROM.
+- The play tests' path finding follows the target's elevation, so it doesn't route through
+  water; `emu.py` has `set_save1` and `expect_save1` for SaveBlock1 fields.
+
 ## 0.8.0-experimental (2026-10-25)
 
 ### Gameplay

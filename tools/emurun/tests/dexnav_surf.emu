@@ -1,0 +1,57 @@
+# Crystal Imperium play test: a DexNav search on water (DECISIONS.md D31). New Bark Town's water
+# (x 25-29, rows 11-14) has Tentacool, first on DexNav's water row (UP from the empty land row).
+# Surfing up to the tile where it appeared, the Pokemon stays there and the battle starts (Heart
+# & Soul's DexNav moved it to another tile up to twice on water and in caves). HM03 and the Fog
+# Badge let the Magikarp surf. The search target is sDexNavSearchDataPtr: species +0, tileX +18,
+# tileY +20 (map coords + 7).
+!new_game()
+!give_mon(129, 10)
+!give_item(1, 10)
+!give_item("ITEM_HM_SURF")
+!set_flag("FLAG_BADGE04_GET")
+!no_care_packages()
+# Infinite Repel on (Key Item 1), so no random wild battle interrupts; DexNav battles still happen
+!use_key_item(1)
+!expect_flag("FLAG_INFINITE_REPEL_ON", 1, "infinite_repel_on")
+!warp(0, 0, 1)
+!walkto(24, 12, order="yx")
+press RIGHT
+wait 20
+!start_menu("DEXNAV")
+wait 120
+press UP
+wait 20
+press R
+wait 60
+shot 01_dexnav_tentacool_registered.png
+!expect_var("VAR_DEXNAV_SPECIES", "(ENCOUNTER_TYPE_WATER << 14) | SPECIES_TENTACOOL", "tentacool_registered")
+press B
+wait 200
+press B
+wait 60
+
+# Surf onto the water at (25,12), then search
+press A
+wait 90
+press A
+wait 60
+mash A 120
+wait 120
+expect16 *{gSaveBlock1Ptr}+4 25 surfing
+press R
+wait 200
+shot 02_dexnav_water_search.png
+!expect_flag("FLAG_DEXNAV_SEARCHING", 1, "water_search")
+expect16 *{sDexNavSearchDataPtr}+0 72 searching_for_tentacool
+!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", path=True, soft=True)
+wait 400
+shot 03_dexnav_water_battle.png
+expect32 {gMain+4} {BattleMainCB2+1} dexnav_water_battle_started
+!expect_flag("FLAG_DEXNAV_SEARCHING", 0, "search_ends_at_battle")
+press A
+wait 300
+!expect_battler(1, "species", "SPECIES_TENTACOOL", "dexnav_tentacool")
+press R
+wait 1000
+mash B 2400
+expect8 {gPlayerPartyCount} 2 dexnav_tentacool_caught

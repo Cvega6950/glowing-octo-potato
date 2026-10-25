@@ -93,6 +93,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | Area lists (land, water, hidden) | Done | emu: `dexnav`, `dexnav_any` (hidden row on Route 29). |
 | Register (R in DexNav) and search with R in the overworld | Done | emu: `dexnav`. |
 | Search, walk or run up (no sneaking needed), battle | Done | emu: `dexnav` (walking), `dexnav_any` (Auto Run), `dexnav_hidden` (sneaking with A). D19. |
+| DexNav in caves and on water: the Pokémon stays on its tile; Dark Cave after Flash | Done | emu: `dexnav_caves` (Dark Cave too dark before Flash, fully lit after it, DexNav searches, also on a save continued there; Union Cave 1F: walk up, battle, catch), `dexnav_surf` (New Bark Town: surf up, battle, catch). D31. |
 | Search levels and chain | Done | emu: `dexnav` (search level 1 and chain 1 after one DexNav catch). Stored per National Dex number (D13). |
 | Hidden Pokémon detection while walking | Done | emu: `dexnav_hidden` (detections lead to battles). |
 | Area lists show every Pokémon, seen or not (no question marks) | Done | emu: `dexnav` (nothing seen yet; Rattata is shown, registered with R, searched and caught). D18. |
@@ -114,7 +115,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 |---|---|---|
 | Auto Run in the Options menu | Done | emu: `autorun` (OFF: walk, B runs; ON: run, B walks). HnS's default is OFF; a new game asks nothing, the toggle is START > OPTION > AUTORUN. |
 | Fast surf, fast battle text, follower Pokémon | Existing | HnS options. |
-| HM field moves without teaching | Done | Carrying the HM and its badge is enough for any Pokémon (HnS needed one that could learn the move). emu: `hm_field_moves` (a Magikarp cuts, flies, surfs). D23. |
+| HM field moves without teaching | Done | Carrying the HM and its badge is enough for any Pokémon (HnS needed one that could learn the move). emu: `hm_field_moves` (a Magikarp cuts, flies, surfs), `dexnav_caves` (a Cyndaquil uses Flash, which lights the whole cave since 0.8.1). D23, D31. |
 | HGSS-style Pokédex | Existing | `POKEDEX_PLUS_HGSS TRUE`. |
 | Gen 5 look: BW battle interface | Done | mudskip's BW Battle UI. emu: `bw_ui` (BW action box, BW move box); every battle test. D26. |
 | Gen 5 look: BW summary screen (IVs/EVs on the skills page) | Done | RavePossum's BW Summary Screen. emu: `bw_ui` (opens from the party menu, A shows IVs). D26. |

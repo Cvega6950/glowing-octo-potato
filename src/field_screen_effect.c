@@ -1054,7 +1054,9 @@ void AnimateFlash(u8 newFlashLevel)
     bool8 fullBrightness = FALSE;
     if (newFlashLevel == 0)
         fullBrightness = TRUE;
-    StartUpdateFlashLevelEffect(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, sFlashLevelToRadius[curFlashLevel], sFlashLevelToRadius[newFlashLevel], fullBrightness, 1);
+    // Crystal Imperium: Flash lights the whole cave (flash level 0); the light spreads 4 pixels
+    // a step, so it takes about as long as Heart & Soul's circle (1 pixel a step to flash level 1)
+    StartUpdateFlashLevelEffect(DISPLAY_WIDTH / 2, DISPLAY_HEIGHT / 2, sFlashLevelToRadius[curFlashLevel], sFlashLevelToRadius[newFlashLevel], fullBrightness, fullBrightness ? 4 : 1);
     StartWaitForFlashUpdate();
     LockPlayerFieldControls();
 }

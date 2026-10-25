@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.8.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.8.1-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
 > of its Pokémon at the level cap, the TM list is Emerald Imperium's, and HMs work without being
@@ -25,7 +25,9 @@ From the first step of a new game:
     of them: A searches, R registers.
   - SELECT lists **every** Gen 1–9 Pokémon (all 1,074: every evolution stage, regional
     forms, Legendaries), and you can search for any of them anywhere. LEFT/RIGHT jump 100.
-  - Walk or run up to a Pokémon found by searching to battle it: no sneaking needed.
+  - Walk or run up to a Pokémon found by searching to battle it: no sneaking needed. It stays
+    where it appeared, in caves and on water too. In Dark Cave, Flash lights the whole cave, as
+    in Gold, Silver and Crystal, and DexNav works there.
   - R repeats a search for the registered Pokémon.
   - Hidden Pokémon are also detected while walking.
   - Search levels improve the chances of egg moves, Hidden Abilities and held items.
@@ -93,7 +95,7 @@ your house), except Auto Run, which is in the Options menu.
 | # | Requirement | Status | Evidence |
 |---|---|---|---|
 | 1 | Gen 1–9 Pokémon, abilities, moves, evolution methods, sprites, wild encounters | **Done** | Engine data for all 1,025 species. Wild Variety on every route (`wild_variety`). The DexNav list of any Pokémon (`dexnav_any`). Hidden slots for the 258 families that had no source. Care packages hold the missing evolution items (`care_packages`). Every trade evolution has a non-trade method. |
-| 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden`; the lists match the wild Pokémon you meet (`dexnav_wild_match`, `dexnav_water_match`, `dexnav_randomizer`) |
+| 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden`; the lists match the wild Pokémon you meet (`dexnav_wild_match`, `dexnav_water_match`, `dexnav_randomizer`); caves, Dark Cave after Flash and water (`dexnav_caves`, `dexnav_surf`) |
 | 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym) |
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
 | 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies), `boss_levels` and `level_cap_wild` (bosses at the cap, nothing above it); HARD's Imperium / Radical Red rules (`hard_mode_rules`) |

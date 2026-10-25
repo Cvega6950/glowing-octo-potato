@@ -25,7 +25,8 @@
 //                          after HnS's saveVersion), is (X,Y); x first unless "yx". With "soft", not
 //                          reaching the target (e.g. a wild battle started) is not a failure; "creep"
 //                          holds A (DexNav sneaking); "path=ADDR" (&gBackupMapLayout) routes around
-//                          walls. X/Y may be @ADDR~BIAS: an s16 in memory minus BIAS
+//                          walls and tiles of another elevation (water, seen from land). X/Y may be
+//                          @ADDR~BIAS: an s16 in memory minus BIAS
 //   expectfind16 BASE COUNT STRIDE VALUE [LABEL]   fail unless one of COUNT entries STRIDE bytes apart
 //                          from BASE (which may be *PTR+OFF) holds the 16-bit VALUE
 //   setflag SB1PTR FLAGSOFF FLAG VALUE   set (1) or clear (0) event flag FLAG in (*SB1PTR)->flags
@@ -190,16 +191,27 @@ static int ParseCoord(const char *text)
 }
 
 // Path finding on the loaded map (gBackupMapLayout: s32 width, s32 height, u16 *map; map coords
-// are offset by 7). Only the collision bits are used: NPCs and ledges are not considered.
+// are offset by 7). The collision bits and the elevation are used: a tile is walkable at the
+// target's elevation if it has no collision and its elevation is that one, 0 or 15 (any
+// elevation), so a walk on a cave floor doesn't route through water. NPCs and ledges are not
+// considered.
 #define MAP_OFFSET 7
-static int Walkable(uint32_t layout, int x, int y)
+static unsigned TileElevation(uint32_t layout, int x, int y)
+{
+    int w = (int32_t)Peek(32, layout);
+    return Peek(16, Peek(32, layout + 8) + 2 * ((y + MAP_OFFSET) * w + x + MAP_OFFSET)) >> 12;
+}
+
+static int Walkable(uint32_t layout, int x, int y, unsigned elevation)
 {
     int w = (int32_t)Peek(32, layout), h = (int32_t)Peek(32, layout + 4);
-    x += MAP_OFFSET;
-    y += MAP_OFFSET;
-    if (x < 0 || y < 0 || x >= w || y >= h)
+    if (x + MAP_OFFSET < 0 || y + MAP_OFFSET < 0 || x + MAP_OFFSET >= w || y + MAP_OFFSET >= h)
         return 0;
-    return (Peek(16, Peek(32, layout + 8) + 2 * (y * w + x)) & 0x0C00) == 0;
+    unsigned block = Peek(16, Peek(32, layout + 8) + 2 * ((y + MAP_OFFSET) * w + x + MAP_OFFSET));
+    unsigned tileElevation = block >> 12;
+    if (block & 0x0C00)
+        return 0;
+    return elevation == 0 || elevation == 15 || tileElevation == 0 || tileElevation == 15 || tileElevation == elevation;
 }
 
 // Steps from every tile to (tx, ty), by breadth-first search from the target; -1 = unreachable
@@ -217,6 +229,7 @@ static int *PathDistances(uint32_t layout, int tx, int ty)
         free(queue);
         return dist;
     }
+    unsigned elevation = TileElevation(layout, tx - MAP_OFFSET, ty - MAP_OFFSET);
     dist[ty * w + tx] = 0;
     queue[tail++] = ty * w + tx;
     while (head < tail)
@@ -226,7 +239,7 @@ static int *PathDistances(uint32_t layout, int tx, int ty)
         {
             int nx = cx + dx[d], ny = cy + dy[d];
             if (nx < 0 || ny < 0 || nx >= w || ny >= h || dist[ny * w + nx] >= 0
-             || !Walkable(layout, nx - MAP_OFFSET, ny - MAP_OFFSET))
+             || !Walkable(layout, nx - MAP_OFFSET, ny - MAP_OFFSET, elevation))
                 continue;
             dist[ny * w + nx] = dist[cur] + 1;
             queue[tail++] = ny * w + nx;

@@ -280,8 +280,9 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 - Both rules are removed: walking, running and biking all reach the Pokémon, and holding A
   still sneaks for those who like it. The search ends only when the player moves more than
   20 tiles away or after `DEXNAV_TIMEOUT`, raised from 15 to 30 seconds.
-- In caves and on water the Pokémon still moves away up to twice when the player gets close
-  at low search levels (upstream behaviour).
+- In caves and on water the Pokémon still moved away up to twice when the player got close at
+  low search levels (upstream behaviour) until 0.8.1; since then it stays on its tile there too
+  (D31).
 
 ## D20. Smart AI for every trainer
 
@@ -466,7 +467,9 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   lead that could learn Fly keeps the entry it had without HM02). Rock Climb, a TM here, works
   the same way through the same code.
 - Evidence: `hm_field_moves`. A Magikarp, which can learn none of these moves, cuts the Route 29
-  tree, opens the Fly map from its party menu and surfs, with only the HMs and badges.
+  tree, opens the Fly map from its party menu and surfs, with only the HMs and badges. In
+  `dexnav_caves` a Cyndaquil uses Flash from its party menu with HM05 and the Zephyr Badge; since
+  0.8.1 Flash lights the whole cave (D31).
 
 ## D24. DexNav lists the Pokémon you meet
 
@@ -737,3 +740,38 @@ DexNav shows and that wild encounters draw from:
 - Evidence: `route_bosses` (every mini-boss's team size, its lead's and ace's levels at the cap,
   and a battle against the prepared six to a result), `boss_levels`, `bosses_m3`, `bosses_m4`,
   `bugsy` and `whitney` for the six-Pokémon bosses.
+
+## D31. DexNav in caves and on water
+
+- The user reported two DexNav problems in caves:
+  - In Dark Cave DexNav said "It's too dark to search for a Pokémon!" even after Flash. DexNav
+    doesn't search while the flash level is above 0, and Flash only brought it down to 1, the
+    widest lit circle (Heart & Soul kept Emerald's Flash). Dark Cave's two maps are the only
+    ones that need Flash.
+  - In a lit cave the Pokémon "ran away": the expansion's DexNav moves it to another tile, up to
+    twice, when the player comes within 2 to 4 tiles in a cave or on water.
+- **Flash lights the whole cave**, as in Gold, Silver and Crystal. The Flash script animates to
+  flash level 0, full brightness (the light spreads 4 pixels a step, so it takes about as long
+  as the old circle), and a cave entered while Flash is in use is fully lit
+  (`SetDefaultFlashLevel`).
+  - Relaxing DexNav's check instead wasn't enough: outside the lit circle only text boxes are
+    drawn, so DexNav's icons and the rustling spot would have been hidden.
+  - A save made in Dark Cave after Flash with 0.8.0 or earlier holds flash level 1; it continues
+    fully lit (`CB2_ContinueSavedGame`).
+  - DexNav's detector for hidden Pokémon has the same darkness check, so it works after Flash
+    too (not play-tested). Battles in Dark Cave after Flash open with the cave transition, not
+    the dark one.
+- **The Pokémon stays on its tile** in caves and on water, as in grass: the move is removed
+  (D19 removed the sneaking rules).
+- Evidence:
+  - `dexnav_caves`, in Dark Cave: DexNav is too dark before Flash. Flash from a Cyndaquil's
+    party menu brings the flash level to 0, and DexNav searches. A save made there with flash
+    level 1 continues at 0, and DexNav searches.
+  - `dexnav_caves`, in Union Cave 1F: the DexNav Geodude stays put, the battle starts, and it is
+    caught.
+  - `dexnav_surf`: in New Bark Town the DexNav Tentacool stays put while the player surfs up to
+    it.
+  - On the 0.8.0 ROM both tests fail at those steps: DexNav is too dark after Flash, and the
+    Geodude and the Tentacool move away.
+- The play tests' path finding (`walkto ... path`) now follows the target's elevation, so a walk
+  on a cave floor doesn't route through water.

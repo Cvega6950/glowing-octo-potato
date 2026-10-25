@@ -1,0 +1,128 @@
+# Crystal Imperium play test: DexNav in caves (DECISIONS.md D31).
+# Dark Cave, the only cave that needs Flash: DexNav is too dark to use there until Flash is used.
+# Flash (HM05 in the bag and the Zephyr Badge, from the party menu of a Pokemon that doesn't
+# know it) lights the whole cave, as in Gold, Silver and Crystal, and a DexNav search starts.
+# A save made in the cave after Flash before 0.8.1 (flash level 1) continues fully lit.
+# Union Cave 1F, lit: the DexNav Pokemon stays on its tile while the player walks up to it
+# (Heart & Soul's DexNav moved it to another tile up to twice in caves and on water) and the
+# battle starts.
+# The search target is sDexNavSearchDataPtr: species +0, tileX +18, tileY +20 (map coords + 7).
+# Flash level (SaveBlock1 flashLevel): 0 fully lit, 1 the widest lit circle, 7 a dark cave.
+!new_game()
+!give_mon(155, 15)
+!give_item(1, 10)
+!give_item("ITEM_HM05")
+!set_flag("FLAG_BADGE01_GET")
+!no_care_packages()
+# Infinite Repel on (Key Item 1), so no random wild battle interrupts; DexNav battles still happen
+!use_key_item(1)
+!expect_flag("FLAG_INFINITE_REPEL_ON", 1, "infinite_repel_on")
+
+# Dark Cave from Route 31: dark, and DexNav can't search
+!warp(24, 0, 0)
+expect32 {gMain+4} {CB2_Overworld+1} in_dark_cave
+!expect_save1("flashLevel", 7, "dark_cave_is_dark")
+shot 01_dark_cave.png
+!start_menu("DEXNAV")
+wait 120
+expect32 {gMain+4} {DexNav_MainCB+1} dexnav_opens_in_dark_cave
+press R
+wait 60
+!expect_var("VAR_DEXNAV_SPECIES", "(ENCOUNTER_TYPE_LAND << 14) | SPECIES_ZUBAT", "zubat_registered")
+press B
+wait 200
+press B
+wait 60
+press R
+wait 200
+shot 02_too_dark.png
+!expect_flag("FLAG_DEXNAV_SEARCHING", 0, "too_dark_before_flash")
+mash B 120
+wait 60
+
+# Flash from Cyndaquil's party menu (SUMMARY, LEARN MOVES, FLASH, ...)
+!start_menu("POKEMON")
+wait 60
+press A
+wait 30
+shot 03_party_menu_flash.png
+press DOWN
+wait 10
+press DOWN
+wait 10
+press A
+wait 600
+mash B 60
+wait 60
+shot 04_cave_lit.png
+!expect_flag("FLAG_SYS_USE_FLASH", 1, "flash_used")
+!expect_save1("flashLevel", 0, "flash_lights_the_cave")
+
+# Now DexNav searches
+press R
+wait 200
+shot 05_dexnav_search_after_flash.png
+!expect_flag("FLAG_DEXNAV_SEARCHING", 1, "dexnav_searches_after_flash")
+expect16 *{sDexNavSearchDataPtr}+0 41 searching_for_zubat
+mash B 120
+wait 60
+
+# A save made here after Flash with 0.8.0 or earlier kept flash level 1 (the lit circle):
+# saved that way, it continues fully lit and DexNav searches
+!set_save1("flashLevel", 1)
+!start_menu("SAVE")
+press A
+wait 400
+mash A 300
+reset
+wait 1300
+press START
+wait 120
+wait 200
+press A
+wait 100
+press A
+wait 900
+shot 06_old_save_continued.png
+expect32 {gMain+4} {CB2_Overworld+1} continued_in_dark_cave
+!expect_save1("flashLevel", 0, "old_save_continues_lit")
+press R
+wait 200
+!expect_flag("FLAG_DEXNAV_SEARCHING", 1, "dexnav_searches_after_continue")
+mash B 120
+wait 60
+
+# The debug menu's warp holds R, which would search again: unregister the species first
+!set_var("VAR_DEXNAV_SPECIES", 0)
+
+# Union Cave 1F from Route 32 (lit, no Flash needed): Geodude, the first land Pokemon
+!warp(24, 8, 0)
+expect32 {gMain+4} {CB2_Overworld+1} in_union_cave
+!expect_save1("flashLevel", 0, "union_cave_is_lit")
+!start_menu("DEXNAV")
+wait 120
+press R
+wait 60
+!expect_var("VAR_DEXNAV_SPECIES", "(ENCOUNTER_TYPE_LAND << 14) | SPECIES_GEODUDE", "geodude_registered")
+press B
+wait 200
+press B
+wait 60
+press R
+wait 200
+shot 07_union_cave_search.png
+!expect_flag("FLAG_DEXNAV_SEARCHING", 1, "union_cave_search")
+expect16 *{sDexNavSearchDataPtr}+0 74 searching_for_geodude
+# Walk up to the tile it appeared on: it stays there, and the battle starts
+!walkto("@*{sDexNavSearchDataPtr}+18~7", "@*{sDexNavSearchDataPtr}+20~7", path=True, soft=True)
+wait 400
+shot 08_union_cave_battle.png
+expect32 {gMain+4} {BattleMainCB2+1} dexnav_cave_battle_started
+!expect_flag("FLAG_DEXNAV_SEARCHING", 0, "search_ends_at_battle")
+press A
+wait 300
+!expect_battler(1, "species", "SPECIES_GEODUDE", "dexnav_geodude")
+press R
+wait 1000
+mash B 2400
+expect8 {gPlayerPartyCount} 2 dexnav_geodude_caught
