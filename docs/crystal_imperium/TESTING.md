@@ -27,8 +27,8 @@ cartridge clock starts at a fixed time (2026-10-24 01:30 UTC, night in the game)
 with emulated time on both emulators. Battle results depend on the RNG, which depends on the
 code and on the emulator, so balance checks sample several battles and accept a range.
 
-Results on the 0.8.1 ROM (SHA-1 `5fd97bab2f78756685087b8196c7aaf5252062bd`), 2026-10-25:
-All 41 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
+Results on the 0.9.0 ROM (SHA-1 `eb1b32a171fda90822482427d762d7fa611d2557`), 2026-10-25:
+All 44 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
 that each test requires to be inside its accepted range.
 
 | Test | Covers | mGBA | VBA-M (Delta's core) |
@@ -53,6 +53,7 @@ that each test requires to be inside its accepted range.
 | `dexnav_wild_match` | Route 29: DexNav lists the 2 own and 6 Wild Variety Pokémon and every battle is listed; the next day's set is new and its battles listed; the same day gives the same set; a listed Wild Variety Pokémon is searched for and battled; an outbreak is listed and met | **PASS** (day_a 6/12, day_a_not_listed 0/12, new_on_day_b 6/6, day_b_not_listed 0/8, changed_on_day_a 0/12, search_target 0/1, battle_target 0/1) | **PASS** (day_a 4/12, day_a_not_listed 0/12, new_on_day_b 6/6, day_b_not_listed 0/8, changed_on_day_a 0/12, search_target 0/1, battle_target 0/1) |
 | `difficulty` | Bosses stay at the cap on every difficulty: Falkner's party at 15 on EASY (NORMAL caps), 12 on HARD (HARD caps); Youngster Albert's level-7 Pokémon on the cap curve, then scaled: 8 (EASY) and 9 (HARD); a Grunt's Koffing held at the cap, 12, on HARD | **PASS** | **PASS** |
 | `easy_catch` | Catch rate 3 caught by one Poké Ball with EASY CATCH on; two balls fail with it off | **PASS** | **PASS** |
+| `egg_hatch` | Fast Egg hatching: a Togepi Egg (10 cycles) from the debug menu hatches during a 126-step walk across New Bark Town (8 steps a cycle; Heart & Soul needs over 2,800) | **PASS** | **PASS** |
 | `falkner` | Minimal Grinding stats (31 IV / 0 EV) at level 15; Falkner leads Pidgey; battle against the real AI runs to a result | **PASS** | **PASS** |
 | `flower_shop` | Goldenrod Flower Shop sells Mints, Ability Capsule and Ability Patch after badge 3 | **PASS** | **PASS** |
 | `gym_trainers_m2` | All eight Azalea/Goldenrod Gym trainer battles load; the singles play to a result | **PASS** | **PASS** |
@@ -63,13 +64,15 @@ that each test requires to be inside its accepted range.
 | `mega_evolution` | Player's Ampharos Mega Evolves with R; Lance's Gyarados Mega Evolves on turn 1 (against a Golem lead) | **PASS** | **PASS** |
 | `mega_specialist` | Mega Ring gift after badge 3; stone shop tiers | **PASS** | **PASS** |
 | `pokevial` | PokéVial in the bag from a new game; heals HP and poison, twice | **PASS** | **PASS** |
-| `qol_items` | Rare Candy Box gives 999 candies and stops at the level cap (15); Box Link opens the PC on a route | **PASS** | **PASS** |
+| `qol_items` | Rare Candy Box gives 999 candies, the Rare Candy question starts at the 10 levels to the cap, and they stop at the level cap (15); Box Link opens the PC on a route | **PASS** | **PASS** |
+| `rare_candy` | Rare Candies several at a time: the count starts at the cap (10) and DOWN takes one off; 9 used at once with no level-up fanfare; one more without a question; B uses none; Caterpie gets 10 at once, learns Bug Bite and evolves; at the cap one more candy evolves Metapod | **PASS** | **PASS** |
 | `red` | No battle before the Kanto League; the summit battle is TRAINER_RED_HNS, after the Sinjoh story TRAINER_RED_POSTOBC_HNS; Pikachu (level 100) keeps its EVs (306 Speed); a level-100 six with items and a Mega playing a game plan beats Red at least once in 24; Mega Charizard Y happens | **PASS** (wins vs Red 9/24) | **PASS** (wins vs Red 6/24) |
 | `relearner_training_kit` | Training Kit natures and ability (checked in battle); party-menu relearner teaches an egg move | **PASS** | **PASS** |
 | `route_bosses` | The 28 route mini-bosses, in groups by the earliest point their routes can be reached: each has its whole team (3 to 6) at the player's cap (15 to 90) and plays to a result against the prepared six | **PASS** | **PASS** |
 | `save_load` | In-game save, hard reset, Continue | **PASS** | **PASS** |
 | `story_opening` | Real story path, no debug: Elm's intro, Cyndaquil from the middle ball, Elm's errand, the aide's Potion, Route 29 and a wild battle | **PASS** | **PASS** |
 | `tm_case` | TM163 Temper Flare teaches Cyndaquil (used in battle); all 198 TMs and 8 HMs fill the case; save, reset and Continue keep them | **PASS** | **PASS** |
+| `tm_clerk` | TMs cost ¥100 (price data); the Violet City Mart TM clerk gives nothing before the Zephyr Badge, then Bullet Seed, Bulldoze, Bug Bite and Stomping Tantrum once, and sells 7 TMs; Electroweb bought | **PASS** | **PASS** |
 | `tm_reusable` | One TM teaches two Pokémon and stays in the bag, then a third through the party menu's relearner; the move is used in battle | **PASS** | **PASS** |
 | `tm_shop` | Goldenrod 5F TM shop: 71 / 155 / 178 / 198 TMs at 0 / 3 / 6 (without Jasmine's badge) / 8 badges; buying TM03 and TM01 works | **PASS** | **PASS** |
 | `whitney` | Whitney's six (all at the cap, 33, holding items) leads Clefairy; the naive six, Machoke holding the first care package's Eviolite, wins some, not all, of 24 sampled battles | **PASS** (wins vs Whitney 3/24) | **PASS** (wins vs Whitney 5/24) |
