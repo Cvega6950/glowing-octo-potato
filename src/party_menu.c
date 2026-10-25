@@ -231,6 +231,10 @@ static EWRAM_DATA u16 sPartyMenuItemId = 0;
 EWRAM_DATA u8 gBattlePartyCurrentOrder[PARTY_SIZE / 2] = {0}; // bits 0-3 are the current pos of Slot 1, 4-7 are Slot 2, and so on
 static EWRAM_DATA u8 sInitialLevel = 0;
 static EWRAM_DATA u8 sFinalLevel = 0;
+// Crystal Imperium: how many Rare Candies to use, and where to go after a message (I_QUICK_RARE_CANDY)
+static EWRAM_DATA s16 sRareCandyCount = 0;
+static EWRAM_DATA u16 sRareCandyMax = 0;
+static EWRAM_DATA TaskFunc sRareCandyTask = NULL;
 
 // IWRAM common
 COMMON_DATA void (*gItemUseCB)(u8, TaskFunc) = NULL;
@@ -417,6 +421,10 @@ static void Task_HandleStopLearningMoveYesNoInput(u8);
 static void Task_TryLearningNextMoveAfterText(u8);
 static void BufferMonStatsToTaskData(struct Pokemon *, s16 *);
 static void UpdateMonDisplayInfoAfterRareCandy(u8, struct Pokemon *);
+static void UseRareCandies(u8, TaskFunc, u32);
+static void Task_ChooseRareCandyCount(u8);
+static void Task_LearnMovesAfterRareCandy(u8);
+static void TryLearnMovesFromInitialLevel(u8);
 static void Task_DisplayLevelUpStatsPg1(u8);
 static void DisplayLevelUpStatsPg1(u8);
 static void Task_DisplayLevelUpStatsPg2(u8);
@@ -5871,7 +5879,75 @@ static void UNUSED DisplayExpPoints(u8 taskId, TaskFunc task, u8 holdEffectParam
     gTasks[taskId].func = task;
 }
 
+// Crystal Imperium: the level Rare Candies stop at (the level cap, when Rare Candies obey it)
+static u32 GetRareCandyLevelLimit(void)
+{
+    if (B_RARE_CANDY_CAP || gSaveBlock3Ptr->challengeSettings.tx_Challenges_LevelCap)
+        return GetCurrentLevelCap();
+    return MAX_LEVEL;
+}
+
+static void PrintRareCandyCount(void)
+{
+    static const u8 sColors[] = {TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_LIGHT_GRAY};
+    u8 windowId = sPartyMenuInternal->windowId[0];
+
+    FillWindowPixelBuffer(windowId, PIXEL_FILL(TEXT_COLOR_WHITE));
+    ConvertIntToDecimalStringN(gStringVar1, sRareCandyCount, STR_CONV_MODE_LEADING_ZEROS, 3);
+    StringExpandPlaceholders(gStringVar4, gText_xVar1);
+    AddTextPrinterParameterized3(windowId, FONT_NORMAL, 4, 1, sColors, TEXT_SKIP_DRAW, gStringVar4);
+    CopyWindowToVram(windowId, COPYWIN_GFX);
+}
+
+// Crystal Imperium (I_QUICK_RARE_CANDY): with more than one level to give, the player picks how
+// many Rare Candies to use, at first all of them up to the cap (UP/DOWN 1, LEFT/RIGHT 10)
 void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
+{
+    static const u8 sText_HowManyRareCandies[] = _("How many will you use?");
+    struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
+    u32 level = GetMonData(mon, MON_DATA_LEVEL), limit = GetRareCandyLevelLimit(), max = 0;
+
+    if (I_QUICK_RARE_CANDY && GetItemHoldEffectParam(gSpecialVar_ItemId) == 0 && level < limit)
+        max = min(limit - level, CountTotalItemQuantityInBag(gSpecialVar_ItemId));
+    if (max > 1)
+    {
+        PlaySE(SE_SELECT);
+        sRareCandyCount = max;
+        sRareCandyMax = max;
+        sRareCandyTask = task;
+        DisplayPartyMenuMessage(sText_HowManyRareCandies, TRUE);
+        sPartyMenuInternal->windowId[0] = AddWindow(&sRareCandyCountWindowTemplate);
+        DrawStdFrameWithCustomTileAndPalette(sPartyMenuInternal->windowId[0], FALSE, 0x4F, 13);
+        PrintRareCandyCount();
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = Task_ChooseRareCandyCount;
+        return;
+    }
+    UseRareCandies(taskId, task, 1);
+}
+
+static void Task_ChooseRareCandyCount(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() == TRUE)
+        return;
+    if (AdjustQuantityAccordingToDPadInput(&sRareCandyCount, sRareCandyMax) == TRUE)
+    {
+        PrintRareCandyCount();
+    }
+    else if (JOY_NEW(A_BUTTON))
+    {
+        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+        UseRareCandies(taskId, sRareCandyTask, sRareCandyCount);
+    }
+    else if (JOY_NEW(B_BUTTON))
+    {
+        PlaySE(SE_SELECT);
+        PartyMenuRemoveWindow(&sPartyMenuInternal->windowId[0]);
+        gTasks[taskId].func = Task_ReturnToChooseMonAfterText;
+    }
+}
+
+static void UseRareCandies(u8 taskId, TaskFunc task, u32 count)
 {
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     struct PartyMenuInternal *ptr = sPartyMenuInternal;
@@ -5879,12 +5955,17 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
     u16 *itemPtr = &gSpecialVar_ItemId;
     bool8 cannotUseEffect;
     u8 holdEffectParam = GetItemHoldEffectParam(*itemPtr);
+    u32 used = 1;
 
     sInitialLevel = GetMonData(mon, MON_DATA_LEVEL);
     if (!((B_RARE_CANDY_CAP || gSaveBlock3Ptr->challengeSettings.tx_Challenges_LevelCap) && sInitialLevel >= GetCurrentLevelCap()))
     {
         BufferMonStatsToTaskData(mon, arrayPtr);
         cannotUseEffect = ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0);
+        // Crystal Imperium: the other Rare Candies chosen, a level each, never past the limit
+        while (!cannotUseEffect && used < count && GetMonData(mon, MON_DATA_LEVEL) < GetRareCandyLevelLimit()
+               && !ExecuteTableBasedItemEffect(mon, *itemPtr, gPartyMenu.slotId, 0))
+            used++;
         BufferMonStatsToTaskData(mon, &ptr->data[NUM_STATS]);
     }
     else
@@ -5928,11 +6009,15 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
         sFinalLevel = GetMonData(mon, MON_DATA_LEVEL);
         gPartyMenuUseExitCallback = TRUE;
         UpdateMonDisplayInfoAfterRareCandy(gPartyMenu.slotId, mon);
-        RemoveBagItem(gSpecialVar_ItemId, 1);
+        RemoveBagItem(gSpecialVar_ItemId, used);
         GetMonNickname(mon, gStringVar1);
         if (sFinalLevel > sInitialLevel)
         {
-            PlayFanfareByFanfareNum(FANFARE_LEVEL_UP);
+            // Crystal Imperium: a short sound; the level-up fanfare stops the map music
+            if (I_QUICK_RARE_CANDY)
+                PlaySE(SE_EXP_MAX);
+            else
+                PlayFanfareByFanfareNum(FANFARE_LEVEL_UP);
             if (holdEffectParam == 0) // Rare Candy
             {
                 ConvertIntToDecimalStringN(gStringVar2, sFinalLevel, STR_CONV_MODE_LEFT_ALIGN, 3);
@@ -5947,7 +6032,11 @@ void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
 
             DisplayPartyMenuMessage(gStringVar4, TRUE);
             ScheduleBgCopyTilemapToVram(2);
-            gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
+            // Crystal Imperium: straight on to the moves, without the two stat pages
+            if (I_QUICK_RARE_CANDY)
+                gTasks[taskId].func = Task_LearnMovesAfterRareCandy;
+            else
+                gTasks[taskId].func = Task_DisplayLevelUpStatsPg1;
         }
         else
         {
@@ -6017,35 +6106,51 @@ static void DisplayLevelUpStatsPg2(u8 taskId)
 
 static void Task_TryLearnNewMoves(u8 taskId)
 {
-    u16 learnMove;
-
     if (WaitFanfare(FALSE) && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
     {
         RemoveLevelUpStatsWindow();
-        for (; sInitialLevel <= sFinalLevel; sInitialLevel++)
+        TryLearnMovesFromInitialLevel(taskId);
+    }
+}
+
+// Crystal Imperium (I_QUICK_RARE_CANDY): from "grew to Lv. N" straight to the moves of the levels passed
+static void Task_LearnMovesAfterRareCandy(u8 taskId)
+{
+    if (IsPartyMenuTextPrinterActive() != TRUE && ((JOY_NEW(A_BUTTON)) || (JOY_NEW(B_BUTTON))))
+    {
+        PlaySE(SE_SELECT);
+        sInitialLevel += 1; // so the Pokemon doesn't learn a move meant for its previous level
+        TryLearnMovesFromInitialLevel(taskId);
+    }
+}
+
+static void TryLearnMovesFromInitialLevel(u8 taskId)
+{
+    u16 learnMove;
+
+    for (; sInitialLevel <= sFinalLevel; sInitialLevel++)
+    {
+        SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL, &sInitialLevel);
+        learnMove = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], TRUE);
+        gPartyMenu.learnMoveState = 1;
+        switch (learnMove)
         {
-            SetMonData(&gPlayerParty[gPartyMenu.slotId], MON_DATA_LEVEL, &sInitialLevel);
-            learnMove = MonTryLearningNewMove(&gPlayerParty[gPartyMenu.slotId], TRUE);
-            gPartyMenu.learnMoveState = 1;
-            switch (learnMove)
-            {
-            case 0: // No moves to learn
-                if (sInitialLevel >= sFinalLevel)
-                    PartyMenuTryEvolution(taskId);
-                break;
-            case MON_HAS_MAX_MOVES:
-                DisplayMonNeedsToReplaceMove(taskId);
-                break;
-            case MON_ALREADY_KNOWS_MOVE:
-                gTasks[taskId].func = Task_TryLearningNextMove;
-                break;
-            default:
-                DisplayMonLearnedMove(taskId, learnMove);
-                break;
-            }
-            if (learnMove)
-                break;
+        case 0: // No moves to learn
+            if (sInitialLevel >= sFinalLevel)
+                PartyMenuTryEvolution(taskId);
+            break;
+        case MON_HAS_MAX_MOVES:
+            DisplayMonNeedsToReplaceMove(taskId);
+            break;
+        case MON_ALREADY_KNOWS_MOVE:
+            gTasks[taskId].func = Task_TryLearningNextMove;
+            break;
+        default:
+            DisplayMonLearnedMove(taskId, learnMove);
+            break;
         }
+        if (learnMove)
+            break;
     }
 }
 

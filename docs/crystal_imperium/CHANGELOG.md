@@ -1,5 +1,29 @@
 # Crystal Imperium changelog
 
+## 0.9.0-experimental (2026-10-25)
+
+### Quality of life
+- **Quick Rare Candies** (DECISIONS.md D33). After choosing the Pokémon, pick how many to use;
+  at first it's all of them up to the level cap (UP/DOWN change it by 1, LEFT/RIGHT by 10, B
+  goes back). They are used at once, with one message and a short sound instead of the level-up
+  jingle, so the map music keeps playing, and without the two stat pages. Moves of every level
+  passed are still learned, then the Pokémon evolves; the party menu stays open.
+- **Fast Egg hatching** (D32). An Egg cycle is 8 steps instead of 256: a Togepi Egg hatches in
+  about 90 steps, a starter's in about 170. Flame Body and Magma Armor still halve it.
+
+### TMs, the Emerald Imperium way (D22)
+- **Every TM costs ¥100**, Imperium's price, in every shop (they were ¥1,500–8,000). The
+  Goldenrod Dept. Store's badge tiers still decide when the strong ones go on sale.
+- **A TM clerk in the Violet City Mart** (the second clerk at the counter), from the Zephyr
+  Badge on: Imperium's first vendor TMs, Electroweb, Icy Wind, Aerial Ace, Low Kick, Pluck,
+  Snarl and Smack Down. The first time, the clerk also gives Bullet Seed, Bulldoze, Bug Bite and
+  Stomping Tantrum, the TMs Imperium gives away before its second Gym; a save that already has
+  the badge gets them too.
+
+### Tooling
+- New tests `rare_candy`, `egg_hatch` and `tm_clerk`; `qol_items` follows the Rare Candy
+  question. `emu.py` gains `give_egg` and `expect_item_price`.
+
 ## 0.8.1-experimental (2026-10-25)
 
 ### Fixes

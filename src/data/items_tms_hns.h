@@ -4,7 +4,7 @@
     [ITEM_TM01] = // Focus Punch
     {
         .name = ITEM_NAME("TM01"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Powerful attack,\n"
             "moves last. The user\n"
@@ -18,7 +18,7 @@
     [ITEM_TM02] = // Dragon Claw
     {
         .name = ITEM_NAME("TM02"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Slashes the foe with\n"
             "sharp claws."),
@@ -31,7 +31,7 @@
     [ITEM_TM03] = // Flip Turn
     {
         .name = ITEM_NAME("TM03"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks and rushes\n"
             "back to switch with\n"
@@ -45,7 +45,7 @@
     [ITEM_TM04] = // Calm Mind
     {
         .name = ITEM_NAME("TM04"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Raises Sp. Atk and\n"
             "Sp. Def by focusing\n"
@@ -59,7 +59,7 @@
     [ITEM_TM05] = // Roar
     {
         .name = ITEM_NAME("TM05"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Switches the foe\n"
             "out or ends wild\n"
@@ -73,7 +73,7 @@
     [ITEM_TM06] = // Toxic
     {
         .name = ITEM_NAME("TM06"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Poisons the foe with\n"
             "an intensifying\n"
@@ -87,7 +87,7 @@
     [ITEM_TM07] = // Snowscape
     {
         .name = ITEM_NAME("TM07"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Summons a hailstorm\n"
             "that strikes every\n"
@@ -101,7 +101,7 @@
     [ITEM_TM08] = // Bulk Up
     {
         .name = ITEM_NAME("TM08"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Bulks up the body to\n"
             "boost both Attack\n"
@@ -115,7 +115,7 @@
     [ITEM_TM09] = // Bullet Seed
     {
         .name = ITEM_NAME("TM09"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Shoots 2 to 5 seeds\n"
             "in a row to strike\n"
@@ -129,7 +129,7 @@
     [ITEM_TM10] = // Hidden Power
     {
         .name = ITEM_NAME("TM10"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The type varies with\n"
             "the user."),
@@ -142,7 +142,7 @@
     [ITEM_TM11] = // Sunny Day
     {
         .name = ITEM_NAME("TM11"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Boosts the power of\n"
             "Fire- type moves for\n"
@@ -156,7 +156,7 @@
     [ITEM_TM12] = // Taunt
     {
         .name = ITEM_NAME("TM12"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Taunts the foe into\n"
             "only using attack\n"
@@ -170,7 +170,7 @@
     [ITEM_TM13] = // Ice Beam
     {
         .name = ITEM_NAME("TM13"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Blasts the foe with\n"
             "an icy beam. May\n"
@@ -184,7 +184,7 @@
     [ITEM_TM14] = // Blizzard
     {
         .name = ITEM_NAME("TM14"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Hits the foes with\n"
             "an icy storm. May\n"
@@ -198,7 +198,7 @@
     [ITEM_TM15] = // Electroweb
     {
         .name = ITEM_NAME("TM15"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Snares the foes with\n"
             "an electric net.\n"
@@ -212,7 +212,7 @@
     [ITEM_TM16] = // Light Screen
     {
         .name = ITEM_NAME("TM16"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Wall of light cuts\n"
             "special damage for 5\n"
@@ -226,7 +226,7 @@
     [ITEM_TM17] = // Protect
     {
         .name = ITEM_NAME("TM17"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Evades attack, but\n"
             "may fail if used in\n"
@@ -240,7 +240,7 @@
     [ITEM_TM18] = // Rain Dance
     {
         .name = ITEM_NAME("TM18"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Boosts the power of\n"
             "Water- type moves\n"
@@ -254,7 +254,7 @@
     [ITEM_TM19] = // Giga Drain
     {
         .name = ITEM_NAME("TM19"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack that steals\n"
             "half the damage\n"
@@ -268,7 +268,7 @@
     [ITEM_TM20] = // Hyper Voice
     {
         .name = ITEM_NAME("TM20"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A loud attack that\n"
             "uses sound waves to\n"
@@ -282,7 +282,7 @@
     [ITEM_TM21] = // Icy Wind
     {
         .name = ITEM_NAME("TM21"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A chilling attack\n"
             "that lowers the\n"
@@ -296,7 +296,7 @@
     [ITEM_TM22] = // Solar Beam
     {
         .name = ITEM_NAME("TM22"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Absorbs light in one\n"
             "turn, then attacks\n"
@@ -310,7 +310,7 @@
     [ITEM_TM23] = // Iron Tail
     {
         .name = ITEM_NAME("TM23"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks with a\n"
             "rock-hard tail. May\n"
@@ -324,7 +324,7 @@
     [ITEM_TM24] = // Thunderbolt
     {
         .name = ITEM_NAME("TM24"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A strong electrical\n"
             "attack that may\n"
@@ -338,7 +338,7 @@
     [ITEM_TM25] = // Thunder
     {
         .name = ITEM_NAME("TM25"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A lightning attack\n"
             "that may cause\n"
@@ -352,7 +352,7 @@
     [ITEM_TM26] = // Earthquake
     {
         .name = ITEM_NAME("TM26"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A powerful quake\n"
             "that hits all other\n"
@@ -366,7 +366,7 @@
     [ITEM_TM27] = // Return
     {
         .name = ITEM_NAME("TM27"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack that\n"
             "increases in power\n"
@@ -380,7 +380,7 @@
     [ITEM_TM28] = // Dig
     {
         .name = ITEM_NAME("TM28"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Digs underground\n"
             "the first turn and\n"
@@ -394,7 +394,7 @@
     [ITEM_TM29] = // Psychic
     {
         .name = ITEM_NAME("TM29"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A powerful psychic\n"
             "attack that may\n"
@@ -408,7 +408,7 @@
     [ITEM_TM30] = // Shadow Ball
     {
         .name = ITEM_NAME("TM30"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Hurls a black blob\n"
             "that may lower the\n"
@@ -422,7 +422,7 @@
     [ITEM_TM31] = // Brick Break
     {
         .name = ITEM_NAME("TM31"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Destroys barriers\n"
             "such as REFLECT and\n"
@@ -436,7 +436,7 @@
     [ITEM_TM32] = // Solar Blade
     {
         .name = ITEM_NAME("TM32"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Charges first turn,\n"
             "then chops with a\n"
@@ -450,7 +450,7 @@
     [ITEM_TM33] = // Reflect
     {
         .name = ITEM_NAME("TM33"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Wall of light cuts\n"
             "physical damage for\n"
@@ -464,7 +464,7 @@
     [ITEM_TM34] = // Teleport
     {
         .name = ITEM_NAME("TM34"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Switches the user\n"
             "out last. Flees when\n"
@@ -478,7 +478,7 @@
     [ITEM_TM35] = // Flamethrower
     {
         .name = ITEM_NAME("TM35"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A powerful fire\n"
             "attack that may\n"
@@ -492,7 +492,7 @@
     [ITEM_TM36] = // Sludge Bomb
     {
         .name = ITEM_NAME("TM36"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Sludge is hurled to\n"
             "inflict damage. May\n"
@@ -506,7 +506,7 @@
     [ITEM_TM37] = // Sandstorm
     {
         .name = ITEM_NAME("TM37"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Causes a sandstorm\n"
             "that rages for\n"
@@ -520,7 +520,7 @@
     [ITEM_TM38] = // Fire Blast
     {
         .name = ITEM_NAME("TM38"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "{FONT_SMALL}Incinerates everything\n"
             "it strikes. May cause a\n"
@@ -534,7 +534,7 @@
     [ITEM_TM39] = // Rock Tomb
     {
         .name = ITEM_NAME("TM39"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Stops the foe from\n"
             "moving with rocks\n"
@@ -548,7 +548,7 @@
     [ITEM_TM40] = // Aerial Ace
     {
         .name = ITEM_NAME("TM40"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "An extremely speedy\n"
             "and unavoidable\n"
@@ -562,7 +562,7 @@
     [ITEM_TM41] = // Dragon Dance
     {
         .name = ITEM_NAME("TM41"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A mystical dance\n"
             "that ups Attack and\n"
@@ -576,7 +576,7 @@
     [ITEM_TM42] = // Facade
     {
         .name = ITEM_NAME("TM42"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Boosts power when\n"
             "burned, paralyzed,\n"
@@ -590,7 +590,7 @@
     [ITEM_TM43] = // Defog
     {
         .name = ITEM_NAME("TM43"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Removes obstacles\n"
             "and lowers evasion."),
@@ -603,7 +603,7 @@
     [ITEM_TM44] = // Rest
     {
         .name = ITEM_NAME("TM44"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The user sleeps for\n"
             "2 turns, restoring\n"
@@ -617,7 +617,7 @@
     [ITEM_TM45] = // Draining Kiss
     {
         .name = ITEM_NAME("TM45"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack that absorbs\n"
             "over half the damage\n"
@@ -631,7 +631,7 @@
     [ITEM_TM46] = // Thief
     {
         .name = ITEM_NAME("TM46"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "While attacking, it\n"
             "may steal the foe's\n"
@@ -645,7 +645,7 @@
     [ITEM_TM47] = // Steel Wing
     {
         .name = ITEM_NAME("TM47"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Strikes the foe with\n"
             "hard wings spread\n"
@@ -659,7 +659,7 @@
     [ITEM_TM48] = // Meteor Beam
     {
         .name = ITEM_NAME("TM48"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A 2-turn move that\n"
             "raises Sp. Attack\n"
@@ -673,7 +673,7 @@
     [ITEM_TM49] = // Leech Life
     {
         .name = ITEM_NAME("TM49"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack that steals\n"
             "half the damage\n"
@@ -687,7 +687,7 @@
     [ITEM_TM50] = // Overheat
     {
         .name = ITEM_NAME("TM50"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Allows a full-power\n"
             "attack, but sharply\n"
@@ -701,7 +701,7 @@
     [ITEM_TM51] = // Roost
     {
         .name = ITEM_NAME("TM51"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Restores the user's\n"
             "HP by half of its max\n"
@@ -715,7 +715,7 @@
     [ITEM_TM52] = // Focus Blast
     {
         .name = ITEM_NAME("TM52"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks at full\n"
             "power. May lower Sp.\n"
@@ -729,7 +729,7 @@
     [ITEM_TM53] = // Energy Ball
     {
         .name = ITEM_NAME("TM53"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Draws power from\n"
             "nature to attack.\n"
@@ -743,7 +743,7 @@
     [ITEM_TM54] = // Grassy Glide
     {
         .name = ITEM_NAME("TM54"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Gliding on ground,\n"
             "hits. Goes first on\n"
@@ -757,7 +757,7 @@
     [ITEM_TM55] = // Expanding Force
     {
         .name = ITEM_NAME("TM55"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Power goes up and\n"
             "damages all foes on\n"
@@ -771,7 +771,7 @@
     [ITEM_TM56] = // Power Up Punch
     {
         .name = ITEM_NAME("TM56"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A hard punch that\n"
             "raises the user's\n"
@@ -785,7 +785,7 @@
     [ITEM_TM57] = // Charge Beam
     {
         .name = ITEM_NAME("TM57"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Fires a beam of\n"
             "electricity. May\n"
@@ -799,7 +799,7 @@
     [ITEM_TM58] = // Rising Voltage
     {
         .name = ITEM_NAME("TM58"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "This move's power\n"
             "doubles when on\n"
@@ -813,7 +813,7 @@
     [ITEM_TM59] = // Dragon Pulse
     {
         .name = ITEM_NAME("TM59"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Generates a shock\n"
             "wave to damage the\n"
@@ -827,7 +827,7 @@
     [ITEM_TM60] = // Drain Punch
     {
         .name = ITEM_NAME("TM60"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack that absorbs\n"
             "half the damage\n"
@@ -841,7 +841,7 @@
     [ITEM_TM61] = // Will O Wisp
     {
         .name = ITEM_NAME("TM61"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Inflicts a burn on\n"
             "the foe with intense\n"
@@ -855,7 +855,7 @@
     [ITEM_TM62] = // Silver Wind
     {
         .name = ITEM_NAME("TM62"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A powdery attack\n"
             "that may raise\n"
@@ -869,7 +869,7 @@
     [ITEM_TM63] = // Venoshock
     {
         .name = ITEM_NAME("TM63"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Does double damage\n"
             "if the foe is\n"
@@ -883,7 +883,7 @@
     [ITEM_TM64] = // Explosion
     {
         .name = ITEM_NAME("TM64"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Inflicts severe\n"
             "damage but makes\n"
@@ -897,7 +897,7 @@
     [ITEM_TM65] = // Shadow Claw
     {
         .name = ITEM_NAME("TM65"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Strikes with a\n"
             "shadow claw. High\n"
@@ -911,7 +911,7 @@
     [ITEM_TM66] = // Dazzling Gleam
     {
         .name = ITEM_NAME("TM66"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Damages foes by\n"
             "emitting a bright\n"
@@ -925,7 +925,7 @@
     [ITEM_TM67] = // Poltergeist
     {
         .name = ITEM_NAME("TM67"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Control foe's item\n"
             "to attack. Fails if\n"
@@ -939,7 +939,7 @@
     [ITEM_TM68] = // Dual Chop
     {
         .name = ITEM_NAME("TM68"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks with brutal\n"
             "hits that strike\n"
@@ -953,7 +953,7 @@
     [ITEM_TM69] = // Rock Polish
     {
         .name = ITEM_NAME("TM69"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Polishes the body to\n"
             "sharply raise Speed."),
@@ -966,7 +966,7 @@
     [ITEM_TM70] = // Triple Axel
     {
         .name = ITEM_NAME("TM70"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "{FONT_SMALL}A 3-kick attack that\n"
             "gets more powerful with\n"
@@ -980,7 +980,7 @@
     [ITEM_TM71] = // Stone Edge
     {
         .name = ITEM_NAME("TM71"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Stabs the foe with\n"
             "stones. High\n"
@@ -994,7 +994,7 @@
     [ITEM_TM72] = // Psyshock
     {
         .name = ITEM_NAME("TM72"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "{FONT_SMALL}Attacks with a psychic\n"
             "wave that does physical\n"
@@ -1008,7 +1008,7 @@
     [ITEM_TM73] = // Thunder Wave
     {
         .name = ITEM_NAME("TM73"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A weak jolt of\n"
             "electricity that\n"
@@ -1022,7 +1022,7 @@
     [ITEM_TM74] = // Gyro Ball
     {
         .name = ITEM_NAME("TM74"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "{FONT_SMALL}A high-speed spin that\n"
             "does more damage to\n"
@@ -1036,7 +1036,7 @@
     [ITEM_TM75] = // Swords Dance
     {
         .name = ITEM_NAME("TM75"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A fighting dance\n"
             "that sharply raises\n"
@@ -1050,7 +1050,7 @@
     [ITEM_TM76] = // Stealth Rock
     {
         .name = ITEM_NAME("TM76"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Sets floating\n"
             "stones that hurt a\n"
@@ -1064,7 +1064,7 @@
     [ITEM_TM77] = // Flame Charge
     {
         .name = ITEM_NAME("TM77"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks in a cloak\n"
             "of flames. Raises\n"
@@ -1078,7 +1078,7 @@
     [ITEM_TM78] = // Low Sweep
     {
         .name = ITEM_NAME("TM78"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks the foe's\n"
             "legs lowering its\n"
@@ -1092,7 +1092,7 @@
     [ITEM_TM79] = // Dark Pulse
     {
         .name = ITEM_NAME("TM79"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks with a\n"
             "horrible aura. May\n"
@@ -1106,7 +1106,7 @@
     [ITEM_TM80] = // Rock Slide
     {
         .name = ITEM_NAME("TM80"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Large boulders are\n"
             "hurled. May cause\n"
@@ -1120,7 +1120,7 @@
     [ITEM_TM81] = // X Scissor
     {
         .name = ITEM_NAME("TM81"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Slashes the foe with\n"
             "crossed scythes,\n"
@@ -1134,7 +1134,7 @@
     [ITEM_TM82] = // Sleep Talk
     {
         .name = ITEM_NAME("TM82"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Uses an available\n"
             "move randomly while\n"
@@ -1148,7 +1148,7 @@
     [ITEM_TM83] = // Scald
     {
         .name = ITEM_NAME("TM83"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Shoots boiling water\n"
             "at the foe. May\n"
@@ -1162,7 +1162,7 @@
     [ITEM_TM84] = // Poison Jab
     {
         .name = ITEM_NAME("TM84"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A stabbing attack\n"
             "that may poison the\n"
@@ -1176,7 +1176,7 @@
     [ITEM_TM85] = // Future Sight
     {
         .name = ITEM_NAME("TM85"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Heightens inner\n"
             "power to strike 2\n"
@@ -1190,7 +1190,7 @@
     [ITEM_TM86] = // Grass Knot
     {
         .name = ITEM_NAME("TM86"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A snare attack that\n"
             "does more damage to\n"
@@ -1204,7 +1204,7 @@
     [ITEM_TM87] = // Low Kick
     {
         .name = ITEM_NAME("TM87"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A kick that inflicts\n"
             "more damage on\n"
@@ -1218,7 +1218,7 @@
     [ITEM_TM88] = // Pluck
     {
         .name = ITEM_NAME("TM88"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Eats the foe's held\n"
             "Berry gaining its\n"
@@ -1232,7 +1232,7 @@
     [ITEM_TM89] = // U Turn
     {
         .name = ITEM_NAME("TM89"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Does damage then\n"
             "switches out the\n"
@@ -1246,7 +1246,7 @@
     [ITEM_TM90] = // Substitute
     {
         .name = ITEM_NAME("TM90"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Creates a decoy\n"
             "using 1/4 of the\n"
@@ -1260,7 +1260,7 @@
     [ITEM_TM91] = // Flash Cannon
     {
         .name = ITEM_NAME("TM91"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Releases a blast of\n"
             "light that may lower\n"
@@ -1274,7 +1274,7 @@
     [ITEM_TM92] = // Volt Switch
     {
         .name = ITEM_NAME("TM92"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Does damage then\n"
             "switches out the\n"
@@ -1288,7 +1288,7 @@
     [ITEM_TM93] = // Dragon Tail
     {
         .name = ITEM_NAME("TM93"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Knocks foe away to\n"
             "switch it out or end\n"
@@ -1302,7 +1302,7 @@
     [ITEM_TM94] = // Trailblaze
     {
         .name = ITEM_NAME("TM94"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The user attacks\n"
             "suddenly, raising its\n"
@@ -1316,7 +1316,7 @@
     [ITEM_TM95] = // Acrobatics
     {
         .name = ITEM_NAME("TM95"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Does double damage\n"
             "if the user has no\n"
@@ -1330,7 +1330,7 @@
     [ITEM_TM96] = // Bulldoze
     {
         .name = ITEM_NAME("TM96"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Stomps down on the\n"
             "ground. Hits all and\n"
@@ -1344,7 +1344,7 @@
     [ITEM_TM97] = // Snarl
     {
         .name = ITEM_NAME("TM97"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Yells and rants at\n"
             "the foe lowering its\n"
@@ -1358,7 +1358,7 @@
     [ITEM_TM98] = // Work Up
     {
         .name = ITEM_NAME("TM98"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The user is roused.\n"
             "Ups Attack and Sp.\n"
@@ -1372,7 +1372,7 @@
     [ITEM_TM99] = // Wild Charge
     {
         .name = ITEM_NAME("TM99"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "An electrical tackle\n"
             "that also hurts the\n"
@@ -1386,7 +1386,7 @@
     [ITEM_TM100] = // Dual Wingbeat
     {
         .name = ITEM_NAME("TM100"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "{FONT_SMALL}User slams the target\n"
             "with wings and hits\n"
@@ -1400,7 +1400,7 @@
     [ITEM_TM101] = // Superpower
     {
         .name = ITEM_NAME("TM101"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Boosts strength\n"
             "sharply, but lowers\n"
@@ -1414,7 +1414,7 @@
     [ITEM_TM102] = // Scorching Sands
     {
         .name = ITEM_NAME("TM102"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Throws scorching\n"
             "sand at the target.\n"
@@ -1428,7 +1428,7 @@
     [ITEM_TM103] = // Smack Down
     {
         .name = ITEM_NAME("TM103"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Throws a rock to\n"
             "knock the foe down\n"
@@ -1442,7 +1442,7 @@
     [ITEM_TM104] = // Heat Crash
     {
         .name = ITEM_NAME("TM104"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Does more damage if\n"
             "the user outweighs\n"
@@ -1456,7 +1456,7 @@
     [ITEM_TM105] = // Body Press
     {
         .name = ITEM_NAME("TM105"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Does more damage\n"
             "the higher the\n"
@@ -1470,7 +1470,7 @@
     [ITEM_TM106] = // Trick Room
     {
         .name = ITEM_NAME("TM106"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Slower Pokémon get\n"
             "to move first for 5\n"
@@ -1484,7 +1484,7 @@
     [ITEM_TM107] = // Brave Bird
     {
         .name = ITEM_NAME("TM107"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A low altitude\n"
             "charge that also\n"
@@ -1498,7 +1498,7 @@
     [ITEM_TM108] = // Ice Spinner
     {
         .name = ITEM_NAME("TM108"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Ice-covered feet\n"
             "hit a foe and\n"
@@ -1512,7 +1512,7 @@
     [ITEM_TM109] = // Bug Bite
     {
         .name = ITEM_NAME("TM109"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Eats the foe's held\n"
             "Berry gaining its\n"
@@ -1526,7 +1526,7 @@
     [ITEM_TM110] = // Stomping Tantrum
     {
         .name = ITEM_NAME("TM110"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Stomps around\n"
             "angrily. Stronger\n"
@@ -1540,7 +1540,7 @@
     [ITEM_TM111] = // Fire Punch
     {
         .name = ITEM_NAME("TM111"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A fiery punch that\n"
             "may burn the foe."),
@@ -1553,7 +1553,7 @@
     [ITEM_TM112] = // Ice Punch
     {
         .name = ITEM_NAME("TM112"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "An icy punch that\n"
             "may leave the foe\n"
@@ -1567,7 +1567,7 @@
     [ITEM_TM113] = // Thunder Punch
     {
         .name = ITEM_NAME("TM113"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "An electrified punch\n"
             "that may paralyze\n"
@@ -1581,7 +1581,7 @@
     [ITEM_TM114] = // Fire Fang
     {
         .name = ITEM_NAME("TM114"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "May cause flinching\n"
             "or leave the foe\n"
@@ -1595,7 +1595,7 @@
     [ITEM_TM115] = // Ice Fang
     {
         .name = ITEM_NAME("TM115"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "May cause flinching\n"
             "or leave the foe\n"
@@ -1609,7 +1609,7 @@
     [ITEM_TM116] = // Thunder Fang
     {
         .name = ITEM_NAME("TM116"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "May cause flinching\n"
             "or leave the foe\n"
@@ -1623,7 +1623,7 @@
     [ITEM_TM117] = // Psychic Fangs
     {
         .name = ITEM_NAME("TM117"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Chomps with psychic\n"
             "fangs. Destroys any\n"
@@ -1637,7 +1637,7 @@
     [ITEM_TM118] = // Poison Fang
     {
         .name = ITEM_NAME("TM118"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A sharp-fanged\n"
             "attack. May badly\n"
@@ -1651,7 +1651,7 @@
     [ITEM_TM119] = // Iron Head
     {
         .name = ITEM_NAME("TM119"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Slams the foe with a\n"
             "hard head. May cause\n"
@@ -1665,7 +1665,7 @@
     [ITEM_TM120] = // Liquidation
     {
         .name = ITEM_NAME("TM120"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Slams the foe with\n"
             "water. Can lower\n"
@@ -1679,7 +1679,7 @@
     [ITEM_TM121] = // Hydro Pump
     {
         .name = ITEM_NAME("TM121"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Blasts water at high\n"
             "power to strike the\n"
@@ -1693,7 +1693,7 @@
     [ITEM_TM122] = // Drill Run
     {
         .name = ITEM_NAME("TM122"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Spins its body like a\n"
             "drill. High\n"
@@ -1707,7 +1707,7 @@
     [ITEM_TM123] = // Blaze Kick
     {
         .name = ITEM_NAME("TM123"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A kick with a high\n"
             "critical- hit ratio.\n"
@@ -1721,7 +1721,7 @@
     [ITEM_TM124] = // Pain Split
     {
         .name = ITEM_NAME("TM124"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Adds the user and\n"
             "foe's HP, then\n"
@@ -1735,7 +1735,7 @@
     [ITEM_TM125] = // Zen Headbutt
     {
         .name = ITEM_NAME("TM125"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Hits with a strong\n"
             "head- butt. May\n"
@@ -1749,7 +1749,7 @@
     [ITEM_TM126] = // Weather Ball
     {
         .name = ITEM_NAME("TM126"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The move's type and\n"
             "power change with\n"
@@ -1763,7 +1763,7 @@
     [ITEM_TM127] = // Air Slash
     {
         .name = ITEM_NAME("TM127"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks with a blade\n"
             "of air. May cause\n"
@@ -1777,7 +1777,7 @@
     [ITEM_TM128] = // Hex
     {
         .name = ITEM_NAME("TM128"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Does double damage\n"
             "if the foe has a\n"
@@ -1791,7 +1791,7 @@
     [ITEM_TM129] = // Mystical Fire
     {
         .name = ITEM_NAME("TM129"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Breathes a special,\n"
             "hot fire. Lowers Sp.\n"
@@ -1805,7 +1805,7 @@
     [ITEM_TM130] = // Seed Bomb
     {
         .name = ITEM_NAME("TM130"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A barrage of hard\n"
             "seeds is fired at\n"
@@ -1819,7 +1819,7 @@
     [ITEM_TM131] = // Leaf Blade
     {
         .name = ITEM_NAME("TM131"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Slashes with a sharp\n"
             "leaf. High\n"
@@ -1833,7 +1833,7 @@
     [ITEM_TM132] = // Knock Off
     {
         .name = ITEM_NAME("TM132"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Knocks down the\n"
             "foe's held item to\n"
@@ -1847,7 +1847,7 @@
     [ITEM_TM133] = // Power Gem
     {
         .name = ITEM_NAME("TM133"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks with rays of\n"
             "light that sparkle\n"
@@ -1861,7 +1861,7 @@
     [ITEM_TM134] = // Rock Blast
     {
         .name = ITEM_NAME("TM134"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Hurls boulders at\n"
             "the foe 2 to 5 times\n"
@@ -1875,7 +1875,7 @@
     [ITEM_TM135] = // Pin Missile
     {
         .name = ITEM_NAME("TM135"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Sharp pins are fired\n"
             "to strike 2 to 5\n"
@@ -1889,7 +1889,7 @@
     [ITEM_TM136] = // Icicle Spear
     {
         .name = ITEM_NAME("TM136"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks the foe by\n"
             "firing 2 to 5 icicles\n"
@@ -1903,7 +1903,7 @@
     [ITEM_TM137] = // Tail Slap
     {
         .name = ITEM_NAME("TM137"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Strikes the foe with\n"
             "its tail 2 to 5 times."),
@@ -1916,7 +1916,7 @@
     [ITEM_TM138] = // Arm Thrust
     {
         .name = ITEM_NAME("TM138"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Straight-arm\n"
             "punches that strike\n"
@@ -1930,7 +1930,7 @@
     [ITEM_TM139] = // Foul Play
     {
         .name = ITEM_NAME("TM139"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The higher the foe's\n"
             "Attack the more\n"
@@ -1944,7 +1944,7 @@
     [ITEM_TM140] = // Iron Defense
     {
         .name = ITEM_NAME("TM140"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Hardens the body's\n"
             "surface to sharply\n"
@@ -1958,7 +1958,7 @@
     [ITEM_TM141] = // Nasty Plot
     {
         .name = ITEM_NAME("TM141"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Thinks bad thoughts\n"
             "to sharply boost Sp.\n"
@@ -1972,7 +1972,7 @@
     [ITEM_TM142] = // Earth Power
     {
         .name = ITEM_NAME("TM142"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Makes the ground\n"
             "erupt with power.\n"
@@ -1986,7 +1986,7 @@
     [ITEM_TM143] = // Aura Sphere
     {
         .name = ITEM_NAME("TM143"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks with an aura\n"
             "blast that cannot\n"
@@ -2000,7 +2000,7 @@
     [ITEM_TM144] = // Heat Wave
     {
         .name = ITEM_NAME("TM144"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Exhales a hot breath\n"
             "on the foes. May\n"
@@ -2014,7 +2014,7 @@
     [ITEM_TM145] = // Hurricane
     {
         .name = ITEM_NAME("TM145"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Traps the foe in a\n"
             "fierce wind. May\n"
@@ -2028,7 +2028,7 @@
     [ITEM_TM146] = // Power Whip
     {
         .name = ITEM_NAME("TM146"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Violently lashes the\n"
             "foe with vines or\n"
@@ -2042,7 +2042,7 @@
     [ITEM_TM147] = // High Horsepower
     {
         .name = ITEM_NAME("TM147"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Slams hard into the\n"
             "foe with its entire\n"
@@ -2056,7 +2056,7 @@
     [ITEM_TM148] = // Bug Buzz
     {
         .name = ITEM_NAME("TM148"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A damaging sound\n"
             "wave that may lower\n"
@@ -2070,7 +2070,7 @@
     [ITEM_TM149] = // Phantom Force
     {
         .name = ITEM_NAME("TM149"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "{FONT_SMALL}Vanishes on the first\n"
             "turn then strikes the\n"
@@ -2084,7 +2084,7 @@
     [ITEM_TM150] = // Flare Blitz
     {
         .name = ITEM_NAME("TM150"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A charge that may\n"
             "burn the foe. Also\n"
@@ -2098,7 +2098,7 @@
     [ITEM_TM151] = // Stored Power
     {
         .name = ITEM_NAME("TM151"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The higher the\n"
             "user's stats the\n"
@@ -2112,7 +2112,7 @@
     [ITEM_TM152] = // Gunk Shot
     {
         .name = ITEM_NAME("TM152"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Shoots filthy\n"
             "garbage at the foe.\n"
@@ -2126,7 +2126,7 @@
     [ITEM_TM153] = // Tailwind
     {
         .name = ITEM_NAME("TM153"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Whips up a breeze,\n"
             "doubling ally Speed\n"
@@ -2140,7 +2140,7 @@
     [ITEM_TM154] = // Megahorn
     {
         .name = ITEM_NAME("TM154"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A brutal ramming\n"
             "attack using\n"
@@ -2154,7 +2154,7 @@
     [ITEM_TM155] = // Draco Meteor
     {
         .name = ITEM_NAME("TM155"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Casts comets onto\n"
             "the foe. Harshly\n"
@@ -2168,7 +2168,7 @@
     [ITEM_TM156] = // Close Combat
     {
         .name = ITEM_NAME("TM156"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A strong attack but\n"
             "lowers the\n"
@@ -2182,7 +2182,7 @@
     [ITEM_TM157] = // Moonblast
     {
         .name = ITEM_NAME("TM157"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks with the\n"
             "power of the moon.\n"
@@ -2196,7 +2196,7 @@
     [ITEM_TM158] = // Body Slam
     {
         .name = ITEM_NAME("TM158"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A full-body slam\n"
             "that may cause\n"
@@ -2210,7 +2210,7 @@
     [ITEM_TM159] = // Play Rough
     {
         .name = ITEM_NAME("TM159"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Plays rough with the\n"
             "foe. May lower\n"
@@ -2224,7 +2224,7 @@
     [ITEM_TM160] = // Water Pulse
     {
         .name = ITEM_NAME("TM160"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attacks with\n"
             "ultrasonic waves.\n"
@@ -2238,7 +2238,7 @@
     [ITEM_TM161] = // Sludge Wave
     {
         .name = ITEM_NAME("TM161"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "{FONT_SMALL}Swamps all others with\n"
             "a wave of sludge. May\n"
@@ -2252,7 +2252,7 @@
     [ITEM_TM162] = // Supercell Slam
     {
         .name = ITEM_NAME("TM162"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "An electrified slam.\n"
             "If it misses, the\n"
@@ -2266,7 +2266,7 @@
     [ITEM_TM163] = // Temper Flare
     {
         .name = ITEM_NAME("TM163"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "{FONT_SMALL}A desperation attack.\n"
             "Power doubles if last\n"
@@ -2280,7 +2280,7 @@
     [ITEM_TM164] = // Scale Shot
     {
         .name = ITEM_NAME("TM164"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Shoots scales 2 to 5\n"
             "times. Ups Speed,\n"
@@ -2294,7 +2294,7 @@
     [ITEM_TM165] = // Psychic Noise
     {
         .name = ITEM_NAME("TM165"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Sound waves that\n"
             "damage and prevent\n"
@@ -2308,7 +2308,7 @@
     [ITEM_TM166] = // Alluring Voice
     {
         .name = ITEM_NAME("TM166"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Confuses foe if its\n"
             "stats were boosted\n"
@@ -2322,7 +2322,7 @@
     [ITEM_TM167] = // Vacuum Wave
     {
         .name = ITEM_NAME("TM167"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Whirls its fists to\n"
             "send a wave that\n"
@@ -2336,7 +2336,7 @@
     [ITEM_TM168] = // Spikes
     {
         .name = ITEM_NAME("TM168"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Sets spikes that\n"
             "hurt a foe switching\n"
@@ -2350,7 +2350,7 @@
     [ITEM_TM169] = // Steel Beam
     {
         .name = ITEM_NAME("TM169"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Fires a beam of\n"
             "steel from its body.\n"
@@ -2364,7 +2364,7 @@
     [ITEM_TM170] = // Heavy Slam
     {
         .name = ITEM_NAME("TM170"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Does more damage if\n"
             "the user outweighs\n"
@@ -2378,7 +2378,7 @@
     [ITEM_TM171] = // Gravity
     {
         .name = ITEM_NAME("TM171"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Gravity is\n"
             "intensified\n"
@@ -2392,7 +2392,7 @@
     [ITEM_TM172] = // Misty Explosion
     {
         .name = ITEM_NAME("TM172"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Hit everything and\n"
             "faint. Powers up on\n"
@@ -2406,7 +2406,7 @@
     [ITEM_TM173] = // Hail
     {
         .name = ITEM_NAME("TM173"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Summons a snowstorm\n"
             "that lasts for five\n"
@@ -2420,7 +2420,7 @@
     [ITEM_TM174] = // Hyper Beam
     {
         .name = ITEM_NAME("TM174"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Powerful, but leaves\n"
             "the user immobile\n"
@@ -2434,7 +2434,7 @@
     [ITEM_TM175] = // Safeguard
     {
         .name = ITEM_NAME("TM175"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Protects allies from\n"
             "status problems for\n"
@@ -2448,7 +2448,7 @@
     [ITEM_TM176] = // Frustration
     {
         .name = ITEM_NAME("TM176"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack that is\n"
             "stronger if the\n"
@@ -2462,7 +2462,7 @@
     [ITEM_TM177] = // Double Team
     {
         .name = ITEM_NAME("TM177"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Creates illusory\n"
             "copies to raise\n"
@@ -2476,7 +2476,7 @@
     [ITEM_TM178] = // Shock Wave
     {
         .name = ITEM_NAME("TM178"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A fast and\n"
             "unavoidable electric\n"
@@ -2490,7 +2490,7 @@
     [ITEM_TM179] = // Torment
     {
         .name = ITEM_NAME("TM179"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "{FONT_SMALL}Torments the foe and\n"
             "stops successive use of\n"
@@ -2504,7 +2504,7 @@
     [ITEM_TM180] = // Secret Power
     {
         .name = ITEM_NAME("TM180"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack with effects\n"
             "that vary by\n"
@@ -2518,7 +2518,7 @@
     [ITEM_TM181] = // Attract
     {
         .name = ITEM_NAME("TM181"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Makes the opposite\n"
             "gender less likely to\n"
@@ -2532,7 +2532,7 @@
     [ITEM_TM182] = // Skill Swap
     {
         .name = ITEM_NAME("TM182"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The user swaps\n"
             "special abilities\n"
@@ -2546,7 +2546,7 @@
     [ITEM_TM183] = // Snatch
     {
         .name = ITEM_NAME("TM183"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Steals the effects\n"
             "of the move the\n"
@@ -2560,7 +2560,7 @@
     [ITEM_TM184] = // False Swipe
     {
         .name = ITEM_NAME("TM184"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack that leaves\n"
             "the foe with at\n"
@@ -2574,7 +2574,7 @@
     [ITEM_TM185] = // Brine
     {
         .name = ITEM_NAME("TM185"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Does double damage\n"
             "to foes with half HP\n"
@@ -2588,7 +2588,7 @@
     [ITEM_TM186] = // Fling
     {
         .name = ITEM_NAME("TM186"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The effectiveness\n"
             "varies with the held\n"
@@ -2602,7 +2602,7 @@
     [ITEM_TM187] = // Endure
     {
         .name = ITEM_NAME("TM187"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Endures any attack\n"
             "for 1 turn, leaving\n"
@@ -2616,7 +2616,7 @@
     [ITEM_TM188] = // Embargo
     {
         .name = ITEM_NAME("TM188"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Prevents the foe\n"
             "from using any\n"
@@ -2630,7 +2630,7 @@
     [ITEM_TM189] = // Payback
     {
         .name = ITEM_NAME("TM189"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack that gains\n"
             "power if the user\n"
@@ -2644,7 +2644,7 @@
     [ITEM_TM190] = // Recycle
     {
         .name = ITEM_NAME("TM190"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Recycles a used item\n"
             "for one more use."),
@@ -2657,7 +2657,7 @@
     [ITEM_TM191] = // Giga Impact
     {
         .name = ITEM_NAME("TM191"),
-        .price = 8000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Powerful, but leaves\n"
             "the user immobile\n"
@@ -2671,7 +2671,7 @@
     [ITEM_TM192] = // Rock Climb
     {
         .name = ITEM_NAME("TM192"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "A charging attack\n"
             "that may confuse\n"
@@ -2685,7 +2685,7 @@
     [ITEM_TM193] = // Avalanche
     {
         .name = ITEM_NAME("TM193"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Attack that moves\n"
             "last and gains power\n"
@@ -2699,7 +2699,7 @@
     [ITEM_TM194] = // Psych Up
     {
         .name = ITEM_NAME("TM194"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Copies foe's stat\n"
             "changes and gives\n"
@@ -2713,7 +2713,7 @@
     [ITEM_TM195] = // Captivate
     {
         .name = ITEM_NAME("TM195"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Makes the opposite\n"
             "gender sharply\n"
@@ -2727,7 +2727,7 @@
     [ITEM_TM196] = // Natural Gift
     {
         .name = ITEM_NAME("TM196"),
-        .price = 3000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "The effectiveness\n"
             "varies with the held\n"
@@ -2741,7 +2741,7 @@
     [ITEM_TM197] = // Dream Eater
     {
         .name = ITEM_NAME("TM197"),
-        .price = 5000,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Takes one half the\n"
             "damage inflicted on\n"
@@ -2755,7 +2755,7 @@
     [ITEM_TM198] = // Swagger
     {
         .name = ITEM_NAME("TM198"),
-        .price = 1500,
+        .price = 100,
         .description = COMPOUND_STRING(
             "Confuses the foe,\n"
             "but also sharply\n"

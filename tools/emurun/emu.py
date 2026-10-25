@@ -126,6 +126,13 @@ def give_mon(species, level):
     return out
 
 
+def give_egg(species):
+    """Debug menu > Give X > Give Egg: an Egg of the species (number), with its egg cycles."""
+    out = open_debug() + ["press DOWN"] * 3 + ["press A", "wait 30"] + ["press DOWN"] * 3 + ["press A", "wait 30"]
+    out += number(species) + ["press A", "wait 60", "mash B 60"]
+    return out
+
+
 def give_item(item_id, quantity=1):
     """Debug menu > Give X > Give item XYZ: item id (number or ITEM_ constant name), then quantity."""
     if isinstance(item_id, str):
@@ -173,6 +180,12 @@ def tm_case_slot(index):
     v = probe.resolve({"ptr": "POCKET_TM_HM * sizeof(struct BagPocket) + offsetof(struct BagPocket, itemSlots)",
                        "stride": "sizeof(struct ItemSlot)"})
     return f"*{{gBagPockets+{v['ptr']}}}+{index * v['stride']}"
+
+
+def expect_item_price(item, want, label):
+    """Check an item's price in the item data (gItemsInfo), e.g. expect_item_price("ITEM_TM_TOXIC", 100, "l")."""
+    v = probe.resolve({"off": f"{item} * sizeof(struct ItemInfo) + offsetof(struct ItemInfo, price)", "want": str(want)})
+    return [f"expect32 {{gItemsInfo+{v['off']}}} {v['want']} {label}"]
 
 
 def expect_bag_has(pocket, item, label=None):

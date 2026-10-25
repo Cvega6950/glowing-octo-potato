@@ -963,7 +963,7 @@
 #define FLAG_DEXNAV_SEARCHING                     (HNS_EXTENDED_CONTENT_START + 79) // Crystal Imperium: DexNav search running
 #define FLAG_SYS_DEXNAV_GET                        (HNS_EXTENDED_CONTENT_START + 80) // Crystal Imperium: DexNav in the start menu
 #define FLAG_DEXNAV_DETECTOR_MODE                  (HNS_EXTENDED_CONTENT_START + 81) // Crystal Imperium: hidden Pokemon can be found
-#define FLAG_UNUSED_EXTENDED_82                    (HNS_EXTENDED_CONTENT_START + 82)
+#define FLAG_RECEIVED_VIOLET_TMS                   (HNS_EXTENDED_CONTENT_START + 82) // Crystal Imperium: the Violet City Mart TM clerk's welcome TMs
 #define FLAG_UNUSED_EXTENDED_83                     (HNS_EXTENDED_CONTENT_START + 83)
 #define FLAG_UNUSED_EXTENDED_84                     (HNS_EXTENDED_CONTENT_START + 84)
 #define FLAG_UNUSED_EXTENDED_85                     (HNS_EXTENDED_CONTENT_START + 85)

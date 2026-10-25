@@ -1,0 +1,24 @@
+# Crystal Imperium play test: fast Egg hatching (DECISIONS.md D32). An Egg cycle passes every 8
+# steps instead of Heart & Soul's 256, so a Togepi Egg (10 cycles) hatches after 11 cycles,
+# about 90 steps (97 here, from the warp), where Heart & Soul needs over 2,800: on the 0.8.0 ROM
+# this walk doesn't hatch it. The walk is 7 laps of 18 steps across New Bark Town (no grass, so
+# no wild battles); the hatching stops it ("Huh?", then the hatching scene).
+# Byte 19 of a party Pokemon holds hasSpecies (bit 1) and isEgg (bit 2): 6 for an Egg, 2 after.
+!new_game()
+!give_mon(155, 5)
+!give_egg(175)
+expect8 {gPlayerPartyCount} 2 egg_in_party
+expect8 {gPlayerParty+119} 6 second_slot_is_an_egg
+!warp(0, 0, 1)
+!walkto(10, 12, order="yx")
+!pace(19, 10, 12, 7, soft=True)
+shot 01_huh.png
+waituntil32 {gMain+4} {CB2_EggHatch+1} 600 A egg_hatches_within_126_steps
+wait 600
+shot 02_hatching.png
+# Decline the nickname (B), then back in the field
+mash B 900
+wait 200
+expect32 {gMain+4} {CB2_Overworld+1} back_in_the_field
+expect8 {gPlayerPartyCount} 2 party_after_hatching
+expect8 {gPlayerParty+119} 2 egg_hatched

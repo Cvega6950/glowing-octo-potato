@@ -1,0 +1,60 @@
+# Crystal Imperium play test: Emerald Imperium-style TMs (DECISIONS.md D22). Every TM costs ¥100,
+# Imperium's price (the shops' tiers still decide when the strong ones go on sale). The Violet
+# City Mart's second clerk (2,2), talked to across the counter from (4,2), sells TMs from the
+# Zephyr Badge on: Imperium's first TM vendor list (Electroweb, Icy Wind, Aerial Ace, Low Kick,
+# Pluck, Snarl, Smack Down). The first time, the clerk also gives the four TMs Imperium gives away
+# before its second Gym: Bullet Seed, Bulldoze, Bug Bite, Stomping Tantrum.
+!new_game()
+!max_money()
+!expect_item_price("ITEM_TM_ELECTROWEB", 100, "tm_price_100")
+!expect_item_price("ITEM_TM_FOCUS_PUNCH", 100, "strongest_tier_tm_price_100")
+!warp(3, 1, 0)
+!walkto(4, 2)
+press LEFT
+wait 20
+
+# Before the Zephyr Badge: no TMs yet
+press A
+wait 120
+shot 01_no_badge.png
+mash B 240
+wait 60
+!expect_flag("FLAG_RECEIVED_VIOLET_TMS", 0, "nothing_without_the_badge")
+
+# With it: the four welcome TMs, then the shop
+!set_flag("FLAG_BADGE01_GET")
+press A
+wait 120
+shot 02_welcome.png
+press A
+wait 90
+press A
+wait 300
+shot 03_received.png
+press A
+wait 90
+!expect_flag("FLAG_RECEIVED_VIOLET_TMS", 1, "welcome_tms_given")
+!expect_bag_has("TMsHMs", "ITEM_TM_BULLET_SEED", "got_bullet_seed")
+!expect_bag_has("TMsHMs", "ITEM_TM_BULLDOZE", "got_bulldoze")
+!expect_bag_has("TMsHMs", "ITEM_TM_BUG_BITE", "got_bug_bite")
+!expect_bag_has("TMsHMs", "ITEM_TM_STOMPING_TANTRUM", "got_stomping_tantrum")
+press A
+wait 120
+press A
+wait 90
+shot 04_tm_list.png
+expect16 {sMartInfo+12} 7 seven_tms_on_sale
+# Buy the first, TM15 Electroweb (quantity 1, confirm)
+press A
+wait 90
+press A
+wait 60
+press A
+wait 90
+press A
+wait 90
+shot 05_bought.png
+press A
+wait 60
+mash B 300
+!expect_bag_has("TMsHMs", "ITEM_TM_ELECTROWEB", "bought_electroweb")

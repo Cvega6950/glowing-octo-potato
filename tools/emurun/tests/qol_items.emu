@@ -5,7 +5,8 @@
 !give_mon(155, 5)
 expect8 {gPlayerParty+84} 5 cyndaquil_starts_at_level_5
 
-# Rare Candy Box: 999 Rare Candies, usable until the level cap (15 before the first badge)
+# Rare Candy Box: 999 Rare Candies, usable until the level cap (15 before the first badge). Since
+# 0.9.0 the party menu asks how many to use, all 10 up to the cap at first (rare_candy.emu)
 !use_key_item(0)
 !open_bag_at("POCKET_MEDICINE", 0)
 shot 01_rare_candies.png
@@ -14,9 +15,9 @@ wait 20
 press A
 wait 120
 press A
-wait 30
-expect8 {gPlayerParty+84} 6 one_rare_candy_gives_one_level
-# Keep using candies (Cyndaquil evolves at 14 on the way): the cap stops it at 15
+wait 60
+expect16 {sRareCandyCount} 10 rare_candies_up_to_the_cap
+# Use them (Cyndaquil evolves at 14 on the way) and keep trying: the cap stops it at 15
 mash A 7000
 shot 02_stopped_at_cap.png
 expect8 {gPlayerParty+84} 15 rare_candies_stop_at_level_cap

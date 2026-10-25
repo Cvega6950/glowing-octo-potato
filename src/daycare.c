@@ -1228,12 +1228,9 @@ static bool8 TryProduceOrHatchEgg(struct DayCare *daycare)
             TriggerPendingDaycareEgg();
     }
 
-    // Try to hatch Egg
+    // Try to hatch Egg. Crystal Imperium: an Egg cycle every P_EGG_CYCLE_STEPS steps (fast hatching)
     daycare->stepCounter++;
-    if (((P_EGG_CYCLE_LENGTH <= GEN_3 || P_EGG_CYCLE_LENGTH == GEN_7) && daycare->stepCounter >= 256)
-     || (P_EGG_CYCLE_LENGTH == GEN_4 && daycare->stepCounter >= 255)
-     || ((P_EGG_CYCLE_LENGTH == GEN_5 || P_EGG_CYCLE_LENGTH == GEN_6) && daycare->stepCounter >= 257)
-     || (P_EGG_CYCLE_LENGTH >= GEN_8 && daycare->stepCounter >= 128))
+    if (daycare->stepCounter >= P_EGG_CYCLE_STEPS)
     {
         u32 eggCycles;
         u8 toSub = GetEggCyclesToSubtract();

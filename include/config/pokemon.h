@@ -58,6 +58,7 @@
 #define P_CAN_FORGET_HIDDEN_MOVE         TRUE        // If TRUE, Pokémon can forget any move, even if it is an HM.
 #define P_ASK_MOVE_CONFIRMATION          FALSE       // If FALSE, when a player decides not to learn a move, the game does not ask the player for confirmation.
 #define P_EGG_CYCLE_LENGTH               GEN_3  // Since Gen 8, Egg cycles take half as many steps as before. Previous generations have some varied step counts around 255.
+#define P_EGG_CYCLE_STEPS                8           // Crystal Imperium: fast hatching, an Egg cycle every 8 steps instead of P_EGG_CYCLE_LENGTH's (256 for Gen 3).
 #define P_ONLY_OBTAINABLE_SHINIES        FALSE       // If TRUE, Pokémon encountered in the Battle Pyramid or while catching is disabled won't be Shiny.
 #define P_NO_SHINIES_WITHOUT_POKEBALLS   FALSE       // If TRUE, Pokémon encountered when the player is out of Poké Balls won't be Shiny.
 #define P_EGG_SHINY_ROLL_ON_PICKUP       FALSE        // If TRUE, a Day-Care Egg's shininess is rolled when the player receives the Egg. If FALSE, it is decided by the personality locked in when the Egg was produced, so soft-resetting on pickup has no effect.

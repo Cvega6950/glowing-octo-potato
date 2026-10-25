@@ -13,7 +13,8 @@ Writes:
   include/constants/tms_hms.h          FOREACH_TM for HnS (between the generated markers)
   src/data/items_tms_hns.h             item data for every TM: name, price, and the move's own
                                        description re-wrapped to the bag's 3-line description box
-  data/scripts/tm_shop_hns.inc         the Goldenrod Dept. Store 5F TM shop, one list per badge tier
+  data/scripts/tm_shop_hns.inc         the Goldenrod Dept. Store 5F TM shop, one list per badge tier,
+                                       and the Violet City Mart TM clerk's list
   src/data/tms_old_hns.h               Heart & Soul 2.0.6's TM moves in its order, for older saves
 Save compatibility: OLD_HNS_TMS is Heart & Soul 2.0.6's list. src/item.c converts TMs in older saves
 by move, so a TM keeps teaching the same move (DECISIONS.md D22).
@@ -71,7 +72,12 @@ SELF_KO = {"EXPLOSION", "MISTY_EXPLOSION"}
 # Heart & Soul's own Goldenrod Dept. Store 5F stock: still on sale from the start.
 HNS_5F_SHOP = {"LIGHT_SCREEN", "PROTECT", "REFLECT", "NATURAL_GIFT", "BLIZZARD", "HYPER_BEAM",
                "SOLAR_BEAM", "THUNDER", "FIRE_BLAST", "FOCUS_BLAST"}
-TIER_PRICE = [1500, 3000, 5000, 8000]
+# Every TM costs Emerald Imperium's price, ₽100 (its TM vendors and Game Corner counter); the badge
+# tiers above still decide when the strong ones go on sale (DECISIONS.md D22)
+TM_PRICE = 100
+# The Violet City Mart's TM clerk, from the Zephyr Badge: Emerald Imperium's first TM vendors
+# (Dewford Town's outdoor clerks, after its first Gym)
+VIOLET_SHOP = ["ELECTROWEB", "ICY_WIND", "AERIAL_ACE", "LOW_KICK", "PLUCK", "SNARL", "SMACK_DOWN"]
 TIER_FLAG = [None, "FLAG_BADGE03_GET", "FLAG_BADGE06_GET", "FLAG_BADGE08_GET"]
 
 
@@ -196,7 +202,7 @@ def items_header(moves_info):
         out += [f"    [ITEM_TM{n:02d}] = // {move.replace('_', ' ').title()}",
                 "    {",
                 f"        .name = ITEM_NAME(\"{tm_name(n)}\"),",
-                f"        .price = {TIER_PRICE[tier(moves_info, move)]},",
+                f"        .price = {TM_PRICE},",
                 "        .description = COMPOUND_STRING("] + desc + [
                 "        .importance = I_REUSABLE_TMS,",
                 "        .pocket = POCKET_TM_HM,",
@@ -216,6 +222,12 @@ def shop_inc(moves_info):
             if (0 if move in HNS_5F_SHOP else tier(moves_info, move)) <= t:
                 out.append(f"\t.2byte ITEM_TM_{move}")
         out += ["\tpokemartlistend", ""]
+    out += ["@ The Violet City Mart's TM clerk (from the Zephyr Badge): Emerald Imperium's first TM vendors.",
+            "", "\t.align 2", "VioletCity_Mart_TMs::"]
+    for move in TMS:
+        if move in VIOLET_SHOP:
+            out.append(f"\t.2byte ITEM_TM_{move}")
+    out += ["\tpokemartlistend", ""]
     return "\n".join(out)
 
 

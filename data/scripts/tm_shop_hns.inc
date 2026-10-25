@@ -618,3 +618,16 @@ GoldenrodDeptStore5_TMs3::
 	.2byte ITEM_TM_DREAM_EATER
 	.2byte ITEM_TM_SWAGGER
 	pokemartlistend
+
+@ The Violet City Mart's TM clerk (from the Zephyr Badge): Emerald Imperium's first TM vendors.
+
+	.align 2
+VioletCity_Mart_TMs::
+	.2byte ITEM_TM_ELECTROWEB
+	.2byte ITEM_TM_ICY_WIND
+	.2byte ITEM_TM_AERIAL_ACE
+	.2byte ITEM_TM_LOW_KICK
+	.2byte ITEM_TM_PLUCK
+	.2byte ITEM_TM_SNARL
+	.2byte ITEM_TM_SMACK_DOWN
+	pokemartlistend

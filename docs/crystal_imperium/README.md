@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.8.1-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.9.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
 > of its Pokémon at the level cap, the TM list is Emerald Imperium's, and HMs work without being
@@ -18,6 +18,11 @@ From the first step of a new game:
 - **Key items:** Rare Candy Box (unlimited Rare Candies up to the level cap), Infinite Repel (an
   on/off switch), Pokémon Box Link (the PC anywhere), Training Kit (change nature or ability
   any time), PokéVial (full heal outside battle, never runs out).
+- **Quick Rare Candies:** choose a Pokémon and how many to use (at first, all of them up to the
+  level cap); they are used at once, with one message, no stat pages, and no level-up jingle,
+  so the music keeps playing. Moves of every level passed are still learned.
+- **Fast Egg hatching:** an Egg cycle is 8 steps instead of 256, so most Eggs hatch in a
+  short walk (a Togepi Egg in about 90 steps).
 - **DexNav** (START menu):
   - It shows each area's Pokémon by icon and name, seen or not: the area's own, the day's
     Wild Variety Pokémon and three hidden ones. What you run into in the grass or on the water
@@ -55,8 +60,10 @@ From the first step of a new game:
   RUN buttons, a move box with types, PP and effectiveness) and a Black/White-style summary
   screen (A on the skills page shows IVs and EVs).
 - **Emerald Imperium's TMs:** 198 reusable TMs. TM01–TM172 are Imperium's list in its order
-  (without its two custom moves), TM173–TM198 the Heart & Soul TMs Imperium doesn't have. The
-  Goldenrod Dept. Store 5F sells all of them, more with each badge tier (3, 6 and 8 badges).
+  (without its two custom moves), TM173–TM198 the Heart & Soul TMs Imperium doesn't have. Every
+  TM costs ¥100, Imperium's price. The Goldenrod Dept. Store 5F sells all of them, more with
+  each badge tier (3, 6 and 8 badges). From the first badge, a TM clerk in the Violet City Mart
+  sells Imperium's first vendor TMs and, the first time, gives four TMs for free.
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
 - **Care packages** from Prof. Elm after every badge and after becoming Champion, full of
@@ -96,10 +103,10 @@ your house), except Auto Run, which is in the Options menu.
 |---|---|---|---|
 | 1 | Gen 1–9 Pokémon, abilities, moves, evolution methods, sprites, wild encounters | **Done** | Engine data for all 1,025 species. Wild Variety on every route (`wild_variety`). The DexNav list of any Pokémon (`dexnav_any`). Hidden slots for the 258 families that had no source. Care packages hold the missing evolution items (`care_packages`). Every trade evolution has a non-trade method. |
 | 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden`; the lists match the wild Pokémon you meet (`dexnav_wild_match`, `dexnav_water_match`, `dexnav_randomizer`); caves, Dark Cave after Flash and water (`dexnav_caves`, `dexnav_surf`) |
-| 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym) |
+| 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym); several at a time, no jingle or stat pages (`rare_candy`) |
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |
 | 5 | Minimal Grinding, difficulty selection, optional level caps | **Done** | `falkner` (31 IV / 0 EV stats), `difficulty`, `qol_items` (cap stops candies), `boss_levels` and `level_cap_wild` (bosses at the cap, nothing above it); HARD's Imperium / Radical Red rules (`hard_mode_rules`) |
-| 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs (`tm_case`, `tm_shop`) and HMs without teaching (`hm_field_moves`) |
+| 6 | Portable PC, move relearning, reusable TMs, Infinite Repel, easy nature/ability changes | **Done** | `qol_items`, `relearner_training_kit`, `tm_reusable`, `infinite_repel`; Emerald Imperium's 198 TMs at ¥100 (`tm_case`, `tm_shop`, `tm_clerk`) and HMs without teaching (`hm_field_moves`) |
 | 7 | Complete Johto adventure, Gyms, Rockets, Elite Four, Kanto postgame | **Kept from HnS; not played through** | The story scripts are Heart & Soul's. The opening is played on the real story path (`story_opening`: Mom, Elm's lab, the starter, Elm's errand, Route 29), and every reworked boss battle is started from the debug menu and played to a result (`falkner`, `bugsy`, `whitney`, `bosses_m3`, `bosses_m4`, `bosses_e4`, `bosses_m5`, `red`; Red is also talked to on the Mt. Silver summit); no full playthrough has been done. |
 | 8 | Works on Delta (iOS) | **Passes on Delta's emulator core; no iPhone test** | The play tests and the save-compatibility test run on VBA-M at the commit Delta's GBA core pins, as on mGBA (results in TESTING.md). A device test is still needed for Delta's own app layer. |
 

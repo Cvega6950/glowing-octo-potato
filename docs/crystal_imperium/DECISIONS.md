@@ -97,7 +97,7 @@ Imperium-style (D29).
 ## D10. Team-building key items from the first step
 
 - A new game starts with five key items: **Rare Candy Box** (999 Rare Candies whenever used,
-  capped by the level cap), **Infinite Repel** (a switch), **Pokémon Box Link** (the PC
+  capped by the level cap; used several at a time since 0.9.0, D33), **Infinite Repel** (a switch), **Pokémon Box Link** (the PC
   anywhere), **Training Kit** (nature and ability changes) and **PokéVial** (full party heal
   outside battle, unlimited). The **DexNav** is in the start menu from the same moment.
 - They are handed out by `GiveQoLKeyItems()` on New Game and again on every Continue, which
@@ -449,8 +449,19 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   - 8 badges: the rest, 110+ power and Explosion (198).
 
   The badges are counted (Gyms 5–7 come in any order, so a badge flag alone wouldn't do).
-  Prices are ₽1,500 / 3,000 / 5,000 / 8,000 by tier; Heart & Soul charged ₽10,000 for its 5F
-  TMs. Shop lists show each TM's move next to its number ("TM03 FLIP TURN"), as the bag does;
+  Every TM costs ¥100 since 0.9.0, Emerald Imperium's price (its TM vendors and Game Corner
+  counter: [PokéMarts guide](https://pokemonemeraldimperium.com/pokemarts-guide/)); before,
+  ₽1,500 / 3,000 / 5,000 / 8,000 by tier, and Heart & Soul charged ₽10,000 for its 5F TMs.
+- **Early TMs (0.9.0).** The user found few TMs after the first badge (two), where Emerald
+  Imperium has many: its first vendors, Dewford Town's outdoor clerks after its first Gym, sell
+  seven TMs at $100, and four more are free before its second Gym (Bullet Seed from a man on
+  Route 104, Bulldoze from Roxanne, Bug Bite and Stomping Tantrum on the ground: [TM
+  guide](https://pokemonemeraldimperium.com/all-tms-and-hms-location-guide/)). A second clerk
+  in the Violet City Mart, at (2,2) behind the counter, sells those seven (Electroweb, Icy Wind,
+  Aerial Ace, Low Kick, Pluck, Snarl, Smack Down) from the Zephyr Badge on, and the first time
+  gives the four (`FLAG_RECEIVED_VIOLET_TMS`). A clerk reaches saves that already have the first
+  badge, which a TM in the first care package wouldn't. Same numbers as Imperium's, as the
+  list is in its order. Shop lists show each TM's move next to its number ("TM03 FLIP TURN"), as the bag does;
   with up to 198 entries, numbers alone weren't usable. The Mega Stone shop's 6-badge tier now counts badges the same way (it read Jasmine's
   badge flag).
 - TMs stay reusable (Heart & Soul's REUSABLE TMS option, on by default).
@@ -775,3 +786,38 @@ DexNav shows and that wild encounters draw from:
     Geodude and the Tentacool move away.
 - The play tests' path finding (`walkto ... path`) now follows the target's elevation, so a walk
   on a cave floor doesn't route through water.
+
+## D32. Fast Egg hatching
+
+- The user asked for fast Egg hatching. An Egg cycle now passes every 8 steps
+  (`P_EGG_CYCLE_STEPS`, `src/daycare.c`) instead of every 256 (Heart & Soul, as Gen 3): 32 times
+  faster. An Egg hatches after its species' egg cycles plus one: a Togepi Egg (10 cycles) in
+  about 90 steps, a starter's (20) in about 170, a Dratini's (40) in about 330. Flame Body,
+  Magma Armor and Steam Engine still halve that.
+- The Day-Care still makes Eggs at Heart & Soul's pace (a chance every 256 steps).
+- Evidence: `egg_hatch` (a Togepi Egg from the debug menu hatches during a 126-step walk; 97
+  steps here; with 256 steps a cycle, on the 0.8.0 ROM, the same walk doesn't hatch it).
+
+## D33. Rare Candies several at a time
+
+- The user found giving Rare Candies clunky, and the music stopped every time: each candy played
+  the level-up fanfare, which pauses the map music, then waited for it, and showed two stat
+  pages. Emerald Imperium 1.3 removed the stat pages after its Infinite Candy "so less mashing
+  of A is required" ([changelog](https://pokemonemeraldimperium.com/changelog/)); the user
+  pointed to Radical Red, whose exact Rare Candy behaviour no source documents, so this follows
+  the user's description (faster, music on) and the later games' "how many?" choice.
+- With `I_QUICK_RARE_CANDY` (`include/config/item.h`, `src/party_menu.c`):
+  - After the Pokémon is chosen, the party menu asks "How many will you use?" with the count
+    ("×010") beside it: at first all the candies up to the level cap (or the bag's count, if
+    lower); UP/DOWN change it by 1, LEFT/RIGHT by 10, A uses them, B goes back to choosing a
+    Pokémon. With one level left there's no question.
+  - They are used at once: one message ("... was elevated to Lv. N."), a short sound
+    (`SE_EXP_MAX`) instead of the fanfare, so the map music goes on, and no stat pages.
+  - The moves of every level passed are still offered in order, then the Pokémon evolves; the
+    party menu stays open for the next Pokémon. At the cap a candy gives no level, but a
+    Pokémon that can evolve still does (Heart & Soul's behaviour), so a second stage needs one
+    more candy.
+  - Exp. Candies get the same message, sound and missing stat pages, one at a time.
+- Evidence: `rare_candy` (Magikarp: 10 at first, 9 with DOWN, used at once with no fanfare,
+  then one more with no question; B uses none; Caterpie: 10 at once, Bug Bite on the way,
+  Metapod, then Butterfree with one more candy at the cap), `qol_items` (the cap stops them).

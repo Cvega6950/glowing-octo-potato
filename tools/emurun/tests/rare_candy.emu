@@ -1,0 +1,75 @@
+# Crystal Imperium play test: Rare Candies several at a time (DECISIONS.md D33). After choosing the
+# Pokemon, the party menu asks how many to use, at first all the levels up to the cap (UP/DOWN 1,
+# LEFT/RIGHT 10). They are used at once, with one message and a short sound instead of the
+# level-up fanfare (sFanfareCounter stays 0, so the map music goes on), and without the two stat
+# pages: one A after the message is back at choosing a Pokemon. The moves of every level passed
+# are learned, and the Pokemon evolves at the end; at the cap, a Rare Candy still evolves a Pokemon
+# that can evolve.
+# Magikarp learns nothing from 6 to 14 (Tackle at 15); Caterpie learns Bug Bite at 9 and evolves
+# at 7. The level cap is 15 with no badges.
+!new_game()
+!give_mon(129, 5)
+!give_mon(10, 5)
+!use_key_item(0)
+!open_bag_at("POCKET_MEDICINE", 0)
+press A
+wait 20
+press A
+wait 120
+
+# Magikarp: up to 10, one less with DOWN, used at once
+press A
+wait 60
+shot 01_how_many.png
+expect16 {sRareCandyCount} 10 count_starts_at_the_cap
+press DOWN
+wait 10
+expect16 {sRareCandyCount} 9 down_takes_one_off
+press A
+wait 30
+expect16 {sFanfareCounter} 0 no_level_up_fanfare
+expect8 {gPlayerParty+84} 14 nine_levels_at_once
+wait 90
+shot 02_elevated_to_14.png
+press A
+wait 60
+# No stat pages: this A already chooses Magikarp again. One level is left, so no question
+press A
+wait 60
+expect8 {gPlayerParty+84} 15 one_more_without_asking
+shot 03_elevated_to_15.png
+# "elevated to Lv. 15", "MAGIKARP learned TACKLE!", back to choosing a Pokemon
+press A
+wait 120
+press A
+wait 120
+
+# Caterpie: B in the question uses none; then all 10 at once: it learns Bug Bite on the way, then
+# evolves into Metapod
+press DOWN
+wait 20
+press A
+wait 60
+press B
+wait 60
+expect8 {gPlayerParty+184} 5 b_uses_no_rare_candy
+press A
+wait 60
+expect16 {sRareCandyCount} 10 caterpie_count_starts_at_the_cap
+press A
+wait 30
+expect8 {gPlayerParty+184} 15 caterpie_ten_levels_at_once
+waituntil32 {gMain+4} {CB2_EvolutionSceneUpdate+1} 900 A caterpie_evolves
+shot 04_evolving.png
+waituntil32 {gMain+4} {CB2_UpdatePartyMenu+1} 3000 A back_in_the_party_menu
+expect8 {gPlayerParty+184} 15 metapod_at_15
+wait 60
+shot 05_back_in_party_menu.png
+
+# At the cap a Rare Candy gives no level, but a Pokemon that can evolve still does (one candy):
+# Metapod (level 10) into Butterfree
+press A
+waituntil32 {gMain+4} {CB2_EvolutionSceneUpdate+1} 900 A metapod_evolves_at_the_cap
+waituntil32 {gMain+4} {CB2_UpdatePartyMenu+1} 3000 A back_after_butterfree
+expect8 {gPlayerParty+184} 15 butterfree_still_at_15
+shot 06_after_butterfree.png
