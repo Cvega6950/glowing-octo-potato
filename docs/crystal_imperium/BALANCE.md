@@ -132,9 +132,9 @@ Scyther. Rock and Fire answers still win, but they take hits from Rock Tomb and 
 - **Shipped: six Pokémon** (D30), adding Ledian back (screens) and Butterfree (Compound Eyes Sleep
   Powder). The naive line, now six with Heracross and Onix, won 2 of 24 with the Charcoal and
   **3 of 20** with the Charcoal and the first package's two Eviolites (`bugsy.emu` asks for at
-  least one win and one loss in 40). Over half the line's Pokémon fall while Butterfree is out: a
-  team that never switches can't play around sleep. Bugsy is meant to be hard; a player who
-  switches, or holds the package's Lum Berries, does better.
+  least one win and one loss in 40: 5 of 40 on mGBA, 4 of 40 on VBA-M). Over half the line's
+  Pokémon fall while Butterfree is out: a team that never switches can't play around sleep. Bugsy
+  is meant to be hard; a player who switches, or holds the package's Lum Berries, does better.
 
 0.5.0 to 0.7.x (Heart & Soul's Bugsy with items, all at the cap of 16 since 0.7.0): Spinarak
 (Focus Sash; Sticky Web, Night Shade, Poison Sting, Infestation), Pineco (Spikes, Rock Tomb,
@@ -146,7 +146,7 @@ Scyther had Swords Dance and one-shot Quilava, Geodude, Flaaffy and Pidgey in a 
 
 | Starter | Line | Result |
 |---|---|---|
-| Cyndaquil | Quilava (Flame Wheel, Charcoal) / Geodude (Rock Throw) / Flaaffy (Thunder Shock, Eviolite) / Pidgeotto (Wing Attack) / Heracross (Aerial Ace) / Onix (Smack Down, Eviolite), all at 24 | **3 of 20 RNG samples won** against the six (0.8.0, `bugsy.emu`); the first four alone beat his four 4 of 20; 0.7.0 at 16 with Pidgey: 9 of 20 |
+| Cyndaquil | Quilava (Flame Wheel, Charcoal) / Geodude (Rock Throw) / Flaaffy (Thunder Shock, Eviolite) / Pidgeotto (Wing Attack) / Heracross (Aerial Ace) / Onix (Smack Down, Eviolite), all at 24 | **5 of 40 RNG samples won** against the six (0.8.0, `bugsy.emu` on mGBA; 4 of 40 on VBA-M); the first four alone beat his four 4 of 20; 0.7.0 at 16 with Pidgey: 9 of 20 |
 | Chikorita | Onix lead (Stealth Rock) / Pidgey / Flaaffy / Bayleef | **Win** (0.5.0, at 16) |
 | Totodile | Croconaw (Bite) / Geodude / Flaaffy / Pidgey | **Win** (0.5.0, at 16) |
 
@@ -180,16 +180,18 @@ type held back for Miltank, and Kadabra for the support cast.
    Since 0.7.0 the supporting three are at 21 too.
 6. **0.8.0, at cap 33:** without items the naive line below won 13 of 20, so the team holds
    items again: Clefairy an Eviolite, Aipom a Silk Scarf, Stantler a Sitrus Berry, Miltank
-   Leftovers. The line then won **8 of 20** (`whitney.emu` asks for at least one win and two
-   losses in 24). The line now gives each Pokémon a move a player at 33 would keep: the default
-   movesets at 33 leave Quilava without a Fire move and give Kadabra the physical Psycho Cut,
-   and with those the line lost all 20.
+   Leftovers. The line then won **8 of 20**. The line now gives each Pokémon a move a player at
+   33 would keep: the default movesets at 33 leave Quilava without a Fire move and give Kadabra
+   the physical Psycho Cut, and with those the line lost all 20.
+7. **Shipped: six Pokémon** (D30), adding Furret and Girafarig; the naive line is six too, with
+   Scyther and Primeape. It won **3 of 24** on mGBA and 5 of 24 on VBA-M (`whitney.emu` asks
+   for at least one win and two losses in 24).
 
 **Results** (shipped version, autopilot, no items, all Pokémon at Lv 21; Whitney's at 18–21, before 0.7.0):
 
 | Starter | Line | Result |
 |---|---|---|
-| Cyndaquil | Pidgeotto (Wing Attack) / Quilava (Flame Wheel) / Kadabra (Psybeam) / Machoke (Low Sweep, Eviolite), all at 33 | **8 of 20** (0.8.0, `whitney.emu`) |
+| Cyndaquil | Pidgeotto (Wing Attack) / Quilava (Flame Wheel) / Kadabra (Psybeam) / Scyther (Wing Attack) / Primeape (Cross Chop) / Machoke (Low Sweep, Eviolite), all at 33 | **3 of 24** against her six (0.8.0, `whitney.emu` on mGBA; 5 of 24 on VBA-M); the first four against her four with items: 8 of 20 |
 | Cyndaquil | 0.7.0 at 21: Pidgeotto (Gust) / Quilava (Flame Wheel) / Kadabra (Psybeam) / Machop (Low Sweep) | **3 of 12 RNG samples won** (`whitney.emu`, 2026-10-24). The first measurement (2026-10-23) was 3 of 5; after later code changes shifted the battle RNG, the same five samples all lost, so the test now samples twelve battles. The naive line wins about a quarter of the time. |
 | Cyndaquil | Quilava or Kadabra leads with the same Pokémon | Loss (Miltank left at 1 HP in one) |
 | Chikorita | Bayleef (Mega Drain) / Kadabra / Pidgeotto / Machop | **Win** (3 Pokémon left) |
@@ -305,7 +307,8 @@ the Gym Leaders.
 Against the prepared six at the cap played naively (one move per Pokémon, never switching;
 `route_bosses` on mGBA), the Johto mini-bosses lost 14 of 16 battles (Cybil's sun team and
 Jake won) and the Kanto ones won 10 of 12 (Otis and Bret lost), about as the Kanto Gym Leaders
-do against that line (`bosses_m5`). A player who switches and plays to matchups does better.
+do against that line (`bosses_m5`). On VBA-M, whose battle RNG differs, they lost 15 of 16
+(Blake won) and won 9 of 12. A player who switches and plays to matchups does better.
 
 | Route | Trainer | Level | Team (held item) |
 |---|---|---|---|
