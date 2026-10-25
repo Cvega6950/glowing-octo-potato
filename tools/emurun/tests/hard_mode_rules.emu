@@ -6,7 +6,7 @@
 # battles below would be SHIFT.
 !new_game(difficulty="HARD")
 !give_mon(157, 40)
-!set_var("VAR_CARE_PACKAGES", 17)
+!no_care_packages()
 
 # START > OPTION: BATTLE STYLE (third row) reads SET and doesn't change
 !start_menu("OPTION")
@@ -42,7 +42,7 @@ expect32 {gMain+4} {BattleMainCB2+1} bag_does_not_open_in_trainer_battle
 reset
 !new_game(difficulty="HARD")
 !give_mon(157, 40)
-!set_var("VAR_CARE_PACKAGES", 17)
+!no_care_packages()
 !warp(0, 11, 0)
 !walkto(34, 14, "yx")
 !walkto(24, 14, soft=True)
@@ -63,7 +63,7 @@ expectne32 {gMain+4} {BattleMainCB2+1} bag_opens_in_wild_battle
 reset
 !new_game()
 !give_mon(157, 40)
-!set_var("VAR_CARE_PACKAGES", 17)
+!no_care_packages()
 !warp(0, 11, 0)
 !walkto(34, 14, "yx")
 !walkto(24, 14, soft=True)

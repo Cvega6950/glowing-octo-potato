@@ -10,7 +10,7 @@
 !set_flag("FLAG_BADGE02_GET")
 !set_flag("FLAG_BADGE04_GET")
 # No care packages for these badges (they would interrupt the walk)
-!set_var("VAR_CARE_PACKAGES", 17)
+!no_care_packages()
 
 # Route 29: (34,10) down to the ledge, jump it, then stand at (32,23) facing the tree at (31,23)
 !warp(0, 11, 0)

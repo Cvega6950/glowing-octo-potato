@@ -9,7 +9,7 @@
 !give_item("ITEM_HM_SURF")
 !give_item("ITEM_SUPER_ROD")
 !set_flag("FLAG_BADGE04_GET")
-!set_var("VAR_CARE_PACKAGES", 17)
+!no_care_packages()
 !warp(0, 0, 1)
 !walkto(24, 12, order="yx")
 press RIGHT

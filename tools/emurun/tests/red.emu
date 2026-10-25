@@ -11,7 +11,7 @@
 !new_game()
 !battle_style_set()
 !give_mon(25, 50)
-!set_var("VAR_CARE_PACKAGES", 17)
+!no_care_packages()
 !set_flag("FLAG_HIDE_MTSILVER_RED", 0)
 !warp(24, 79, 0)
 !walkto(10, 7, path=True)

@@ -362,7 +362,8 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
     Lance face sixes played with a game plan, in 8, 6, 8 and 24 tries (D27). With every boss
     Pokémon at the cap (0.7.0) and no items, Will beat the planned six in all 8 tries on mGBA;
     holding items from the first eight packages the sixes beat Will 9 and 7 times in 16, Bruno
-    10 and 9, and Lance 6 and 9 times in 24. Karen gets 12 tries. Every Mega Evolution happens.
+    10 and 9, and Lance 6 and 9 times in 24. Bruno and Karen now get 12 tries. Every Mega
+    Evolution happens.
   - `bosses_m5`: at cap 70 the prepared six won one try each against Lt. Surge and Erika on
     both emulators, Sabrina on mGBA and Blaine on VBA-M, and lost the others; a six built for
     Blue beat him 2 and 1 times in 3 (0.5.0; since 0.6.0 it plays a game plan, 10 of 12). With

@@ -9,7 +9,8 @@
 # Evolution happens. The tries per boss match the win rates measured when the teams were built
 # (Lance, beaten about one try in five, gets 24), so a pass or a fail is not luck. With the items
 # (0.7.0) Will was beaten 9 and 7 times in 16 (mGBA, VBA-M), Bruno 10 and 9, Lance 9 in 24 on
-# VBA-M; Karen, 1 of 8 on VBA-M without items, gets 12 tries.
+# VBA-M; Karen, 1 of 8 on VBA-M without items, and Bruno, 2 and 1 of 6 in one regression run,
+# get 12 tries.
 !new_game()
 !battle_style_set()
 savestate base.ss
@@ -57,7 +58,7 @@ loadstate base.ss
 !hold_item("ITEM_LEFTOVERS", 5)
 savestate bruno56.ss
 seenreset
-!sample_battle("TRAINER_BRUNO_1_HNS", "0,0,0,0,0,0", 6, 1, 6, "bruno56.ss", plan={"SPECIES_HITMONTOP": (0, 0), "SPECIES_HITMONLEE": (0, 0), "SPECIES_HITMONCHAN": (0, 0), "SPECIES_MACHAMP": (2, 1), "SPECIES_STEELIX": (1, 0), "SPECIES_LUCARIO": (4, 0), "SPECIES_LUCARIO_MEGA": (4, 0)})
+!sample_battle("TRAINER_BRUNO_1_HNS", "0,0,0,0,0,0", 12, 1, 12, "bruno56.ss", plan={"SPECIES_HITMONTOP": (0, 0), "SPECIES_HITMONLEE": (0, 0), "SPECIES_HITMONCHAN": (0, 0), "SPECIES_MACHAMP": (2, 1), "SPECIES_STEELIX": (1, 0), "SPECIES_LUCARIO": (4, 0), "SPECIES_LUCARIO_MEGA": (4, 0)})
 !expect_const_seen("SPECIES_LUCARIO_MEGA", "bruno_mega_lucario")
 
 # Karen: Fighting and Fairy for her Dark-types, Psychic for Vileplume and Gengar, Electric and

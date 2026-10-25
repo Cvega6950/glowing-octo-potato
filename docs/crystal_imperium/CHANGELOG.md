@@ -1,6 +1,6 @@
 # Crystal Imperium changelog
 
-## 0.7.0-experimental (2026-10-24)
+## 0.7.0-experimental (2026-10-25)
 
 ### Gameplay
 - **Every boss Pokémon is at the level cap** (DECISIONS.md D21), not just the ace: every Gym
@@ -42,14 +42,15 @@
 - `validate.py`: every boss at its stage's cap, no boss trainer missing from the list (Lt.
   Surge's teams were not matched by the boss patterns before), and Red's guard now asks for
   the most Full Restores, since the post-League rematches are at 100 like him.
-- Harness: `fill_pocket`, `expect_pc_has`; `prepared_team(level, items=True)` holds Life Orb,
+- Harness: `fill_pocket`, `expect_pc_has`, `no_care_packages` (marks the packages and their gear
+  as received, for tests that mustn't be interrupted); `prepared_team(level, items=True)` holds Life Orb,
   Leftovers, Choice Specs, Focus Sash, Choice Band and Expert Belt, all from the first three
   care packages.
 - New test `boss_levels` (a boss raised to the cap with six badges and after the Kanto League;
   a Grunt unchanged). `care_packages` checks the new gear, the PC fallback and an older save
   catching up. The boss samples' teams hold items from the care packages the player has by then:
   the prepared six in `bosses_m3`, `bosses_m4` and for Koga, the planned sixes for Will, Bruno,
-  Karen and Lance (Karen now 12 tries), Bugsy's naive four a Charcoal (12 samples) and Whitney's
+  Karen and Lance (Bruno and Karen now 12 tries), Bugsy's naive four a Charcoal (12 samples) and Whitney's
   Machop an Eviolite (24 samples). Chuck and Pryce are fought by sixes built for them with a game
   plan (the prepared six won once in 16 against Pryce). `bosses_m4` checks Archer's and the
   rival's Megas with a level-100 six, since at the cap the six can lose before the ace comes out;

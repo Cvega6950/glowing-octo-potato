@@ -267,6 +267,11 @@ def set_var(var, value):
     return [f"poke16 *{{gSaveBlock1Ptr}}+{v['vars'] + v[var]} {v['value']}"]
 
 
+def no_care_packages():
+    """Mark all 17 care packages and their gear as received, so none arrives during the test."""
+    return set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_GEAR", 17)
+
+
 def expect_var(var, want, label=None):
     """Check a script variable (VAR_*) in the save block; want may be a number or a C expression."""
     v = probe.resolve({"vars": "offsetof(struct SaveBlock1, vars)", var: f"({var} - VARS_START) * 2",

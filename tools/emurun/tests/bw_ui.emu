@@ -6,7 +6,7 @@
 # BW move box.
 !new_game()
 !give_mon(157, 36)
-!set_var("VAR_CARE_PACKAGES", 17)
+!no_care_packages()
 !start_menu("POKEMON")
 wait 60
 press A

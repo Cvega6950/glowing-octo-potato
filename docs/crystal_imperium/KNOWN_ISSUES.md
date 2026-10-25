@@ -7,7 +7,7 @@
 | 3 | Tests | The HnS test suite runs, but about 1.4k tests fail because the zeroed test save leaves HnS's runtime toggles in non-default states. `mgba-rom-test-hydra` also grew to about 13 GB RAM before one worker hung. | Open |
 | 4 | Balance | Pryce's ace (Lv 33) is below the NORMAL level cap for 6 badges (38), so capped players can out-level him. | **Fixed**: every version of every Gym Leader is at its cap, all six Pokémon (0.7.0, D21) |
 | 5 | Data | `TRAINER_FALKNER_2_HNS` (rematch) gives Swellow no `Level:` line, so trainerproc's default applies. | **Fixed**: `boss_teams.py` sets every rematch Pokémon's level (0.7.0) |
-| 6 | ROM budget | ROM 99.37% of 32 MB (about 208 KB free); EWRAM 99.12% (about 2.3 KB free, after the BW battle UI's +8 KB heap); SaveBlock3 1,548 of 1,624 bytes. New graphics and EWRAM buffers must be budgeted. | Constraint (DECISIONS.md D7, D9, D26) |
+| 6 | ROM budget | ROM 99.42% of 32 MB (about 190 KB free); EWRAM 99.12% (about 2.3 KB free, after the BW battle UI's +8 KB heap); SaveBlock3 1,548 of 1,624 bytes. New graphics and EWRAM buffers must be budgeted. | Constraint (DECISIONS.md D7, D9, D26) |
 | 7 | Build | Interrupting `make` (e.g. piping it into `head`) can leave an empty object such as `build/hns/src/region_map.o`, which breaks the link. Delete that object and rebuild. | Note |
 | 8 | Platform | Delta's emulator core (VBA-M at GBADeltaCore's pinned commit) runs the full play-test suite, but the Delta app itself (touch controls, its save-file handling, suspend/resume) has not been tested on an iPhone. | Open (needs a device) |
 | 9 | Branding | The title screen and ROM header still say Heart & Soul / `POKEMON HNS`. | Open (cosmetic) |

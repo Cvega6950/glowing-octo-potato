@@ -283,7 +283,7 @@ no items). The regression's counts for both emulators are in TESTING.md.
   builds) or Lance (13 of 60 with a six built for him), and its results against Bruno and Karen
   swung between the emulators (5 and 0 of 6; 2 and 0 of 6). Played with a game plan, sixes
   built for them beat Will 3 times in 6, Bruno 5 in 6, Karen 3 in 6 and Lance 3 in 12, so the
-  test gives them 8, 6, 8 and 24 tries.
+  test gave them 8, 6, 8 and 24 tries (since 0.7.0: 8, 12, 12 and 24).
 - **Lance** first had three Dragon Dance users (Mega Gyarados, Salamence, Dragonite): the
   all-round six lost all six tries on mGBA. With only Dragonite setting up, his Charizard still
   Roosted behind two Full Restores, and three different sixes built for him lost all nine tries
