@@ -1,0 +1,39 @@
+# Platinum Imperium play test: the Imperium-style bosses of the first two badges. Every boss has
+# six Pokemon at the player's level cap: Barry (Route 203, all three versions) and Roark at 15,
+# Mars and Gardenia at 24 (one badge). Each battle plays to a result against a level-15 Monferno.
+!new_game()
+!give_mon(391, 15)
+savestate start.ss
+!battle("TRAINER_PT_ROARK")
+wait 600
+shot 01_roark.png
+expect8 {gEnemyPartyCount} 6 roark_has_six
+expect8 {gEnemyParty+84} 15 roark_lead_at_cap_15
+expect8 {gEnemyParty+584} 15 roark_ace_at_cap_15
+!expect_battler(1, "species", "SPECIES_GEODUDE", "roark_leads_geodude")
+!autobattle("0")
+expectne8 {gBattleOutcome} 0 roark_battle_finished
+loadstate start.ss
+!battle("TRAINER_RIVAL_ROUTE_203_CHIMCHAR")
+wait 600
+expect8 {gEnemyPartyCount} 6 barry_has_six
+expect8 {gEnemyParty+584} 15 barry_ace_at_cap_15
+!autobattle("0")
+expectne8 {gBattleOutcome} 0 barry_battle_finished
+loadstate start.ss
+!set_flag("FLAG_BADGE01_GET")
+!battle("TRAINER_PT_GARDENIA")
+wait 600
+shot 02_gardenia.png
+expect8 {gEnemyPartyCount} 6 gardenia_has_six
+expect8 {gEnemyParty+84} 24 gardenia_at_cap_24
+!autobattle("0")
+expectne8 {gBattleOutcome} 0 gardenia_battle_finished
+loadstate start.ss
+!set_flag("FLAG_BADGE01_GET")
+!battle("TRAINER_VALLEY_WINDWORKS_MARS")
+wait 600
+expect8 {gEnemyPartyCount} 6 mars_has_six
+expect8 {gEnemyParty+584} 24 mars_ace_at_cap_24
+!autobattle("0")
+expectne8 {gBattleOutcome} 0 mars_battle_finished

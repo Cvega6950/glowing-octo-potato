@@ -515,11 +515,10 @@ def pace(x1, x2, y, laps, soft=False):
 
 
 def battle_trainer(trainer_id):
-    """Debug menu > Trainers > Trainer 1 = id > Try Battle."""
-    out = open_debug() + ["press DOWN"] * 6 + ["press A", "wait 30", "press DOWN", "press A", "wait 30"]
-    out += number(trainer_id, initial=0) + ["press A", "wait 30"]
-    out += ["press DOWN"] * 5 + ["press A"]  # the cursor returns to the top after entry
-    return out
+    """Debug menu > Scripts > Script 1 battles the trainer whose id is in VAR_0x8004
+    (Debug_StartTrainerBattleFromVar, src/battle_setup.c)."""
+    return ["poke16 {gSpecialVar_0x8004} %d" % trainer_id] + open_debug() + ["press DOWN"] * 5 + [
+            "press A", "wait 30", "press A", "wait 60"]
 
 
 def battle(trainer):
@@ -612,7 +611,10 @@ def autobattle(moves, max_frames=60000, plan=None):
             "partyidx={gBattlerPartyIndexes}", "party={gPlayerParty}", "count={gPlayerPartyCount}",
             "mons={gBattleMons}", "pmenu={gPartyMenu}",
             "pmenucb2={CB2_UpdatePartyMenu}", "battlecb2={BattleMainCB2}"]
-    keys.append("ppoff=%d" % probe.resolve({"ppoff": "offsetof(struct BattlePokemon, pp)"})["ppoff"])
+    layout = probe.resolve({"ppoff": "offsetof(struct BattlePokemon, pp)", "bmsize": "sizeof(struct BattlePokemon)",
+                            "hpoff": "offsetof(struct BattlePokemon, hp)", "maxhpoff": "offsetof(struct BattlePokemon, maxHP)",
+                            "movesoff": "offsetof(struct BattlePokemon, moves)"})
+    keys += ["%s=%d" % (k, v) for k, v in layout.items()]
     if plan:
         ids = probe.resolve({sp: sp for sp in plan})
         rules = [(sp, r) for sp, rs in plan.items() for r in (rs if isinstance(rs, list) else [rs])]

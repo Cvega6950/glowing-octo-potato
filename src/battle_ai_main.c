@@ -11,6 +11,7 @@
 #include "battle_z_move.h"
 #include "battle_terastal.h"
 #include "data.h"
+#include "difficulty.h"
 #include "debug.h"
 #include "event_data.h"
 #include "item.h"
@@ -182,6 +183,12 @@ static u64 GetWildAiFlags(void)
     return flags;
 }
 
+// Platinum Imperium (Crystal Imperium's): on NORMAL and HARD every trainer battles with the
+// expansion's smart AI, as in Emerald Imperium: it knows the player's Pokemon, moves, abilities and
+// items, switches and picks its next Pokemon smartly, and plays around HP. EASY keeps each
+// trainer's own AI.
+#define IMPERIUM_TRAINER_AI (AI_FLAG_SMART_TRAINER | AI_FLAG_HP_AWARE)
+
 static u64 GetAiFlags(u16 trainerId, u32 battler)
 {
     u64 flags = 0;
@@ -207,7 +214,11 @@ static u64 GetAiFlags(u16 trainerId, u32 battler)
         else if (gBattleTypeFlags & (BATTLE_TYPE_FRONTIER | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_TRAINER_HILL | BATTLE_TYPE_SECRET_BASE))
             flags = AI_FLAG_CHECK_BAD_MOVE | AI_FLAG_CHECK_VIABILITY | AI_FLAG_TRY_TO_FAINT;
         else
+        {
             flags = GetTrainerAIFlagsFromId(trainerId);
+            if (GetCurrentDifficultyLevel() != DIFFICULTY_EASY)
+                flags |= IMPERIUM_TRAINER_AI;
+        }
     }
 
     if (IsDoubleBattle() && flags != 0)

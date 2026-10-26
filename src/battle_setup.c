@@ -1206,6 +1206,17 @@ void ClearTrainerFlag(u16 trainerId)
     FlagClear(TRAINER_FLAGS_START + trainerId);
 }
 
+// Platinum Imperium: Debug menu > Scripts > Script 1 battles the trainer whose id is in
+// VAR_0x8004, as a trainer battle without intro text (the play tests start boss battles this way)
+void Debug_StartTrainerBattleFromVar(void)
+{
+    InitTrainerBattleVariables();
+    TRAINER_BATTLE_PARAM.mode = TRAINER_BATTLE_SINGLE_NO_INTRO_TEXT;
+    TRAINER_BATTLE_PARAM.opponentA = gSpecialVar_0x8004;
+    gNoOfApproachingTrainers = 0;
+    BattleSetup_StartTrainerBattle();
+}
+
 void BattleSetup_StartTrainerBattle(void)
 {
     if (gNoOfApproachingTrainers == 2)

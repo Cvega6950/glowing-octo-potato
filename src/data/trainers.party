@@ -17024,15 +17024,67 @@ Pic: Barry DP
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Starly
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Starly @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Reckless
+Nature: Jolly
+- Wing Attack
+- Quick Attack
+- Pursuit
+- Steel Wing
 
-Piplup
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Shinx @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Adamant
+- Spark
+- Bite
+- Ice Fang
+- Charge
+
+Buneary @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Limber
+Nature: Jolly
+- Fake Out
+- Low Kick
+- Ice Punch
+- Quick Attack
+
+Munchlax @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Thick Fat
+Nature: Careful
+- Curse
+- Zen Headbutt
+- Lick
+- Pursuit
+
+Ponyta @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Flash Fire
+Nature: Jolly
+- Flame Wheel
+- Low Kick
+- Will-O-Wisp
+- Stomp
+
+Piplup @ Mystic Water
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Torrent
+Nature: Modest
+- Bubble Beam
+- Aqua Jet
+- Icy Wind
+- Pluck
 
 === TRAINER_RIVAL_ROUTE_203_TURTWIG ===
 Name: Barry
@@ -17041,15 +17093,67 @@ Pic: Barry DP
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Starly
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Starly @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Reckless
+Nature: Jolly
+- Wing Attack
+- Quick Attack
+- Pursuit
+- Steel Wing
 
-Turtwig
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Shinx @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Adamant
+- Spark
+- Bite
+- Ice Fang
+- Charge
+
+Buneary @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Limber
+Nature: Jolly
+- Fake Out
+- Low Kick
+- Ice Punch
+- Quick Attack
+
+Munchlax @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Thick Fat
+Nature: Careful
+- Curse
+- Zen Headbutt
+- Lick
+- Pursuit
+
+Ponyta @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Flash Fire
+Nature: Jolly
+- Flame Wheel
+- Low Kick
+- Will-O-Wisp
+- Stomp
+
+Turtwig @ Miracle Seed
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Overgrow
+Nature: Adamant
+- Razor Leaf
+- Seed Bomb
+- Rock Throw
+- Curse
 
 === TRAINER_RIVAL_ROUTE_203_CHIMCHAR ===
 Name: Barry
@@ -17058,15 +17162,67 @@ Pic: Barry DP
 Gender: Male
 Music: Male
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Starly
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Starly @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Reckless
+Nature: Jolly
+- Wing Attack
+- Quick Attack
+- Pursuit
+- Steel Wing
 
-Chimchar
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Shinx @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Adamant
+- Spark
+- Bite
+- Ice Fang
+- Charge
+
+Buneary @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Limber
+Nature: Jolly
+- Fake Out
+- Low Kick
+- Ice Punch
+- Quick Attack
+
+Munchlax @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Thick Fat
+Nature: Careful
+- Curse
+- Zen Headbutt
+- Lick
+- Pursuit
+
+Budew @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Modest
+- Mega Drain
+- Stun Spore
+- Acid
+- Growth
+
+Chimchar @ Charcoal
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Iron Fist
+Nature: Jolly
+- Fire Punch
+- Thunder Punch
+- Fake Out
+- Taunt
 
 === TRAINER_PT_MICHAEL ===
 Name: Michael
@@ -17466,35 +17622,68 @@ Class: Pt Leader
 Pic: Roark DP
 Gender: Male
 Music: Male
-Items: Potion / Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Geodude (M)
-Level: 12
-Ability: Rock Head
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
-Nature: Lax
+Geodude @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Impish
 - Stealth Rock
-- Rock Throw
+- Rock Tomb
+- Magnitude
+- Rollout
 
-Onix (M)
-Level: 12
-Ability: Rock Head
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
-Nature: Bold
-- Stealth Rock
-- Rock Throw
+Onix @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Jolly
+- Rock Tomb
+- Rock Polish
+- Iron Tail
+- Curse
+
+Nosepass @ Leftovers
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Relaxed
+- Thunder Wave
+- Rock Blast
+- Bulldoze
+- Block
+
+Bonsly @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Adamant
+- Rock Tomb
+- Low Kick
+- Flail
+- Fake Tears
+
+Larvitar @ Flame Orb
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Guts
+Nature: Adamant
+- Rock Tomb
+- Bite
+- Chip Away
 - Screech
 
-Cranidos (M)
-Level: 14
-Ability: Mold Breaker
-IVs: 6 HP / 6 Atk / 6 Def / 6 SpA / 6 SpD / 6 Spe
-Nature: Jolly
+Cranidos @ Life Orb
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sheer Force
+Nature: Adamant
+- Rock Tomb
+- Fire Punch
+- Thunder Punch
 - Headbutt
-- Pursuit
-- Leer
 
 === TRAINER_JUBILIFE_CITY_GRUNT_1 ===
 Name: Grunt
@@ -17719,15 +17908,67 @@ Pic: Mars DP
 Gender: Female
 Music: Galactic Commander DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Zubat (F)
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Golbat @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Air Cutter
+- Bite
+- Confuse Ray
+- Astonish
 
-Purugly (F) @ Oran Berry
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Croagunk @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Dry Skin
+Nature: Adamant
+- Sludge
+- Feint Attack
+- Revenge
+- Taunt
+
+Stunky @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Aftermath
+Nature: Adamant
+- Poison Tail
+- Bite
+- Feint
+- Acid Spray
+
+Bronzor @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Relaxed
+- Psybeam
+- Hypnosis
+- Confuse Ray
+- Iron Defense
+
+Skorupi @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Battle Armor
+Nature: Adamant
+- Knock Off
+- Pin Missile
+- Bug Bite
+- Pursuit
+
+Purugly @ Sitrus Berry
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Thick Fat
+Nature: Jolly
+- Fake Out
+- Headbutt
+- Bite
+- Hypnosis
 
 === TRAINER_PT_JACOB ===
 Name: Jacob
@@ -18242,33 +18483,68 @@ Class: Pt Leader
 Pic: Gardenia DP
 Gender: Female
 Music: Female
-Items: Potion / Potion
 Double Battle: No
-AI: Basic Trainer
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Turtwig (M)
-Level: 20
-Ability: Overgrow
-- Razor Leaf
-- Grass Knot
-- Sunny Day
-- Reflect
-
-Cherrim (F)
-Level: 20
+Cherrim @ Heat Rock
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flower Gift
-- Grass Knot
+Nature: Bold
+- Sunny Day
+- Magical Leaf
 - Leech Seed
-- Safeguard
-- Magical Leaf
+- Sleep Powder
 
-Roserade (F) @ Sitrus Berry
-Level: 22
-Ability: Natural Cure
+Leafeon @ Miracle Seed
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Chlorophyll
+Nature: Jolly
 - Magical Leaf
-- Grass Knot
+- Giga Drain
+- Quick Attack
+- Grass Whistle
+
+Breloom @ Focus Sash
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Technician
+Nature: Jolly
+- Mach Punch
+- Mega Drain
 - Stun Spore
-- Poison Sting
+- Headbutt
+
+Grotle @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Overgrow
+Nature: Impish
+- Razor Leaf
+- Bite
+- Curse
+- Rock Throw
+
+Carnivine @ Leftovers
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Careful
+- Vine Whip
+- Bite
+- Sleep Powder
+- Ingrain
+
+Roserade @ Life Orb
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Technician
+Nature: Timid
+- Weather Ball
+- Magical Leaf
+- Mega Drain
+- Silver Wind
 
 === TRAINER_PT_ZACH_1 ===
 Name: Zach

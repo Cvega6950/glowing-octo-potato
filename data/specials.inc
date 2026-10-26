@@ -573,3 +573,4 @@ gSpecials::
 	def_special ObjectEventInteractionGetApricornTreeData
 	def_special ObjectEventInteractionPickApricornTree
 	def_special GetBadgeCount
+	def_special Debug_StartTrainerBattleFromVar

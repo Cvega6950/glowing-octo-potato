@@ -302,6 +302,8 @@ static unsigned PathStep(uint32_t layout, const int *dist, int x, int y)
 struct AutoSyms
 {
     uint32_t main, outcome, ctrl, act, mov, actcur, movcur, partyidx, party, count, pmenu, pmenucb2, battlecb2, mons, ppoff;
+    // struct BattlePokemon layout of this build (emu.py reads it with offsetof/sizeof)
+    uint32_t bmsize, hpoff, maxhpoff, movesoff;
 };
 
 #define MAX_PLAN 16
@@ -396,7 +398,7 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
         if (outcome != 0 && cb2 != sy->battlecb2)
             break;
         if (cb2 == sy->battlecb2)
-            NoteSeen(Peek(16, sy->mons + 0x88));
+            NoteSeen(Peek(16, sy->mons + sy->bmsize));
         if (cb2 != sy->pmenucb2)
         {
             triedMask = 0;
@@ -426,7 +428,7 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
             // Teleport). A menu slot the game refused (e.g. a fainted Pokemon) isn't tried twice.
             int target = -1, count = Peek(8, sy->count), active = Peek(8, sy->partyidx);
             uint64_t activeSig = sig[active < 6 ? active : 0];
-            const struct PlanRule *r = FindPlanRule(sy, plan, nPlan, Peek(16, sy->mons + 0x88), -1);
+            const struct PlanRule *r = FindPlanRule(sy, plan, nPlan, Peek(16, sy->mons + sy->bmsize), -1);
             int want = switchTarget >= 0 ? switchTarget : r ? r->slot : -1;
             for (int i = 0; want >= 0 && want != active && i < count && i < 6; i++)
             {
@@ -475,7 +477,7 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
         }
         else if (ctrl == sy->act)
         {
-            unsigned opp = Peek(16, sy->mons + 0x88);
+            unsigned opp = Peek(16, sy->mons + sy->bmsize);
             int active = Peek(8, sy->partyidx), action = 0, cur = Peek(8, sy->actcur);
             const struct PlanRule *r = FindPlanRule(sy, plan, nPlan, opp, active);
             planMove = -1;
@@ -518,13 +520,13 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
             {
                 do
                     want = (want + 1) & 3;
-                while (Peek(16, sy->mons + 12 + 2 * want) == 0);
+                while (Peek(16, sy->mons + sy->movesoff + 2 * want) == 0);
             }
             if (sy->ppoff && Peek(8, sy->mons + sy->ppoff + want) == 0)
             {
                 for (int m = 0; m < 4; m++)
                 {
-                    if (Peek(16, sy->mons + 12 + 2 * m) != 0 && Peek(8, sy->mons + sy->ppoff + m) != 0)
+                    if (Peek(16, sy->mons + sy->movesoff + 2 * m) != 0 && Peek(8, sy->mons + sy->ppoff + m) != 0)
                     {
                         want = m;
                         break;
@@ -550,14 +552,14 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
                 {
                     shownMoves |= 1 << slot;
                     printf("[frame %lu] autobattle: party slot %d species %u knows move %u / move %u / move %u / move %u\n",
-                           frameCount, slot, Peek(16, sy->mons), Peek(16, sy->mons + 12), Peek(16, sy->mons + 14),
-                           Peek(16, sy->mons + 16), Peek(16, sy->mons + 18));
+                           frameCount, slot, Peek(16, sy->mons), Peek(16, sy->mons + sy->movesoff), Peek(16, sy->mons + sy->movesoff + 2),
+                           Peek(16, sy->mons + sy->movesoff + 4), Peek(16, sy->mons + sy->movesoff + 6));
                 }
                 printf("[frame %lu] autobattle: turn %d: player species %u %u/%u uses move %u (slot %d)%s vs opponent species %u %u/%u\n",
-                       frameCount, turns + 1, Peek(16, sy->mons), Peek(16, sy->mons + 42), Peek(16, sy->mons + 46),
-                       Peek(16, sy->mons + 12 + 2 * want), want,
+                       frameCount, turns + 1, Peek(16, sy->mons), Peek(16, sy->mons + sy->hpoff), Peek(16, sy->mons + sy->maxhpoff),
+                       Peek(16, sy->mons + sy->movesoff + 2 * want), want,
                        mega[slot] && (megaPressed & (1 << slot)) ? " (mega)" : "",
-                       Peek(16, sy->mons + 0x88), Peek(16, sy->mons + 0x88 + 42), Peek(16, sy->mons + 0x88 + 46));
+                       Peek(16, sy->mons + sy->bmsize), Peek(16, sy->mons + sy->bmsize + sy->hpoff), Peek(16, sy->mons + sy->bmsize + sy->maxhpoff));
                 Tap(1u << 0);
                 turns++;
                 movTries++;
@@ -758,6 +760,10 @@ int main(int argc, char **argv)
                 else if (!strcmp(tok, "party")) sy.party = v;
                 else if (!strcmp(tok, "count")) sy.count = v;
                 else if (!strcmp(tok, "mons")) sy.mons = v;
+                else if (!strcmp(tok, "bmsize")) sy.bmsize = v;
+                else if (!strcmp(tok, "hpoff")) sy.hpoff = v;
+                else if (!strcmp(tok, "maxhpoff")) sy.maxhpoff = v;
+                else if (!strcmp(tok, "movesoff")) sy.movesoff = v;
                 else if (!strcmp(tok, "pmenu")) sy.pmenu = v;
                 else if (!strcmp(tok, "pmenucb2")) sy.pmenucb2 = v;
                 else if (!strcmp(tok, "battlecb2")) sy.battlecb2 = v;

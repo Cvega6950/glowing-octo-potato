@@ -18,6 +18,8 @@
 #include "battle_gimmick.h"
 #include "berry.h"
 #include "bg.h"
+#include "caps.h"
+#include "difficulty.h"
 #include "data.h"
 #include "debug.h"
 #include "decompress.h"
@@ -1911,6 +1913,59 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
+// Platinum Imperium (Crystal Imperium's): every boss's Pokemon are at the player's level cap, on
+// every difficulty: the cap of the boss's stage or of the player's progress, whichever is later,
+// from the player's cap table (HARD caps on HARD). Other trainers' Platinum levels are mapped onto
+// the player's cap curve, then scaled by the difficulty, and are never above the player's cap.
+// While a party is created, sBossLevel is the boss's level (0 for other trainers) and
+// sTrainerLevelCap the player's cap (0: no party being created).
+#include "data/level_cap_bosses.h"
+
+static u8 sBossLevel;
+static u8 sTrainerLevelCap;
+
+static u32 GetLevelCapBossLevel(u16 trainerNum)
+{
+    for (u32 i = 0; i < ARRAY_COUNT(sLevelCapBosses); i++)
+    {
+        if (sLevelCapBosses[i].trainerId == trainerNum)
+            return GetBossLevel(sLevelCapBosses[i].stage);
+    }
+    return 0;
+}
+
+// Trainers that have no dedicated Easy/Hard party use their Normal party, scaled to 90% (EASY) or
+// 110% (HARD) of its levels
+static bool8 sScaleTrainerLevels;
+
+static u8 GetDifficultyScaledTrainerLevel(u8 level)
+{
+    switch (GetCurrentDifficultyLevel())
+    {
+    case DIFFICULTY_EASY:
+        level = (level * 9) / 10;
+        return level < 1 ? 1 : level;
+    case DIFFICULTY_HARD:
+        level = (level * 11 + 5) / 10;
+        return level > MAX_LEVEL ? MAX_LEVEL : level;
+    default:
+        return level;
+    }
+}
+
+static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
+{
+    if (sBossLevel)
+        return sBossLevel;
+    if (sTrainerLevelCap)
+        level = GetLevelOnCapCurve(level);
+    if (sScaleTrainerLevels)
+        level = GetDifficultyScaledTrainerLevel(level);
+    if (sTrainerLevelCap && level > sTrainerLevelCap)
+        level = sTrainerLevelCap;
+    return level;
+}
+
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
 {
     u32 personalityValue;
@@ -1968,7 +2023,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otIdType = OT_ID_PRESET;
                 fixedOtId = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
-            CreateMon(&party[i], partyData[monIndex].species, partyData[monIndex].lvl, 0, TRUE, personalityValue, otIdType, fixedOtId);
+            CreateMon(&party[i], partyData[monIndex].species, GetDifficultyAdjustedTrainerLevel(partyData[monIndex].lvl), 0, TRUE, personalityValue, otIdType, fixedOtId);
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
@@ -2055,6 +2110,11 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     u8 retVal;
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
+    sScaleTrainerLevels = (!gIsDebugBattle
+                           && GetCurrentDifficultyLevel() != DIFFICULTY_NORMAL
+                           && GetTrainerDifficultyLevel(trainerNum) == DIFFICULTY_NORMAL);
+    sBossLevel = GetLevelCapBossLevel(trainerNum);
+    sTrainerLevelCap = GetCurrentLevelCap();
     if (GetTrainerStructFromId(trainerNum)->overrideTrainer)
     {
         struct Trainer tempTrainer;
@@ -2073,6 +2133,9 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     {
         retVal = CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum), firstTrainer, gBattleTypeFlags);
     }
+    sScaleTrainerLevels = FALSE;
+    sBossLevel = 0;
+    sTrainerLevelCap = 0;
     return retVal;
 }
 
@@ -3038,6 +3101,9 @@ static void ClearSetBScriptingStruct(void)
         gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET;
     else
         gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
+    // Platinum Imperium: HARD plays SET (no "Will you switch?"), like Emerald Imperium and Radical Red
+    if (!TESTING && GetCurrentDifficultyLevel() == DIFFICULTY_HARD)
+        gBattleScripting.battleStyle = OPTIONS_BATTLE_STYLE_SET;
     gBattleScripting.expOnCatch = (B_EXP_CATCH >= GEN_6);
     gBattleScripting.specialTrainerBattleType = specialBattleType;
 }
