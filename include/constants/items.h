@@ -1022,7 +1022,15 @@
 #define ITEM_DRAMPANITE 853
 #define ITEM_FALINKSITE 854
 
-#define ITEMS_COUNT 855
+// 856 is ITEM_HM09 (HM Dive, above)
+
+// Platinum Imperium: Crystal Imperium's key items
+#define ITEM_INFINITE_REPEL 857
+#define ITEM_INFINITE_RARE_CANDIES 858
+#define ITEM_TRAINING_KIT 859
+#define ITEM_POKE_VIAL 860
+
+#define ITEMS_COUNT 861
 #define ITEM_FIELD_ARROW ITEMS_COUNT
 
 // A special item id associated with "Cancel"/"Exit" etc. in a list of items or decorations

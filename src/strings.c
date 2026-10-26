@@ -1296,3 +1296,9 @@ const u8 gText_CannotSendMonToBoxActive[] = _("Cannot send an active battler\nto
 const u8 gText_CannotSendMonToBoxPartner[] = _("Cannot send a mon that doesn't,\nbelong to you to the box.{PAUSE_UNTIL_PRESS}");
 const u8 gText_SaveFileOldUpdated[] = _("Your save file is for an older release\nof RETRO PLATINUM.\pYour save will be updated. Please back\nup your old save if you wish to keep it.");
 const u8 gText_SaveFileOldErrored[] = _("Your save file is for an older release\nof RETRO PLATINUM.\pThe attempt to update the save file\nhas failed.\pPlease report this to the developers.");
+
+// Platinum Imperium: Crystal Imperium's key items
+const u8 gText_Obtained999RareCandies[] = _("You obtained 999 RARE\nCANDIES!{PAUSE_UNTIL_PRESS}");
+const u8 gText_InfiniteRepelOn[] = _("The INFINITE REPEL is now ON.\nWeaker wild {PKMN} will stay away.{PAUSE_UNTIL_PRESS}");
+const u8 gText_InfiniteRepelOff[] = _("The INFINITE REPEL is now OFF.{PAUSE_UNTIL_PRESS}");
+const u8 gText_PokeVialHealed[] = _("Your {PKMN} were fully healed!{PAUSE_UNTIL_PRESS}");

@@ -6834,6 +6834,68 @@ const struct Item gItemsInfo[] =
         .iconPalette = gItemIconPalette_QuestionMark, // gItemIconPalette_Falinksite,
     },
 
+    // Platinum Imperium: Crystal Imperium's key items
+    [ITEM_INFINITE_REPEL] =
+    {
+        .name = ITEM_NAME("INFIN. REPEL"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Toggle: repels weak\n"
+            "wild Pokémon for\n"
+            "as long as it's on."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_InfiniteRepel,
+        .iconPic = gItemIcon_Repel,
+        .iconPalette = gItemIconPalette_MaxRepel,
+    },
+    [ITEM_INFINITE_RARE_CANDIES] =
+    {
+        .name = ITEM_NAME("RARECANDY BOX"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A box of Rare Candy\n"
+            "that never runs\n"
+            "out."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_InfiniteRareCandies,
+        .iconPic = gItemIcon_RareCandy,
+        .iconPalette = gItemIconPalette_RareCandy,
+    },
+    [ITEM_TRAINING_KIT] =
+    {
+        .name = ITEM_NAME("TRAINING KIT"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Edits a Pokémon's\n"
+            "IVs, EVs, nature and\n"
+            "ability (L: STATS)."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_TrainingKit,
+        .iconPic = gItemIcon_Mint,
+        .iconPalette = gItemIconPalette_GreenMint,
+    },
+    [ITEM_POKE_VIAL] =
+    {
+        .name = ITEM_NAME("POKéVIAL"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "Fully heals the\n"
+            "party outside battle.\n"
+            "Never runs out."),
+        .importance = 1,
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_FIELD,
+        .fieldUseFunc = ItemUseOutOfBattle_PokeVial,
+        .iconPic = gItemIcon_LargePotion,
+        .iconPalette = gItemIconPalette_FullRestore,
+    },
+
 // Gems
 
     [ITEM_NORMAL_GEM] =

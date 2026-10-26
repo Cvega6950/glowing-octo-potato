@@ -21,6 +21,7 @@
 #include "fldeff_misc.h"
 #include "follower_npc.h"
 #include "item_menu.h"
+#include "l_menu.h"
 #include "link.h"
 #include "match_call.h"
 #include "metatile_behavior.h"
@@ -95,7 +96,7 @@ void FieldClearPlayerInput(struct FieldInput *input)
     input->tookStep = FALSE;
     input->pressedBButton = FALSE;
     input->pressedRButton = FALSE;
-    input->input_field_1_1 = FALSE;
+    input->pressedLButton = FALSE;
     input->input_field_1_2 = FALSE;
     input->input_field_1_3 = FALSE;
     input->dpadDirection = 0;
@@ -119,8 +120,11 @@ void FieldGetPlayerInput(struct FieldInput *input, u16 newKeys, u16 heldKeys)
                 input->pressedAButton = TRUE;
             if (newKeys & B_BUTTON)
                 input->pressedBButton = TRUE;
-            if (newKeys & R_BUTTON && !FlagGet(DN_FLAG_SEARCHING))
+            // Platinum Imperium: R also repeats a DexNav search (Crystal Imperium's dexnav.c)
+            if (newKeys & R_BUTTON)
                 input->pressedRButton = TRUE;
+            if (newKeys & L_BUTTON)
+                input->pressedLButton = TRUE;
         }
 
         if (heldKeys & (DPAD_UP | DPAD_DOWN | DPAD_LEFT | DPAD_RIGHT))
@@ -227,6 +231,10 @@ int ProcessPlayerFieldInput(struct FieldInput *input)
         ShowStartMenu();
         return TRUE;
     }
+
+    // Platinum Imperium: L opens the L menu (Emerald Imperium's quick menu)
+    if (input->pressedLButton && TryShowLMenu())
+        return TRUE;
 
     if (input->tookStep && TryFindHiddenPokemon())
         return TRUE;

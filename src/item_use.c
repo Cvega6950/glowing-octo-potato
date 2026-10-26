@@ -60,6 +60,7 @@ static void PlayerFaceHiddenItem(u8);
 static void CheckForHiddenItemsInMapConnection(u8);
 static void Task_OpenRegisteredPokeblockCase(u8);
 static void Task_AccessPokemonBoxLink(u8);
+static void Task_UseTrainingKit(u8);
 static void ItemUseOnFieldCB_Bike(u8);
 static void ItemUseOnFieldCB_Rod(u8);
 static void ItemUseOnFieldCB_Itemfinder(u8);
@@ -751,6 +752,76 @@ static void Task_AccessPokemonBoxLink(u8 taskId)
 {
     ScriptContext_SetupScript(EventScript_AccessPokemonBoxLink);
     DestroyTask(taskId);
+}
+
+// Platinum Imperium: Crystal Imperium's key items
+void ItemUseOutOfBattle_TrainingKit(u8 taskId)
+{
+    sItemUseOnFieldCB = Task_UseTrainingKit;
+    SetUpItemUseOnFieldCallback(taskId);
+}
+
+static void Task_UseTrainingKit(u8 taskId)
+{
+    ScriptContext_SetupScript(EventScript_TrainingKit);
+    DestroyTask(taskId);
+}
+
+void ItemUseOutOfBattle_InfiniteRareCandies(u8 taskId)
+{
+    PlaySE(MUS_OBTAIN_ITEM);
+    AddBagItem(ITEM_RARE_CANDY, 999);
+    if (gTasks[taskId].tUsingRegisteredKeyItem)
+    {
+        DisplayItemMessageOnField(taskId, gText_Obtained999RareCandies, Task_CloseCantUseKeyItemMessage);
+    }
+    else
+    {
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_Obtained999RareCandies, CloseItemMessage);
+        UpdatePocketItemList(GetItemPocket(ITEM_RARE_CANDY));
+    }
+}
+
+void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
+{
+    const u8 *message;
+
+    FlagToggle(FLAG_INFINITE_REPEL_ON);
+    if (FlagGet(FLAG_INFINITE_REPEL_ON))
+    {
+        PlaySE(SE_REPEL);
+        message = gText_InfiniteRepelOn;
+    }
+    else
+    {
+        PlaySE(SE_PC_OFF);
+        message = gText_InfiniteRepelOff;
+    }
+
+    if (gTasks[taskId].tUsingRegisteredKeyItem)
+        DisplayItemMessageOnField(taskId, message, Task_CloseCantUseKeyItemMessage);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, message, CloseItemMessage);
+}
+
+// A Pokemon Center heal that works anywhere, as often as needed. Also used by the L menu.
+void HealPartyWithPokeVial(void)
+{
+    u32 i;
+
+    for (i = 0; i < gPlayerPartyCount; i++)
+        HealPokemon(&gPlayerParty[i]);
+}
+
+void ItemUseOutOfBattle_PokeVial(u8 taskId)
+{
+    HealPartyWithPokeVial();
+    PlaySE(SE_USE_ITEM);
+
+    if (gTasks[taskId].tUsingRegisteredKeyItem)
+        DisplayItemMessageOnField(taskId, gText_PokeVialHealed, Task_CloseCantUseKeyItemMessage);
+    else
+        DisplayItemMessage(taskId, FONT_NORMAL, gText_PokeVialHealed, CloseItemMessage);
 }
 
 void ItemUseOutOfBattle_CoinCase(u8 taskId)

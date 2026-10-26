@@ -49,6 +49,7 @@
 #include "difficulty.h"
 #include "follower_npc.h"
 #include "challenge_menu.h"
+#include "dexnav.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -166,6 +167,34 @@ void ResetMenuAndMonGlobals(void)
     ResetPokeblockScrollPositions();
 }
 
+// Platinum Imperium: Crystal Imperium's key items and the DexNav, there from the start of the game
+static const u16 sQoLKeyItems[] =
+{
+    ITEM_INFINITE_RARE_CANDIES,
+    ITEM_INFINITE_REPEL,
+    ITEM_POKEMON_BOX_LINK,
+    ITEM_TRAINING_KIT,
+    ITEM_POKE_VIAL,
+};
+
+// Also called when a save is continued, so a save from an older build gets what it is missing
+void GiveQoLKeyItems(void)
+{
+    u32 i;
+
+    for (i = 0; i < ARRAY_COUNT(sQoLKeyItems); i++)
+    {
+        if (!CheckBagHasItem(sQoLKeyItems[i], 1))
+            AddBagItem(sQoLKeyItems[i], 1);
+    }
+    FlagSet(FLAG_RECEIVED_QOL_KEY_ITEMS);
+    // The DexNav, with hidden Pokemon detection, comes with them
+    FlagSet(DN_FLAG_DEXNAV_GET);
+    FlagSet(DN_FLAG_DETECTOR_MODE);
+    // A search's state is not saved, so a game saved mid-search must not load as searching
+    FlagClear(DN_FLAG_SEARCHING);
+}
+
 void NewGameInitData(void)
 {
     if (gSaveFileStatus == SAVE_STATUS_EMPTY || gSaveFileStatus == SAVE_STATUS_CORRUPT)
@@ -215,6 +244,7 @@ void NewGameInitData(void)
     gSaveBlock1Ptr->registeredItem = ITEM_NONE;
     ClearBag();
     NewGameInitPCItems();
+    GiveQoLKeyItems();
     ClearPokeblocks();
     ClearDecorationInventories();
     InitEasyChatPhrases();

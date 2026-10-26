@@ -29,49 +29,41 @@ def number(target, initial=1):
     return out
 
 
-def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, level_cap=None,
-             minimal_grinding=True):
-    """Power-on to the bedroom in New Bark Town with default settings (Minimal Grinding, Easy
-    Catch and Wild Variety 30% ON). difficulty="EASY" or "HARD" picks that DIFFICULTY in the
-    Difficulty tab; easy_catch=False turns EASY CATCH (first row of the Features tab) off;
-    variety="OFF"/"15%"/"60%" sets WILD VARIETY (second row); random_wild=True turns the
-    RANDOMIZER on with WILD randomized (MAP SEEDED stays ON); level_cap="OFF"/"NORMAL"/"HARD"
-    sets LEVEL CAP (fourth row of the Difficulty tab; NORMAL, or HARD with the HARD preset);
-    minimal_grinding=False turns MIN. GRINDING (second row of the Difficulty tab) off."""
-    out = ["wait 1300", "press START", "wait 60", "press A", "wait 500", "mash A 900", "mash A 900", "mash A 700"]
-    # Tabs: MODE, FEATURES, RANDOMIZER, NUZLOCKE, DIFFICULTY, CHALLENGES (confirm)
-    out += ["press R", "wait 20"]
+def new_game(difficulty=None, easy_catch=True, variety=None, level_cap=None, minimal_grinding=True,
+             auto_run=True, place_packages=False):
+    """Power-on to the bedroom in Twinleaf Town: Rowan's intro (names left as they are), then the
+    challenge menu with Platinum Imperium's defaults (Easy Catch, Wild Variety 30%, Auto Run,
+    NORMAL difficulty, Minimal Grinding, NORMAL level caps, x1.5 EXP). difficulty="EASY" or "HARD";
+    easy_catch=False; variety="OFF"/"15%"/"60%"; level_cap="OFF"/"NORMAL"/"HARD" (NORMAL, or HARD
+    with the HARD preset); minimal_grinding=False; auto_run=False."""
+    out = ["wait 600", "press START", "wait 120", "press A", "wait 300", "mash A 2400", "mash A 1200"]
+    # FEATURES tab: EASY CATCH, WILD VARIETY, AUTO RUN, NEXT
     if not easy_catch:
         out += ["press LEFT", "wait 20"]
     if variety:
         # OFF / 15% / 30% / 60%, starting at 30%
         out += ["press DOWN", "wait 20"] + {"OFF": ["press LEFT", "wait 20"] * 2, "15%": ["press LEFT", "wait 20"],
-                                             "60%": ["press RIGHT", "wait 20"]}[variety]
-    if not easy_catch or variety:
-        out += ["shot features_tab.png"]
-    out += ["press R", "wait 20"]
-    if random_wild:
-        # RANDOMIZER (first row) on, then WILD (third row)
-        out += ["press RIGHT", "wait 20", "press DOWN", "wait 20", "press DOWN", "wait 20", "press RIGHT", "wait 20",
-                "shot randomizer_tab.png"]
-    out += ["press R", "wait 20"] * 2
+                                             "60%": ["press RIGHT", "wait 20"]}[variety] + ["press UP", "wait 20"]
+    if not auto_run:
+        out += ["press DOWN", "wait 20"] * 2 + ["press LEFT", "wait 20"] + ["press UP", "wait 20"] * 2
+    out += ["shot features_tab.png", "press R", "wait 30"]
+    # DIFFICULTY tab: DIFFICULTY, MIN. GRINDING, LEVEL CAP, EXP. MULTIPLIER, SAVE
     if difficulty:
-        # DIFFICULTY is the first row and starts at NORMAL (EASY / NORMAL / HARD)
-        out += ["press " + {"EASY": "LEFT", "HARD": "RIGHT"}[difficulty], "wait 20", "shot difficulty_tab.png"]
+        out += ["press " + {"EASY": "LEFT", "HARD": "RIGHT"}[difficulty], "wait 20"]
     row = 0
     if not minimal_grinding:
-        # OFF / ON, starting at ON
-        out += ["press DOWN", "wait 20", "press LEFT", "wait 20", "shot min_grinding_row.png"]
+        out += ["press DOWN", "wait 20", "press LEFT", "wait 20"]
         row = 1
     if level_cap:
         caps = ["OFF", "NORMAL", "HARD"]
         steps = caps.index(level_cap) - caps.index("HARD" if difficulty == "HARD" else "NORMAL")
-        out += ["press DOWN", "wait 20"] * (3 - row)
+        out += ["press DOWN", "wait 20"] * (2 - row)
         out += ["press " + ("RIGHT" if steps > 0 else "LEFT"), "wait 20"] * abs(steps)
-        out += ["shot level_cap_row.png"]
-    out += ["press R", "wait 20"]
-    out += ["wait 10", "press UP", "wait 30", "press A", "wait 120", "press A", "wait 120"]
-    out += ["mash A 1500", "mash A 1200", "wait 300"]
+    out += ["shot difficulty_tab.png", "press R", "wait 30", "press A", "wait 400"]
+    # The starting and location care packages would arrive on the first steps with a Pokemon;
+    # only the tests of them (place_packages=True) let them
+    if not place_packages:
+        out += set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
     return out
 
 
@@ -173,12 +165,12 @@ def hold_item(item, party_slot=0, pocket="POCKET_ITEMS"):
 def dex_flags_from_party():
     """Debug menu > Flags & Vars > Pokedex Flags Reset: the Pokedex lists exactly the Pokemon in
     the party and boxes as seen and caught (debug-given Pokemon are not registered otherwise)."""
-    return open_debug() + ["press DOWN"] * 7 + ["press A", "wait 30"] + ["press DOWN"] * 3 + ["press A", "wait 60", "mash B 120"]
+    return open_debug() + ["press DOWN"] * 6 + ["press A", "wait 30"] + ["press DOWN"] * 3 + ["press A", "wait 60", "mash B 120"]
 
 
 def debug_flags_menu(row):
-    """Debug menu > Flags & Vars > the row-th entry (10: all badges, 11: game clear)."""
-    return open_debug() + ["press DOWN"] * 7 + ["press A", "wait 30"] + ["press DOWN"] * row + ["press A", "wait 60", "mash B 120"]
+    """Debug menu > Flags & Vars > the row-th entry."""
+    return open_debug() + ["press DOWN"] * 6 + ["press A", "wait 30"] + ["press DOWN"] * row + ["press A", "wait 60", "mash B 120"]
 
 
 def fill_tm_case():
@@ -390,6 +382,12 @@ def expect_save3(field, want, label, size=8):
     """Check a SaveBlock3 field, e.g. expect_save3("dexNavSearchLevels[19]", 1, "label")."""
     v = probe.resolve({"off": f"offsetof(struct SaveBlock3, {field})", "want": str(want)})
     return [f"expect{size} *{{gSaveBlock3Ptr}}+{v['off']} {v['want']} {label}"]
+
+
+def expect_auto_run(on, label):
+    """Check AUTO RUN: challengeSettings.autoRun is bit 2 of the struct's second byte (include/global.h)."""
+    v = probe.resolve({"off": "offsetof(struct SaveBlock3, challengeSettings) + 1"})
+    return [f"expectbits8 *{{gSaveBlock3Ptr}}+{v['off']} 0x04 {0x04 if on else 0} {label}"]
 
 
 def expect_follower(on, label):

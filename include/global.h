@@ -252,7 +252,8 @@ struct ChallengeSettings
     u8 tx_Features_EasyCatchOff:1;      // 0: EASY CATCH on (every Poke Ball catches)
     u8 tx_Features_WildVariety:2;       // see sVarietyPercent in src/wild_variety.c
     u8 autoRun:1;                       // 1: running without holding B
-    u8 padding:5;
+    u8 followerEnable:1;                // 0: a Pokemon follows (with OW_FOLLOWERS_ENABLED)
+    u8 padding:4;
 };
 
 // Platinum Imperium difficulty selection as stored in ChallengeSettings.tx_Difficulty_Preset.
@@ -272,14 +273,15 @@ struct SaveBlock3
 #if OW_SHOW_ITEM_DESCRIPTIONS == OW_ITEM_DESCRIPTIONS_FIRST_TIME
     u8 itemFlags[ITEM_FLAGS_COUNT];
 #endif
-#if USE_DEXNAV_SEARCH_LEVELS == TRUE
-    u8 dexNavSearchLevels[NUM_SPECIES];
-#endif
     u8 dexNavChain;
 #if APRICORN_TREE_COUNT > 0
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif
     struct ChallengeSettings challengeSettings;
+#if USE_DEXNAV_SEARCH_LEVELS == TRUE
+    // One search level per National Dex number (forms share it)
+    u8 dexNavSearchLevels[NATIONAL_DEX_COUNT + 1];
+#endif
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

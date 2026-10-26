@@ -178,6 +178,9 @@ gSpecials::
 	def_special StartWallyTutorialBattle
 	def_special ChangePokemonNickname
 	def_special ChoosePartyMon
+	def_special TrainingKit_SetNature
+	def_special TrainingKit_CycleAbility
+	def_special OpenStatEditor
 	def_special GetFirstFreePokeblockSlot
 	def_special DoBerryBlending
 	def_special PlayRoulette
@@ -569,3 +572,4 @@ gSpecials::
 	def_special SetAbility
 	def_special ObjectEventInteractionGetApricornTreeData
 	def_special ObjectEventInteractionPickApricornTree
+	def_special GetBadgeCount

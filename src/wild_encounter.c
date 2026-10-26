@@ -19,6 +19,8 @@
 #include "script.h"
 #include "tv.h"
 #include "wild_encounter.h"
+#include "wild_variety.h"
+#include "caps.h"
 #include "battle_debug.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
@@ -479,9 +481,12 @@ u8 PickWildMonNature(void)
     return Random() % NUM_NATURES;
 }
 
+// Platinum Imperium: a wild Pokemon is never above the level cap (src/caps.c)
 void CreateWildMon(u16 species, u8 level)
 {
     bool32 checkCuteCharm = TRUE;
+
+    level = GetLevelWithinCap(level);
 
     ZeroEnemyPartyMons();
 
@@ -578,7 +583,8 @@ static bool8 TryGenerateWildMon(const struct WildPokemonInfo *wildMonInfo, enum 
     if (gMapHeader.mapLayoutId != LAYOUT_BATTLE_FRONTIER_BATTLE_PIKE_ROOM_WILD_MONS && flags & WILD_CHECK_KEEN_EYE && !IsAbilityAllowingEncounter(level))
         return FALSE;
 
-    CreateWildMon(wildMonInfo->wildPokemon[wildMonIndex].species, level);
+    // Platinum Imperium: Wild Variety (src/wild_variety.c)
+    CreateWildMon(WildVariety_TryReplaceSpecies(wildMonInfo->wildPokemon[wildMonIndex].species, area), level);
     return TRUE;
 }
 
@@ -588,6 +594,7 @@ static u16 GenerateFishingWildMon(const struct WildPokemonInfo *wildMonInfo, u8 
     u16 wildMonSpecies = wildMonInfo->wildPokemon[wildMonIndex].species;
     u8 level = ChooseWildMonLevel(wildMonInfo->wildPokemon, wildMonIndex, WILD_AREA_FISHING);
 
+    wildMonSpecies = WildVariety_TryReplaceSpecies(wildMonSpecies, WILD_AREA_FISHING);
     UpdateChainFishingStreak();
     CreateWildMon(wildMonSpecies, level);
     return wildMonSpecies;
@@ -1137,7 +1144,8 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 {
     u8 i;
 
-    if (!REPEL_STEP_COUNT)
+    // Platinum Imperium: the Infinite Repel acts like a repel that never wears off
+    if (!REPEL_STEP_COUNT && !FlagGet(FLAG_INFINITE_REPEL_ON))
         return TRUE;
 
     for (i = 0; i < PARTY_SIZE; i++)

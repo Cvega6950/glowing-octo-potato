@@ -60,12 +60,12 @@
 #define FLAG_ETERNA_CITY_TM_RECYCLE                      0x2E
 #define FLAG_DEFEATED_JUPITER                            0x2F
 #define FLAG_OREBURGH_NPC_TRADE_COMPLETED                0x30
-#define FLAG_UNUSED_0x031    0x31 // Unused Flag
-#define FLAG_UNUSED_0x032    0x32 // Unused Flag
-#define FLAG_UNUSED_0x033    0x33 // Unused Flag
-#define FLAG_UNUSED_0x034    0x34 // Unused Flag
-#define FLAG_UNUSED_0x035    0x35 // Unused Flag
-#define FLAG_UNUSED_0x036    0x36 // Unused Flag
+#define FLAG_INFINITE_REPEL_ON 0x31 // Platinum Imperium: Infinite Repel switched on
+#define FLAG_RECEIVED_QOL_KEY_ITEMS 0x32 // Platinum Imperium: the QoL key items were given
+#define FLAG_DEXNAV_SEARCHING 0x33 // Platinum Imperium: DexNav search running
+#define FLAG_SYS_DEXNAV_GET  0x34 // Platinum Imperium: the DexNav is available
+#define FLAG_DEXNAV_DETECTOR_MODE 0x35 // Platinum Imperium: hidden Pokemon can be found
+#define FLAG_RECEIVED_MEGA_RING 0x36 // Platinum Imperium
 #define FLAG_UNUSED_0x037    0x37 // Unused Flag
 #define FLAG_UNUSED_0x038    0x38 // Unused Flag
 #define FLAG_UNUSED_0x039    0x39 // Unused Flag
