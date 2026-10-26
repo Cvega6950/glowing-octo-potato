@@ -890,6 +890,12 @@ static void CB2_GiveStarter(void)
     *GetVarPointer(VAR_STARTER_MON) = gSpecialVar_Result;
     starterMon = GetStarterPokemon(gSpecialVar_Result);
     ScriptGiveMon(starterMon, 5, ITEM_NONE);
+    // Platinum Imperium: the SHINYS code (src/cheat_codes.c) makes the starter shiny
+    if (FlagGet(FLAG_CODE_SHINY_STARTERS))
+    {
+        bool32 isShiny = TRUE;
+        SetMonData(&gPlayerParty[0], MON_DATA_IS_SHINY, &isShiny);
+    }
     ResetTasks();
     // PlayBattleBGM();
     SetMainCallback2(CB2_ReturnToFieldFadeFromBlack);

@@ -1,0 +1,42 @@
+# Platinum Imperium play test: Emerald Imperium's cheat codes (Crystal Imperium's), typed at the
+# GameCube in the player's room on the keyboard, in any case. MEGA: the Mega Ring and every Mega
+# Stone; CAL (CAUGHTALL's alias): the whole Pokedex; SHINYS and MONO before the starter: shiny
+# starters and the briefcase's Pokemon of one type (Fighting: Mankey, Machop, Timburr); SHR:
+# shiny roaming Pokemon; an unknown code does nothing.
+!new_game()
+# Barry runs in the first time the player walks through the room
+!walkto(4, 5, soft=True)
+wait 60
+mash A 2000
+mash B 300
+!gamecube_code("MEGA")
+shot 01_mega.png
+mash B 400
+!expect_bag_has("keyItems", "ITEM_MEGA_RING")
+!expect_bag_has("items", "ITEM_GARCHOMPITE")
+!expect_bag_has("items", "ITEM_LUCARIONITE")
+!expect_bag_has("items", "ITEM_VENUSAURITE")
+!gamecube_code("Cal")
+mash B 400
+!expect_dex_caught("NATIONAL_DEX_ARCEUS", "arceus_caught")
+!expect_dex_caught("NATIONAL_DEX_TURTWIG", "turtwig_caught")
+!gamecube_code("SHINYS")
+shot 02_shiny_starters.png
+mash B 400
+!expect_flag("FLAG_CODE_SHINY_STARTERS", 1, "shiny_starters_code")
+!gamecube_code("MONO")
+wait 60
+shot 03_mono_menu.png
+press DOWN
+wait 10
+press A
+wait 120
+shot 04_mono_on.png
+mash B 400
+!expect_var("VAR_MONO_STARTER_TYPE", "TYPE_FIGHTING", "mono_fighting")
+!gamecube_code("SHR")
+mash B 400
+!expect_flag("FLAG_CODE_SHINY_ROAMERS", 1, "shiny_roamers_alias")
+!gamecube_code("NOPE")
+shot 05_unknown.png
+mash B 400

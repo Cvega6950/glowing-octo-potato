@@ -325,9 +325,10 @@ TwinleafTown_PlayersHouse_2F_EventScript_TV::
 	msgbox TwinleafTown_PlayersHouse_2F_Text_TV, MSGBOX_SIGN
 	end
 
+@ Platinum Imperium: the GameCube takes Emerald Imperium's cheat codes (data/scripts/cheat_codes.inc)
 TwinleafTown_PlayersHouse_2F_EventScript_GameCube::
-	msgbox TwinleafTown_PlayersHouse_2F_Text_Wii, MSGBOX_SIGN
-	end
+	lockall
+	goto EventScript_CheatCodeConsole
 
 TwinleafTown_PlayersHouse_2F_Text_ThereYouAre:
 	.string "{RIVAL}: There you are!$"

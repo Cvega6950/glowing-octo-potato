@@ -62,6 +62,15 @@ static const u8 sRoamerLocations[][6] =
 #define NUM_LOCATION_SETS (ARRAY_COUNT(sRoamerLocations) - 1)
 #define NUM_LOCATIONS_PER_SET (ARRAY_COUNT(sRoamerLocations[0]))
 
+// Platinum Imperium: the SHINYR code (src/cheat_codes.c) makes the roaming Pokemon shiny
+void SetRoamersShiny(void)
+{
+    u32 i;
+
+    for (i = 0; i < ROAMER_COUNT; i++)
+        ROAMER(i)->shiny = TRUE;
+}
+
 void DeactivateAllRoamers(void)
 {
     u32 i;
@@ -114,6 +123,9 @@ static void CreateInitialRoamerMon(u8 index, u16 species, u8 level)
     ROAMER(index)->smart = GetMonData(&gEnemyParty[0], MON_DATA_SMART);
     ROAMER(index)->tough = GetMonData(&gEnemyParty[0], MON_DATA_TOUGH);
     ROAMER(index)->shiny = GetMonData(&gEnemyParty[0], MON_DATA_IS_SHINY);
+    // Platinum Imperium: the SHINYR code (src/cheat_codes.c)
+    if (FlagGet(FLAG_CODE_SHINY_ROAMERS))
+        ROAMER(index)->shiny = TRUE;
     ROAMER(index)->active = TRUE;
     sRoamerLocation[index][MAP_GRP] = ROAMER_MAP_GROUP;
     sRoamerLocation[index][MAP_NUM] = sRoamerLocations[Random() % NUM_LOCATION_SETS][0];

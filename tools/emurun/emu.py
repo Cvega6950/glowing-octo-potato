@@ -495,6 +495,45 @@ def expect_battler_ivs(battler, want, label):
     return [f"expectbits32 {{gBattleMons+{v['ivs'] + battler * v['bm_size']}}} 0x3FFFFFFF {want:#x} {label}"]
 
 
+KEYBOARD = {"upper": ["ABCDEF .", "GHIJKL ,", "MNOPQRS ", "TUVWXYZ "],
+            "lower": ["abcdef .", "ghijkl ,", "mnopqrs ", "tuvwxyz "]}
+
+
+def type_code(text):
+    """Type text on the naming screen keyboard (it opens on the upper-case page, cursor top left;
+    SELECT turns upper case into lower case and lower case into symbols), then confirm with START
+    and A. Letters only."""
+    out, page, x, y = [], "upper", 0, 0
+    for ch in text:
+        want = "upper" if ch.isupper() else "lower"
+        while page != want:
+            out += ["press SELECT", "wait 30"]
+            page = {"upper": "lower", "lower": "symbols", "symbols": "upper"}[page]
+        ty = next(r for r, row in enumerate(KEYBOARD[page]) if ch in row)
+        tx = KEYBOARD[page][ty].index(ch)
+        out += ["press DOWN", "wait 6"] * (ty - y) + ["press UP", "wait 6"] * (y - ty)
+        out += ["press RIGHT", "wait 6"] * (tx - x) + ["press LEFT", "wait 6"] * (x - tx)
+        out += ["press A", "wait 12"]
+        x, y = tx, ty
+    return out + ["press START", "wait 20", "press A", "wait 200"]
+
+
+def gamecube_code(text):
+    """In the bedroom: walk below the GameCube (4,3), talk to it, answer YES and type the code
+    (data/scripts/cheat_codes.inc); the reply is left on screen for a shot."""
+    # A talks; "Enter a code?" prints, then YES (the cursor starts on it) opens the keyboard
+    return walkto(4, 4, path=True) + ["press UP", "wait 20", "press A", "wait 120", "press A",
+                                      "wait 150"] + type_code(text) + ["wait 120"]
+
+
+def expect_dex_caught(dex, label):
+    """Check the Pokedex caught flag of a National Dex number (NATIONAL_DEX_*): bit (n - 1) of
+    gSaveBlock1Ptr->dexCaught."""
+    v = probe.resolve({"off": "offsetof(struct SaveBlock1, dexCaught)", "n": dex})
+    bit = v["n"] - 1
+    return [f"expectbits8 *{{gSaveBlock1Ptr}}+{v['off'] + bit // 8} {1 << (bit % 8)} {1 << (bit % 8)} {label}"]
+
+
 def walkto(x, y, order="xy", soft=False, creep=False, path=False):
     """Walk to map coordinates (x, y), reading the player's position from the save block.
     soft=True: being stopped (e.g. by a wild battle) is not a test failure. creep=True holds A

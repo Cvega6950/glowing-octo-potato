@@ -16,6 +16,7 @@
 #include "constants/battle_tent.h"
 #include "constants/battle_tower.h"
 #include "constants/berry.h"
+#include "constants/cheat_codes.h"
 #include "constants/cable_club.h"
 #include "constants/coins.h"
 #include "constants/contest.h"
@@ -788,6 +789,7 @@ EventScript_SetBrineyLocation_Route109::
 	.include "data/scripts/l_menu.inc"
 	.include "data/scripts/care_packages.inc"
 	.include "data/scripts/tm_shop.inc"
+	.include "data/scripts/cheat_codes.inc"
 	.include "data/scripts/move_relearner.inc"
 
 @ scripts/notices.inc? signs.inc? See comment about text/notices.inc

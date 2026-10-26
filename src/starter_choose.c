@@ -1,4 +1,5 @@
 #include "global.h"
+#include "cheat_codes.h"
 #include "bg.h"
 #include "data.h"
 #include "decompress.h"
@@ -353,7 +354,8 @@ u16 GetStarterPokemon(u16 chosenStarterId)
 {
     if (chosenStarterId > STARTER_MON_COUNT)
         chosenStarterId = 0;
-    return sStarterMon[chosenStarterId];
+    // Platinum Imperium: the MONO code puts another type's three in the briefcase
+    return CheatCode_GetMonoStarter(sStarterMon[chosenStarterId], chosenStarterId);
 }
 
 static void VblankCB_StarterChoose(void)

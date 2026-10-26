@@ -66,8 +66,8 @@
 #define FLAG_SYS_DEXNAV_GET  0x34 // Platinum Imperium: the DexNav is available
 #define FLAG_DEXNAV_DETECTOR_MODE 0x35 // Platinum Imperium: hidden Pokemon can be found
 #define FLAG_RECEIVED_MEGA_RING 0x36 // Platinum Imperium
-#define FLAG_UNUSED_0x037    0x37 // Unused Flag
-#define FLAG_UNUSED_0x038    0x38 // Unused Flag
+#define FLAG_CODE_SHINY_STARTERS 0x37 // Platinum Imperium: the SHINYS code (src/cheat_codes.c)
+#define FLAG_CODE_SHINY_ROAMERS 0x38 // Platinum Imperium: the SHINYR code (src/cheat_codes.c)
 #define FLAG_UNUSED_0x039    0x39 // Unused Flag
 #define FLAG_UNUSED_0x03A    0x3A // Unused Flag
 #define FLAG_UNUSED_0x03B    0x3B // Unused Flag

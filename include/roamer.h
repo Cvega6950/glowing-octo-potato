@@ -2,6 +2,7 @@
 #define GUARD_ROAMER_H
 
 void DeactivateAllRoamers(void);
+void SetRoamersShiny(void);
 void InitRoamer(void);
 void UpdateLocationHistoryForRoamer(void);
 void RoamerMoveToOtherLocationSet(u32 roamerIndex);
