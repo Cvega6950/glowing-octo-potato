@@ -21,13 +21,7 @@ wait 60
 
 # Player Mega Evolution against Falkner
 !battle_trainer(402)
-wait 300
-press A
-wait 200
-press A
-wait 200
-press A
-wait 400
+!wait_action_menu("falkner_action_menu")
 expect16 {gBattleMons} 181 player_is_ampharos
 press A
 wait 40
@@ -46,13 +40,7 @@ reset
 !new_game()
 !give_mon(76, 50)
 !battle_trainer(441)
-wait 300
-press A
-wait 200
-press A
-wait 200
-press A
-wait 400
+!wait_action_menu("lance_action_menu")
 expect16 {gBattleMons+136} 130 lance_leads_gyarados
 press A
 wait 40

@@ -1400,6 +1400,17 @@ static void Intro_TryShinyAnimShowHealthbox(enum BattlerId battler)
         gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
         bgmRestored = TRUE;
     }
+    // Crystal Imperium (DECISIONS.md D38): the battle goes on while the cry plays
+    else if (!gBattleSpritesDataPtr->healthBoxesData[battler].waitForCry
+        && gBattleSpritesDataPtr->healthBoxesData[battler].healthboxSlideInStarted
+        && !gBattleSpritesDataPtr->healthBoxesData[BATTLE_PARTNER(battler)].waitForCry
+        && BtlController_ContinueDuringCry())
+    {
+        if (!gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored)
+            CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
+        gBattleSpritesDataPtr->healthBoxesData[battler].bgmRestored = TRUE;
+        bgmRestored = TRUE;
+    }
 
     // Wait for battler anims
     if (TwoPlayerIntroMons(battler) && !(gBattleTypeFlags & BATTLE_TYPE_MULTI))

@@ -13,9 +13,7 @@
 !walkto(24, 14, soft=True)
 !pace(21, 25, 14, 10, soft=True)
 expect32 {gMain+4} {BattleMainCB2+1} wild_battle_on
-wait 300
-press A
-wait 300
+!wait_action_menu("action_menu_on")
 poke16 {gBattleMons+136} 150
 press R
 wait 600
@@ -37,9 +35,7 @@ reset
 !walkto(24, 14, soft=True)
 !pace(21, 25, 14, 10, soft=True)
 expect32 {gMain+4} {BattleMainCB2+1} wild_battle_off
-wait 300
-press A
-wait 300
+!wait_action_menu("action_menu_off")
 poke16 {gBattleMons+136} 150
 press R
 wait 900

@@ -978,6 +978,14 @@ u8 LoadGameSave(u8 saveType)
         VarSet(VAR_ROUTE28_SCIENTIST, 0);
         gSaveBlock1Ptr->saveVersion = 5;
     }
+    if (gSaveBlock1Ptr->saveVersion < 6)
+    {
+        // Crystal Imperium 0.13.0 (DECISIONS.md D38): faster battles. FAST INTRO (off by default
+        // before) and FAST BATTLES are turned on once; the player can turn them off again.
+        gSaveBlock3Ptr->challengeSettings.fastIntro = 0;
+        gSaveBlock3Ptr->challengeSettings.fastBattle = 0;
+        gSaveBlock1Ptr->saveVersion = 6;
+    }
 
     // Add version migration steps here:
     // if (gSaveBlock1Ptr->saveVersion < 1)

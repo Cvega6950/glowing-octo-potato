@@ -7,6 +7,8 @@
 !give_item("ITEM_TM03")
 !give_item("ITEM_HM01")
 expect8 {gPlayerPartyCount} 1 hns_party
+# Heart & Soul's new game has FAST INTRO off (Crystal Imperium turns it on for this save, D38)
+!expect_challenge_bit("fastIntro", 1, "hns_fast_intro_off")
 !start_menu("SAVE")
 shot 01_hns_save_prompt.png
 press A

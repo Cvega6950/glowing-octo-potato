@@ -461,6 +461,7 @@ void BtlController_HandleSwitchInWaitAndEnd(enum BattlerId battler);
 void BtlController_Intro_DelayAndEnd(enum BattlerId battler);
 void BtlController_HandleSwitchInShowHealthbox(enum BattlerId battler);
 void BtlController_HandleSwitchInTryShinyAnim(enum BattlerId battler);
+bool32 BtlController_ContinueDuringCry(void);
 void BtlController_HandleSwitchInSoundAndEnd(enum BattlerId battler);
 void BtlController_HandleSwitchInShowSubstitute(enum BattlerId battler);
 

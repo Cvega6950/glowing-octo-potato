@@ -2167,6 +2167,12 @@ void Controller_WaitForHealthBar(enum BattlerId battler)
     // battles, which printed a full bar next to "x/0".
     s32 maxHP = GetMonData(GetBattlerMon(battler), MON_DATA_MAX_HP);
 
+    // Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, the HP bar moves two steps a frame
+    if (hpValue != -1 && IsFastBattleOn())
+    {
+        UpdateHpTextInHealthbox(gHealthboxSpriteIds[battler], HP_CURRENT, hpValue, maxHP);
+        hpValue = MoveBattleBar(battler, gHealthboxSpriteIds[battler], HEALTH_BAR, 0);
+    }
     SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
     if (hpValue != -1)
     {
@@ -2232,7 +2238,8 @@ static void Controller_HitAnimation(enum BattlerId battler)
 {
     u32 spriteId = gBattlerSpriteIds[battler];
 
-    if (gSprites[spriteId].data[1] == 32)
+    // Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, the hit Pokemon blinks twice, not four times
+    if (gSprites[spriteId].data[1] == (IsFastBattleOn() ? 16 : 32))
     {
         gSprites[spriteId].data[1] = 0;
         gSprites[spriteId].invisible = FALSE;
@@ -2518,6 +2525,10 @@ void BtlController_HandleTrainerSlide(enum BattlerId battler, enum TrainerPicID 
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].x += 32;
         gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].sSpeedX = -2;
     }
+    // Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, a trainer slides in twice as fast
+    // (to speak before their last Pokemon or after the battle; 96 pixels at 4 a frame)
+    if (IsFastBattleOn())
+        gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].sSpeedX *= 2;
     gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].callback = SpriteCB_TrainerSlideIn;
 
     gBattlerControllerFuncs[battler] = Controller_WaitForTrainerPic;
@@ -2527,6 +2538,9 @@ void BtlController_HandleTrainerSlide(enum BattlerId battler, enum TrainerPicID 
 
 void BtlController_HandleTrainerSlideBack(enum BattlerId battler, s16 data0, bool32 startAnim)
 {
+    // Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, the trainer slides away in half the time
+    if (IsFastBattleOn())
+        data0 /= 2;
     SetSpritePrimaryCoordsFromSecondaryCoords(&gSprites[gBattleStruct->trainerSlideSpriteIds[battler]]);
     gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].data[0] = data0;
     gSprites[gBattleStruct->trainerSlideSpriteIds[battler]].data[2] = IsOnPlayerSide(battler) ? -40 : 280;
@@ -3168,15 +3182,32 @@ void BtlController_Intro_DelayAndEnd(enum BattlerId battler)
     }
 }
 
+// Crystal Imperium (DECISIONS.md D38): whether a Pokemon just sent out may leave its cry playing, a task
+// turning the music back up when it ends. Game Freak's code did that only for the player's switch-ins;
+// the battle's intro and the other switch-ins held the battle until the cry was over, up to two
+// seconds with nothing else happening. Not in link or recorded battles.
+bool32 BtlController_ContinueDuringCry(void)
+{
+    return !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)) && !gTestRunnerEnabled;
+}
+
 void BtlController_HandleSwitchInSoundAndEnd(enum BattlerId battler)
 {
-    if (!gBattleSpritesDataPtr->healthBoxesData[battler].specialAnimActive && !IsCryPlayingOrClearCrySongs())
+    bool32 cryPlaying;
+
+    if (gBattleSpritesDataPtr->healthBoxesData[battler].specialAnimActive)
+        return;
+    cryPlaying = IsCryPlayingOrClearCrySongs();
+    if (!cryPlaying || BtlController_ContinueDuringCry())
     {
         if (gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy
          || gSprites[gBattlerSpriteIds[battler]].callback == SpriteCallbackDummy_2
          || IsOnPlayerSide(battler))
         {
-            m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
+            if (cryPlaying)
+                CreateTask(Task_PlayerController_RestoreBgmAfterCry, 10);
+            else
+                m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 0x100);
             if (IsControllerPlayer(battler))
                 HandleLowHpMusicChange(GetBattlerMon(battler), battler);
             BtlController_Complete(battler);

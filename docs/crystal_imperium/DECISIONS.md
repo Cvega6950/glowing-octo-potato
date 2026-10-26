@@ -1125,3 +1125,68 @@ DexNav shows and that wild encounters draw from:
 - Evidence: `cheat_codes` (types each code on the keyboard: a wrong code, MEGA twice (47 stones,
   then none), MMY, CAL, EZCATCH and EZC, SHINYR, DXA, NO; MONO and SHS refused once the player has a
   Pokémon; then SHINYS and MONO with Dragon, and PROF. ELM's middle Poké Ball holds a shiny Gible).
+
+## D38. Faster battles
+
+- The user: "the battling feels a little clunky, can you speed it up a bit". Emerald Imperium
+  documents no battle-speed feature (its text one is "Hold R to speed through NPC dialogue",
+  [Imperium features](https://pokemonemeraldimperium.com/features/)). The Archipelago Emerald
+  build is a precedent for the kind of change: battle pauses "shorter by 62.5%" and the opening
+  slide "at double speed"
+  ([Archipelago rom changes](https://git.hollymcfarland.com/monorail/Archipelago/src/commit/e33ea0147bd19bcf4b03bb2cd25ff1d18aaa89f8/worlds/pokemon_emerald/docs/rom%20changes.md)).
+- **Measured first** (the new `trace` command of `tools/emurun` prints the battle's main function,
+  each battler's controller and the battle script's position on every frame they change). In
+  0.12.0, a trainer battle against one Lv 4 Pokémon, pressing A whenever the game waited, took
+  1,518 frames (25 s), 704 of them before the first menu:
+  - FAST INTRO (Heart & Soul's option to skip the slide-in) was off: 152 frames of slide.
+  - The Pokémon sent out plays its own animation and the intro waits for it: TYPHLOSION's took
+    129 frames. The intro also waited for its cry to end.
+  - The battle script ran one command a frame: about 15% of a turn was bookkeeping with nothing
+    on screen.
+  - A hit Pokémon blinks for 32 frames; after a knockout the battle waits for the winner's own
+    animation (68 frames for TYPHLOSION); a trainer slides in at 2 pixels a frame.
+  - FAST BATTLES (on by default) already skipped the pauses after messages, but a message ending
+    in a prompt ("fainted!", "gained Exp. Points!", "You got ¥… for winning!", "You are challenged
+    by…") stopped the battle until a button was pressed.
+- **Always** (no visual change; `src/battle_main.c`, `src/battle_controllers.c` and the player's and
+  opponent's controllers):
+  - The battle script's commands run back to back while each finishes at once. A command that
+    waits (for a controller, a message or a pause) still ends the frame, as does one that ends the
+    action, the turn or the battle.
+  - The intro and the switch-ins no longer wait for the cry to end: a task turns the music back up
+    when it does, as Game Freak's code already did for the player's switch-ins.
+- **With FAST BATTLES on** (`IsFastBattleOn`; HnS's option, on by default):
+  - The intro (Poké Balls thrown, Pokémon sent out), battle animations (moves, stat changes,
+    status, Poké Balls) and the Pokémon's own animations (sent out, after a knockout) play at
+    double speed: `BattleMainCB2` runs a second step of the battle, its sprites and its tasks,
+    without the frame's button presses. Text prints at the TEXT SPEED chosen, and palettes fade
+    at their usual speed: a hardware fade counts its end in a one-bit field cleared at VBlank,
+    and a second `UpdatePaletteFade` in a frame wrapped it to zero, so the fade never ended (the
+    first build hung on Tailwind's sky; `falkner` found it).
+  - A hit Pokémon blinks twice instead of four times (16 frames), the HP bar moves two steps a
+    frame, and trainers slide in and away twice as fast.
+  - A battle message's prompt goes on by itself after 49 frames (`NUM_FRAMES_AUTO_SCROLL_DELAY`);
+    A or B goes on at once, as before. A trainer's words (win and lose texts, the speeches before
+    a last Pokémon) still wait for the player, and so do the Bag and party menus opened from the
+    battle (`gTextFlags.autoContinuePrompt`, battle screen only).
+  - The option's descriptions say so ("No pauses after messages, and battle animations at double
+    speed").
+- **FAST INTRO** is on for a new game. Saves from before 0.13.0 get FAST INTRO and FAST BATTLES
+  turned on once (save version 6, `src/save.c`); both can be turned off again in START > OPTION >
+  BATTLE.
+- Link and recorded battles keep Game Freak's timing (one command a frame, single steps, cries
+  waited for, prompts waiting), as does pokeemerald-expansion's test runner.
+- Not changed: the battle waits up to 30 controller steps for the last sound effect before a move's
+  animation (`IsBattleSEPlaying`, now 15 frames); sounds and cries play in real time; the TEXT
+  SPEED option (FASTER is nearly instant).
+- Results (mGBA): the trainer battle above takes 1,056 frames, 30% less (first menu after 440
+  frames, 0.12.0: 704); with no button pressed, the battle now runs from "Try Battle" to the
+  trainer's defeat text by itself.
+- Evidence: `battle_speed` (new game defaults; the first menu with no button pressed; the battle
+  runs to the defeat text, which waits for A; with FAST BATTLES off the intro's message waits
+  again), `battle_anims` (every move from 1 to the last, Z-Moves and Max Moves aside, used once at
+  double speed: each gets back to the action menu or ends the battle), the old-save test (both
+  options on after Continue), and the rest of the play tests at the new speed.
+- **Tests.** The harness's soft walks let go of the d-pad when a battle starts (they kept walking
+  into the battle's menu once the intro stopped waiting for A), and tests that pressed A through
+  the intro wait for the action menu instead (`wait_action_menu`).

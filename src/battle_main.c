@@ -45,6 +45,7 @@
 #include "pokeball.h"
 #include "pokedex.h"
 #include "pokemon.h"
+#include "pokemon_animation.h"
 #include "pokerus.h"
 #include "random.h"
 #include "randomizer.h"
@@ -133,6 +134,7 @@ static void HandleEndTurn_BattleLost(void);
 static void HandleEndTurn_RanFromBattle(void);
 static void HandleEndTurn_MonFled(void);
 static void HandleEndTurn_FinishBattle(void);
+static void RunBattleScriptCommandsThisFrame(void);
 static u32 Crc32B (const u8 *data, u32 size);
 static u32 GeneratePartyHash(const struct Trainer *trainer, u32 i);
 
@@ -1863,8 +1865,36 @@ static void CB2_HandleStartMultiBattle(void)
     }
 }
 
+// Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, the battle's intro (Poke Balls thrown,
+// Pokemon sent out), battle animations (moves, stat changes, status conditions, Poke Balls) and a
+// Pokemon's own animation (sent out, after it knocks out a foe) play at double speed: the frame runs
+// a second step of the battle, its sprites and its tasks, without the frame's button presses. Text
+// prints and palettes fade at the usual speed: UpdatePaletteFade must run once a frame (a hardware
+// fade counts its finish in a one-bit field cleared at VBlank, and a second call would wrap it back
+// to zero, so the fade, and the animation waiting for it, never ended). Not in link or recorded
+// battles.
+bool32 IsFastBattleOn(void)
+{
+    return !gSaveBlock3Ptr->challengeSettings.fastBattle
+        && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED))
+        && !gTestRunnerEnabled;
+}
+
+static bool32 IsBattleAnimationPlaying(void)
+{
+    return gAnimScriptActive || gBattleMainFunc == DoBattleIntro || IsMonAnimationTaskActive();
+}
+
 void BattleMainCB2(void)
 {
+    if (gMain.callback1 == BattleMainCB1 && IsFastBattleOn() && IsBattleAnimationPlaying())
+    {
+        AnimateSprites();
+        RunTasks();
+        gMain.newKeys = 0;
+        gMain.newAndRepeatedKeys = 0;
+        BattleMainCB1();
+    }
     AnimateSprites();
     BuildOamBuffer();
     RunTextPrinters();
@@ -6036,8 +6066,7 @@ static void HandleEndTurn_FinishBattle(void)
     }
     else
     {
-        if (gBattleControllerExecFlags == 0)
-            gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
+        RunBattleScriptCommandsThisFrame();
     }
 }
 
@@ -6171,6 +6200,35 @@ static void ReturnFromBattleToOverworld(void)
     SetMainCallback2(gMain.savedCallback);
 }
 
+// Crystal Imperium (DECISIONS.md D38): the battle script's commands run back to back while each one
+// finishes at once. Game Freak's loop ran one a frame, so a move spent dozens of frames on bookkeeping
+// with nothing changing on screen. A command that waits (for a controller, a message or a pause) still
+// ends the frame, as does one that ends the action, the turn or the battle, and link and recorded
+// battles keep one command a frame.
+#define MAX_SCRIPT_COMMANDS_PER_FRAME 64
+
+static void RunBattleScriptCommandsThisFrame(void)
+{
+    bool32 batch = !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)) && !gTestRunnerEnabled;
+    u32 count = 0;
+
+    do
+    {
+        const u8 *instr = gBattlescriptCurrInstr;
+        void (*mainFunc)(void) = gBattleMainFunc;
+        u32 actionFuncId = gCurrentActionFuncId;
+        u32 actionNumber = gCurrentTurnActionNumber;
+        u32 outcome = gBattleOutcome;
+
+        if (gBattleControllerExecFlags != 0)
+            return;
+        gBattleScriptingCommandsTable[instr[0]]();
+        if (gBattlescriptCurrInstr == instr || gBattleMainFunc != mainFunc || gCurrentActionFuncId != actionFuncId
+         || gCurrentTurnActionNumber != actionNumber || gBattleOutcome != outcome)
+            return;
+    } while (batch && ++count < MAX_SCRIPT_COMMANDS_PER_FRAME);
+}
+
 void RunBattleScriptCommands_PopCallbacksStack(void)
 {
     if (gCurrentActionFuncId == B_ACTION_TRY_FINISH || gCurrentActionFuncId == B_ACTION_FINISHED)
@@ -6181,15 +6239,13 @@ void RunBattleScriptCommands_PopCallbacksStack(void)
     }
     else
     {
-        if (gBattleControllerExecFlags == 0)
-            gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
+        RunBattleScriptCommandsThisFrame();
     }
 }
 
 void RunBattleScriptCommands(void)
 {
-    if (gBattleControllerExecFlags == 0)
-        gBattleScriptingCommandsTable[gBattlescriptCurrInstr[0]]();
+    RunBattleScriptCommandsThisFrame();
 }
 
 enum Type TrySetAteType(enum Move move, enum BattlerId battlerAtk, enum Ability attackerAbility)

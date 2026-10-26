@@ -1315,6 +1315,7 @@ void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter)
     {
         textPrinter->downArrowYPosIdx = 0;
         textPrinter->utilityCounter = 0;
+        textPrinter->autoScrollDelay = 0;
     }
 }
 
@@ -1417,6 +1418,11 @@ bool32 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
     {
         TextPrinterDrawDownArrow(textPrinter);
         SetResultWithButtonPress(&result);
+        // Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, a battle message's prompt goes on
+        // after a moment if the player doesn't press A or B (on the battle screen only, not in the
+        // Bag or party menu opened from it)
+        if (!result && gTextFlags.autoContinuePrompt && gMain.callback2 == BattleMainCB2)
+            result = TextPrinterWaitAutoMode(textPrinter);
     }
     return result;
 }

@@ -318,9 +318,10 @@ static const u8 *const sDesc_FastIntro[] = {
     COMPOUND_STRING("Skip the sliding animation\nand enter battles faster."),
     COMPOUND_STRING("Battles load at the usual speed."),
 };
+// Crystal Imperium (DECISIONS.md D38): FAST BATTLES also plays battle animations at double speed
 static const u8 *const sDesc_FastBattles[] = {
-    COMPOUND_STRING("Skips all delays in battles, which\nmakes them faster."),
-    COMPOUND_STRING("Manual delay skipping. You can\npress A or B to skip delays."),
+    COMPOUND_STRING("No pauses after messages, and\nbattle animations at double speed."),
+    COMPOUND_STRING("Pauses after battle messages, and\nanimations at their usual speed."),
 };
 static const u8 *const sDesc_NewBackgrounds[] = {
     COMPOUND_STRING("Original battle terrain backgrounds."),

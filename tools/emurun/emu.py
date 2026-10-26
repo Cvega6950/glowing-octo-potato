@@ -130,6 +130,73 @@ def option_set(row, choice):
     return out
 
 
+BATTLE_OPTION_ROWS = {"FAST INTRO": 0, "FAST BATTLES": 1, "BATTLE TERRAIN": 2, "BALL PROMPT": 3, "QUICK RUN": 4,
+                      "RUN PROMPT": 5}
+
+
+def battle_option_toggle(row):
+    """START > OPTION, R to the BATTLE tab, move to the ON/OFF `row` and switch it (the choices
+    wrap around, so one RIGHT always switches). Leaving with B saves the options."""
+    out = start_menu("OPTION") + ["press R", "wait 30"] + ["press DOWN", "wait 10"] * BATTLE_OPTION_ROWS[row]
+    out += ["press RIGHT", "wait 10", f"shot option_{row.lower().replace(' ', '_')}.png"]
+    out += ["press B", "wait 120", "press B", "wait 60"]
+    return out
+
+
+def expect_challenge_bit(field, value, label):
+    """Check a one-bit ChallengeSettings option in the save (HnS's ON/OFF options store 0 for ON,
+    e.g. fastIntro, fastBattle)."""
+    byte, mask = probe.bitfield("ChallengeSettings", field)
+    v = probe.resolve({"off": "offsetof(struct SaveBlock3, challengeSettings)"})
+    return [f"expectbits8 *{{gSaveBlock3Ptr}}+{v['off'] + byte} {mask} {mask if value else 0} {label}"]
+
+
+# Moves the battle refuses to choose without an eaten Berry: the sweep's A presses would choose them
+# again and again
+SWEEP_UNSELECTABLE = ("MOVE_BELCH", "MOVE_STUFF_CHEEKS")
+# Moves used against the opponent's own HP: up to ten hits against a battle HP set far above the
+# Pokemon's own max HP never get back to the action menu, on 0.12.0 as well
+SWEEP_OWN_HP = ("MOVE_POPULATION_BOMB",)
+
+
+def move_animation_sweep(state, opponent_hp=999, max_frames=3000, first=1, last=None):
+    """From a battle saved at the player's action menu (`state`: the player's Pokemon against a
+    one-Pokemon trainer), use every move once, 1 to MOVES_COUNT - 1 (no Z-Moves or Max Moves, and
+    not SWEEP_UNSELECTABLE): load the state, put the move in the first slot with PP, set the
+    opponent's battle HP to `opponent_hp` so damage doesn't end the battle (not for SWEEP_OWN_HP),
+    choose FIGHT and the move, and wait (tapping A for the battle's prompts) until the action menu
+    is back or the battle is over (the user fainted, a one-hit KO). A battle animation that never
+    ends fails the move's check."""
+    v = probe.resolve({"count": "MOVES_COUNT", "pp": "offsetof(struct BattlePokemon, pp)",
+                       "hp": "offsetof(struct BattlePokemon, hp)", "size": "sizeof(struct BattlePokemon)",
+                       "moves": "offsetof(struct BattlePokemon, moves)"})
+    ids = probe.resolve({m: m for m in SWEEP_UNSELECTABLE + SWEEP_OWN_HP})
+    skip = {ids[m] for m in SWEEP_UNSELECTABLE}
+    own_hp = {ids[m] for m in SWEEP_OWN_HP}
+    done = ("{gBattlerControllerFuncs}={HandleInputChooseAction@battle_controller_player},"
+            "{gMain+4}={CB2_Overworld}")
+    out = []
+    for move in range(first, (last or v["count"] - 1) + 1):
+        if move in skip:
+            continue
+        out += [f"loadstate {state}",
+                f"poke16 {{gBattleMons+{v['moves']}}} {move}",
+                f"poke8 {{gBattleMons+{v['pp']}}} 10"]
+        if opponent_hp and move not in own_hp:
+            out.append(f"poke16 {{gBattleMons+{v['size'] + v['hp']}}} {opponent_hp}")
+        out += ["press A", "wait 10", "press A",
+                f"waituntilany32 {max_frames} A move_{move}_ends {done}"]
+    return out
+
+
+def wait_action_menu(label, max_frames=1500):
+    """Wait for the battle's action menu (FIGHT / BAG / POKEMON / RUN). With FAST BATTLES on (the
+    default) the battle's messages go on by themselves, so no button is pressed: an A pressed into
+    the intro would land on the menu and choose FIGHT (DECISIONS.md D38)."""
+    return [f"waituntil32 {{gBattlerControllerFuncs}} {{HandleInputChooseAction@battle_controller_player}} "
+            f"{max_frames} - {label}"]
+
+
 def battle_style_set():
     """START > OPTION > BATTLE STYLE = SET, so trainer battles never ask "Will you switch?"."""
     out = start_menu("OPTION")
@@ -594,12 +661,17 @@ def expect_battler_ivs(battler, want, label):
 
 def walkto(x, y, order="xy", soft=False, creep=False, path=False):
     """Walk to map coordinates (x, y), reading the player's position from the save block.
-    soft=True: being stopped (e.g. by a wild battle) is not a test failure. creep=True holds A
-    (sneaking up on a DexNav target). path=True finds a way around walls, trees and water using
-    the loaded map's collision and elevation. x/y may be "@ADDR~BIAS" to read the target from
-    memory."""
+    soft=True: being stopped (e.g. by a wild battle) is not a test failure, and the d-pad is let go
+    as soon as a battle starts (gMain.inBattle), so the walk doesn't move the battle's menu
+    cursor. creep=True holds A (sneaking up on a DexNav target). path=True finds a way around
+    walls, trees and water using the loaded map's collision and elevation. x/y may be
+    "@ADDR~BIAS" to read the target from memory."""
+    stop = ""
+    if soft:
+        byte, mask = probe.bitfield("Main", "inBattle")
+        stop = f" stop={{gMain+{byte}}}/{mask}"
     return [f"walkto {{gSaveBlock1Ptr}} {x} {y} {order}" + (" soft" if soft else "") + (" creep" if creep else "")
-            + (" path={gBackupMapLayout}" if path else "")]
+            + (" path={gBackupMapLayout}" if path else "") + stop]
 
 
 def pace(x1, x2, y, laps, soft=False):

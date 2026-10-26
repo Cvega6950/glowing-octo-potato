@@ -58,8 +58,7 @@ wait 400
 shot 04_dexnav_battle.png
 expect32 {gMain+4} {BattleMainCB2+1} dexnav_battle_started
 !expect_flag("FLAG_DEXNAV_SEARCHING", 0, "search_ends_at_battle")
-press A
-wait 300
+!wait_action_menu("dexnav_action_menu")
 !expect_battler(1, "species", "SPECIES_RATTATA", "dexnav_rattata")
 press R
 wait 1000

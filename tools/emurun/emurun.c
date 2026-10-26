@@ -22,13 +22,14 @@
 //   autobattle MOVES MAXFRAMES key=ADDR...   play the current battle to the end (see AutoBattle)
 //   menuselect CURSOR LIST COUNT TARGET   with a list menu open whose u8 cursor, u8 action list and
 //                          u8 length live at those addresses, move to the entry equal to TARGET and press A
-//   walkto SB1PTR X Y [yx] [soft] [creep] [path=ADDR]  step (holding the d-pad 8 frames per tile) until the
-//                          player's map position, read from *SB1PTR (gSaveBlock1Ptr->pos, offset 4
-//                          after HnS's saveVersion), is (X,Y); x first unless "yx". With "soft", not
-//                          reaching the target (e.g. a wild battle started) is not a failure; "creep"
+//   walkto SB1PTR X Y [yx] [soft] [creep] [path=ADDR] [stop=ADDR/MASK]  step (holding the d-pad 8 frames per
+//                          tile) until the player's map position, read from *SB1PTR (gSaveBlock1Ptr->pos,
+//                          offset 4 after HnS's saveVersion), is (X,Y); x first unless "yx". With "soft",
+//                          not reaching the target (e.g. a wild battle started) is not a failure; "creep"
 //                          holds A (DexNav sneaking); "path=ADDR" (&gBackupMapLayout) routes around
-//                          walls and tiles of another elevation (water, seen from land). X/Y may be
-//                          @ADDR~BIAS: an s16 in memory minus BIAS
+//                          walls and tiles of another elevation (water, seen from land); "stop=ADDR/MASK"
+//                          stops pressing the d-pad once the byte at ADDR has a MASK bit set (gMain.inBattle:
+//                          a battle started). X/Y may be @ADDR~BIAS: an s16 in memory minus BIAS
 //   expectfind16 BASE COUNT STRIDE VALUE [LABEL]   fail unless one of COUNT entries STRIDE bytes apart
 //                          from BASE (which may be *PTR+OFF) holds the 16-bit VALUE
 //   expectqty16 BASE COUNT STRIDE VALUE WANT KEY [LABEL]   like expectfind16, and the found entry's next
@@ -49,11 +50,16 @@
 //   snap16 LIST ADDR COUNT   remember COUNT 16-bit values from ADDR (e.g. a DexNav row) as LIST
 //   waituntil32 ADDR VALUE MAXFRAMES [KEY] [LABEL]   run until the 32-bit value at ADDR is VALUE
 //                          (the Thumb bit ignored, for function pointers), tapping KEY every 16 frames
-//                          while it isn't; fail if it isn't within MAXFRAMES
+//                          while it isn't ("-": no key); fail if it isn't within MAXFRAMES
+//   waituntilany32 MAXFRAMES KEY LABEL ADDR=VALUE[,ADDR=VALUE...]   like waituntil32, until one of the
+//                          32-bit values at the ADDRs is its VALUE; KEY "-" taps nothing
 //   expecttally NAME MIN MAX   fail unless the matching count of NAME is within [MIN, MAX]
 //   expectseen SPECIES [LABEL]   fail unless an autobattle since the last seenreset saw the
 //                          opponent's battler as SPECIES (e.g. a boss's Mega Evolved form)
 //   seenreset              forget the opponent species seen so far
+//   trace FRAMES ADDR[,ADDR...] [KEY]   run FRAMES frames, printing the 32-bit values at the ADDRs (at
+//                          most 8) on each frame where one of them changes (for profiling); with KEY,
+//                          tap it every 16 frames (e.g. a player hurrying the text along)
 //   snaprect NAME X Y W H  remember the frame's pixels in that screen rectangle as NAME
 //   expectrect NAME [LABEL]   fail unless the frame's pixels in NAME's rectangle are as remembered
 // KEY: A B SELECT START RIGHT LEFT UP DOWN R L
@@ -812,10 +818,10 @@ int main(int argc, char **argv)
             uint32_t sb1 = Peek(32, strtoul(a1, NULL, 0));
             int tx = ParseCoord(a2), ty = ParseCoord(a3), yFirst = 0, soft = 0;
             unsigned extraKeys = 0;
-            uint32_t layout = 0;
-            char opts[4][32] = {{0}};
-            sscanf(line, "%*s %*s %*s %*s %31s %31s %31s %31s", opts[0], opts[1], opts[2], opts[3]);
-            for (int i = 0; i < 4; i++)
+            uint32_t layout = 0, stopAddr = 0, stopMask = 0;
+            char opts[5][32] = {{0}};
+            sscanf(line, "%*s %*s %*s %*s %31s %31s %31s %31s %31s", opts[0], opts[1], opts[2], opts[3], opts[4]);
+            for (int i = 0; i < 5; i++)
             {
                 if (!strcmp(opts[i], "yx"))
                     yFirst = 1;
@@ -825,6 +831,12 @@ int main(int argc, char **argv)
                     extraKeys = 1u << 0; // hold A: creep (DexNav)
                 else if (!strncmp(opts[i], "path=", 5))
                     layout = strtoul(opts[i] + 5, NULL, 0); // &gBackupMapLayout: route around obstacles
+                else if (!strncmp(opts[i], "stop=", 5))
+                {
+                    char *slash;
+                    stopAddr = strtoul(opts[i] + 5, &slash, 0);
+                    stopMask = *slash == '/' ? strtoul(slash + 1, NULL, 0) : 0xFF;
+                }
             }
             int *dist = layout ? PathDistances(layout, tx, ty) : NULL;
             int stuck = 0, steps = 0;
@@ -832,6 +844,8 @@ int main(int argc, char **argv)
             {
                 int x = (int16_t)Peek(16, sb1 + 4), y = (int16_t)Peek(16, sb1 + 6);
                 if (x == tx && y == ty)
+                    break;
+                if (stopAddr && (Peek(8, stopAddr) & stopMask))
                     break;
                 unsigned key;
                 int moveX = x != tx && (!yFirst || y == ty);
@@ -994,6 +1008,36 @@ int main(int argc, char **argv)
                        hit ? "hit" : "miss", *hits, *runs);
             }
         }
+        else if (!strcmp(cmd, "trace"))
+        {
+            uint32_t addrs[8], prev[8] = {0};
+            int count = 0;
+            unsigned long frames = strtoul(a1, NULL, 0), start = frameCount;
+            unsigned key = a3[0] ? ParseKeys(a3) : 0;
+            for (char *tok = strtok(a2, ","); tok && count < 8; tok = strtok(NULL, ","))
+                addrs[count++] = ParseAddr(tok);
+            for (unsigned long f = 0; ; f++)
+            {
+                int changed = (f == 0);
+                for (int i = 0; i < count; i++)
+                {
+                    uint32_t v = Peek(32, addrs[i]);
+                    if (v != prev[i])
+                        changed = 1;
+                    prev[i] = v;
+                }
+                if (changed)
+                {
+                    printf("[frame %lu] trace +%lu", frameCount, frameCount - start);
+                    for (int i = 0; i < count; i++)
+                        printf(" %08X", prev[i]);
+                    printf("\n");
+                }
+                if (f >= frames)
+                    break;
+                RunFrames(key && f % 16 == 0 ? key : 0, 1);
+            }
+        }
         else if (!strcmp(cmd, "dump"))
         {
             // dump ADDR LEN FILE: write LEN bytes of memory from ADDR to FILE (for debugging)
@@ -1015,8 +1059,12 @@ int main(int argc, char **argv)
             unsigned long maxFrames = strtoul(a3, NULL, 0), start = frameCount;
             unsigned key = 0;
             const char *label = a5;
-            // KEY is optional: a 4th word that isn't a key name is the label
-            if (a4[0])
+            // KEY is optional: a 4th word that isn't a key name is the label; "-" is no key
+            if (!strcmp(a4, "-"))
+            {
+                label = a5;
+            }
+            else if (a4[0])
             {
                 key = ParseKeys(a4);
                 if (!key)
@@ -1032,6 +1080,44 @@ int main(int argc, char **argv)
             printf("[frame %lu] %s %s: @0x%08X = 0x%X after %lu frames%s\n", frameCount, ok ? "PASS" : "FAIL",
                    label[0] ? label : "waituntil32", addr, Peek(32, addr), frameCount - start, ok ? "" : " (timed out)");
             if (!ok)
+                failures++;
+        }
+        else if (!strcmp(cmd, "waituntilany32"))
+        {
+            char list[512] = {0};
+            uint32_t addrs[8], wants[8];
+            int count = 0, hit = -1;
+            sscanf(line, "%*s %*s %*s %*s %511s", list);
+            for (char *tok = strtok(list, ","); tok && count < 8; tok = strtok(NULL, ","))
+            {
+                char *eq = strchr(tok, '=');
+                if (!eq)
+                    continue;
+                *eq = 0;
+                addrs[count] = ParseAddr(tok);
+                wants[count++] = strtoul(eq + 1, NULL, 0) & ~1u;
+            }
+            unsigned long maxFrames = strtoul(a1, NULL, 0), start = frameCount;
+            unsigned key = strcmp(a2, "-") ? ParseKeys(a2) : 0;
+            for (;;)
+            {
+                for (int i = 0; i < count && hit < 0; i++)
+                {
+                    if ((Peek(32, addrs[i]) & ~1u) == wants[i])
+                        hit = i;
+                }
+                if (hit >= 0 || frameCount - start >= maxFrames)
+                    break;
+                if (key)
+                    Tap(key);
+                RunFrames(0, 10);
+            }
+            printf("[frame %lu] %s %s: ", frameCount, hit >= 0 ? "PASS" : "FAIL", a3);
+            if (hit >= 0)
+                printf("@0x%08X = 0x%X after %lu frames\n", addrs[hit], Peek(32, addrs[hit]), frameCount - start);
+            else
+                printf("none of %d values after %lu frames (timed out)\n", count, frameCount - start);
+            if (hit < 0)
                 failures++;
         }
         else if (!strcmp(cmd, "snap16"))

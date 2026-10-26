@@ -182,6 +182,7 @@ typedef struct {
     bool8 useAlternateDownArrow:1;
     bool8 autoScroll:1;
     bool8 forceMidTextSpeed:1;
+    bool8 autoContinuePrompt:1; // Crystal Imperium: a battle message's prompt also goes on by itself
 } TextFlags;
 
 struct TextGlyph

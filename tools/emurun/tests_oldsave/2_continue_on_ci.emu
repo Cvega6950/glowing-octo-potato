@@ -15,6 +15,10 @@ expect8 {gPlayerPartyCount} 1 party_kept
 !expect_bag_has("keyItems", "ITEM_POKEMON_BOX_LINK")
 !expect_flag("FLAG_SYS_DEXNAV_GET", 1, "dexnav_given")
 !expect_save3("dexNavSearchLevels[NATIONAL_DEX_RATTATA]", 0, "search_levels_zero")
+# Faster battles (D38): a save from before 0.13.0 gets FAST INTRO (off in Heart & Soul's new
+# games) and FAST BATTLES turned on
+!expect_challenge_bit("fastIntro", 0, "old_save_fast_intro_on")
+!expect_challenge_bit("fastBattle", 0, "old_save_fast_battles_on")
 # The TMs keep their moves: Heart & Soul's TM70 Rock Climb is TM192 now and TM03 Water Pulse is
 # TM160 (TM70 is Triple Axel and TM03 Flip Turn). They move from SaveBlock1's bag to the TM case.
 !expect_bag_has("TMsHMs", "ITEM_TM_ROCK_CLIMB", "old_tm70_is_rock_climb")

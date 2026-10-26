@@ -124,7 +124,7 @@ void SetDefaultChallengeSettings(void)
     gSaveblock3.challengeSettings.autorunDive = 1;
     gSaveblock3.challengeSettings.fishing = 0;
     gSaveblock3.challengeSettings.evenFasterJoy = 1;
-    gSaveblock3.challengeSettings.fastIntro = 1;
+    gSaveblock3.challengeSettings.fastIntro = 0; // Crystal Imperium: ON (DECISIONS.md D38)
     gSaveblock3.challengeSettings.fastBattle = 0;
     gSaveblock3.challengeSettings.optionStyle = 0;
     gSaveblock3.challengeSettings.genOneRecharge = 0;

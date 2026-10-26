@@ -1,5 +1,22 @@
 # Crystal Imperium changelog
 
+## 0.13.0-experimental (2026-10-26)
+
+### Quality of life
+- **Faster battles** (DECISIONS.md D38). A trainer battle against one Pokémon takes about 30%
+  less time, with nothing left out:
+  - The battle no longer spends a frame on each step of its scripts, and no longer waits for a
+    Pokémon's cry to end before going on.
+  - With **FAST BATTLES** (START > OPTION > BATTLE, on by default): the battle's intro, move
+    animations and the Pokémon's own animations play at double speed; a hit Pokémon blinks
+    twice instead of four times; the HP bar and trainers sliding in move twice as fast; and
+    messages like "fainted!", "gained Exp. Points!" or "You got ¥… for winning!" go on by
+    themselves after a moment (A or B still goes on at once). A trainer's words still wait for
+    you.
+  - **FAST INTRO** (no slide-in at the start of a battle) is on for new games.
+  - Saves from earlier versions get FAST INTRO and FAST BATTLES turned on once. Turn either off
+    in START > OPTION > BATTLE for the classic pace; TEXT SPEED FASTER prints text almost at once.
+
 ## 0.12.0-experimental (2026-10-26)
 
 ### Quality of life

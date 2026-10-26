@@ -45,7 +45,7 @@ def bitfield(struct, field):
     whose field is all ones and reads its bytes back from the assembly."""
     key = ("bitfield", struct, field)
     if key not in _cache:
-        src = ['#include "global.h"', f"const struct {struct} kBitfieldProbe = {{ .{field} = -1 }};"]
+        src = ['#include "global.h"', '#include "main.h"', f"const struct {struct} kBitfieldProbe = {{ .{field} = -1 }};"]
         path = os.path.join(ROOT, "src", f"zz_emurun_probe_{os.getpid()}.c")
         with open(path, "w") as f:
             f.write("\n".join(src) + "\n")

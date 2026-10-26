@@ -52,6 +52,12 @@ From the first step of a new game:
   shown in DexNav. 30% of wild encounters (adjustable) are one of them. The sets change every
   day.
 - **Easy Catch:** every Poké Ball catches (can be turned off).
+- **Faster battles** (START > OPTION > BATTLE: FAST BATTLES and FAST INTRO, both on): no
+  slide-in at the start; the intro, move animations, the Pokémon's own animations, the HP bar
+  and trainers sliding in at double speed; a shorter hit flash; and messages such as "fainted!"
+  or "gained Exp. Points!" go on by themselves after a moment (A or B at once; a trainer's
+  words wait for you). The battle no longer pauses on its own bookkeeping or waits for a cry to
+  end. A trainer battle against one Pokémon takes about 30% less time.
 - **Minimal Grinding Mode** (every Pokémon battles as if it had 31 IVs and 0 EVs), **level caps**,
   ×1.5 EXP, an **EASY / NORMAL / HARD** difficulty selection, **Auto Run**
   (START > OPTION > AUTORUN, or the L menu), and a **move relearner** in the party menu.

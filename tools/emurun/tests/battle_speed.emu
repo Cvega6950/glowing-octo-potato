@@ -1,0 +1,40 @@
+# Crystal Imperium play test: faster battles (DECISIONS.md D38). A new game has FAST INTRO and
+# FAST BATTLES on. TYPHLOSION (Lv 50) against Youngster Joey's RATTATA (Lv 4), with no button
+# pressed except FIGHT and the first move:
+# - "You are challenged by..." goes on by itself, so the action menu comes up with no button press
+#   (0.12.0: the slide-in, then the message waited for A; with A pressed every 16 frames the menu
+#   came up after about 690 frames);
+# - the move, the KO, "fainted!", the Exp. Points and "You defeated..." need no button press either,
+#   up to Joey's defeat text, which is a trainer's words and waits for A;
+# - with FAST BATTLES off, the intro's message waits for a button press again.
+# gBattlerControllerFuncs[0] is the player's controller, which prints the battle's messages.
+!new_game()
+!expect_challenge_bit("fastIntro", 0, "fast_intro_on_for_a_new_game")
+!expect_challenge_bit("fastBattle", 0, "fast_battles_on_for_a_new_game")
+!give_mon(157, 50)
+!no_care_packages()
+savestate overworld.ss
+
+!battle_trainer(7)
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 600 action_menu_with_no_button_press
+shot 01_action_menu.png
+press A
+wait 20
+press A
+waituntil32 {gBattlescriptCurrInstr} {BattleScript_LocalBattleWonLoseTexts+6} 900 defeat_text_with_no_button_press
+wait 300
+expect32 {gBattlerControllerFuncs} {Controller_WaitForString+1} defeat_text_waits_for_a
+shot 02_defeat_text_waits.png
+press A
+waituntil32 {gMain+4} {CB2_Overworld+1} 600 back_in_the_overworld
+
+# FAST BATTLES off: the intro's message waits for a button press, as in 0.12.0
+loadstate overworld.ss
+!battle_option_toggle("FAST BATTLES")
+!expect_challenge_bit("fastBattle", 1, "fast_battles_off")
+!battle_trainer(7)
+wait 600
+expect32 {gBattleMainFunc} {DoBattleIntro+1} intro_waits_with_fast_battles_off
+expect32 {gBattlerControllerFuncs} {Controller_WaitForString+1} intro_message_waits_for_a
+shot 03_intro_waits.png
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 900 A action_menu_after_a

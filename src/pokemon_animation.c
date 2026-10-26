@@ -532,6 +532,13 @@ static void Task_HandleMonAnimation(u8 taskId)
     }
 }
 
+// Crystal Imperium (DECISIONS.md D38): whether a Pokemon's own animation is playing (sent out into
+// battle, after knocking out a foe), for battle_main.c's double speed
+bool32 IsMonAnimationTaskActive(void)
+{
+    return FuncIsActiveTask(Task_HandleMonAnimation);
+}
+
 void LaunchAnimationTaskForFrontSprite(struct Sprite *sprite, enum AnimFunctionIDs frontAnimId)
 {
     u8 taskId = CreateTask(Task_HandleMonAnimation, 128);
