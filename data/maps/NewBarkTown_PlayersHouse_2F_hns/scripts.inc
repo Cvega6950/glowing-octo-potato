@@ -60,9 +60,10 @@ NewBarkTown_PlayersHouse_2F_Movement_PlayerWalkToClock2:
 	delay_8
 	step_end
 
+@ Crystal Imperium: the NES takes Emerald Imperium's cheat codes (data/scripts/cheat_codes.inc)
 NewBarkTown_PlayersHouse_2F_EventScript_NES::
-	msgbox NewBarkTown_PlayersHouse_2F_Text_NES, MSGBOX_SIGN
-	end
+	lockall
+	goto EventScript_CheatCodeConsole
 
 NewBarkTown_PlayersHouse_2F_EventScript_PC::
 	lockall
@@ -82,7 +83,3 @@ NewBarkTown_PlayersHouse_2F_EventScript_TurnOffPlayerPC::
 	releaseall
 	end
 
-NewBarkTown_PlayersHouse_2F_Text_NES:
-    .string "{PLAYER} played with the NES.\p"
-    .string "…Okay!\n"
-    .string "It's time to go!$"

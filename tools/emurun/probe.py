@@ -14,7 +14,7 @@ def resolve(exprs):
     if todo:
         src = ['#include "global.h"', '#include "constants/flags.h"', '#include "constants/vars.h"',
                '#include "constants/items.h"', '#include "constants/species.h"', '#include "item_menu.h"', '#include "pokemon.h"', '#include "battle.h"',
-               '#include "dexnav.h"', '#include "constants/opponents.h"', '#include "window.h"', '#include "battle_setup.h"']
+               '#include "dexnav.h"', '#include "money.h"', '#include "constants/opponents.h"', '#include "window.h"', '#include "battle_setup.h"']
         src += [f"const int kProbe_{i} = ({v});" for i, v in enumerate(todo)]
         # One file per process, so test runs in parallel don't overwrite each other's probe
         path = os.path.join(ROOT, "src", f"zz_emurun_probe_{os.getpid()}.c")
@@ -38,3 +38,41 @@ def resolve(exprs):
         for i in re.findall(r"kProbe_(\d+):\s*\n\s*\.space\s+4", asm):
             _cache[todo[int(i)]] = 0
     return {k: _cache[v] for k, v in exprs.items()}
+
+
+def bitfield(struct, field):
+    """(byte offset, mask) of a bitfield of `struct` that lies within one byte: compiles a constant
+    whose field is all ones and reads its bytes back from the assembly."""
+    key = ("bitfield", struct, field)
+    if key not in _cache:
+        src = ['#include "global.h"', f"const struct {struct} kBitfieldProbe = {{ .{field} = -1 }};"]
+        path = os.path.join(ROOT, "src", f"zz_emurun_probe_{os.getpid()}.c")
+        with open(path, "w") as f:
+            f.write("\n".join(src) + "\n")
+        try:
+            cc1 = subprocess.run(["arm-none-eabi-gcc", "-print-prog-name=cc1"], check=True,
+                                 capture_output=True, text=True).stdout.strip()
+            cmd = ("arm-none-eabi-cpp -iquote include -Wno-trigraphs -DMODERN=1 -DTESTING=0 -DPOKEMON_HNS -std=gnu17 "
+                   f"{os.path.relpath(path, ROOT)} | tools/preproc/preproc -i {os.path.relpath(path, ROOT)} charmap.txt | "
+                   f"{cc1} -quiet -w -mthumb -O2 -mabi=apcs-gnu -march=armv4t -std=gnu17 -o - -")
+            res = subprocess.run(cmd, shell=True, cwd=ROOT, capture_output=True, text=True)
+            if res.returncode != 0:
+                raise RuntimeError("probe compile failed:\n" + res.stderr[-2000:])
+        finally:
+            os.remove(path)
+        data = bytearray()
+        sizes = {".byte": 1, ".short": 2, ".2byte": 2, ".hword": 2, ".word": 4, ".4byte": 4}
+        body = res.stdout.split("kBitfieldProbe:", 1)[1]
+        for line in body.splitlines()[1:]:
+            parts = line.split()
+            if not parts or parts[0].endswith(":") or parts[0] in (".size", ".section", ".global", ".align"):
+                break
+            if parts[0] == ".space":
+                data += bytes(int(parts[1]))
+            elif parts[0] in sizes:
+                data += (int(parts[1], 0) & ((1 << (8 * sizes[parts[0]])) - 1)).to_bytes(sizes[parts[0]], "little")
+        nonzero = [i for i, b in enumerate(data) if b]
+        if len(nonzero) != 1:
+            raise RuntimeError(f"{struct}.{field} is not within one byte: {data.hex()}")
+        _cache[key] = (nonzero[0], data[nonzero[0]])
+    return _cache[key]

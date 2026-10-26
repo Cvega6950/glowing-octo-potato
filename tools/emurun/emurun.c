@@ -36,6 +36,8 @@
 //                          encryption key for Bag quantities) must be WANT
 //   expectsame32 ADDR1 ADDR2 [LABEL]   fail unless the 32-bit values at ADDR1 and ADDR2 are equal (e.g.
 //                          a text pointer the game set and the table entry it should come from)
+//   expectxor32 ADDR KEY WANT [LABEL]   fail unless the 32-bit value at ADDR XORed with the 32-bit value
+//                          at KEY is WANT (e.g. the player's money and the save's encryption key)
 //   setflag SB1PTR FLAGSOFF FLAG VALUE   set (1) or clear (0) event flag FLAG in (*SB1PTR)->flags
 //   expectflag SB1PTR FLAGSOFF FLAG WANT [LABEL]   check event flag FLAG (0/1) in (*SB1PTR)->flags
 //   seek8/seek16 ADDR TARGET KEYUP KEYDOWN   tap KEYUP while the value at ADDR is below TARGET and
@@ -873,6 +875,17 @@ int main(int argc, char **argv)
             printf("[frame %lu] %s %s: 0x%08X vs 0x%08X\n", frameCount, v1 == v2 ? "PASS" : "FAIL",
                    a3[0] ? a3 : "expectsame32", v1, v2);
             if (v1 != v2)
+                failures++;
+        }
+        else if (!strcmp(cmd, "expectxor32"))
+        {
+            // expectxor32 ADDR KEY WANT [LABEL]: the 32-bit value XOR the 32-bit key is WANT
+            char a4[128] = {0};
+            sscanf(line, "%*s %*s %*s %*s %127s", a4);
+            uint32_t got = Peek(32, ParseAddr(a1)) ^ Peek(32, ParseAddr(a2)), want = strtoul(a3, NULL, 0);
+            printf("[frame %lu] %s %s: %u (want %u)\n", frameCount, got == want ? "PASS" : "FAIL",
+                   a4[0] ? a4 : "expectxor32", got, want);
+            if (got != want)
                 failures++;
         }
         else if (!strcmp(cmd, "expectqty16"))

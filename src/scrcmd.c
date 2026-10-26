@@ -2705,6 +2705,9 @@ bool8 ScrCmd_showmonpic(struct ScriptContext *ctx)
 
             FlagSet(flagPreviewChecked);
         }
+        // Crystal Imperium: the SHINYS code (src/cheat_codes.c)
+        if (FlagGet(FLAG_CODE_SHINY_STARTERS))
+            FlagSet(flagShinyPreview);
 
         shinyStarter = FlagGet(flagShinyPreview);
 

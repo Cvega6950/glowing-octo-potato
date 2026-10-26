@@ -19,6 +19,7 @@
 #include "constants/battle_tower.h"
 #include "constants/berry.h"
 #include "constants/care_packages.h"
+#include "constants/cheat_codes.h"
 #include "constants/cable_club.h"
 #include "constants/coins.h"
 #include "constants/contest.h"
@@ -1177,6 +1178,7 @@ EventScript_SetBrineyLocation_Route109::
 	.include "data/scripts/training_kit.inc"
 	.include "data/scripts/l_menu.inc"
 	.include "data/scripts/care_packages.inc"
+	.include "data/scripts/cheat_codes.inc"
 .if IS_HNS
 	.include "data/scripts/tm_shop_hns.inc"
 .endif

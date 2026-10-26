@@ -430,6 +430,55 @@ def expect_save3(field, want, label, size=8):
     return [f"expect{size} *{{gSaveBlock3Ptr}}+{v['off']} {v['want']} {label}"]
 
 
+def expect_easy_catch(on, label):
+    """Check EASY CATCH (ChallengeSettings.tx_Features_EasyCatchOff, 0 when on)."""
+    byte, mask = probe.bitfield("ChallengeSettings", "tx_Features_EasyCatchOff")
+    v = probe.resolve({"off": "offsetof(struct SaveBlock3, challengeSettings)"})
+    return [f"expectbits8 *{{gSaveBlock3Ptr}}+{v['off'] + byte} {mask} {0 if on else mask} {label}"]
+
+
+def expect_money(want, label=None):
+    """Check the player's money: stored XORed with the save's encryption key (src/money.c)."""
+    v = probe.resolve({"money": "offsetof(struct SaveBlock1, money)", "key": "offsetof(struct SaveBlock2, encryptionKey)",
+                       "want": str(want)})
+    return [f"expectxor32 *{{gSaveBlock1Ptr}}+{v['money']} *{{gSaveBlock2Ptr}}+{v['key']} {v['want']} "
+            f"{label or 'money'}"]
+
+
+def expect_dex_caught(species, want, label=None):
+    """Check a Pokemon's caught flag in the Pokedex (SaveBlock1 dexCaught, a bit per National Dex
+    number from 1), through the event-flag check on that bit array."""
+    v = probe.resolve({"off": "offsetof(struct SaveBlock1, dexCaught)", "num": "NATIONAL_DEX_" + species[len("SPECIES_"):]})
+    return [f"expectflag {{gSaveBlock1Ptr}} {v['off']} {v['num'] - 1} {want} {label or 'caught_' + species.lower()}"]
+
+
+# The code naming screen's upper-case keyboard (src/naming_screen.c sKeyboardChars)
+NAMING_KEYS = ["ABCDEF .", "GHIJKL ,", "MNOPQRS ", "TUVWXYZ "]
+
+
+def type_code(text):
+    """On the code naming screen (upper-case letters, the cursor on A): move to each letter of the
+    text and press A, then START (the cursor to OK) and A."""
+    out, x, y = [], 0, 0
+    for ch in text.upper():
+        ty = next(r for r, row in enumerate(NAMING_KEYS) if ch in row)
+        tx = NAMING_KEYS[ty].index(ch)
+        out += ["press RIGHT 2", "wait 8"] * max(tx - x, 0) + ["press LEFT 2", "wait 8"] * max(x - tx, 0)
+        out += ["press DOWN 2", "wait 8"] * max(ty - y, 0) + ["press UP 2", "wait 8"] * max(y - ty, 0)
+        out += ["press A 2", "wait 12"]
+        x, y = tx, ty
+    return out + ["wait 20", "press START 2", "wait 30", "press A 2", "wait 60"]
+
+
+def nes_code(text, shot=None):
+    """At the NES in the bedroom (from (4, 3), facing it): turn it on, YES to "Enter a code?", type
+    the code; the result's message is on screen after."""
+    out = walkto(4, 3, path=True) + ["press UP", "wait 20", "press A", "wait 150", "press A", "wait 250"]
+    if shot:
+        out += [f"shot {shot}"]
+    return out + type_code(text) + ["wait 250"]
+
+
 def expect_follower(on, label):
     """Check the follower Pokemon setting: followerEnable, the first bit of ChallengeSettings, is 0
     when a Pokemon follows (on=True)."""

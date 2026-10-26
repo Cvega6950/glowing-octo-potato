@@ -1,0 +1,147 @@
+# Crystal Imperium play test: Emerald Imperium's cheat codes, typed at the NES in the bedroom
+# (DECISIONS.md D37): "Enter a code?", YES, then the code naming screen. Codes and aliases:
+# DEXALL/DXA, CAUGHTALL/CAL, EZCATCH/EZC, MEGA, SHINYS/SHS, MAXMONEY/MMY, MONO, SHINYR/SHR.
+# B reads through each result (A would talk to the NES again).
+!new_game()
+savestate bedroom.ss
+
+# A code that isn't one
+!nes_code("HELLO", shot="01_code_screen.png")
+shot 02_nothing_happened.png
+mash B 300
+!expect_flag("FLAG_RECEIVED_MEGA_RING", 0, "nothing_from_a_wrong_code")
+
+# MEGA: the Mega Ring and the 48 Mega Stones this game's Megas use
+!nes_code("MEGA")
+shot 03_mega_ring.png
+mash B 600
+shot 04_mega_stones.png
+mash B 600
+!expect_bag_has("keyItems", "ITEM_MEGA_RING", "mega_ring")
+!expect_flag("FLAG_RECEIVED_MEGA_RING", 1, "mega_specialist_skips_the_ring")
+!expect_bag_quantity("items", "ITEM_VENUSAURITE", 1)
+!expect_bag_quantity("items", "ITEM_CHARIZARDITE_X", 1)
+!expect_bag_quantity("items", "ITEM_DIANCITE", 1)
+!expect_bag_quantity("items", "ITEM_GARCHOMPITE", 1)
+# Again: nothing twice
+!nes_code("MEGA")
+shot 05_mega_again.png
+mash B 300
+!expect_bag_quantity("items", "ITEM_VENUSAURITE", 1, "venusaurite_not_twice")
+
+# MMY (MAXMONEY's alias): the most money there is
+!nes_code("MMY")
+shot 06_max_money.png
+mash B 300
+!expect_money("MAX_MONEY", "max_money")
+
+# CAL (CAUGHTALL's alias): every Pokemon caught, and the National Pokedex
+!expect_dex_caught("SPECIES_MEW", 0, "mew_not_caught_before")
+!nes_code("CAL")
+shot 07_caught_all.png
+mash B 300
+!expect_dex_caught("SPECIES_BULBASAUR", 1)
+!expect_dex_caught("SPECIES_MEW", 1)
+!expect_dex_caught("SPECIES_PECHARUNT", 1)
+!expect_flag("FLAG_SYS_NATIONAL_DEX", 1, "national_dex_on")
+
+# EZCATCH switches EASY CATCH off and on again
+!expect_easy_catch(True, "easy_catch_on_by_default")
+!nes_code("EZCATCH")
+shot 08_easy_catch_off.png
+mash B 300
+!expect_easy_catch(False, "ezcatch_turns_it_off")
+!nes_code("EZC")
+mash B 300
+!expect_easy_catch(True, "ezc_turns_it_on_again")
+
+# SHINYR: the roaming Pokemon will be shiny
+!nes_code("SHINYR")
+shot 09_shiny_roamers.png
+mash B 300
+!expect_flag("FLAG_CODE_SHINY_ROAMERS", 1, "shiny_roamers")
+
+# DEXALL: the DexNav already shows everything
+!nes_code("DXA")
+shot 10_dexall.png
+mash B 300
+
+# NO at "Enter a code?": the NES's old line
+!walkto(4, 3, path=True)
+press UP
+wait 20
+press A
+wait 150
+press DOWN
+wait 10
+press A
+wait 120
+shot 11_time_to_go.png
+mash B 300
+
+# SHINYS and MONO, then PROF. ELM's Poke Balls: three shiny Dragon types
+loadstate bedroom.ss
+!nes_code("SHINYS")
+shot 12_shiny_starters.png
+mash B 300
+!expect_flag("FLAG_CODE_SHINY_STARTERS", 1, "shiny_starters_on")
+!nes_code("MONO")
+shot 13_mono_menu.png
+# The menu: OFF, FIGHTING, FLYING, POISON, GROUND, ROCK, BUG, GHOST, STEEL, ELECTRIC, PSYCHIC, ICE,
+# DRAGON (the 13th)...
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+shot 14_mono_dragon.png
+press A
+wait 120
+shot 15_mono_on.png
+mash B 300
+!expect_var("VAR_MONO_STARTER_TYPE", "TYPE_DRAGON", "mono_dragon")
+
+# PROF. ELM's middle Poke Ball now holds a Gible (Bagon, Gible, Dratini), shiny
+!leave_bedroom_get_running_shoes()
+!walkto(10, 10, path=True)
+hold UP 16
+wait 200
+!walkto(6, 7, soft=True)
+wait 60
+mash A 2400
+wait 60
+mash B 300
+wait 30
+!expect_var("VAR_NEWBARKTOWN_LABSTATE", 1, "elm_asks_to_choose_a_pokemon")
+!walkto(9, 5, path=True)
+press UP
+wait 20
+press A
+wait 120
+shot 16_shiny_gible.png
+!expect_var("VAR_TEMP_2", "SPECIES_GIBLE", "middle_ball_holds_gible")
+!expect_flag("FLAG_SHINY_STARTER_2", 1, "gible_is_shiny")
+press A
+mash B 900
+expect8 {gPlayerPartyCount} 1 got_the_gible
+# Too late for SHINYS and MONO now
+!walkto(10, 12, path=True, soft=True)

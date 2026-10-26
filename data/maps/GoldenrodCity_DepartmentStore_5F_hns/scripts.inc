@@ -273,7 +273,8 @@ GoldenrodDeptStore5_MegaStones3:
 	pokemartlistend
 
 	.align 2
-GoldenrodDeptStore5_MegaStones4:
+@ Every Mega Stone this game uses: the MEGA code (src/cheat_codes.c) gives these too
+GoldenrodDeptStore5_MegaStones4::
 	.2byte ITEM_BEEDRILLITE
 	.2byte ITEM_PIDGEOTITE
 	.2byte ITEM_AMPHAROSITE
