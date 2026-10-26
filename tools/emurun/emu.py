@@ -37,7 +37,10 @@ def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, 
     variety="OFF"/"15%"/"60%" sets WILD VARIETY (second row); random_wild=True turns the
     RANDOMIZER on with WILD randomized (MAP SEEDED stays ON); level_cap="OFF"/"NORMAL"/"HARD"
     sets LEVEL CAP (fourth row of the Difficulty tab; NORMAL, or HARD with the HARD preset);
-    minimal_grinding=False turns MIN. GRINDING (second row of the Difficulty tab) off."""
+    minimal_grinding=False turns MIN. GRINDING (second row of the Difficulty tab) off. PROF. ELM's
+    starting and location care packages are marked as received, so they don't arrive on the first
+    steps once the test has a Pokemon (the debug menu's Give Pokemon sets FLAG_SYS_POKEMON_GET);
+    place_packages=True leaves them to arrive."""
     out = ["wait 1300", "press START", "wait 60", "press A", "wait 500", "mash A 900", "mash A 900", "mash A 700"]
     # Tabs: MODE, FEATURES, RANDOMIZER, NUZLOCKE, DIFFICULTY, CHALLENGES (confirm)
     out += ["press R", "wait 20"]
@@ -72,10 +75,8 @@ def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, 
     out += ["press R", "wait 20"]
     out += ["wait 10", "press UP", "wait 30", "press A", "wait 120", "press A", "wait 120"]
     out += ["mash A 1500", "mash A 1200", "wait 300"]
-    # The starting and location care packages (0.12.0) would arrive on the first steps with a
-    # Pokemon; only the tests of them (place_packages=True) let them
     if not place_packages:
-        out += set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
+        out += set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE") + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
     return out
 
 
@@ -247,6 +248,22 @@ def fill_pocket(pocket, item):
     return [f"poke16 *{{gSaveBlock1Ptr}}+{v['off'] + i * v['stride']} {v[item]}" for i in range(v["count"])]
 
 
+def empty_pocket(pocket):
+    """Undo fill_pocket: every slot of the bag pocket (struct Bag field) back to ITEM_NONE (the bag
+    sets a slot's quantity when it next puts an item there)."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock1, bag.{pocket})",
+                       "count": f"ARRAY_COUNT(((struct SaveBlock1 *)0)->bag.{pocket})",
+                       "stride": "sizeof(struct ItemSlot)"})
+    return [f"poke16 *{{gSaveBlock1Ptr}}+{v['off'] + i * v['stride']} 0" for i in range(v["count"])]
+
+
+def fill_pc(item):
+    """Fill every slot of the PC's item storage (SaveBlock1 pcItems) with one item."""
+    v = probe.resolve({"off": "offsetof(struct SaveBlock1, pcItems)", "count": "PC_ITEMS_COUNT",
+                       "stride": "sizeof(struct ItemSlot)", item: item})
+    return [f"poke16 *{{gSaveBlock1Ptr}}+{v['off'] + i * v['stride']} {v[item]}" for i in range(v["count"])]
+
+
 def expect_pc_has(item, label=None):
     """Check that the PC's item storage (SaveBlock1 pcItems) holds the item."""
     v = probe.resolve({"off": "offsetof(struct SaveBlock1, pcItems)", "count": "PC_ITEMS_COUNT",
@@ -255,7 +272,8 @@ def expect_pc_has(item, label=None):
 
 
 def care_package_steps(count):
-    """Step back and forth on Route 29's (33,11)-(34,11) and read through each package that arrives."""
+    """Step back and forth on Route 29's (33,11)-(34,11), starting with (33,11) (so not from there),
+    and read through each package that arrives."""
     out = []
     for k in range(count):
         out += walkto(33 if k % 2 == 0 else 34, 11, soft=True) + ["wait 30", f"shot care_package_{k:02d}.png", "mash A 2400"]
@@ -327,10 +345,24 @@ def set_var(var, value):
 
 
 def no_care_packages():
-    """Mark all 17 care packages, their gear and their stacks, and the starting and location packages as
-    received, so none arrives during the test."""
-    return (set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_GEAR", 17) + set_var("VAR_CARE_PACKAGE_BULK", 17)
-            + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF))
+    """Mark every care package as received (the starting one, the location ones and the 17
+    milestone packages, with the catch-up counters of earlier releases), so none arrives during the
+    test."""
+    return (set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE") + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
+            + set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_IMPERIUM", 17)
+            + set_var("VAR_CARE_PACKAGE_GEAR", 17) + set_var("VAR_CARE_PACKAGE_BULK", 17))
+
+
+def care_package_total(item, packages):
+    """How many of the item (without ITEM_) the given care packages (0: the start, 1-17: the
+    milestones, 18 on: the location packages) hold in all, from
+    tools/crystal_imperium/care_packages.py's table."""
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "care_packages", os.path.join(HERE, "..", "crystal_imperium", "care_packages.py"))
+    table = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(table)
+    return sum(n for k in packages for name, n in table.all_packages()[k] if name == item)
 
 
 def expect_var(var, want, label=None):

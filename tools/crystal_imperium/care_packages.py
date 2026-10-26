@@ -1,27 +1,37 @@
 #!/usr/bin/env python3
-"""Crystal Imperium milestone care packages (DECISIONS.md D16): writes data/scripts/care_packages.inc
-from the table below.
+"""Crystal Imperium care packages (DECISIONS.md D16): writes src/data/care_packages.h (what each
+package holds and the message listing it) and data/scripts/care_packages.inc (the script that
+delivers them) from the table below.
 
-  python3 tools/crystal_imperium/care_packages.py          # rewrite the script
-  python3 tools/crystal_imperium/care_packages.py --check  # exit 1 if it is out of date
+  python3 tools/crystal_imperium/care_packages.py           # rewrite both files
+  python3 tools/crystal_imperium/care_packages.py --check   # exit 1 if either is out of date
+  python3 tools/crystal_imperium/care_packages.py --report  # what each Bag pocket gets in all
 
-A package arrives after each Gym Badge and after becoming Champion (src/care_packages.c): packages
-1-8 for the Johto badges, 9 for the Champion, 10-17 for the Kanto badges. Emerald Imperium-style,
-each one is full of battle gear: competitive held items (every staple several times over the game,
-every type-boosting item, every type-resist and pinch Berry), PP Up and PP Max, X items and Elixirs,
-besides Poke Balls, healing and the evolution items found nowhere else in the game. Since 0.11.0
-the gear comes in stacks, enough to kit out a whole team (STACKS: 10 of each type-boosting item,
-10 Sitrus and Lum Berries, 3 to 5 of each staple held item, 20 Poke Balls of a kind).
+Emerald Imperium's care packages are Radical Red's (its SO2Toxic packages, on by default): ten of
+nearly every held item, Berry, booster and evolution item, plus big stacks of a few (153 Quick
+Balls, 153 PP Max, 306 Ability Pills, 100 Beast Balls), spread over the early game; Imperium adds
+a starting package from its professor, with the Shiny Charm, and packages waiting in places along
+the story (the weather Rocks in Granite Cave, Light Clay on Route 110). Here they come from PROF.
+ELM (src/care_packages.c):
+  - package 0 on the first step on a route or in a town once the player has a Pokemon (Imperium's
+    starting package and Radical Red's first ones);
+  - packages 1-17 after each Gym Badge and becoming Champion: 1-8 for the Johto badges, 9 for the
+    Champion, 10-17 for the Kanto badges (Radical Red's story-point packages, in their order, then
+    big stacks of what a long post-game uses);
+  - the location packages (PLACES) on the first step in their place, or on a step outside once the
+    player has the badges to be past it (pastAtBadges).
 
-The script shows what's inside in one message, wrapped to the message box with the game's own font
-widths, then adds the items without a message each. An item whose Bag pocket is full goes to the PC
-instead, and the player is told.
+Each package shows what's inside in one message, wrapped to the message box with the game's own
+font widths (runs of three or more items with the same quantity read "×10 each: A, B, C"), then
+src/care_packages.c adds the items. One whose Bag pocket is full goes to the PC; if the PC is full
+too, the package stops there and the rest arrives on another map (VAR_CARE_PACKAGE_RESUME).
 
-Saves from before 0.7.0 received the packages' earlier contents (EARLIER below, the same in every
-release that had them). VAR_CARE_PACKAGE_GEAR counts the packages whose battle gear has arrived:
-while it is behind VAR_CARE_PACKAGES, the next step brings the gear that package didn't have then.
-Saves from 0.7.0 to 0.10.x received GEAR_PACKAGES (the gear one at a time); VAR_CARE_PACKAGE_BULK
-counts the packages whose stacks have arrived, and the next step brings the rest of one package.
+Saves from before 0.12.0 received smaller milestone packages (a few of each item; before 0.7.0
+only Poke Balls, healing and evolution items). VAR_CARE_PACKAGE_IMPERIUM counts the packages whose
+0.12.0 contents have arrived: while it is behind VAR_CARE_PACKAGES, the next step brings the next of
+those packages again, in full, on top of what the save already got. VAR_CARE_PACKAGE_PLACES has a
+bit for each location package and bit 15 for the starting package (as in 0.12.0-experimental, whose
+smaller starting package a save then gets again, bigger).
 """
 import argparse
 import os
@@ -29,249 +39,199 @@ import re
 import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-SCRIPT = os.path.join(ROOT, "data", "scripts", "care_packages.inc")
+HEADER_FILE = os.path.join(ROOT, "src", "data", "care_packages.h")
+SCRIPT_FILE = os.path.join(ROOT, "data", "scripts", "care_packages.inc")
 
 # Message box: 27 tiles (216 px) of FONT_NORMAL; lines are kept clear of the "more" arrow
 LINE_WIDTH = 200
+# src/care_packages.c keeps the index of the next item in 8 bits of VAR_CARE_PACKAGE_RESUME
+MAX_ITEMS = 256
 
-RESIST_BERRIES_1 = [("OCCA_BERRY", 2), ("PASSHO_BERRY", 2), ("WACAN_BERRY", 2), ("RINDO_BERRY", 2),
-                    ("YACHE_BERRY", 2), ("CHOPLE_BERRY", 2)]
-RESIST_BERRIES_2 = [("KEBIA_BERRY", 2), ("SHUCA_BERRY", 2), ("COBA_BERRY", 2), ("PAYAPA_BERRY", 2),
-                    ("TANGA_BERRY", 2), ("CHARTI_BERRY", 2)]
-RESIST_BERRIES_3 = [("KASIB_BERRY", 2), ("HABAN_BERRY", 2), ("COLBUR_BERRY", 2), ("BABIRI_BERRY", 2),
-                    ("CHILAN_BERRY", 2), ("ROSELI_BERRY", 2)]
-X_ITEMS = [("X_ATTACK", 3), ("X_SP_ATK", 3), ("X_SPEED", 3), ("X_DEFENSE", 3), ("X_SP_DEF", 3)]
+TYPE_BOOSTERS = ["SILK_SCARF", "CHARCOAL", "MYSTIC_WATER", "MIRACLE_SEED", "MAGNET", "NEVER_MELT_ICE", "BLACK_BELT",
+                 "POISON_BARB", "SOFT_SAND", "SHARP_BEAK", "TWISTED_SPOON", "SILVER_POWDER", "HARD_STONE", "SPELL_TAG",
+                 "DRAGON_FANG", "BLACK_GLASSES", "METAL_COAT", "FAIRY_FEATHER"]
 
-# One list per package: (item without ITEM_, quantity), as received from 0.7.0 to 0.10.x
-GEAR_PACKAGES = [
-    # 1: Zephyr Badge (cap 16)
-    [("POKE_BALL", 10), ("GREAT_BALL", 5), ("SUPER_POTION", 5), ("PP_UP", 5), ("PP_MAX", 3),
-     ("LEFTOVERS", 1), ("FOCUS_SASH", 2), ("EVIOLITE", 2), ("SITRUS_BERRY", 5), ("LUM_BERRY", 3),
-     ("CHARCOAL", 1), ("MYSTIC_WATER", 1), ("MIRACLE_SEED", 1),
-     ("LINKING_CORD", 1), ("SWEET_APPLE", 1), ("TART_APPLE", 1)],
-    # 2: Hive Badge (cap 21)
-    [("GREAT_BALL", 10), ("REVIVE", 3), ("PP_MAX", 5),
-     ("LIFE_ORB", 1), ("EXPERT_BELT", 1), ("MUSCLE_BAND", 1), ("WISE_GLASSES", 1), ("SCOPE_LENS", 1),
-     ("MAGNET", 1), ("SHARP_BEAK", 1), ("SILK_SCARF", 1)] + RESIST_BERRIES_1 +
-    [("UPGRADE", 1), ("SACHET", 1), ("WHIPPED_DREAM", 1), ("SYRUPY_APPLE", 1)],
-    # 3: Plain Badge (cap 25)
-    [("ULTRA_BALL", 5), ("HYPER_POTION", 5), ("PP_MAX", 5),
-     ("CHOICE_BAND", 1), ("CHOICE_SPECS", 1), ("CHOICE_SCARF", 1), ("ROCKY_HELMET", 1), ("BLACK_SLUDGE", 1),
-     ("HARD_STONE", 1), ("SOFT_SAND", 1), ("SPELL_TAG", 1)] + RESIST_BERRIES_2 +
-    [("PRISM_SCALE", 1), ("SUN_STONE", 3), ("LINKING_CORD", 1)],
-    # 4: Fog Badge (cap 31)
-    [("ULTRA_BALL", 5), ("PP_MAX", 5),
-     ("ASSAULT_VEST", 2), ("LEFTOVERS", 1), ("TOXIC_ORB", 1), ("FLAME_ORB", 1),
-     ("NEVER_MELT_ICE", 1), ("BLACK_BELT", 1), ("TWISTED_SPOON", 1)] + RESIST_BERRIES_3 +
-    [("STRAWBERRY_SWEET", 1), ("BERRY_SWEET", 1), ("LOVE_SWEET", 1), ("STAR_SWEET", 1),
-     ("CLOVER_SWEET", 1), ("FLOWER_SWEET", 1), ("RIBBON_SWEET", 1)],
-    # 5: 5th badge (cap 36)
-    [("FULL_HEAL", 5), ("MAX_REVIVE", 1), ("PP_MAX", 5),
-     ("HEAVY_DUTY_BOOTS", 2), ("LIGHT_CLAY", 1), ("AIR_BALLOON", 2), ("WHITE_HERB", 2), ("POWER_HERB", 1),
-     ("MENTAL_HERB", 1), ("EVIOLITE", 1), ("POISON_BARB", 1), ("SILVER_POWDER", 1), ("DRAGON_FANG", 1),
-     ("SITRUS_BERRY", 5), ("LUM_BERRY", 3),
-     ("CRACKED_POT", 1), ("CHIPPED_POT", 1), ("UNREMARKABLE_TEACUP", 1), ("MASTERPIECE_TEACUP", 1)],
-    # 6: 6th badge (cap 38)
-    [("ULTRA_BALL", 10), ("PP_UP", 3), ("PP_MAX", 5), ("MAX_ELIXIR", 3),
-     ("WEAKNESS_POLICY", 2), ("LIFE_ORB", 1), ("CHOICE_SCARF", 1), ("RAZOR_CLAW", 1), ("QUICK_CLAW", 1),
-     ("SHELL_BELL", 1), ("BIG_ROOT", 1), ("BLACK_GLASSES", 1), ("METAL_COAT", 1), ("FAIRY_FEATHER", 1)] + X_ITEMS +
-    [("LEADERS_CREST", 1), ("AUSPICIOUS_ARMOR", 1), ("MALICIOUS_ARMOR", 1)],
-    # 7: 7th badge (cap 45)
-    [("MAX_POTION", 5), ("MAX_REVIVE", 2), ("PP_MAX", 5),
-     ("RED_CARD", 1), ("EJECT_BUTTON", 1), ("EJECT_PACK", 1), ("SAFETY_GOGGLES", 1), ("COVERT_CLOAK", 1),
-     ("CLEAR_AMULET", 1), ("PROTECTIVE_PADS", 1), ("SHED_SHELL", 1), ("BINDING_BAND", 1), ("GRIP_CLAW", 1),
-     ("DAMP_ROCK", 1), ("HEAT_ROCK", 1), ("SMOOTH_ROCK", 1), ("ICY_ROCK", 1),
-     ("X_ACCURACY", 2), ("DIRE_HIT", 2), ("GUARD_SPEC", 2),
-     ("METAL_ALLOY", 1), ("LINKING_CORD", 1)],
-    # 8: Rising Badge (cap 56)
-    [("FULL_RESTORE", 3), ("PP_MAX", 5), ("ABILITY_PATCH", 1),
-     ("FOCUS_SASH", 2), ("LEFTOVERS", 1), ("ASSAULT_VEST", 1), ("BOOSTER_ENERGY", 2), ("LOADED_DICE", 1),
-     ("PUNCHING_GLOVE", 1), ("MIRROR_HERB", 1), ("THROAT_SPRAY", 1), ("BLUNDER_POLICY", 1),
-     ("ELECTRIC_SEED", 1), ("GRASSY_SEED", 1), ("MISTY_SEED", 1), ("PSYCHIC_SEED", 1), ("TERRAIN_EXTENDER", 1),
-     ("UTILITY_UMBRELLA", 1), ("ROOM_SERVICE", 1),
-     ("GIMMIGHOUL_COIN", 999)],
-    # 9: Champion (cap 70)
-    [("MASTER_BALL", 1), ("PP_MAX", 10), ("ABILITY_PATCH", 2),
-     ("LEFTOVERS", 2), ("LIFE_ORB", 1), ("CHOICE_BAND", 1), ("CHOICE_SPECS", 1), ("CHOICE_SCARF", 1),
-     ("SITRUS_BERRY", 10), ("LUM_BERRY", 5), ("LIECHI_BERRY", 2), ("GANLON_BERRY", 2), ("SALAC_BERRY", 2),
-     ("PETAYA_BERRY", 2), ("APICOT_BERRY", 2), ("STARF_BERRY", 1), ("LANSAT_BERRY", 1), ("CUSTAP_BERRY", 2),
-     ("SCROLL_OF_DARKNESS", 1), ("SCROLL_OF_WATERS", 1)],
-    # 10: 9th badge, the first in Kanto
-    [("ULTRA_BALL", 10), ("FULL_RESTORE", 3), ("PP_MAX", 5),
-     ("ROCKY_HELMET", 1), ("BLACK_SLUDGE", 1), ("ZOOM_LENS", 1), ("WIDE_LENS", 1), ("KINGS_ROCK", 1),
-     ("RAZOR_FANG", 1), ("METRONOME", 1), ("LIGHT_BALL", 1), ("THICK_CLUB", 1), ("LEEK", 1), ("LUCKY_PUNCH", 1),
-     ("METAL_POWDER", 1), ("QUICK_POWDER", 1), ("DEEP_SEA_TOOTH", 1), ("DEEP_SEA_SCALE", 1),
-     ("SUN_STONE", 3)],
-    # 11: 10th badge
-    [("ULTRA_BALL", 10), ("MAX_REVIVE", 3), ("PP_MAX", 5), ("MAX_ELIXIR", 3),
-     ("FOCUS_SASH", 2), ("HEAVY_DUTY_BOOTS", 2), ("AIR_BALLOON", 2), ("TOXIC_ORB", 1), ("FLAME_ORB", 1),
-     ("MUSCLE_BAND", 1), ("WISE_GLASSES", 1), ("SCOPE_LENS", 1)],
-    # 12: 11th badge
-    [("QUICK_BALL", 10), ("FULL_RESTORE", 5), ("PP_MAX", 5),
-     ("LEFTOVERS", 1), ("ASSAULT_VEST", 1), ("EXPERT_BELT", 1), ("LUM_BERRY", 3)] + X_ITEMS,
-    # 13: 12th badge
-    [("DUSK_BALL", 10), ("MAX_ELIXIR", 3), ("PP_MAX", 5), ("ABILITY_PATCH", 1),
-     ("LIFE_ORB", 1), ("WEAKNESS_POLICY", 1), ("WHITE_HERB", 2), ("ADRENALINE_ORB", 1), ("ABILITY_SHIELD", 1),
-     ("JABOCA_BERRY", 2), ("ROWAP_BERRY", 2), ("KEE_BERRY", 2), ("MARANGA_BERRY", 2)],
-    # 14: 13th badge
-    [("ULTRA_BALL", 15), ("MAX_REVIVE", 3), ("PP_MAX", 5), ("MAX_ETHER", 5), ("ELIXIR", 5),
-     ("CHOICE_BAND", 1), ("CHOICE_SPECS", 1), ("CHOICE_SCARF", 1), ("POWER_HERB", 1), ("MENTAL_HERB", 1),
-     ("SITRUS_BERRY", 5)],
-    # 15: 14th badge
-    [("LUXURY_BALL", 10), ("FULL_RESTORE", 5), ("MAX_ELIXIR", 3), ("PP_MAX", 5),
-     ("BOOSTER_ENERGY", 2), ("ROCKY_HELMET", 1), ("COVERT_CLOAK", 1), ("CLEAR_AMULET", 1), ("LOADED_DICE", 1),
-     ("EJECT_BUTTON", 1), ("RED_CARD", 1)],
-    # 16: 15th badge
-    [("MASTER_BALL", 1), ("MAX_REVIVE", 5), ("FULL_RESTORE", 5), ("PP_MAX", 5),
-     ("LIGHT_CLAY", 1), ("AIR_BALLOON", 2), ("FOCUS_BAND", 1), ("IRON_BALL", 1), ("LAGGING_TAIL", 1),
-     ("STICKY_BARB", 1), ("RING_TARGET", 1), ("ABSORB_BULB", 1), ("CELL_BATTERY", 1), ("SNOWBALL", 1),
-     ("LUMINOUS_MOSS", 1)],
-    # 17: 16th badge
-    [("MASTER_BALL", 1), ("PP_MAX", 10), ("ABILITY_PATCH", 2), ("FULL_RESTORE", 5), ("MAX_ELIXIR", 5),
-     ("LEFTOVERS", 1), ("LIFE_ORB", 1), ("FOCUS_SASH", 2), ("ASSAULT_VEST", 1), ("HEAVY_DUTY_BOOTS", 1),
-     ("SITRUS_BERRY", 10), ("LUM_BERRY", 5)],
+
+RESIST_BERRIES = ["OCCA_BERRY", "PASSHO_BERRY", "WACAN_BERRY", "RINDO_BERRY", "YACHE_BERRY", "CHOPLE_BERRY",
+                  "KEBIA_BERRY", "SHUCA_BERRY", "COBA_BERRY", "PAYAPA_BERRY", "TANGA_BERRY", "CHARTI_BERRY", "KASIB_BERRY",
+                  "HABAN_BERRY", "COLBUR_BERRY", "BABIRI_BERRY", "CHILAN_BERRY", "ROSELI_BERRY"]
+
+
+def each(n, *items):
+    return [(item, n) for item in items]
+
+
+# One list per package: (item without ITEM_, quantity). Radical Red's packages, by where they arrive
+# there, are named in the comments; Emerald Imperium's own changes are marked EI.
+PACKAGES = [
+    # 0: the start (after the first Pokemon): RR's Route 2 and Viridian Forest packages; EI adds the
+    #    Shiny Charm, and swaps RR's Pixie Plate for the Fairy Feather (all 18 type boosters here, with
+    #    all 18 type-resist Berries and the staple held items)
+    [("SHINY_CHARM", 1), ("QUICK_BALL", 153), ("POKE_BALL", 20)] +
+    each(10, "GREAT_BALL", "POTION", "SUPER_POTION", "REVIVE", "PP_MAX", *TYPE_BOOSTERS, "LEFTOVERS", "FOCUS_SASH",
+         "EVIOLITE", "EXPERT_BELT", "MUSCLE_BAND", "WISE_GLASSES", "SCOPE_LENS", "ABSORB_BULB", "LIGHT_BALL",
+         "MENTAL_HERB", "SHELL_BELL", "CLEANSE_TAG", "DEEP_SEA_SCALE", "DEEP_SEA_TOOTH", "PSYCHIC_SEED", *RESIST_BERRIES,
+         "ORAN_BERRY", "PECHA_BERRY", "ASPEAR_BERRY", "RAWST_BERRY", "PERSIM_BERRY", "SITRUS_BERRY", "LUM_BERRY",
+         "NUGGET", "BIG_MUSHROOM", "TINY_MUSHROOM", "RED_SHARD", "BLUE_SHARD", "GREEN_SHARD"),
+    # 1: Zephyr Badge: RR's Pewter City, Route 3 and Route 4 packages (50 Heal Balls)
+    [("HEAL_BALL", 50), ("POKE_BALL", 30), ("GREAT_BALL", 20), ("SUPER_POTION", 20), ("CARBOS", 20),
+     ("SWIFT_FEATHER", 20)] +
+    each(10, "ETHER", "BERRY_JUICE", "PP_UP", "PP_MAX", "PROTEIN", "CALCIUM", "MUSCLE_FEATHER", "GENIUS_FEATHER",
+         "THROAT_SPRAY", "LUCKY_EGG", "IRON_BALL", "WIDE_LENS", "CHERI_BERRY", "CHESTO_BERRY", "LEPPA_BERRY",
+         "SITRUS_BERRY", "LUM_BERRY", "STARDUST", "STAR_PIECE", "MOON_STONE", "LINKING_CORD", "SWEET_APPLE",
+         "TART_APPLE"),
+    # 2: Hive Badge: RR's Nugget Bridge and Cerulean City packages (RR's 306 Ability Pills: 153 Ability
+    #    Capsules and 153 Ability Patches)
+    [("ABILITY_CAPSULE", 153), ("ABILITY_PATCH", 153), ("CLEVER_FEATHER", 50), ("RESIST_FEATHER", 50),
+     ("GREAT_BALL", 30)] +
+    each(10, "ULTRA_BALL", "REVIVE", "PP_MAX", "HP_UP", "IRON", "ZINC", "HEALTH_FEATHER", "LIFE_ORB",
+         "TERRAIN_EXTENDER", "LEEK", "PEARL", "BIG_PEARL", "LEAF_STONE", "UPGRADE", "SACHET", "WHIPPED_DREAM",
+         "SYRUPY_APPLE"),
+    # 3: Plain Badge: RR's Vermilion City and Lt. Surge packages (50 Dream Balls), the Choice items
+    [("DREAM_BALL", 50), ("ULTRA_BALL", 20), ("HYPER_POTION", 20)] +
+    each(10, "GREAT_BALL", "PP_MAX", "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "ROCKY_HELMET", "SHUCA_BERRY",
+         "ROSELI_BERRY", "YELLOW_SHARD", "PRISM_SCALE", "FIRE_STONE", "WATER_STONE", "THUNDER_STONE", "SUN_STONE"),
+    # 4: Fog Badge: RR's Route 9 and Lavender Town packages
+    [("ULTRA_BALL", 20)] +
+    each(10, "DIVE_BALL", "DUSK_BALL", "MOOMOO_MILK", "PP_MAX", "SMOKE_BALL", "THICK_CLUB", "EVERSTONE",
+         "MISTY_SEED", "KASIB_BERRY", "BABIRI_BERRY", "BIG_NUGGET", "DUSK_STONE", "SHINY_STONE", "STRAWBERRY_SWEET",
+         "BERRY_SWEET", "LOVE_SWEET", "STAR_SWEET", "CLOVER_SWEET", "FLOWER_SWEET", "RIBBON_SWEET"),
+    # 5: 5th badge: RR's Celadon Gym package
+    [("ULTRA_BALL", 20), ("FULL_HEAL", 20)] +
+    each(10, "MAX_REVIVE", "PP_MAX", "ELECTRIC_SEED", "SITRUS_BERRY", "LUM_BERRY", "DAWN_STONE", "ICE_STONE",
+         "DRAGON_SCALE", "OVAL_STONE", "CRACKED_POT", "CHIPPED_POT", "UNREMARKABLE_TEACUP", "MASTERPIECE_TEACUP"),
+    # 6: 6th badge: RR's big Fuchsia City package (153 PP Max)
+    [("PP_MAX", 153), ("ULTRA_BALL", 20)] +
+    each(10, "MAX_ELIXIR", "LEFTOVERS", "EXPERT_BELT", "X_ATTACK", "X_DEFENSE", "X_SP_ATK", "X_SP_DEF", "X_SPEED",
+         "GRASSY_SEED", "KINGS_ROCK", "LUCKY_PUNCH", "METAL_POWDER", "RAZOR_CLAW", "QUICK_CLAW", "LIECHI_BERRY",
+         "SALAC_BERRY", "PETAYA_BERRY", "HEART_SCALE", "RED_NECTAR", "YELLOW_NECTAR", "PINK_NECTAR", "PURPLE_NECTAR",
+         "PROTECTOR", "ELECTIRIZER", "MAGMARIZER", "LEADERS_CREST", "AUSPICIOUS_ARMOR", "MALICIOUS_ARMOR"),
+    # 7: 7th badge: RR's Blaine package (Life Orb, Power Herb)
+    [("MAX_POTION", 20), ("ULTRA_BALL", 20)] +
+    each(10, "MAX_REVIVE", "LIFE_ORB", "POWER_HERB", "X_ACCURACY", "DIRE_HIT", "GUARD_SPEC", "BINDING_BAND",
+         "GRIP_CLAW", "RAZOR_FANG", "DUBIOUS_DISC", "REAPER_CLOTH", "METAL_ALLOY", "GALARICA_CUFF",
+         "GALARICA_WREATH"),
+    # 8: Rising Badge
+    [("GIMMIGHOUL_COIN", 999), ("FULL_RESTORE", 20), ("ULTRA_BALL", 20)] +
+    each(10, "MAX_REVIVE", "MAX_ELIXIR", "BLACK_AUGURITE", "PEAT_BLOCK"),
+    # 9: Champion: RR's Clair and post-game packages (100 Beast Balls; Choice items, Eviolites, Rocky
+    #    Helmets), the rest of the pinch Berries
+    [("MASTER_BALL", 1), ("SCROLL_OF_DARKNESS", 1), ("SCROLL_OF_WATERS", 1), ("BEAST_BALL", 100)] +
+    each(20, "FULL_RESTORE", "SITRUS_BERRY", "LUM_BERRY") +
+    each(10, "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "EVIOLITE", "ROCKY_HELMET", "GANLON_BERRY",
+         "APICOT_BERRY", "LANSAT_BERRY", "STARF_BERRY", "MICLE_BERRY", "CUSTAP_BERRY", "ENIGMA_BERRY",
+         "JABOCA_BERRY", "ROWAP_BERRY", "KEE_BERRY", "MARANGA_BERRY"),
+    # 10-17: Kanto badges: big stacks for the post-game, the last niche held items, every other Poke Ball
+    [("ULTRA_BALL", 50), ("FULL_RESTORE", 20)] +
+    each(10, "MAX_REVIVE", "MAX_ELIXIR", "ZOOM_LENS", "QUICK_POWDER", "FOCUS_BAND", "CELL_BATTERY", "SNOWBALL",
+         "LUMINOUS_MOSS"),
+    [("QUICK_BALL", 50), ("FULL_RESTORE", 20)] +
+    each(10, "MAX_ETHER", "ELIXIR", "FOCUS_SASH", "LAGGING_TAIL", "STICKY_BARB", "RING_TARGET", "FIGY_BERRY",
+         "WIKI_BERRY", "MAGO_BERRY", "AGUAV_BERRY", "IAPAPA_BERRY"),
+    each(30, "DUSK_BALL", "TIMER_BALL") + each(20, "FULL_RESTORE", "PP_MAX") +
+    each(10, "MAX_REVIVE", "AIR_BALLOON", "ASSAULT_VEST", "SITRUS_BERRY", "LUM_BERRY", "AMULET_COIN", "SOOTHE_BELL"),
+    each(30, "NET_BALL", "NEST_BALL", "REPEAT_BALL") + each(20, "FULL_RESTORE", "MAX_ELIXIR"),
+    [("ULTRA_BALL", 50)] + each(30, "LUXURY_BALL", "PREMIER_BALL") + each(20, "MAX_REVIVE", "FULL_RESTORE"),
+    each(20, "LEVEL_BALL", "LURE_BALL", "MOON_BALL", "FRIEND_BALL", "LOVE_BALL", "FAST_BALL", "HEAVY_BALL",
+         "MAX_ELIXIR") + [("FULL_RESTORE", 30)],
+    [("MASTER_BALL", 1), ("QUICK_BALL", 50)] + each(30, "FULL_RESTORE", "PP_MAX") + [("MAX_REVIVE", 20)],
+    [("MASTER_BALL", 1)] + each(50, "DREAM_BALL", "BEAST_BALL", "FULL_RESTORE", "PP_MAX") +
+    each(30, "MAX_REVIVE", "MAX_ELIXIR") + each(20, "SITRUS_BERRY", "LUM_BERRY"),
 ]
 
-# Since 0.11.0 each item comes at least this many times (Emerald Imperium-style stacks)
-TYPE_BOOSTERS = ["CHARCOAL", "MYSTIC_WATER", "MIRACLE_SEED", "MAGNET", "SHARP_BEAK", "SILK_SCARF", "HARD_STONE",
-                 "SOFT_SAND", "SPELL_TAG", "NEVER_MELT_ICE", "BLACK_BELT", "TWISTED_SPOON", "POISON_BARB",
-                 "SILVER_POWDER", "DRAGON_FANG", "BLACK_GLASSES", "METAL_COAT", "FAIRY_FEATHER"]
-RESIST_BERRIES = [b for b, _ in RESIST_BERRIES_1 + RESIST_BERRIES_2 + RESIST_BERRIES_3]
-STACKS = dict(
-    [(item, 10) for item in TYPE_BOOSTERS] + [(berry, 5) for berry in RESIST_BERRIES] +
-    [(ball, 20) for ball in ("POKE_BALL", "GREAT_BALL", "ULTRA_BALL", "QUICK_BALL", "DUSK_BALL", "LUXURY_BALL")] +
-    [(med, 10) for med in ("SUPER_POTION", "HYPER_POTION", "MAX_POTION", "FULL_RESTORE", "FULL_HEAL", "ELIXIR",
-                           "MAX_ETHER", "PP_MAX")] +
-    [(med, 5) for med in ("REVIVE", "MAX_REVIVE", "MAX_ELIXIR", "PP_UP")] +
-    [(x, 5) for x in ("X_ATTACK", "X_SP_ATK", "X_SPEED", "X_DEFENSE", "X_SP_DEF", "X_ACCURACY", "DIRE_HIT", "GUARD_SPEC")] +
-    [("SITRUS_BERRY", 10), ("LUM_BERRY", 10)] +
-    [(berry, 5) for berry in ("LIECHI_BERRY", "GANLON_BERRY", "SALAC_BERRY", "PETAYA_BERRY", "APICOT_BERRY",
-                              "CUSTAP_BERRY", "JABOCA_BERRY", "ROWAP_BERRY", "KEE_BERRY", "MARANGA_BERRY")] +
-    [("STARF_BERRY", 3), ("LANSAT_BERRY", 3)] +
-    # Held items that are used up, then the ones a team wants several of
-    [(item, 5) for item in ("FOCUS_SASH", "EVIOLITE", "AIR_BALLOON", "WHITE_HERB", "POWER_HERB", "MENTAL_HERB",
-                            "RED_CARD", "EJECT_BUTTON", "EJECT_PACK", "WEAKNESS_POLICY", "BOOSTER_ENERGY",
-                            "MIRROR_HERB", "THROAT_SPRAY", "BLUNDER_POLICY", "ROOM_SERVICE", "ADRENALINE_ORB",
-                            "ELECTRIC_SEED", "GRASSY_SEED", "MISTY_SEED", "PSYCHIC_SEED", "ABSORB_BULB",
-                            "CELL_BATTERY", "SNOWBALL", "LUMINOUS_MOSS")] +
-    [(item, 3) for item in ("LEFTOVERS", "LIFE_ORB", "ASSAULT_VEST", "ROCKY_HELMET", "HEAVY_DUTY_BOOTS",
-                            "EXPERT_BELT", "MUSCLE_BAND", "WISE_GLASSES", "SCOPE_LENS", "LIGHT_CLAY", "TOXIC_ORB",
-                            "FLAME_ORB", "SAFETY_GOGGLES", "COVERT_CLOAK", "CLEAR_AMULET", "PROTECTIVE_PADS",
-                            "SHED_SHELL", "DAMP_ROCK", "HEAT_ROCK", "SMOOTH_ROCK", "ICY_ROCK", "QUICK_CLAW",
-                            "SHELL_BELL", "BIG_ROOT", "LOADED_DICE", "PUNCHING_GLOVE", "TERRAIN_EXTENDER",
-                            "UTILITY_UMBRELLA", "ABILITY_SHIELD", "ABILITY_PATCH")] +
-    [(item, 2) for item in ("CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "BLACK_SLUDGE", "RAZOR_CLAW",
-                            "BINDING_BAND", "GRIP_CLAW", "ZOOM_LENS", "WIDE_LENS", "KINGS_ROCK", "RAZOR_FANG",
-                            "METRONOME", "FOCUS_BAND", "IRON_BALL", "LAGGING_TAIL", "STICKY_BARB", "RING_TARGET")])
-
-PACKAGES = [[(item, max(n, STACKS.get(item, 0))) for item, n in package] for package in GEAR_PACKAGES]
-
-# Since 0.12.0, Emerald Imperium-style: a starting package from PROF. ELM as soon as the player has a
-# Pokemon (Emerald Imperium's comes from PROF. BIRCH at the start, with the Shiny Charm and the
-# type-boosting items), so the type-boosting items, the type-resist Berries and the staples are there
-# from the first battles
-STARTING = ([("SHINY_CHARM", 1)] + [(item, 10) for item in TYPE_BOOSTERS] + [(berry, 5) for berry in RESIST_BERRIES] +
-            [("SITRUS_BERRY", 10), ("LUM_BERRY", 10), ("LEFTOVERS", 3), ("FOCUS_SASH", 5), ("EVIOLITE", 5),
-             ("EXPERT_BELT", 3), ("MUSCLE_BAND", 3), ("WISE_GLASSES", 3), ("SCOPE_LENS", 3), ("PP_MAX", 10),
-             ("POKE_BALL", 20), ("GREAT_BALL", 10), ("SUPER_POTION", 10), ("REVIVE", 5)])
-
-# ...and location packages along the story, waiting for the player the first time they enter the
-# place (Emerald Imperium has them in Granite Cave, on Route 110 and elsewhere), each a themed set of
-# gear. (map id, place name, items); src/care_packages.c has the same maps in the same order.
+# The location packages, Emerald Imperium's packages waiting in places along the story, each a
+# themed set: (map, place name in the message, badge count by which the player is past it for sure
+# (9: the Johto League won), items). They follow PACKAGES in src/data/care_packages.h, and their bits
+# in VAR_CARE_PACKAGE_PLACES are in this order, so a place is only ever added at the end.
 PLACES = [
-    ("MAP_UNION_CAVE_1F_HNS", "UNION CAVE",
-     [("DAMP_ROCK", 3), ("HEAT_ROCK", 3), ("SMOOTH_ROCK", 3), ("ICY_ROCK", 3), ("UTILITY_UMBRELLA", 2),
-      ("SAFETY_GOGGLES", 3)]),
-    ("MAP_ILEX_FOREST_HNS", "ILEX FOREST",
-     [("LIGHT_CLAY", 3), ("WHITE_HERB", 5), ("POWER_HERB", 5), ("MENTAL_HERB", 5), ("MIRROR_HERB", 3),
-      ("BIG_ROOT", 3), ("BLACK_SLUDGE", 2)]),
-    ("MAP_NATIONAL_PARK_NORMAL_HNS", "NATIONAL PARK",
-     [("CHOICE_BAND", 2), ("CHOICE_SPECS", 2), ("CHOICE_SCARF", 2), ("LIFE_ORB", 3), ("WEAKNESS_POLICY", 3),
-      ("BOOSTER_ENERGY", 5)]),
-    ("MAP_BURNED_TOWER_1F_HNS", "BURNED TOWER",
-     [("TOXIC_ORB", 3), ("FLAME_ORB", 3), ("ROCKY_HELMET", 3), ("ASSAULT_VEST", 3), ("HEAVY_DUTY_BOOTS", 3),
-      ("AIR_BALLOON", 5)]),
-    ("MAP_OLIVINE_CITY_LIGHTHOUSE_HNS", "the LIGHTHOUSE",
-     [("RED_CARD", 3), ("EJECT_BUTTON", 3), ("EJECT_PACK", 3), ("COVERT_CLOAK", 3), ("CLEAR_AMULET", 3),
-      ("PROTECTIVE_PADS", 3), ("SHED_SHELL", 3)]),
-    ("MAP_MT_MORTAR_1F_SOUTH_HNS", "MT. MORTAR",
-     [("LOADED_DICE", 3), ("PUNCHING_GLOVE", 3), ("THROAT_SPRAY", 3), ("BLUNDER_POLICY", 3), ("ROOM_SERVICE", 3),
-      ("ADRENALINE_ORB", 3), ("ABILITY_SHIELD", 3), ("METRONOME", 2)]),
-    ("MAP_LAKE_OF_RAGE_HNS", "the LAKE OF RAGE",
-     [("ELECTRIC_SEED", 5), ("GRASSY_SEED", 5), ("MISTY_SEED", 5), ("PSYCHIC_SEED", 5), ("TERRAIN_EXTENDER", 3)]),
-    ("MAP_ICE_PATH_1F_HNS", "the ICE PATH",
-     [("PP_MAX", 10), ("MAX_ELIXIR", 5), ("FULL_RESTORE", 5), ("MAX_REVIVE", 5)]),
-    ("MAP_VICTORY_ROAD_KANTO_1F_HNS", "VICTORY ROAD",
-     [("FULL_RESTORE", 10), ("MAX_REVIVE", 10), ("MAX_ELIXIR", 10), ("ABILITY_PATCH", 3)]),
+    ("MAP_UNION_CAVE_1F_HNS", "UNION CAVE", 2,
+     each(10, "DAMP_ROCK", "HEAT_ROCK", "SMOOTH_ROCK", "ICY_ROCK", "UTILITY_UMBRELLA", "SAFETY_GOGGLES")),
+    ("MAP_ILEX_FOREST_HNS", "ILEX FOREST", 3,
+     each(10, "LIGHT_CLAY", "WHITE_HERB", "POWER_HERB", "MIRROR_HERB", "BIG_ROOT", "BLACK_SLUDGE")),
+    ("MAP_NATIONAL_PARK_NORMAL_HNS", "the NATIONAL PARK", 4,
+     each(10, "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "LIFE_ORB", "WEAKNESS_POLICY", "BOOSTER_ENERGY")),
+    ("MAP_BURNED_TOWER_1F_HNS", "the BURNED TOWER", 4,
+     each(10, "TOXIC_ORB", "FLAME_ORB", "ROCKY_HELMET", "ASSAULT_VEST", "HEAVY_DUTY_BOOTS", "AIR_BALLOON")),
+    ("MAP_OLIVINE_CITY_LIGHTHOUSE_HNS", "the LIGHTHOUSE", 6,
+     each(10, "RED_CARD", "EJECT_BUTTON", "EJECT_PACK", "COVERT_CLOAK", "CLEAR_AMULET", "PROTECTIVE_PADS",
+          "SHED_SHELL")),
+    ("MAP_MT_MORTAR_1F_SOUTH_HNS", "MT. MORTAR", 7,
+     each(10, "LOADED_DICE", "PUNCHING_GLOVE", "BLUNDER_POLICY", "ROOM_SERVICE", "ADRENALINE_ORB", "ABILITY_SHIELD",
+          "METRONOME")),
+    ("MAP_LAKE_OF_RAGE_HNS", "the LAKE OF RAGE", 7,
+     each(10, "ELECTRIC_SEED", "GRASSY_SEED", "MISTY_SEED", "PSYCHIC_SEED", "TERRAIN_EXTENDER")),
+    ("MAP_ICE_PATH_1F_HNS", "the ICE PATH", 8,
+     each(20, "PP_MAX", "MAX_ELIXIR", "FULL_RESTORE", "MAX_REVIVE")),
+    ("MAP_VICTORY_ROAD_KANTO_1F_HNS", "VICTORY ROAD", 9,
+     each(20, "FULL_RESTORE", "MAX_REVIVE", "MAX_ELIXIR") + [("ABILITY_PATCH", 10)]),
 ]
 
-# What each package held before 0.7.0 (every earlier release had these), for the catch-up
-EARLIER = [
-    [("POKE_BALL", 10), ("GREAT_BALL", 5), ("SUPER_POTION", 5), ("LINKING_CORD", 1), ("SWEET_APPLE", 1),
-     ("TART_APPLE", 1)],
-    [("GREAT_BALL", 10), ("REVIVE", 3), ("UPGRADE", 1), ("SACHET", 1), ("WHIPPED_DREAM", 1), ("SYRUPY_APPLE", 1)],
-    [("ULTRA_BALL", 5), ("HYPER_POTION", 5), ("PRISM_SCALE", 1), ("SUN_STONE", 3), ("LINKING_CORD", 1)],
-    [("ULTRA_BALL", 5), ("STRAWBERRY_SWEET", 1), ("BERRY_SWEET", 1), ("LOVE_SWEET", 1), ("STAR_SWEET", 1),
-     ("CLOVER_SWEET", 1), ("FLOWER_SWEET", 1), ("RIBBON_SWEET", 1)],
-    [("FULL_HEAL", 5), ("MAX_REVIVE", 1), ("CRACKED_POT", 1), ("CHIPPED_POT", 1), ("UNREMARKABLE_TEACUP", 1),
-     ("MASTERPIECE_TEACUP", 1)],
-    [("ULTRA_BALL", 10), ("PP_UP", 3), ("LEADERS_CREST", 1), ("AUSPICIOUS_ARMOR", 1), ("MALICIOUS_ARMOR", 1)],
-    [("MAX_POTION", 5), ("MAX_REVIVE", 2), ("METAL_ALLOY", 1), ("LINKING_CORD", 1)],
-    [("FULL_RESTORE", 3), ("ABILITY_PATCH", 1), ("GIMMIGHOUL_COIN", 999)],
-    [("MASTER_BALL", 1), ("PP_MAX", 3), ("SCROLL_OF_DARKNESS", 1), ("SCROLL_OF_WATERS", 1)],
-    [("ULTRA_BALL", 10), ("FULL_RESTORE", 3), ("SUN_STONE", 3)],
-    [("ULTRA_BALL", 10), ("MAX_REVIVE", 3), ("PP_MAX", 2)],
-    [("QUICK_BALL", 10), ("FULL_RESTORE", 5)],
-    [("DUSK_BALL", 10), ("MAX_ELIXIR", 3), ("ABILITY_PATCH", 1)],
-    [("ULTRA_BALL", 15), ("MAX_REVIVE", 3), ("PP_MAX", 2)],
-    [("LUXURY_BALL", 10), ("FULL_RESTORE", 5), ("MAX_ELIXIR", 3)],
-    [("MASTER_BALL", 1), ("MAX_REVIVE", 5), ("FULL_RESTORE", 5)],
-    [("MASTER_BALL", 1), ("PP_MAX", 5), ("ABILITY_PATCH", 2)],
-]
+# What each package's first message says: the starting package, the milestone packages, and the
+# location packages ({PLACE} is the place's name)
+INTROS = {
+    "start": ["PROF. ELM sent a care package", "to start your journey!"],
+    "milestone": ["A care package from PROF. ELM", "arrived for your progress!"],
+    "place": ["A care package from PROF. ELM", "was waiting in {PLACE}!"],
+}
 
+# Fixed messages of the script: label -> lines (the last ends the message)
+MESSAGES = {
+    "CarePackage_Text_Champion": ["PROF. ELM: Congratulations,", "CHAMPION!",
+                                  "Word is that rare and legendary {PKMN}", "now show up in the wild!"],
+    "CarePackage_Text_Update": ["PROF. ELM sent a bigger version", "of an earlier care package!"],
+    "CarePackage_Text_Resume": ["PROF. ELM sent the rest", "of the care package!"],
+    "CarePackage_Text_SentToPC": ["Your BAG was full, so some of it", "was sent to your PC."],
+    "CarePackage_Text_Full": ["Your BAG and PC are full!", "PROF. ELM will send the rest",
+                              "once you make room."],
+}
 
-def extra(k, before, after, when):
-    """What package k (1-17) has in after beyond before, in after's order."""
-    had = dict(before[k - 1])
-    out = []
-    for item, n in after[k - 1]:
-        more = n - had.pop(item, 0)
-        if more < 0:
-            sys.exit(f"package {k}: fewer {item} than {when}")
-        if more:
-            out.append((item, more))
-    if had:
-        sys.exit(f"package {k}: no longer has {sorted(had)}")
-    return out
+SCRIPT = """\
+@ Generated by tools/crystal_imperium/care_packages.py: edit that, not this file.
+@ Crystal Imperium: care packages from PROF. ELM (DECISIONS.md D16). src/care_packages.c starts
+@ EventScript_CarePackage on a step, with VAR_0x8004 = the package (0: the start, 1-17: the
+@ milestones, then the location packages) and VAR_0x8006 = CARE_PACKAGE_NEW, _UPDATE (a save from
+@ before 0.12.0 gets an earlier package's new contents) or _RESUME (the rest of a package that
+@ stopped because the BAG and PC were full). The contents and their messages are in
+@ src/data/care_packages.h.
+EventScript_CarePackage::
+	lockall
+	playse SE_EXP_MAX
+	goto_if_eq VAR_0x8006, CARE_PACKAGE_RESUME, CarePackage_Resume
+	goto_if_eq VAR_0x8006, CARE_PACKAGE_UPDATE, CarePackage_Update
+	callnative CarePackage_LoadIntroText
+	callstd MSGBOX_DEFAULT
+	goto_if_ne VAR_0x8004, 9, CarePackage_Contents
+	goto_if_unset FLAG_SYS_GAME_CLEAR, CarePackage_Contents
+	msgbox CarePackage_Text_Champion, MSGBOX_DEFAULT
+	goto CarePackage_Contents
 
+CarePackage_Update:
+	msgbox CarePackage_Text_Update, MSGBOX_DEFAULT
+CarePackage_Contents:
+	playfanfare MUS_OBTAIN_ITEM
+	callnative CarePackage_LoadContentsText
+	callstd MSGBOX_DEFAULT
+	waitfanfare
+	goto CarePackage_Give
 
-def gear(k):
-    """The battle gear package k didn't have before 0.7.0."""
-    return extra(k, EARLIER, GEAR_PACKAGES, "before 0.7.0")
-
-
-def bulk(k):
-    """The stacks package k didn't have before 0.11.0."""
-    return extra(k, GEAR_PACKAGES, PACKAGES, "before 0.11.0")
-
-
-HEADER = """\
-@ Generated by tools/crystal_imperium/care_packages.py from its table: edit that, not this file.
-@ Crystal Imperium: milestone care packages from PROF. ELM (DECISIONS.md D16).
-@ src/care_packages.c starts EventScript_CarePackage on the player's next step after a milestone:
-@ each Gym Badge and becoming Champion. VAR_CARE_PACKAGES counts the packages received; while
-@ milestones are ahead of it, the next package arrives (so a save from an older build catches up
-@ one package per step). Packages 1-8: Johto badges, 9: Champion, 10-17: Kanto badges.
-@ Each package lists its contents in one message, then the items go to the Bag; one whose pocket
-@ is full goes to the PC (VAR_0x8005 counts those).
-@ EventScript_CarePackageGear brings a save from before 0.7.0 the battle gear its packages didn't
-@ have then, one package per step (VAR_CARE_PACKAGE_GEAR counts the packages whose gear arrived);
-@ EventScript_CarePackageBulk then brings a save from before 0.11.0 the rest of each package's stacks
-@ (VAR_CARE_PACKAGE_BULK).
-@ Since 0.12.0, EventScript_CarePackageStart is the starting package (once the player has a Pokemon)
-@ and EventScript_CarePackagePlace the location package VAR_0x8004 names (the first time the player
-@ enters its place); VAR_CARE_PACKAGE_PLACES has a bit for each, set by src/care_packages.c.
+CarePackage_Resume:
+	msgbox CarePackage_Text_Resume, MSGBOX_DEFAULT
+CarePackage_Give:
+	callnative CarePackage_GiveItems
+	goto_if_eq VAR_0x8005, 0, CarePackage_CheckFull
+	msgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT
+CarePackage_CheckFull:
+	goto_if_eq VAR_RESULT, TRUE, CarePackage_End
+	msgbox CarePackage_Text_Full, MSGBOX_DEFAULT
+CarePackage_End:
+	releaseall
+	end
 """
+
+
+def all_packages():
+    """Every package's items, in src/data/care_packages.h's order: PACKAGES, then the places."""
+    return PACKAGES + [items for _, _, _, items in PLACES]
 
 
 def read(path):
@@ -279,14 +239,15 @@ def read(path):
         return f.read()
 
 
-def item_names():
-    """ITEM_X -> its in-game name, from src/data/items.h."""
-    names = {}
+def items_data():
+    """ITEM_X -> (in-game name, pocket), from src/data/items.h."""
+    data = {}
     for m in re.finditer(r"\[(ITEM_\w+)\]\s*=\s*\{(.*?)\n    \}", read("src/data/items.h"), re.S):
-        n = re.search(r'\.name\s*=\s*ITEM_NAME\("([^"]*)"\)', m.group(2))
-        if n:
-            names[m.group(1)] = n.group(1)
-    return names
+        name = re.search(r'\.name\s*=\s*ITEM_NAME\("([^"]*)"\)', m.group(2))
+        pocket = re.search(r"\.pocket\s*=\s*(\w+)", m.group(2))
+        if name and pocket:
+            data[m.group(1)] = (name.group(1), pocket.group(1))
+    return data
 
 
 def glyph_widths():
@@ -305,49 +266,96 @@ def text_width(text, widths):
     return sum(widths[c] for c in text)
 
 
-def contents_text(items, names, widths):
-    """The package's contents as message lines: two lines a page, each within LINE_WIDTH."""
-    words = [names["ITEM_" + item] + (f" ×{n}" if n > 1 else "") for item, n in items]
-    words = [w + "," for w in words[:-1]] + [words[-1] + "."]
-    words[0] = "Inside: " + words[0]
+# In a message, a complete set reads as one phrase
+GROUPS = {"every type-boosting item": TYPE_BOOSTERS, "every type-resist BERRY": RESIST_BERRIES}
+# Neighbouring names that end in the same word read "OCCA, PASSHO and RINDO BERRIES"
+PLURALS = {"BERRY": "BERRIES", "SHARD": "SHARDS", "SWEET": "SWEETS", "STONE": "STONES", "MUSHROOM": "MUSHROOMS",
+           "NECTAR": "NECTARS", "FEATHER": "FEATHERS", "ROCK": "ROCKS", "BALL": "BALLS", "SEED": "SEEDS",
+           "HERB": "HERBS", "ORB": "ORBS", "APPLE": "APPLES", "TEACUP": "TEACUPS", "POT": "POTS", "ARMOR": "ARMOR",
+           "LENS": "LENSES", "CLAW": "CLAWS", "POWDER": "POWDERS", "CUFF": "CUFFS"}
+
+
+def list_phrases(run, names):
+    """The names in a run of items with the same quantity, groups and shared last words merged: one
+    list of words per phrase (a name or a quantity is never split over two lines)."""
+    labels = []
+    i = 0
+    while i < len(run):
+        for label, group in GROUPS.items():
+            if run[i:i + len(group)] == group:
+                labels.append(label)
+                i += len(group)
+                break
+        else:
+            labels.append(names["ITEM_" + run[i]])
+            i += 1
+    phrases = []
+    i = 0
+    while i < len(labels):
+        last = labels[i].rsplit(" ", 1)
+        j = i + 1
+        if len(last) == 2 and last[1] in PLURALS:
+            while j < len(labels) and labels[j].rsplit(" ", 1)[-1] == last[1] and " " in labels[j]:
+                j += 1
+        if j - i >= 2:
+            heads = [label.rsplit(" ", 1)[0] for label in labels[i:j]]
+            phrases.append([h + "," for h in heads[:-2]] + [heads[-2], "and", f"{heads[-1]} {PLURALS[last[1]]}"])
+        else:
+            phrases.append([labels[i]])
+        i = j
+    return phrases
+
+
+def contents_words(items, names):
+    """The package's contents as one sentence, in words to wrap: a run of three or more items with the
+    same quantity reads "×10 each: A, B, C"; other items "A ×10" (or just "A" when there is one)."""
+    runs = []
+    for item, n in items:
+        if runs and runs[-1][0] == n:
+            runs[-1][1].append(item)
+        else:
+            runs.append((n, [item]))
+    parts = []  # (lead or None, [phrases]) per part
+    for n, run in runs:
+        if len(run) >= 3 and n > 1:
+            parts.append((f"×{n} each:", list_phrases(run, names)))
+        else:
+            parts += [(None, [[names["ITEM_" + item] + (f" ×{n}" if n > 1 else "")]]) for item in run]
+    words = ["Inside:"]
+    for i, (lead, phrases) in enumerate(parts):
+        last = i == len(parts) - 1
+        # A list after "each:" ends with a semicolon, so the next part doesn't read as one of them
+        end = "." if last else (";" if lead or parts[i + 1][0] else ",")
+        if lead:
+            words.append(lead)
+        for k, phrase in enumerate(phrases):
+            words += phrase[:-1] + [phrase[-1] + (end if k == len(phrases) - 1 else ",")]
+    return words
+
+
+def wrap(words, widths):
+    """Words -> lines within LINE_WIDTH."""
     lines, line = [], ""
     for w in words:
         candidate = (line + " " + w) if line else w
         if text_width(candidate, widths) <= LINE_WIDTH:
             line = candidate
+        elif not line:
+            sys.exit(f"word too wide for the message box: {w}")
         else:
             lines.append(line)
             line = w
     lines.append(line)
+    return lines
+
+
+def c_string(lines):
+    """Message lines -> the C literal lines: two lines a page."""
     out = []
     for i, line in enumerate(lines):
-        end = "$" if i == len(lines) - 1 else ("\\n" if i % 2 == 0 else "\\p")
-        out.append(f'\t.string "{line}{end}"')
+        end = "" if i == len(lines) - 1 else ("\\n" if i % 2 == 0 else "\\p")
+        out.append(f'    "{line}{end}"')
     return out
-
-
-def pc_label(item, n):
-    return f"CarePackage_ToPC_{item}_{n}"
-
-
-def item_lines(items, end_label):
-    """additem for each item, each followed by its PC fallback, then a jump to end_label."""
-    out = []
-    for item, n in items:
-        out += [f"\tadditem ITEM_{item}, {n}", f"\tcall_if_eq VAR_RESULT, FALSE, {pc_label(item, n)}"]
-    return out + [f"\tgoto {end_label}", ""]
-
-
-# Fixed messages: label -> lines (the last ends the message)
-MESSAGES = {
-    "CarePackage_Text_Arrived": ["A care package from PROF. ELM", "arrived for your progress!"],
-    "CarePackage_Text_Champion": ["PROF. ELM: Congratulations,", "CHAMPION!",
-                                  "Word is that rare and legendary {PKMN}", "now show up in the wild!"],
-    "CarePackage_Text_GearArrived": ["PROF. ELM sent the battle gear", "an earlier package didn't have!"],
-    "CarePackage_Text_BulkArrived": ["PROF. ELM sent more of the gear", "from an earlier package!"],
-    "CarePackage_Text_SentToPC": ["Your BAG was full, so some of it", "was sent to your PC."],
-    "CarePackage_Text_StartArrived": ["PROF. ELM sent a care package", "to start your journey!"],
-}
 
 
 def message_lines(lines, widths):
@@ -360,116 +368,119 @@ def message_lines(lines, widths):
     return out
 
 
-def render():
-    names, widths = item_names(), glyph_widths()
-    for k, items in enumerate(PACKAGES, 1):
+def check(data):
+    if len(PACKAGES) != 18:
+        sys.exit("needs the starting package and 17 milestone packages")
+    # src/care_packages.c keeps the package in 5 bits of VAR_CARE_PACKAGE_RESUME, a place in 1 of
+    # 15 bits of VAR_CARE_PACKAGE_PLACES (bit 15 is the starting package)
+    if len(all_packages()) > 32 or len(PLACES) > 15:
+        sys.exit("too many packages")
+    for k, items in enumerate(all_packages()):
+        if not items or len(items) > MAX_ITEMS:
+            sys.exit(f"package {k}: needs 1 to {MAX_ITEMS} items")
+        seen = set()
         for item, n in items:
-            if "ITEM_" + item not in names:
+            if "ITEM_" + item not in data:
                 sys.exit(f"package {k}: unknown item ITEM_{item}")
-    if len(EARLIER) != len(PACKAGES):
-        sys.exit("EARLIER needs one entry per package")
-    if len(GEAR_PACKAGES) != len(PACKAGES):
-        sys.exit("GEAR_PACKAGES needs one entry per package")
-    for label, items in [("starting", STARTING)] + [(name, items) for _, name, items in PLACES]:
-        for item, n in items:
-            if "ITEM_" + item not in names:
-                sys.exit(f"{label} package: unknown item ITEM_{item}")
-    gears = [gear(k) for k in range(1, len(PACKAGES) + 1)]
-    bulks = [bulk(k) for k in range(1, len(PACKAGES) + 1)]
-    out = HEADER.splitlines()
-    out += ["EventScript_CarePackage::", "\tlockall", "\tplayse SE_EXP_MAX",
-            "\tmsgbox CarePackage_Text_Arrived, MSGBOX_DEFAULT", "\tsetvar VAR_0x8005, 0",
-            "\tswitch VAR_CARE_PACKAGES"]
-    out += [f"\tcase {k - 1}, CarePackage_{k}" for k in range(1, len(PACKAGES) + 1)]
-    out += ["\tgoto CarePackage_Done", ""]
-    for k, items in enumerate(PACKAGES, 1):
-        out.append(f"CarePackage_{k}::")
-        if k == 9:
-            out += ["\tgoto_if_unset FLAG_SYS_GAME_CLEAR, CarePackage_9_Items",
-                    "\tmsgbox CarePackage_Text_Champion, MSGBOX_DEFAULT", "CarePackage_9_Items:"]
-        out += ["\tplayfanfare MUS_OBTAIN_ITEM", f"\tmsgbox CarePackage_Text_{k}, MSGBOX_DEFAULT", "\twaitfanfare"]
-        out += item_lines(items, "CarePackage_End")
-    out += ["CarePackage_End:", "\tgoto_if_eq VAR_0x8005, 0, CarePackage_Done",
-            "\tmsgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT",
-            "CarePackage_Done::", "\taddvar VAR_CARE_PACKAGES, 1", "\tcopyvar VAR_CARE_PACKAGE_GEAR, VAR_CARE_PACKAGES",
-            "\tcopyvar VAR_CARE_PACKAGE_BULK, VAR_CARE_PACKAGES", "\treleaseall", "\tend", ""]
-    out += ["EventScript_CarePackageGear::", "\tlockall", "\tplayse SE_EXP_MAX",
-            "\tmsgbox CarePackage_Text_GearArrived, MSGBOX_DEFAULT", "\tsetvar VAR_0x8005, 0",
-            "\tswitch VAR_CARE_PACKAGE_GEAR"]
-    out += [f"\tcase {k - 1}, CarePackageGear_{k}" for k in range(1, len(PACKAGES) + 1)]
-    out += ["\tgoto CarePackageGear_Done", ""]
-    for k, items in enumerate(gears, 1):
-        out += [f"CarePackageGear_{k}::", "\tplayfanfare MUS_OBTAIN_ITEM",
-                f"\tmsgbox CarePackageGear_Text_{k}, MSGBOX_DEFAULT", "\twaitfanfare"]
-        out += item_lines(items, "CarePackageGear_End")
-    out += ["CarePackageGear_End:", "\tgoto_if_eq VAR_0x8005, 0, CarePackageGear_Done",
-            "\tmsgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT",
-            "CarePackageGear_Done::", "\taddvar VAR_CARE_PACKAGE_GEAR, 1", "\treleaseall", "\tend", ""]
-    out += ["EventScript_CarePackageBulk::", "\tlockall", "\tplayse SE_EXP_MAX",
-            "\tmsgbox CarePackage_Text_BulkArrived, MSGBOX_DEFAULT", "\tsetvar VAR_0x8005, 0",
-            "\tswitch VAR_CARE_PACKAGE_BULK"]
-    out += [f"\tcase {k - 1}, CarePackageBulk_{k}" for k in range(1, len(PACKAGES) + 1) if bulks[k - 1]]
-    out += ["\tgoto CarePackageBulk_Done", ""]
-    for k, items in enumerate(bulks, 1):
-        if not items:
-            continue
-        out += [f"CarePackageBulk_{k}::", "\tplayfanfare MUS_OBTAIN_ITEM",
-                f"\tmsgbox CarePackageBulk_Text_{k}, MSGBOX_DEFAULT", "\twaitfanfare"]
-        out += item_lines(items, "CarePackageBulk_End")
-    out += ["CarePackageBulk_End:", "\tgoto_if_eq VAR_0x8005, 0, CarePackageBulk_Done",
-            "\tmsgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT",
-            "CarePackageBulk_Done::", "\taddvar VAR_CARE_PACKAGE_BULK, 1", "\treleaseall", "\tend", ""]
-    out += ["EventScript_CarePackageStart::", "\tlockall", "\tplayse SE_EXP_MAX",
-            "\tmsgbox CarePackage_Text_StartArrived, MSGBOX_DEFAULT", "\tsetvar VAR_0x8005, 0",
-            "\tplayfanfare MUS_OBTAIN_ITEM", "\tmsgbox CarePackageStart_Text, MSGBOX_DEFAULT", "\twaitfanfare"]
-    out += item_lines(STARTING, "CarePackagePlace_End")
-    out += ["EventScript_CarePackagePlace::", "\tlockall", "\tplayse SE_EXP_MAX", "\tsetvar VAR_0x8005, 0",
-            "\tswitch VAR_0x8004"]
-    out += [f"\tcase {k}, CarePackagePlace_{k}" for k in range(len(PLACES))]
-    out += ["\tgoto CarePackagePlace_Done", ""]
-    for k, (_, name, items) in enumerate(PLACES):
-        out += [f"CarePackagePlace_{k}::", f"\tmsgbox CarePackagePlace_Text_Arrived_{k}, MSGBOX_DEFAULT",
-                "\tplayfanfare MUS_OBTAIN_ITEM", f"\tmsgbox CarePackagePlace_Text_{k}, MSGBOX_DEFAULT", "\twaitfanfare"]
-        out += item_lines(items, "CarePackagePlace_End")
-    out += ["CarePackagePlace_End:", "\tgoto_if_eq VAR_0x8005, 0, CarePackagePlace_Done",
-            "\tmsgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT",
-            "CarePackagePlace_Done::", "\treleaseall", "\tend", ""]
-    extras = [STARTING] + [items for _, _, items in PLACES]
-    for item, n in sorted({(item, n) for items in PACKAGES + gears + bulks + extras for item, n in items}):
-        out += [f"{pc_label(item, n)}:", f"\taddpcitem ITEM_{item}, {n}", "\taddvar VAR_0x8005, 1", "\treturn", ""]
+            if item in seen:
+                sys.exit(f"package {k}: ITEM_{item} twice")
+            if not 0 < n <= 999:
+                sys.exit(f"package {k}: {n} ITEM_{item}")
+            seen.add(item)
+    for place, name, past, items in PLACES:
+        if not 1 <= past <= 17:
+            sys.exit(f"{place}: past at {past} milestones")
+
+
+def c_text(name, lines):
+    """A C text array of message lines."""
+    lines = c_string(lines)
+    return [f"static const u8 {name}[] = _("] + lines[:-1] + [lines[-1] + ");", ""]
+
+
+def intro_lines(kind, widths, place=None):
+    lines = [line.replace("{PLACE}", place or "") for line in INTROS[kind]]
+    for line in lines:
+        if text_width(line, widths) > LINE_WIDTH:
+            sys.exit(f"message line too wide: {line}")
+    return lines
+
+
+def render_header(data, widths):
+    names = {k: v[0] for k, v in data.items()}
+    out = ["// Generated by tools/crystal_imperium/care_packages.py from its table: edit that, not this file.",
+           "// Crystal Imperium care packages (DECISIONS.md D16): package 0 at the start, 1-17 for the",
+           f"// milestones, {len(PACKAGES)}-{len(all_packages()) - 1} the location packages (sCarePackagePlaces).", ""]
+    out += c_text("sCarePackageIntroStart", intro_lines("start", widths))
+    out += c_text("sCarePackageIntroMilestone", intro_lines("milestone", widths))
+    for k, (_, name, _, _) in enumerate(PLACES):
+        out += c_text(f"sCarePackageIntroPlace{k}", intro_lines("place", widths, name))
+    intros = (["sCarePackageIntroStart"] + ["sCarePackageIntroMilestone"] * (len(PACKAGES) - 1) +
+              [f"sCarePackageIntroPlace{k}" for k in range(len(PLACES))])
+    for k, items in enumerate(all_packages()):
+        out.append(f"static const struct CarePackageItem sCarePackage{k}[] =")
+        out.append("{")
+        out += [f"    {{ITEM_{item}, {n}}}," for item, n in items]
+        out += ["};", ""]
+        out += c_text(f"sCarePackageText{k}", wrap(contents_words(items, names), widths))
+    out.append("static const struct CarePackage sCarePackages[] =")
+    out.append("{")
+    out += [f"    {{sCarePackage{k}, ARRAY_COUNT(sCarePackage{k}), {intros[k]}, sCarePackageText{k}}},"
+            for k in range(len(all_packages()))]
+    out += ["};", ""]
+    out.append("// Where each location package waits, and the milestones by which the player is past it")
+    out.append("static const struct CarePackagePlace sCarePackagePlaces[] =")
+    out.append("{")
+    out += [f"    {{{place}, {past}}}," for place, _, past, _ in PLACES]
+    out += ["};", ""]
+    return "\n".join(out)
+
+
+def render_script(widths):
+    out = SCRIPT.splitlines()
+    out.append("")
     for label, lines in MESSAGES.items():
         out += [f"{label}:"] + message_lines(lines, widths) + [""]
-    out += ["CarePackageStart_Text:"] + contents_text(STARTING, names, widths) + [""]
-    for k, (_, name, items) in enumerate(PLACES):
-        out += [f"CarePackagePlace_Text_Arrived_{k}:"] + message_lines(
-            ["A care package from PROF. ELM", f"was waiting in {name}!"], widths) + [""]
-        out += [f"CarePackagePlace_Text_{k}:"] + contents_text(items, names, widths) + [""]
-    for k, items in enumerate(PACKAGES, 1):
-        out += [f"CarePackage_Text_{k}:"] + contents_text(items, names, widths) + [""]
-    for k, items in enumerate(gears, 1):
-        out += [f"CarePackageGear_Text_{k}:"] + contents_text(items, names, widths) + [""]
-    for k, items in enumerate(bulks, 1):
-        if items:
-            out += [f"CarePackageBulk_Text_{k}:"] + contents_text(items, names, widths) + [""]
     return "\n".join(out).rstrip("\n") + "\n"
+
+
+def report(data):
+    pockets = {}
+    for items in all_packages():
+        for item, n in items:
+            pocket = data["ITEM_" + item][1]
+            pockets.setdefault(pocket, {})
+            pockets[pocket][item] = pockets[pocket].get(item, 0) + n
+    for pocket, items in sorted(pockets.items()):
+        print(f"{pocket}: {len(items)} kinds, {sum(items.values())} items")
+    print(f"{sum(len(p) for p in all_packages())} entries in {len(all_packages())} packages")
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
+    ap.add_argument("--report", action="store_true")
     args = ap.parse_args()
-    new = render()
-    old = read(SCRIPT) if os.path.exists(SCRIPT) else ""
-    if args.check:
-        if new != old:
-            print("data/scripts/care_packages.inc is out of date: run tools/crystal_imperium/care_packages.py")
-            return 1
+    data, widths = items_data(), glyph_widths()
+    check(data)
+    if args.report:
+        report(data)
         return 0
-    if new != old:
-        with open(SCRIPT, "w", encoding="utf-8") as f:
-            f.write(new)
-        total = sum(len(p) for p in PACKAGES)
-        print(f"wrote {os.path.relpath(SCRIPT, ROOT)}: {len(PACKAGES)} packages, {total} entries")
+    outputs = {HEADER_FILE: render_header(data, widths), SCRIPT_FILE: render_script(widths)}
+    stale = []
+    for path, new in outputs.items():
+        old = read(path) if os.path.exists(path) else ""
+        if new == old:
+            continue
+        if args.check:
+            stale.append(os.path.relpath(path, ROOT))
+        else:
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(new)
+            print(f"wrote {os.path.relpath(path, ROOT)}")
+    if stale:
+        print(f"{', '.join(stale)} out of date: run tools/crystal_imperium/care_packages.py")
+        return 1
     return 0
 
 

@@ -1,8 +1,8 @@
 # Crystal Imperium play test: the story opening, played normally (no debug menu).
 # New Game -> Mom's intro -> Prof. Elm's lab: Elm's intro, Cyndaquil from the middle Poke Ball,
-# Elm's errand (his number goes into the Pokegear), the aide's Potion at the door -> the starting
-# care package on the first step outside ->
-# New Bark Town -> Route 29: the first wild battle, fought by the starter.
+# Elm's errand (his number goes into the Pokegear), the aide's Potion at the door ->
+# New Bark Town, where PROF. ELM's starting care package arrives on the first step outside ->
+# Route 29: the first wild battle, fought by the starter.
 !new_game(place_packages=True)
 !leave_bedroom_get_running_shoes()
 !walkto(10, 10, path=True)
@@ -55,16 +55,20 @@ wait 60
 shot 06_potion.png
 !expect_var("VAR_NEWBARKTOWN_LABSTATE", 3, "aide_gave_a_potion")
 !expect_bag_has("medicine", "ITEM_POTION")
+!expect_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE", 0, "no_care_package_indoors")
+# Out of the lab (walking out of the door is not a step of the player's), then one step down:
+# the starting care package (Emerald Imperium's, with a Shiny Charm)
 hold DOWN 16
 wait 200
-
-# The starting care package arrives on the first step in New Bark Town
-!walk("DOWN", 1)
+hold DOWN 16
 wait 150
-shot 06b_starting_package.png
+shot 07_starting_care_package.png
 mash A 2400
+!expect_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE", 1, "starting_care_package_outside")
 !expect_var("VAR_CARE_PACKAGE_PLACES", 0x8000, "starting_package_on_the_story_path")
-!expect_bag_has("keyItems", "ITEM_SHINY_CHARM")
+!expect_bag_quantity("keyItems", "ITEM_SHINY_CHARM", 1, "shiny_charm")
+!expect_bag_quantity("pokeBalls", "ITEM_QUICK_BALL", 153, "quick_balls")
+
 # West out of New Bark Town onto Route 29 (east edge at (69, 18))
 !walkto(0, 13, path=True)
 hold LEFT 16
@@ -75,7 +79,7 @@ expect16 *{gSaveBlock1Ptr}+6 18 route29_east_edge_y
 !walkto(25, 14, path=True, soft=True)
 !pace(21, 25, 14, 10, soft=True)
 wait 300
-shot 07_wild_battle.png
+shot 08_wild_battle.png
 expect32 {gMain+4} {BattleMainCB2+1} wild_battle_on_route_29
 !expect_battler(0, "species", "SPECIES_CYNDAQUIL", "starter_sent_out")
 !autobattle("0")
@@ -83,5 +87,5 @@ expect32 {gMain+4} {BattleMainCB2+1} wild_battle_on_route_29
 expectne8 {gBattleOutcome} 0 battle_finished
 expectne8 {gBattleOutcome} 2 starter_did_not_lose
 wait 300
-shot 08_after_battle.png
+shot 09_after_battle.png
 expectne32 {gMain+4} {BattleMainCB2+1} back_in_the_overworld

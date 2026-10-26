@@ -85,18 +85,16 @@ From the first step of a new game:
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
 - **A starting care package** from Prof. Elm as soon as you have a Pokémon, as in Emerald
-  Imperium: the Shiny Charm, 10 of every type-boosting item, 5 of every type-resist Berry,
-  Leftovers, Focus Sashes, Eviolites, 10 PP Max and more. **Nine location packages** wait along
-  the story, each with a theme (the weather Rocks in Union Cave, the Choice items in the National
+  Imperium: the Shiny Charm, 153 Quick Balls, 10 of every type-boosting item and every type-resist
+  Berry, Leftovers, Focus Sashes, Eviolites and more. **Nine location packages** wait along the
+  story, each with a theme (the weather Rocks in Union Cave, the Choice items in the National
   Park, the Terrain Seeds at the Lake of Rage, ...).
-- **Care packages** from Prof. Elm after every badge and after becoming Champion, full of
-  battle gear the Emerald Imperium way, in stacks for a whole team: 10 of each type-boosting
-  item (10 Charcoal, Mystic Water and Miracle Seed after the first badge), 10 Sitrus and Lum
-  Berries, every type-resist and pinch Berry, competitive held items 3 to 5 at a time (Leftovers,
-  Life Orb, Focus Sash, Eviolite, Assault Vest, Heavy-Duty Boots, Booster Energy and dozens
-  more), 10 PP Max a package, X items and Elixirs, besides supplies and every evolution item the
-  game doesn't otherwise have. Each package lists what's inside; if a Bag pocket is full, the rest goes to
-  your PC.
+- **Care packages** from Prof. Elm after every badge and after becoming Champion, Emerald
+  Imperium's (that is, Radical Red's): 10 of nearly every held item, Berry, booster and evolution
+  item, and big stacks (50 Heal Balls after the first badge, 153 Ability Capsules and 153
+  Ability Patches after the second, 50 Dream Balls and the Choice items after the third, 153 PP
+  Max after the sixth, 100 Beast Balls for the Champion). Each package lists what's inside; if a
+  Bag pocket is full, the rest goes to your PC, and if the PC is full too, the package waits.
 - **Mega Evolution** (48 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F).
 - Legendary and Mythical Pokémon are on the DexNav list from the start. Once you are
   Champion, about a quarter of each day's Wild Variety sets include one.

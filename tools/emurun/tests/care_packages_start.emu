@@ -1,9 +1,11 @@
 # Crystal Imperium play test: the Emerald Imperium-style starting and location care packages
 # (0.12.0). PROF. ELM's starting package arrives on the first step on a route or in a town once the
-# player has a Pokemon: the Shiny Charm, 10 of every type-boosting item, 5 of every type-resist
-# Berry and a starter kit of held items. A location package waits in each of nine places along the
-# story (Union Cave first) and arrives on the first step there; a save already past a place gets
-# its package on the next step outside. VAR_CARE_PACKAGE_PLACES has a bit for each.
+# player has a Pokemon: the Shiny Charm, 153 Quick Balls, 10 of every type-boosting item and every
+# type-resist Berry, and the staple held items. A location package waits in each of nine places
+# along the story (Union Cave first) and arrives on the first step there; a save already past a
+# place gets its package on the next step outside. VAR_CARE_PACKAGE_PLACES has a bit for each, and
+# bit 15 for the starting package. A save from 0.12.0-experimental, whose starting package was
+# smaller, gets the new one as a bigger version.
 !new_game(place_packages=True)
 !give_mon(155, 5)
 !warp(0, 11, 0)
@@ -16,11 +18,13 @@ mash A 2400
 !expect_bag_has("keyItems", "ITEM_SHINY_CHARM")
 !expect_bag_quantity("items", "ITEM_CHARCOAL", 10)
 !expect_bag_quantity("items", "ITEM_FAIRY_FEATHER", 10)
-!expect_bag_quantity("items", "ITEM_FOCUS_SASH", 5)
-!expect_bag_quantity("items", "ITEM_LEFTOVERS", 3)
-!expect_bag_quantity("berries", "ITEM_OCCA_BERRY", 5)
-!expect_bag_quantity("berries", "ITEM_ROSELI_BERRY", 5)
+!expect_bag_quantity("items", "ITEM_FOCUS_SASH", 10)
+!expect_bag_quantity("items", "ITEM_LEFTOVERS", 10)
+!expect_bag_quantity("berries", "ITEM_OCCA_BERRY", 10)
+!expect_bag_quantity("berries", "ITEM_ROSELI_BERRY", 10)
 !expect_bag_quantity("medicine", "ITEM_PP_MAX", 10)
+!expect_bag_quantity("pokeBalls", "ITEM_QUICK_BALL", 153)
+!expect_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE", 1, "starting_package_flag")
 # Only once
 !walkto(34, 11)
 !walkto(33, 11)
@@ -34,8 +38,8 @@ wait 150
 shot 02_union_cave_package.png
 mash A 2400
 !expect_var("VAR_CARE_PACKAGE_PLACES", 0x8001, "union_cave_package_received")
-!expect_bag_quantity("items", "ITEM_DAMP_ROCK", 3)
-!expect_bag_quantity("items", "ITEM_ICY_ROCK", 3)
+!expect_bag_quantity("items", "ITEM_DAMP_ROCK", 10)
+!expect_bag_quantity("items", "ITEM_ICY_ROCK", 10)
 
 # A save past Ilex Forest, the National Park and the Burned Tower (four badges) without having
 # entered them since 0.12.0: their packages arrive one per step outside, before the badge packages
@@ -51,12 +55,25 @@ mash A 2400
 !care_package_steps(3)
 !expect_var("VAR_CARE_PACKAGE_PLACES", 0x800F, "four_badges_four_place_packages")
 !expect_var("VAR_CARE_PACKAGES", 0, "place_packages_come_first")
-!expect_bag_quantity("items", "ITEM_LIGHT_CLAY", 3)
-!expect_bag_quantity("items", "ITEM_CHOICE_SCARF", 2)
-!expect_bag_quantity("items", "ITEM_ASSAULT_VEST", 3)
+!expect_bag_quantity("items", "ITEM_LIGHT_CLAY", 10)
+!expect_bag_quantity("items", "ITEM_CHOICE_SCARF", 10)
+!expect_bag_quantity("items", "ITEM_ASSAULT_VEST", 10)
 !walkto(34, 11, soft=True)
 wait 30
 mash A 2400
 !care_package_steps(3)
 !expect_var("VAR_CARE_PACKAGES", 4, "then_the_four_badge_packages")
 !expect_var("VAR_CARE_PACKAGE_PLACES", 0x800F, "lighthouse_not_yet")
+
+# A save from 0.12.0-experimental: its smaller starting package received (bit 15), the new one not
+# yet. It arrives as a bigger version, on top of what the save got then.
+loadstate route29.ss
+!set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE", 0)
+!walkto(34, 11, soft=True)
+wait 150
+shot 03_bigger_starting_package.png
+mash A 2400
+!expect_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE", 1, "experimental_save_new_starting_package")
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x8000, "experimental_save_places_unchanged")
+!expect_bag_quantity("items", "ITEM_CHARCOAL", 20, "experimental_save_charcoal_on_top")
+!expect_bag_quantity("keyItems", "ITEM_SHINY_CHARM", 1, "experimental_save_one_shiny_charm")

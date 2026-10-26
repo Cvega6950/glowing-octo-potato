@@ -260,41 +260,68 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   Coins and, for the Champion, both Scrolls.
 - All 30 trade evolutions also have a non-trade method in the data, so no evolution needs a
   link cable.
-- **A starting package and location packages, the Emerald Imperium way (0.12.0).** The user found
-  the packages "lackluster" and asked for them to match Emerald Imperium. Imperium's own lists
-  aren't published, but its changelog and feature page show the pattern: PROF. BIRCH's starting
-  care package (with the Shiny Charm and the type-boosting items: "Starting Care Package Pixie
-  Plate and Iron Plate replaced with Fairy Feather and Steel Feather"), packages waiting in
-  places along the story ("Damp Rocks, Icy Rocks, and Smooth Rocks given as part of Granite Cave
-  care package", "Light Clay added to care package given on Route 110"), and type-boosting items
-  and type-resist Berries among the contents
-  ([changelog](https://pokemonemeraldimperium.com/changelog/),
-  [features](https://pokemonemeraldimperium.com/features/)). Crystal Imperium had none of that
-  before the first badge, and the type-boosting items came three a badge. Now:
-  - **The starting package** (`STARTING`) arrives from PROF. ELM on the first step on a route or
-    in a town once the player has a Pokémon: the Shiny Charm, 10 of each of the 18 type-boosting
-    items, 5 of each of the 18 type-resist Berries, 10 Sitrus and Lum Berries, Leftovers ×3,
-    Focus Sash ×5, Eviolite ×5, Expert Belt, Muscle Band, Wise Glasses and Scope Lens ×3 each,
-    PP Max ×10, 20 Poké Balls, 10 Great Balls, 10 Super Potions, 5 Revives.
-  - **Nine location packages** (`PLACES`), each a themed set, arrive on the first step in their
-    place: Union Cave (the four weather Rocks, Utility Umbrella, Safety Goggles), Ilex Forest
-    (Light Clay and the Herbs), the National Park (the Choice items, Life Orb, Weakness Policy,
-    Booster Energy), the Burned Tower (the Orbs, Rocky Helmet, Assault Vest, Heavy-Duty Boots,
-    Air Balloon), the Lighthouse (Red Card, Eject Button and Pack, Covert Cloak, Clear Amulet,
-    Protective Pads, Shed Shell), Mt. Mortar (Loaded Dice, Punching Glove, Throat Spray, ...),
-    the Lake of Rage (the Terrain Seeds and Extender), the Ice Path (PP Max, Max Elixirs, Full
-    Restores, Max Revives) and Victory Road (more of those, Ability Patches).
-  - The badge and Champion packages keep their contents, so saves keep matching the generator's
-    history; the new packages come on top (the Bag ends up with 20 Charcoal by the sixth badge).
-  - `VAR_CARE_PACKAGE_PLACES` (0x40F8, never referenced before) has a bit for each (bit 15 the
-    starting package). A save already past a place (`pastAtBadges` in `src/care_packages.c`:
-    Union Cave with two badges, the Victory Road package once Champion) gets its package on the
-    next step outside, so saves from 0.11 and earlier get everything, one package per step,
-    before any badge package.
-- Evidence: `care_packages` (one package per milestone, the held items, PP Max, X items and
-  Berries in the Bag after the eight Johto badges and the Champion, a full Berries pocket
-  sending the first package's Berries to the PC, and a save with eight packages and no gear
-  getting the eight packages' gear before the Champion's package).
+- **Emerald Imperium's care packages (0.12.0).** The user found the packages "lackluster" and
+  asked for them to match Emerald Imperium. Imperium's care packages are Radical Red's: its
+  cheat-code doc says "SO2Toxic and Woyaopp (Rare Candies and Item Care Packages from Radical Red)
+  are enabled by default" ([Imperium docs](https://drive.google.com/drive/folders/1auRPBg8Ts50NByIskMy6b2XHnmNqIKtV)).
+  Radical Red 4.1's sixteen packages give 10 of nearly every item otherwise found only by
+  grinding or stealing, and big stacks of a few: 153 Quick Balls on Route 2, 50 Heal Balls, 306
+  Ability Pills, 50 Dream Balls, 153 PP Max in Fuchsia, 100 Beast Balls
+  ([list](https://www.emulatorhacks.com/2026/02/pokemon-radical-red-v41-z-crystals-and.html)).
+  Imperium's changelog adds a starting package from PROF. BIRCH with the Shiny Charm and the
+  type-boosting items ("Starting Care Package Pixie Plate and Iron Plate replaced with Fairy
+  Feather and Steel Feather"), and packages waiting in places along the story ("Damp Rocks, Icy
+  Rocks, and Smooth Rocks given as part of Granite Cave care package", "Light Clay added to care
+  package given on Route 110") ([changelog](https://pokemonemeraldimperium.com/changelog/),
+  [features](https://pokemonemeraldimperium.com/features/)). Its exact lists aren't published.
+  Now (`tools/crystal_imperium/care_packages.py`):
+  - **The starting package** (package 0) arrives on the first step on a route or in a town once
+    the player has a Pokémon: the Shiny Charm, 153 Quick Balls, 10 of every type-boosting item
+    and every type-resist Berry, the staple held items (Leftovers, Focus Sash, Eviolite, Expert
+    Belt, Muscle Band, Wise Glasses, Scope Lens), the status Berries, Sitrus and Lum, and the rest
+    of Radical Red's Route 2 and Viridian Forest packages, 10 of each.
+  - **The badge and Champion packages** (1–17) are Radical Red's story-point packages in their
+    order, 10 of each item: Pewter, Route 3 and Route 4 after the first badge (50 Heal Balls,
+    the vitamins, Lucky Eggs), Nugget Bridge and Cerulean after the second (153 Ability Capsules
+    and 153 Ability Patches for the 306 Ability Pills), Vermilion and Lt. Surge after the third
+    (50 Dream Balls, the Choice items), Route 9 and Lavender, Celadon, then Fuchsia after the
+    sixth (153 PP Max), Blaine, and Clair and the post-game for the Champion (100 Beast Balls,
+    the Master Ball, more Choice items). The Kanto packages bring big stacks for the post-game
+    and every other Poké Ball.
+  - **Nine location packages** wait along the story, each a themed set (another session's
+    0.12.0-experimental design, kept and raised to 10 of each): Union Cave (the four weather
+    Rocks, Utility Umbrella, Safety Goggles), Ilex Forest (Light Clay and the Herbs), the National
+    Park (the Choice items, Life Orb, Weakness Policy, Booster Energy), the Burned Tower (the
+    Orbs, Rocky Helmet, Assault Vest, Heavy-Duty Boots, Air Balloon), the Lighthouse (the pivoting
+    items), Mt. Mortar (the Paldea items), the Lake of Rage (the Terrain Seeds and Extender), the
+    Ice Path and Victory Road (20 Full Restores, Max Revives and Max Elixirs). One arrives on the
+    first step in its place, or on a step outside once the player has the badges to be past it.
+  - About 6,500 items of 275 kinds in all (0.11.0: about 2,500 of 183), and by every badge at
+    least as many of each item as 0.11.0 gave. The Bag's items pocket has 236 slots; all the
+    packages together use 172 of them.
+  - The contents live in a C table (`src/data/care_packages.h`, generated with their messages)
+    that `src/care_packages.c` adds to the Bag, instead of a script of `additem`s, which saves
+    about 23 KB of ROM. An item whose pocket is full goes to the PC. If the PC is full too, the
+    package stops, says so, and the rest arrives once the player is on another map
+    (`VAR_CARE_PACKAGE_RESUME`, 0x40FA).
+  - The messages list the contents with the game's font widths: a run of three or more items with
+    the same quantity reads "×10 each: A, B, C", names that end in the same word merge ("OCCA,
+    PASSHO and RINDO BERRIES"), and the full sets read "every type-boosting item" and "every
+    type-resist BERRY". The longest, the starting package's, is eight pages.
+  - Saves: `VAR_CARE_PACKAGE_PLACES` (0x40F8) has a bit for each location package and bit 15 for
+    the starting package, as in 0.12.0-experimental. `FLAG_RECEIVED_STARTING_CARE_PACKAGE`
+    marks the new starting package, so a save that got the experimental one gets the new one as
+    "a bigger version". `VAR_CARE_PACKAGE_IMPERIUM` (0x40F9) counts the milestone packages whose
+    0.12.0 contents have arrived: a save from before 0.12.0 gets each package it received again,
+    in full, one per step. That replaces the 0.7.0 and 0.11.0 catch-ups
+    (`VAR_CARE_PACKAGE_GEAR` and `_BULK` stay level with `VAR_CARE_PACKAGES` but aren't read).
+- Evidence: `care_packages` (the starting package, one package per milestone with the big stacks
+  and ten of each item after the eight Johto badges and the Champion, a full Berries pocket sending
+  the Berries to the PC, a full Bag and PC stopping a package until another map, and a save from
+  before 0.12.0 getting its three packages again), `care_packages_start` (the starting package, the
+  Union Cave package on the first step inside, four location packages for a save with four badges,
+  and an experimental save's bigger starting package) and `story_opening` (the starting package on
+  the real story path).
 
 ## D17. Delta compatibility is tested on VBA-M
 

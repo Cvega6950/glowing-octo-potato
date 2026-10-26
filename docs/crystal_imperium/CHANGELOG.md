@@ -3,15 +3,22 @@
 ## 0.12.0-experimental (2026-10-26)
 
 ### Quality of life
-- **Care packages the Emerald Imperium way** (DECISIONS.md D16). A **starting package** from PROF.
-  ELM as soon as you have a Pokémon, as Emerald Imperium's from PROF. BIRCH: the Shiny Charm, 10 of
-  every type-boosting item, 5 of every type-resist Berry, 10 Sitrus and Lum Berries, Leftovers,
-  Focus Sashes, Eviolites, Expert Belts, Muscle Bands, Wise Glasses, Scope Lenses, 10 PP Max and
-  Poké Balls. And **nine location packages** waiting along the story, each with a theme: the
-  weather Rocks in Union Cave, Light Clay and the Herbs in Ilex Forest, the Choice items in the
-  National Park, the Orbs, Assault Vests and Heavy-Duty Boots in the Burned Tower, and more in the
-  Lighthouse, Mt. Mortar, the Lake of Rage, the Ice Path and Victory Road. The badge packages are
-  unchanged and come on top. Saves already past a place get its package on the next step outside.
+- **Emerald Imperium's care packages** (DECISIONS.md D16). Imperium's are Radical Red's: 10 of
+  nearly every held item, Berry, booster and evolution item, and big stacks. About 6,500 items in
+  all now, against about 2,500 before.
+  - A **starting package** from PROF. ELM as soon as you have a Pokémon, as Imperium's from PROF.
+    BIRCH: the Shiny Charm, 153 Quick Balls, 10 of every type-boosting item and every type-resist
+    Berry, and 10 Leftovers, Focus Sashes, Eviolites and more.
+  - The **badge packages** follow Radical Red's, 10 of each item: 50 Heal Balls after the first
+    badge, 153 Ability Capsules and 153 Ability Patches after the second, 50 Dream Balls and the
+    Choice items after the third, 153 PP Max after the sixth, 100 Beast Balls for the Champion.
+  - **Nine location packages** wait along the story, each with a theme: the weather Rocks in Union
+    Cave, Light Clay and the Herbs in Ilex Forest, the Choice items in the National Park, the Orbs,
+    Assault Vests and Heavy-Duty Boots in the Burned Tower, and more in the Lighthouse, Mt. Mortar,
+    the Lake of Rage, the Ice Path and Victory Road.
+  - When the Bag and the PC are both full, a package waits for room instead of losing items.
+  - Saves from earlier versions get every package they already received again, with the new
+    contents, and the location packages for places they are past.
 
 ## 0.11.0-experimental (2026-10-25)
 

@@ -171,9 +171,9 @@
 
 #define VAR_CARE_PACKAGE_BULK                            0x40F7 // Crystal Imperium: care packages whose 0.11.0 stacks have arrived (was Emerald VAR_UNUSED_0x40F7, no references in any build)
 #define VAR_CARE_PACKAGE_PLACES                          0x40F8 // Crystal Imperium: the starting and location care packages received, a bit each (was Emerald VAR_UNUSED_0x40F8, no references in any build)
-#define VAR_UNUSED_HNS_0x40F9                            0x40F9 // Emerald VAR_UNUSED_0x40F9 - no references in any build
-#define VAR_UNUSED_HNS_0x40FA                            0x40FA // Emerald VAR_UNUSED_0x40FA - no references in any build
-#define VAR_UNUSED_HNS_0x40FB                            0x40FB // Emerald VAR_UNUSED_0x40FB - no references in any build
+#define VAR_CARE_PACKAGE_IMPERIUM                        0x40F9 // Crystal Imperium: care packages whose 0.12.0 contents have arrived (was Emerald VAR_UNUSED_0x40F9, no references in any build)
+#define VAR_CARE_PACKAGE_RESUME                          0x40FA // Crystal Imperium: a care package that stopped because the BAG and PC were full, 0 if none (was Emerald VAR_UNUSED_0x40FA, no references in any build)
+#define VAR_MONO_STARTER_TYPE                            0x40FB // Crystal Imperium: the MONO code's starter type, TYPE_NONE if off (was Emerald VAR_UNUSED_0x40FB, no references in any build)
 #define VAR_UNUSED_HNS_0x40FC                            0x40FC // Emerald VAR_UNUSED_0x40FC - no references in any build
 
 // !!! UNSAFE: live surf-blob engine state, written every time the player surfs.
