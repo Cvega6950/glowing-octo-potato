@@ -103,6 +103,8 @@ Save compatibility (`old_save_test.sh`), same ROM, on mGBA and on VBA-M: **PASS*
   Pulse is TM160 in the TM case (not TM70 Triple Axel or TM03 Flip Turn), HM01 is kept, and the
   old SaveBlock1 slots are cleared.
 - DexNav opens from the L menu.
+- The first step outside (Route 29) brings PROF. ELM's starting care package: a 2.0.6 save
+  never had one.
 
 The BPS patch applied to the HnS 2.0.6 ROM gives this ROM byte for byte (`make_patches.sh`).
 The source patch series applied with `git am` to tag 2.0.6 gives a tree identical to the branch.
