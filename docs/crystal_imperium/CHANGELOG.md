@@ -21,6 +21,29 @@
   - Saves from earlier versions get FAST INTRO and FAST BATTLES turned on once. Turn either off
     in START > OPTION > BATTLE for the classic pace; TEXT SPEED FASTER prints text almost at once.
 
+### Pokémon
+- **Emerald Imperium's and Radical Red's move pools** (DECISIONS.md D39). Level-up moves and Egg
+  Moves were already Radical Red's (0.11.0); now TMs and tutor moves are too:
+  - Each Pokémon learns the TMs and tutor moves Radical Red teaches it: TYPHLOSION gets Aura
+    Sphere and Mystical Fire, but no longer Shadow Ball or Body Slam. TMs and tutor moves Radical
+    Red doesn't have work as before. Pokémon keep the moves they already know.
+  - Radical Red's other TM and tutor moves are tutor moves here, in the move relearner (party
+    menu > LEARN MOVES > TUTOR MOVES): Cosmic Power, Hone Claws, Toxic Spikes, Uproar and
+    Celebrate, and after the Hall of Fame Draco Barrage and Dark Hole (Emerald Imperium's
+    postgame TMs).
+  - **Radical Red's own moves**: Aqua Fang (Gyarados, Feraligatr, Sharpedo...), Dark Hole
+    (Darkrai, and a tutor move), Soul Robbery (Mewtwo), Sonic Slash (Ninjask), Draco Barrage
+    (Tropius, Hydreigon, Kommo-o, Guzzlord, and a tutor move for most Dragons) and Forbidden
+    Spell (Unown, Chimecho), with their effects: Draco Barrage hits Fairy-types, uses the
+    stronger of Attack and Sp. Atk and hurts the user; Forbidden Spell calls one of eight moves.
+  - Imperium's changes: Jirachi learns Moonblast, Dragapult Shadow Claw, Galarian Moltres Trick
+    Room, and Dusclops and Dusknoir Amnesia.
+
+### Fixes
+- The move relearner's TM MOVES list held 60 moves. With most TMs in the Bag, opening it for
+  MEW, or any Pokémon that learns more than 60 of them, could crash the game; it now holds all
+  206 TMs and HMs.
+
 ## 0.12.0-experimental (2026-10-26)
 
 ### Quality of life

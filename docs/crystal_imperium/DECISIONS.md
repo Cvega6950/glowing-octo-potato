@@ -27,8 +27,10 @@ Short records of decisions that shape the project. Newest last.
   in [FEATURE_MATRIX.md](FEATURE_MATRIX.md).
 - Lists of facts about the game are design data, not code or assets: its TM list (D22), and
   since 0.11.0, at the user's request, which abilities and moves each species has (D35), taken
-  from the public Radical Red dex that Imperium's own documentation follows. Base stats, sprites
-  and Imperium's own Megas, moves and abilities stay out.
+  from the public Radical Red dex that Imperium's own documentation follows; since 0.13.0 also
+  which TM and tutor moves they learn, and Radical Red's six moves of its own, written anew from
+  the dex's numbers and the effects its change lists give (D39). Base stats, sprites and
+  Imperium's own Megas, moves and abilities stay out.
 
 ## D3. Minimal Grinding Mode is symmetric
 
@@ -504,7 +506,8 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 - The user asked for the same TMs as Emerald Imperium. Its official TM guide lists TM001–TM174
   ([pokemonemeraldimperium.com](https://pokemonemeraldimperium.com/all-tms-and-hms-location-guide/)).
   Two of them teach moves Imperium made itself, "Dark Hole" (TM161) and "Draco Barrage"
-  (TM171), which the engine doesn't have and D2 keeps out. Crystal Imperium has the other 172,
+  (TM171), which the engine doesn't have and D2 keeps out (Radical Red's moves, in fact; since
+  0.13.0 the engine has them, as postgame tutor moves, D39). Crystal Imperium has the other 172,
   in Imperium's order, as TM01–TM172; from Imperium's TM162 on the numbers are one lower here,
   and from its TM172 on two lower. A list of move names is design data, not Imperium code or
   assets.
@@ -1016,7 +1019,7 @@ DexNav shows and that wild encounters draw from:
     one of the species' Heart & Soul abilities not already in its list: Typhlosion has Flash
     Fire and Blaze for Radical Red's Flash Fire and Blazing Soul.
   - 6 moves it made (Aqua Fang, Draco Barrage, Soul Robbery, Forbidden Spell, Sonic Slash, Dark
-    Hole) are left out of the learnsets.
+    Hole) are left out of the learnsets. Since 0.13.0 the engine has them (D39).
   - 43 forms it made (its Sevii forms, the Megas of Butterfree, Machamp, Kingler, Lapras, Snorlax
     and other Gigantamax Pokémon, Primal Dialga, Surfing and Flying Pikachu, Chillet).
   - Names cut to its 12 letters are matched to the full ones: Disarm Cry (Disarming Voice),
@@ -1029,13 +1032,14 @@ DexNav shows and that wild encounters draw from:
   ability rather than Speed Boost); Blaziken learns Thunderous Kick at 64; Latios and Latias
   learn Memento and Healing Wish at 71, not 61; Urshifu learns Wicked Blow or Surging Strikes
   on evolving; Alolan Marowak has Battle Armor instead of Bone Zone. Its TM-only changes
-  (Jirachi's Moonblast, Dragapult's Shadow Claw, Galarian Moltres's Trick Room) don't apply.
+  (Jirachi's Moonblast, Dragapult's Shadow Claw, Galarian Moltres's Trick Room) don't apply
+  (they do since 0.13.0, D39, as does "Dusclops/Dusknoir get access to Amnesia", missed here).
 - **Kept:** an ability a form change needs stays (`form_change_tables.h`). Radical Red gives
   Silvally Battle Armor, but here its Memories change its type only with RKS System, so all
   Silvally keep their abilities. Gigantamax and cosmetic forms that had their base form's
   abilities and level-up moves follow its new ones (Unown's letters, Vivillon's patterns).
 - **Not mirrored:** TM and tutor compatibility (Crystal Imperium's TM list is its own, D22, and
-  Radical Red's has 128 TMs), base stats and types (not asked for). Engine limits: a level-up
+  Radical Red's has 128 TMs; mirrored since 0.13.0, D39), base stats and types (not asked for). Engine limits: a level-up
   list holds 40 moves and an Egg Move list 19 (the Day-Care's buffer), so Farfetch'd keeps 19 of
   its 20 Egg Moves.
 - **Trainers.** Fifty trainer Pokémon had an ability their species no longer has, which the
@@ -1201,3 +1205,90 @@ DexNav shows and that wild encounters draw from:
 - **Tests.** The harness's soft walks let go of the d-pad when a battle starts (they kept walking
   into the battle's menu once the intro stopped waiting for A), and tests that pressed A through
   the intro wait for the action menu instead (`wait_action_menu`).
+
+## D39. Emerald Imperium's and Radical Red's move pools
+
+- The user: "Also make the move pool and learnsets for the Pokemon like emerald imperium and
+  radical red". Level-up moves and Egg Moves are Radical Red's since 0.11.0 (D35). The rest of a
+  move pool is the TM and tutor moves a species learns, and Radical Red has six moves of its own.
+  Emerald Imperium sends players to the Radical Red dex for Pokémon information
+  ([Imperium documentation](https://pokemonemeraldimperium.com/documentation/)), has "Move-tutor
+  moves converted to TMs" ([Imperium features](https://pokemonemeraldimperium.com/features/)),
+  and lists its differences from Radical Red
+  ([New Mega Evolutions](https://pokemonemeraldimperium.com/new-mega-evolutions/)).
+- **TM and tutor compatibility.** `imperium_species.py` also writes
+  `src/data/pokemon/imperium_teachables.json`: the 182 moves Radical Red teaches by TM or tutor,
+  and the ones each species learns there, for the 1,098 teachable learnsets it has (matched by
+  species number, so Deoxys-Normal's list is Radical Red's "Deoxys"; white-striped Basculin and
+  Terapagos aren't in it). `make_teachables.py`, which writes the teachable learnsets at build
+  time, applies it with `P_IMPERIUM_SPECIES_DATA`:
+  - For a move Radical Red teaches by TM or tutor, Radical Red decides. TYPHLOSION gains Aura
+    Sphere and Mystical Fire, and loses Body Slam, Fire Fang, Iron Head, Shadow Ball and Zen
+    Headbutt, which only Scarlet and Violet teach it.
+  - The other TMs and tutor moves (61: Hyper Beam, Frustration, Heart & Soul's tutors...) follow
+    the official rule as before: a species learns one if it does in any official game.
+  - An HM move stays teachable to a species that learns it in an official game too: Radical Red's
+    HM lists leave out 136 such cases, mostly newer forms (Alolan Geodude's Rock Smash, Galarian
+    Slowking's Strength). Using HMs in the field doesn't depend on it (D23).
+  - Radical Red's TM and tutor moves that are neither TMs nor tutor moves here become tutor moves,
+    which the move relearner teaches: Celebrate, Cosmic Power, Dark Hole, Draco Barrage, Hone
+    Claws, Toxic Spikes and Uproar (67 tutor moves, 60 before). The tutor list is now written
+    for the build's own TM list (`--build`, as the teachable learnsets are).
+  - **Dark Hole and Draco Barrage wait for the postgame.** They are Imperium's TM161 ("Post game")
+    and TM171 ("Post game Mart at the Battle Frontier"), per its
+    [TM guide](https://pokemonemeraldimperium.com/all-tms-and-hms-location-guide/), and the
+    relearner offers every tutor move from the start: a 100-power move with a 40% chance of sleep
+    would come a whole game early. The relearner lists them once `FLAG_SYS_GAME_CLEAR` is set
+    (the first Hall of Fame). As tutor moves rather than TMs they keep the TM numbers of D22. The
+    Pokémon that learn them by level (Darkrai 81, Hydreigon 85...) do so at any time.
+  - Imperium's changes: Jirachi learns Moonblast, Dragapult Shadow Claw and Galarian Moltres
+    Trick Room. "Dusclops/Dusknoir get access to Amnesia": no TM or tutor teaches Amnesia in
+    either game, so it is a level 1 move, which the relearner teaches at any time.
+  - 1,059 of the 1,100 teachable learnsets change; 60,692 entries become 60,996.
+- **Radical Red's own moves**, after the official ones (`include/constants/moves.h`: no saved
+  move number changes, and Metronome, which calls official moves only, doesn't call them), with
+  the dex's type, power, accuracy and PP and the effects its change lists give
+  ([PokéPorto: all Pokémon changes](https://www.pokeporto.com/pokemon-radical-red-all-pokemon-changes/),
+  [PokéPorto: changelog](https://www.pokeporto.com/pokemon-radical-red-changelog/)):
+  - **Aqua Fang**: Water, physical, 80, 100%, 10 PP, a biting move (Strong Jaw). Level-up:
+    Gyarados 30, Basculin 42, Feraligatr 45, Bruxish 48, Huntail 50, Drednaw 72, Sharpedo 75.
+  - **Dark Hole**: Dark, special, 100, 100%, 5 PP, a 40% chance of sleep, through Substitute.
+    Darkrai 81, and a Radical Red tutor move (58 species).
+  - **Soul Robbery**: Psychic, special, 100, 100%, 5 PP; steals the target's stat boosts, then
+    attacks (Spectral Thief's effect). Mewtwo 100.
+  - **Sonic Slash**: Flying, physical, 100%, 10 PP; 140 power at 3 times the target's Speed or
+    more, 120 at twice, 80 below (`EFFECT_SONIC_SLASH`). Ninjask 54.
+  - **Draco Barrage**: Dragon, 100, 100%, 5 PP; physical or special, whichever of the user's
+    Attack and Sp. Atk is higher (as Photon Geyser); hits Fairy-types (neutral damage); recoil of
+    a third of the damage dealt (Radical Red 3.0). Tropius 52, Kommo-o and Guzzlord 77, Hydreigon
+    85, and a Radical Red TM (111 species), a tutor move here.
+  - **Forbidden Spell**: Dark, status; calls Shell Smash, Healing Wish, Dark Hole, Tail Glow, Roar
+    of Time, Quiver Dance, No Retreat or Soul Robbery, one time in eight each
+    (`EFFECT_FORBIDDEN_SPELL`, through Metronome's code). Unown 34, Chimecho 50. 1 PP, as in the
+    dex; the change list that names the eight moves gave it 5.
+  - Each borrows an official move's animation: Fishious Rend, Dark Void, Spectral Thief, Aerial
+    Ace, Draco Meteor and Nasty Plot.
+  - Imperium hasn't added Draco Barrage and Soul Robbery ("not yet added", its list); Radical Red
+    has them, and the user asked for both games' move pools.
+  - With them, and "Soupercell Slam" matched to Supercell Slam (Radical Red's spelling), no Radical
+    Red move is left out any more: 18 more level-up moves (Feraligatr's Aqua Fang...).
+- **Fix: the move relearner listed at most 60 moves** (`MAX_RELEARNER_MOVES`, set upstream so Mew
+  could see all of Emerald's TMs), and its lists didn't stop there. TM MOVES lists every TM and
+  HM in the Bag the Pokémon learns: up to 206 here (D22), so with most TMs bought, opening it for
+  MEW (or any Pokémon that learns more than 60 of them) overran the list. The build before this
+  fix stopped on an "INVALID MOVE" assertion in `move_pools`. The limit is 250, checked against
+  the number of machines when compiling, and every list stops at it.
+- Trainers keep their moves. Five boss moves aren't teachable to a player's Pokémon of the same
+  species any more: Chuck's Primeape's Drain Punch (his three versions) and the rival's
+  Meganium's Earth Power (two battles). Trainer Pokémon can know any move; `validate.py` checks
+  boss moves against the official games, as before.
+- Players' Pokémon keep the moves they know. ROM: +1,680 bytes (with the relearner fix).
+- Evidence: `move_pools` (new), on mGBA and VBA-M. In the party menu's relearner, with every TM
+  and HM in the Bag: TYPHLOSION's TM list has Aura Sphere and Mystical Fire and not Shadow Ball,
+  its tutor list Blast Burn and not Body Slam; MEW's TM list has all 206 TMs and HMs, its tutor
+  list 61 moves, then 63 with Dark Hole and Draco Barrage once the game is cleared; DRAGONITE
+  then learns Draco Barrage from its tutor list, and in battle knocks out Whitney's CLEFAIRY (99
+  HP, Eviolite) with it in one hit and takes 32 HP of recoil. A special Draco Barrage would do
+  79–93 damage, and without the Fairy rule none. `battle_anims` uses the six new moves with the
+  rest. `hm_field_moves`: MAGIKARP's party menu now has LEARN MOVES (Celebrate) above FLY.
+  `imperium_species.py --check`.

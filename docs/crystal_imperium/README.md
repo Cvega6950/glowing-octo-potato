@@ -4,10 +4,10 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.12.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.13.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
-> of its Pokémon at the level cap, the Pokémon have Emerald Imperium's abilities and movesets,
+> of its Pokémon at the level cap, the Pokémon have Emerald Imperium's abilities and move pools,
 > the TM list is Emerald Imperium's, and HMs work without being taught. Nobody has played the whole story through yet, and the postgame rematches still have
 > Heart & Soul's teams (at the level cap too).
 
@@ -75,11 +75,12 @@ From the first step of a new game:
 - **HARD plays by Emerald Imperium's and Radical Red's rules:** the SET battle style (no "Will
   you switch Pokémon?" after a knockout) and no Bag in trainer battles, on top of +10% trainer
   levels and HARD level caps.
-- **Emerald Imperium's abilities and movesets:** every Pokémon has Imperium's abilities,
-  level-up moves and Egg Moves (Radical Red's, which Imperium follows, with Imperium's own
-  changes), so Pidgey has No Guard, Golbat Infiltrator and Typhlosion Flash Fire. A few
-  abilities and moves Radical Red made itself aren't in this engine; TM compatibility is
-  unchanged.
+- **Emerald Imperium's abilities and move pools:** every Pokémon has Imperium's abilities,
+  level-up moves, Egg Moves, and TM and tutor moves (Radical Red's, which Imperium follows, with
+  Imperium's own changes), so Pidgey has No Guard, Golbat Infiltrator and Typhlosion Flash Fire,
+  and Typhlosion learns Aura Sphere and Mystical Fire. Radical Red's own moves are in too: Aqua
+  Fang, Dark Hole, Soul Robbery, Sonic Slash, Draco Barrage and Forbidden Spell. A few abilities
+  Radical Red made itself aren't in this engine.
 - **A Gen 5 look:** Black/White-style battles (healthboxes, text box, FIGHT / BAG / POKÉMON /
   RUN buttons, a move box with types, PP and effectiveness) and a Black/White-style summary
   screen (A on the skills page shows IVs and EVs).
@@ -157,13 +158,13 @@ your house), except Auto Run, which is in the Options menu and the L menu.
 Also asked for and done: DexNav and Rare Candy before the first Gym (both are there from the
 first step), Easy Catch, an unlimited PokéVial given with the Rare Candy Box, milestone care
 packages (in stacks since 0.11.0), Emerald Imperium's L menu (with a start menu that fits on
-the screen again), Emerald Imperium's abilities and movesets, and a TM clerk in every Poké Mart.
+the screen again), Emerald Imperium's abilities and move pools, and a TM clerk in every Poké Mart.
 
 **Not done yet:** a full story playthrough; a test on a real iPhone; Imperium-style teams for
 the postgame rematches (they have Heart & Soul's teams with the smart AI); Emerald Imperium's
-custom Megas and its two custom TM moves, Dark Hole and Draco Barrage (no permission to use
-Imperium's own content, DECISIONS.md D2); the abilities and moves Radical Red made itself, which
-the engine doesn't have (D35).
+custom Megas (no permission to use Imperium's own content, DECISIONS.md D2); the 11 abilities
+Radical Red made itself, which the engine doesn't have (D35). Imperium's two TMs of Radical Red
+moves, Dark Hole and Draco Barrage, are postgame tutor moves instead (D39).
 
 Details: [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [TESTING.md](TESTING.md) ·
 [DECISIONS.md](DECISIONS.md) · [BALANCE.md](BALANCE.md) · [KNOWN_ISSUES.md](KNOWN_ISSUES.md) ·

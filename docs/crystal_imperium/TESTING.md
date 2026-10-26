@@ -133,6 +133,11 @@ free badge. The autopilot cannot drive double battles yet.
   one of them changes (D38's measurements: the battle's main function, each controller, the
   battle script's position); `waituntilany32` waits for one of several values.
 - `!move_animation_sweep(state)` uses every move once from a saved battle (`battle_anims`).
+- `!open_relearner(slot, presses, category, label)` opens a party Pokémon's move relearner on a
+  category (checked); `!expect_relearner_list(...)` checks the list on screen, its length (then
+  CANCEL) and the moves it must and mustn't have, against the moves `relearner_list()` reads from
+  the teachable learnsets the build generated; `!close_relearner()` leaves it (`move_pools`).
+  `expectfind16` / `expectnotfind16` check whether one of a table's entries holds a value.
 - Addresses can follow pointers: `*PTR+OFF`, `**PTR+A+B`.
 - `expect_flag`, `expect_var`, `expect_save3`, `expect_bag_has`, `expect_battler`,
   `expect_const` resolve game constants and struct offsets by compiling against the game's own
