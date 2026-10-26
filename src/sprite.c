@@ -486,10 +486,11 @@ u32 CreateSpriteAt(u32 index, const struct SpriteTemplate *template, s16 x, s16 
 
     sprite->subpriority = subpriority;
     sprite->oam = *template->oam;
-    sprite->anims = template->anims;
-    sprite->affineAnims = template->affineAnims;
+    // Platinum Imperium: templates may leave these out, as in expansion 1.15 (the BW battle UI's do)
+    sprite->anims = template->anims ? template->anims : gDummySpriteAnimTable;
+    sprite->affineAnims = template->affineAnims ? template->affineAnims : gDummySpriteAffineAnimTable;
     sprite->template = template;
-    sprite->callback = template->callback;
+    sprite->callback = template->callback ? template->callback : SpriteCallbackDummy;
     sprite->x = x;
     sprite->y = y;
 

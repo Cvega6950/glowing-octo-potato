@@ -315,8 +315,8 @@ def set_var(var, value):
 
 
 def no_care_packages():
-    """Mark all 17 care packages, their gear and their stacks as received, so none arrives during the test."""
-    return set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_GEAR", 17) + set_var("VAR_CARE_PACKAGE_BULK", 17)
+    """Mark every care package (badge, starting and location ones) as received, so none arrives during the test."""
+    return set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
 
 
 def expect_var(var, want, label=None):

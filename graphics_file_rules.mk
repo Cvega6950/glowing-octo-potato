@@ -8,6 +8,8 @@ BATINTGFXDIR := graphics/battle_interface
 MASKSGFXDIR := graphics/battle_anims/masks
 BATTRANSGFXDIR := graphics/battle_transitions
 TYPESGFXDIR := graphics/types
+TYPESBWGFXDIR := graphics/types_bw
+TYPESBWTERAGFXDIR := graphics/types_bw/tera
 RAYQUAZAGFXDIR := graphics/rayquaza_scene
 ROULETTEGFXDIR := graphics/roulette
 SLOTMACHINEGFXDIR := graphics/slot_machine
@@ -251,6 +253,16 @@ $(FONTGFXDIR)/short_narrow.latfont: $(FONTGFXDIR)/latin_short_narrow.png
 $(FONTGFXDIR)/short_narrower.latfont: $(FONTGFXDIR)/latin_short_narrower.png
 	$(GFX) $< $@
 
+# bwBattleUI
+$(FONTGFXDIR)/outlined.latfont: $(FONTGFXDIR)/latin_outlined.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/outlined_narrow.latfont: $(FONTGFXDIR)/latin_outlined_narrow.png
+	$(GFX) $< $@
+
+$(FONTGFXDIR)/battle_ui_element.latfont: $(FONTGFXDIR)/latin_battle_ui_element.png
+	$(GFX) $< $@
+
 $(FONTGFXDIR)/small.hwjpnfont: $(FONTGFXDIR)/japanese_small.png
 	$(GFX) $< $@
 
@@ -343,6 +355,35 @@ $(BATINTGFXDIR)/unused_window2bar.4bpp: %.4bpp: %.png
 $(BATINTGFXDIR)/ability_pop_up.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 8 -mheight 4
 
+# start bwBattleUI
+
+$(BATINTGFXDIR)/bw/cursor.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 2
+
+$(BATINTGFXDIR)/bw/textbox.gbapal: $(BATINTGFXDIR)/bw/textbox_0.gbapal \
+                                   $(BATINTGFXDIR)/bw/textbox_1.gbapal
+	@cat $^ >$@
+
+$(BATINTGFXDIR)/bw/ability_pop_up.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 4
+
+$(BATINTGFXDIR)/bw/healthbox_singles_player.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 8
+
+$(BATINTGFXDIR)/bw/healthbox_singles_opponent.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 4
+
+$(BATINTGFXDIR)/bw/healthbox_doubles_player.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 4
+
+$(BATINTGFXDIR)/bw/healthbox_doubles_opponent.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 4
+
+$(BATINTGFXDIR)/bw/healthbox_safari.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 8 -mheight 8
+
+# end bwBattleUI
+
 $(JPCONTESTGFXDIR)/composite_1.4bpp: $(JPCONTESTGFXDIR)/frame_1.4bpp \
                                      $(JPCONTESTGFXDIR)/floor.4bpp \
                                      $(JPCONTESTGFXDIR)/frame_2.4bpp \
@@ -393,6 +434,17 @@ $(TYPESGFXDIR)/move_types.4bpp: $(types:%=$(TYPESGFXDIR)/%.4bpp) $(contest_types
 $(TYPESGFXDIR)/move_types.gbapal: $(TYPESGFXDIR)/move_types_1.gbapal \
                                   $(TYPESGFXDIR)/move_types_2.gbapal \
                                   $(TYPESGFXDIR)/move_types_3.gbapal
+	@cat $^ >$@
+
+$(TYPESBWGFXDIR)/move_types_bw.4bpp: $(types:%=$(TYPESBWGFXDIR)/%.4bpp) $(contest_types:%=$(TYPESBWGFXDIR)/contest_%.4bpp)
+	@cat $^ >$@
+
+$(TYPESBWGFXDIR)/move_types_bw.gbapal: $(TYPESBWGFXDIR)/move_types_bw_1.gbapal \
+                                  $(TYPESBWGFXDIR)/move_types_bw_2.gbapal \
+                                  $(TYPESBWGFXDIR)/move_types_bw_3.gbapal
+	@cat $^ >$@
+
+$(TYPESBWTERAGFXDIR)/tera_types_bw.4bpp: $(types:%=$(TYPESBWTERAGFXDIR)/%.4bpp)
 	@cat $^ >$@
 
 graphics/bag/menu.4bpp: %.4bpp: %.png

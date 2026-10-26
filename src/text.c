@@ -26,10 +26,16 @@ static u16 FontFunc_ShortCopy2(struct TextPrinter *);
 static u16 FontFunc_ShortCopy3(struct TextPrinter *);
 static u16 FontFunc_Narrow(struct TextPrinter *);
 static u16 FontFunc_SmallNarrow(struct TextPrinter *);
+static u16 FontFunc_BW_Summary_Screen(struct TextPrinter *);
 static u16 FontFunc_Narrower(struct TextPrinter *);
 static u16 FontFunc_SmallNarrower(struct TextPrinter *);
 static u16 FontFunc_ShortNarrow(struct TextPrinter *);
 static u16 FontFunc_ShortNarrower(struct TextPrinter *);
+// start bwBattleUI
+static u16 FontFunc_Outlined(struct TextPrinter *);
+static u16 FontFunc_OutlinedNarrow(struct TextPrinter *);
+static u16 FontFunc_BattleUIElements(struct TextPrinter *);
+// end bwBattleUI
 static void DecompressGlyph_Small(u16, bool32);
 static void DecompressGlyph_Normal(u16, bool32);
 static void DecompressGlyph_Short(u16, bool32);
@@ -40,6 +46,11 @@ static void DecompressGlyph_Narrower(u16, bool32);
 static void DecompressGlyph_SmallNarrower(u16, bool32);
 static void DecompressGlyph_ShortNarrow(u16, bool32);
 static void DecompressGlyph_ShortNarrower(u16, bool32);
+// start bwBattleUI
+static void DecompressGlyph_Outlined(u16, bool32);
+static void DecompressGlyph_OutlinedNarrow(u16, bool32);
+static void DecompressGlyph_BattleUIElements(u16, bool32);
+// end bwBattleUI
 static u32 GetGlyphWidth_Small(u16, bool32);
 static u32 GetGlyphWidth_Normal(u16, bool32);
 static u32 GetGlyphWidth_Short(u16, bool32);
@@ -49,11 +60,22 @@ static u32 GetGlyphWidth_Narrower(u16, bool32);
 static u32 GetGlyphWidth_SmallNarrower(u16, bool32);
 static u32 GetGlyphWidth_ShortNarrow(u16, bool32);
 static u32 GetGlyphWidth_ShortNarrower(u16, bool32);
+// start bwBattleUI
+static u32 GetGlyphWidth_Outlined(u16, bool32);
+static u32 GetGlyphWidth_OutlinedNarrow(u16, bool32);
+static u32 GetGlyphWidth_BattleUIElements(u16, bool32);
+// end bwBattleUI
+static inline bool32 IsOutlinedFont(u32 fontId); // bwBattleUI
+static void GenerateTemplateLookupTable(const struct TextPrinterTemplate *template);
 
 static EWRAM_DATA struct TextPrinter sTempTextPrinter = {0};
 static EWRAM_DATA struct TextPrinter sTextPrinters[WINDOWS_MAX] = {0};
 
-static u16 sFontHalfRowLookupTable[0x51];
+// Platinum Imperium: indexed directly by a byte of glyph (four 2-bit pixels), so that pixel value 3
+// can be drawn in an accent colour like expansion 1.15 (the BW battle UI's fonts use it)
+static u16 sFontHalfRowLookupTable[0x100];
+static u16 sLastTextAccentColor;
+static u8 sSavedTextAccentColor;
 static u16 sLastTextBgColor;
 static u16 sLastTextFgColor;
 static u16 sLastTextShadowColor;
@@ -63,25 +85,6 @@ COMMON_DATA bool8 gDisableTextPrinters = 0;
 COMMON_DATA struct TextGlyph gCurGlyph = {0};
 COMMON_DATA TextFlags gTextFlags = {0};
 
-static const u8 sFontHalfRowOffsets[] =
-{
-    0x00, 0x01, 0x02, 0x00, 0x03, 0x04, 0x05, 0x03, 0x06, 0x07, 0x08, 0x06, 0x00, 0x01, 0x02, 0x00,
-    0x09, 0x0A, 0x0B, 0x09, 0x0C, 0x0D, 0x0E, 0x0C, 0x0F, 0x10, 0x11, 0x0F, 0x09, 0x0A, 0x0B, 0x09,
-    0x12, 0x13, 0x14, 0x12, 0x15, 0x16, 0x17, 0x15, 0x18, 0x19, 0x1A, 0x18, 0x12, 0x13, 0x14, 0x12,
-    0x00, 0x01, 0x02, 0x00, 0x03, 0x04, 0x05, 0x03, 0x06, 0x07, 0x08, 0x06, 0x00, 0x01, 0x02, 0x00,
-    0x1B, 0x1C, 0x1D, 0x1B, 0x1E, 0x1F, 0x20, 0x1E, 0x21, 0x22, 0x23, 0x21, 0x1B, 0x1C, 0x1D, 0x1B,
-    0x24, 0x25, 0x26, 0x24, 0x27, 0x28, 0x29, 0x27, 0x2A, 0x2B, 0x2C, 0x2A, 0x24, 0x25, 0x26, 0x24,
-    0x2D, 0x2E, 0x2F, 0x2D, 0x30, 0x31, 0x32, 0x30, 0x33, 0x34, 0x35, 0x33, 0x2D, 0x2E, 0x2F, 0x2D,
-    0x1B, 0x1C, 0x1D, 0x1B, 0x1E, 0x1F, 0x20, 0x1E, 0x21, 0x22, 0x23, 0x21, 0x1B, 0x1C, 0x1D, 0x1B,
-    0x36, 0x37, 0x38, 0x36, 0x39, 0x3A, 0x3B, 0x39, 0x3C, 0x3D, 0x3E, 0x3C, 0x36, 0x37, 0x38, 0x36,
-    0x3F, 0x40, 0x41, 0x3F, 0x42, 0x43, 0x44, 0x42, 0x45, 0x46, 0x47, 0x45, 0x3F, 0x40, 0x41, 0x3F,
-    0x48, 0x49, 0x4A, 0x48, 0x4B, 0x4C, 0x4D, 0x4B, 0x4E, 0x4F, 0x50, 0x4E, 0x48, 0x49, 0x4A, 0x48,
-    0x36, 0x37, 0x38, 0x36, 0x39, 0x3A, 0x3B, 0x39, 0x3C, 0x3D, 0x3E, 0x3C, 0x36, 0x37, 0x38, 0x36,
-    0x00, 0x01, 0x02, 0x00, 0x03, 0x04, 0x05, 0x03, 0x06, 0x07, 0x08, 0x06, 0x00, 0x01, 0x02, 0x00,
-    0x09, 0x0A, 0x0B, 0x09, 0x0C, 0x0D, 0x0E, 0x0C, 0x0F, 0x10, 0x11, 0x0F, 0x09, 0x0A, 0x0B, 0x09,
-    0x12, 0x13, 0x14, 0x12, 0x15, 0x16, 0x17, 0x15, 0x18, 0x19, 0x1A, 0x18, 0x12, 0x13, 0x14, 0x12,
-    0x00, 0x01, 0x02, 0x00, 0x03, 0x04, 0x05, 0x03, 0x06, 0x07, 0x08, 0x06, 0x00, 0x01, 0x02, 0x00
-};
 
 static const u8 sDownArrowTiles[] = INCBIN_U8("graphics/fonts/down_arrow.4bpp");
 static const u8 sDarkDownArrowTiles[] = INCBIN_U8("graphics/fonts/down_arrow_alt.4bpp");
@@ -104,6 +107,12 @@ static const struct GlyphWidthFunc sGlyphWidthFuncs[] =
     { FONT_SMALL_NARROWER, GetGlyphWidth_SmallNarrower },
     { FONT_SHORT_NARROW,   GetGlyphWidth_ShortNarrow },
     { FONT_SHORT_NARROWER, GetGlyphWidth_ShortNarrower },
+    { FONT_BW_SUMMARY_SCREEN, GetGlyphWidth_Short }, // bwSummaryScreen
+    // start bwBattleUI
+    { FONT_OUTLINED,                    GetGlyphWidth_Outlined },
+    { FONT_OUTLINED_NARROW,             GetGlyphWidth_OutlinedNarrow },
+    { FONT_BATTLE_UI_ELEMENTS,          GetGlyphWidth_BattleUIElements },
+    // end bwBattleUI
 };
 
 struct
@@ -262,6 +271,18 @@ static const struct FontInfo sFontInfos[] =
         .bgColor = 1,
         .shadowColor = 3,
     },
+    // start bwSummaryScreen
+    [FONT_BW_SUMMARY_SCREEN] = {
+        .fontFunction = FontFunc_BW_Summary_Screen,
+        .maxLetterWidth = 6,
+        .maxLetterHeight = 14,
+        .letterSpacing = 0,
+        .lineSpacing = 0,
+        .fgColor = 2,
+        .bgColor = 1,
+        .shadowColor = 3,
+    },
+    // end bwSummaryScreen
     [FONT_SHORT_NARROWER] = {
         .fontFunction = FontFunc_ShortNarrower,
         .maxLetterWidth = 5,
@@ -272,6 +293,41 @@ static const struct FontInfo sFontInfos[] =
         .bgColor = 1,
         .shadowColor = 3,
     },
+    // start bwBattleUI
+    [FONT_OUTLINED] = {
+        .fontFunction = FontFunc_Outlined,
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 15,
+        .letterSpacing = -1,
+        .lineSpacing = 0,
+        .unk = 1, // accent
+        .fgColor = 2,
+        .bgColor = 1,
+        .shadowColor = 3,
+    },
+    [FONT_OUTLINED_NARROW] = {
+        .fontFunction = FontFunc_OutlinedNarrow,
+        .maxLetterWidth = 11,
+        .maxLetterHeight = 15,
+        .letterSpacing = -1,
+        .lineSpacing = 0,
+        .unk = 1, // accent
+        .fgColor = 2,
+        .bgColor = 1,
+        .shadowColor = 3,
+    },
+    [FONT_BATTLE_UI_ELEMENTS] = {
+        .fontFunction = FontFunc_BattleUIElements,
+        .maxLetterWidth = 16,
+        .maxLetterHeight = 16,
+        .letterSpacing = -1,
+        .lineSpacing = 0,
+        .unk = 4, // accent
+        .fgColor = 2,
+        .bgColor = 1,
+        .shadowColor = 3,
+    },
+    // end bwBattleUI
 };
 
 static const u8 sMenuCursorDimensions[][2] =
@@ -289,6 +345,7 @@ static const u8 sMenuCursorDimensions[][2] =
     [FONT_NARROWER]       = { 8,  15 },
     [FONT_SMALL_NARROWER] = { 8,   8 },
     [FONT_SHORT_NARROW]   = { 8,  14 },
+    [FONT_BW_SUMMARY_SCREEN] = { 8,  14 },
     [FONT_SHORT_NARROWER] = { 8,  14 },
 };
 
@@ -407,7 +464,7 @@ bool32 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
     sTempTextPrinter.minLetterSpacing = 0;
     sTempTextPrinter.japanese = 0;
 
-    GenerateFontHalfRowLookupTable(printerTemplate->fgColor, printerTemplate->bgColor, printerTemplate->shadowColor);
+    GenerateTemplateLookupTable(printerTemplate);
     if (speed != TEXT_SKIP_DRAW && speed != 0)
     {
         --sTempTextPrinter.textSpeed;
@@ -502,14 +559,17 @@ static u32 RenderFont(struct TextPrinter *textPrinter)
 
 void GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor)
 {
-    u32 fg12, bg12, shadow12;
-    u32 temp;
+    GenerateFontHalfRowLookupTableWithAccent(fgColor, bgColor, shadowColor, bgColor);
+}
 
-    u16 *current = sFontHalfRowLookupTable;
+void GenerateFontHalfRowLookupTableWithAccent(u8 fgColor, u8 bgColor, u8 shadowColor, u8 accentColor)
+{
+    u32 i, colors[4];
 
     if (fgColor == sLastTextFgColor
      && bgColor == sLastTextBgColor
-     && shadowColor == sLastTextShadowColor)
+     && shadowColor == sLastTextShadowColor
+     && accentColor == sLastTextAccentColor)
     {
         return;
     }
@@ -517,145 +577,28 @@ void GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor)
     sLastTextBgColor = bgColor;
     sLastTextFgColor = fgColor;
     sLastTextShadowColor = shadowColor;
+    sLastTextAccentColor = accentColor;
 
-    bg12 = bgColor << 12;
-    fg12 = fgColor << 12;
-    shadow12 = shadowColor << 12;
+    colors[0] = bgColor;
+    colors[1] = fgColor;
+    colors[2] = shadowColor;
+    colors[3] = accentColor;
 
-    temp = (bgColor << 8) | (bgColor << 4) | bgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
+    // The first pixel of a half row is its lowest two bits and becomes the top nibble
+    for (i = 0; i < ARRAY_COUNT(sFontHalfRowLookupTable); i++)
+    {
+        sFontHalfRowLookupTable[i] = (colors[i & 3] << 12)
+                                   | (colors[(i >> 2) & 3] << 8)
+                                   | (colors[(i >> 4) & 3] << 4)
+                                   | colors[i >> 6];
+    }
+}
 
-    temp = (fgColor << 8) | (bgColor << 4) | bgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (shadowColor << 8) | (bgColor << 4) | bgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (bgColor << 8) | (fgColor << 4) | bgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (fgColor << 8) | (fgColor << 4) | bgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (shadowColor << 8) | (fgColor << 4) | bgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (bgColor << 8) | (shadowColor << 4) | bgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (fgColor << 8) | (shadowColor << 4) | bgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (shadowColor << 8) | (shadowColor << 4) | bgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (bgColor << 8) | (bgColor << 4) | fgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (fgColor << 8) | (bgColor << 4) | fgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (shadowColor << 8) | (bgColor << 4) | fgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (bgColor << 8) | (fgColor << 4) | fgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (fgColor << 8) | (fgColor << 4) | fgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (shadowColor << 8) | (fgColor << 4) | fgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (bgColor << 8) | (shadowColor << 4) | fgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (fgColor << 8) | (shadowColor << 4) | fgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (shadowColor << 8) | (shadowColor << 4) | fgColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (bgColor << 8) | (bgColor << 4) | shadowColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (fgColor << 8) | (bgColor << 4) | shadowColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (shadowColor << 8) | (bgColor << 4) | shadowColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (bgColor << 8) | (fgColor << 4) | shadowColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (fgColor << 8) | (fgColor << 4) | shadowColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (shadowColor << 8) | (fgColor << 4) | shadowColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (bgColor << 8) | (shadowColor << 4) | shadowColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (fgColor << 8) | (shadowColor << 4) | shadowColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
-
-    temp = (shadowColor << 8) | (shadowColor << 4) | shadowColor;
-    *(current++) = (bg12) | temp;
-    *(current++) = (fg12) | temp;
-    *(current++) = (shadow12) | temp;
+// The accent colour of a printer template: 0 (the default for every caller) is the background
+static void GenerateTemplateLookupTable(const struct TextPrinterTemplate *template)
+{
+    GenerateFontHalfRowLookupTableWithAccent(template->fgColor, template->bgColor, template->shadowColor,
+                                             template->unk ? template->unk : template->bgColor);
 }
 
 void SaveTextColors(u8 *fgColor, u8 *bgColor, u8 *shadowColor)
@@ -663,11 +606,12 @@ void SaveTextColors(u8 *fgColor, u8 *bgColor, u8 *shadowColor)
     *bgColor = sLastTextBgColor;
     *fgColor = sLastTextFgColor;
     *shadowColor = sLastTextShadowColor;
+    sSavedTextAccentColor = sLastTextAccentColor;
 }
 
 void RestoreTextColors(u8 *fgColor, u8 *bgColor, u8 *shadowColor)
 {
-    GenerateFontHalfRowLookupTable(*fgColor, *bgColor, *shadowColor);
+    GenerateFontHalfRowLookupTableWithAccent(*fgColor, *bgColor, *shadowColor, sSavedTextAccentColor);
 }
 
 void DecompressGlyphTile(const void *src_, void *dest_)
@@ -677,28 +621,28 @@ void DecompressGlyphTile(const void *src_, void *dest_)
     u32 *dest = dest_;
 
     temp = *(src++);
-    *(dest)++ = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
+    *(dest)++ = ((sFontHalfRowLookupTable[temp & 0xFF]) << 16) | (sFontHalfRowLookupTable[temp >> 8]);
 
     temp = *(src++);
-    *(dest++) = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
+    *(dest++) = ((sFontHalfRowLookupTable[temp & 0xFF]) << 16) | (sFontHalfRowLookupTable[temp >> 8]);
 
     temp = *(src++);
-    *(dest++) = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
+    *(dest++) = ((sFontHalfRowLookupTable[temp & 0xFF]) << 16) | (sFontHalfRowLookupTable[temp >> 8]);
 
     temp = *(src++);
-    *(dest++) = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
+    *(dest++) = ((sFontHalfRowLookupTable[temp & 0xFF]) << 16) | (sFontHalfRowLookupTable[temp >> 8]);
 
     temp = *(src++);
-    *(dest++) = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
+    *(dest++) = ((sFontHalfRowLookupTable[temp & 0xFF]) << 16) | (sFontHalfRowLookupTable[temp >> 8]);
 
     temp = *(src++);
-    *(dest++) = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
+    *(dest++) = ((sFontHalfRowLookupTable[temp & 0xFF]) << 16) | (sFontHalfRowLookupTable[temp >> 8]);
 
     temp = *(src++);
-    *(dest++) = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
+    *(dest++) = ((sFontHalfRowLookupTable[temp & 0xFF]) << 16) | (sFontHalfRowLookupTable[temp >> 8]);
 
     temp = *(src++);
-    *(dest++) = ((sFontHalfRowLookupTable[sFontHalfRowOffsets[temp & 0xFF]]) << 16) | (sFontHalfRowLookupTable[sFontHalfRowOffsets[temp >> 8]]);
+    *(dest++) = ((sFontHalfRowLookupTable[temp & 0xFF]) << 16) | (sFontHalfRowLookupTable[temp >> 8]);
 }
 
 static u8 UNUSED GetLastTextColor(u8 colorType)
@@ -960,6 +904,20 @@ static u16 FontFunc_ShortNarrow(struct TextPrinter *textPrinter)
     return RenderText(textPrinter);
 }
 
+// start bwSummaryScreen
+static u16 FontFunc_BW_Summary_Screen(struct TextPrinter *textPrinter)
+{
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
+
+    if (subStruct->hasFontIdBeenSet == FALSE)
+    {
+        subStruct->fontId = FONT_BW_SUMMARY_SCREEN;
+        subStruct->hasFontIdBeenSet = TRUE;
+    }
+    return RenderText(textPrinter);
+}
+// end bwSummaryScreen
+
 static u16 FontFunc_ShortNarrower(struct TextPrinter *textPrinter)
 {
     struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
@@ -971,6 +929,47 @@ static u16 FontFunc_ShortNarrower(struct TextPrinter *textPrinter)
     }
     return RenderText(textPrinter);
 }
+
+// start bwBattleUI
+static u16 FontFunc_Outlined(struct TextPrinter *textPrinter)
+{
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
+
+    if (!subStruct->hasFontIdBeenSet)
+    {
+        subStruct->fontId = FONT_OUTLINED;
+        subStruct->hasFontIdBeenSet = TRUE;
+    }
+
+    return RenderText(textPrinter);
+}
+
+static u16 FontFunc_OutlinedNarrow(struct TextPrinter *textPrinter)
+{
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
+
+    if (!subStruct->hasFontIdBeenSet)
+    {
+        subStruct->fontId = FONT_OUTLINED_NARROW;
+        subStruct->hasFontIdBeenSet = TRUE;
+    }
+
+    return RenderText(textPrinter);
+}
+
+static u16 FontFunc_BattleUIElements(struct TextPrinter *textPrinter)
+{
+    struct TextPrinterSubStruct *subStruct = (struct TextPrinterSubStruct *)(&textPrinter->subStructFields);
+
+    if (!subStruct->hasFontIdBeenSet)
+    {
+        subStruct->fontId = FONT_BATTLE_UI_ELEMENTS;
+        subStruct->hasFontIdBeenSet = TRUE;
+    }
+
+    return RenderText(textPrinter);
+}
+// end bwBattleUI
 
 void TextPrinterInitDownArrowCounters(struct TextPrinter *textPrinter)
 {
@@ -1179,6 +1178,8 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         case CHAR_NEWLINE:
             textPrinter->printerTemplate.currentX = textPrinter->printerTemplate.x;
             textPrinter->printerTemplate.currentY += (gFonts[textPrinter->printerTemplate.fontId].maxLetterHeight + textPrinter->printerTemplate.lineSpacing);
+            if (subStruct->fontId == FONT_BW_SUMMARY_SCREEN) // bwSummaryScreen
+                textPrinter->printerTemplate.currentY -= 2;
             return RENDER_REPEAT;
         case PLACEHOLDER_BEGIN:
             textPrinter->printerTemplate.currentChar++;
@@ -1191,17 +1192,17 @@ static u16 RenderText(struct TextPrinter *textPrinter)
             case EXT_CTRL_CODE_COLOR:
                 textPrinter->printerTemplate.fgColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+                GenerateTemplateLookupTable(&textPrinter->printerTemplate);
                 return RENDER_REPEAT;
             case EXT_CTRL_CODE_HIGHLIGHT:
                 textPrinter->printerTemplate.bgColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+                GenerateTemplateLookupTable(&textPrinter->printerTemplate);
                 return RENDER_REPEAT;
             case EXT_CTRL_CODE_SHADOW:
                 textPrinter->printerTemplate.shadowColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+                GenerateTemplateLookupTable(&textPrinter->printerTemplate);
                 return RENDER_REPEAT;
             case EXT_CTRL_CODE_COLOR_HIGHLIGHT_SHADOW:
                 textPrinter->printerTemplate.fgColor = *textPrinter->printerTemplate.currentChar;
@@ -1210,7 +1211,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
                 textPrinter->printerTemplate.currentChar++;
                 textPrinter->printerTemplate.shadowColor = *textPrinter->printerTemplate.currentChar;
                 textPrinter->printerTemplate.currentChar++;
-                GenerateFontHalfRowLookupTable(textPrinter->printerTemplate.fgColor, textPrinter->printerTemplate.bgColor, textPrinter->printerTemplate.shadowColor);
+                GenerateTemplateLookupTable(&textPrinter->printerTemplate);
                 return RENDER_REPEAT;
             case EXT_CTRL_CODE_PALETTE:
                 textPrinter->printerTemplate.currentChar++;
@@ -1350,6 +1351,7 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         case FONT_SHORT_COPY_1:
         case FONT_SHORT_COPY_2:
         case FONT_SHORT_COPY_3:
+        case FONT_BW_SUMMARY_SCREEN:
             DecompressGlyph_Short(currChar, textPrinter->japanese);
             break;
         case FONT_NARROW:
@@ -1370,6 +1372,17 @@ static u16 RenderText(struct TextPrinter *textPrinter)
         case FONT_SHORT_NARROWER:
             DecompressGlyph_ShortNarrower(currChar, textPrinter->japanese);
             break;
+        // start bwBattleUI
+        case FONT_OUTLINED:
+            DecompressGlyph_Outlined(currChar, textPrinter->japanese);
+            break;
+        case FONT_OUTLINED_NARROW:
+            DecompressGlyph_OutlinedNarrow(currChar, textPrinter->japanese);
+            break;
+        case FONT_BATTLE_UI_ELEMENTS:
+            DecompressGlyph_BattleUIElements(currChar, textPrinter->japanese);
+            break;
+        // end bwBattleUI
         case FONT_BRAILLE:
             break;
         }
@@ -1386,6 +1399,15 @@ static u16 RenderText(struct TextPrinter *textPrinter)
                 textPrinter->printerTemplate.currentX += width;
             }
         }
+        // start bwBattleUI: outlined glyphs overlap by one pixel
+        else if (IsOutlinedFont(textPrinter->printerTemplate.fontId) || IsOutlinedFont(subStruct->fontId))
+        {
+            textPrinter->printerTemplate.currentX += gCurGlyph.width;
+            // POKEBLOCK uses full width, don't decrement
+            if (gCurGlyph.width < 16)
+                textPrinter->printerTemplate.currentX--;
+        }
+        // end bwBattleUI
         else
         {
             if (textPrinter->japanese)
@@ -1646,8 +1668,19 @@ s32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing)
                 else
                 {
                     lineWidth += glyphWidth;
+                    // Start bwBattleUI
+                    /*
                     if (isJapanese && str[1] != EOS)
                         lineWidth += localLetterSpacing;
+                    */
+                    if (str[1] != EOS)
+                    {
+                        if (isJapanese)
+                            lineWidth += localLetterSpacing;
+                        else if (IsOutlinedFont(fontId))
+                            lineWidth--;
+                    }
+                    // End bwBattleUI
                 }
             }
             bufferPointer = 0;
@@ -1722,8 +1755,19 @@ s32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing)
             else
             {
                 lineWidth += glyphWidth;
+                // Start bwBattleUI
+                /*
                 if (isJapanese && str[1] != EOS)
                     lineWidth += localLetterSpacing;
+                */
+                if (str[1] != EOS)
+                {
+                    if (isJapanese)
+                        lineWidth += localLetterSpacing;
+                    else if (IsOutlinedFont(fontId))
+                        lineWidth--;
+                }
+                // End bwBattleUI
             }
             break;
         case CHAR_PROMPT_SCROLL:
@@ -1740,13 +1784,34 @@ s32 GetStringWidth(u8 fontId, const u8 *str, s16 letterSpacing)
             else
             {
                 lineWidth += glyphWidth;
+                // Start bwBattleUI
+                /*
                 if (isJapanese && str[1] != EOS)
                     lineWidth += localLetterSpacing;
+                */
+                if (str[1] != EOS)
+                {
+                    if (isJapanese)
+                        lineWidth += localLetterSpacing;
+                    else if (IsOutlinedFont(fontId))
+                        lineWidth--;
+                }
+                // End bwBattleUI
             }
             break;
         }
         ++str;
     }
+
+    // Start bwBattleUI
+    // decrement the last character width as well
+    if (IsOutlinedFont(fontId))
+    {
+        lineWidth--;
+        if (width)
+            width--;
+    }
+    // End bwBattleUI
 
     if (lineWidth > width)
         return lineWidth;
@@ -2354,6 +2419,97 @@ static u32 GetGlyphWidth_ShortNarrower(u16 glyphId, bool32 isJapanese)
         return gFontShortNarrowerLatinGlyphWidths[glyphId];
 }
 
+// start bwBattleUI
+static void DecompressGlyph_Outlined(u16 glyphId, bool32 isJapanese)
+{
+    const u16 *glyphs = gFontOutlinedLatinGlyphs + TILE_OFFSET_4BPP(glyphId);
+
+    gCurGlyph.width = gFontOutlinedLatinGlyphWidths[glyphId];
+    if (gCurGlyph.width <= 8)
+    {
+        DecompressGlyphTile(glyphs,      gCurGlyph.gfxBufferTop);
+        DecompressGlyphTile(glyphs + 16, gCurGlyph.gfxBufferBottom);
+    }
+    else
+    {
+        DecompressGlyphTile(glyphs,     gCurGlyph.gfxBufferTop);
+        DecompressGlyphTile(glyphs + 8, gCurGlyph.gfxBufferTop + 8);
+
+        DecompressGlyphTile(glyphs + 16, gCurGlyph.gfxBufferBottom);
+        DecompressGlyphTile(glyphs + 24, gCurGlyph.gfxBufferBottom + 8);
+    }
+
+    gCurGlyph.height = 15;
+}
+
+static u32 GetGlyphWidth_Outlined(u16 glyphId, bool32 isJapanese)
+{
+    return isJapanese ? 8 : gFontOutlinedLatinGlyphWidths[glyphId];
+}
+
+static void DecompressGlyph_OutlinedNarrow(u16 glyphId, bool32 isJapanese)
+{
+    const u16 *glyphs = gFontOutlinedNarrowLatinGlyphs + TILE_OFFSET_4BPP(glyphId);
+
+    gCurGlyph.width = gFontOutlinedNarrowLatinGlyphWidths[glyphId];
+    if (gCurGlyph.width <= 8)
+    {
+        DecompressGlyphTile(glyphs,      gCurGlyph.gfxBufferTop);
+        DecompressGlyphTile(glyphs + 16, gCurGlyph.gfxBufferBottom);
+    }
+    else
+    {
+        DecompressGlyphTile(glyphs,     gCurGlyph.gfxBufferTop);
+        DecompressGlyphTile(glyphs + 8, gCurGlyph.gfxBufferTop + 8);
+
+        DecompressGlyphTile(glyphs + 16, gCurGlyph.gfxBufferBottom);
+        DecompressGlyphTile(glyphs + 24, gCurGlyph.gfxBufferBottom + 8);
+    }
+
+    gCurGlyph.height = 15;
+}
+
+static u32 GetGlyphWidth_OutlinedNarrow(u16 glyphId, bool32 isJapanese)
+{
+    return isJapanese ? 8 : gFontOutlinedNarrowLatinGlyphWidths[glyphId];
+}
+
+static void DecompressGlyph_BattleUIElements(u16 glyphId, bool32 isJapanese)
+{
+    const u16 *glyphs = gFontBattleUIElementsLatinGlyphs + TILE_OFFSET_4BPP(glyphId);
+
+    gCurGlyph.width = gFontBattleUIElementsLatinGlyphSizes[glyphId][0];
+    gCurGlyph.height = gFontBattleUIElementsLatinGlyphSizes[glyphId][1];
+
+    if (gCurGlyph.width <= 8)
+    {
+        DecompressGlyphTile(glyphs,      gCurGlyph.gfxBufferTop);
+        DecompressGlyphTile(glyphs + 16, gCurGlyph.gfxBufferBottom);
+    }
+    else
+    {
+        DecompressGlyphTile(glyphs,     gCurGlyph.gfxBufferTop);
+        DecompressGlyphTile(glyphs + 8, gCurGlyph.gfxBufferTop + 8);
+
+        DecompressGlyphTile(glyphs + 16, gCurGlyph.gfxBufferBottom);
+        DecompressGlyphTile(glyphs + 24, gCurGlyph.gfxBufferBottom + 8);
+    }
+}
+
+static u32 GetGlyphWidth_BattleUIElements(u16 glyphId, bool32 isJapanese)
+{
+    return isJapanese ? 8 : gFontBattleUIElementsLatinGlyphSizes[glyphId][0];
+}
+
+u32 GetOutlineFontIdToFit(const u8 *str, u32 widthPx)
+{
+    if (GetStringWidth(FONT_OUTLINED, str, -1) <= widthPx)
+        return FONT_OUTLINED;
+
+    return FONT_OUTLINED_NARROW;
+}
+// end bwBattleUI
+
 static const s8 sNarrowerFontIds[] =
 {
     [FONT_SMALL] = FONT_SMALL_NARROW,
@@ -2370,6 +2526,11 @@ static const s8 sNarrowerFontIds[] =
     [FONT_SMALL_NARROWER] = -1,
     [FONT_SHORT_NARROW] = FONT_SHORT_NARROWER,
     [FONT_SHORT_NARROWER] = -1,
+    // Start bwBattleUI
+    [FONT_OUTLINED] = FONT_OUTLINED_NARROW,
+    [FONT_OUTLINED_NARROW] = -1,
+    [FONT_BATTLE_UI_ELEMENTS] = -1,
+    // End bwBattleUI
 };
 
 // If the narrowest font ID doesn't fit the text, we still return that
@@ -2423,3 +2584,12 @@ u8 *WrapFontIdToFit(u8 *start, u8 *end, u32 fontId, u32 width)
         return end;
     }
 }
+
+// Start bwBattleUI
+static inline bool32 IsOutlinedFont(u32 fontId)
+{
+    return (fontId == FONT_OUTLINED
+         || fontId == FONT_OUTLINED_NARROW
+         || fontId == FONT_BATTLE_UI_ELEMENTS);
+}
+// End bwBattleUI

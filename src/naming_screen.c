@@ -1954,12 +1954,12 @@ static void DrawTextEntry(void)
     PutWindowTilemap(sNamingScreen->windows[WIN_TEXT_ENTRY]);
 }
 
-struct TextColor   // Needed because of alignment
+struct NamingScreenTextColor   // Needed because of alignment
 {
     u8 colors[3][4];
 };
 
-static const struct TextColor sTextColorStruct =
+static const struct NamingScreenTextColor sTextColorStruct =
 {
     {
         {TEXT_DYNAMIC_COLOR_4, TEXT_COLOR_WHITE, TEXT_COLOR_DARK_GRAY},

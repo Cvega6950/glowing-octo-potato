@@ -154,8 +154,8 @@ enum
 
 struct Subsprite
 {
-    s8 x; // was u16 in R/S
-    s8 y; // was u16 in R/S
+    s16 x; // was u16 in R/S
+    s16 y; // was u16 in R/S
     u16 shape:2;
     u16 size:2;
     u16 tileOffset:10;
@@ -325,5 +325,10 @@ u32 GetSpanPerImage(u32 shape, u32 size);
 void RequestSpriteFrameImageCopy(u16 index, u16 tileNum, const struct SpriteFrameImage *images);
 void SetSpriteOamFlipBits(struct Sprite *sprite, u8 hFlip, u8 vFlip);
 u8 IndexOfSpriteTileTag(u16 tag);
+
+// Platinum Imperium: expansion 1.15's text on sprites (src/sprite_text.c), for the BW battle UI
+void FillSpriteRectColor(u32 spriteId, u32 left, u32 top, u32 width, u32 height, u32 color);
+void FillSpriteRectSprite(u32 spriteId, u32 left, u32 top, u32 width, u32 height);
+void SetupSpritesForTextPrinting(u8 *spriteIds, const u32 **spriteSrc, u32 numSpritesX, u32 numSpritesY);
 
 #endif //GUARD_SPRITE_H

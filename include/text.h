@@ -29,6 +29,12 @@ enum {
     FONT_SMALL_NARROWER,
     FONT_SHORT_NARROW,
     FONT_SHORT_NARROWER,
+    // start bwBattleUI
+    FONT_OUTLINED,
+    FONT_OUTLINED_NARROW,
+    FONT_BATTLE_UI_ELEMENTS, // contains unique number glyph for double battle and status icons
+    // end bwBattleUI
+    FONT_BW_SUMMARY_SCREEN, // bwSummaryScreen
 };
 
 // Return values for font functions
@@ -63,13 +69,24 @@ enum {
 
 struct TextPrinterSubStruct
 {
-    u8 fontId:4;  // 0x14
+    u8 fontId;  // 0x14, a full byte for the BW battle UI's fonts (was 4 bits)
     bool8 hasPrintBeenSpedUp:1;
-    u8 unk:3;
+    u8 unk:7;
     u16 utilityCounter:13;
     u16 downArrowYPosIdx:2;
     bool16 hasFontIdBeenSet:1;
     u8 autoScrollDelay;
+};
+
+// expansion 1.15's text colours, for the BW battle UI
+union TextColor {
+    struct {
+        u8 background;
+        u8 foreground;
+        u8 shadow;
+        u8 accent;
+    };
+    u32 asU32;
 };
 
 struct TextPrinterTemplate
@@ -83,7 +100,7 @@ struct TextPrinterTemplate
     u8 currentY;
     u8 letterSpacing;
     u8 lineSpacing;
-    u8 unk:4;   // 0xC
+    u8 unk:4;   // 0xC, Platinum Imperium: the accent colour (glyph pixel value 3); 0 is the background
     u8 fgColor:4;
     u8 bgColor:4;
     u8 shadowColor:4;
@@ -151,6 +168,7 @@ bool32 AddTextPrinter(struct TextPrinterTemplate *printerTemplate, u8 speed, voi
 void RunTextPrinters(void);
 bool32 IsTextPrinterActive(u8 id);
 void GenerateFontHalfRowLookupTable(u8 fgColor, u8 bgColor, u8 shadowColor);
+void GenerateFontHalfRowLookupTableWithAccent(u8 fgColor, u8 bgColor, u8 shadowColor, u8 accentColor);
 void SaveTextColors(u8 *fgColor, u8 *bgColor, u8 *shadowColor);
 void RestoreTextColors(u8 *fgColor, u8 *bgColor, u8 *shadowColor);
 void DecompressGlyphTile(const void *src_, void *dest_);
@@ -190,5 +208,9 @@ u32 GetPlayerTextSpeedDelay(void);
 u32 GetPlayerTextSpeedModifier(void);
 u32 GetPlayerTextScrollSpeed(void);
 bool32 IsPlayerTextSpeedInstant(void);
+
+// Platinum Imperium: expansion 1.15's text on sprites (src/sprite_text.c), for the BW battle UI
+void AddSpriteTextPrinterParameterized6(u8 spriteId, u8 fontId, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, const union TextColor color, s8 speed, const u8 *str);
+bool32 IsTextPrinterActiveOnSprite(u32 spriteId);
 
 #endif // GUARD_TEXT_H

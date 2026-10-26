@@ -2068,6 +2068,28 @@ void AddTextPrinterParameterized3(u8 windowId, u8 fontId, u8 left, u8 top, const
     AddTextPrinter(&printer, speed, NULL);
 }
 
+// expansion 1.15's printer with an accent colour, for the BW battle UI
+void AddTextPrinterParameterized6(u8 windowId, u8 fontId, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, const union TextColor color, s8 speed, const u8 *str)
+{
+    struct TextPrinterTemplate printer;
+
+    printer.currentChar = str;
+    printer.windowId = windowId;
+    printer.fontId = fontId;
+    printer.x = left;
+    printer.y = top;
+    printer.currentX = printer.x;
+    printer.currentY = printer.y;
+    printer.letterSpacing = letterSpacing;
+    printer.lineSpacing = lineSpacing;
+    printer.unk = color.accent;
+    printer.fgColor = color.foreground;
+    printer.bgColor = color.background;
+    printer.shadowColor = color.shadow;
+
+    AddTextPrinter(&printer, speed, NULL);
+}
+
 void AddTextPrinterParameterized4(u8 windowId, u8 fontId, u8 left, u8 top, u8 letterSpacing, u8 lineSpacing, const u8 *color, s8 speed, const u8 *str)
 {
     struct TextPrinterTemplate printer;

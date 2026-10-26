@@ -43,12 +43,21 @@ in mGBA and in Delta's GBA core.
   in trainer battles.
 - **Imperium-style bosses with six Pokémon** at your cap: Barry on Route 203, Roark, Mars at
   Valley Windworks and Gardenia.
+- **The Gen 5 look, as in Crystal Imperium:** mudskip's Black/White battle interface (health
+  boxes, text box, the FIGHT / BAG / POKéMON / RUN box, a move box with type colours, PP and
+  effectiveness symbols, move info on L, party-ball bars, ability pop-ups, outlined fonts) and
+  RavePossum's Black/White summary screen (A on the skills page shows IVs, then EVs).
 - Quick Rare Candies (several at once, no fanfare), Eggs hatching every 8 steps, the move
   relearner in the party menu, HMs usable by any Pokémon when you carry them, Flash lighting a
   whole cave, a bigger Bag.
 
-**Not ported yet:** the BW battle interface and summary screen, the route mini-bosses, the
-remaining Gyms and story (they don't exist in the base yet), follower Pokémon.
+**Not ported yet:** the route mini-bosses, the remaining Gyms and story (they don't exist in the
+base yet), follower Pokémon.
+
+The BW screens were written for expansion 1.15, and this base is 1.14. Three 1.15 features they
+need are rebuilt here: text in four colours (the accent colour of the action box), text printed
+onto sprites (`src/sprite_text.c`, through a temporary window), and sprite templates that leave out
+their animations.
 
 ## Building
 
@@ -77,12 +86,14 @@ Copy `PlatinumImperium.gba` to the phone (AirDrop, iCloud Drive or Files), then 
 
 `tools/emurun/run_all.sh` boots the ROM in libmgba and plays: `l_menu` (key items, L menu, PokéVial,
 switches), `care_packages` (starting, location and badge packages), `tm_clerk` (the TM shop),
-`cheat_codes` (every code typed on the keyboard), `bosses_m1` (Barry, Roark, Mars and Gardenia with
+`cheat_codes` (every code typed on the keyboard), `bw_ui` (the BW summary screen, action box,
+move box and move info, and a battle played to a result), `bosses_m1` (Barry, Roark, Mars and Gardenia with
 six at the cap, each battle played to a result). All pass on mGBA.
 
 ## Credits
 
 - **pokeemerald-platinum** by the sinnoh-remakes team, on **pokeemerald-expansion** by RHH (Rom
   Hacking Hideout), on pret's **pokeemerald**.
+- **mudskip** for the BW battle UI and **RavePossum** for the BW summary screen.
 - **Crystal Imperium** and **Pokémon Heart & Soul** (the PokemonHnS-Development team) for the
   systems ported here; **Emerald Imperium** for the design they follow.
