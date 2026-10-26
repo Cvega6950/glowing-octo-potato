@@ -82,9 +82,14 @@ Imperium-style (D29).
 
 ## D9. Mega Evolution: classic set, progression-gated
 
-- Measured ROM use: no Megas 94.5%; classic set (48 stone Megas plus Rayquaza) **98.75%**; adding
+- Measured ROM use: no Megas 94.5%; classic set (47 stone Megas plus Rayquaza) **98.75%**; adding
   the 48 Z-A Megas 99.19%. We enable the classic set and keep `P_GEN_9_MEGA_EVOLUTIONS`
   off, which leaves about 410 KB for later data work.
+- **Fixed in 0.12.0:** the shop also sold Staraptite. Mega Staraptor is a Z-A Mega: its species
+  data is behind `P_GEN_9_MEGA_EVOLUTIONS`, but pokeemerald-expansion put its form change behind
+  `P_MEGA_EVOLUTIONS`, so a Staraptor holding Staraptite could Mega Evolve into a species that
+  isn't in the ROM. The form change now has the species data's guard, and Staraptite is out of
+  the shop: 47 stones.
 - The player gets the **Mega Ring** from a Mega Specialist on Goldenrod Dept. Store 5F after
   the 3rd badge (`FLAG_RECEIVED_MEGA_RING`, formerly the unused flag 0x307). Older saves have
   it clear.
@@ -299,6 +304,10 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   - About 6,500 items of 275 kinds in all (0.11.0: about 2,500 of 183), and by every badge at
     least as many of each item as 0.11.0 gave. The Bag's items pocket has 236 slots; all the
     packages together use 172 of them.
+  - The items pocket keeps 20 slots free for the story's one-time gifts (the Plates, given with
+    `giveitem` and no second chance): while the PC has room, a new kind of item from a package (or
+    the MEGA code, D37) goes there instead (`AddItemToBagOrPC`), and only with the PC full does it
+    take those slots.
   - The contents live in a C table (`src/data/care_packages.h`, generated with their messages)
     that `src/care_packages.c` adds to the Bag, instead of a script of `additem`s, which saves
     about 23 KB of ROM. An item whose pocket is full goes to the PC. If the PC is full too, the
@@ -307,7 +316,7 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   - The messages list the contents with the game's font widths: a run of three or more items with
     the same quantity reads "×10 each: A, B, C", names that end in the same word merge ("OCCA,
     PASSHO and RINDO BERRIES"), and the full sets read "every type-boosting item" and "every
-    type-resist BERRY". The longest, the starting package's, is eight pages.
+    type-resist BERRY". The longest, the starting package's, is seven pages.
   - Saves: `VAR_CARE_PACKAGE_PLACES` (0x40F8) has a bit for each location package and bit 15 for
     the starting package, as in 0.12.0-experimental. `FLAG_RECEIVED_STARTING_CARE_PACKAGE`
     marks the new starting package, so a save that got the experimental one gets the new one as
@@ -317,11 +326,13 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
     (`VAR_CARE_PACKAGE_GEAR` and `_BULK` stay level with `VAR_CARE_PACKAGES` but aren't read).
 - Evidence: `care_packages` (the starting package, one package per milestone with the big stacks
   and ten of each item after the eight Johto badges and the Champion, a full Berries pocket sending
-  the Berries to the PC, a full Bag and PC stopping a package until another map, and a save from
-  before 0.12.0 getting its three packages again), `care_packages_start` (the starting package, the
+  the Berries to the PC, 20 free slots in the items pocket kept by sending the held items to the
+  PC, a full Bag and PC stopping a package until another map, and a save from before 0.12.0
+  getting its three packages again), `care_packages_start` (the starting package, the
   Union Cave package on the first step inside, four location packages for a save with four badges,
-  and an experimental save's bigger starting package) and `story_opening` (the starting package on
-  the real story path).
+  and an experimental save's bigger starting package), `story_opening` (the starting package on
+  the real story path) and `old_save_test.sh` (a Heart & Soul 2.0.6 save gets it on its first
+  step on Route 29).
 
 ## D17. Delta compatibility is tested on VBA-M
 
@@ -1081,10 +1092,10 @@ DexNav shows and that wild encounters draw from:
   screen (`special EnterCode`, 11 characters). NO keeps the NES's old line ("…Okay! It's time
   to go!"). Case and spaces don't matter; anything else is "Nothing happened…".
 - **The codes** (`src/cheat_codes.c`):
-  - **MEGA**: the Mega Ring if the player hasn't got it (the Goldenrod Mega Specialist then goes
-    straight to his shop), and one of each of the 48 Mega Stones whose Megas this game has (D9:
-    the Specialist's full stock), only those not already in the Bag or the PC. If the Bag and PC
-    are full, it says how many didn't fit, and entering MEGA again brings them.
+  - **MEGA**: the Mega Ring if the player hasn't got it (from the third badge, the Goldenrod Mega
+    Specialist then goes straight to his shop), and one of each of the 47 Mega Stones whose Megas
+    this game has (D9: the Specialist's full stock), only those not already in the Bag or the PC.
+    If the Bag and PC are full, it says how many didn't fit, and entering MEGA again brings them.
   - **MAXMONEY** / MMY: money to the maximum (¥9,999,999).
   - **CAUGHTALL** / CAL: every Pokémon seen and caught in the Pokédex, and the National Pokédex
     on, so they show.
@@ -1095,7 +1106,7 @@ DexNav shows and that wild encounters draw from:
   - **MONO**: a menu of 15 types (or OFF). PROF. ELM's three Poké Balls then hold that type's
     Pokémon, Imperium's lists from its 1.3 changelog: Fighting Mankey, Machop, Timburr; Flying
     Hoppip, Fletchling, Rookidee; Poison Budew, Venipede, Koffing; Ground Trapinch, Geodude,
-    Tympole; Rock Rolycoly, Alolan Geodude, Nacli; Bug Grubbin, Blipbug, Scatterbug; Ghost
+    Wooper (Imperium has Tympole, which is Water only until Palpitoad here); Rock Rolycoly, Alolan Geodude, Nacli; Bug Grubbin, Blipbug, Scatterbug; Ghost
     Gastly, Litwick, Duskull; Steel Tinkatink, Honedge, Klink; Electric Pichu, Shinx, Mareep;
     Psychic Hatenna, Solosis, Gothita; Ice Snover, Swinub, Spheal; Dragon Bagon, Gible, Dratini;
     Dark Pawniard, Galarian Zigzagoon, Sandile; Normal Whismur, Lillipup, Smoliv; Fairy Cottonee,
@@ -1108,8 +1119,9 @@ DexNav shows and that wild encounters draw from:
   Candies: the Rare Candy Box, D10), are on from the start here too.
 - **Saves.** `FLAG_CODE_SHINY_STARTERS` and `FLAG_CODE_SHINY_ROAMERS` (extended content flags
   84 and 85) and `VAR_MONO_STARTER_TYPE` (0x40FB), all unreferenced before.
-- **Bag space.** The 48 Mega Stones take 48 of the items pocket's 236 slots, beside the care
-  packages' 172 kinds (D16); what doesn't fit goes to the PC (50 slots), and nothing is lost.
-- Evidence: `cheat_codes` (types each code on the keyboard: a wrong code, MEGA twice, MMY, CAL,
-  EZCATCH and EZC, SHINYR, DXA, NO; then SHINYS and MONO with Dragon, and PROF. ELM's middle Poké
-  Ball holds a shiny Gible).
+- **Bag space.** The 47 Mega Stones take 47 of the items pocket's 236 slots, beside the care
+  packages' 172 kinds (D16). Like the packages, MEGA leaves 20 of them free for the story's gifts
+  while the PC (50 slots) has room, and nothing is lost: what fits nowhere comes with the next MEGA.
+- Evidence: `cheat_codes` (types each code on the keyboard: a wrong code, MEGA twice (47 stones,
+  then none), MMY, CAL, EZCATCH and EZC, SHINYR, DXA, NO; MONO and SHS refused once the player has a
+  Pokémon; then SHINYS and MONO with Dragon, and PROF. ELM's middle Poké Ball holds a shiny Gible).

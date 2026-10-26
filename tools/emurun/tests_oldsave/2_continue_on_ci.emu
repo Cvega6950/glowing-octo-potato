@@ -38,3 +38,13 @@ wait 40
 wait 120
 shot 04_ci_dexnav.png
 expect32 {gMain+4} {DexNav_MainCB+1} dexnav_opens_on_old_save
+# Out of the DexNav, the first step on Route 29 brings PROF. ELM's starting care package, which a
+# Heart & Soul save never had
+mash B 200
+wait 120
+!walkto(33, 11, soft=True)
+wait 150
+shot 05_ci_starting_package.png
+mash A 2400
+!expect_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE", 1, "old_save_gets_the_starting_package")
+!expect_bag_has("keyItems", "ITEM_SHINY_CHARM", "old_save_shiny_charm")

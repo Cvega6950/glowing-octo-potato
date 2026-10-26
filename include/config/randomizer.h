@@ -45,8 +45,9 @@
 #define RANDOMIZER_VAR_SPECIES_MODE               VAR_UNUSED_0x404E
 
 #if !RANDOMIZER_SEED_IS_TRAINER_ID
-#define RANDOMIZER_VAR_SEED_L                     VAR_UNUSED_0x40FA
-#define RANDOMIZER_VAR_SEED_H                     VAR_UNUSED_0x40FB
+// Crystal Imperium: 0x40FA and 0x40FB are VAR_CARE_PACKAGE_RESUME and VAR_MONO_STARTER_TYPE now
+#define RANDOMIZER_VAR_SEED_L                     0x40FC
+#define RANDOMIZER_VAR_SEED_H                     0x40FF
 #endif
 
 #endif // RANDOMIZER_AVAILABLE

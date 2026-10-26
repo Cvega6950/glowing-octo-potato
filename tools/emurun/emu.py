@@ -240,12 +240,20 @@ def expect_summary_nature(nature, label):
     return [f"expectsame32 {{sStringPointers+8}} {{gNaturesInfo+{v['off']}}} {label}"]
 
 
-def fill_pocket(pocket, item):
-    """Fill every slot of a bag pocket (struct Bag field) with one item, so no other item fits."""
+def fill_pocket(pocket, item, slots=None):
+    """Fill every slot of a bag pocket (struct Bag field) with one item, so no other item fits; or
+    only the first `slots` slots."""
     v = probe.resolve({"off": f"offsetof(struct SaveBlock1, bag.{pocket})",
                        "count": f"ARRAY_COUNT(((struct SaveBlock1 *)0)->bag.{pocket})",
                        "stride": "sizeof(struct ItemSlot)", item: item})
-    return [f"poke16 *{{gSaveBlock1Ptr}}+{v['off'] + i * v['stride']} {v[item]}" for i in range(v["count"])]
+    return [f"poke16 *{{gSaveBlock1Ptr}}+{v['off'] + i * v['stride']} {v[item]}"
+            for i in range(v["count"] if slots is None else slots)]
+
+
+def expect_pocket_slot_empty(pocket, index, label):
+    """Check that slot `index` of a bag pocket (struct Bag field) holds no item."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock1, bag.{pocket})", "stride": "sizeof(struct ItemSlot)"})
+    return [f"expect16 *{{gSaveBlock1Ptr}}+{v['off'] + index * v['stride']} 0 {label}"]
 
 
 def empty_pocket(pocket):

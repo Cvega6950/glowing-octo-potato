@@ -1,6 +1,7 @@
 // Crystal Imperium: Emerald Imperium's cheat codes (DECISIONS.md D37), typed at the NES in the
 // player's room (data/scripts/cheat_codes.inc), in any case and with or without spaces.
 #include "global.h"
+#include "care_packages.h"
 #include "cheat_codes.h"
 #include "event_data.h"
 #include "item.h"
@@ -45,7 +46,8 @@ static const struct
 };
 
 // The MONO code's types, in its menu's order, and PROF. ELM's three Pokemon for each (Emerald
-// Imperium's lists; Fire, Water and Grass have no list there either)
+// Imperium's lists; Fire, Water and Grass have no list there either). Ground has Wooper where
+// Imperium has Tympole, which is Water only until Palpitoad here.
 static const u8 sMonoStarterTypes[MONO_STARTER_TYPE_COUNT] =
 {
     TYPE_FIGHTING, TYPE_FLYING, TYPE_POISON, TYPE_GROUND, TYPE_ROCK, TYPE_BUG, TYPE_GHOST, TYPE_STEEL,
@@ -57,7 +59,7 @@ static const u16 sMonoStarters[MONO_STARTER_TYPE_COUNT][3] =
     { SPECIES_MANKEY,    SPECIES_MACHOP,          SPECIES_TIMBURR },
     { SPECIES_HOPPIP,    SPECIES_FLETCHLING,      SPECIES_ROOKIDEE },
     { SPECIES_BUDEW,     SPECIES_VENIPEDE,        SPECIES_KOFFING },
-    { SPECIES_TRAPINCH,  SPECIES_GEODUDE,         SPECIES_TYMPOLE },
+    { SPECIES_TRAPINCH,  SPECIES_GEODUDE,         SPECIES_WOOPER },
     { SPECIES_ROLYCOLY,  SPECIES_GEODUDE_ALOLA,   SPECIES_NACLI },
     { SPECIES_GRUBBIN,   SPECIES_BLIPBUG,         SPECIES_SCATTERBUG },
     { SPECIES_GASTLY,    SPECIES_LITWICK,         SPECIES_DUSKULL },
@@ -121,8 +123,9 @@ void CheatCode_ToggleEasyCatch(struct ScriptContext *ctx)
 }
 
 // callnative, MEGA: the Mega Ring if the player hasn't got it (VAR_0x8006 = TRUE then), and one of
-// each Mega Stone they haven't got in the Bag or the PC, to the Bag or else the PC. VAR_0x8005 = the
-// stones given, VAR_RESULT = the stones left out for lack of room (entering MEGA again brings them).
+// each Mega Stone they haven't got in the Bag or the PC, to the Bag or the PC (AddItemToBagOrPC).
+// VAR_0x8005 = the stones given, VAR_RESULT = the stones left out for lack of room (entering MEGA
+// again brings them).
 void CheatCode_GiveMegaStones(struct ScriptContext *ctx)
 {
     const u16 *stone;
@@ -139,7 +142,7 @@ void CheatCode_GiveMegaStones(struct ScriptContext *ctx)
     {
         if (CheckBagHasItem(*stone, 1) || CheckPCHasItem(*stone, 1))
             continue;
-        if (AddBagItem(*stone, 1) || AddPCItem(*stone, 1))
+        if (AddItemToBagOrPC(*stone, 1) != ITEM_NOWHERE)
             gSpecialVar_0x8005++;
         else
             gSpecialVar_Result++;

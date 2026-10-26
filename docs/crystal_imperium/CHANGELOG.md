@@ -20,11 +20,17 @@
   - Saves from earlier versions get every package they already received again, with the new
     contents, and the location packages for places they are past.
 - **Emerald Imperium's cheat codes at the NES** in your room (DECISIONS.md D37): "Enter a code?",
-  then type it, in any case. **MEGA** gives the Mega Ring and every Mega Stone (48), **MAXMONEY**
+  then type it, in any case. **MEGA** gives the Mega Ring and every Mega Stone (47), **MAXMONEY**
   (MMY) the most money, **CAUGHTALL** (CAL) every Pokémon caught in the National Pokédex,
   **EZCATCH** (EZC) switches Easy Catch, **SHINYS** (SHS) makes PROF. ELM's Pokémon shiny,
   **MONO** lets you pick a type for PROF. ELM's three Pokémon (Imperium's monotype starters),
   **SHINYR** (SHR) makes the roaming Pokémon shiny, and **DEXALL** (DXA) is always on already.
+
+### Fixes
+- The Goldenrod Mega Specialist no longer sells Staraptite: Mega Staraptor isn't in this game, and a
+  Staraptor holding the stone could Mega Evolve into a missing species (DECISIONS.md D9).
+- The care packages and the MEGA code keep 20 slots of the Bag's items pocket free for the
+  story's one-time gifts, such as the Plates, by sending new items to the PC while it has room.
 
 ## 0.11.0-experimental (2026-10-25)
 

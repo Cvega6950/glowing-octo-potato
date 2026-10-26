@@ -467,6 +467,19 @@ static u8 NONNULL BagPocket_CountUsedItemSlots(struct BagPocket *pocket)
     return usedSlots;
 }
 
+// Crystal Imperium: the empty slots of a Bag pocket (src/care_packages.c keeps some free for gifts)
+u32 CountFreeSlotsInBagPocket(enum Pocket pocketId)
+{
+    u32 i, count = 0;
+
+    for (i = 0; i < gBagPockets[pocketId].capacity; i++)
+    {
+        if (BagPocket_GetSlotData(&gBagPockets[pocketId], i).itemId == ITEM_NONE)
+            count++;
+    }
+    return count;
+}
+
 u8 CountUsedPCItemSlots(void)
 {
     struct BagPocket dummyPocket = DUMMY_PC_BAG_POCKET;

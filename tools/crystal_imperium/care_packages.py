@@ -278,11 +278,12 @@ PLURALS = {"BERRY": "BERRIES", "SHARD": "SHARDS", "SWEET": "SWEETS", "STONE": "S
 def list_phrases(run, names):
     """The names in a run of items with the same quantity, groups and shared last words merged: one
     list of words per phrase (a name or a quantity is never split over two lines)."""
-    labels = []
+    labels, grouped = [], set()  # grouped: the indices of GROUPS labels, which never merge
     i = 0
     while i < len(run):
         for label, group in GROUPS.items():
             if run[i:i + len(group)] == group:
+                grouped.add(len(labels))
                 labels.append(label)
                 i += len(group)
                 break
@@ -294,12 +295,15 @@ def list_phrases(run, names):
     while i < len(labels):
         last = labels[i].rsplit(" ", 1)
         j = i + 1
-        if len(last) == 2 and last[1] in PLURALS:
-            while j < len(labels) and labels[j].rsplit(" ", 1)[-1] == last[1] and " " in labels[j]:
+        if len(last) == 2 and last[1] in PLURALS and i not in grouped:
+            while (j < len(labels) and j not in grouped and labels[j].rsplit(" ", 1)[-1] == last[1]
+                   and " " in labels[j]):
                 j += 1
         if j - i >= 2:
             heads = [label.rsplit(" ", 1)[0] for label in labels[i:j]]
             phrases.append([h + "," for h in heads[:-2]] + [heads[-2], "and", f"{heads[-1]} {PLURALS[last[1]]}"])
+        elif i in grouped:
+            phrases.append(labels[i].split(" "))  # a group's label is words, not a name: it may wrap
         else:
             phrases.append([labels[i]])
         i = j
@@ -444,11 +448,17 @@ def render_script(widths):
     return "\n".join(out).rstrip("\n") + "\n"
 
 
+# This build combines the Bag pockets (I_COMBINE_BAG_POCKETS): treasures go in the items pocket,
+# battle items in the medicine pocket (include/constants/item.h)
+COMBINED_POCKETS = {"POCKET_TREASURES": "POCKET_ITEMS", "POCKET_BATTLE_ITEMS": "POCKET_MEDICINE"}
+
+
 def report(data):
     pockets = {}
     for items in all_packages():
         for item, n in items:
             pocket = data["ITEM_" + item][1]
+            pocket = COMBINED_POCKETS.get(pocket, pocket)
             pockets.setdefault(pocket, {})
             pockets[pocket][item] = pockets[pocket].get(item, 0) + n
     for pocket, items in sorted(pockets.items()):

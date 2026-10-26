@@ -794,7 +794,8 @@ static const struct FormChange sDeoxysSpeedFormChangeTable[] =
 
 #if P_FAMILY_STARLY
 static const struct FormChange sStaraptorFormChangeTable[] = {
-#if P_MEGA_EVOLUTIONS
+// Crystal Imperium: Mega Staraptor (Legends: Z-A) is only compiled in with P_GEN_9_MEGA_EVOLUTIONS
+#if P_GEN_9_MEGA_EVOLUTIONS
     {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM,    SPECIES_STARAPTOR_MEGA, ITEM_STARAPTITE},
 #endif
     {FORM_CHANGE_FAINT,                         SPECIES_STARAPTOR},

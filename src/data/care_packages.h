@@ -132,11 +132,11 @@ static const u8 sCarePackageText0[] = _(
     "SCOPE LENS, ABSORB BULB, LIGHT BALL,\n"
     "MENTAL HERB, SHELL BELL, CLEANSE TAG,\p"
     "DEEP SEA SCALE, DEEP SEA TOOTH,\n"
-    "PSYCHIC SEED, every type-resist,\p"
-    "ORAN, PECHA, ASPEAR, RAWST, PERSIM,\n"
-    "SITRUS and LUM BERRIES, NUGGET, BIG\p"
-    "and TINY MUSHROOMS, RED, BLUE and\n"
-    "GREEN SHARDS.");
+    "PSYCHIC SEED, every type-resist\p"
+    "BERRY, ORAN, PECHA, ASPEAR, RAWST,\n"
+    "PERSIM, SITRUS and LUM BERRIES,\p"
+    "NUGGET, BIG and TINY MUSHROOMS, RED,\n"
+    "BLUE and GREEN SHARDS.");
 
 static const struct CarePackageItem sCarePackage1[] =
 {

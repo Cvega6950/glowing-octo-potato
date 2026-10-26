@@ -14,6 +14,8 @@ mash B 300
 # MEGA: the Mega Ring and the 48 Mega Stones this game's Megas use
 !nes_code("MEGA")
 shot 03_mega_ring.png
+# 47 stones: Staraptite's Mega (Legends: Z-A) isn't in this game
+expect16 {gSpecialVar_0x8005} 47 forty_seven_mega_stones
 mash B 600
 shot 04_mega_stones.png
 mash B 600
@@ -79,6 +81,17 @@ wait 120
 shot 11_time_to_go.png
 mash B 300
 
+# With a Pokemon already, SHINYS and MONO only say it's too late
+loadstate bedroom.ss
+!set_flag("FLAG_SYS_POKEMON_GET")
+!nes_code("MONO")
+shot 12a_mono_too_late.png
+mash B 300
+!expect_var("VAR_MONO_STARTER_TYPE", 0, "mono_too_late")
+!nes_code("SHS")
+mash B 300
+!expect_flag("FLAG_CODE_SHINY_STARTERS", 0, "shinys_too_late")
+
 # SHINYS and MONO, then PROF. ELM's Poke Balls: three shiny Dragon types
 loadstate bedroom.ss
 !nes_code("SHINYS")
@@ -142,6 +155,4 @@ shot 16_shiny_gible.png
 !expect_flag("FLAG_SHINY_STARTER_2", 1, "gible_is_shiny")
 press A
 mash B 900
-expect8 {gPlayerPartyCount} 1 got_the_gible
-# Too late for SHINYS and MONO now
-!walkto(10, 12, path=True, soft=True)
+expect8 {gPlayerPartyCount} 1 got_a_pokemon

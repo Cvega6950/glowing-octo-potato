@@ -1,5 +1,6 @@
 # Heart & Soul 2.0.6 (run by old_save_test.sh): new game, a Pokemon and TMs from the debug menu, save
-!new_game()
+# (place_packages=True: nothing of Crystal Imperium's care packages is written to this save)
+!new_game(place_packages=True)
 !give_mon(155, 5)
 # Heart & Soul numbering: TM70 is Rock Climb and TM03 Water Pulse (Crystal Imperium renumbers them)
 !give_item("ITEM_TM70")

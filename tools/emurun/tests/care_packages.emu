@@ -93,6 +93,19 @@ mash A 2400
 !expect_pc_has("ITEM_PERSIM_BERRY", "persim_berries_sent_to_pc")
 !expect_bag_quantity("items", "ITEM_CHARCOAL", 10, "charcoal_still_in_bag")
 
+# The items pocket keeps 20 slots free for the story's one-time gifts: with only 20 free, the
+# package's new kinds of held items go to the PC while it has room
+loadstate route29.ss
+!fill_pocket("items", "ITEM_HONEY", slots=216)
+!walkto(33, 11, soft=True)
+wait 150
+mash A 2400
+!expect_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE", 1, "package_keeping_the_gift_room")
+!expect_pc_has("ITEM_CHARCOAL", "charcoal_to_the_pc")
+!expect_pc_has("ITEM_GREEN_SHARD", "shards_to_the_pc")
+!expect_pocket_slot_empty("items", 216, "gift_room_kept")
+!expect_bag_quantity("pokeBalls", "ITEM_QUICK_BALL", 153, "balls_still_in_the_bag")
+
 # A full items pocket and a full PC: the package stops at its first held item and keeps the rest
 # (VAR_CARE_PACKAGE_RESUME: package 0, item 8, the first type booster) until the player is on
 # another map

@@ -95,14 +95,14 @@ From the first step of a new game:
   Ability Patches after the second, 50 Dream Balls and the Choice items after the third, 153 PP
   Max after the sixth, 100 Beast Balls for the Champion). Each package lists what's inside; if a
   Bag pocket is full, the rest goes to your PC, and if the PC is full too, the package waits.
-- **Mega Evolution** (48 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F, or
+- **Mega Evolution** (47 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F, or
   all at once with the MEGA code).
 - **Emerald Imperium's cheat codes** at the NES in your room: turn it on, answer YES to "Enter a
   code?" and type one (any case):
 
   | Code | Alias | Does |
   |---|---|---|
-  | MEGA | | the Mega Ring and every Mega Stone (48); enter it again for any that didn't fit |
+  | MEGA | | the Mega Ring and every Mega Stone (47); enter it again for any that didn't fit |
   | MAXMONEY | MMY | money to the maximum |
   | CAUGHTALL | CAL | every Pokémon caught in the National Pokédex |
   | EZCATCH | EZC | switches Easy Catch off or on |

@@ -218,6 +218,7 @@ void RemoveBagItemFromSlot(struct BagPocket *pocket, u16 slotId, u16 count);
 u8 CountUsedPCItemSlots(void);
 bool32 CheckPCHasItem(enum Item itemId, u16 count);
 bool32 AddPCItem(enum Item itemId, u16 count);
+u32 CountFreeSlotsInBagPocket(enum Pocket pocketId);
 void RemovePCItem(u8 index, u16 count);
 void CompactPCItems(void);
 void SwapRegisteredBike(void);

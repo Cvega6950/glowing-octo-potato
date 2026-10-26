@@ -55,6 +55,10 @@ STATIC_ASSERT(ARRAY_COUNT(sCarePackages) == FIRST_PLACE_PACKAGE + ARRAY_COUNT(sC
 // The map where a package last stopped, + 1: it tries again only once the player is on another
 static EWRAM_DATA u16 sStoppedOnMap = 0;
 
+// The items pocket keeps this many slots free for the story's one-time gifts (the Plates, ...):
+// while the PC has room, a new kind of item from a care package or the MEGA code goes there instead
+#define GIFT_ROOM_IN_ITEMS_POCKET 20
+
 static u16 CurrentMap(void)
 {
     return (gSaveBlock1Ptr->location.mapGroup << 8) | gSaveBlock1Ptr->location.mapNum;
@@ -71,6 +75,22 @@ static u32 CountMilestones(void)
             count++;
     }
     return count;
+}
+
+// Adds an item from a care package or a cheat code to the Bag, or to the PC when its pocket is full
+// or the item would take the items pocket's gift room; to the gift room only when the PC is full too
+enum ItemDestination AddItemToBagOrPC(u16 itemId, u16 quantity)
+{
+    bool32 keepGiftRoom = (GetItemPocket(itemId) == POCKET_ITEMS && !CheckBagHasItem(itemId, 1)
+                        && CountFreeSlotsInBagPocket(POCKET_ITEMS) <= GIFT_ROOM_IN_ITEMS_POCKET);
+
+    if (!keepGiftRoom && AddBagItem(itemId, quantity))
+        return ITEM_TO_BAG;
+    if (AddPCItem(itemId, quantity))
+        return ITEM_TO_PC;
+    if (keepGiftRoom && AddBagItem(itemId, quantity))
+        return ITEM_TO_BAG;
+    return ITEM_NOWHERE;
 }
 
 static bool32 StartCarePackage(u32 package, u32 kind)
@@ -138,10 +158,10 @@ void CarePackage_LoadContentsText(struct ScriptContext *ctx)
     ctx->data[0] = (uintptr_t)sCarePackages[gSpecialVar_0x8004].text;
 }
 
-// callnative: adds package VAR_0x8004 (VAR_0x8006 says how it started) to the Bag, each item whose
-// pocket is full to the PC (VAR_0x8005 counts those). VAR_RESULT is TRUE once all of it is in; if
-// neither has room for an item, VAR_RESULT is FALSE and VAR_CARE_PACKAGE_RESUME keeps the rest for
-// later. A key item the player already has isn't added again.
+// callnative: adds package VAR_0x8004 (VAR_0x8006 says how it started) to the Bag, or to the PC
+// (AddItemToBagOrPC; VAR_0x8005 counts those). VAR_RESULT is TRUE once all of it is in; if neither
+// has room for an item, VAR_RESULT is FALSE and VAR_CARE_PACKAGE_RESUME keeps the rest for later.
+// A key item the player already has isn't added again.
 void CarePackage_GiveItems(struct ScriptContext *ctx)
 {
     u32 package = gSpecialVar_0x8004;
@@ -164,16 +184,20 @@ void CarePackage_GiveItems(struct ScriptContext *ctx)
 
         if (GetItemPocket(itemId) == POCKET_KEY_ITEMS && CheckBagHasItem(itemId, 1))
             continue;
-        if (AddBagItem(itemId, quantity))
-            continue;
-        if (!AddPCItem(itemId, quantity))
+        switch (AddItemToBagOrPC(itemId, quantity))
         {
+        case ITEM_TO_BAG:
+            break;
+        case ITEM_TO_PC:
+            gSpecialVar_0x8005++;
+            break;
+        case ITEM_NOWHERE:
+            // Neither the Bag nor the PC has room: the rest waits for another map
             VarSet(VAR_CARE_PACKAGE_RESUME, RESUME_PENDING | (update ? RESUME_UPDATE : 0) | (package << 8) | i);
             sStoppedOnMap = CurrentMap() + 1;
             gSpecialVar_Result = FALSE;
             return;
         }
-        gSpecialVar_0x8005++;
     }
 
     VarSet(VAR_CARE_PACKAGE_RESUME, 0);
