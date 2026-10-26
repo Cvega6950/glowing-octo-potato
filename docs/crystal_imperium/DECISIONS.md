@@ -1165,6 +1165,17 @@ DexNav shows and that wild encounters draw from:
     first build hung on Tailwind's sky; `falkner` found it).
   - A hit Pokémon blinks twice instead of four times (16 frames), the HP bar moves two steps a
     frame, and trainers slide in and away twice as fast.
+  - **From choosing a move to the Pokémon moving** (the user's follow-up: "It's more so when you
+    pick a move and the Pokemon move that it's more clunky in battle"). "X used Y!" is printed
+    at once instead of letter by letter, and stays up during the animation (`src/battle_message.c`,
+    `STRINGID_USEDMOVE` only; it fits the box's two lines, so it never has a prompt to wait at).
+    A move's animation no longer waits for the last sound effect to end (`IsBattleSEPlaying`, up to
+    30 steps in 0.12.0, typically between one Pokémon's hit and the next one's move); the
+    animation's own sounds take over. Traced on mGBA (TYPHLOSION's Swift against Whitney's first
+    Pokémon, which used Charm): from the frame the move is chosen to its animation, 15 frames
+    (0.12.0: 46); from the opponent's "used" message to its animation, 7 frames (0.12.0: 45).
+    The 15 left are the turn's own steps (each battler's choice confirmed, the turn order, the
+    move's first checks), a frame or so each.
   - A battle message's prompt goes on by itself after 49 frames (`NUM_FRAMES_AUTO_SCROLL_DELAY`);
     A or B goes on at once, as before. A trainer's words (win and lose texts, the speeches before
     a last Pokémon) still wait for the player, and so do the Bag and party menus opened from the
@@ -1176,12 +1187,12 @@ DexNav shows and that wild encounters draw from:
   BATTLE.
 - Link and recorded battles keep Game Freak's timing (one command a frame, single steps, cries
   waited for, prompts waiting), as does pokeemerald-expansion's test runner.
-- Not changed: the battle waits up to 30 controller steps for the last sound effect before a move's
-  animation (`IsBattleSEPlaying`, now 15 frames); sounds and cries play in real time; the TEXT
-  SPEED option (FASTER is nearly instant).
-- Results (mGBA): the trainer battle above takes 1,056 frames, 30% less (first menu after 440
+- Not changed: sounds and cries play in real time; every other message prints at the TEXT SPEED
+  chosen (FASTER is nearly instant).
+- Results (mGBA): the trainer battle above takes 968 frames, 36% less (first menu after 440
   frames, 0.12.0: 704); with no button pressed, the battle now runs from "Try Battle" to the
-  trainer's defeat text by itself.
+  trainer's defeat text by itself. A turn against Whitney (Swift, then Charm, back to the action
+  menu) takes 282 frames from choosing the move (0.12.0: 489).
 - Evidence: `battle_speed` (new game defaults; the first menu with no button pressed; the battle
   runs to the defeat text, which waits for A; with FAST BATTLES off the intro's message waits
   again), `battle_anims` (every move from 1 to the last, Z-Moves and Max Moves aside, used once at

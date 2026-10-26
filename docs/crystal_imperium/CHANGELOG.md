@@ -3,7 +3,7 @@
 ## 0.13.0-experimental (2026-10-26)
 
 ### Quality of life
-- **Faster battles** (DECISIONS.md D38). A trainer battle against one Pokémon takes about 30%
+- **Faster battles** (DECISIONS.md D38). A trainer battle against one Pokémon takes about a third
   less time, with nothing left out:
   - The battle no longer spends a frame on each step of its scripts, and no longer waits for a
     Pokémon's cry to end before going on.
@@ -13,6 +13,10 @@
     messages like "fainted!", "gained Exp. Points!" or "You got ¥… for winning!" go on by
     themselves after a moment (A or B still goes on at once). A trainer's words still wait for
     you.
+  - **A chosen move starts at once** (with FAST BATTLES): "X used Y!" appears whole instead of
+    letter by letter, and the animation no longer waits for the last sound to end. The move's
+    animation starts 15 frames (a quarter of a second) after you pick it, against 46 before;
+    the opponent's 7 frames after its "used" message, against 45.
   - **FAST INTRO** (no slide-in at the start of a battle) is on for new games.
   - Saves from earlier versions get FAST INTRO and FAST BATTLES turned on once. Turn either off
     in START > OPTION > BATTLE for the classic pace; TEXT SPEED FASTER prints text almost at once.
