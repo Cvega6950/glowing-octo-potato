@@ -22,6 +22,7 @@
 #include "follower_npc.h"
 #include "item_menu.h"
 #include "l_menu.h"
+#include "care_packages.h"
 #include "link.h"
 #include "match_call.h"
 #include "metatile_behavior.h"
@@ -625,6 +626,9 @@ static bool8 TryStartStepBasedScript(struct MapPosition *position, u16 metatileB
     if (TryStartMiscWalkingScripts(metatileBehavior) == TRUE)
         return TRUE;
     if (TryStartStepCountScript(metatileBehavior) == TRUE)
+        return TRUE;
+    // Platinum Imperium: Crystal Imperium's care packages
+    if (TryStartCarePackageScript())
         return TRUE;
     if (UpdateRepelCounter() == TRUE)
         return TRUE;

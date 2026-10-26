@@ -101,11 +101,11 @@
 #define ROAMER_COUNT 1 // Number of maximum concurrent active roamers
 
 // Bag constants
-#define BAG_ITEMS_COUNT 30
-#define BAG_KEYITEMS_COUNT 30
-#define BAG_POKEBALLS_COUNT 16
+#define BAG_ITEMS_COUNT 200 // Platinum Imperium: room for the care packages (Emerald: 30)
+#define BAG_KEYITEMS_COUNT 60 // Platinum Imperium (Emerald: 30)
+#define BAG_POKEBALLS_COUNT 39 // Platinum Imperium: every ball (Emerald: 16)
 #define BAG_TMHM_COUNT 100
-#define BAG_BERRIES_COUNT 46
+#define BAG_BERRIES_COUNT 66 // Platinum Imperium: every Berry (Emerald: 46)
 
 // Number of facilities for Ranking Hall.
 // 7 facilities for single mode + tower double mode + tower multi mode.

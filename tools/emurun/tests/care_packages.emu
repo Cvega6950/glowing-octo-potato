@@ -1,0 +1,69 @@
+# Platinum Imperium play test: the care packages from PROF. ROWAN (Crystal Imperium's, the Emerald
+# Imperium way). The starting package arrives on the first step in a town once the player has a
+# Pokemon: the Shiny Charm, 10 of every type-boosting item, 5 of every type-resist Berry and a
+# starter kit. A location package waits in Oreburgh Mine (the weather Rocks) and arrives on the
+# first step there. With badges, a player who never entered a place gets its package on the next
+# step outside, then the badge packages (VAR_CARE_PACKAGES), one per step.
+!new_game(place_packages=True)
+!give_mon(387, 5)
+!warp(0, 0, 0)
+!walk("DOWN", 1)
+wait 150
+shot 01_starting_package.png
+mash A 2400
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x8000, "starting_package_received")
+!expect_bag_has("keyItems", "ITEM_SHINY_CHARM")
+!expect_bag_quantity("items", "ITEM_CHARCOAL", 10)
+!expect_bag_quantity("items", "ITEM_FAIRY_FEATHER", 10)
+!expect_bag_quantity("items", "ITEM_FOCUS_SASH", 5)
+!expect_bag_quantity("berries", "ITEM_OCCA_BERRY", 5)
+!expect_bag_quantity("items", "ITEM_PP_MAX", 10)
+# Only once
+!walk("UP", 1)
+!walk("DOWN", 1)
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x8000, "starting_package_only_once")
+!expect_var("VAR_CARE_PACKAGES", 0, "no_badge_package_without_a_badge")
+savestate twinleaf.ss
+
+# Oreburgh Mine: the weather package on the first step inside
+!warp(2, 1, 0)
+!walk("DOWN", 1)
+wait 150
+shot 02_oreburgh_mine_package.png
+mash A 2400
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x8001, "oreburgh_mine_package_received")
+!expect_bag_quantity("items", "ITEM_DAMP_ROCK", 3)
+!expect_bag_quantity("items", "ITEM_ICY_ROCK", 3)
+
+# Two badges without having been to those places: Oreburgh Mine, the Ravaged Path, Valley
+# Windworks and Eterna Forest arrive one per step outside, then the two badge packages
+loadstate twinleaf.ss
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!walk("UP", 1)
+wait 60
+mash A 2400
+!walk("DOWN", 1)
+wait 60
+mash A 2400
+!walk("UP", 1)
+wait 60
+mash A 2400
+!walk("DOWN", 1)
+wait 60
+mash A 2400
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x800F, "two_badges_four_place_packages")
+!expect_var("VAR_CARE_PACKAGES", 0, "place_packages_first")
+!expect_bag_quantity("items", "ITEM_CHOICE_SCARF", 2)
+!expect_bag_quantity("items", "ITEM_ASSAULT_VEST", 3)
+!walk("UP", 1)
+wait 60
+mash A 2400
+shot 03_first_badge_package.png
+!walk("DOWN", 1)
+wait 60
+mash A 2400
+!expect_var("VAR_CARE_PACKAGES", 2, "then_the_two_badge_packages")
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x800F, "mt_coronet_not_yet")
+!expect_bag_has("items", "ITEM_LEFTOVERS")
+!expect_bag_has("items", "ITEM_LIFE_ORB")
