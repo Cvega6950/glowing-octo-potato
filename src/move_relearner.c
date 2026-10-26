@@ -193,6 +193,11 @@ static EWRAM_DATA struct
     u8 categoryIconSpriteId;                                 /*0x117*/
 } *sMoveRelearnerStruct = {0};
 
+// Crystal Imperium (DECISIONS.md D39): the TM list can hold every TM and HM, and the list and CANCEL
+// fit numMenuChoices
+STATIC_ASSERT(NUM_ALL_MACHINES <= MAX_RELEARNER_MOVES, RelearnerListHoldsEveryMachine);
+STATIC_ASSERT(MAX_RELEARNER_MOVES + 1 <= 255, RelearnerListCountFitsU8);
+
 static EWRAM_DATA struct {
     u16 listOffset;
     u16 listRow;
@@ -1201,7 +1206,7 @@ static u32 GetRelearnerLevelUpMoves(struct BoxPokemon *mon, u16 *moves)
                 if (learnset[i].move == moves[j])
                     alreadyInList = TRUE;
             }
-            if (!alreadyInList)
+            if (!alreadyInList && numMoves < MAX_RELEARNER_MOVES)
                 moves[numMoves++] = learnset[i].move;
         }
 
@@ -1233,7 +1238,7 @@ static u32 GetRelearnerEggMoves(struct BoxPokemon *mon, u16 *moves)
     if (eggMoves == sNoneEggMoveLearnset)
         return 0;
 
-    for (u32 i = 0; eggMoves[i] != MOVE_UNAVAILABLE; i++)
+    for (u32 i = 0; eggMoves[i] != MOVE_UNAVAILABLE && numMoves < MAX_RELEARNER_MOVES; i++)
     {
         if (!BoxMonKnowsMove(mon, eggMoves[i]))
             moves[numMoves++] = eggMoves[i];
@@ -1271,7 +1276,7 @@ static u32 GetRelearnerTMMoves(struct BoxPokemon *mon, u16 *moves)
         if (!CanLearnTeachableMove(species, move))
             continue;
 
-        if (!BoxMonKnowsMove(mon, move))
+        if (!BoxMonKnowsMove(mon, move) && numMoves < MAX_RELEARNER_MOVES)
             moves[numMoves++] = move;
     }
 
@@ -1279,6 +1284,15 @@ static u32 GetRelearnerTMMoves(struct BoxPokemon *mon, u16 *moves)
         SortMovesAlphabetically(moves, numMoves);
 
     return numMoves;
+}
+
+// Crystal Imperium (DECISIONS.md D39): Dark Hole and Draco Barrage are Emerald Imperium's postgame
+// TMs; tutor moves here once the game is cleared
+static bool32 IsTutorMoveAvailable(enum Move move)
+{
+    if (move == MOVE_DARK_HOLE || move == MOVE_DRACO_BARRAGE)
+        return FlagGet(FLAG_SYS_GAME_CLEAR);
+    return TRUE;
 }
 
 static u32 GetRelearnerTutorMoves(struct BoxPokemon *mon, u16 *moves)
@@ -1297,10 +1311,10 @@ static u32 GetRelearnerTutorMoves(struct BoxPokemon *mon, u16 *moves)
     {
         enum Move move = gTutorMoves[i];
 
-        if (!CanLearnTeachableMove(species, move))
+        if (!CanLearnTeachableMove(species, move) || !IsTutorMoveAvailable(move))
             continue;
 
-        if (!BoxMonKnowsMove(mon, move))
+        if (!BoxMonKnowsMove(mon, move) && numMoves < MAX_RELEARNER_MOVES)
             moves[numMoves++] = move;
     }
 
@@ -1435,7 +1449,7 @@ static bool32 HasRelearnerTutorMoves(struct BoxPokemon *boxMon)
     {
         enum Move move = gTutorMoves[i];
 
-        if (!CanLearnTeachableMove(species, move))
+        if (!CanLearnTeachableMove(species, move) || !IsTutorMoveAvailable(move))
             continue;
 
         if (!BoxMonKnowsMove(boxMon, move))

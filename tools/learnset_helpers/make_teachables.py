@@ -19,6 +19,14 @@ For a given species, a move is considered teachable to that species if:
     1. The species can learn the move via *any* method within any Expansion-
        supported game.
     2. The species rule defined by their teachingType in the species_info folder
+
+Crystal Imperium (DECISIONS.md D39): with P_IMPERIUM_SPECIES_DATA, Radical Red decides instead for
+the moves it teaches by TM or tutor (src/data/pokemon/imperium_teachables.json, written by
+tools/crystal_imperium/imperium_species.py): a species that has Radical Red data learns one of them
+if it does there. An HM move also stays teachable to a species that learns it in an official
+game: Radical Red's HM lists leave out many newer forms (Alolan Geodude's Rock Smash). Radical
+Red's TM and tutor moves that are neither TMs nor tutor moves here become tutor moves (the move
+relearner teaches them).
 """
 
 from itertools import chain
@@ -32,6 +40,8 @@ import typing
 
 
 CONFIG_ENABLED_PAT = re.compile(r"^#define P_LEARNSET_HELPER_TEACHABLE\s+(?P<cfg_val>[^ ]*)", flags=re.MULTILINE)
+IMPERIUM_ENABLED_PAT = re.compile(r"^#define P_IMPERIUM_SPECIES_DATA\s+(?P<cfg_val>[^ ]*)", flags=re.MULTILINE)
+IMPERIUM_TEACHABLES_JSON = pathlib.Path("./src/data/pokemon/imperium_teachables.json")
 ALPHABETICAL_ORDER_ENABLED_PAT = re.compile(r"^#define HGSS_SORT_TMS_BY_NUM\s+(?P<cfg_val>[^ ]*)", flags=re.MULTILINE)
 TM_LITERACY_PAT = re.compile(r"^#define P_TM_LITERACY\s+GEN_(?P<cfg_val>[^ ]*)", flags=re.MULTILINE)
 TMHM_MACRO_PAT = re.compile(r"F\((\w+)\)")
@@ -92,6 +102,40 @@ def extract_repo_tms(build: str = "") -> typing.Generator[str, None, None]:
             if m:
                 yield f"MOVE_{m.group(1)}"
 
+def extract_repo_hms(build: str = "") -> typing.Generator[str, None, None]:
+    """
+    Yield the MOVE constants of extract_repo_tms(build) that are HMs (FOREACH_HM).
+    """
+    with open("./include/constants/tms_hms.h", "r") as tmshms_fp:
+        text = tmshms_fp.read()
+    hms = set()
+    for m in re.finditer(r"#define FOREACH_HM\(F\)((?:[^\n]*\\\n)*[^\n]*)", text):
+        hms.update(f"MOVE_{name}" for name in TMHM_MACRO_PAT.findall(m.group(1)))
+    for move in extract_repo_tms(build):
+        if move in hms:
+            yield move
+
+def load_imperium_teachables():
+    """
+    Crystal Imperium (DECISIONS.md D39): Radical Red's TM and tutor moves and, for each species it
+    has, the ones it learns there. None unless P_IMPERIUM_SPECIES_DATA is on.
+    """
+    with open("./include/config/pokemon.h", "r") as cfg_pokemon_fp:
+        cfg_defined = IMPERIUM_ENABLED_PAT.search(cfg_pokemon_fp.read())
+    if cfg_defined is None or cfg_defined.group("cfg_val") not in ("TRUE", "1"):
+        return None
+    with open(IMPERIUM_TEACHABLES_JSON, "r") as fp:
+        data = json.load(fp)
+    return {"moves": set(data["moves"]), "species": {sp: set(moves) for sp, moves in data["species"].items()}}
+
+def imperium_extra_tutors(imperium, repo_tms: list[str], repo_tutors: list[str]) -> list[str]:
+    """
+    Radical Red's TM and tutor moves that are neither TMs nor tutor moves here.
+    """
+    if imperium is None:
+        return []
+    return sorted(imperium["moves"] - set(repo_tms) - set(repo_tutors))
+
 def extract_tm_litteracy_config() -> bool:
     config = False
     with open("./include/config/pokemon.h", "r") as cfg_pokemon_fp:
@@ -103,7 +147,7 @@ def extract_tm_litteracy_config() -> bool:
                 config = True
     return config
 
-def prepare_output(all_learnables: dict[str, set[str]], tms: list[str], tutors: list[str], special_movesets, repo_teaching_types, header: str) -> str:
+def prepare_output(all_learnables: dict[str, set[str]], tms: list[str], tutors: list[str], special_movesets, repo_teaching_types, header: str, imperium=None, hms=()) -> str:
     """
     Build the file content for teachable_learnsets.h.
     """
@@ -142,6 +186,12 @@ def prepare_output(all_learnables: dict[str, set[str]], tms: list[str], tutors: 
 
 
         repo_species_teachables = part1 + part2
+        rr_moves = imperium["species"].get(f"SPECIES_{species_upper}") if imperium else None
+        if rr_moves is not None:
+            # Crystal Imperium (DECISIONS.md D39): Radical Red's lists decide for its TM and tutor moves
+            official = set(repo_species_teachables)
+            repo_species_teachables = [m for m in tms + tutors
+                                       if m in rr_moves or (m in official and (m not in imperium["moves"] or m in hms))]
         if species_upper == "TERAPAGOS":
              repo_species_teachables = filter(lambda m: m != "MOVE_TERA_BLAST", repo_species_teachables)
 
@@ -201,7 +251,7 @@ def create_tutor_moves_array(tutors):
     with open("./src/data/tutor_moves.h", "w") as f:
         f.write(header + "\n".join(lines))
 
-def make_move_tutors(build_dir, special_movesets):
+def make_move_tutors(build_dir, special_movesets, imperium=None, repo_tms=()):
     SOURCE_TUTORS_JSON = build_dir / "all_tutors.json"
 
     assert SOURCE_TUTORS_JSON.exists(), f"{SOURCE_TUTORS_JSON=} does not exist"
@@ -211,6 +261,7 @@ def make_move_tutors(build_dir, special_movesets):
         repo_tutors = json.load(fp)
 
     repo_tutors = sorted(list(set(repo_tutors + special_movesets["extraTutors"])))
+    repo_tutors = sorted(set(repo_tutors + imperium_extra_tutors(imperium, list(repo_tms), repo_tutors)))
     create_tutor_moves_array(repo_tutors)
 
     return repo_tutors
@@ -244,7 +295,8 @@ def main():
     with open("src/data/pokemon/special_movesets.json", "r") as file:
         special_movesets = json.load(file)
 
-    repo_tutors = make_move_tutors(SOURCE_DIR, special_movesets)
+    imperium = load_imperium_teachables()
+    repo_tutors = make_move_tutors(SOURCE_DIR, special_movesets, imperium, extract_repo_tms(build_target))
     if tutor_mode:
         quit(0)
 
@@ -274,7 +326,8 @@ def main():
     with open(SOURCE_TEACHING_TYPES_JSON, "r") as source_fp:
         repo_teaching_types = json.load(source_fp)
 
-    content = prepare_output(all_learnables, repo_tms, repo_tutors, special_movesets, repo_teaching_types, header)
+    hms = set(extract_repo_hms(build_target))
+    content = prepare_output(all_learnables, repo_tms, repo_tutors, special_movesets, repo_teaching_types, header, imperium, hms)
     with open("./src/data/pokemon/teachable_learnsets.h", "w") as teachables_fp:
         teachables_fp.write(content)
 

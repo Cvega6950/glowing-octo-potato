@@ -4,7 +4,10 @@
 // Max number of moves shown by the move relearner.
 // Increased from 25 to 60 so Mew can display all TMs/HMs.
 // If you plan on adding more TMs, increase this number too.
-#define MAX_RELEARNER_MOVES 60
+// Crystal Imperium (DECISIONS.md D39): 250, for its 206 TMs and HMs (Mew learns all of them, and
+// 60 overflowed the list once a player had bought most of them). The list's count is a u8 with
+// CANCEL after the moves; src/move_relearner.c checks both limits.
+#define MAX_RELEARNER_MOVES 250
 
 // Move Relearner menu change constants
 enum MoveRelearnerStates

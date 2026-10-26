@@ -14,7 +14,8 @@ def resolve(exprs):
     if todo:
         src = ['#include "global.h"', '#include "constants/flags.h"', '#include "constants/vars.h"',
                '#include "constants/items.h"', '#include "constants/species.h"', '#include "item_menu.h"', '#include "pokemon.h"', '#include "battle.h"',
-               '#include "dexnav.h"', '#include "money.h"', '#include "constants/opponents.h"', '#include "window.h"', '#include "battle_setup.h"']
+               '#include "dexnav.h"', '#include "money.h"', '#include "constants/opponents.h"', '#include "window.h"', '#include "battle_setup.h"',
+               '#include "constants/move_relearner.h"', '#include "list_menu.h"']
         src += [f"const int kProbe_{i} = ({v});" for i, v in enumerate(todo)]
         # One file per process, so test runs in parallel don't overwrite each other's probe
         path = os.path.join(ROOT, "src", f"zz_emurun_probe_{os.getpid()}.c")

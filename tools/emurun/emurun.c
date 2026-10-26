@@ -32,6 +32,7 @@
 //                          a battle started). X/Y may be @ADDR~BIAS: an s16 in memory minus BIAS
 //   expectfind16 BASE COUNT STRIDE VALUE [LABEL]   fail unless one of COUNT entries STRIDE bytes apart
 //                          from BASE (which may be *PTR+OFF) holds the 16-bit VALUE
+//   expectnotfind16 BASE COUNT STRIDE VALUE [LABEL]   fail if one of them does
 //   expectqty16 BASE COUNT STRIDE VALUE WANT KEY [LABEL]   like expectfind16, and the found entry's next
 //                          16 bits XORed with the 16-bit value at KEY (an address, e.g. the save's
 //                          encryption key for Bag quantities) must be WANT
@@ -868,18 +869,22 @@ int main(int argc, char **argv)
             if ((x != tx || y != ty) && !soft)
                 failures++;
         }
-        else if (!strcmp(cmd, "expectfind16"))
+        else if (!strcmp(cmd, "expectfind16") || !strcmp(cmd, "expectnotfind16"))
         {
             // expectfind16 BASE COUNT STRIDE VALUE [LABEL]: one of COUNT entries STRIDE bytes apart holds VALUE
+            // (expectnotfind16: none of them does)
             char a4[64] = {0}, a5[128] = {0};
             sscanf(line, "%*s %*s %*s %*s %63s %127s", a4, a5);
             uint32_t base = ParseAddr(a1), count = strtoul(a2, NULL, 0), stride = strtoul(a3, NULL, 0);
             uint32_t value = strtoul(a4, NULL, 0), i;
+            int found, pass;
             for (i = 0; i < count && Peek(16, base + i * stride) != value; i++)
                 ;
-            printf("[frame %lu] %s %s: 0x%X %s\n", frameCount, i < count ? "PASS" : "FAIL", a5[0] ? a5 : "expectfind16",
-                   value, i < count ? "found" : "not found");
-            if (i == count)
+            found = i < count;
+            pass = !strcmp(cmd, "expectfind16") ? found : !found;
+            printf("[frame %lu] %s %s: 0x%X %s\n", frameCount, pass ? "PASS" : "FAIL", a5[0] ? a5 : cmd,
+                   value, found ? "found" : "not found");
+            if (!pass)
                 failures++;
         }
         else if (!strcmp(cmd, "expectsame32"))

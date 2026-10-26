@@ -646,12 +646,13 @@ def dexnav_hidden_sample(runs, state="grass.ss"):
     return out
 
 
-def expect_battler(battler, field, const, label=None):
-    """Check a gBattleMons field (species, ability, moves[N], ...) of a battler against a game constant."""
+def expect_battler(battler, field, const, label=None, negate=False):
+    """Check a gBattleMons field (species, ability, moves[N], hp, ...) of a battler against a game
+    constant or a number (negate: it must differ)."""
     v = probe.resolve({f"bm_{field}".replace("[", "_").replace("]", ""): f"offsetof(struct BattlePokemon, {field})",
                        "bm_size": "sizeof(struct BattlePokemon)", const: const})
     off = v[f"bm_{field}".replace("[", "_").replace("]", "")] + battler * v["bm_size"]
-    return [f"expect16 {{gBattleMons+{off}}} {v[const]} {label or field + '_is_' + const.lower()}"]
+    return [f"expect{'ne' if negate else ''}16 {{gBattleMons+{off}}} {v[const]} {label or field + '_is_' + const.lower()}"]
 
 
 def expect_battler_ivs(battler, want, label):
@@ -659,6 +660,73 @@ def expect_battler_ivs(battler, want, label):
     in the word before statStages) against `want` (the low 30 bits)."""
     v = probe.resolve({"ivs": "offsetof(struct BattlePokemon, statStages) - 4", "bm_size": "sizeof(struct BattlePokemon)"})
     return [f"expectbits32 {{gBattleMons+{v['ivs'] + battler * v['bm_size']}}} 0x3FFFFFFF {want:#x} {label}"]
+
+
+# Tutor moves the relearner offers only once the game is cleared (src/move_relearner.c, DECISIONS.md D39)
+POSTGAME_TUTOR_MOVES = ("MOVE_DARK_HOLE", "MOVE_DRACO_BARRAGE")
+
+
+def relearner_list(learnset, category, known=(), game_clear=False):
+    """The moves the party-menu relearner lists under TM MOVES (every TM and HM in the Bag, as after
+    fill_tm_case) or TUTOR MOVES for a Pokemon with the teachable learnset s<learnset>TeachableLearnset
+    that knows the moves `known`, in the relearner's order: TMs then HMs, or gTutorMoves' (without
+    POSTGAME_TUTOR_MOVES unless game_clear). Read from the files the build generated
+    (src/data/pokemon/teachable_learnsets.h, src/data/tutor_moves.h)."""
+    root = os.path.join(HERE, "..", "..")
+    with open(os.path.join(root, "src/data/pokemon/teachable_learnsets.h")) as f:
+        m = re.search(rf"static const u16 s{learnset}TeachableLearnset\[\] = \{{(.*?)\}};", f.read(), re.S)
+    teachable = set(re.findall(r"MOVE_\w+", m.group(1)))
+    if category == "MOVE_RELEARNER_TM_MOVES":
+        sys.path.insert(0, os.path.join(root, "tools", "learnset_helpers"))
+        import make_teachables
+        cwd = os.getcwd()
+        os.chdir(root)
+        try:
+            order = list(make_teachables.extract_repo_tms("POKEMON_HNS"))
+        finally:
+            os.chdir(cwd)
+    else:
+        with open(os.path.join(root, "src/data/tutor_moves.h")) as f:
+            order = [mv for mv in re.findall(r"MOVE_\w+", f.read()) if game_clear or mv not in POSTGAME_TUTOR_MOVES]
+    return [mv for mv in order if mv in teachable and mv != "MOVE_UNAVAILABLE" and mv not in known]
+
+
+def relearner_index(learnset, category, known, move, game_clear=False):
+    """DOWN presses from the top of the relearner's list to `move` (see relearner_list)."""
+    return ["press DOWN", "wait 10"] * relearner_list(learnset, category, known, game_clear).index(move)
+
+
+def open_relearner(slot, presses, category, label):
+    """START > POKEMON > the Pokemon in party slot `slot` > MOVES > the category `presses` DOWN
+    presses down the list of those it has moves in (LEVEL UP, EGG, TM, TUTOR), which must be
+    `category` (MOVE_RELEARNER_*_MOVES)."""
+    out = start_menu("POKEMON") + ["press DOWN", "wait 10"] * slot
+    out += ["press A", "wait 30", "press DOWN", "press A", "wait 30"]
+    out += ["press DOWN", "wait 10"] * presses + ["press A", "wait 120"]
+    return out + expect_const("{gMoveRelearnerState}", category, f"{label}_category", size=8)
+
+
+def expect_relearner_list(learnset, category, known=(), present=(), absent=(), label="relearner", game_clear=False):
+    """With the relearner's list open (open_relearner), check that it holds relearner_list(...)'s
+    number of moves, then CANCEL, and has the moves `present` and not the moves `absent`."""
+    moves = relearner_list(learnset, category, known, game_clear)
+    v = probe.resolve({"items": "offsetof(struct ListMenuTemplate, items)",
+                       "count_word": "offsetof(struct ListMenuTemplate, itemPrintFunc) + sizeof(void *)",
+                       "size": "sizeof(struct ListMenuItem)", "id": "offsetof(struct ListMenuItem, id)",
+                       **{mv: mv for mv in tuple(present) + tuple(absent)}})
+    base = f"*{{gMultiuseListMenuTemplate+{v['items']}}}+{v['id']}"
+    cancel = f"*{{gMultiuseListMenuTemplate+{v['items']}}}+{v['id'] + len(moves) * v['size']}"
+    out = [f"expectbits32 {{gMultiuseListMenuTemplate+{v['count_word']}}} 0xFFF {len(moves) + 1} {label}_{len(moves)}_moves_and_cancel",
+           f"expect16 {cancel} 0xFFFE {label}_cancel_after_{len(moves)}_moves"]
+    out += [f"expectfind16 {base} {len(moves)} {v['size']} {v[mv]} {label}_has_{mv[5:].lower()}" for mv in present]
+    out += [f"expectnotfind16 {base} {len(moves)} {v['size']} {v[mv]} {label}_lacks_{mv[5:].lower()}" for mv in absent]
+    return out
+
+
+def close_relearner():
+    """B on the relearner's list, YES to giving up, back to the party menu; then out to the field."""
+    return ["press B", "wait 60", "press A", "waituntil32 {gMain+4} {CB2_UpdatePartyMenu} 600 - back_in_party_menu",
+            "wait 30", "mash B 120", "wait 60"]
 
 
 def walkto(x, y, order="xy", soft=False, creep=False, path=False):
