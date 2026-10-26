@@ -787,6 +787,7 @@ EventScript_SetBrineyLocation_Route109::
 	.include "data/scripts/training_kit.inc"
 	.include "data/scripts/l_menu.inc"
 	.include "data/scripts/care_packages.inc"
+	.include "data/scripts/tm_shop.inc"
 	.include "data/scripts/move_relearner.inc"
 
 @ scripts/notices.inc? signs.inc? See comment about text/notices.inc

@@ -1,0 +1,20 @@
+# Platinum Imperium play test: the TM clerk behind the counter of every Poke Mart (Crystal
+# Imperium's): Emerald Imperium's TMs, ¥100 each, more with each badge. Jubilife City's sells the
+# no-badge list.
+!new_game()
+!give_mon(387, 5)
+!warp(8, 9, 0)
+!walkto(1, 6, path=True)
+press LEFT
+wait 20
+press A
+wait 90
+shot 01_tm_clerk.png
+press A
+wait 120
+mash A 60
+wait 30
+press A
+wait 200
+shot 02_tm_list.png
+expect32 {gMain+4} {CB2_BuyMenu+1} tm_shop_open

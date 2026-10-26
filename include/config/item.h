@@ -23,7 +23,7 @@
 
 // TM config
 #define I_QUICK_RARE_CANDY      TRUE        // Platinum Imperium: Rare Candies are used several at a time (the player picks how many), with a short sound instead of the level-up fanfare, and without the two stat pages.
-#define I_REUSABLE_TMS          FALSE       // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
+#define I_REUSABLE_TMS          TRUE        // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
 
 // Exp. Share config
 // To use this feature, replace the 0 with the flag ID you're assigning it to.
