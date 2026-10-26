@@ -17,6 +17,7 @@
 #include "constants/battle_tower.h"
 #include "constants/berry.h"
 #include "constants/cheat_codes.h"
+#include "constants/care_packages.h"
 #include "constants/cable_club.h"
 #include "constants/coins.h"
 #include "constants/contest.h"
