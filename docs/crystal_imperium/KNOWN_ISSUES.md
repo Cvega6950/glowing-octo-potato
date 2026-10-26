@@ -7,7 +7,7 @@
 | 3 | Tests | The HnS test suite runs, but about 1.4k tests fail because the zeroed test save leaves HnS's runtime toggles in non-default states. `mgba-rom-test-hydra` also grew to about 13 GB RAM before one worker hung. | Open |
 | 4 | Balance | Pryce's ace (Lv 33) is below the NORMAL level cap for 6 badges (38), so capped players can out-level him. | **Fixed**: every version of every Gym Leader is at its cap, all six Pokémon (0.7.0, D21) |
 | 5 | Data | `TRAINER_FALKNER_2_HNS` (rematch) gives Swellow no `Level:` line, so trainerproc's default applies. | **Fixed**: `boss_teams.py` sets every rematch Pokémon's level (0.7.0) |
-| 6 | ROM budget | ROM 99.50% of 32 MB (about 165 KB free); EWRAM 99.13% (about 2.2 KB free, after the BW battle UI's +8 KB heap); SaveBlock3 1,548 of 1,624 bytes. New graphics and EWRAM buffers must be budgeted. | Constraint (DECISIONS.md D7, D9, D26) |
+| 6 | ROM budget | ROM 99.44% of 32 MB (about 184 KB free; the care packages' C table saved 23 KB in 0.12.0); EWRAM 99.13% (about 2.2 KB free, after the BW battle UI's +8 KB heap); SaveBlock3 1,548 of 1,624 bytes; SaveBlock1 112 bytes free. New graphics and EWRAM buffers must be budgeted. | Constraint (DECISIONS.md D7, D9, D26) |
 | 7 | Build | Interrupting `make` (e.g. piping it into `head`) can leave an empty object such as `build/hns/src/region_map.o`, which breaks the link. Delete that object and rebuild. | Note |
 | 8 | Platform | Delta's emulator core (VBA-M at GBADeltaCore's pinned commit) runs the full play-test suite, but the Delta app itself (touch controls, its save-file handling, suspend/resume) has not been tested on an iPhone. | Open (needs a device) |
 | 9 | Branding | The title screen and ROM header still say Heart & Soul / `POKEMON HNS`. | Open (cosmetic) |
@@ -56,3 +56,6 @@
 | 52 | Shops | Mahogany Town's shop has no TM clerk: it sells evolution items and has no free spot behind its counter. Every Poké Mart has one, and so does the Indigo Plateau. | By design (D36) |
 | 53 | UI | The summary showed the nature a Pokémon was born with, not the one the Training Kit (or a Mint) set, while its stats followed the new one. | **Fixed** in 0.11.0 |
 | 54 | UI | In shops, SOLD OUT for a TM the player has ran into long TM names ("TM01 FOCUS PUNCH"). | **Fixed** in 0.11.0: OWNED, in a font that fits |
+| 55 | Items | The Bag's items pocket has 236 slots: the care packages bring 172 kinds of items for it and the MEGA code 48 Mega Stones, besides what the player finds. An item that doesn't fit goes to the PC (50 slots); when the PC is full too, a care package says so and waits for room (on another map), and MEGA gives the rest when entered again. Nothing is lost. | By design (D16, D37) |
+| 56 | Care packages | A save that received a location package in 0.12.0-experimental keeps that smaller package (3 to 5 of each item); only the starting package arrives again in its bigger version. | By design (D16) |
+| 57 | Cheat codes | MONO and SHINYS only work before choosing the first Pokémon, as in Emerald Imperium. With MONO the rival still takes a Johto starter. | By design (D37) |

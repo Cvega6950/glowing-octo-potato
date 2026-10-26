@@ -1067,3 +1067,49 @@ DexNav shows and that wild encounters draw from:
 - Evidence: `tm_clerks` (Cherrygrove with no badges 71, Azalea with two 155, Pewter with eight
   198 and a purchase, Indigo Plateau 198), `tm_shop` (Goldenrod 5F: 71, 115, 173, 191, 198, the
   badge count deciding), `tm_clerk` (Violet: 71 before the badge, then the gift once and 115).
+
+## D37. Emerald Imperium's cheat codes at the NES
+
+- The user asked for Imperium's codes: "I could also punch codes into the nes and get things
+  like MEGA gets you all the mega stones". In Emerald Imperium, "cheat codes can be entered by
+  talking to the GameCube in either the Player's house or the Rival's house": DexAll, CaughtAll,
+  EZCatch, Mega, ShinyS, MaxMoney, Mono and ShinyR, with the aliases Dxa, Cal, Ezc, Shs, Mmy and
+  Shr ([Imperium docs](https://drive.google.com/drive/folders/1auRPBg8Ts50NByIskMy6b2XHnmNqIKtV),
+  "Cheat Codes"). Imperium's code isn't used (D2); the codes and what they do come from its docs.
+- **Where.** The NES in the player's room in New Bark Town (`data/scripts/cheat_codes.inc`):
+  "{PLAYER} turned on the NES. Enter a code?" YES opens the pokeemerald-expansion code naming
+  screen (`special EnterCode`, 11 characters). NO keeps the NES's old line ("…Okay! It's time
+  to go!"). Case and spaces don't matter; anything else is "Nothing happened…".
+- **The codes** (`src/cheat_codes.c`):
+  - **MEGA**: the Mega Ring if the player hasn't got it (the Goldenrod Mega Specialist then goes
+    straight to his shop), and one of each of the 48 Mega Stones whose Megas this game has (D9:
+    the Specialist's full stock), only those not already in the Bag or the PC. If the Bag and PC
+    are full, it says how many didn't fit, and entering MEGA again brings them.
+  - **MAXMONEY** / MMY: money to the maximum (¥9,999,999).
+  - **CAUGHTALL** / CAL: every Pokémon seen and caught in the Pokédex, and the National Pokédex
+    on, so they show.
+  - **EZCATCH** / EZC: switches EASY CATCH (D12's option, on by default) off or on.
+  - **SHINYS** / SHS: switches shiny starters. PROF. ELM's three Poké Balls then all hold shiny
+    Pokémon (the starter preview's shiny roll, `ScrCmd_showmonpic`, always comes up shiny).
+    Before the first Pokémon only.
+  - **MONO**: a menu of 15 types (or OFF). PROF. ELM's three Poké Balls then hold that type's
+    Pokémon, Imperium's lists from its 1.3 changelog: Fighting Mankey, Machop, Timburr; Flying
+    Hoppip, Fletchling, Rookidee; Poison Budew, Venipede, Koffing; Ground Trapinch, Geodude,
+    Tympole; Rock Rolycoly, Alolan Geodude, Nacli; Bug Grubbin, Blipbug, Scatterbug; Ghost
+    Gastly, Litwick, Duskull; Steel Tinkatink, Honedge, Klink; Electric Pichu, Shinx, Mareep;
+    Psychic Hatenna, Solosis, Gothita; Ice Snover, Swinub, Spheal; Dragon Bagon, Gible, Dratini;
+    Dark Pawniard, Galarian Zigzagoon, Sandile; Normal Whismur, Lillipup, Smoliv; Fairy Cottonee,
+    Igglybuff, Impidimp (Fire, Water and Grass have no list there either). Before the first
+    Pokémon only. The rival keeps the Johto starters.
+  - **SHINYR** / SHR: the roaming Pokémon shiny, those roaming now and those to come.
+  - **DEXALL** / DXA: Imperium's switch for showing every Pokémon in the DexNav. Here the DexNav
+    always does (D18), so the NES says so.
+- Imperium's other two default codes, SO2Toxic (the care packages, D16) and Woyaopp (Rare
+  Candies: the Rare Candy Box, D10), are on from the start here too.
+- **Saves.** `FLAG_CODE_SHINY_STARTERS` and `FLAG_CODE_SHINY_ROAMERS` (extended content flags
+  84 and 85) and `VAR_MONO_STARTER_TYPE` (0x40FB), all unreferenced before.
+- **Bag space.** The 48 Mega Stones take 48 of the items pocket's 236 slots, beside the care
+  packages' 172 kinds (D16); what doesn't fit goes to the PC (50 slots), and nothing is lost.
+- Evidence: `cheat_codes` (types each code on the keyboard: a wrong code, MEGA twice, MMY, CAL,
+  EZCATCH and EZC, SHINYR, DXA, NO; then SHINYS and MONO with Dragon, and PROF. ELM's middle Poké
+  Ball holds a shiny Gible).

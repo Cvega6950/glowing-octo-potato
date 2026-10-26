@@ -19,6 +19,12 @@
   - When the Bag and the PC are both full, a package waits for room instead of losing items.
   - Saves from earlier versions get every package they already received again, with the new
     contents, and the location packages for places they are past.
+- **Emerald Imperium's cheat codes at the NES** in your room (DECISIONS.md D37): "Enter a code?",
+  then type it, in any case. **MEGA** gives the Mega Ring and every Mega Stone (48), **MAXMONEY**
+  (MMY) the most money, **CAUGHTALL** (CAL) every Pokémon caught in the National Pokédex,
+  **EZCATCH** (EZC) switches Easy Catch, **SHINYS** (SHS) makes PROF. ELM's Pokémon shiny,
+  **MONO** lets you pick a type for PROF. ELM's three Pokémon (Imperium's monotype starters),
+  **SHINYR** (SHR) makes the roaming Pokémon shiny, and **DEXALL** (DXA) is always on already.
 
 ## 0.11.0-experimental (2026-10-25)
 

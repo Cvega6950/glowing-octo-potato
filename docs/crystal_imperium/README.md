@@ -95,7 +95,21 @@ From the first step of a new game:
   Ability Patches after the second, 50 Dream Balls and the Choice items after the third, 153 PP
   Max after the sixth, 100 Beast Balls for the Champion). Each package lists what's inside; if a
   Bag pocket is full, the rest goes to your PC, and if the PC is full too, the package waits.
-- **Mega Evolution** (48 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F).
+- **Mega Evolution** (48 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F, or
+  all at once with the MEGA code).
+- **Emerald Imperium's cheat codes** at the NES in your room: turn it on, answer YES to "Enter a
+  code?" and type one (any case):
+
+  | Code | Alias | Does |
+  |---|---|---|
+  | MEGA | | the Mega Ring and every Mega Stone (48); enter it again for any that didn't fit |
+  | MAXMONEY | MMY | money to the maximum |
+  | CAUGHTALL | CAL | every Pokémon caught in the National Pokédex |
+  | EZCATCH | EZC | switches Easy Catch off or on |
+  | SHINYS | SHS | PROF. ELM's Pokémon shiny (before you choose one) |
+  | MONO | | pick a type for PROF. ELM's three Pokémon (before you choose one) |
+  | SHINYR | SHR | the roaming Pokémon shiny |
+  | DEXALL | DXA | the DexNav already shows every Pokémon |
 - Legendary and Mythical Pokémon are on the DexNav list from the start. Once you are
   Champion, about a quarter of each day's Wild Variety sets include one.
 - **Cheat menu:** hold R and press START in the overworld for HnS's debug menu (give any

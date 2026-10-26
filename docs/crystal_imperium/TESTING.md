@@ -5,7 +5,7 @@
 | Check | Command | What it proves |
 |---|---|---|
 | Data validation | `python3 tools/crystal_imperium/validate.py --check` | Trainer abilities are legal for their species; every boss Pokémon is at the level cap of the boss's stage, and no boss trainer is missing from the list; reworked bosses have 4 moves their species can learn and explicit levels; Red stays the strongest. Reports evolution-family availability. Identifier typos are rejected at build time by trainerproc and the compiler. |
-| Generated data is current | `boss_teams.py --check`, `care_packages.py --check`, `tm_list.py --check` (in `tools/crystal_imperium/`) | The boss parties and boss list, the care package script, the TM list, the TM item data and the shop lists match their sources. |
+| Generated data is current | `boss_teams.py --check`, `care_packages.py --check`, `tm_list.py --check` (in `tools/crystal_imperium/`) | The boss parties and boss list, the care package table and script, the TM list, the TM item data and the shop lists match their sources. |
 | Imperium species data is current | `imperium_species.py --rr-data data.js --check` (in `tools/crystal_imperium/`; `--report` lists what was left out) | The abilities, level-up learnsets and Egg Moves match the Radical Red dex's data file. The file isn't in the repository, so CI doesn't run this. |
 | ROM build | `make hns` | Compiles and links within ROM/EWRAM/IWRAM limits; gbafix writes a valid header. |
 | Play tests on mGBA | `tools/emurun/run_all.sh` | Real gameplay in libmgba from power-on: see below. |
