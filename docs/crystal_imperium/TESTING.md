@@ -28,16 +28,9 @@ cartridge clock starts at a fixed time (2026-10-24 01:30 UTC, night in the game)
 with emulated time on both emulators. Battle results depend on the RNG, which depends on the
 code and on the emulator, so balance checks sample several battles and accept a range.
 
-Results on the 0.11.0 ROM (SHA-1 `b5e1ad9aca314138102c66f603fa596c01d3334a`), 2026-10-26:
-All 51 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
-that each test requires to be inside its accepted range. Emerald Imperium's learnsets (DECISIONS.md
-D35) changed the default moves of Pokémon given from the debug menu, and three tests were updated
-during the run. `bugsy` and `relearner_training_kit` were run again on the same ROM: the first
-run of `bugsy` found the naive six with Double Kick and Flash in the move slots it picks, 0 wins in
-40, so each Pokémon now has the move a player would have kept, and Geodude and Onix Sturdy; in
-`relearner_training_kit`, mashing A went on from Fury Swipes to the next egg move, so the move is
-now taught step by step. `falkner` (Mareep keeps Tackle) was updated before either emulator
-reached it.
+Results on the 0.12.0 ROM (SHA-1 `3f3475987c7109fc466e5108652908677ae50952`), 2026-10-26:
+All 53 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
+that each test requires to be inside its accepted range.
 
 | Test | Covers | mGBA | VBA-M (Delta's core) |
 |---|---|---|---|
@@ -51,7 +44,9 @@ reached it.
 | `bug_contest` | Wild Variety is skipped in Bug-Catching Contest mode (0 of 12) and applies outside it | **PASS** (variety_in_contest 0/12, variety_outside_contest 6/12) | **PASS** (variety_in_contest 0/12, variety_outside_contest 9/12) |
 | `bugsy` | Bugsy's Imperium-style six (all at the cap, 24) leads Ariados; the naive six (Quilava's Flame Wheel with the first care package's Charcoal, Flaaffy's Power Gem and Pidgeotto's Dual Wingbeat from evolving, Geodude and Onix with Sturdy, two Eviolites) wins some, not all, of 40 sampled battles | **PASS** (wins vs Bugsy 10/40) | **PASS** (wins vs Bugsy 5/40) |
 | `bw_ui` | BW summary screen from the party menu (IVs shown), the BW action box (FIGHT / BAG / POKÉMON / RUN) and the BW move box | **PASS** | **PASS** |
-| `care_packages` | 8 badge packages, one per step, then the Champion package; held items, PP Max, X items, Berries and evolution items in the Bag, in stacks (after eight badges: 10 Charcoal, 10 Fairy Feathers, 9 Leftovers, 10 Focus Sashes, 20 Sitrus Berries); a full Berries pocket sends the Berries to the PC; a 0.10 save with eight packages gets the rest of each one per step (9 more Charcoal); a save with eight packages and no gear gets each package's gear, then the rest of its stacks (10 Charcoal in all), then the Champion package | **PASS** | **PASS** |
+| `care_packages` | The starting package on the first step with a Pokémon (Shiny Charm, 153 Quick Balls, 10 of every type booster and resist Berry); 8 badge packages, one per step, then the Champion package, Radical Red's contents (50 Heal and Dream Balls, 153 Ability Capsules and Patches, PP Max with the 153, 20 Leftovers and Life Orbs, 999 Gimmighoul Coins, 100 Beast Balls...); a full Berries pocket sends the Berries to the PC; with 20 free items-pocket slots, the held items go to the PC and the 20 stay free; a full items pocket and PC stop a package at its first held item until another map, then the rest arrives and nothing twice; a save from before 0.12.0 with three badges gets the starting package and its three packages again with the new contents, then the fourth badge's | **PASS** | **PASS** |
+| `care_packages_start` | The starting package once (Shiny Charm, 10 of every type booster and resist Berry, 10 Leftovers and Focus Sashes, 153 Quick Balls); Union Cave's location package on the first step inside (10 Damp and Icy Rocks); a save with four badges gets the Union Cave, Ilex Forest, National Park and Burned Tower packages, then the four badge packages; a 0.12.0-experimental save gets the bigger starting package (20 Charcoal, one Shiny Charm) | **PASS** | **PASS** |
+| `cheat_codes` | At the bedroom NES, each code typed on the keyboard: a wrong code does nothing; MEGA gives the Mega Ring and the 47 Mega Stones, and nothing twice; MMY the maximum money; CAL every Pokémon caught and the National Pokédex; EZCATCH turns Easy Catch off, EZC on again; SHINYR shiny roamers; DXA a message; NO the NES's old line; with a Pokémon already, MONO and SHS are refused; SHINYS and MONO (Dragon): PROF. ELM's middle Poké Ball holds a shiny Gible | **PASS** | **PASS** |
 | `dexnav` | Opened from the L menu: with nothing seen, the area's Pokémon are shown; register Rattata with R, R-search; L ends the search and keeps the chain; R-search again, walk up (no sneaking), battle, catch; search level and chain rise | **PASS** | **PASS** |
 | `dexnav_any` | Hidden row on Route 29; SELECT lists all 1,074 Pokémon (Ivysaur, Mewtwo); jump 100; register Squirtle; search Charmander, run up with Auto Run, battle | **PASS** | **PASS** |
 | `dexnav_caves` | Dark Cave: DexNav is too dark before Flash; Flash from the party menu (HM05, Zephyr Badge) lights the whole cave and DexNav searches; a save made there with the old lit circle continues fully lit; Union Cave 1F: the DexNav Geodude stays on its tile, the battle starts, caught | **PASS** | **PASS** |
@@ -83,7 +78,7 @@ reached it.
 | `save_load` | In-game save, hard reset, Continue | **PASS** | **PASS** |
 | `stat_editor` | Minimal Grinding off, level-50 HARDY Cyndaquil from L > STATS: START sets IVs to 31 (114 HP); HP IV 31 UP goes round to 0 (99 HP), B undoes an edit; 252 HP EVs (130 HP) and 252 Attack EVs (104 Attack); Defense EVs stop at the 6 left of 510 (64 Defense) | **PASS** | **PASS** |
 | `stat_editor_mgm` | Minimal Grinding on: EVs locked (RIGHT stays on the IVs), stats unchanged; HP IV 30 with the rest at 31 reaches the battle (gBattleMons IVs) | **PASS** | **PASS** |
-| `story_opening` | Real story path, no debug: Elm's intro, Cyndaquil from the middle ball, Elm's errand, the aide's Potion, Route 29 and a wild battle | **PASS** | **PASS** |
+| `story_opening` | Real story path, no debug: Elm's intro, Cyndaquil from the middle ball, Elm's errand, the aide's Potion, the starting care package on the first step outside (Shiny Charm, 153 Quick Balls), Route 29 and a wild battle | **PASS** | **PASS** |
 | `summary_nature` | A Cyndaquil born HARDY set to MODEST with L > STATS: its stats follow MODEST and the summary prints MODEST (its nature text points at MODEST's name; HARDY's on the 0.10.1 ROM) | **PASS** | **PASS** |
 | `tm_case` | TM163 Temper Flare teaches Cyndaquil (used in battle); all 198 TMs and 8 HMs fill the case; save, reset and Continue keep them | **PASS** | **PASS** |
 | `tm_clerk` | TMs cost ¥100 (price data); the Violet City Mart TM clerk sells 71 TMs and gives nothing before the Zephyr Badge; with it, Bullet Seed, Bulldoze, Bug Bite and Stomping Tantrum once, then 115 TMs; Flip Turn bought; the next talk goes straight to the shop | **PASS** | **PASS** |
