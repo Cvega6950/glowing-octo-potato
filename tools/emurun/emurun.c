@@ -471,7 +471,12 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
             }
             else
             {
-                Tap(slot < target ? 1u << 7 : 1u << 6); // DOWN / UP
+                // The Sinnoh base's party menu is a grid of two columns (0 1 / 2 3 / 4 5): change
+                // column first (RIGHT / LEFT), then row (DOWN / UP). From CANCEL (past 5), go UP.
+                if (slot >= 0 && slot < 6 && (slot & 1) != (target & 1))
+                    Tap((target & 1) ? 1u << 4 : 1u << 5); // RIGHT / LEFT
+                else
+                    Tap(slot >= 0 && slot < target ? 1u << 7 : 1u << 6); // DOWN / UP
             }
             idle = 0;
         }
@@ -748,7 +753,10 @@ int main(int argc, char **argv)
                 if (!eq)
                     continue;
                 *eq = 0;
-                uint32_t v = strtoul(eq + 1, NULL, 0) & ~1u;
+                // Code addresses drop their Thumb bit; data can be at an odd address (gPlayerPartyCount)
+                uint32_t v = strtoul(eq + 1, NULL, 0);
+                if (!strcmp(tok, "act") || !strcmp(tok, "mov") || !strcmp(tok, "pmenucb2") || !strcmp(tok, "battlecb2"))
+                    v &= ~1u;
                 if (!strcmp(tok, "main")) sy.main = v;
                 else if (!strcmp(tok, "outcome")) sy.outcome = v;
                 else if (!strcmp(tok, "ctrl")) sy.ctrl = v;

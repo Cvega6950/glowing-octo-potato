@@ -43,6 +43,13 @@ in mGBA and in Delta's GBA core.
   in trainer battles.
 - **Imperium-style bosses with six Pokémon** at your cap: Barry on Route 203, Roark, Mars at
   Valley Windworks and Gardenia.
+- **Route mini-bosses**, one strong trainer on each route: Lass Natalie (Route 202), Youngster
+  Sebastian (203), Worker Mason (Oreburgh Mine), Lass Sarah (204 South), Aroma Lady Taylor (204
+  North), Battle Girl Kelsey (205 South), Psychic Kody (Eterna Forest), Fisherman Zachary (205
+  North) and Hiker Louis (211 West). Their teams are competitive and themed by trainer class, with
+  held items, natures, abilities and four chosen moves. They have 3 Pokémon before the first badge
+  and 4 after it, at your level cap, and use the boss AI. `tools/platinum_imperium/validate_teams.py`
+  checks every boss team against the game's learnsets and abilities.
 - **The Gen 5 look, as in Crystal Imperium:** mudskip's Black/White battle interface (health
   boxes, text box, the FIGHT / BAG / POKéMON / RUN box, a move box with type colours, PP and
   effectiveness symbols, move info on L, party-ball bars, ability pop-ups, outlined fonts) and
@@ -51,7 +58,7 @@ in mGBA and in Delta's GBA core.
   relearner in the party menu, HMs usable by any Pokémon when you carry them, Flash lighting a
   whole cave, a bigger Bag.
 
-**Not ported yet:** the route mini-bosses, the remaining Gyms and story (they don't exist in the
+**Not ported yet:** the remaining Gyms and story (they don't exist in the
 base yet), follower Pokémon.
 
 The BW screens were written for expansion 1.15, and this base is 1.14. Three 1.15 features they
@@ -87,7 +94,8 @@ Copy `PlatinumImperium.gba` to the phone (AirDrop, iCloud Drive or Files), then 
 `tools/emurun/run_all.sh` boots the ROM in libmgba and plays: `l_menu` (key items, L menu, PokéVial,
 switches), `care_packages` (starting, location and badge packages), `tm_clerk` (the TM shop),
 `cheat_codes` (every code typed on the keyboard), `bw_ui` (the BW summary screen, action box,
-move box and move info, and a battle played to a result), `bosses_m1` (Barry, Roark, Mars and Gardenia with
+move box and move info, and a battle played to a result), `route_bosses` (every mini-boss's team
+size and levels at the cap, each battle played to a result against a prepared six), `bosses_m1` (Barry, Roark, Mars and Gardenia with
 six at the cap, each battle played to a result). All pass on mGBA.
 
 ## Credits

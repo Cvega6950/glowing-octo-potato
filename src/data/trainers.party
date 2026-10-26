@@ -16972,11 +16972,37 @@ Pic: Lass DP
 Gender: Female
 Music: Lass DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Bidoof (F)
-Level: 5
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Pachirisu @ Sitrus Berry
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Prankster
+Nature: Jolly
+- Spark
+- Quick Attack
+- Charm
+- Baby-Doll Eyes
+
+Clefairy @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Magic Guard
+Nature: Bold
+- Disarming Voice
+- Encore
+- Defense Curl
+- Pound
+
+Bidoof @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Simple
+Nature: Adamant
+- Defense Curl
+- Rollout
+- Headbutt
+- Quick Attack
 
 === TRAINER_PT_LOGAN ===
 Name: Logan
@@ -17054,7 +17080,7 @@ Nature: Jolly
 - Fake Out
 - Low Kick
 - Ice Punch
-- Quick Attack
+- Baby-Doll Eyes
 
 Munchlax @ Eviolite
 Level: 15
@@ -17123,7 +17149,7 @@ Nature: Jolly
 - Fake Out
 - Low Kick
 - Ice Punch
-- Quick Attack
+- Baby-Doll Eyes
 
 Munchlax @ Eviolite
 Level: 15
@@ -17153,7 +17179,7 @@ Nature: Adamant
 - Razor Leaf
 - Seed Bomb
 - Rock Throw
-- Curse
+- Body Slam
 
 === TRAINER_RIVAL_ROUTE_203_CHIMCHAR ===
 Name: Barry
@@ -17192,7 +17218,7 @@ Nature: Jolly
 - Fake Out
 - Low Kick
 - Ice Punch
-- Quick Attack
+- Baby-Doll Eyes
 
 Munchlax @ Eviolite
 Level: 15
@@ -17324,11 +17350,37 @@ Pic: Youngster DP
 Gender: Male
 Music: Youngster DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Machop (M)
-Level: 8
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Zubat @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Bite
+- Leech Life
+- Supersonic
+- Astonish
+
+Shinx @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Adamant
+- Spark
+- Bite
+- Charge
+- Leer
+
+Machop @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Guts
+Nature: Adamant
+- Karate Chop
+- Low Kick
+- Bullet Punch
+- Leer
 
 === TRAINER_PT_KAITLIN ===
 Name: Kaitlin
@@ -17443,11 +17495,37 @@ Pic: Lass DP
 Gender: Female
 Music: Lass DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Shinx (F)
-Level: 7
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Budew @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Timid
+- Mega Drain
+- Stun Spore
+- Water Sport
+- Growth
+
+Marill @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Huge Power
+Nature: Adamant
+- Aqua Jet
+- Rollout
+- Defense Curl
+- Bubble
+
+Shinx @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Jolly
+- Spark
+- Bite
+- Quick Attack
+- Leer
 
 === TRAINER_PT_TYLER ===
 Name: Tyler
@@ -17563,11 +17641,37 @@ Pic: Worker DP
 Gender: Male
 Music: Worker DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Geodude (F)
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Roggenrola @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Impish
+- Headbutt
+- Rock Blast
+- Iron Defense
+- Rock Tomb
+
+Drilbur @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sand Rush
+Nature: Jolly
+- Metal Claw
+- Mud-Slap
+- Rapid Spin
+- Rock Slide
+
+Timburr @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Guts
+Nature: Adamant
+- Low Kick
+- Mach Punch
+- Bulk Up
+- Force Palm
 
 === TRAINER_PT_COLIN ===
 Name: Colin
@@ -17725,15 +17829,47 @@ Pic: Aroma Lady DP
 Gender: Female
 Music: Aroma Lady DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Budew (F)
-Level: 9
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Petilil @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Chlorophyll
+Nature: Timid
+- Sleep Powder
+- Mega Drain
+- Leech Seed
+- Sunny Day
 
-Cherubi (F)
-Level: 11
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Skiploom @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Chlorophyll
+Nature: Jolly
+- Bullet Seed
+- Acrobatics
+- Stun Spore
+- Leech Seed
+
+Gloom @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Chlorophyll
+Nature: Modest
+- Mega Drain
+- Sludge
+- Sleep Powder
+- Growth
+
+Roselia @ Black Sludge
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Timid
+- Giga Drain
+- Poison Sting
+- Stun Spore
+- Leech Seed
 
 === TRAINER_PT_BRANDON_1 ===
 Name: Brandon
@@ -18149,11 +18285,47 @@ Pic: Battle Girl DP
 Gender: Female
 Music: Battle Girl DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Machop (M)
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Mankey @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Defiant
+Nature: Jolly
+- Karate Chop
+- Night Slash
+- Rock Tomb
+- Pursuit
+
+Croagunk @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Dry Skin
+Nature: Adamant
+- Poison Jab
+- Revenge
+- Fake Out
+- Feint Attack
+
+Riolu @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Inner Focus
+Nature: Jolly
+- Force Palm
+- Quick Attack
+- Copycat
+- Feint
+
+Meditite @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Pure Power
+Nature: Jolly
+- Force Palm
+- Bullet Punch
+- Confusion
+- Detect
 
 === TRAINER_PT_KARINA_1 ===
 Name: Karina
@@ -18314,11 +18486,47 @@ Pic: Psychic M DP
 Gender: Male
 Music: Psychic M DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Meditite (M)
-Level: 17
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Natu @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Magic Bounce
+Nature: Timid
+- Confusion
+- Air Cutter
+- Night Shade
+- Confuse Ray
+
+Spoink @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Thick Fat
+Nature: Modest
+- Psybeam
+- Confuse Ray
+- Magic Coat
+- Power Gem
+
+Kirlia @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Synchronize
+Nature: Timid
+- Confusion
+- Draining Kiss
+- Calm Mind
+- Magical Leaf
+
+Kadabra @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Magic Guard
+Nature: Timid
+- Psybeam
+- Dazzling Gleam
+- Disable
+- Calm Mind
 
 === TRAINER_PT_RACHAEL ===
 Name: Rachael
@@ -18412,19 +18620,47 @@ Pic: Fisherman DP
 Gender: Male
 Music: Fisherman DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Magikarp (M)
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Barboach @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Oblivious
+Nature: Adamant
+- Mud Shot
+- Water Gun
+- Amnesia
+- Rest
 
-Goldeen (M)
-Level: 16
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Buizel @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Technician
+Nature: Jolly
+- Aqua Jet
+- Quick Attack
+- Swift
+- Pursuit
 
-Magikarp (M)
-Level: 14
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Shellos @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Storm Drain
+Nature: Bold
+- Mud Bomb
+- Water Pulse
+- Yawn
+- Amnesia
+
+Gyarados @ Mystic Water
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Adamant
+- Bite
+- Waterfall
+- Twister
+- Thrash
 
 === TRAINER_PT_CAROLINE ===
 Name: Caroline
@@ -18637,15 +18873,47 @@ Pic: Hiker DP
 Gender: Male
 Music: Hiker DP
 Double Battle: No
-AI: Check Bad Move
+AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Geodude (M)
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Nosepass @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Impish
+- Rock Tomb
+- Thunder Wave
+- Block
+- Rock Blast
 
-Onix (M)
-Level: 15
-IVs: 0 HP / 0 Atk / 0 Def / 0 SpA / 0 SpD / 0 Spe
+Phanpy @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Pickup
+Nature: Adamant
+- Rollout
+- Bulldoze
+- Defense Curl
+- Ice Shard
+
+Rhyhorn @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Rock Head
+Nature: Adamant
+- Rock Blast
+- Bulldoze
+- Horn Attack
+- Scary Face
+
+Gible @ Eviolite
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Rough Skin
+Nature: Jolly
+- Dragon Breath
+- Sand Tomb
+- Bite
+- Take Down
 
 === TRAINER_PT_ALEXANDRA ===
 Name: Alexandra

@@ -14,4 +14,14 @@ static const struct LevelCapBoss
     {TRAINER_PT_ROARK, 0},
     {TRAINER_VALLEY_WINDWORKS_MARS, 1},
     {TRAINER_PT_GARDENIA, 1},
+    // Route mini-bosses: one strong trainer on each route
+    {TRAINER_PT_NATALIE, 0},
+    {TRAINER_PT_SEBASTIAN, 0},
+    {TRAINER_PT_MASON, 0},
+    {TRAINER_PT_SARAH, 0},
+    {TRAINER_PT_TAYLOR, 1},
+    {TRAINER_PT_KELSEY, 1},
+    {TRAINER_PT_KODY, 1},
+    {TRAINER_PT_ZACHARY, 1},
+    {TRAINER_PT_LOUIS, 1},
 };

@@ -6,6 +6,7 @@ set -eu
 cd "$(dirname "$0")/../.."
 python3 tools/platinum_imperium/care_packages.py --check
 python3 tools/platinum_imperium/tm_list.py --check
+python3 tools/platinum_imperium/validate_teams.py
 make -j"$(nproc)"
 cp pokeemerald.gba PlatinumImperium.gba
 echo "Built PlatinumImperium.gba ($(sha1sum PlatinumImperium.gba | cut -d' ' -f1))"

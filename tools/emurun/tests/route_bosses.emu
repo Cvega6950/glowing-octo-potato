@@ -1,0 +1,108 @@
+# Platinum Imperium play test: the route mini-bosses, one strong trainer on each built route
+# (Crystal Imperium's D30). Each has a competitive team (held items, natures, abilities and four
+# chosen moves, checked by tools/platinum_imperium/validate_teams.py), 3 Pokemon before the first
+# badge and 4 after it, all at the player's level cap, and plays to a result against the
+# prepared six at that cap. gEnemyParty: 100 bytes a Pokemon, level at +84.
+!new_game()
+!battle_style_set()
+!no_care_packages()
+savestate base.ss
+
+# Cap 15
+loadstate base.ss
+!prepared_team(15, items=True)
+savestate cap15.ss
+!battle("TRAINER_PT_NATALIE")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B natalie_action_menu
+shot 01_natalie.png
+expect8 {gEnemyPartyCount} 3 natalie_has_3
+expect8 {gEnemyParty+84} 15 natalie_lead_at_cap_15
+expect8 {gEnemyParty+284} 15 natalie_ace_at_cap_15
+!expect_battler(1, "species", "SPECIES_PACHIRISU", "natalie_lead")
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 natalie_resolved
+loadstate cap15.ss
+!battle("TRAINER_PT_SEBASTIAN")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B sebastian_action_menu
+shot 02_sebastian.png
+expect8 {gEnemyPartyCount} 3 sebastian_has_3
+expect8 {gEnemyParty+84} 15 sebastian_lead_at_cap_15
+expect8 {gEnemyParty+284} 15 sebastian_ace_at_cap_15
+!expect_battler(1, "species", "SPECIES_ZUBAT", "sebastian_lead")
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 sebastian_resolved
+loadstate cap15.ss
+!battle("TRAINER_PT_MASON")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B mason_action_menu
+shot 03_mason.png
+expect8 {gEnemyPartyCount} 3 mason_has_3
+expect8 {gEnemyParty+84} 15 mason_lead_at_cap_15
+expect8 {gEnemyParty+284} 15 mason_ace_at_cap_15
+!expect_battler(1, "species", "SPECIES_ROGGENROLA", "mason_lead")
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 mason_resolved
+loadstate cap15.ss
+!battle("TRAINER_PT_SARAH")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B sarah_action_menu
+shot 04_sarah.png
+expect8 {gEnemyPartyCount} 3 sarah_has_3
+expect8 {gEnemyParty+84} 15 sarah_lead_at_cap_15
+expect8 {gEnemyParty+284} 15 sarah_ace_at_cap_15
+!expect_battler(1, "species", "SPECIES_BUDEW", "sarah_lead")
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 sarah_resolved
+
+# Cap 24
+loadstate base.ss
+!set_flag("FLAG_BADGE01_GET")
+!prepared_team(24, items=True)
+savestate cap24.ss
+!battle("TRAINER_PT_TAYLOR")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B taylor_action_menu
+shot 05_taylor.png
+expect8 {gEnemyPartyCount} 4 taylor_has_4
+expect8 {gEnemyParty+84} 24 taylor_lead_at_cap_24
+expect8 {gEnemyParty+384} 24 taylor_ace_at_cap_24
+!expect_battler(1, "species", "SPECIES_PETILIL", "taylor_lead")
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 taylor_resolved
+loadstate cap24.ss
+!battle("TRAINER_PT_KELSEY")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kelsey_action_menu
+shot 06_kelsey.png
+expect8 {gEnemyPartyCount} 4 kelsey_has_4
+expect8 {gEnemyParty+84} 24 kelsey_lead_at_cap_24
+expect8 {gEnemyParty+384} 24 kelsey_ace_at_cap_24
+!expect_battler(1, "species", "SPECIES_MANKEY", "kelsey_lead")
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 kelsey_resolved
+loadstate cap24.ss
+!battle("TRAINER_PT_KODY")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kody_action_menu
+shot 07_kody.png
+expect8 {gEnemyPartyCount} 4 kody_has_4
+expect8 {gEnemyParty+84} 24 kody_lead_at_cap_24
+expect8 {gEnemyParty+384} 24 kody_ace_at_cap_24
+!expect_battler(1, "species", "SPECIES_NATU", "kody_lead")
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 kody_resolved
+loadstate cap24.ss
+!battle("TRAINER_PT_ZACHARY")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B zachary_action_menu
+shot 08_zachary.png
+expect8 {gEnemyPartyCount} 4 zachary_has_4
+expect8 {gEnemyParty+84} 24 zachary_lead_at_cap_24
+expect8 {gEnemyParty+384} 24 zachary_ace_at_cap_24
+!expect_battler(1, "species", "SPECIES_BARBOACH", "zachary_lead")
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 zachary_resolved
+loadstate cap24.ss
+!battle("TRAINER_PT_LOUIS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B louis_action_menu
+shot 09_louis.png
+expect8 {gEnemyPartyCount} 4 louis_has_4
+expect8 {gEnemyParty+84} 24 louis_lead_at_cap_24
+expect8 {gEnemyParty+384} 24 louis_ace_at_cap_24
+!expect_battler(1, "species", "SPECIES_NOSEPASS", "louis_lead")
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 louis_resolved
