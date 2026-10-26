@@ -1,0 +1,48 @@
+SandgemTown_HelperHouse_1F_MapScripts::
+	.byte 0
+
+SandgemTown_HelperHouse_1F_EventScript_Girl::
+	checkplayergender
+	call_if_eq VAR_RESULT, MALE, SandgemTown_HelperHouse_1F_EventScript_GirlSister
+	call_if_eq VAR_RESULT, FEMALE, SandgemTown_HelperHouse_1F_EventScript_GirlBrother
+	end
+
+SandgemTown_HelperHouse_1F_EventScript_GirlSister::
+	msgbox SandgemTown_HelperHouse_1F_Text_GirlSister, MSGBOX_NPC
+	end
+
+SandgemTown_HelperHouse_1F_EventScript_GirlBrother::
+	msgbox SandgemTown_HelperHouse_1F_Text_GirlBrother, MSGBOX_NPC
+	end
+
+SandgemTown_HelperHouse_1F_EventScript_Man::
+	msgbox SandgemTown_HelperHouse_1F_Text_Man, MSGBOX_NPC
+	end
+
+SandgemTown_HelperHouse_1F_Text_GirlSister:
+	.string "Who are you?\p"
+	.string "...\p"
+	.string "Oh...\n"
+	.string "You're {PLAYER}?\p"
+	.string "You're doing that Pokédex thingy\n"
+	.string "for the professor!\p"
+	.string "Wow! That's the same as my big\n"
+	.string "sister! Go for it!$"
+
+SandgemTown_HelperHouse_1F_Text_GirlBrother:
+	.string "Who are you?\p"
+	.string "...\p"
+	.string "Oh...\n"
+	.string "You're {PLAYER}?\p"
+	.string "You're doing that Pokédex thingy\n"
+	.string "for the professor!\p"
+	.string "Wow! That's the same as my big\n"
+	.string "brother! Go for it!$"
+
+SandgemTown_HelperHouse_1F_Text_Man:
+	.string "Ah, so that Rowan fellow is back?\n"
+	.string "He's quite the remarkable man.\p"
+	.string "He's been studying Pokémon since way,\n"
+	.string "way back.\p"
+	.string "My son and grandchild help Rowan\n"
+	.string "with his studies now.$"

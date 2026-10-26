@@ -1,0 +1,212 @@
+{
+  "id": "MAP_OREBURGH_CITY_SOUTH",
+  "name": "OreburghCitySouth",
+  "layout": "LAYOUT_OREBURGH_CITY_SOUTH",
+  "music": "MUS_DP_OREBURGH_DAY",
+  "region_map_section": "MAPSEC_OREBURGH_CITY",
+  "requires_flash": false,
+  "weather": "WEATHER_SUNNY",
+  "map_type": "MAP_TYPE_CITY",
+  "allow_cycling": true,
+  "allow_escaping": false,
+  "allow_running": true,
+  "show_map_name": true,
+  "battle_scene": "MAP_BATTLE_SCENE_NORMAL",
+  "connections": [
+    {
+      "map": "MAP_OREBURGH_CITY",
+      "offset": -14,
+      "direction": "up"
+    }
+  ],
+  "object_events": [
+    {
+      "graphics_id": "OBJ_EVENT_GFX_POKEFAN_F_PT",
+      "x": 38,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OreburghCitySouth_EventScript_PokefanF",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_PT",
+      "x": 43,
+      "y": 14,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 0,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OreburghCitySouth_EventScript_Worker2",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_PT",
+      "x": 30,
+      "y": 12,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 1,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OreburghCitySouth_EventScript_Worker1",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MACHOP)",
+      "x": 29,
+      "y": 18,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OreburghCitySouth_EventScript_Machop1",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MACHOP)",
+      "x": 49,
+      "y": 19,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OreburghCitySouth_EventScript_Machop2",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_WORKER_PT",
+      "x": 49,
+      "y": 29,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 1,
+      "movement_range_y": 3,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OreburghCitySouth_EventScript_WorkerSuperPotion",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_SPECIES(MACHOP)",
+      "x": 48,
+      "y": 28,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_range_x": 2,
+      "movement_range_y": 2,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "OreburghCitySouth_EventScript_Machop3",
+      "flag": "0"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 28,
+      "y": 10,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_YELLOW_SHARD",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_OREBURGH_CITY_YELLOW_SHARD"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_ITEM_BALL",
+      "x": 32,
+      "y": 11,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_NONE",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "ITEM_DIRE_HIT",
+      "script": "Common_EventScript_FindItem",
+      "flag": "FLAG_ITEM_OREBURGH_CITY_DIRE_HIT"
+    }
+  ],
+  "warp_events": [
+    {
+      "x": 37,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_OREBURGH_MINE_B1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 38,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_OREBURGH_MINE_B1F",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 39,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_OREBURGH_MINE_B1F",
+      "dest_warp_id": "1"
+    },
+    {
+      "x": 40,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_OREBURGH_MINE_B1F",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 41,
+      "y": 32,
+      "elevation": 0,
+      "dest_map": "MAP_OREBURGH_MINE_B1F",
+      "dest_warp_id": "2"
+    },
+    {
+      "x": 44,
+      "y": 9,
+      "elevation": 0,
+      "dest_map": "MAP_OREBURGH_CITY_HOUSE_C",
+      "dest_warp_id": "0"
+    }
+  ],
+  "coord_events": [],
+  "bg_events": [
+    {
+      "type": "sign",
+      "x": 38,
+      "y": 28,
+      "elevation": 0,
+      "player_facing_dir": "BG_EVENT_PLAYER_FACING_ANY",
+      "script": "OreburghCitySouth_EventScript_MineSign"
+    },
+    {
+      "type": "hidden_item",
+      "x": 28,
+      "y": 9,
+      "elevation": 0,
+      "item": "ITEM_PEARL",
+      "flag": "FLAG_ITEM_OREBURGH_CITY_PEARL"
+    },
+    {
+      "type": "hidden_item",
+      "x": 31,
+      "y": 10,
+      "elevation": 0,
+      "item": "ITEM_HEART_SCALE",
+      "flag": "FLAG_ITEM_OREBURGH_CITY_HEART_SCALE"
+    }
+  ]
+}

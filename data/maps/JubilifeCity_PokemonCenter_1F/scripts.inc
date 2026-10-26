@@ -1,0 +1,49 @@
+JubilifeCity_PokemonCenter_1F_MapScripts::
+	map_script MAP_SCRIPT_ON_TRANSITION, JubilifeCity_PokemonCenter_1F_OnTransition
+	map_script MAP_SCRIPT_ON_RESUME, CableClub_OnResume
+	.byte 0
+
+JubilifeCity_PokemonCenter_1F_OnTransition:
+	setrespawn HEAL_LOCATION_JUBILIFE_CITY
+	end
+
+JubilifeCity_PokemonCenter_1F_EventScript_Nurse::
+	setvar VAR_0x800B, LOCALID_JUBILIFE_NURSE
+	call Common_EventScript_PkmnCenterNurse
+	waitmessage
+	waitbuttonpress
+	release
+	end
+
+JubilifeCity_PokemonCenter_1F_EventScript_Schoolkid::
+	msgbox JubilifeCity_PokemonCenter_1F_Text_UnionRoom, MSGBOX_NPC
+	release
+	end
+
+JubilifeCity_PokemonCenter_1F_EventScript_Twin::
+	msgbox JubilifeCity_PokemonCenter_1F_Text_AllTypes, MSGBOX_NPC
+	release
+	end
+
+JubilifeCity_PokemonCenter_1F_EventScript_AceTrainerF::
+	msgbox JubilifeCity_PokemonCenter_1F_Text_SixTraveling, MSGBOX_NPC
+	release
+	end
+
+JubilifeCity_PokemonCenter_1F_Text_UnionRoom::
+	.string "In the Union Room upstairs, you can\n"
+	.string "chat and trade with other people.\p"
+	.string "And that's not all you can do.\n"
+	.string "Check it out!$"
+
+JubilifeCity_PokemonCenter_1F_Text_AllTypes::
+	.string "You know how Pokémon have types like\n"
+	.string "Water, Fire, and Grass?\p"
+	.string "Well, all types have strenghts and\n"
+	.string "weaknesses against other types.$"
+
+JubilifeCity_PokemonCenter_1F_Text_SixTraveling::
+	.string "You can still catch a Pokémon if you\n"
+	.string "have six traveling with you.\p"
+	.string "It automatically gets sent to the PC\n"
+	.string "network in Pokémon Centers.$"
