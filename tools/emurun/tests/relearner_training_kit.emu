@@ -60,7 +60,10 @@ shot 03_ability.png
 mash A 120
 wait 60
 
-# Party menu > LEARN MOVES > EGG MOVES > first entry (Fury Swipes) > YES
+# Party menu > LEARN MOVES > EGG MOVES > first entry (Fury Swipes) > YES. Cyndaquil knows four
+# moves at 11 (Tackle, Leer, Ember, Flame Wheel), so it forgets the first, Tackle: YES to "Delete an
+# older move?", then A on TACKLE in the list. A then goes through the messages until the party menu
+# is back (more A presses there would start the next action), and B closes it and the start menu.
 !start_menu("POKEMON")
 press A
 wait 30
@@ -70,12 +73,24 @@ wait 30
 press A
 wait 120
 shot 04_egg_moves.png
+# Teach FURY SWIPES? YES; "trying to learn", "can't learn more than four moves"
 press A
 wait 60
 press A
 wait 200
-mash A 300
-mash B 200
+press A
+wait 60
+press A
+wait 60
+# Delete an older move? YES; "Which move should be forgotten?"; TACKLE
+press A
+wait 60
+press A
+wait 120
+shot 05_forget_tackle.png
+press A
+waituntil32 {gMain+4} {CB2_UpdatePartyMenu} 3000 A back_in_party_menu
+mash B 120
 wait 60
 
 # Check the results inside a battle
@@ -83,5 +98,5 @@ wait 60
 wait 1100
 !expect_battler(0, "species", "SPECIES_CYNDAQUIL")
 !expect_battler(0, "ability", "ABILITY_FLASH_FIRE", "ability_changed_to_hidden_flash_fire")
-!expect_battler(0, "moves[3]", "MOVE_FURY_SWIPES", "relearned_egg_move_fury_swipes")
-shot 05_battle.png
+!expect_battler(0, "moves[0]", "MOVE_FURY_SWIPES", "relearned_egg_move_fury_swipes")
+shot 06_battle.png
