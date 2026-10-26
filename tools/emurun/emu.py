@@ -154,36 +154,38 @@ def expect_challenge_bit(field, value, label):
 # Moves the battle refuses to choose without an eaten Berry: the sweep's A presses would choose them
 # again and again
 SWEEP_UNSELECTABLE = ("MOVE_BELCH", "MOVE_STUFF_CHEEKS")
-# Moves used against the opponent's own HP: up to ten hits against a battle HP set far above the
-# Pokemon's own max HP never get back to the action menu, on 0.12.0 as well
-SWEEP_OWN_HP = ("MOVE_POPULATION_BOMB",)
 
 
 def move_animation_sweep(state, opponent_hp=999, max_frames=3000, first=1, last=None):
     """From a battle saved at the player's action menu (`state`: the player's Pokemon against a
     one-Pokemon trainer), use every move once, 1 to MOVES_COUNT - 1 (no Z-Moves or Max Moves, and
-    not SWEEP_UNSELECTABLE): load the state, put the move in the first slot with PP, set the
-    opponent's battle HP to `opponent_hp` so damage doesn't end the battle (not for SWEEP_OWN_HP),
-    choose FIGHT and the move, and wait (tapping A for the battle's prompts) until the action menu
-    is back or the battle is over (the user fainted, a one-hit KO). A battle animation that never
-    ends fails the move's check."""
+    not SWEEP_UNSELECTABLE): load the state, put the move in the first slot with PP, give the
+    opponent `opponent_hp` HP and max HP, in battle and in its party data alike (an HP above the
+    party's max HP stalled multi-hit moves' HP bars), so damage doesn't end the battle, choose
+    FIGHT and the move, and wait (tapping A for the battle's prompts) until the action menu is back
+    or the battle is over (the user fainted, a one-hit KO). A battle animation that never ends
+    fails the move's check."""
     v = probe.resolve({"count": "MOVES_COUNT", "pp": "offsetof(struct BattlePokemon, pp)",
-                       "hp": "offsetof(struct BattlePokemon, hp)", "size": "sizeof(struct BattlePokemon)",
-                       "moves": "offsetof(struct BattlePokemon, moves)"})
-    ids = probe.resolve({m: m for m in SWEEP_UNSELECTABLE + SWEEP_OWN_HP})
+                       "hp": "offsetof(struct BattlePokemon, hp)", "maxhp": "offsetof(struct BattlePokemon, maxHP)",
+                       "size": "sizeof(struct BattlePokemon)", "moves": "offsetof(struct BattlePokemon, moves)",
+                       "php": "offsetof(struct Pokemon, hp)", "pmax": "offsetof(struct Pokemon, maxHP)"})
+    ids = probe.resolve({m: m for m in SWEEP_UNSELECTABLE})
     skip = {ids[m] for m in SWEEP_UNSELECTABLE}
-    own_hp = {ids[m] for m in SWEEP_OWN_HP}
     done = ("{gBattlerControllerFuncs}={HandleInputChooseAction@battle_controller_player},"
             "{gMain+4}={CB2_Overworld}")
+    hp = []
+    if opponent_hp:
+        hp = [f"poke16 {{gBattleMons+{v['size'] + v['hp']}}} {opponent_hp}",
+              f"poke16 {{gBattleMons+{v['size'] + v['maxhp']}}} {opponent_hp}",
+              f"poke16 {{gEnemyParty+{v['php']}}} {opponent_hp}",
+              f"poke16 {{gEnemyParty+{v['pmax']}}} {opponent_hp}"]
     out = []
     for move in range(first, (last or v["count"] - 1) + 1):
         if move in skip:
             continue
         out += [f"loadstate {state}",
                 f"poke16 {{gBattleMons+{v['moves']}}} {move}",
-                f"poke8 {{gBattleMons+{v['pp']}}} 10"]
-        if opponent_hp and move not in own_hp:
-            out.append(f"poke16 {{gBattleMons+{v['size'] + v['hp']}}} {opponent_hp}")
+                f"poke8 {{gBattleMons+{v['pp']}}} 10"] + hp
         out += ["press A", "wait 10", "press A",
                 f"waituntilany32 {max_frames} A move_{move}_ends {done}"]
     return out

@@ -69,7 +69,14 @@ EWRAM_DATA u16 sBattlerAbilities[MAX_BATTLERS_COUNT] = {0};
 static EWRAM_DATA u16 sBattlerAbilities[MAX_BATTLERS_COUNT] = {0};
 #endif
 EWRAM_DATA struct BattleMsgData *gBattleMsgDataPtr = NULL;
-static EWRAM_DATA bool8 sStringIsSpeech = FALSE; // Crystal Imperium: see BattlePutTextOnWindow
+// Crystal Imperium (DECISIONS.md D38): what BufferStringBattle last wrote, for BattlePutTextOnWindow
+enum
+{
+    BATTLE_STRING_OTHER,
+    BATTLE_STRING_SPEECH,     // a trainer's words: its prompts wait for the player
+    BATTLE_STRING_USED_MOVE,  // "X used Y!": printed at once with FAST BATTLES on
+};
+static EWRAM_DATA u8 sBattleStringKind = BATTLE_STRING_OTHER;
 
 // todo: make some of those names less vague: attacker/target vs pkmn, etc.
 
@@ -2385,7 +2392,12 @@ static bool32 IsTrainerSpeech(enum StringID stringID)
 
 void BufferStringBattle(enum StringID stringID, enum BattlerId battler)
 {
-    sStringIsSpeech = IsTrainerSpeech(stringID);
+    if (IsTrainerSpeech(stringID))
+        sBattleStringKind = BATTLE_STRING_SPEECH;
+    else if (stringID == STRINGID_USEDMOVE)
+        sBattleStringKind = BATTLE_STRING_USED_MOVE;
+    else
+        sBattleStringKind = BATTLE_STRING_OTHER;
 
     s32 i;
     const u8 *stringPtr = NULL;
@@ -3999,8 +4011,8 @@ void BattlePutTextOnWindow(const u8 *text, u8 windowId)
     // Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, the battle's messages don't stop for a
     // button press ("fainted!", "gained Exp. Points!", "You got ¥..."): A or B goes on at once, and
     // otherwise the message goes on after a moment. A trainer's words still wait for the player.
-    gTextFlags.autoContinuePrompt = (windowId == B_WIN_MSG && !gTextFlags.autoScroll && IsFastBattleOn() && !sStringIsSpeech);
-    sStringIsSpeech = FALSE;
+    gTextFlags.autoContinuePrompt = (windowId == B_WIN_MSG && !gTextFlags.autoScroll && IsFastBattleOn()
+                                  && sBattleStringKind != BATTLE_STRING_SPEECH);
 
     if (windowId == B_WIN_MSG || windowId == ARENA_WIN_JUDGMENT_TEXT || windowId == B_WIN_OAK_OLD_MAN)
     {
@@ -4008,6 +4020,10 @@ void BattlePutTextOnWindow(const u8 *text, u8 windowId)
             speed = 1;
         else if (gBattleTypeFlags & BATTLE_TYPE_RECORDED)
             speed = sRecordedBattleTextSpeeds[GetTextSpeedInRecordedBattle()];
+        // Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, "X used Y!" appears at once, so
+        // the move's animation starts as soon as it is chosen (the message stays up during it)
+        else if (windowId == B_WIN_MSG && sBattleStringKind == BATTLE_STRING_USED_MOVE && IsFastBattleOn())
+            speed = 0;
         else
             speed = GetPlayerTextSpeedDelay();
 
@@ -4020,6 +4036,7 @@ void BattlePutTextOnWindow(const u8 *text, u8 windowId)
     }
 
     AddTextPrinter(&printerTemplate, speed, NULL);
+    sBattleStringKind = BATTLE_STRING_OTHER;
 
     if (copyToVram)
     {

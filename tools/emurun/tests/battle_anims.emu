@@ -3,10 +3,9 @@
 # done once a frame (0.13.0's first build hung on Tailwind: a hardware palette fade stepped twice a
 # frame never finished). MEW (Lv 50) against Youngster Joey's RATTATA: from the first action menu,
 # each move from 1 to the last (no Z-Moves or Max Moves) is put in MEW's first slot and used once;
-# RATTATA's battle HP is set to 999 so damage doesn't end the battle (not for Population Bomb's ten
-# hits, which never get back to the menu against that HP, on 0.12.0 as well). Belch and Stuff
-# Cheeks can't be chosen without a Berry and are left out. Each move passes when the action menu is
-# back, or the battle is over (MEW fainted, e.g. Explosion; a one-hit KO).
+# RATTATA gets 999 HP and max HP, in battle and in its party data, so damage doesn't end the battle.
+# Belch and Stuff Cheeks can't be chosen without a Berry and are left out. Each move passes when the
+# action menu is back, or the battle is over (MEW fainted, e.g. Explosion; a one-hit KO).
 !new_game()
 !give_mon(151, 50)
 !no_care_packages()

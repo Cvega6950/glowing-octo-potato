@@ -654,6 +654,15 @@ bool8 IsBattleSEPlaying(enum BattlerId battler)
 {
     u8 zero = 0;
 
+    // Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, the next animation doesn't wait for
+    // the last sound effect (up to 30 frames, between one move's hit and the next move); the
+    // animation's own sounds take over
+    if (IsFastBattleOn())
+    {
+        gBattleSpritesDataPtr->healthBoxesData[battler].soundTimer = 0;
+        return FALSE;
+    }
+
     if (IsSEPlaying())
     {
         gBattleSpritesDataPtr->healthBoxesData[battler].soundTimer++;
