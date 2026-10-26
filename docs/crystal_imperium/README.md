@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.11.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.12.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
 > of its Pokémon at the level cap, the Pokémon have Emerald Imperium's abilities and movesets,
@@ -84,6 +84,11 @@ From the first step of a new game:
   for free, once.
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
+- **A starting care package** from Prof. Elm as soon as you have a Pokémon, as in Emerald
+  Imperium: the Shiny Charm, 10 of every type-boosting item, 5 of every type-resist Berry,
+  Leftovers, Focus Sashes, Eviolites, 10 PP Max and more. **Nine location packages** wait along
+  the story, each with a theme (the weather Rocks in Union Cave, the Choice items in the National
+  Park, the Terrain Seeds at the Lake of Rage, ...).
 - **Care packages** from Prof. Elm after every badge and after becoming Champion, full of
   battle gear the Emerald Imperium way, in stacks for a whole team: 10 of each type-boosting
   item (10 Charcoal, Mystic Water and Miracle Seed after the first badge), 10 Sitrus and Lum

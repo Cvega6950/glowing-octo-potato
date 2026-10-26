@@ -1,0 +1,62 @@
+# Crystal Imperium play test: the Emerald Imperium-style starting and location care packages
+# (0.12.0). PROF. ELM's starting package arrives on the first step on a route or in a town once the
+# player has a Pokemon: the Shiny Charm, 10 of every type-boosting item, 5 of every type-resist
+# Berry and a starter kit of held items. A location package waits in each of nine places along the
+# story (Union Cave first) and arrives on the first step there; a save already past a place gets
+# its package on the next step outside. VAR_CARE_PACKAGE_PLACES has a bit for each.
+!new_game(place_packages=True)
+!give_mon(155, 5)
+!warp(0, 11, 0)
+!walkto(33, 11, soft=True)
+wait 150
+shot 01_starting_package.png
+mash A 2400
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x8000, "starting_package_received")
+!expect_var("VAR_CARE_PACKAGES", 0, "no_badge_package_yet")
+!expect_bag_has("keyItems", "ITEM_SHINY_CHARM")
+!expect_bag_quantity("items", "ITEM_CHARCOAL", 10)
+!expect_bag_quantity("items", "ITEM_FAIRY_FEATHER", 10)
+!expect_bag_quantity("items", "ITEM_FOCUS_SASH", 5)
+!expect_bag_quantity("items", "ITEM_LEFTOVERS", 3)
+!expect_bag_quantity("berries", "ITEM_OCCA_BERRY", 5)
+!expect_bag_quantity("berries", "ITEM_ROSELI_BERRY", 5)
+!expect_bag_quantity("medicine", "ITEM_PP_MAX", 10)
+# Only once
+!walkto(34, 11)
+!walkto(33, 11)
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x8000, "starting_package_only_once")
+savestate route29.ss
+
+# Union Cave: the weather package on the first step inside
+!warp(24, 8, 0)
+!walk("UP", 1)
+wait 150
+shot 02_union_cave_package.png
+mash A 2400
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x8001, "union_cave_package_received")
+!expect_bag_quantity("items", "ITEM_DAMP_ROCK", 3)
+!expect_bag_quantity("items", "ITEM_ICY_ROCK", 3)
+
+# A save past Ilex Forest, the National Park and the Burned Tower (four badges) without having
+# entered them since 0.12.0: their packages arrive one per step outside, before the badge packages
+loadstate route29.ss
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_flag("FLAG_BADGE04_GET")
+# The save state stands on (33,11): step to (34,11) first, then back and forth
+!walkto(34, 11, soft=True)
+wait 30
+mash A 2400
+!care_package_steps(3)
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x800F, "four_badges_four_place_packages")
+!expect_var("VAR_CARE_PACKAGES", 0, "place_packages_come_first")
+!expect_bag_quantity("items", "ITEM_LIGHT_CLAY", 3)
+!expect_bag_quantity("items", "ITEM_CHOICE_SCARF", 2)
+!expect_bag_quantity("items", "ITEM_ASSAULT_VEST", 3)
+!walkto(34, 11, soft=True)
+wait 30
+mash A 2400
+!care_package_steps(3)
+!expect_var("VAR_CARE_PACKAGES", 4, "then_the_four_badge_packages")
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x800F, "lighthouse_not_yet")

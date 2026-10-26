@@ -30,7 +30,7 @@ def number(target, initial=1):
 
 
 def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, level_cap=None,
-             minimal_grinding=True):
+             minimal_grinding=True, place_packages=False):
     """Power-on to the bedroom in New Bark Town with default settings (Minimal Grinding, Easy
     Catch and Wild Variety 30% ON). difficulty="EASY" or "HARD" picks that DIFFICULTY in the
     Difficulty tab; easy_catch=False turns EASY CATCH (first row of the Features tab) off;
@@ -72,6 +72,10 @@ def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, 
     out += ["press R", "wait 20"]
     out += ["wait 10", "press UP", "wait 30", "press A", "wait 120", "press A", "wait 120"]
     out += ["mash A 1500", "mash A 1200", "wait 300"]
+    # The starting and location care packages (0.12.0) would arrive on the first steps with a
+    # Pokemon; only the tests of them (place_packages=True) let them
+    if not place_packages:
+        out += set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
     return out
 
 
@@ -323,8 +327,10 @@ def set_var(var, value):
 
 
 def no_care_packages():
-    """Mark all 17 care packages, their gear and their stacks as received, so none arrives during the test."""
-    return set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_GEAR", 17) + set_var("VAR_CARE_PACKAGE_BULK", 17)
+    """Mark all 17 care packages, their gear and their stacks, and the starting and location packages as
+    received, so none arrives during the test."""
+    return (set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_GEAR", 17) + set_var("VAR_CARE_PACKAGE_BULK", 17)
+            + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF))
 
 
 def expect_var(var, want, label=None):

@@ -166,6 +166,45 @@ STACKS = dict(
 
 PACKAGES = [[(item, max(n, STACKS.get(item, 0))) for item, n in package] for package in GEAR_PACKAGES]
 
+# Since 0.12.0, Emerald Imperium-style: a starting package from PROF. ELM as soon as the player has a
+# Pokemon (Emerald Imperium's comes from PROF. BIRCH at the start, with the Shiny Charm and the
+# type-boosting items), so the type-boosting items, the type-resist Berries and the staples are there
+# from the first battles
+STARTING = ([("SHINY_CHARM", 1)] + [(item, 10) for item in TYPE_BOOSTERS] + [(berry, 5) for berry in RESIST_BERRIES] +
+            [("SITRUS_BERRY", 10), ("LUM_BERRY", 10), ("LEFTOVERS", 3), ("FOCUS_SASH", 5), ("EVIOLITE", 5),
+             ("EXPERT_BELT", 3), ("MUSCLE_BAND", 3), ("WISE_GLASSES", 3), ("SCOPE_LENS", 3), ("PP_MAX", 10),
+             ("POKE_BALL", 20), ("GREAT_BALL", 10), ("SUPER_POTION", 10), ("REVIVE", 5)])
+
+# ...and location packages along the story, waiting for the player the first time they enter the
+# place (Emerald Imperium has them in Granite Cave, on Route 110 and elsewhere), each a themed set of
+# gear. (map id, place name, items); src/care_packages.c has the same maps in the same order.
+PLACES = [
+    ("MAP_UNION_CAVE_1F_HNS", "UNION CAVE",
+     [("DAMP_ROCK", 3), ("HEAT_ROCK", 3), ("SMOOTH_ROCK", 3), ("ICY_ROCK", 3), ("UTILITY_UMBRELLA", 2),
+      ("SAFETY_GOGGLES", 3)]),
+    ("MAP_ILEX_FOREST_HNS", "ILEX FOREST",
+     [("LIGHT_CLAY", 3), ("WHITE_HERB", 5), ("POWER_HERB", 5), ("MENTAL_HERB", 5), ("MIRROR_HERB", 3),
+      ("BIG_ROOT", 3), ("BLACK_SLUDGE", 2)]),
+    ("MAP_NATIONAL_PARK_NORMAL_HNS", "NATIONAL PARK",
+     [("CHOICE_BAND", 2), ("CHOICE_SPECS", 2), ("CHOICE_SCARF", 2), ("LIFE_ORB", 3), ("WEAKNESS_POLICY", 3),
+      ("BOOSTER_ENERGY", 5)]),
+    ("MAP_BURNED_TOWER_1F_HNS", "BURNED TOWER",
+     [("TOXIC_ORB", 3), ("FLAME_ORB", 3), ("ROCKY_HELMET", 3), ("ASSAULT_VEST", 3), ("HEAVY_DUTY_BOOTS", 3),
+      ("AIR_BALLOON", 5)]),
+    ("MAP_OLIVINE_CITY_LIGHTHOUSE_HNS", "the LIGHTHOUSE",
+     [("RED_CARD", 3), ("EJECT_BUTTON", 3), ("EJECT_PACK", 3), ("COVERT_CLOAK", 3), ("CLEAR_AMULET", 3),
+      ("PROTECTIVE_PADS", 3), ("SHED_SHELL", 3)]),
+    ("MAP_MT_MORTAR_1F_SOUTH_HNS", "MT. MORTAR",
+     [("LOADED_DICE", 3), ("PUNCHING_GLOVE", 3), ("THROAT_SPRAY", 3), ("BLUNDER_POLICY", 3), ("ROOM_SERVICE", 3),
+      ("ADRENALINE_ORB", 3), ("ABILITY_SHIELD", 3), ("METRONOME", 2)]),
+    ("MAP_LAKE_OF_RAGE_HNS", "the LAKE OF RAGE",
+     [("ELECTRIC_SEED", 5), ("GRASSY_SEED", 5), ("MISTY_SEED", 5), ("PSYCHIC_SEED", 5), ("TERRAIN_EXTENDER", 3)]),
+    ("MAP_ICE_PATH_1F_HNS", "the ICE PATH",
+     [("PP_MAX", 10), ("MAX_ELIXIR", 5), ("FULL_RESTORE", 5), ("MAX_REVIVE", 5)]),
+    ("MAP_VICTORY_ROAD_KANTO_1F_HNS", "VICTORY ROAD",
+     [("FULL_RESTORE", 10), ("MAX_REVIVE", 10), ("MAX_ELIXIR", 10), ("ABILITY_PATCH", 3)]),
+]
+
 # What each package held before 0.7.0 (every earlier release had these), for the catch-up
 EARLIER = [
     [("POKE_BALL", 10), ("GREAT_BALL", 5), ("SUPER_POTION", 5), ("LINKING_CORD", 1), ("SWEET_APPLE", 1),
@@ -229,6 +268,9 @@ HEADER = """\
 @ have then, one package per step (VAR_CARE_PACKAGE_GEAR counts the packages whose gear arrived);
 @ EventScript_CarePackageBulk then brings a save from before 0.11.0 the rest of each package's stacks
 @ (VAR_CARE_PACKAGE_BULK).
+@ Since 0.12.0, EventScript_CarePackageStart is the starting package (once the player has a Pokemon)
+@ and EventScript_CarePackagePlace the location package VAR_0x8004 names (the first time the player
+@ enters its place); VAR_CARE_PACKAGE_PLACES has a bit for each, set by src/care_packages.c.
 """
 
 
@@ -304,6 +346,7 @@ MESSAGES = {
     "CarePackage_Text_GearArrived": ["PROF. ELM sent the battle gear", "an earlier package didn't have!"],
     "CarePackage_Text_BulkArrived": ["PROF. ELM sent more of the gear", "from an earlier package!"],
     "CarePackage_Text_SentToPC": ["Your BAG was full, so some of it", "was sent to your PC."],
+    "CarePackage_Text_StartArrived": ["PROF. ELM sent a care package", "to start your journey!"],
 }
 
 
@@ -327,6 +370,10 @@ def render():
         sys.exit("EARLIER needs one entry per package")
     if len(GEAR_PACKAGES) != len(PACKAGES):
         sys.exit("GEAR_PACKAGES needs one entry per package")
+    for label, items in [("starting", STARTING)] + [(name, items) for _, name, items in PLACES]:
+        for item, n in items:
+            if "ITEM_" + item not in names:
+                sys.exit(f"{label} package: unknown item ITEM_{item}")
     gears = [gear(k) for k in range(1, len(PACKAGES) + 1)]
     bulks = [bulk(k) for k in range(1, len(PACKAGES) + 1)]
     out = HEADER.splitlines()
@@ -372,10 +419,31 @@ def render():
     out += ["CarePackageBulk_End:", "\tgoto_if_eq VAR_0x8005, 0, CarePackageBulk_Done",
             "\tmsgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT",
             "CarePackageBulk_Done::", "\taddvar VAR_CARE_PACKAGE_BULK, 1", "\treleaseall", "\tend", ""]
-    for item, n in sorted({(item, n) for items in PACKAGES + gears + bulks for item, n in items}):
+    out += ["EventScript_CarePackageStart::", "\tlockall", "\tplayse SE_EXP_MAX",
+            "\tmsgbox CarePackage_Text_StartArrived, MSGBOX_DEFAULT", "\tsetvar VAR_0x8005, 0",
+            "\tplayfanfare MUS_OBTAIN_ITEM", "\tmsgbox CarePackageStart_Text, MSGBOX_DEFAULT", "\twaitfanfare"]
+    out += item_lines(STARTING, "CarePackagePlace_End")
+    out += ["EventScript_CarePackagePlace::", "\tlockall", "\tplayse SE_EXP_MAX", "\tsetvar VAR_0x8005, 0",
+            "\tswitch VAR_0x8004"]
+    out += [f"\tcase {k}, CarePackagePlace_{k}" for k in range(len(PLACES))]
+    out += ["\tgoto CarePackagePlace_Done", ""]
+    for k, (_, name, items) in enumerate(PLACES):
+        out += [f"CarePackagePlace_{k}::", f"\tmsgbox CarePackagePlace_Text_Arrived_{k}, MSGBOX_DEFAULT",
+                "\tplayfanfare MUS_OBTAIN_ITEM", f"\tmsgbox CarePackagePlace_Text_{k}, MSGBOX_DEFAULT", "\twaitfanfare"]
+        out += item_lines(items, "CarePackagePlace_End")
+    out += ["CarePackagePlace_End:", "\tgoto_if_eq VAR_0x8005, 0, CarePackagePlace_Done",
+            "\tmsgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT",
+            "CarePackagePlace_Done::", "\treleaseall", "\tend", ""]
+    extras = [STARTING] + [items for _, _, items in PLACES]
+    for item, n in sorted({(item, n) for items in PACKAGES + gears + bulks + extras for item, n in items}):
         out += [f"{pc_label(item, n)}:", f"\taddpcitem ITEM_{item}, {n}", "\taddvar VAR_0x8005, 1", "\treturn", ""]
     for label, lines in MESSAGES.items():
         out += [f"{label}:"] + message_lines(lines, widths) + [""]
+    out += ["CarePackageStart_Text:"] + contents_text(STARTING, names, widths) + [""]
+    for k, (_, name, items) in enumerate(PLACES):
+        out += [f"CarePackagePlace_Text_Arrived_{k}:"] + message_lines(
+            ["A care package from PROF. ELM", f"was waiting in {name}!"], widths) + [""]
+        out += [f"CarePackagePlace_Text_{k}:"] + contents_text(items, names, widths) + [""]
     for k, items in enumerate(PACKAGES, 1):
         out += [f"CarePackage_Text_{k}:"] + contents_text(items, names, widths) + [""]
     for k, items in enumerate(gears, 1):

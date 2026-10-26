@@ -1,8 +1,9 @@
 # Crystal Imperium play test: the story opening, played normally (no debug menu).
 # New Game -> Mom's intro -> Prof. Elm's lab: Elm's intro, Cyndaquil from the middle Poke Ball,
-# Elm's errand (his number goes into the Pokegear), the aide's Potion at the door ->
+# Elm's errand (his number goes into the Pokegear), the aide's Potion at the door -> the starting
+# care package on the first step outside ->
 # New Bark Town -> Route 29: the first wild battle, fought by the starter.
-!new_game()
+!new_game(place_packages=True)
 !leave_bedroom_get_running_shoes()
 !walkto(10, 10, path=True)
 hold UP 16
@@ -57,6 +58,13 @@ shot 06_potion.png
 hold DOWN 16
 wait 200
 
+# The starting care package arrives on the first step in New Bark Town
+!walk("DOWN", 1)
+wait 150
+shot 06b_starting_package.png
+mash A 2400
+!expect_var("VAR_CARE_PACKAGE_PLACES", 0x8000, "starting_package_on_the_story_path")
+!expect_bag_has("keyItems", "ITEM_SHINY_CHARM")
 # West out of New Bark Town onto Route 29 (east edge at (69, 18))
 !walkto(0, 13, path=True)
 hold LEFT 16

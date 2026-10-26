@@ -1,5 +1,18 @@
 # Crystal Imperium changelog
 
+## 0.12.0-experimental (2026-10-26)
+
+### Quality of life
+- **Care packages the Emerald Imperium way** (DECISIONS.md D16). A **starting package** from PROF.
+  ELM as soon as you have a Pokémon, as Emerald Imperium's from PROF. BIRCH: the Shiny Charm, 10 of
+  every type-boosting item, 5 of every type-resist Berry, 10 Sitrus and Lum Berries, Leftovers,
+  Focus Sashes, Eviolites, Expert Belts, Muscle Bands, Wise Glasses, Scope Lenses, 10 PP Max and
+  Poké Balls. And **nine location packages** waiting along the story, each with a theme: the
+  weather Rocks in Union Cave, Light Clay and the Herbs in Ilex Forest, the Choice items in the
+  National Park, the Orbs, Assault Vests and Heavy-Duty Boots in the Burned Tower, and more in the
+  Lighthouse, Mt. Mortar, the Lake of Rage, the Ice Path and Victory Road. The badge packages are
+  unchanged and come on top. Saves already past a place get its package on the next step outside.
+
 ## 0.11.0-experimental (2026-10-25)
 
 ### Pokémon

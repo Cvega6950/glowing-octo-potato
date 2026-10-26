@@ -260,6 +260,37 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   Coins and, for the Champion, both Scrolls.
 - All 30 trade evolutions also have a non-trade method in the data, so no evolution needs a
   link cable.
+- **A starting package and location packages, the Emerald Imperium way (0.12.0).** The user found
+  the packages "lackluster" and asked for them to match Emerald Imperium. Imperium's own lists
+  aren't published, but its changelog and feature page show the pattern: PROF. BIRCH's starting
+  care package (with the Shiny Charm and the type-boosting items: "Starting Care Package Pixie
+  Plate and Iron Plate replaced with Fairy Feather and Steel Feather"), packages waiting in
+  places along the story ("Damp Rocks, Icy Rocks, and Smooth Rocks given as part of Granite Cave
+  care package", "Light Clay added to care package given on Route 110"), and type-boosting items
+  and type-resist Berries among the contents
+  ([changelog](https://pokemonemeraldimperium.com/changelog/),
+  [features](https://pokemonemeraldimperium.com/features/)). Crystal Imperium had none of that
+  before the first badge, and the type-boosting items came three a badge. Now:
+  - **The starting package** (`STARTING`) arrives from PROF. ELM on the first step on a route or
+    in a town once the player has a Pokémon: the Shiny Charm, 10 of each of the 18 type-boosting
+    items, 5 of each of the 18 type-resist Berries, 10 Sitrus and Lum Berries, Leftovers ×3,
+    Focus Sash ×5, Eviolite ×5, Expert Belt, Muscle Band, Wise Glasses and Scope Lens ×3 each,
+    PP Max ×10, 20 Poké Balls, 10 Great Balls, 10 Super Potions, 5 Revives.
+  - **Nine location packages** (`PLACES`), each a themed set, arrive on the first step in their
+    place: Union Cave (the four weather Rocks, Utility Umbrella, Safety Goggles), Ilex Forest
+    (Light Clay and the Herbs), the National Park (the Choice items, Life Orb, Weakness Policy,
+    Booster Energy), the Burned Tower (the Orbs, Rocky Helmet, Assault Vest, Heavy-Duty Boots,
+    Air Balloon), the Lighthouse (Red Card, Eject Button and Pack, Covert Cloak, Clear Amulet,
+    Protective Pads, Shed Shell), Mt. Mortar (Loaded Dice, Punching Glove, Throat Spray, ...),
+    the Lake of Rage (the Terrain Seeds and Extender), the Ice Path (PP Max, Max Elixirs, Full
+    Restores, Max Revives) and Victory Road (more of those, Ability Patches).
+  - The badge and Champion packages keep their contents, so saves keep matching the generator's
+    history; the new packages come on top (the Bag ends up with 20 Charcoal by the sixth badge).
+  - `VAR_CARE_PACKAGE_PLACES` (0x40F8, never referenced before) has a bit for each (bit 15 the
+    starting package). A save already past a place (`pastAtBadges` in `src/care_packages.c`:
+    Union Cave with two badges, the Victory Road package once Champion) gets its package on the
+    next step outside, so saves from 0.11 and earlier get everything, one package per step,
+    before any badge package.
 - Evidence: `care_packages` (one package per milestone, the held items, PP Max, X items and
   Berries in the Bag after the eight Johto badges and the Champion, a full Berries pocket
   sending the first package's Berries to the PC, and a save with eight packages and no gear
