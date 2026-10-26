@@ -1,4 +1,5 @@
 #include "global.h"
+#include "item.h"
 #include "main.h"
 #include "bike.h"
 #include "event_data.h"
@@ -1544,6 +1545,9 @@ bool8 PartyHasMonWithSurf(void)
             if (MonKnowsMove(&gPlayerParty[i], MOVE_SURF))
                 return TRUE;
         }
+        // Platinum Imperium: carrying the HM is enough
+        if (gPlayerPartyCount > 0 && HasFieldMoveMachine(MOVE_SURF))
+            return TRUE;
     }
     return FALSE;
 }

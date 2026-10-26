@@ -690,6 +690,18 @@ static const struct WindowTemplate sLevelUpStatsWindowTemplate =
     .baseBlock = 0x2E9,
 };
 
+// Platinum Imperium: how many Rare Candies to use ("×NNN"), above the message box (I_QUICK_RARE_CANDY)
+static const struct WindowTemplate sRareCandyCountWindowTemplate =
+{
+    .bg = 2,
+    .tilemapLeft = 24,
+    .tilemapTop = 11,
+    .width = 5,
+    .height = 2,
+    .paletteNum = 14,
+    .baseBlock = 0x2E9,
+};
+
 static const struct WindowTemplate sUnusedWindowTemplate1 =
 {
     .bg = 2,

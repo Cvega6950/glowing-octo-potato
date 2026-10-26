@@ -181,6 +181,7 @@ static inline u16 GetTMHMMoveId(enum TMHMIndex index)
 }
 
 enum TMHMItemId GetTMHMItemIdFromMoveId(u16 move);
+bool32 HasFieldMoveMachine(u16 move);
 
 void BagPocket_SetSlotData(struct BagPocket *pocket, u32 pocketPos, struct ItemSlot newSlot);
 struct ItemSlot BagPocket_GetSlotData(struct BagPocket *pocket, u32 pocketPos);

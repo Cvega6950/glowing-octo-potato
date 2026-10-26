@@ -22,6 +22,7 @@
 #define I_REPEL_INCLUDE_FAINTED         GEN_LATEST  // In Gen1 and Gen6+, Repels always use the level of the first member of the party to check which wild Pokémon to prevent encounters with, even if that member is fainted. In Gen2-5, it only uses the level of the first non-fainted Pokémon.
 
 // TM config
+#define I_QUICK_RARE_CANDY      TRUE        // Platinum Imperium: Rare Candies are used several at a time (the player picks how many), with a short sound instead of the level-up fanfare, and without the two stat pages.
 #define I_REUSABLE_TMS          FALSE       // In Gen5-8, TMs are reusable. Setting this to TRUE will make all vanilla TMs reusable, though they can also be cherry-picked by setting their importance to 1.
 
 // Exp. Share config

@@ -1089,7 +1089,7 @@ void SetDefaultFlashLevel(void)
     if (!gMapHeader.cave)
         gSaveBlock1Ptr->flashLevel = 0;
     else if (FlagGet(FLAG_SYS_USE_FLASH))
-        gSaveBlock1Ptr->flashLevel = 1;
+        gSaveBlock1Ptr->flashLevel = 0; // Platinum Imperium: a cave lit by Flash is fully bright
     else
         gSaveBlock1Ptr->flashLevel = gMaxFlashLevel - 1;
 }

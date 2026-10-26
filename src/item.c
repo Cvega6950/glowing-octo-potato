@@ -961,3 +961,12 @@ bool32 IsHoldEffectChoice(enum HoldEffect holdEffect)
         || holdEffect == HOLD_EFFECT_CHOICE_SCARF
         || holdEffect == HOLD_EFFECT_CHOICE_SPECS;
 }
+
+// Platinum Imperium (Crystal Imperium's HMs without teaching): the Bag holds the TM or HM of a
+// field move, so any Pokemon can use the move in the field
+bool32 HasFieldMoveMachine(u16 move)
+{
+    u16 itemId = GetTMHMItemIdFromMoveId(move);
+
+    return itemId != ITEM_NONE && CheckBagHasItem(itemId, 1);
+}
