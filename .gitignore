@@ -70,3 +70,6 @@ src/data/trainers_hns.h
 tools/poryscript
 porymap.user.json
 tools/mid2gbs/.venv
+
+# Crystal Imperium: tools/emurun/probe.py compiles one of these for a moment while a play test runs
+src/zz_emurun_probe_*.c
