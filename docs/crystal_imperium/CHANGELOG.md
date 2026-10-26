@@ -42,6 +42,12 @@
   quantities and the top-up for older saves; `tm_shop` and `tm_clerk` check the per-badge lists.
   `emurun` gains `expectqty16` (Bag quantities, which the game stores XORed with a key) and
   `expectsame32`.
+- With the new learnsets, Pokémon given from the debug menu know other moves, so `bugsy` gives its
+  six the moves a player would have kept, with Sturdy for Geodude and Onix (10 of 40 wins on mGBA,
+  5 on VBA-M); `falkner`'s Mareep keeps Tackle; `relearner_training_kit` teaches Fury Swipes step by
+  step. All 51 play tests and the old-save test pass on mGBA and VBA-M (TESTING.md).
+- 0.10.1 was checked with `battle_healthbox_names` and the battle tests; this is the first full
+  run since 0.10.0.
 
 ## 0.10.1-experimental (2026-10-25)
 

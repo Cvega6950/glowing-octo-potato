@@ -112,9 +112,9 @@ Since 0.8.0 (`boss_teams.py`):
 
 | Pokémon | Item | Ability | Nature | Moves | Job |
 |---|---|---|---|---|---|
-| Ariados Lv 24 | Black Sludge | Insomnia | Adamant | Sticky Web, Toxic Thread, Sucker Punch, Lunge | Sticky Web and Toxic Thread lead |
+| Ariados Lv 24 | Black Sludge | No Guard (Insomnia before 0.11.0) | Adamant | Sticky Web, Toxic Thread, Sucker Punch, Lunge | Sticky Web and Toxic Thread lead |
 | Pineco Lv 24 | Sitrus Berry | Sturdy | Relaxed | Stealth Rock, Rock Tomb, Bug Bite, Explosion | Stealth Rock; Rock Tomb punishes the Fire/Flying answers |
-| Ledian Lv 24 | Light Clay | Early Bird | Calm | Reflect, Light Screen, Silver Wind, Mach Punch | Screens for the rest; Mach Punch hits Rock answers |
+| Ledian Lv 24 | Light Clay | Iron Fist (Early Bird before 0.11.0) | Calm | Reflect, Light Screen, Silver Wind, Mach Punch | Screens for the rest; Mach Punch hits Rock answers |
 | Butterfree Lv 24 | Silver Powder | Compound Eyes | Timid | Sleep Powder, Bug Buzz, Air Slash, Psybeam | 100%-accurate Sleep Powder |
 | Yanma Lv 24 | Sitrus Berry | Speed Boost | Modest | Ancient Power, Air Slash, Bug Buzz, Protect | Speed Boost with Protect; Ancient Power hits Fire and Flying |
 | Scyther Lv 24 (ace) | Eviolite | Technician | Jolly | Bug Bite, Aerial Ace, Quick Attack, Fury Cutter | Technician-boosted cleaner |
@@ -135,6 +135,13 @@ Scyther. Rock and Fire answers still win, but they take hits from Rock Tomb and 
   least one win and one loss in 40: 5 of 40 on mGBA, 4 of 40 on VBA-M). Over half the line's
   Pokémon fall while Butterfree is out: a team that never switches can't play around sleep. Bugsy
   is meant to be hard; a player who switches, or holds the package's Lum Berries, does better.
+- **0.11.0, Emerald Imperium's abilities and movesets** (D35): Ariados and Ledian have the
+  abilities their old slots now hold, No Guard and Iron Fist. The naive line's default moves at
+  24 changed (Quilava's slot had Double Kick instead of Flame Wheel, Flaaffy's Flash: Mareep's line
+  has no Thunder Shock any more), and it won 0 of 40, so the test now gives each Pokémon the move
+  a player would have kept: Flame Wheel, Rock Tomb, Power Gem and Dual Wingbeat (both learned on
+  evolving), Aerial Ace and Smack Down. With Rock Head Geodude and Onix it still lost the first
+  four; with Sturdy (the Training Kit sets it) it won **10 of 40** on mGBA and 5 of 40 on VBA-M.
 
 0.5.0 to 0.7.x (Heart & Soul's Bugsy with items, all at the cap of 16 since 0.7.0): Spinarak
 (Focus Sash; Sticky Web, Night Shade, Poison Sting, Infestation), Pineco (Spikes, Rock Tomb,
@@ -146,7 +153,8 @@ Scyther had Swords Dance and one-shot Quilava, Geodude, Flaaffy and Pidgey in a 
 
 | Starter | Line | Result |
 |---|---|---|
-| Cyndaquil | Quilava (Flame Wheel, Charcoal) / Geodude (Rock Throw) / Flaaffy (Thunder Shock, Eviolite) / Pidgeotto (Wing Attack) / Heracross (Aerial Ace) / Onix (Smack Down, Eviolite), all at 24 | **5 of 40 RNG samples won** against the six (0.8.0, `bugsy.emu` on mGBA; 4 of 40 on VBA-M); the first four alone beat his four 4 of 20; 0.7.0 at 16 with Pidgey: 9 of 20 |
+| Cyndaquil | Quilava (Flame Wheel, Charcoal) / Geodude (Rock Tomb, Sturdy) / Flaaffy (Power Gem, Eviolite) / Pidgeotto (Dual Wingbeat) / Heracross (Aerial Ace) / Onix (Smack Down, Sturdy, Eviolite), all at 24 | **10 of 40 RNG samples won** against the six (0.11.0, `bugsy.emu` on mGBA; 5 of 40 on VBA-M) |
+| Cyndaquil | Before 0.11.0: Quilava (Flame Wheel, Charcoal) / Geodude (Rock Throw) / Flaaffy (Thunder Shock, Eviolite) / Pidgeotto (Wing Attack) / Heracross (Aerial Ace) / Onix (Smack Down, Eviolite), all at 24 | **5 of 40** against the six (0.8.0, mGBA; 4 of 40 on VBA-M); the first four alone beat his four 4 of 20; 0.7.0 at 16 with Pidgey: 9 of 20 |
 | Chikorita | Onix lead (Stealth Rock) / Pidgey / Flaaffy / Bayleef | **Win** (0.5.0, at 16) |
 | Totodile | Croconaw (Bite) / Geodude / Flaaffy / Pidgey | **Win** (0.5.0, at 16) |
 
@@ -186,12 +194,15 @@ type held back for Miltank, and Kadabra for the support cast.
 7. **Shipped: six Pokémon** (D30), adding Furret and Girafarig; the naive line is six too, with
    Scyther and Primeape. It won **3 of 24** on mGBA and 5 of 24 on VBA-M (`whitney.emu` asks
    for at least one win and two losses in 24).
+8. **0.11.0** (D35): with Emerald Imperium's learnsets Primeape has Brick Break at 33 where it had
+   Cross Chop (Imperium's Primeape learns Cross Chop at 53), and the line won **2 of 24** on mGBA
+   and 3 of 24 on VBA-M. Whitney's own team is unchanged.
 
 **Results** (shipped version, autopilot, no items, all Pokémon at Lv 21; Whitney's at 18–21, before 0.7.0):
 
 | Starter | Line | Result |
 |---|---|---|
-| Cyndaquil | Pidgeotto (Wing Attack) / Quilava (Flame Wheel) / Kadabra (Psybeam) / Scyther (Wing Attack) / Primeape (Cross Chop) / Machoke (Low Sweep, Eviolite), all at 33 | **3 of 24** against her six (0.8.0, `whitney.emu` on mGBA; 5 of 24 on VBA-M); the first four against her four with items: 8 of 20 |
+| Cyndaquil | Pidgeotto (Wing Attack) / Quilava (Flame Wheel) / Kadabra (Psybeam) / Scyther (Wing Attack) / Primeape (Brick Break; Cross Chop before 0.11.0) / Machoke (Low Sweep, Eviolite), all at 33 | **2 of 24** against her six (0.11.0, `whitney.emu` on mGBA; 3 of 24 on VBA-M; with Cross Chop in 0.8.0: 3 and 5 of 24); the first four against her four with items: 8 of 20 |
 | Cyndaquil | 0.7.0 at 21: Pidgeotto (Gust) / Quilava (Flame Wheel) / Kadabra (Psybeam) / Machop (Low Sweep) | **3 of 12 RNG samples won** (`whitney.emu`, 2026-10-24). The first measurement (2026-10-23) was 3 of 5; after later code changes shifted the battle RNG, the same five samples all lost, so the test now samples twelve battles. The naive line wins about a quarter of the time. |
 | Cyndaquil | Quilava or Kadabra leads with the same Pokémon | Loss (Miltank left at 1 HP in one) |
 | Chikorita | Bayleef (Mega Drain) / Kadabra / Pidgeotto / Machop | **Win** (3 Pokémon left) |

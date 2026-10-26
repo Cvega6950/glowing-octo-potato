@@ -18,6 +18,6 @@ savestate team.ss
 !battle_trainer(406)
 wait 1100
 expect16 {gBattleMons+136} 35 whitney_leads_clefairy
-# Pidgeotto Wing Attack, Quilava Flame Wheel, Kadabra Psybeam, Scyther Wing Attack, Primeape Cross
-# Chop, Machoke Low Sweep
+# Pidgeotto Wing Attack, Quilava Flame Wheel, Kadabra Psybeam, Scyther Wing Attack, Primeape Brick
+# Break (Cross Chop before 0.11.0: Emerald Imperium's Primeape learns it at 53), Machoke Low Sweep
 !sample_battle(406, "0,0,0,0,1,0", runs=24, min_wins=1, max_wins=22)
