@@ -124,7 +124,15 @@ free badge. The autopilot cannot drive double battles yet.
 ### Other harness features
 
 - `walkto` reads the player's position; `path=True` routes around walls using the loaded map's
-  collision, `creep=True` holds A (DexNav), and targets can be read from memory.
+  collision, `creep=True` holds A (DexNav), and targets can be read from memory. A soft walk lets
+  go of the d-pad as soon as a battle starts (`stop=` on `gMain.inBattle`): since the battle's
+  intro goes on by itself (D38), a walk that kept pressing would move the battle's menu cursor.
+- `!wait_action_menu(label)` waits for the battle's action menu without pressing anything; tests
+  no longer press A through a battle's intro, which would now choose FIGHT.
+- `trace FRAMES ADDR,ADDR... [KEY]` prints the 32-bit values at up to 8 addresses on every frame
+  one of them changes (D38's measurements: the battle's main function, each controller, the
+  battle script's position); `waituntilany32` waits for one of several values.
+- `!move_animation_sweep(state)` uses every move once from a saved battle (`battle_anims`).
 - Addresses can follow pointers: `*PTR+OFF`, `**PTR+A+B`.
 - `expect_flag`, `expect_var`, `expect_save3`, `expect_bag_has`, `expect_battler`,
   `expect_const` resolve game constants and struct offsets by compiling against the game's own
