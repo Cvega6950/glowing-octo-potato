@@ -4,19 +4,20 @@
 # first care package's Charcoal (Quilava) and two Eviolites (Flaaffy, Onix), never switching
 # voluntarily (a deliberately naive line), each attacking with the move a player would have kept:
 # Quilava Flame Wheel (learned at 10), Geodude Rock Tomb, Flaaffy Power Gem and Pidgeotto Dual
-# Wingbeat (both learned on evolving), Heracross Aerial Ace, Onix Smack Down. The moves are given
-# since 0.11.0: with Emerald Imperium's learnsets (D35) a level-24 Quilava's default moves no
-# longer have Flame Wheel, and Mareep's line has no Thunder Shock. 40 battles with different RNG
+# Wingbeat (both learned on evolving), Heracross Aerial Ace, Onix Smack Down; Geodude and Onix
+# with Sturdy (the Training Kit sets it). The moves are given since 0.11.0: with Emerald Imperium's
+# learnsets (D35) a level-24 Quilava's default moves no longer have Flame Wheel, and Mareep's line
+# has no Thunder Shock. 40 battles with different RNG
 # must include at least one win (winnable with Pokemon caught before Azalea) and at least one loss
 # (not a free badge).
 !new_game()
 !battle_style_set()
 !give_mon_complex("SPECIES_QUILAVA", 24, "NATURE_HARDY", 0, ["MOVE_FLAME_WHEEL", "MOVE_QUICK_ATTACK", "MOVE_DOUBLE_KICK", "MOVE_EXTRASENSORY"])
-!give_mon_complex("SPECIES_GEODUDE", 24, "NATURE_HARDY", 0, ["MOVE_ROCK_TOMB", "MOVE_SMACK_DOWN", "MOVE_BULLDOZE", "MOVE_SELF_DESTRUCT"])
+!give_mon_complex("SPECIES_GEODUDE", 24, "NATURE_HARDY", 1, ["MOVE_ROCK_TOMB", "MOVE_SMACK_DOWN", "MOVE_BULLDOZE", "MOVE_SELF_DESTRUCT"])
 !give_mon_complex("SPECIES_FLAAFFY", 24, "NATURE_HARDY", 0, ["MOVE_POWER_GEM", "MOVE_COTTON_SPORE", "MOVE_CHARGE", "MOVE_TAKE_DOWN"])
 !give_mon_complex("SPECIES_PIDGEOTTO", 24, "NATURE_HARDY", 0, ["MOVE_DUAL_WINGBEAT", "MOVE_QUICK_ATTACK", "MOVE_WHIRLWIND", "MOVE_RETURN"])
 !give_mon_complex("SPECIES_HERACROSS", 24, "NATURE_HARDY", 0, ["MOVE_AERIAL_ACE", "MOVE_FEINT", "MOVE_CHIP_AWAY", "MOVE_COUNTER"])
-!give_mon_complex("SPECIES_ONIX", 24, "NATURE_HARDY", 0, ["MOVE_SMACK_DOWN", "MOVE_STEALTH_ROCK", "MOVE_ROCK_POLISH", "MOVE_GYRO_BALL"])
+!give_mon_complex("SPECIES_ONIX", 24, "NATURE_HARDY", 1, ["MOVE_SMACK_DOWN", "MOVE_STEALTH_ROCK", "MOVE_ROCK_POLISH", "MOVE_GYRO_BALL"])
 !hold_item("ITEM_CHARCOAL", 0)
 !hold_item("ITEM_EVIOLITE", 2)
 !hold_item("ITEM_EVIOLITE", 5)
