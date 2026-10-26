@@ -1,5 +1,6 @@
 # Crystal Imperium play test: boot -> new game -> settings -> Falkner (trainer 402).
-# Team: Cyndaquil / Mareep / Geodude at the pre-Falkner level cap (15), given via the debug menu.
+# Team: Cyndaquil / Mareep / Geodude at the pre-Falkner level cap (15), given via the debug menu
+# (Mareep with Tackle kept: with Emerald Imperium's learnsets its level-15 moves are all status moves).
 # Passes when the battle against the real AI and party data runs to a result.
 
 # Title screen and Oak's intro (name entry is filled by mashing A)
@@ -40,7 +41,7 @@ shot 03_overworld.png
 
 # Team at the level cap
 !give_mon(155, 15)
-!give_mon(179, 15)
+!give_mon_complex("SPECIES_MAREEP", 15, "NATURE_HARDY", 0, ["MOVE_TACKLE", "MOVE_THUNDER_WAVE", "MOVE_COTTON_SPORE", "MOVE_CHARGE"])
 !give_mon(74, 15)
 expect8 {gPlayerPartyCount} 3 party_has_three_mons
 # Minimal Grinding: Lv15 Cyndaquil and Geodude with 31 IVs / 0 EVs have exactly 41 max HP (maxHP
@@ -60,11 +61,11 @@ wait 220
 shot 04_falkner_start.png
 expect16 {gBattleMons+136} 16 falkner_leads_pidgey
 # The battle is played by the autopilot (it follows the battle state, so it also runs on other
-# emulators, whose RNG seed differs): Cyndaquil Ember, Mareep Thunder Shock, Geodude Rollout
-# (move slots at level 15: Leer / Ember / Smokescreen / Quick Attack, Thunder Wave / Thunder Shock
+# emulators, whose RNG seed differs): Cyndaquil Flame Wheel, Mareep Tackle, Geodude Rollout
+# (move slots at level 15: Ember / Flame Wheel / Quick Attack / Double Kick, Tackle / Thunder Wave
 # / Cotton Spore / Charge, Mud Sport / Rock Polish / Rollout / Magnitude).
 # The hand-played winning line is in docs/crystal_imperium/BALANCE.md.
-!autobattle("1,1,2")
+!autobattle("1,0,2")
 shot 07_result.png
 peek8 {gBattleOutcome} battle_outcome_1_win_2_loss
 expectne8 {gBattleOutcome} 0 battle_ran_to_completion
