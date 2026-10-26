@@ -34,6 +34,8 @@
 //   expectqty16 BASE COUNT STRIDE VALUE WANT KEY [LABEL]   like expectfind16, and the found entry's next
 //                          16 bits XORed with the 16-bit value at KEY (an address, e.g. the save's
 //                          encryption key for Bag quantities) must be WANT
+//   expectobject BASE COUNT STRIDE IDOFF ID WANT [LABEL]   fail unless an active object event (bit 0 of
+//                          its first byte) with local id ID (the byte at IDOFF) exists (WANT 1) or not (0)
 //   expectsame32 ADDR1 ADDR2 [LABEL]   fail unless the 32-bit values at ADDR1 and ADDR2 are equal (e.g.
 //                          a text pointer the game set and the table entry it should come from)
 //   setflag SB1PTR FLAGSOFF FLAG VALUE   set (1) or clear (0) event flag FLAG in (*SB1PTR)->flags
@@ -878,6 +880,22 @@ int main(int argc, char **argv)
             printf("[frame %lu] %s %s: 0x%X %s\n", frameCount, i < count ? "PASS" : "FAIL", a5[0] ? a5 : "expectfind16",
                    value, i < count ? "found" : "not found");
             if (i == count)
+                failures++;
+        }
+        else if (!strcmp(cmd, "expectobject"))
+        {
+            // expectobject BASE COUNT STRIDE IDOFF ID WANT [LABEL]: an active object event (bit 0 of its
+            // first byte) whose local id (the byte at IDOFF) is ID exists (WANT 1) or doesn't (WANT 0)
+            char a4[64] = {0}, a5[64] = {0}, a6[64] = {0}, a7[128] = {0};
+            sscanf(line, "%*s %*s %*s %*s %63s %63s %63s %127s", a4, a5, a6, a7);
+            uint32_t base = ParseAddr(a1), count = strtoul(a2, NULL, 0), stride = strtoul(a3, NULL, 0);
+            uint32_t idOff = strtoul(a4, NULL, 0), id = strtoul(a5, NULL, 0), want = strtoul(a6, NULL, 0), i;
+            for (i = 0; i < count && !((Peek(8, base + i * stride) & 1) && Peek(8, base + i * stride + idOff) == id); i++)
+                ;
+            uint32_t found = i < count;
+            printf("[frame %lu] %s %s: object 0x%X %s\n", frameCount, found == want ? "PASS" : "FAIL",
+                   a7[0] ? a7 : "expectobject", id, found ? "present" : "absent");
+            if (found != want)
                 failures++;
         }
         else if (!strcmp(cmd, "expectsame32"))

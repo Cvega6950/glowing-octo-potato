@@ -1,6 +1,6 @@
 # Platinum Imperium play test: Crystal Imperium's L menu and key items in Twinleaf Town.
-# No L menu without a Pokemon; with one, L opens POKeVIAL, PC, DEXNAV, TIME, STATS and the REPEL
-# and AUTO RUN switches (no FOLLOWER: this game has no follower Pokemon). The key items are in
+# No L menu without a Pokemon; with one, L opens POKeVIAL, PC, DEXNAV, TIME, STATS and the REPEL,
+# FOLLOWER and AUTO RUN switches (FOLLOWER is tested in followers.emu). The key items are in
 # the Bag from the start.
 !new_game()
 !expect_bag_has("keyItems", "ITEM_INFINITE_RARE_CANDIES")
@@ -17,7 +17,7 @@ expect8 {sNumLMenuActions} 0 no_l_menu_without_a_pokemon
 press L
 wait 40
 shot 02_l_menu.png
-expect8 {sNumLMenuActions} 7 seven_entries
+expect8 {sNumLMenuActions} 8 eight_entries
 # AUTO RUN is on from the challenge menu: the switch turns it off and on
 !l_menu("AUTO_RUN", open=False)
 !expect_auto_run(False, "auto_run_switched_off")

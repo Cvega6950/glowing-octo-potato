@@ -81,6 +81,13 @@ def start_menu(entry):
 L_MENU = {"POKEVIAL": 0, "PC": 1, "DEXNAV": 2, "TIME": 3, "STATS": 4, "REPEL": 5, "FOLLOWER": 6, "AUTO_RUN": 7}
 
 
+def expect_follower(present, label):
+    """A follower Pokemon is out (an active object event with OBJ_EVENT_ID_FOLLOWER), or not."""
+    v = probe.resolve({"size": "sizeof(struct ObjectEvent)", "idoff": "offsetof(struct ObjectEvent, localId)",
+                       "count": "OBJECT_EVENTS_COUNT", "id": "OBJ_EVENT_ID_FOLLOWER"})
+    return [f"expectobject {{gObjectEvents}} {v['count']} {v['size']} {v['idoff']} {v['id']} {1 if present else 0} {label}"]
+
+
 def l_menu(entry, open=True):
     """Open the L menu (src/l_menu.c) and choose an entry by name, wherever the cursor was left
     (open=False: the menu is open already)."""
@@ -388,13 +395,6 @@ def expect_auto_run(on, label):
     """Check AUTO RUN: challengeSettings.autoRun is bit 2 of the struct's second byte (include/global.h)."""
     v = probe.resolve({"off": "offsetof(struct SaveBlock3, challengeSettings) + 1"})
     return [f"expectbits8 *{{gSaveBlock3Ptr}}+{v['off']} 0x04 {0x04 if on else 0} {label}"]
-
-
-def expect_follower(on, label):
-    """Check the follower Pokemon setting: followerEnable, the first bit of ChallengeSettings, is 0
-    when a Pokemon follows (on=True)."""
-    v = probe.resolve({"off": "offsetof(struct SaveBlock3, challengeSettings)"})
-    return [f"expectbits8 *{{gSaveBlock3Ptr}}+{v['off']} 1 {0 if on else 1} {label}"]
 
 
 def tally_species_not_in(name, *species, addr="{gBattleMons+136}"):

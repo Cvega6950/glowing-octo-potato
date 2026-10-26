@@ -1,0 +1,27 @@
+# Platinum Imperium play test: follower Pokemon, as in Crystal Imperium. The first Pokemon of the
+# party walks behind the player in Twinleaf Town (it comes out of its Poke Ball); the L menu's FOLLOWER switch
+# puts it away and brings it back.
+!new_game()
+!no_care_packages()
+!expect_follower(False, "no_follower_without_a_pokemon")
+!give_mon(387, 5)
+!warp(0, 0, 0)
+!walk("DOWN", 1)
+!walk("UP", 1)
+wait 60
+shot 01_follower.png
+!expect_follower(True, "turtwig_follows")
+!l_menu("FOLLOWER")
+press B
+wait 60
+!walk("DOWN", 1)
+wait 60
+shot 02_follower_off.png
+!expect_follower(False, "follower_switched_off")
+!l_menu("FOLLOWER")
+press B
+wait 60
+!walk("UP", 1)
+wait 60
+shot 03_follower_on.png
+!expect_follower(True, "follower_switched_on")

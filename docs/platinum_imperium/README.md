@@ -26,7 +26,9 @@ in mGBA and in Delta's GBA core.
 - **Key items from the start:** Rare Candy Box, Infinite Repel, Pokémon Box Link, Training Kit
   (nature, ability, IV/EV editor), PokéVial.
 - **The L menu:** PokéVial, a PC anywhere, DexNav, TIME (morning, day, evening, night), STATS,
-  and the REPEL and AUTO RUN switches.
+  and the REPEL, FOLLOWER and AUTO RUN switches.
+- **Follower Pokémon** (HeartGold/SoulSilver style): the first Pokémon of your party walks behind
+  you, out of its Poké Ball. FOLLOWER in the L menu puts it away and brings it back.
 - **DexNav** with every Pokémon of each area, **Wild Variety** (a daily set of other Gen 1–9
   Pokémon everywhere), search for any Pokémon, hidden Pokémon.
 - **Emerald Imperium's abilities, level-up moves and Egg Moves** (Radical Red's).
@@ -58,8 +60,7 @@ in mGBA and in Delta's GBA core.
   relearner in the party menu, HMs usable by any Pokémon when you carry them, Flash lighting a
   whole cave, a bigger Bag.
 
-**Not ported yet:** the remaining Gyms and story (they don't exist in the
-base yet), follower Pokémon.
+**Not in yet:** the remaining Gyms and story, which don't exist in the base yet.
 
 The BW screens were written for expansion 1.15, and this base is 1.14. Three 1.15 features they
 need are rebuilt here: text in four colours (the accent colour of the action box), text printed
@@ -94,7 +95,8 @@ Copy `PlatinumImperium.gba` to the phone (AirDrop, iCloud Drive or Files), then 
 `tools/emurun/run_all.sh` boots the ROM in libmgba and plays: `l_menu` (key items, L menu, PokéVial,
 switches), `care_packages` (starting, location and badge packages), `tm_clerk` (the TM shop),
 `cheat_codes` (every code typed on the keyboard), `bw_ui` (the BW summary screen, action box,
-move box and move info, and a battle played to a result), `route_bosses` (every mini-boss's team
+move box and move info, and a battle played to a result), `followers` (a follower comes out, and the switch puts it away and back),
+`route_bosses` (every mini-boss's team
 size and levels at the cap, each battle played to a result against a prepared six), `bosses_m1` (Barry, Roark, Mars and Gardenia with
 six at the cap, each battle played to a result). All pass on mGBA.
 
