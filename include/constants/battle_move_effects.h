@@ -335,6 +335,9 @@ enum __attribute__((packed)) BattleMoveEffects
     EFFECT_STONE_AXE, // Not to be confused with MOVE_EFFECT_STEALTH_ROCK. They have two different activation timings.
     EFFECT_CEASELESS_EDGE, // Same applies to spikes
     EFFECT_SPECIES_POWER_OVERRIDE, // Uses argument field to for the species, power and (number of hits, used only for multi hit moves)
+    // Crystal Imperium (DECISIONS.md D39): Radical Red's own moves
+    EFFECT_SONIC_SLASH, // 140 power at 3x the target's Speed, 120 at 2x, 80 otherwise
+    EFFECT_FORBIDDEN_SPELL, // Calls one of eight moves at random
     NUM_BATTLE_MOVE_EFFECTS,
 };
 

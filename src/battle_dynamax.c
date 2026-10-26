@@ -394,6 +394,7 @@ static enum MaxPowerTier GetMaxPowerTier(enum Move move)
     case EFFECT_WEATHER_BALL:
     case EFFECT_FLING:
     case EFFECT_ELECTRO_BALL:
+    case EFFECT_SONIC_SLASH:
     case EFFECT_TERRAIN_PULSE:
     case EFFECT_PUNISHMENT:
     case EFFECT_TRUMP_CARD:

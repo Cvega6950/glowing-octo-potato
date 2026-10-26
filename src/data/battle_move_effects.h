@@ -2242,4 +2242,18 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleScript = BattleScript_EffectHit,
         .battleTvScore = 0, // TODO: Assign points
     },
+
+    // Crystal Imperium (DECISIONS.md D39): Radical Red's own moves
+    [EFFECT_SONIC_SLASH] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 0, // TODO: Assign points
+    },
+
+    [EFFECT_FORBIDDEN_SPELL] =
+    {
+        .battleScript = BattleScript_EffectHit,
+        .battleTvScore = 1,
+        .battleFactoryStyle = FACTORY_STYLE_UNPREDICTABLE,
+    },
 };

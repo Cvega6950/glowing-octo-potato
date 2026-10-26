@@ -28,6 +28,7 @@ static void CalculateMagnitudeDamage(void);
 // Submoves
 static enum Move GetMirrorMoveMove(void);
 static enum Move GetMetronomeMove(void);
+static enum Move GetForbiddenSpellMove(void);
 static enum Move GetAssistMove(void);
 static enum Move GetSleepTalkMove(void);
 static enum Move GetCopycatMove(void);
@@ -519,6 +520,9 @@ static enum CancelerResult CancelerCallSubmove(struct BattleContext *ctx)
     case EFFECT_METRONOME:
         calledMove = GetMetronomeMove();
         battleScript = BattleScript_MetronomeAttackstring;
+        break;
+    case EFFECT_FORBIDDEN_SPELL:
+        calledMove = GetForbiddenSpellMove();
         break;
     case EFFECT_ASSIST:
         calledMove = GetAssistMove();
@@ -4097,6 +4101,24 @@ static enum Move GetMetronomeMove(void)
 
     move = RandomUniformExcept(RNG_METRONOME, 1, moveCount - 1, InvalidMetronomeMove);
     return move;
+}
+
+// Crystal Imperium (DECISIONS.md D39): Radical Red's Forbidden Spell calls one of these, each 1 time in 8
+static const u16 sForbiddenSpellMoves[] =
+{
+    MOVE_SHELL_SMASH,
+    MOVE_HEALING_WISH,
+    MOVE_DARK_HOLE,
+    MOVE_TAIL_GLOW,
+    MOVE_ROAR_OF_TIME,
+    MOVE_QUIVER_DANCE,
+    MOVE_NO_RETREAT,
+    MOVE_SOUL_ROBBERY,
+};
+
+static enum Move GetForbiddenSpellMove(void)
+{
+    return sForbiddenSpellMoves[RandomUniform(RNG_METRONOME, 0, ARRAY_COUNT(sForbiddenSpellMoves) - 1)];
 }
 
 static enum Move GetAssistMove(void)

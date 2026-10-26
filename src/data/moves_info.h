@@ -21408,6 +21408,136 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
         .battleAnimScript = gBattleAnimMove_MalignantChain,
     },
 
+    // Crystal Imperium (DECISIONS.md D39): Radical Red's own moves, as its dex and changelogs give
+    // them. Each borrows the animation of a similar official move.
+    [MOVE_AQUA_FANG] =
+    {
+        .name = COMPOUND_STRING("AQUA FANG"),
+        .description = COMPOUND_STRING(
+            "The user bites the foe\n"
+            "with aquatic force."),
+        .effect = EFFECT_HIT,
+        .power = 80,
+        .type = TYPE_WATER,
+        .accuracy = 100,
+        .pp = 10,
+        .target = TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .makesContact = TRUE,
+        .bitingMove = TRUE,
+        .battleAnimScript = gBattleAnimMove_FishiousRend,
+    },
+
+    [MOVE_DARK_HOLE] =
+    {
+        .name = COMPOUND_STRING("DARK HOLE"),
+        .description = COMPOUND_STRING(
+            "Sends the foe to the shadow\n"
+            "realm. May cause sleep."),
+        .effect = EFFECT_HIT,
+        .power = 100,
+        .type = TYPE_DARK,
+        .accuracy = 100,
+        .pp = 5,
+        .target = TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = { .status = STATUS1_SLEEP },
+        .ignoresSubstitute = TRUE,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_SLEEP,
+            .chance = 40,
+        }),
+        .battleAnimScript = gBattleAnimMove_DarkVoid,
+    },
+
+    [MOVE_SOUL_ROBBERY] =
+    {
+        .name = COMPOUND_STRING("SOUL ROBBERY"),
+        .description = COMPOUND_STRING(
+            "Steals the target's stat\n"
+            "boosts, then attacks."),
+        .effect = EFFECT_HIT,
+        .power = 100,
+        .type = TYPE_PSYCHIC,
+        .accuracy = 100,
+        .pp = 5,
+        .target = TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .additionalEffects = ADDITIONAL_EFFECTS({
+            .moveEffect = MOVE_EFFECT_STEAL_STATS,
+            .preAttackEffect = TRUE,
+        }),
+        .ignoresSubstitute = TRUE,
+        .metronomeBanned = TRUE,
+        .battleAnimScript = gBattleAnimMove_SpectralThief,
+    },
+
+    [MOVE_SONIC_SLASH] =
+    {
+        .name = COMPOUND_STRING("SONIC SLASH"),
+        .description = COMPOUND_STRING(
+            "A swift slash. The faster\n"
+            "the user, the stronger."),
+        .effect = EFFECT_SONIC_SLASH,
+        .power = 1,
+        .type = TYPE_FLYING,
+        .accuracy = 100,
+        .pp = 10,
+        .target = TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_PHYSICAL,
+        .makesContact = TRUE,
+        .battleAnimScript = gBattleAnimMove_AerialAce,
+    },
+
+    [MOVE_DRACO_BARRAGE] =
+    {
+        .name = COMPOUND_STRING("DRACO BARRAGE"),
+        .description = COMPOUND_STRING(
+            "Hits Fairy types but hurts\n"
+            "the user. Uses best attack."),
+        .effect = EFFECT_RECOIL,
+        .power = 100,
+        .type = TYPE_DRAGON,
+        .accuracy = 100,
+        .pp = 5,
+        .target = TARGET_SELECTED,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_SPECIAL,
+        .argument = { .recoilPercentage = 33 },
+        .metronomeBanned = TRUE,
+        .battleAnimScript = gBattleAnimMove_DracoMeteor,
+    },
+
+    [MOVE_FORBIDDEN_SPELL] =
+    {
+        .name = COMPOUND_STRING("FORBIDDEN SPELL"),
+        .description = COMPOUND_STRING(
+            "A corrupt spell that calls\n"
+            "one of 8 moves at random."),
+        .effect = EFFECT_FORBIDDEN_SPELL,
+        .power = 0,
+        .type = TYPE_DARK,
+        .accuracy = 0,
+        .pp = 1,
+        .target = TARGET_DEPENDS,
+        .priority = 0,
+        .category = DAMAGE_CATEGORY_STATUS,
+        .ignoresProtect = TRUE,
+        .mirrorMoveBanned = TRUE,
+        .mimicBanned = TRUE,
+        .metronomeBanned = TRUE,
+        .copycatBanned = TRUE,
+        .sleepTalkBanned = TRUE,
+        .instructBanned = TRUE,
+        .encoreBanned = TRUE,
+        .assistBanned = TRUE,
+        .battleAnimScript = gBattleAnimMove_NastyPlot,
+    },
+
     // Z-Moves
     [MOVE_BREAKNECK_BLITZ] =
     {

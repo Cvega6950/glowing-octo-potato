@@ -6456,6 +6456,15 @@ static inline u32 CalcMoveBasePower(struct BattleContext *ctx)
             speed = ARRAY_COUNT(sSpeedDiffPowerTable) - 1;
         basePower = sSpeedDiffPowerTable[speed];
         break;
+    case EFFECT_SONIC_SLASH: // Crystal Imperium (DECISIONS.md D39): Radical Red's Ninjask move
+        speed = GetBattlerTotalSpeedStat(battlerAtk, ctx->abilityAtk, ctx->holdEffectAtk) / GetBattlerTotalSpeedStat(battlerDef, ctx->abilityDef, ctx->holdEffectDef);
+        if (speed >= 3)
+            basePower = 140;
+        else if (speed >= 2)
+            basePower = 120;
+        else
+            basePower = 80;
+        break;
     case EFFECT_GYRO_BALL:
         {
             u32 attackerSpeed = GetBattlerTotalSpeedStat(battlerAtk, ctx->abilityAtk, ctx->holdEffectAtk);
@@ -8274,6 +8283,9 @@ static inline void MulByTypeEffectiveness(struct BattleContext *ctx, uq4_12_t *m
 
     if (ctx->moveType == TYPE_PSYCHIC && defType == TYPE_DARK && gBattleMons[ctx->battlerDef].volatiles.miracleEye && mod == UQ_4_12(0.0))
         mod = UQ_4_12(1.0);
+    // Crystal Imperium (DECISIONS.md D39): Radical Red's Draco Barrage "beats fairy immunities"
+    if (ctx->move == MOVE_DRACO_BARRAGE && defType == TYPE_FAIRY && mod == UQ_4_12(0.0))
+        mod = UQ_4_12(1.0);
     if (GetMoveEffect(ctx->move) == EFFECT_SUPER_EFFECTIVE_ON_ARG && defType == GetMoveArgType(ctx->move) && !ctx->isAnticipation)
         mod = UQ_4_12(2.0);
     if (ctx->moveType == TYPE_GROUND && defType == TYPE_FLYING && IsBattlerGrounded(ctx->battlerDef, ctx->abilityDef, ctx->holdEffectDef) && mod == UQ_4_12(0.0))
@@ -9187,6 +9199,14 @@ enum DamageCategory GetBattleMoveCategory(enum Move move)
 
 void SetDynamicMoveCategory(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum Move move)
 {
+    // Crystal Imperium (DECISIONS.md D39): Radical Red's Draco Barrage is physical or special, whichever
+    // of the user's Attack and Sp. Atk is higher, as Photon Geyser (its effect is the recoil)
+    if (move == MOVE_DRACO_BARRAGE)
+    {
+        gBattleStruct->swapDamageCategory = (GetCategoryBasedOnStats(battlerAtk) == DAMAGE_CATEGORY_PHYSICAL);
+        return;
+    }
+
     switch (GetMoveEffect(move))
     {
     case EFFECT_PHOTON_GEYSER:

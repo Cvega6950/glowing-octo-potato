@@ -2391,7 +2391,8 @@ bool32 CanLowerStat(enum BattlerId battlerAtk, enum BattlerId battlerDef, struct
         // If AI is faster and doesn't have any mons left, lowering speed doesn't give any
         return !(AI_IsFaster(battlerAtk, battlerDef, move, predictedMoveSpeedCheck, DONT_CONSIDER_PRIORITY)
             && CountUsablePartyMons(battlerAtk) == 0
-            && !HasBattlerSideMoveWithEffect(battlerAtk, EFFECT_ELECTRO_BALL));
+            && !HasBattlerSideMoveWithEffect(battlerAtk, EFFECT_ELECTRO_BALL)
+            && !HasBattlerSideMoveWithEffect(battlerAtk, EFFECT_SONIC_SLASH));
     }
 
     return TRUE;

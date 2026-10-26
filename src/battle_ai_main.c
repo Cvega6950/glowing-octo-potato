@@ -5690,7 +5690,8 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
         if (gFieldStatuses & STATUS_FIELD_TRICK_ROOM && gFieldTimers.trickRoomTimer > 1)
             break;
 
-        if (HasBattlerSideMoveWithEffect(battlerAtk, EFFECT_ELECTRO_BALL))
+        if (HasBattlerSideMoveWithEffect(battlerAtk, EFFECT_ELECTRO_BALL)
+         || HasBattlerSideMoveWithEffect(battlerAtk, EFFECT_SONIC_SLASH))
             ADJUST_SCORE(WEAK_EFFECT);
 
         if (isBattle1v1)

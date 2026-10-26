@@ -907,7 +907,16 @@ enum __attribute__((packed)) Move
 
     // Add any custom moves here, not further down!
 
-    MOVES_COUNT = MOVES_COUNT_GEN9,
+    // Crystal Imperium (DECISIONS.md D39): Radical Red's own moves
+    MOVE_AQUA_FANG = MOVES_COUNT_GEN9,
+    MOVE_DARK_HOLE = 849,
+    MOVE_SOUL_ROBBERY = 850,
+    MOVE_SONIC_SLASH = 851,
+    MOVE_DRACO_BARRAGE = 852,
+    MOVE_FORBIDDEN_SPELL = 853,
+    MOVES_COUNT_IMPERIUM,
+
+    MOVES_COUNT = MOVES_COUNT_IMPERIUM,
 
     // Z Moves
     FIRST_Z_MOVE = MOVES_COUNT,
