@@ -840,8 +840,10 @@ static void PlayerNotOnBikeMoving(u8 direction, u16 heldKeys)
         return;
     }
 
+    // Platinum Imperium: with AUTO RUN on, the player runs without B, and B walks
     if (!(gPlayerAvatar.flags & PLAYER_AVATAR_FLAG_UNDERWATER)
-     && (heldKeys & B_BUTTON) 
+     && (gSaveBlock3Ptr->challengeSettings.autoRun ? !(heldKeys & B_BUTTON) : (heldKeys & B_BUTTON))
+     && !(FlagGet(DN_FLAG_SEARCHING) && (heldKeys & A_BUTTON))
      && FlagGet(FLAG_SYS_B_DASH)
      && IsRunningDisallowed(gObjectEvents[gPlayerAvatar.objectEventId].currentMetatileBehavior) == 0 
      && !FollowerNPCComingThroughDoor() 

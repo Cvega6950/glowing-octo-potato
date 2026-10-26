@@ -1,4 +1,5 @@
 #include "global.h"
+#include "challenge_menu.h"
 #include "trainer_pokemon_sprites.h"
 #include "bg.h"
 #include "constants/rgb.h"
@@ -2139,7 +2140,8 @@ static void Task_NewGameBirchSpeech_Cleanup(u8 taskId)
         FreeAllWindowBuffers();
         FreeAndDestroyMonPicSprite(gTasks[taskId].tLotadSpriteId);
         ResetAllPicSprites();
-        SetMainCallback2(CB2_NewGame);
+        // Platinum Imperium: the challenge menu, then the new game with its choices
+        ChallengeMenu_OpenForNewGame(CB2_NewGame);
         DestroyTask(taskId);
     }
 }

@@ -726,6 +726,7 @@ bool8 ShouldIgnoreDeoxysForm(u8 caseId, u8 battler);
 u16 GetUnionRoomTrainerPic(void);
 enum TrainerClassID GetUnionRoomTrainerClass(void);
 void CreateEnemyEventMon(void);
+bool32 IsMinimalGrindingMode(void);
 void CalculateMonStats(struct Pokemon *mon);
 void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest);
 u8 GetLevelFromMonExp(struct Pokemon *mon);

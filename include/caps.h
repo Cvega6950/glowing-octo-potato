@@ -18,7 +18,16 @@
 #error "Invalid choice for B_EV_CAP_TYPE, must be one of [EV_CAP_NONE, EV_CAP_FLAG_LIST, EV_CAP_VARIABLE, EV_CAP_NO_GAIN]"
 #endif
 
+// Level cap stage after the eighth badge (GetLevelCapStage): the League won (no cap)
+#define LEVEL_CAP_STAGE_CHAMPION 9
+
 u32 GetCurrentLevelCap(void);
+u32 GetLevelCapStage(void);
+u32 GetLevelCapAtStage(u32 stage);
+u32 GetBossLevel(u32 bossStage);
+u32 GetLevelOnCapCurve(u32 level);
+u32 GetLevelWithinCap(u32 level);
+u16 GetBadgeCount(void);
 u32 GetSoftLevelCapExpValue(u32 level, u32 expValue);
 u32 GetCurrentEVCap(void);
 

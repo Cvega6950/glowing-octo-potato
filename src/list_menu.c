@@ -1475,3 +1475,65 @@ static void ListMenuRemoveRedArrowCursorObject(u8 taskId)
     DestroySprite(&gSprites[data->spriteId]);
     DestroyTask(taskId);
 }
+
+// From Pokemon Heart & Soul (used by the challenge menu)
+void JumpListMenuToBottom(u8 listTaskId)
+{
+    struct ListMenu *list = (void *) gTasks[listTaskId].data;
+    u16 oldSelectedRow = list->selectedRow;
+    u16 oldScrollOffset = list->scrollOffset;
+
+    if (list->template.totalItems == 0)
+        return;
+
+    // Calculate the raw bottom positions
+    if (list->template.totalItems > list->template.maxShowed)
+    {
+        list->scrollOffset = list->template.totalItems - list->template.maxShowed;
+        list->selectedRow = list->template.maxShowed - 1;
+    }
+    else
+    {
+        list->scrollOffset = 0;
+        list->selectedRow = list->template.totalItems - 1;
+    }
+
+    // Prevent landing on an unselectable LIST_HEADER
+    if (!list->template.isDynamic)
+    {
+        while (list->template.items[list->scrollOffset + list->selectedRow].id == LIST_HEADER)
+        {
+            if (list->selectedRow > 0)
+            {
+                list->selectedRow--;
+            }
+            else if (list->scrollOffset > 0)
+            {
+                list->scrollOffset--;
+            }
+            else
+            {
+                break; 
+            }
+        }
+    }
+
+    // Only update if the position actually changed
+    if (oldSelectedRow != list->selectedRow || oldScrollOffset != list->scrollOffset)
+    {
+        if (oldScrollOffset != list->scrollOffset)
+        {
+            // Scroll changed: Requires a full window redraw
+            RedrawListMenu(listTaskId);
+        }
+        else
+        {
+            // Only the cursor moved: Optimize by just moving the cursor
+            ListMenuErasePrintedCursor(list, oldSelectedRow);
+            ListMenuDrawCursor(list);
+            CopyWindowToVram(list->template.windowId, COPYWIN_GFX);
+        }
+    }
+
+    ListMenuCallSelectionChangedCallback(list, FALSE);
+}

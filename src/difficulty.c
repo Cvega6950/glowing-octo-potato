@@ -6,8 +6,19 @@
 
 enum DifficultyLevel GetCurrentDifficultyLevel(void)
 {
+    // Platinum Imperium: the DIFFICULTY option in the challenge menu selects the difficulty
     if (!B_VAR_DIFFICULTY)
-        return DIFFICULTY_NORMAL;
+    {
+        switch (gSaveBlock3Ptr->challengeSettings.tx_Difficulty_Preset)
+        {
+        case CHALLENGE_DIFFICULTY_EASY:
+            return DIFFICULTY_EASY;
+        case CHALLENGE_DIFFICULTY_HARD:
+            return DIFFICULTY_HARD;
+        default:
+            return DIFFICULTY_NORMAL;
+        }
+    }
 
     return VarGet(B_VAR_DIFFICULTY);
 }

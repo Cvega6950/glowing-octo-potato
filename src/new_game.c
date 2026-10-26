@@ -48,6 +48,7 @@
 #include "constants/items.h"
 #include "difficulty.h"
 #include "follower_npc.h"
+#include "challenge_menu.h"
 
 extern const u8 EventScript_ResetAllMapFlags[];
 
@@ -95,12 +96,26 @@ static void InitPlayerTrainerId(void)
 // L=A isnt set here for some reason.
 static void SetDefaultOptions(void)
 {
-    gSaveBlock2Ptr->optionsTextSpeed = OPTIONS_TEXT_SPEED_MID;
+    gSaveBlock2Ptr->optionsTextSpeed = OPTIONS_TEXT_SPEED_FAST;
     gSaveBlock2Ptr->optionsWindowFrameType = 0;
     gSaveBlock2Ptr->optionsSound = OPTIONS_SOUND_STEREO;
     gSaveBlock2Ptr->optionsBattleStyle = OPTIONS_BATTLE_STYLE_SHIFT;
     gSaveBlock2Ptr->optionsBattleSceneOff = FALSE;
     gSaveBlock2Ptr->regionMapZoom = FALSE;
+}
+
+// Platinum Imperium: the challenge menu's defaults, Crystal Imperium's: Minimal Grinding, NORMAL
+// level caps, x1.5 EXP, NORMAL difficulty, Easy Catch, Wild Variety 30% and Auto Run
+void SetDefaultChallengeSettings(struct ChallengeSettings *cs)
+{
+    memset(cs, 0, sizeof(*cs));
+    cs->tx_Difficulty_MinimalGrinding = TRUE;
+    cs->tx_Challenges_LevelCap = 1;
+    cs->tx_Challenges_ExpMultiplier = OPTIONS_EXP_MULTIPLIER_1_5X;
+    cs->tx_Difficulty_Preset = CHALLENGE_DIFFICULTY_NORMAL;
+    cs->tx_Features_EasyCatchOff = FALSE;
+    cs->tx_Features_WildVariety = 0; // 30%
+    cs->autoRun = TRUE;
 }
 
 static void ClearPokedexFlags(void)
@@ -165,7 +180,15 @@ void NewGameInitData(void)
     ResetPokedex();
     ClearFrontierRecord();
     ClearSav1();
-    ClearSav3();
+    {
+        // Platinum Imperium: the challenge menu shown before the new game starts chose these
+        struct ChallengeSettings chosen = gSaveBlock3Ptr->challengeSettings;
+        ClearSav3();
+        if (ChallengeMenu_WereNewGameSettingsChosen())
+            gSaveBlock3Ptr->challengeSettings = chosen;
+        else
+            SetDefaultChallengeSettings(&gSaveBlock3Ptr->challengeSettings);
+    }
     ClearAllMail();
     gSaveBlock2Ptr->specialSaveWarpFlags = 0;
     gSaveBlock2Ptr->gcnLinkFlags = 0;

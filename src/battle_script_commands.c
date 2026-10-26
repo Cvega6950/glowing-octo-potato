@@ -4701,7 +4701,7 @@ static void Cmd_getexp(void)
 
                     ApplyExperienceMultipliers(&gBattleStruct->battlerExpReward, *expMonId, gBattlerFainted);
 
-                    if (B_EXP_CAP_TYPE == EXP_CAP_HARD && gBattleStruct->battlerExpReward != 0)
+                    if ((B_EXP_CAP_TYPE == EXP_CAP_HARD || gSaveBlock3Ptr->challengeSettings.tx_Challenges_LevelCap) && gBattleStruct->battlerExpReward != 0)
                     {
                         enum GrowthRate growthRate = gSpeciesInfo[GetMonData(&gPlayerParty[*expMonId], MON_DATA_SPECIES)].growthRate;
                         u32 currentExp = GetMonData(&gPlayerParty[*expMonId], MON_DATA_EXP);
@@ -13746,6 +13746,10 @@ static void Cmd_handleballthrow(void)
         if (gBattleResults.catchAttempts[ballId] < 255)
             gBattleResults.catchAttempts[ballId]++;
 
+        // Platinum Imperium: the EASY CATCH option makes every ball work like a Master Ball
+        if (!gSaveBlock3Ptr->challengeSettings.tx_Features_EasyCatchOff)
+            odds = 255;
+
         if (odds > 254) // mon caught
         {
             BtlController_EmitBallThrowAnim(gBattlerAttacker, B_COMM_TO_CONTROLLER, BALL_3_SHAKES_SUCCESS);
@@ -14851,6 +14855,20 @@ void ApplyExperienceMultipliers(s32 *expAmount, u8 expGetterMonId, u8 faintedBat
         value /= sExperienceScalingFactors[faintedLevel + expGetterLevel + 10];
 
         *expAmount = value + 1;
+    }
+
+    // Platinum Imperium: the challenge menu's EXP. MULTIPLIER
+    switch (gSaveBlock3Ptr->challengeSettings.tx_Challenges_ExpMultiplier)
+    {
+    case OPTIONS_EXP_MULTIPLIER_0X:
+        *expAmount = 0;
+        break;
+    case OPTIONS_EXP_MULTIPLIER_2X:
+        *expAmount = *expAmount * 2;
+        break;
+    case OPTIONS_EXP_MULTIPLIER_1_5X:
+        *expAmount = (*expAmount * 3) / 2;
+        break;
     }
 }
 

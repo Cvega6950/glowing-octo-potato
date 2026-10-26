@@ -240,6 +240,27 @@ struct NPCFollower
 #include "constants/items.h"
 #define ITEM_FLAGS_COUNT ((ITEMS_COUNT / 8) + ((ITEMS_COUNT % 8) ? 1 : 0))
 
+// Platinum Imperium: the options chosen in the challenge menu (src/challenge_menu.c) at the start of
+// a new game, and on the settings PC. The names are Crystal Imperium's, so code ported from it reads
+// the same.
+struct ChallengeSettings
+{
+    u8 tx_Challenges_LevelCap:2;        // 0 OFF, 1 NORMAL caps, 2 HARD caps (src/caps.c)
+    u8 tx_Challenges_ExpMultiplier:2;   // OPTIONS_EXP_MULTIPLIER_*
+    u8 tx_Difficulty_MinimalGrinding:1; // every Pokemon battles with 31 IVs and 0 EVs
+    u8 tx_Difficulty_Preset:2;          // CHALLENGE_DIFFICULTY_*
+    u8 tx_Features_EasyCatchOff:1;      // 0: EASY CATCH on (every Poke Ball catches)
+    u8 tx_Features_WildVariety:2;       // see sVarietyPercent in src/wild_variety.c
+    u8 autoRun:1;                       // 1: running without holding B
+    u8 padding:5;
+};
+
+// Platinum Imperium difficulty selection as stored in ChallengeSettings.tx_Difficulty_Preset.
+// GetCurrentDifficultyLevel() maps it onto the engine's enum DifficultyLevel.
+#define CHALLENGE_DIFFICULTY_NORMAL 0
+#define CHALLENGE_DIFFICULTY_EASY   1
+#define CHALLENGE_DIFFICULTY_HARD   2
+
 struct SaveBlock3
 {
 #if OW_USE_FAKE_RTC
@@ -258,6 +279,7 @@ struct SaveBlock3
 #if APRICORN_TREE_COUNT > 0
     u8 apricornTrees[NUM_APRICORN_TREE_BYTES];
 #endif
+    struct ChallengeSettings challengeSettings;
 }; /* max size 1624 bytes */
 
 extern struct SaveBlock3 *gSaveBlock3Ptr;

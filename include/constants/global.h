@@ -179,6 +179,11 @@
 #define OPTIONS_SOUND_MONO 0
 #define OPTIONS_SOUND_STEREO 1
 
+#define OPTIONS_EXP_MULTIPLIER_1X   0   // 1x EXP multiplier
+#define OPTIONS_EXP_MULTIPLIER_1_5X 1   // 1.5x EXP multiplier
+#define OPTIONS_EXP_MULTIPLIER_2X   2   // 2x EXP multiplier
+#define OPTIONS_EXP_MULTIPLIER_0X   3   // no EXP
+
 #define OPTIONS_BATTLE_STYLE_SHIFT 0
 #define OPTIONS_BATTLE_STYLE_SET 1
 

@@ -1694,6 +1694,12 @@ static u16 CalculateBoxMonChecksumReencrypt(struct BoxPokemon *boxMon)
     return checksum;
 }
 
+// Platinum Imperium: Minimal Grinding (the challenge menu's MIN. GRINDING)
+bool32 IsMinimalGrindingMode(void)
+{
+    return gSaveBlock3Ptr != NULL && gSaveBlock3Ptr->challengeSettings.tx_Difficulty_MinimalGrinding;
+}
+
 void CalculateMonStats(struct Pokemon *mon)
 {
     s32 oldMaxHP = GetMonData(mon, MON_DATA_MAX_HP, NULL);
@@ -1707,6 +1713,7 @@ void CalculateMonStats(struct Pokemon *mon)
 
     SetMonData(mon, MON_DATA_LEVEL, &level);
 
+    bool32 minimalGrinding = IsMinimalGrindingMode();
     bool32 hyperTrained[NUM_STATS]; //In a battle test, hyper training flag indicates a fixed stat
     s32 iv[NUM_STATS];
     s32 ev[NUM_STATS];
@@ -1715,6 +1722,13 @@ void CalculateMonStats(struct Pokemon *mon)
         hyperTrained[i] = GetMonData(mon, MON_DATA_HYPER_TRAINED_HP + i);
         iv[i] = GetMonData(mon, MON_DATA_HP_IV + i);
         ev[i] = GetMonData(mon, MON_DATA_HP_EV + i);
+
+        // Minimal Grinding: every Pokemon (player, trainer and wild) uses perfect IVs and no EVs
+        if (minimalGrinding)
+        {
+            iv[i] = MAX_PER_STAT_IVS;
+            ev[i] = 0;
+        }
 
         if (hyperTrained[i])
         {
@@ -3841,7 +3855,7 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, u16 item, u8 partyIndex, u8 mov
                     u16 species = GetMonData(mon, MON_DATA_SPECIES, NULL);
                     dataUnsigned = sExpCandyExperienceTable[param - 1] + GetMonData(mon, MON_DATA_EXP, NULL);
 
-                    if (B_RARE_CANDY_CAP && B_EXP_CAP_TYPE == EXP_CAP_HARD)
+                    if ((B_RARE_CANDY_CAP && B_EXP_CAP_TYPE == EXP_CAP_HARD) || gSaveBlock3Ptr->challengeSettings.tx_Challenges_LevelCap)
                     {
                         u32 currentLevelCap = GetCurrentLevelCap();
                         if (dataUnsigned > gExperienceTables[gSpeciesInfo[species].growthRate][currentLevelCap])
