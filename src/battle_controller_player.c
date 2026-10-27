@@ -1461,6 +1461,11 @@ void Task_PlayerController_RestoreBgmAfterCry(u8 taskId)
 #define tExpTask_gainedExp_1    data[3]
 #define tExpTask_gainedExp_2    data[4] // Stored as two half-words containing a word.
 #define tExpTask_frames         data[10]
+#define tExpTask_barFull        data[11]
+
+// Crystal Imperium (DECISIONS.md D40): with FAST BATTLES on, the Exp. sound plays at least this long
+// (both rises of its chirp), however soon the bar is full
+#define FAST_BATTLE_EXP_SOUND_FRAMES 8
 
 static void DynamaxModifyHPLevelUp(struct Pokemon *mon, enum BattlerId battler, u32 oldMaxHP)
 {
@@ -1552,7 +1557,9 @@ static void Task_GiveExpWithExpBar(u8 taskId)
     s32 currExp, expOnNextLvl, newExpPoints;
 
     // Crystal Imperium (DECISIONS.md D40): with FAST BATTLES on, the bar fills as the Exp. sound starts
-    // (Game Freak's bar waited 13 frames first)
+    // (Game Freak's bar waited 13 frames first), and the sound plays on until FAST_BATTLE_EXP_SOUND_FRAMES:
+    // a gain under 1/16 of the level, or none at the level cap, fills the bar at once, and stopping the
+    // sound there cut it to a click
     if (gTasks[taskId].tExpTask_frames < (IsFastBattleOn() ? 0 : 13))
     {
         gTasks[taskId].tExpTask_frames++;
@@ -1564,9 +1571,16 @@ static void Task_GiveExpWithExpBar(u8 taskId)
         enum BattlerId battler = gTasks[taskId].tExpTask_battler;
         struct Pokemon *mon = &gPlayerParty[monId];
 
-        newExpPoints = MoveBattleBar(battler, gHealthboxSpriteIds[battler], EXP_BAR, 0);
-        SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
-        if (newExpPoints == -1) // The bar has been filled with given exp points.
+        // A full bar isn't moved again: MoveBattleBar's -1 resets the bar's value to 0
+        if (!gTasks[taskId].tExpTask_barFull)
+        {
+            newExpPoints = MoveBattleBar(battler, gHealthboxSpriteIds[battler], EXP_BAR, 0);
+            SetHealthboxSpriteVisible(gHealthboxSpriteIds[battler]);
+            gTasks[taskId].tExpTask_barFull = (newExpPoints == -1);
+        }
+        if (gTasks[taskId].tExpTask_frames < FAST_BATTLE_EXP_SOUND_FRAMES) // FAST BATTLES: the frames since the sound started
+            gTasks[taskId].tExpTask_frames++;
+        if (gTasks[taskId].tExpTask_barFull && gTasks[taskId].tExpTask_frames >= FAST_BATTLE_EXP_SOUND_FRAMES) // The bar has been filled with given exp points.
         {
             m4aSongNumStop(SE_EXP, FlagGet(FLAG_SYS_GBS_ENABLED));
             level = GetMonData(mon, MON_DATA_LEVEL);
@@ -2337,6 +2351,7 @@ void PlayerHandleExpUpdate(enum BattlerId battler)
 #undef tExpTask_gainedExp_1
 #undef tExpTask_gainedExp_2
 #undef tExpTask_frames
+#undef tExpTask_barFull
 
 static void PlayerHandleStatusXor(enum BattlerId battler)
 {

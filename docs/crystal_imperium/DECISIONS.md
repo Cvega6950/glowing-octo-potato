@@ -1373,7 +1373,9 @@ DexNav shows and that wild encounters draw from:
     animation's end turned it back up at once, under the cry, until the review found it:
     `Cmd_end` leaves it to the cry's own task). Contests keep the wait.
   - A battle message's prompt goes on after 24 frames, not 49 ("fainted!", "gained Exp. Points!"),
-    and the Exp. bar fills as its sound starts (it waited 13 frames).
+    and the Exp. bar fills as its sound starts (it waited 13 frames). The sound still plays at least
+    8 frames, both rises of its chirp: a gain under 1/16 of a level, or none at the level cap, fills
+    the bar at once, and stopping the sound there cut it to a click until the review found it.
   - A Pokémon sent out during the battle plays at double speed, as the intro already did (D38):
     the party's balls before a trainer's next Pokémon (47 frames, not 94), the ball (33, not 64)
     and the health box sliding in (12, not 23) (`BtlController_IsSwitchInPlaying` in
