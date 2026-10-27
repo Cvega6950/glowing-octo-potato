@@ -675,7 +675,19 @@
 #define TRAINER_MISTY_POSTOBC_HNS             651
 #define TRAINER_ERIKA_POSTOBC_HNS             652
 
-#define TRAINERS_COUNT_HNS                       653
+// Crystal Imperium side battles (DECISIONS.md D41): written by tools/crystal_imperium/side_battles.py
+#define TRAINER_SIDE_CANDICE_HNS              653
+#define TRAINER_SIDE_GARDENIA_HNS             654
+#define TRAINER_SIDE_GARDENIA_2_HNS           655
+#define TRAINER_SIDE_FANTINA_HNS              656
+#define TRAINER_SIDE_MAYLENE_HNS              657
+#define TRAINER_SIDE_WAKE_HNS                 658
+#define TRAINER_SIDE_BYRON_HNS                659
+#define TRAINER_SIDE_ROARK_HNS                660
+#define TRAINER_SIDE_VOLKNER_HNS              661
+// End of the side battles
+
+#define TRAINERS_COUNT_HNS                       662
 #define MAX_TRAINERS_COUNT_HNS                   864
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_HNS_H

@@ -531,6 +531,14 @@ static void NONNULL BagPocket_CompactItems(struct BagPocket *pocket)
     }
 }
 
+// Crystal Imperium: takes items out of the PC by item, as RemoveBagItem does for the Bag (a side battle's
+// reward that didn't fit whole is taken back, DECISIONS.md D41)
+bool32 RemovePCItemById(enum Item itemId, u16 count)
+{
+    struct BagPocket dummyPocket = DUMMY_PC_BAG_POCKET;
+    return BagPocket_RemoveItem(&dummyPocket, itemId, count);
+}
+
 void RemovePCItem(u8 index, u16 count)
 {
     struct BagPocket dummyPocket = DUMMY_PC_BAG_POCKET;

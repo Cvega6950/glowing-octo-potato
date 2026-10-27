@@ -1178,6 +1178,7 @@ EventScript_SetBrineyLocation_Route109::
 	.include "data/scripts/training_kit.inc"
 	.include "data/scripts/l_menu.inc"
 	.include "data/scripts/care_packages.inc"
+	.include "data/scripts/side_battles.inc"
 	.include "data/scripts/cheat_codes.inc"
 .if IS_HNS
 	.include "data/scripts/tm_shop_hns.inc"

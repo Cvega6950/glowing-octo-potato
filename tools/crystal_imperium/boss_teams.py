@@ -154,6 +154,107 @@ CLAIR = [
     mon("Kingdra", "Wacan Berry", "Swift Swim", "Modest", ["Hydro Pump", "Draco Meteor", "Ice Beam", "Rain Dance"]),
 ]
 
+# --- Side battles: Sinnoh's Gym Leaders visiting Johto (DECISIONS.md D41) ------------------------
+# tools/crystal_imperium/side_battles.py places them and gates each by a badge count, its stage here.
+# Each is a Gym Leader at its stage's cap: six Pokemon, the bag items of the real Gym Leaders of the
+# stage, and from the 5th Gym's stage (4 badges) on one Mega Evolution. None is a Pokemon the Johto
+# Gym Leaders of the stage use, so the side battle is a different fight.
+#   Candice (no badges, Violet City's Trainer School): Fake Out and Icy Wind for Speed, Pure Power
+#   Meditite and a Recover Cryogonal as the ace.
+SIDE_CANDICE = [
+    mon("Snover", "Eviolite", "Ice Body", "Modest", ["Icy Wind", "Razor Leaf", "Leech Seed", "Ice Shard"]),
+    mon("Sneasel", "Eviolite", "Inner Focus", "Jolly", ["Fake Out", "Ice Shard", "Bite", "Quick Attack"]),
+    mon("Spheal", "Eviolite", "Thick Fat", "Bold", ["Ice Ball", "Defense Curl", "Brine", "Yawn"]),
+    mon("Cetoddle", "Eviolite", "Thick Fat", "Adamant", ["Ice Shard", "Ice Fang", "Bulldoze", "Body Slam"]),
+    mon("Meditite", "Eviolite", "Pure Power", "Adamant", ["Force Palm", "Ice Punch", "Bullet Punch", "Detect"]),
+    mon("Cryogonal", "Sitrus Berry", "Levitate", "Calm", ["Freeze Dry", "Icy Wind", "Recover", "Reflect"]),
+]
+#   Gardenia (2 badges, Ilex Forest): Cherrim's sun for Solar Beam, Weather Ball and a Harvest Dolliv;
+#   from 4 badges her second team, with Mega Venusaur.
+SIDE_GARDENIA = [
+    mon("Sudowoodo", "Sitrus Berry", "Sturdy", "Adamant", ["Stealth Rock", "Rock Slide", "Sucker Punch", "Wood Hammer"]),
+    mon("Cherrim", "Miracle Seed", "Flower Gift", "Modest", ["Sunny Day", "Solar Beam", "Weather Ball", "Growth"]),
+    mon("Gloom", "Eviolite", "Chlorophyll", "Modest", ["Sleep Powder", "Giga Drain", "Sludge Bomb", "Moonblast"]),
+    mon("Dolliv", "Sitrus Berry", "Harvest", "Bold", ["Energy Ball", "Earth Power", "Strength Sap", "Leech Seed"]),
+    mon("Grotle", "Eviolite", "Shell Armor", "Adamant", ["Seed Bomb", "Bite", "Bulldoze", "Synthesis"]),
+    mon("Roserade", "Black Sludge", "Natural Cure", "Timid", ["Giga Drain", "Sludge Bomb", "Dazzling Gleam", "Toxic Spikes"]),
+]
+SIDE_GARDENIA_2 = [
+    mon("Sudowoodo", "Sitrus Berry", "Rock Head", "Adamant", ["Stealth Rock", "Head Smash", "Sucker Punch", "Wood Hammer"]),
+    mon("Vileplume", "Black Sludge", "Effect Spore", "Modest", ["Sleep Powder", "Giga Drain", "Moonblast", "Sludge Bomb"]),
+    mon("Arboliva", "Leftovers", "Seed Sower", "Modest", ["Hyper Voice", "Energy Ball", "Earth Power", "Strength Sap"]),
+    mon("Torterra", "White Herb", "Shell Armor", "Adamant", ["Wood Hammer", "Earthquake", "Stone Edge", "Shell Smash"]),
+    mon("Roserade", "Focus Sash", "Natural Cure", "Timid", ["Leaf Storm", "Sludge Bomb", "Shadow Ball", "Spikes"]),
+    mon("Venusaur", "Venusaurite", "Chlorophyll", "Modest", ["Giga Drain", "Sludge Bomb", "Earth Power", "Synthesis"]),
+]
+#   Fantina (3 badges, Ecruteak City): Will-O-Wisp for Hex, Trick Room for the slow ones, an Illusion
+#   Hisuian Zoroark.
+SIDE_FANTINA = [
+    mon("Spiritomb", "Sitrus Berry", "Intimidate", "Careful", ["Will O Wisp", "Foul Play", "Shadow Sneak", "Sucker Punch"]),
+    mon("Dusclops", "Eviolite", "Frisk", "Relaxed", ["Night Shade", "Trick Room", "Pain Split", "Ice Beam"]),
+    mon("Cursola", "Life Orb", "Weak Armor", "Modest", ["Hex", "Earth Power", "Power Gem", "Strength Sap"]),
+    mon("Zoroark Hisui", "Focus Sash", "Illusion", "Timid", ["Shadow Ball", "Hyper Voice", "Focus Blast", "Nasty Plot"]),
+    mon("Banette", "Spell Tag", "Insomnia", "Adamant", ["Poltergeist", "Gunk Shot", "Knock Off", "Shadow Sneak"]),
+    mon("Mismagius", "Wise Glasses", "Levitate", "Timid", ["Shadow Ball", "Mystical Fire", "Dazzling Gleam", "Nasty Plot"]),
+]
+#   Maylene (4 badges, Cianwood City): fast Fighting types and Mega Lucario.
+SIDE_MAYLENE = [
+    mon("Medicham", "Sitrus Berry", "Pure Power", "Jolly", ["Fake Out", "High Jump Kick", "Zen Headbutt", "Bullet Punch"]),
+    mon("Mienshao", "Life Orb", "Regenerator", "Jolly", ["Drain Punch", "U Turn", "Knock Off", "Stone Edge"]),
+    mon("Pawmot", "Shell Bell", "Iron Fist", "Jolly", ["Double Shock", "Close Combat", "Mach Punch", "Ice Punch"]),
+    mon("Machamp", "Expert Belt", "No Guard", "Adamant", ["Dynamic Punch", "Knock Off", "Stone Edge", "Ice Punch"]),
+    mon("Toxicroak", "Black Sludge", "Dry Skin", "Adamant", ["Drain Punch", "Sucker Punch", "Gunk Shot", "Swords Dance"]),
+    mon("Lucario", "Lucarionite", "Inner Focus", "Jolly", ["Close Combat", "Meteor Mash", "Extreme Speed", "Swords Dance"]),
+]
+#   Wake (5 badges, Lake of Rage): Drizzle rain for Swift Swim, and Mega Gyarados.
+SIDE_WAKE = [
+    mon("Politoed", "Damp Rock", "Drizzle", "Bold", ["Scald", "Ice Beam", "Hypnosis", "Encore"]),
+    mon("Floatzel", "Life Orb", "Technician", "Jolly", ["Wave Crash", "Ice Spinner", "Aqua Jet", "Bulk Up"]),
+    mon("Quagsire", "Leftovers", "Unaware", "Impish", ["Earthquake", "Liquidation", "Recover", "Toxic"]),
+    mon("Toedscruel", "Sitrus Berry", "Mold Breaker", "Timid", ["Spore", "Earth Power", "Giga Drain", "Rapid Spin"]),
+    mon("Barraskewda", "Choice Band", "Swift Swim", "Adamant", ["Liquidation", "Close Combat", "Psychic Fangs", "Aqua Jet"]),
+    mon("Gyarados", "Gyaradosite", "Moxie", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Dragon Dance"]),
+]
+#   Byron (6 badges, Olivine City): Steel walls and Mega Aggron.
+SIDE_BYRON = [
+    mon("Bastiodon", "Leftovers", "Dauntless Shield", "Impish", ["Stealth Rock", "Iron Defense", "Body Press", "Roar"]),
+    mon("Copperajah", "Sitrus Berry", "Heavy Metal", "Adamant", ["Heavy Slam", "Play Rough", "Superpower", "Earthquake"]),
+    mon("Excadrill", "Focus Sash", "Mold Breaker", "Jolly", ["Iron Head", "Earthquake", "Rapid Spin", "Swords Dance"]),
+    mon("Kingambit", "Black Glasses", "Supreme Overlord", "Adamant", ["Kowtow Cleave", "Iron Head", "Sucker Punch", "Swords Dance"]),
+    mon("Corviknight", "Leftovers", "Pressure", "Impish", ["Brave Bird", "Body Press", "Bulk Up", "Roost"]),
+    mon("Aggron", "Aggronite", "Sturdy", "Impish", ["Heavy Slam", "Earthquake", "Body Press", "Iron Defense"]),
+]
+#   Roark (7 badges, Route 44 by the Ice Path): hazards, Head Smash and Mega Tyranitar's sand.
+SIDE_ROARK = [
+    mon("Glimmora", "Focus Sash", "Toxic Debris", "Timid", ["Mortal Spin", "Power Gem", "Sludge Wave", "Stealth Rock"]),
+    mon("Garganacl", "Leftovers", "Purifying Salt", "Careful", ["Salt Cure", "Body Press", "Iron Defense", "Recover"]),
+    mon("Tyrantrum", "Life Orb", "Rock Head", "Jolly", ["Head Smash", "Dragon Claw", "Psychic Fangs", "Dragon Dance"]),
+    mon("Kleavor", "Lum Berry", "Sharpness", "Jolly", ["Stone Axe", "X Scissor", "Close Combat", "Swords Dance"]),
+    mon("Rampardos", "Choice Scarf", "Mold Breaker", "Adamant", ["Head Smash", "Earthquake", "Fire Punch", "Zen Headbutt"]),
+    mon("Tyranitar", "Tyranitarite", "Sand Stream", "Jolly", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
+]
+#   Volkner (8 badges, Indigo Plateau): fast Electric types, Rotom-Wash and Mega Manectric.
+SIDE_VOLKNER = [
+    mon("Jolteon", "Life Orb", "Volt Absorb", "Timid", ["Thunderbolt", "Shadow Ball", "Hyper Voice", "Calm Mind"]),
+    mon("Raichu Alola", "Focus Sash", "Surge Surfer", "Timid", ["Thunderbolt", "Psychic", "Focus Blast", "Nasty Plot"]),
+    mon("Luxray", "Choice Band", "Intimidate", "Adamant", ["Wild Charge", "Crunch", "Ice Fang", "Play Rough"]),
+    mon("Rotom Wash", "Leftovers", "Levitate", "Bold", ["Hydro Pump", "Volt Switch", "Will O Wisp", "Pain Split"]),
+    mon("Electivire", "Expert Belt", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Earthquake", "Cross Chop"]),
+    mon("Manectric", "Manectite", "Lightning Rod", "Timid", ["Thunderbolt", "Flamethrower", "Volt Switch", "Snarl"]),
+]
+# Trainer -> (stage, bag items, Pokemon)
+SIDE_BATTLES = {
+    "TRAINER_SIDE_CANDICE_HNS": (0, "", SIDE_CANDICE),
+    "TRAINER_SIDE_GARDENIA_HNS": (2, "Potion", SIDE_GARDENIA),
+    "TRAINER_SIDE_GARDENIA_2_HNS": (4, "Hyper Potion / Hyper Potion", SIDE_GARDENIA_2),
+    "TRAINER_SIDE_FANTINA_HNS": (3, "Hyper Potion / Hyper Potion", SIDE_FANTINA),
+    "TRAINER_SIDE_MAYLENE_HNS": (4, "Hyper Potion / Hyper Potion", SIDE_MAYLENE),
+    "TRAINER_SIDE_WAKE_HNS": (5, "Full Restore / Full Restore", SIDE_WAKE),
+    "TRAINER_SIDE_BYRON_HNS": (6, "Full Restore / Full Restore", SIDE_BYRON),
+    "TRAINER_SIDE_ROARK_HNS": (7, "Full Restore / Full Restore", SIDE_ROARK),
+    "TRAINER_SIDE_VOLKNER_HNS": (8, "Full Restore / Full Restore", SIDE_VOLKNER),
+}
+
 # --- Rival (Silver): TRAINER_RIVAL_<his starter>_<n>_HNS ------------------------------------------
 # 2nd battle: Azalea Town after Bugsy (2 badges, cap 33). 3rd: Burned Tower (3 badges, cap 42).
 RIVAL_STARTER = {
@@ -701,6 +802,7 @@ TEAMS = {
     "TRAINER_PRYCE_1_3_HNS": (6, "Full Restore / Full Restore", PRYCE),
     "TRAINER_CLAIR_1_HNS": (7, "Full Restore / Full Restore", CLAIR),
 }
+TEAMS.update(SIDE_BATTLES)
 TEAMS.update({tid: (8, "", mons) for tid, mons in KIMONO.items()})
 TEAMS.update({tid: (stage, "", mons) for tid, (stage, mons) in ROUTE_BOSSES.items()})
 for _n, _stage, _items in ((2, 2, "Super Potion"), (3, 3, "Super Potion / Super Potion"),

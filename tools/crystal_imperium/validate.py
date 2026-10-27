@@ -18,7 +18,8 @@ trainerproc and the C compiler; this script adds the semantic checks:
     pattern is in boss_teams.py's list unless it is listed below as never fought
   * boss trainers must define four moves for every Pokemon
   * reworked bosses (tools/crystal_imperium/boss_teams.py) may only use moves their species or a
-    pre-evolution can learn in some game (src/data/pokemon/all_learnables.json)
+    pre-evolution can learn in some game (src/data/pokemon/all_learnables.json), or a Rotom form
+    the move the Rotom Catalog teaches it
   * Red is the hardest battle: no trainer has a higher average level than his parties, which
     have EVs on all six Pokemon, the prediction AI and more Full Restores than anyone else
   * every evolution family should be obtainable (reported, not fatal: the
@@ -55,6 +56,7 @@ BOSS_PATTERNS = [
     r"TRAINER_RIVAL_\w+",
     r"TRAINER_(LI|EUSINE)_HNS",
     r"TRAINER_(PROTON|PETREL|ARIANA|ARCHER)_\w+",
+    r"TRAINER_SIDE_\w+",
 ]
 # Boss-pattern trainers no script battles in normal play (unused, or the debug menu's only)
 NEVER_FOUGHT = {"TRAINER_BLUE_2_HNS", "TRAINER_LANCE_3_HNS", "TRAINER_CLAIR_3_HNS",
@@ -222,8 +224,13 @@ def learnable_moves(species):
         while name not in data and "_" in name:
             name = name.rsplit("_", 1)[0]
         return data.get(name, [])
+    # The move a Rotom form learns when the Rotom Catalog changes it (src/data/party_menu.h)
+    form_moves = {"SPECIES_ROTOM_" + form: move for form, move in
+                  re.findall(r"#define ROTOM_(\w+)_MOVE\s+(MOVE_\w+)", read("src/data/party_menu.h"))}
     def moves(sp):
         out, seen = set(), set()
+        if sp in form_moves:
+            out.add(form_moves[sp])
         while sp and sp not in seen:
             seen.add(sp)
             out |= set(learnset(sp[len("SPECIES_"):]))

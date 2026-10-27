@@ -245,6 +245,19 @@
       "trainer_sight_or_berry_tree_id": "0",
       "script": "LakeOfRage_EventScript_Pryce",
       "flag": "FLAG_HIDE_LAKE_PRYCE"
+    },
+    {
+      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_HNS",
+      "x": 49,
+      "y": 30,
+      "elevation": 0,
+      "movement_type": "MOVEMENT_TYPE_FACE_LEFT",
+      "movement_range_x": 0,
+      "movement_range_y": 0,
+      "trainer_type": "TRAINER_TYPE_NONE",
+      "trainer_sight_or_berry_tree_id": "0",
+      "script": "SideBattle_Wake_EventScript",
+      "flag": "0"
     }
   ],
   "warp_events": [

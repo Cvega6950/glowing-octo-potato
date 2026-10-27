@@ -18411,3 +18411,641 @@ Nature: Timid
 - Focus Blast
 - Air Slash
 
+=== TRAINER_SIDE_CANDICE_HNS ===
+Name: CANDICE
+Class: Leader Hns
+Pic: Skier F Hns
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Light Blue
+
+Snover @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Ice Body
+Nature: Modest
+- Icy Wind
+- Razor Leaf
+- Leech Seed
+- Ice Shard
+
+Sneasel @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Inner Focus
+Nature: Jolly
+- Fake Out
+- Ice Shard
+- Bite
+- Quick Attack
+
+Spheal @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Thick Fat
+Nature: Bold
+- Ice Ball
+- Defense Curl
+- Brine
+- Yawn
+
+Cetoddle @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Thick Fat
+Nature: Adamant
+- Ice Shard
+- Ice Fang
+- Bulldoze
+- Body Slam
+
+Meditite @ Eviolite
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Pure Power
+Nature: Adamant
+- Force Palm
+- Ice Punch
+- Bullet Punch
+- Detect
+
+Cryogonal @ Sitrus Berry
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Calm
+- Freeze Dry
+- Icy Wind
+- Recover
+- Reflect
+
+=== TRAINER_SIDE_GARDENIA_HNS ===
+Name: GARDENIA
+Class: Leader Hns
+Pic: Picnicker
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Green
+Items: Potion
+
+Sudowoodo @ Sitrus Berry
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Adamant
+- Stealth Rock
+- Rock Slide
+- Sucker Punch
+- Wood Hammer
+
+Cherrim @ Miracle Seed
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Flower Gift
+Nature: Modest
+- Sunny Day
+- Solar Beam
+- Weather Ball
+- Growth
+
+Gloom @ Eviolite
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Chlorophyll
+Nature: Modest
+- Sleep Powder
+- Giga Drain
+- Sludge Bomb
+- Moonblast
+
+Dolliv @ Sitrus Berry
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Harvest
+Nature: Bold
+- Energy Ball
+- Earth Power
+- Strength Sap
+- Leech Seed
+
+Grotle @ Eviolite
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Shell Armor
+Nature: Adamant
+- Seed Bomb
+- Bite
+- Bulldoze
+- Synthesis
+
+Roserade @ Black Sludge
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Timid
+- Giga Drain
+- Sludge Bomb
+- Dazzling Gleam
+- Toxic Spikes
+
+=== TRAINER_SIDE_GARDENIA_2_HNS ===
+Name: GARDENIA
+Class: Leader Hns
+Pic: Picnicker
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Green
+Items: Hyper Potion / Hyper Potion
+
+Sudowoodo @ Sitrus Berry
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Rock Head
+Nature: Adamant
+- Stealth Rock
+- Head Smash
+- Sucker Punch
+- Wood Hammer
+
+Vileplume @ Black Sludge
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Effect Spore
+Nature: Modest
+- Sleep Powder
+- Giga Drain
+- Moonblast
+- Sludge Bomb
+
+Arboliva @ Leftovers
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Seed Sower
+Nature: Modest
+- Hyper Voice
+- Energy Ball
+- Earth Power
+- Strength Sap
+
+Torterra @ White Herb
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Shell Armor
+Nature: Adamant
+- Wood Hammer
+- Earthquake
+- Stone Edge
+- Shell Smash
+
+Roserade @ Focus Sash
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Timid
+- Leaf Storm
+- Sludge Bomb
+- Shadow Ball
+- Spikes
+
+Venusaur @ Venusaurite
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Chlorophyll
+Nature: Modest
+- Giga Drain
+- Sludge Bomb
+- Earth Power
+- Synthesis
+
+=== TRAINER_SIDE_FANTINA_HNS ===
+Name: FANTINA
+Class: Leader Hns
+Pic: Hex Maniac
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Purple
+Items: Hyper Potion / Hyper Potion
+
+Spiritomb @ Sitrus Berry
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Careful
+- Will O Wisp
+- Foul Play
+- Shadow Sneak
+- Sucker Punch
+
+Dusclops @ Eviolite
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Frisk
+Nature: Relaxed
+- Night Shade
+- Trick Room
+- Pain Split
+- Ice Beam
+
+Cursola @ Life Orb
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Weak Armor
+Nature: Modest
+- Hex
+- Earth Power
+- Power Gem
+- Strength Sap
+
+Zoroark Hisui @ Focus Sash
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Illusion
+Nature: Timid
+- Shadow Ball
+- Hyper Voice
+- Focus Blast
+- Nasty Plot
+
+Banette @ Spell Tag
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Insomnia
+Nature: Adamant
+- Poltergeist
+- Gunk Shot
+- Knock Off
+- Shadow Sneak
+
+Mismagius @ Wise Glasses
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Mystical Fire
+- Dazzling Gleam
+- Nasty Plot
+
+=== TRAINER_SIDE_MAYLENE_HNS ===
+Name: MAYLENE
+Class: Leader Hns
+Pic: Battle Girl
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Orange
+Items: Hyper Potion / Hyper Potion
+
+Medicham @ Sitrus Berry
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Pure Power
+Nature: Jolly
+- Fake Out
+- High Jump Kick
+- Zen Headbutt
+- Bullet Punch
+
+Mienshao @ Life Orb
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Regenerator
+Nature: Jolly
+- Drain Punch
+- U Turn
+- Knock Off
+- Stone Edge
+
+Pawmot @ Shell Bell
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Iron Fist
+Nature: Jolly
+- Double Shock
+- Close Combat
+- Mach Punch
+- Ice Punch
+
+Machamp @ Expert Belt
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: No Guard
+Nature: Adamant
+- Dynamic Punch
+- Knock Off
+- Stone Edge
+- Ice Punch
+
+Toxicroak @ Black Sludge
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Dry Skin
+Nature: Adamant
+- Drain Punch
+- Sucker Punch
+- Gunk Shot
+- Swords Dance
+
+Lucario @ Lucarionite
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Inner Focus
+Nature: Jolly
+- Close Combat
+- Meteor Mash
+- Extreme Speed
+- Swords Dance
+
+=== TRAINER_SIDE_WAKE_HNS ===
+Name: WAKE
+Class: Leader Hns
+Pic: Black Belt
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Blue
+Items: Full Restore / Full Restore
+
+Politoed @ Damp Rock
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Drizzle
+Nature: Bold
+- Scald
+- Ice Beam
+- Hypnosis
+- Encore
+
+Floatzel @ Life Orb
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Technician
+Nature: Jolly
+- Wave Crash
+- Ice Spinner
+- Aqua Jet
+- Bulk Up
+
+Quagsire @ Leftovers
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Unaware
+Nature: Impish
+- Earthquake
+- Liquidation
+- Recover
+- Toxic
+
+Toedscruel @ Sitrus Berry
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Mold Breaker
+Nature: Timid
+- Spore
+- Earth Power
+- Giga Drain
+- Rapid Spin
+
+Barraskewda @ Choice Band
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Swift Swim
+Nature: Adamant
+- Liquidation
+- Close Combat
+- Psychic Fangs
+- Aqua Jet
+
+Gyarados @ Gyaradosite
+Level: 58
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Moxie
+Nature: Jolly
+- Waterfall
+- Crunch
+- Earthquake
+- Dragon Dance
+
+=== TRAINER_SIDE_BYRON_HNS ===
+Name: BYRON
+Class: Leader Hns
+Pic: Hiker
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Dark Red
+Items: Full Restore / Full Restore
+
+Bastiodon @ Leftovers
+Level: 66
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Dauntless Shield
+Nature: Impish
+- Stealth Rock
+- Iron Defense
+- Body Press
+- Roar
+
+Copperajah @ Sitrus Berry
+Level: 66
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Heavy Metal
+Nature: Adamant
+- Heavy Slam
+- Play Rough
+- Superpower
+- Earthquake
+
+Excadrill @ Focus Sash
+Level: 66
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Mold Breaker
+Nature: Jolly
+- Iron Head
+- Earthquake
+- Rapid Spin
+- Swords Dance
+
+Kingambit @ Black Glasses
+Level: 66
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Supreme Overlord
+Nature: Adamant
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+- Swords Dance
+
+Corviknight @ Leftovers
+Level: 66
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Pressure
+Nature: Impish
+- Brave Bird
+- Body Press
+- Bulk Up
+- Roost
+
+Aggron @ Aggronite
+Level: 66
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Impish
+- Heavy Slam
+- Earthquake
+- Body Press
+- Iron Defense
+
+=== TRAINER_SIDE_ROARK_HNS ===
+Name: ROARK
+Class: Leader Hns
+Pic: Engineer Hns
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Orange
+Items: Full Restore / Full Restore
+
+Glimmora @ Focus Sash
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Toxic Debris
+Nature: Timid
+- Mortal Spin
+- Power Gem
+- Sludge Wave
+- Stealth Rock
+
+Garganacl @ Leftovers
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Purifying Salt
+Nature: Careful
+- Salt Cure
+- Body Press
+- Iron Defense
+- Recover
+
+Tyrantrum @ Life Orb
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Rock Head
+Nature: Jolly
+- Head Smash
+- Dragon Claw
+- Psychic Fangs
+- Dragon Dance
+
+Kleavor @ Lum Berry
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sharpness
+Nature: Jolly
+- Stone Axe
+- X Scissor
+- Close Combat
+- Swords Dance
+
+Rampardos @ Choice Scarf
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Mold Breaker
+Nature: Adamant
+- Head Smash
+- Earthquake
+- Fire Punch
+- Zen Headbutt
+
+Tyranitar @ Tyranitarite
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sand Stream
+Nature: Jolly
+- Stone Edge
+- Crunch
+- Earthquake
+- Dragon Dance
+
+=== TRAINER_SIDE_VOLKNER_HNS ===
+Name: VOLKNER
+Class: Leader Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Yellow
+Items: Full Restore / Full Restore
+
+Jolteon @ Life Orb
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Volt Absorb
+Nature: Timid
+- Thunderbolt
+- Shadow Ball
+- Hyper Voice
+- Calm Mind
+
+Raichu Alola @ Focus Sash
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Surge Surfer
+Nature: Timid
+- Thunderbolt
+- Psychic
+- Focus Blast
+- Nasty Plot
+
+Luxray @ Choice Band
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Adamant
+- Wild Charge
+- Crunch
+- Ice Fang
+- Play Rough
+
+Rotom Wash @ Leftovers
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Bold
+- Hydro Pump
+- Volt Switch
+- Will O Wisp
+- Pain Split
+
+Electivire @ Expert Belt
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Motor Drive
+Nature: Adamant
+- Wild Charge
+- Ice Punch
+- Earthquake
+- Cross Chop
+
+Manectric @ Manectite
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Lightning Rod
+Nature: Timid
+- Thunderbolt
+- Flamethrower
+- Volt Switch
+- Snarl
+

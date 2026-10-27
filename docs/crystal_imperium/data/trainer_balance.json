@@ -8169,6 +8169,887 @@
    "name": "SABRINA",
    "pic": "Leader Sabrina Hns"
   },
+  "TRAINER_SIDE_BYRON_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_SIDE_BYRON_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Dauntless Shield",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 66,
+     "moves": [
+      "Stealth Rock",
+      "Iron Defense",
+      "Body Press",
+      "Roar"
+     ],
+     "nature": "Impish",
+     "species": "Bastiodon"
+    },
+    {
+     "ability": "Heavy Metal",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 66,
+     "moves": [
+      "Heavy Slam",
+      "Play Rough",
+      "Superpower",
+      "Earthquake"
+     ],
+     "nature": "Adamant",
+     "species": "Copperajah"
+    },
+    {
+     "ability": "Mold Breaker",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 66,
+     "moves": [
+      "Iron Head",
+      "Earthquake",
+      "Rapid Spin",
+      "Swords Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Excadrill"
+    },
+    {
+     "ability": "Supreme Overlord",
+     "item": "Black Glasses",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 66,
+     "moves": [
+      "Kowtow Cleave",
+      "Iron Head",
+      "Sucker Punch",
+      "Swords Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Kingambit"
+    },
+    {
+     "ability": "Pressure",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 66,
+     "moves": [
+      "Brave Bird",
+      "Body Press",
+      "Bulk Up",
+      "Roost"
+     ],
+     "nature": "Impish",
+     "species": "Corviknight"
+    },
+    {
+     "ability": "Sturdy",
+     "item": "Aggronite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 66,
+     "moves": [
+      "Heavy Slam",
+      "Earthquake",
+      "Body Press",
+      "Iron Defense"
+     ],
+     "nature": "Impish",
+     "species": "Aggron"
+    }
+   ],
+   "mugshot": "Dark Red",
+   "music": "Hg Boy 1",
+   "name": "BYRON",
+   "pic": "Hiker"
+  },
+  "TRAINER_SIDE_CANDICE_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Hns",
+   "double_battle": "No",
+   "gender": "Female",
+   "id": "TRAINER_SIDE_CANDICE_HNS",
+   "mons": [
+    {
+     "ability": "Ice Body",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 15,
+     "moves": [
+      "Icy Wind",
+      "Razor Leaf",
+      "Leech Seed",
+      "Ice Shard"
+     ],
+     "nature": "Modest",
+     "species": "Snover"
+    },
+    {
+     "ability": "Inner Focus",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 15,
+     "moves": [
+      "Fake Out",
+      "Ice Shard",
+      "Bite",
+      "Quick Attack"
+     ],
+     "nature": "Jolly",
+     "species": "Sneasel"
+    },
+    {
+     "ability": "Thick Fat",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 15,
+     "moves": [
+      "Ice Ball",
+      "Defense Curl",
+      "Brine",
+      "Yawn"
+     ],
+     "nature": "Bold",
+     "species": "Spheal"
+    },
+    {
+     "ability": "Thick Fat",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 15,
+     "moves": [
+      "Ice Shard",
+      "Ice Fang",
+      "Bulldoze",
+      "Body Slam"
+     ],
+     "nature": "Adamant",
+     "species": "Cetoddle"
+    },
+    {
+     "ability": "Pure Power",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 15,
+     "moves": [
+      "Force Palm",
+      "Ice Punch",
+      "Bullet Punch",
+      "Detect"
+     ],
+     "nature": "Adamant",
+     "species": "Meditite"
+    },
+    {
+     "ability": "Levitate",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 15,
+     "moves": [
+      "Freeze Dry",
+      "Icy Wind",
+      "Recover",
+      "Reflect"
+     ],
+     "nature": "Calm",
+     "species": "Cryogonal"
+    }
+   ],
+   "mugshot": "Light Blue",
+   "music": "Hg Girl 1",
+   "name": "CANDICE",
+   "pic": "Skier F Hns"
+  },
+  "TRAINER_SIDE_FANTINA_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Hns",
+   "double_battle": "No",
+   "gender": "Female",
+   "id": "TRAINER_SIDE_FANTINA_HNS",
+   "items": "Hyper Potion / Hyper Potion",
+   "mons": [
+    {
+     "ability": "Intimidate",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 42,
+     "moves": [
+      "Will O Wisp",
+      "Foul Play",
+      "Shadow Sneak",
+      "Sucker Punch"
+     ],
+     "nature": "Careful",
+     "species": "Spiritomb"
+    },
+    {
+     "ability": "Frisk",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 42,
+     "moves": [
+      "Night Shade",
+      "Trick Room",
+      "Pain Split",
+      "Ice Beam"
+     ],
+     "nature": "Relaxed",
+     "species": "Dusclops"
+    },
+    {
+     "ability": "Weak Armor",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 42,
+     "moves": [
+      "Hex",
+      "Earth Power",
+      "Power Gem",
+      "Strength Sap"
+     ],
+     "nature": "Modest",
+     "species": "Cursola"
+    },
+    {
+     "ability": "Illusion",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 42,
+     "moves": [
+      "Shadow Ball",
+      "Hyper Voice",
+      "Focus Blast",
+      "Nasty Plot"
+     ],
+     "nature": "Timid",
+     "species": "Zoroark Hisui"
+    },
+    {
+     "ability": "Insomnia",
+     "item": "Spell Tag",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 42,
+     "moves": [
+      "Poltergeist",
+      "Gunk Shot",
+      "Knock Off",
+      "Shadow Sneak"
+     ],
+     "nature": "Adamant",
+     "species": "Banette"
+    },
+    {
+     "ability": "Levitate",
+     "item": "Wise Glasses",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 42,
+     "moves": [
+      "Shadow Ball",
+      "Mystical Fire",
+      "Dazzling Gleam",
+      "Nasty Plot"
+     ],
+     "nature": "Timid",
+     "species": "Mismagius"
+    }
+   ],
+   "mugshot": "Purple",
+   "music": "Hg Girl 1",
+   "name": "FANTINA",
+   "pic": "Hex Maniac"
+  },
+  "TRAINER_SIDE_GARDENIA_2_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Hns",
+   "double_battle": "No",
+   "gender": "Female",
+   "id": "TRAINER_SIDE_GARDENIA_2_HNS",
+   "items": "Hyper Potion / Hyper Potion",
+   "mons": [
+    {
+     "ability": "Rock Head",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Stealth Rock",
+      "Head Smash",
+      "Sucker Punch",
+      "Wood Hammer"
+     ],
+     "nature": "Adamant",
+     "species": "Sudowoodo"
+    },
+    {
+     "ability": "Effect Spore",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Sleep Powder",
+      "Giga Drain",
+      "Moonblast",
+      "Sludge Bomb"
+     ],
+     "nature": "Modest",
+     "species": "Vileplume"
+    },
+    {
+     "ability": "Seed Sower",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Hyper Voice",
+      "Energy Ball",
+      "Earth Power",
+      "Strength Sap"
+     ],
+     "nature": "Modest",
+     "species": "Arboliva"
+    },
+    {
+     "ability": "Shell Armor",
+     "item": "White Herb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Wood Hammer",
+      "Earthquake",
+      "Stone Edge",
+      "Shell Smash"
+     ],
+     "nature": "Adamant",
+     "species": "Torterra"
+    },
+    {
+     "ability": "Natural Cure",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Leaf Storm",
+      "Sludge Bomb",
+      "Shadow Ball",
+      "Spikes"
+     ],
+     "nature": "Timid",
+     "species": "Roserade"
+    },
+    {
+     "ability": "Chlorophyll",
+     "item": "Venusaurite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Giga Drain",
+      "Sludge Bomb",
+      "Earth Power",
+      "Synthesis"
+     ],
+     "nature": "Modest",
+     "species": "Venusaur"
+    }
+   ],
+   "mugshot": "Green",
+   "music": "Hg Girl 1",
+   "name": "GARDENIA",
+   "pic": "Picnicker"
+  },
+  "TRAINER_SIDE_GARDENIA_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Hns",
+   "double_battle": "No",
+   "gender": "Female",
+   "id": "TRAINER_SIDE_GARDENIA_HNS",
+   "items": "Potion",
+   "mons": [
+    {
+     "ability": "Sturdy",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 33,
+     "moves": [
+      "Stealth Rock",
+      "Rock Slide",
+      "Sucker Punch",
+      "Wood Hammer"
+     ],
+     "nature": "Adamant",
+     "species": "Sudowoodo"
+    },
+    {
+     "ability": "Flower Gift",
+     "item": "Miracle Seed",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 33,
+     "moves": [
+      "Sunny Day",
+      "Solar Beam",
+      "Weather Ball",
+      "Growth"
+     ],
+     "nature": "Modest",
+     "species": "Cherrim"
+    },
+    {
+     "ability": "Chlorophyll",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 33,
+     "moves": [
+      "Sleep Powder",
+      "Giga Drain",
+      "Sludge Bomb",
+      "Moonblast"
+     ],
+     "nature": "Modest",
+     "species": "Gloom"
+    },
+    {
+     "ability": "Harvest",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 33,
+     "moves": [
+      "Energy Ball",
+      "Earth Power",
+      "Strength Sap",
+      "Leech Seed"
+     ],
+     "nature": "Bold",
+     "species": "Dolliv"
+    },
+    {
+     "ability": "Shell Armor",
+     "item": "Eviolite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 33,
+     "moves": [
+      "Seed Bomb",
+      "Bite",
+      "Bulldoze",
+      "Synthesis"
+     ],
+     "nature": "Adamant",
+     "species": "Grotle"
+    },
+    {
+     "ability": "Natural Cure",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 33,
+     "moves": [
+      "Giga Drain",
+      "Sludge Bomb",
+      "Dazzling Gleam",
+      "Toxic Spikes"
+     ],
+     "nature": "Timid",
+     "species": "Roserade"
+    }
+   ],
+   "mugshot": "Green",
+   "music": "Hg Girl 1",
+   "name": "GARDENIA",
+   "pic": "Picnicker"
+  },
+  "TRAINER_SIDE_MAYLENE_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Hns",
+   "double_battle": "No",
+   "gender": "Female",
+   "id": "TRAINER_SIDE_MAYLENE_HNS",
+   "items": "Hyper Potion / Hyper Potion",
+   "mons": [
+    {
+     "ability": "Pure Power",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Fake Out",
+      "High Jump Kick",
+      "Zen Headbutt",
+      "Bullet Punch"
+     ],
+     "nature": "Jolly",
+     "species": "Medicham"
+    },
+    {
+     "ability": "Regenerator",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Drain Punch",
+      "U Turn",
+      "Knock Off",
+      "Stone Edge"
+     ],
+     "nature": "Jolly",
+     "species": "Mienshao"
+    },
+    {
+     "ability": "Iron Fist",
+     "item": "Shell Bell",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Double Shock",
+      "Close Combat",
+      "Mach Punch",
+      "Ice Punch"
+     ],
+     "nature": "Jolly",
+     "species": "Pawmot"
+    },
+    {
+     "ability": "No Guard",
+     "item": "Expert Belt",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Dynamic Punch",
+      "Knock Off",
+      "Stone Edge",
+      "Ice Punch"
+     ],
+     "nature": "Adamant",
+     "species": "Machamp"
+    },
+    {
+     "ability": "Dry Skin",
+     "item": "Black Sludge",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Drain Punch",
+      "Sucker Punch",
+      "Gunk Shot",
+      "Swords Dance"
+     ],
+     "nature": "Adamant",
+     "species": "Toxicroak"
+    },
+    {
+     "ability": "Inner Focus",
+     "item": "Lucarionite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 50,
+     "moves": [
+      "Close Combat",
+      "Meteor Mash",
+      "Extreme Speed",
+      "Swords Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Lucario"
+    }
+   ],
+   "mugshot": "Orange",
+   "music": "Hg Girl 1",
+   "name": "MAYLENE",
+   "pic": "Battle Girl"
+  },
+  "TRAINER_SIDE_ROARK_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_SIDE_ROARK_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Toxic Debris",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 75,
+     "moves": [
+      "Mortal Spin",
+      "Power Gem",
+      "Sludge Wave",
+      "Stealth Rock"
+     ],
+     "nature": "Timid",
+     "species": "Glimmora"
+    },
+    {
+     "ability": "Purifying Salt",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 75,
+     "moves": [
+      "Salt Cure",
+      "Body Press",
+      "Iron Defense",
+      "Recover"
+     ],
+     "nature": "Careful",
+     "species": "Garganacl"
+    },
+    {
+     "ability": "Rock Head",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 75,
+     "moves": [
+      "Head Smash",
+      "Dragon Claw",
+      "Psychic Fangs",
+      "Dragon Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Tyrantrum"
+    },
+    {
+     "ability": "Sharpness",
+     "item": "Lum Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 75,
+     "moves": [
+      "Stone Axe",
+      "X Scissor",
+      "Close Combat",
+      "Swords Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Kleavor"
+    },
+    {
+     "ability": "Mold Breaker",
+     "item": "Choice Scarf",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 75,
+     "moves": [
+      "Head Smash",
+      "Earthquake",
+      "Fire Punch",
+      "Zen Headbutt"
+     ],
+     "nature": "Adamant",
+     "species": "Rampardos"
+    },
+    {
+     "ability": "Sand Stream",
+     "item": "Tyranitarite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 75,
+     "moves": [
+      "Stone Edge",
+      "Crunch",
+      "Earthquake",
+      "Dragon Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Tyranitar"
+    }
+   ],
+   "mugshot": "Orange",
+   "music": "Hg Boy 1",
+   "name": "ROARK",
+   "pic": "Engineer Hns"
+  },
+  "TRAINER_SIDE_VOLKNER_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_SIDE_VOLKNER_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Volt Absorb",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 85,
+     "moves": [
+      "Thunderbolt",
+      "Shadow Ball",
+      "Hyper Voice",
+      "Calm Mind"
+     ],
+     "nature": "Timid",
+     "species": "Jolteon"
+    },
+    {
+     "ability": "Surge Surfer",
+     "item": "Focus Sash",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 85,
+     "moves": [
+      "Thunderbolt",
+      "Psychic",
+      "Focus Blast",
+      "Nasty Plot"
+     ],
+     "nature": "Timid",
+     "species": "Raichu Alola"
+    },
+    {
+     "ability": "Intimidate",
+     "item": "Choice Band",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 85,
+     "moves": [
+      "Wild Charge",
+      "Crunch",
+      "Ice Fang",
+      "Play Rough"
+     ],
+     "nature": "Adamant",
+     "species": "Luxray"
+    },
+    {
+     "ability": "Levitate",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 85,
+     "moves": [
+      "Hydro Pump",
+      "Volt Switch",
+      "Will O Wisp",
+      "Pain Split"
+     ],
+     "nature": "Bold",
+     "species": "Rotom Wash"
+    },
+    {
+     "ability": "Motor Drive",
+     "item": "Expert Belt",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 85,
+     "moves": [
+      "Wild Charge",
+      "Ice Punch",
+      "Earthquake",
+      "Cross Chop"
+     ],
+     "nature": "Adamant",
+     "species": "Electivire"
+    },
+    {
+     "ability": "Lightning Rod",
+     "item": "Manectite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 85,
+     "moves": [
+      "Thunderbolt",
+      "Flamethrower",
+      "Volt Switch",
+      "Snarl"
+     ],
+     "nature": "Timid",
+     "species": "Manectric"
+    }
+   ],
+   "mugshot": "Yellow",
+   "music": "Hg Boy 1",
+   "name": "VOLKNER",
+   "pic": "Cooltrainer M"
+  },
+  "TRAINER_SIDE_WAKE_HNS": {
+   "ai": "Smart Trainer / Ace Pokemon / HP Aware",
+   "class": "Leader Hns",
+   "double_battle": "No",
+   "gender": "Male",
+   "id": "TRAINER_SIDE_WAKE_HNS",
+   "items": "Full Restore / Full Restore",
+   "mons": [
+    {
+     "ability": "Drizzle",
+     "item": "Damp Rock",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 58,
+     "moves": [
+      "Scald",
+      "Ice Beam",
+      "Hypnosis",
+      "Encore"
+     ],
+     "nature": "Bold",
+     "species": "Politoed"
+    },
+    {
+     "ability": "Technician",
+     "item": "Life Orb",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 58,
+     "moves": [
+      "Wave Crash",
+      "Ice Spinner",
+      "Aqua Jet",
+      "Bulk Up"
+     ],
+     "nature": "Jolly",
+     "species": "Floatzel"
+    },
+    {
+     "ability": "Unaware",
+     "item": "Leftovers",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 58,
+     "moves": [
+      "Earthquake",
+      "Liquidation",
+      "Recover",
+      "Toxic"
+     ],
+     "nature": "Impish",
+     "species": "Quagsire"
+    },
+    {
+     "ability": "Mold Breaker",
+     "item": "Sitrus Berry",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 58,
+     "moves": [
+      "Spore",
+      "Earth Power",
+      "Giga Drain",
+      "Rapid Spin"
+     ],
+     "nature": "Timid",
+     "species": "Toedscruel"
+    },
+    {
+     "ability": "Swift Swim",
+     "item": "Choice Band",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 58,
+     "moves": [
+      "Liquidation",
+      "Close Combat",
+      "Psychic Fangs",
+      "Aqua Jet"
+     ],
+     "nature": "Adamant",
+     "species": "Barraskewda"
+    },
+    {
+     "ability": "Moxie",
+     "item": "Gyaradosite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 58,
+     "moves": [
+      "Waterfall",
+      "Crunch",
+      "Earthquake",
+      "Dragon Dance"
+     ],
+     "nature": "Jolly",
+     "species": "Gyarados"
+    }
+   ],
+   "mugshot": "Blue",
+   "music": "Hg Boy 1",
+   "name": "WAKE",
+   "pic": "Black Belt"
+  },
   "TRAINER_WHITNEY_1_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
    "class": "Leader Hns",
@@ -8836,6 +9717,15 @@
   "TRAINER_ROLAND_HNS",
   "TRAINER_SABRINA_HNS",
   "TRAINER_SAYO_HNS",
+  "TRAINER_SIDE_BYRON_HNS",
+  "TRAINER_SIDE_CANDICE_HNS",
+  "TRAINER_SIDE_FANTINA_HNS",
+  "TRAINER_SIDE_GARDENIA_2_HNS",
+  "TRAINER_SIDE_GARDENIA_HNS",
+  "TRAINER_SIDE_MAYLENE_HNS",
+  "TRAINER_SIDE_ROARK_HNS",
+  "TRAINER_SIDE_VOLKNER_HNS",
+  "TRAINER_SIDE_WAKE_HNS",
   "TRAINER_SIMON_HNS",
   "TRAINER_STEPHEN_HNS",
   "TRAINER_TIM_HNS",
