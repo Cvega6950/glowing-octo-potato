@@ -393,6 +393,16 @@ def warp(group, num, warp_id=0):
     return out
 
 
+def yes_no(yes, label, shot=None):
+    """At a script message that ends in a YES/NO box (MSGBOX_YESNO): B through the message until the
+    box is up (the script then waits: sGlobalScriptContextStatus is CONTEXT_WAITING, 1 in
+    src/script.c), then A for YES or B for NO."""
+    out = [f"waituntil8 {{sGlobalScriptContextStatus}} 1 1500 B {label}", "wait 10"]
+    if shot:
+        out.append(f"shot {shot}")
+    return out + [f"press {'A' if yes else 'B'}", "wait 30"]
+
+
 def walk(*steps):
     """walk("UP", 4, "RIGHT", 2): one tile is 16 frames at walking speed; hold B is not used."""
     out = []

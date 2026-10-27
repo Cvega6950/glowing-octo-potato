@@ -1,0 +1,132 @@
+# Crystal Imperium play test: the side battles (DECISIONS.md D41).
+# Candice waits in Violet City's Trainer School from the start: NO keeps her waiting; YES starts
+# her battle, six Pokemon at the no-badge cap; the win gives her reward once and whole (the Bag
+# here), and talking to her again only gets her last words.
+# Gardenia in Ilex Forest waits for two badges, and from four uses her second team.
+# With the Bag's items pocket and the PC full, a won battle gives nothing yet; the reward comes
+# when the player talks to her again with room for it.
+!new_game()
+!battle_style_set()
+!no_care_packages()
+!set_flag("FLAG_DISABLE_TRAINERS")
+!set_flag("FLAG_DISABLE_ENCOUNTERS")
+!prepared_team(100)
+savestate team.ss
+
+# Violet City's Trainer School, from its door (4,19): Candice stands at (8,3), facing down
+!warp(3, 2, 0)
+wait 60
+!walkto(8, 4, path=True)
+press UP
+wait 20
+shot 01_candice.png
+savestate candice.ss
+press A
+!yes_no(False, "candice_asks", "02_challenge.png")
+mash B 200
+wait 30
+shot 03_declined.png
+!expect_flag("TRAINER_FLAGS_START + TRAINER_SIDE_CANDICE_HNS", 0, "no_battle_after_no")
+!expect_flag("FLAG_SIDE_REWARD_CANDICE", 0, "no_reward_after_no")
+
+# YES: her six at the cap of no badges (15)
+press A
+!yes_no(True, "candice_asks_again")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B candice_action_menu
+shot 04_battle.png
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_CANDICE_HNS", "opponent_is_candice")
+expect8 {gEnemyPartyCount} 6 candice_has_6
+expect8 {gEnemyParty+84} 15 candice_lead_at_cap_15
+expect8 {gEnemyParty+584} 15 candice_ace_at_cap_15
+!autobattle("0,0,0,0,0,0")
+expect8 {gBattleOutcome} 1 candice_beaten
+# Her defeat text, back to the field, her reward (Ice Gems, two TMs) and her last words
+mash B 900
+wait 60
+shot 05_after.png
+!expect_flag("TRAINER_FLAGS_START + TRAINER_SIDE_CANDICE_HNS", 1, "candice_defeated")
+!expect_flag("FLAG_SIDE_REWARD_CANDICE", 1, "candice_reward_given")
+!expect_bag_quantity("items", "ITEM_ICE_GEM", 10)
+!expect_bag_has("TMsHMs", "ITEM_TM_TRIPLE_AXEL")
+!expect_bag_has("TMsHMs", "ITEM_TM_ICE_PUNCH")
+# Talking again: her last words only, no battle and no second reward
+press A
+wait 60
+shot 06_talk_again.png
+mash B 200
+wait 30
+expect8 {gBattleOutcome} 1 no_second_battle
+!expect_bag_quantity("items", "ITEM_ICE_GEM", 10, "still_10_ice_gems")
+
+# A full items pocket and PC: the battle is won, the reward waits
+loadstate candice.ss
+!fill_pocket("items", "ITEM_POTION")
+!fill_pc("ITEM_POTION")
+press A
+!yes_no(True, "candice_asks_full_bag")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B candice_full_bag_action_menu
+!autobattle("0,0,0,0,0,0")
+expect8 {gBattleOutcome} 1 candice_beaten_full_bag
+mash B 900
+wait 60
+shot 07_no_room.png
+!expect_flag("TRAINER_FLAGS_START + TRAINER_SIDE_CANDICE_HNS", 1, "candice_defeated_full_bag")
+!expect_flag("FLAG_SIDE_REWARD_CANDICE", 0, "no_reward_without_room")
+!expect_pc_has("ITEM_POTION", "pc_still_full")
+# Room in the Bag again: talking gives the reward, without a battle
+!empty_pocket("items")
+press A
+wait 60
+mash B 900
+wait 60
+shot 08_reward_later.png
+!expect_flag("FLAG_SIDE_REWARD_CANDICE", 1, "reward_given_later")
+!expect_bag_quantity("items", "ITEM_ICE_GEM", 10, "ice_gems_given_later")
+!expect_bag_has("TMsHMs", "ITEM_TM_TRIPLE_AXEL", "tm_given_later")
+
+# Ilex Forest, from the Route 34 gate (19,13): Gardenia stands at (18,17), facing right
+loadstate team.ss
+!set_flag("FLAG_BADGE01_GET")
+!warp(24, 13, 1)
+wait 60
+!walkto(19, 17, path=True)
+press LEFT
+wait 20
+shot 09_gardenia.png
+savestate gardenia.ss
+# One badge: not yet
+press A
+wait 60
+shot 10_not_yet.png
+mash B 300
+wait 30
+expect8 {gBattleOutcome} 0 gardenia_no_battle_with_1_badge
+# Two badges: her first team, at the cap of two badges (33)
+loadstate gardenia.ss
+!set_flag("FLAG_BADGE02_GET")
+press A
+!yes_no(True, "gardenia_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B gardenia_action_menu
+shot 11_gardenia_battle.png
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_GARDENIA_HNS", "opponent_is_gardenia_1")
+expect8 {gEnemyPartyCount} 6 gardenia_has_6
+expect8 {gEnemyParty+84} 33 gardenia_lead_at_cap_33
+# Four badges: her second team, at the cap of four badges (50)
+loadstate gardenia.ss
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_flag("FLAG_BADGE04_GET")
+press A
+!yes_no(True, "gardenia_asks_4_badges", "12_second_team_challenge.png")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B gardenia_2_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_GARDENIA_2_HNS", "opponent_is_gardenia_2")
+expect8 {gEnemyPartyCount} 6 gardenia_2_has_6
+expect8 {gEnemyParty+84} 50 gardenia_2_lead_at_cap_50
+!autobattle("0,0,0,0,0,0")
+expect8 {gBattleOutcome} 1 gardenia_2_beaten
+mash B 900
+wait 60
+shot 13_gardenia_after.png
+!expect_flag("FLAG_SIDE_REWARD_GARDENIA", 1, "gardenia_reward_given")
+!expect_bag_quantity("items", "ITEM_GRASS_GEM", 10)
+!expect_bag_has("items", "ITEM_LEAF_STONE")

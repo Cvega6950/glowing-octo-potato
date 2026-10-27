@@ -56,6 +56,7 @@
 //   waituntil32 ADDR VALUE MAXFRAMES [KEY] [LABEL]   run until the 32-bit value at ADDR is VALUE
 //                          (the Thumb bit ignored, for function pointers), tapping KEY every 16 frames
 //                          while it isn't ("-": no key); fail if it isn't within MAXFRAMES
+//   waituntil8 ADDR VALUE MAXFRAMES [KEY] [LABEL]   the same for the 8-bit value at ADDR
 //   waituntilany32 MAXFRAMES KEY LABEL ADDR=VALUE[,ADDR=VALUE...]   like waituntil32, until one of the
 //                          32-bit values at the ADDRs is its VALUE; KEY "-" taps nothing
 //   within8/within16/within32 ADDR VALUE FRAMES [LABEL]   run frame by frame until the value at ADDR is
@@ -1143,11 +1144,14 @@ int main(int argc, char **argv)
             }
             printf("[frame %lu] dump 0x%08X+%u -> %s%s\n", frameCount, addr, len, a3, f ? "" : " (failed)");
         }
-        else if (!strcmp(cmd, "waituntil32"))
+        else if (!strcmp(cmd, "waituntil32") || !strcmp(cmd, "waituntil8"))
         {
             char a4[64] = {0}, a5[128] = {0};
             sscanf(line, "%*s %*s %*s %*s %63s %127s", a4, a5);
-            uint32_t addr = ParseAddr(a1), want = strtoul(a2, NULL, 0) & ~1u;
+            // waituntil32 ignores bit 0 (a Thumb function pointer's), waituntil8 compares one byte
+            int size = !strcmp(cmd, "waituntil8") ? 8 : 32;
+            uint32_t mask = size == 32 ? ~1u : 0xFFu;
+            uint32_t addr = ParseAddr(a1), want = strtoul(a2, NULL, 0) & mask;
             unsigned long maxFrames = strtoul(a3, NULL, 0), start = frameCount;
             unsigned key = 0;
             const char *label = a5;
@@ -1162,15 +1166,15 @@ int main(int argc, char **argv)
                 if (!key)
                     label = a4;
             }
-            while ((Peek(32, addr) & ~1u) != want && frameCount - start < maxFrames)
+            while ((Peek(size, addr) & mask) != want && frameCount - start < maxFrames)
             {
                 if (key)
                     Tap(key);
                 RunFrames(0, 10);
             }
-            int ok = (Peek(32, addr) & ~1u) == want;
+            int ok = (Peek(size, addr) & mask) == want;
             printf("[frame %lu] %s %s: @0x%08X = 0x%X after %lu frames%s\n", frameCount, ok ? "PASS" : "FAIL",
-                   label[0] ? label : "waituntil32", addr, Peek(32, addr), frameCount - start, ok ? "" : " (timed out)");
+                   label[0] ? label : cmd, addr, Peek(size, addr), frameCount - start, ok ? "" : " (timed out)");
             if (!ok)
                 failures++;
         }

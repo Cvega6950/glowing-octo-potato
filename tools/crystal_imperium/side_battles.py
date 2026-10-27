@@ -109,7 +109,7 @@ JOHTO = [
             "reward": ["You earned these! Take them with you!"],
             "after": ["Train with all your focus, and your POKéMON will sparkle like diamond dust!"]}),
     Battle("GARDENIA", 654, "GARDENIA", "Leader Hns", "Picnicker", "Female", "Hg Girl 1", "Green",
-           "OBJ_EVENT_GFX_PICNICKER_HNS", [("IlexForest_hns", 25, 36, "down")],
+           "OBJ_EVENT_GFX_PICNICKER_HNS", [("IlexForest_hns", 18, 17, "right")],
            ("badges", 2),
            [("GRASS_GEM", 10), ("TM_ENERGY_BALL", 1), ("TM_LEAF_BLADE", 1), ("LEAF_STONE", 1)],
            {"not_yet": ["Hi there! I'm GARDENIA, ETERNA CITY's GYM LEADER. This forest is just wonderful!",
@@ -157,7 +157,7 @@ JOHTO = [
             "reward": ["What a battle! Here, a prize from CRASHER WAKE!"],
             "after": ["Crash through anything in your way, just like a wave!"]}),
     Battle("BYRON", 659, "BYRON", "Leader Hns", "Hiker", "Male", "Hg Boy 1", "Dark Red",
-           "OBJ_EVENT_GFX_HIKER_HNS", [("OlivineCity_hns", 41, 51, "down")],
+           "OBJ_EVENT_GFX_HIKER_HNS", [("OlivineCity_hns", 41, 51, "left")],
            ("badges", 6),
            [("STEEL_GEM", 10), ("TM_STEEL_BEAM", 1), ("METAGROSSITE", 1), ("METAL_COAT", 1)],
            {"not_yet": ["Bwahahaha! I'm BYRON, GYM LEADER of CANALAVE CITY! I sailed here to see "
@@ -463,6 +463,37 @@ class MapData:
                     return kind
         return None
 
+    def reachable(self, blocked, layout=None):
+        """The tiles the player can walk to from where they come in (the warps, and the map's edges
+        toward its connections), not over the blocked tiles, with the game's elevation rule
+        (IsElevationMismatchAt: a move between two different elevations is blocked unless one of
+        them is 0; 15, a bridge, keeps the elevation). No ledges or field moves; the edge of a water
+        connection starts on the water, as if surfing in."""
+        lay = self.layouts[layout or self.json["layout"]]
+        w, h = lay["width"], lay["height"]
+        starts = [(int(e["x"]), int(e["y"])) for e in self.json.get("warp_events") or []]
+        for c in self.json.get("connections") or []:
+            starts += {"up": [(x, 0) for x in range(w)], "down": [(x, h - 1) for x in range(w)],
+                       "left": [(0, y) for y in range(h)], "right": [(w - 1, y) for y in range(h)]}.get(c["direction"], [])
+        seen, todo = set(), []
+        for x, y in starts:
+            if (x, y) not in blocked and 0 <= x < w and 0 <= y < h and self.tile(x, y, layout)[0] == 0:
+                todo.append((x, y, self.tile(x, y, layout)[1]))
+        seen.update(todo)
+        while todo:
+            x, y, elevation = todo.pop()
+            for nx, ny in ((x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)):
+                if not (0 <= nx < w and 0 <= ny < h) or (nx, ny) in blocked:
+                    continue
+                collision, e = self.tile(nx, ny, layout)
+                if collision or (elevation and e not in (0, 15) and e != elevation):
+                    continue
+                step = (nx, ny, elevation if e == 15 else e)
+                if step not in seen:
+                    seen.add(step)
+                    todo.append(step)
+        return {(x, y) for x, y, _ in seen}
+
 
 def place_objects(check_only):
     """Adds or updates each side battle's object on its maps; returns the maps out of date."""
@@ -479,6 +510,18 @@ def place_objects(check_only):
             other = m.taken(x, y, script)
             if other:
                 sys.exit(f"{b.key}: ({x},{y}) on {folder} already has one of its {other}")
+            # The player can walk up to talk, and the trainer cuts no one off: every other object
+            # counts as standing in the way, wherever its flag hides it
+            others = {(int(o["x"]), int(o["y"])) for o in m.json["object_events"] if o.get("script") != script}
+            dx, dy = {"down": (0, 1), "up": (0, -1), "left": (-1, 0), "right": (1, 0)}[facing]
+            for layout in [None] + (layouts[0] if layouts else []):
+                free = m.reachable(others, layout)
+                there = m.reachable(others | {(x, y)}, layout)
+                if (x + dx, y + dy) not in there:
+                    sys.exit(f"{b.key}: on {folder} ({layout or 'its layout'}), no way to ({x + dx},{y + dy}) to talk")
+                cut_off = free - there - {(x, y)}
+                if cut_off:
+                    sys.exit(f"{b.key}: at ({x},{y}) on {folder} ({layout or 'its layout'}), cuts off {sorted(cut_off)[:5]}")
             obj = {"graphics_id": b.gfx, "x": x, "y": y, "elevation": 0, "movement_type": FACINGS[facing],
                    "movement_range_x": 0, "movement_range_y": 0, "trainer_type": "TRAINER_TYPE_NONE",
                    "trainer_sight_or_berry_tree_id": "0", "script": script, "flag": "0"}
