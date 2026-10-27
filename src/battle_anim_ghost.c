@@ -851,10 +851,12 @@ void AnimTask_DestinyBondWhiteShadow(u8 taskId)
         {
             if (battler != gBattleAnimAttacker
              && battler != BATTLE_PARTNER(gBattleAnimAttacker)
-             && IsBattlerSpriteVisible(battler))
+             && IsBattlerSpriteVisible(battler)
+             && (gAnimMoveIndex != MOVE_DARK_HOLE || battler == gBattleAnimTarget)) // Crystal Imperium: one target
             {
                 if (gAnimMoveIndex == MOVE_DARK_VOID
-                 || gAnimMoveIndex == MOVE_POLTERGEIST)
+                 || gAnimMoveIndex == MOVE_POLTERGEIST
+                 || gAnimMoveIndex == MOVE_DARK_HOLE) // Crystal Imperium (DECISIONS.md D39)
                     spriteId = CreateSprite(&gDarkVoidBlackHoleTemplate, baseX, baseY, 55);   //dark void
                 else
                     spriteId = CreateSprite(&gDestinyBondWhiteShadowSpriteTemplate, baseX, baseY, 55);   //destiny bond
@@ -880,7 +882,7 @@ void AnimTask_DestinyBondWhiteShadow(u8 taskId)
     }
     else
     {
-        if (gAnimMoveIndex == MOVE_DARK_VOID)
+        if (gAnimMoveIndex == MOVE_DARK_VOID || gAnimMoveIndex == MOVE_DARK_HOLE) // Crystal Imperium: Dark Hole too
             spriteId = CreateSprite(&gDarkVoidBlackHoleTemplate, baseX, baseY, 55);   //dark void
         else
             spriteId = CreateSprite(&gDestinyBondWhiteShadowSpriteTemplate, baseX, baseY, 55);   //destiny bond

@@ -3826,6 +3826,31 @@ gBattleAnimMove_DarkVoid::
 	visible ANIM_DEF_PARTNER
 	end
 
+@ Crystal Imperium (DECISIONS.md D39): Radical Red's Dark Hole hits one Pokemon: Dark Void's animation on its
+@ target alone (Dark Void's slides both foes into the void)
+gBattleAnimMove_DarkHole::
+	loadspritegfx ANIM_TAG_WHITE_SHADOW @Destiny Bond
+	loadspritegfx ANIM_TAG_QUICK_GUARD_HAND @Black Colour
+	loadspritegfx ANIM_TAG_SPARKLE_2 @Healing Stars
+	loadspritegfx ANIM_TAG_POISON_BUBBLE @Poison
+	fadetobg BG_DARK_VOID
+	waitbgfadeout
+	createvisualtask AnimTask_StartSlidingBg, 5, 0, 0xFFA0, 1, 0xffff
+	waitbgfadein
+	createvisualtask AnimTask_DestinyBondWhiteShadow, 5, 0, 0x30
+	loopsewithpan SE_M_CONFUSE_RAY, SOUND_PAN_ATTACKER, 5, 2
+	delay 48
+	createsprite gSlideMonToOffsetSpriteTemplate, ANIM_ATTACKER, 2, ANIM_TARGET, -768, 21, 0, 112 @Last is duration
+	delay 64
+	invisible ANIM_TARGET
+	createsprite gDarkVoidPurpleStarsTemplate, ANIM_ATTACKER, 2, 0, 0, ANIM_TARGET, 0, 32, 60
+	waitforvisualfinish
+	createsprite gSlideMonToOriginalPosSpriteTemplate, ANIM_ATTACKER, 2, ANIM_TARGET, 0, 16
+	delay 32
+	call UnsetPsychicBg
+	visible ANIM_TARGET
+	end
+
 gBattleAnimMove_SeedFlare::
 	loadspritegfx ANIM_TAG_CIRCLE_OF_LIGHT @charge animation
 	loadspritegfx ANIM_TAG_LEAF @green color

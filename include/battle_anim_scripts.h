@@ -467,6 +467,7 @@ extern const u8 gBattleAnimMove_LunarDance[];
 extern const u8 gBattleAnimMove_CrushGrip[];
 extern const u8 gBattleAnimMove_MagmaStorm[];
 extern const u8 gBattleAnimMove_DarkVoid[];
+extern const u8 gBattleAnimMove_DarkHole[];
 extern const u8 gBattleAnimMove_SeedFlare[];
 extern const u8 gBattleAnimMove_OminousWind[];
 extern const u8 gBattleAnimMove_ShadowForce[];

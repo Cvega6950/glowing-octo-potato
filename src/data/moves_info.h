@@ -21449,7 +21449,7 @@ const struct MoveInfo gMovesInfo[MOVES_COUNT_ALL] =
             .moveEffect = MOVE_EFFECT_SLEEP,
             .chance = 40,
         }),
-        .battleAnimScript = gBattleAnimMove_DarkVoid,
+        .battleAnimScript = gBattleAnimMove_DarkHole,
     },
 
     [MOVE_SOUL_ROBBERY] =
