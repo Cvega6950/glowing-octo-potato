@@ -1194,8 +1194,8 @@ DexNav shows and that wild encounters draw from:
     before "fell!". The sound plays on under the next message; contests keep the wait. Traced on mGBA (TYPHLOSION's Swift against Whitney's first
     Pokémon, which used Charm): from the frame the move is chosen to its animation, 15 frames
     (0.12.0: 46); from the opponent's "used" message to its animation, 7 frames (0.12.0: 45).
-    The 15 left are the turn's own steps (each battler's choice confirmed, the turn order, the
-    move's first checks), a frame or so each.
+    The 15 left were the turn's own steps (each battler's choice confirmed, the turn order, the
+    move's first checks), a frame or so each: D40 runs them in 3.
   - A battle message's prompt goes on by itself after 49 frames (`NUM_FRAMES_AUTO_SCROLL_DELAY`);
     A or B goes on at once, as before. A trainer's words (win and lose texts, the speeches before
     a last Pokémon) still wait for the player, and so do the Bag and party menus opened from the
@@ -1322,3 +1322,70 @@ DexNav shows and that wild encounters draw from:
   79–93 damage, and without the Fairy rule none. `battle_anims` uses the six new moves with the
   rest. `hm_field_moves`: MAGIKARP's party menu now has LEARN MOVES (Celebrate) above FLY.
   `imperium_species.py --check`.
+
+## D40. A chosen move starts at once
+
+- The user, again: "It's more so when you pick a move and the Pokemon move that it's more clunky
+  in battle". After D38, 15 frames still passed between A on a move and its animation, and 10
+  between one Pokémon's HP bar and the next one's "used" message, with nothing changing on
+  screen. Three sweeps measured where each frame went (traces of the battle's functions, the
+  script, the controllers and the play-time counter, a screenshot a frame, CPU profiles; TYPHLOSION's
+  Swift against Whitney's lead, which used Charm), and the animation sweep tried its two changes
+  on patched copies of the ROM before anything was built.
+- **The bookkeeping shares frames** (always, outside link and recorded battles and the expansion's
+  test runner: `IsBattleBatchOn`, the gate D38's batching already had; nothing is drawn
+  differently, the same steps run in the same order):
+  - The choice is confirmed in the frame it is read (`HandleTurnActionSelectionState` falls through
+    its three states; each took a frame), then the turn order is set and the first action starts
+    in that frame. A Quick Claw or Quick Draw message, a gimmick (Mega Evolution, Dynamax,
+    Terastallization) or a Focus Punch-like move's script ends it there, where Game Freak's frame
+    ended.
+  - The turn's actions run on while each one moves on at once (`RunTurnActionsFunctions`, at most 8
+    a frame): a move's script ends, the next battler's move is set up, and its checks run up to its
+    "used" message, which gets the next frame to itself (printing it is the most expensive step of
+    a move, about 40% of a frame). A controller at work, a battle script started (a fainted
+    Pokémon, a gimmick, the end of the turn) or an action that waits ends the frame, as before.
+    The turn's state is reset in the frame its last action ends (`HandleEndTurn_ContinueBattle`);
+    the end of the turn's effects (`BattleTurnPassed`) has the next frame.
+  - Commands that work through a list of their own (the checks before a move, a move's additional
+    effects, the steps after it: `attackcanceler`, `setpreattackadditionaleffect`,
+    `setadditionaleffects`, `moveend`) return after some of its entries and are called again; an
+    entry done now counts as progress in D38's batching, like a command that moved on.
+  - Commands that every controller finishes in the call (a write to the party, a sprite shown or
+    hidden, a sound effect, the end of the action menu's bounce) are handled at once
+    (`TryRunInstantControllerCommands`), instead of ending the frame for the controllers' turn.
+  - An animation's background is cleared in one go: Game Freak's fill went entry by entry, about a
+    frame of CPU, and the frame it fell in (every stat change) was dropped.
+- **With FAST BATTLES on:**
+  - "X used Y!", printed whole (D38), is done in the frame it's printed; the move's animation
+    starts in the frame its command arrives and the controller is done in the frame it ends. A
+    Pokémon behind a substitute still waits for it to move aside.
+  - An animation's palette fades (a background change, a colour blend, a status's pulse) run at
+    the animations' double speed: `BattleMainCB2` gives the fade a second step
+    (`UpdatePaletteFadeSecondStep`). Normal and hardware fades only, and a hardware fade's finish
+    is left to VBlank (D38's Tailwind hang). This also fixes a bug of D38's mixed speeds: an
+    animation's second fade could be refused while its first, slower one still ran, so Ice Shard
+    left the foe tinted blue (Shadow Force and Magical Torque left background palettes changed).
+  - The animation doesn't wait for a cry to end (Growl 119 frames, now 26; Parting Shot, Disarming
+    Voice): the cry plays on under the next message. Contests keep the wait.
+  - A battle message's prompt goes on after 24 frames, not 49 ("fainted!", "gained Exp. Points!"),
+    and the Exp. bar fills as its sound starts (it waited 13 frames).
+  - A Pokémon sent out during the battle plays at double speed, as the intro already did (D38):
+    the party's balls before a trainer's next Pokémon (47 frames, not 94), the ball (33, not 64)
+    and the health box sliding in (12, not 23) (`BtlController_IsSwitchInPlaying` in
+    `IsBattleAnimationPlaying`). The Pokémon's own animation was already at double speed.
+- **Results** (mGBA, the same turn as D38): from A on Swift to its animation, 3 frames (D38: 15;
+  0.12.0: 46); from the end of Swift's HP bar to Charm's animation, 3 frames (D38: 16); the turn,
+  from A to the next action menu, 211 frames (D38: 253; 0.12.0: 489). With FAST BATTLES off the
+  same turn takes 487 frames (D38: 520). A knockout of Whitney's lead to the next action menu, her
+  next Pokémon sent out on the way: 395 frames (D38: 585; "fainted!" and "gained Exp. Points!" 57 and
+  59 frames instead of 82 and 84). `battle_anims` uses every move once in
+  207,278 frames (D38: 285,972), 851 of 851 back at the menu or the battle's end.
+- Not changed: the animations' own choreography (already at double speed), the hit blink (16
+  frames, D38), messages typed at the TEXT SPEED chosen, the stat change's blend and hold, the
+  held-item animation, and the opponent's AI's think time (D38). Link and recorded battles keep
+  Game Freak's timing.
+- Evidence: `battle_turn_flow` (new: the animation within 6 frames of A, the opposing Pokémon's
+  within 6 of the HP bar; it needs `within8/16/32`, a new `tools/emurun` command that checks timing
+  to the frame), `battle_anims`, `battle_speed`, the Gym Leaders' and bosses' autobattles,
+  `mega_evolution` and the rest of the play tests.

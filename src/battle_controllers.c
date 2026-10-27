@@ -2112,7 +2112,12 @@ static void Controller_DoMoveAnimation(enum BattlerId battler)
             InitAndLaunchSpecialAnimation(battler, battler, battler, B_ANIM_SUBSTITUTE_TO_MON);
         }
         gBattleSpritesDataPtr->healthBoxesData[battler].animationState = 1;
-        break;
+        // Crystal Imperium (DECISIONS.md D40): with FAST BATTLES on, the animation starts in the frame
+        // its command arrives, and the controller is done in the frame it ends (Game Freak's states
+        // took a frame each); a Pokemon behind a substitute still waits for it to move aside
+        if (!IsFastBattleOn() || gBattleSpritesDataPtr->healthBoxesData[battler].specialAnimActive)
+            break;
+        // fall through
     case 1:
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].specialAnimActive)
         {
@@ -2135,7 +2140,10 @@ static void Controller_DoMoveAnimation(enum BattlerId battler)
             }
             gBattleSpritesDataPtr->healthBoxesData[battler].animationState = 3;
         }
-        break;
+        if (gBattleSpritesDataPtr->healthBoxesData[battler].animationState != 3 || !IsFastBattleOn()
+         || gBattleSpritesDataPtr->healthBoxesData[battler].specialAnimActive)
+            break;
+        // fall through
     case 3:
         if (!gBattleSpritesDataPtr->healthBoxesData[battler].specialAnimActive)
         {
@@ -2232,6 +2240,29 @@ static void Controller_WaitForPartyStatusSummary(enum BattlerId battler)
         gBattleSpritesDataPtr->healthBoxesData[battler].partyStatusDelayTimer = 0;
         BtlController_Complete(battler);
     }
+}
+
+static void SwitchIn_CleanShinyAnimShowSubstitute(enum BattlerId battler);
+
+// Crystal Imperium (DECISIONS.md D40): with FAST BATTLES on, a Pokemon sent out during the battle (the
+// party's balls before a trainer's next Pokemon, the ball, the Pokemon coming out, its health box
+// sliding in) plays at double speed, as the battle's intro already did (D38)
+bool32 BtlController_IsSwitchInPlaying(void)
+{
+    for (enum BattlerId battler = 0; battler < gBattlersCount; battler++)
+    {
+        void (*func)(enum BattlerId) = gBattlerControllerFuncs[battler];
+
+        if (func == Controller_WaitForPartyStatusSummary
+         || func == BtlController_HandleSwitchInTryShinyAnim
+         || func == BtlController_HandleSwitchInShowHealthbox
+         || func == BtlController_HandleSwitchInShowSubstitute
+         || func == SwitchIn_CleanShinyAnimShowSubstitute
+         || func == BtlController_HandleSwitchInWaitAndEnd
+         || func == BtlController_HandleSwitchInSoundAndEnd)
+            return TRUE;
+    }
+    return FALSE;
 }
 
 static void Controller_HitAnimation(enum BattlerId battler)
@@ -2650,6 +2681,9 @@ void BtlController_HandleMoveAnimation(enum BattlerId battler)
         gBattlerControllerFuncs[battler] = Controller_DoMoveAnimation;
         if (ShouldUpdateTvData(battler))
             BattleTv_SetDataBasedOnMove(move, gWeatherMoveAnim);
+        // Crystal Imperium (DECISIONS.md D40): with FAST BATTLES on, the animation starts in this frame
+        if (IsFastBattleOn())
+            Controller_DoMoveAnimation(battler);
     }
 }
 
@@ -2697,6 +2731,10 @@ void BtlController_HandlePrintString(enum BattlerId battler)
     if (IsControllerPlayer(battler)
      || IsControllerOpponent(battler))
         BattleArena_DeductSkillPoints(battler, *stringId);
+    // Crystal Imperium (DECISIONS.md D40): with FAST BATTLES on, a message printed whole at once (a
+    // move's "used" message) is done in the frame it's printed, not the next
+    if (IsFastBattleOn() && !IsTextPrinterActiveOnWindow(B_WIN_MSG))
+        BtlController_Complete(battler);
 }
 
 void BtlController_HandlePrintStringPlayerOnly(enum BattlerId battler)
@@ -3189,6 +3227,56 @@ void BtlController_Intro_DelayAndEnd(enum BattlerId battler)
 bool32 BtlController_ContinueDuringCry(void)
 {
     return !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)) && !gTestRunnerEnabled;
+}
+
+// Crystal Imperium (DECISIONS.md D40): commands that every controller finishes in the call that
+// handles them: a write to the party, a sprite shown or hidden, a sound effect, the end of the
+// action menu's bounce (or nothing at all). Outside link and recorded battles they're handled at
+// once, so the battle goes on in the same frame instead of waiting for the controllers' turn after
+// it. A controller whose exec bit is clear is idle in its BufferRunCommand, so one with such a
+// command pending handles it in that call.
+static bool32 IsInstantControllerCommand(u32 command)
+{
+    switch (command)
+    {
+    case CONTROLLER_SETMONDATA:
+    case CONTROLLER_SETRAWMONDATA:
+    case CONTROLLER_SPRITEINVISIBILITY:
+    case CONTROLLER_PLAYSE:
+    case CONTROLLER_LINKSTANDBYMSG:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+// Whether the battler's controller is idle, after handling such a command if one was pending
+bool32 TryRunInstantControllerCommand(enum BattlerId battler)
+{
+    if (!(gBattleControllerExecFlags & (1u << battler)))
+        return TRUE;
+    if (!IsBattleBatchOn() || !IsInstantControllerCommand(gBattleResources->bufferA[battler][0]))
+        return FALSE;
+    gBattlerControllerFuncs[battler](battler);
+    return !(gBattleControllerExecFlags & (1u << battler));
+}
+
+// Whether every controller is idle, after handling their pending commands if all are such commands
+bool32 TryRunInstantControllerCommands(void)
+{
+    enum BattlerId battler;
+
+    if (!IsBattleBatchOn())
+        return FALSE;
+    for (battler = 0; battler < gBattlersCount; battler++)
+    {
+        if ((gBattleControllerExecFlags & (1u << battler))
+         && !IsInstantControllerCommand(gBattleResources->bufferA[battler][0]))
+            return FALSE;
+    }
+    for (battler = 0; battler < gBattlersCount; battler++)
+        TryRunInstantControllerCommand(battler);
+    return gBattleControllerExecFlags == 0;
 }
 
 void BtlController_HandleSwitchInSoundAndEnd(enum BattlerId battler)

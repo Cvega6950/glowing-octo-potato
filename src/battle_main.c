@@ -1869,23 +1869,35 @@ static void CB2_HandleStartMultiBattle(void)
 // Pokemon sent out), battle animations (moves, stat changes, status conditions, Poke Balls) and a
 // Pokemon's own animation (sent out, after it knocks out a foe) play at double speed: the frame runs
 // a second step of the battle, its sprites and its tasks, without the frame's button presses. Text
-// prints and palettes fade at the usual speed: UpdatePaletteFade must run once a frame (a hardware
-// fade counts its finish in a one-bit field cleared at VBlank, and a second call would wrap it back
-// to zero, so the fade, and the animation waiting for it, never ended). Not in link or recorded
-// battles.
+// prints at the usual speed. A palette fade steps once a frame through UpdatePaletteFade, and a
+// battle animation's gets a second step from UpdatePaletteFadeSecondStep (D40), which leaves a
+// hardware fade's finish to VBlank: it counts the finish in a one-bit field, and a second count wraps
+// it back to zero, so the fade, and the animation waiting for it, never ended. Not in link or
+// recorded battles.
 bool32 IsFastBattleOn(void)
 {
     return !gSaveBlock3Ptr->challengeSettings.fastBattle
-        && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED))
-        && !gTestRunnerEnabled;
+        && IsBattleBatchOn();
+}
+
+// Crystal Imperium (DECISIONS.md D38, D40): whether the battle's bookkeeping may run several steps in
+// a frame (the battle script's commands, the choice of actions, the turn's actions). Everything
+// happens in the same order, only in fewer frames, so it's on with FAST BATTLES off too. Not in link
+// or recorded battles, which keep Game Freak's frame-by-frame timing, or pokeemerald-expansion's test
+// runner.
+bool32 IsBattleBatchOn(void)
+{
+    return !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)) && !gTestRunnerEnabled;
 }
 
 static bool32 IsBattleAnimationPlaying(void)
 {
     // A Pokemon's own animation can outlast its switch-in into the next choice of actions: the
-    // choice keeps the usual speed (its menu's cursor, the bouncing health box, the input)
+    // choice keeps the usual speed (its menu's cursor, the bouncing health box, the input). A Pokemon
+    // sent out during the battle counts too (D40).
     return gAnimScriptActive || gBattleMainFunc == DoBattleIntro
-        || (IsMonAnimationTaskActive() && gBattleMainFunc != HandleTurnActionSelectionState);
+        || (IsMonAnimationTaskActive() && gBattleMainFunc != HandleTurnActionSelectionState)
+        || BtlController_IsSwitchInPlaying();
 }
 
 void BattleMainCB2(void)
@@ -1902,6 +1914,10 @@ void BattleMainCB2(void)
     BuildOamBuffer();
     RunTextPrinters();
     UpdatePaletteFade();
+    // Crystal Imperium (DECISIONS.md D40): an animation's palette fades (a background change, a colour
+    // blend, a status's pulse) at the double speed of the rest of it
+    if (gAnimScriptActive && gMain.callback1 == BattleMainCB1 && IsFastBattleOn())
+        UpdatePaletteFadeSecondStep();
     RunTasks();
 
     if (JOY_HELD(B_BUTTON) && gBattleTypeFlags & BATTLE_TYPE_RECORDED && RecordedBattle_CanStopPlayback())
@@ -4873,7 +4889,11 @@ static void HandleTurnActionSelectionState(void)
                     break;
                 }
             }
-            break;
+            // Crystal Imperium (DECISIONS.md D40): the choice is confirmed in the call that reads it
+            // (Game Freak's states took a frame each, three frames from A to the turn's start)
+            if (gBattleCommunication[battler] != STATE_WAIT_ACTION_CONFIRMED_STANDBY || !IsBattleBatchOn())
+                break;
+            // fall through
         case STATE_WAIT_ACTION_CONFIRMED_STANDBY:
             if (!IsBattleControllerActiveOrPendingSyncAnywhere(battler))
             {
@@ -4895,7 +4915,11 @@ static void HandleTurnActionSelectionState(void)
                 MarkBattlerForControllerExec(battler);
                 gBattleCommunication[battler]++;
             }
-            break;
+            // Every controller ends the bounce (or does nothing) in the call (D40)
+            if (gBattleCommunication[battler] != STATE_WAIT_ACTION_CONFIRMED || !IsBattleBatchOn()
+             || !TryRunInstantControllerCommand(battler))
+                break;
+            // fall through
         case STATE_WAIT_ACTION_CONFIRMED:
             if (!IsBattleControllerActiveOrPendingSyncAnywhere(battler))
             {
@@ -4984,6 +5008,19 @@ static void HandleTurnActionSelectionState(void)
                 if (gChosenActionByBattler[battler] == B_ACTION_SWITCH)
                     SwitchPartyOrderInGameMulti(battler, gBattleStruct->monToSwitchIntoId[battler]);
             }
+        }
+
+        // Crystal Imperium (DECISIONS.md D40): the turn order is set and the first action starts in
+        // the same frame; a Quick Claw or Quick Draw message, a gimmick (Mega Evolution, Dynamax,
+        // Terastallization) or a Focus Punch-like move's script ends it there, where Game Freak's
+        // frame would have ended
+        if (IsBattleBatchOn())
+        {
+            SetActionsAndBattlersTurnOrder();
+            if (gBattleMainFunc == CheckChangingTurnOrderEffects)
+                CheckChangingTurnOrderEffects();
+            if (gBattleMainFunc == RunTurnActionsFunctions)
+                RunTurnActionsFunctions();
         }
     }
 }
@@ -5659,34 +5696,62 @@ static void CheckChangingTurnOrderEffects(void)
     gBattleResources->battleScriptsStack->size = 0;
 }
 
+// Crystal Imperium (DECISIONS.md D40): the turn's actions run on in the frame while each one moves
+// on at once (a move's script ends, the next battler's move is set up and checked up to its "used"
+// message). Game Freak's code ran one action function a frame. A controller at work, a battle
+// script started (a fainted Pokemon, a gimmick, the end of the turn) or an action that waits ends
+// the frame, as before. A script reached that way stops before a move's "used" message, which gets
+// the next frame to itself (the most expensive step of a move to draw).
+#define MAX_TURN_ACTION_STEPS_PER_FRAME 8
+
+static bool8 sBattleScriptStopsAtAttackString;
+
 static void RunTurnActionsFunctions(void)
 {
-    if (gBattleOutcome != 0)
-        gCurrentActionFuncId = B_ACTION_FINISHED;
+    u32 steps = 0;
+    u32 actionFuncId, actionNumber;
 
-    // Mega Evolve / Focus Punch-like moves after switching, items, running, but before using a move.
-    if (gCurrentActionFuncId == B_ACTION_USE_MOVE && !gBattleStruct->effectsBeforeUsingMoveDone)
+    do
     {
-        if (!IsPursuitTargetSet())
-        {
-            if (TryDoGimmicksBeforeMoves())
-                return;
-            else if (TryDoMoveEffectsBeforeMoves())
-                return;
-            gBattleStruct->effectsBeforeUsingMoveDone = TRUE;
-        }
-        else
-        {
-            if (TryActivateGimmick(gBattlerByTurnOrder[gCurrentTurnActionNumber]))
-                return;
-        }
-    }
+        if (gBattleOutcome != 0)
+            gCurrentActionFuncId = B_ACTION_FINISHED;
 
-    gBattleStruct->savedTurnActionNumber = gCurrentTurnActionNumber;
-    sTurnActionsFuncsTable[gCurrentActionFuncId]();
+        // Mega Evolve / Focus Punch-like moves after switching, items, running, but before using a move.
+        if (gCurrentActionFuncId == B_ACTION_USE_MOVE && !gBattleStruct->effectsBeforeUsingMoveDone)
+        {
+            if (!IsPursuitTargetSet())
+            {
+                if (TryDoGimmicksBeforeMoves())
+                    return;
+                else if (TryDoMoveEffectsBeforeMoves())
+                    return;
+                gBattleStruct->effectsBeforeUsingMoveDone = TRUE;
+            }
+            else
+            {
+                if (TryActivateGimmick(gBattlerByTurnOrder[gCurrentTurnActionNumber]))
+                    return;
+            }
+        }
 
-    if (gCurrentTurnActionNumber >= gBattlersCount) // everyone did their actions, turn finished
-        gBattleMainFunc = sEndTurnFuncsTable[gBattleOutcome & 0x7F];
+        gBattleStruct->savedTurnActionNumber = gCurrentTurnActionNumber;
+        actionFuncId = gCurrentActionFuncId;
+        actionNumber = gCurrentTurnActionNumber;
+        sBattleScriptStopsAtAttackString = (steps != 0);
+        sTurnActionsFuncsTable[gCurrentActionFuncId]();
+        sBattleScriptStopsAtAttackString = FALSE;
+
+        if (gCurrentTurnActionNumber >= gBattlersCount) // everyone did their actions, turn finished
+        {
+            gBattleMainFunc = sEndTurnFuncsTable[gBattleOutcome & 0x7F];
+            // The turn's state is reset at once; its end (BattleTurnPassed) has the next frame
+            if (IsBattleBatchOn() && gBattleMainFunc == HandleEndTurn_ContinueBattle)
+                HandleEndTurn_ContinueBattle();
+            return;
+        }
+    } while (IsBattleBatchOn() && ++steps < MAX_TURN_ACTION_STEPS_PER_FRAME
+          && gBattleMainFunc == RunTurnActionsFunctions && gBattleControllerExecFlags == 0
+          && (gCurrentActionFuncId != actionFuncId || gCurrentTurnActionNumber != actionNumber));
 }
 
 static void HandleEndTurn_BattleWon(void)
@@ -6210,9 +6275,29 @@ static void ReturnFromBattleToOverworld(void)
 // battles keep one command a frame.
 #define MAX_SCRIPT_COMMANDS_PER_FRAME 64
 
+// Crystal Imperium (DECISIONS.md D40): commands that work through a list of their own (the checks
+// before a move, a move's additional effects, the steps after it) return after some of its entries
+// and are called again; an entry done counts as progress, like a command that moved on. Game Freak's
+// loop gave each return a frame.
+static u32 GetScriptCommandStep(u32 opcode)
+{
+    switch (opcode)
+    {
+    case B_SCR_OP_ATTACKCANCELER:
+        return gBattleStruct->eventState.atkCanceler;
+    case B_SCR_OP_SETPREATTACKADDITIONALEFFECT:
+    case B_SCR_OP_SETADDITIONALEFFECTS:
+        return gBattleStruct->additionalEffectsCounter | (gEffectBattler << 4);
+    case B_SCR_OP_MOVEEND:
+        return gBattleScripting.moveendState;
+    default:
+        return 0;
+    }
+}
+
 static void RunBattleScriptCommandsThisFrame(void)
 {
-    bool32 batch = !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED)) && !gTestRunnerEnabled;
+    bool32 batch = IsBattleBatchOn();
     u32 count = 0;
 
     do
@@ -6222,11 +6307,20 @@ static void RunBattleScriptCommandsThisFrame(void)
         u32 actionFuncId = gCurrentActionFuncId;
         u32 actionNumber = gCurrentTurnActionNumber;
         u32 outcome = gBattleOutcome;
+        u32 step;
 
         if (gBattleControllerExecFlags != 0)
             return;
+        if (sBattleScriptStopsAtAttackString && instr[0] == B_SCR_OP_PRINTATTACKSTRING)
+            return;
+        step = GetScriptCommandStep(instr[0]);
         gBattleScriptingCommandsTable[instr[0]]();
-        if (gBattlescriptCurrInstr == instr || gBattleMainFunc != mainFunc || gCurrentActionFuncId != actionFuncId
+        // A command for the controllers that each of them finishes in the call (a party write, a
+        // sprite shown or hidden, a sound effect) is handled at once (D40)
+        if (gBattleControllerExecFlags != 0 && !(batch && TryRunInstantControllerCommands()))
+            return;
+        if ((gBattlescriptCurrInstr == instr && GetScriptCommandStep(instr[0]) == step)
+         || gBattleMainFunc != mainFunc || gCurrentActionFuncId != actionFuncId
          || gCurrentTurnActionNumber != actionNumber || gBattleOutcome != outcome)
             return;
     } while (batch && ++count < MAX_SCRIPT_COMMANDS_PER_FRAME);

@@ -1,0 +1,24 @@
+# Crystal Imperium play test: a chosen move starts at once (DECISIONS.md D40). New game settings
+# (FAST BATTLES on); TYPHLOSION (Lv 50), the faster, against Whitney's lead (trainer 406):
+# - from the frame A picks Swift to its animation: at most 6 frames (0.13.0's first build: 15, the
+#   choice confirmed, the turn order, the move's checks and its "used" message a frame each);
+# - from the end of Swift's HP bar to the opposing Pokemon's move animation: at most 6 frames (16);
+# - the turn ends with the next action menu.
+# gBattlerControllerFuncs+4 is the opposing Pokemon's controller, which runs its HP bar.
+!new_game()
+!give_mon(157, 50)
+!no_care_packages()
+!battle_trainer(406)
+!wait_action_menu("action_menu", 3000)
+press A
+wait 16
+shot 01_moves.png
+hold A 1
+within8 {gAnimScriptActive} 1 6 swift_animation_within_6_frames_of_a
+shot 02_swift.png
+within32 {gBattlerControllerFuncs+4} {Controller_WaitForHealthBar+1} 120 swift_hp_bar
+within32 {gBattlerControllerFuncs+4} {OpponentBufferRunCommand@battle_controller_opponent} 60 swift_hp_bar_done
+within8 {gAnimScriptActive} 1 6 opposing_animation_within_6_frames_of_the_hp_bar
+shot 03_opposing_move.png
+!wait_action_menu("next_action_menu", 900)
+shot 04_next_turn.png

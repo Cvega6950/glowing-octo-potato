@@ -13,11 +13,21 @@
     messages like "fainted!", "gained Exp. Points!" or "You got ¥… for winning!" go on by
     themselves after a moment (A or B still goes on at once). A trainer's words still wait for
     you.
-  - **A chosen move starts at once** (with FAST BATTLES): "X used Y!" appears whole instead of
-    letter by letter, and the animation no longer waits for the last sound to end. The move's
-    animation starts 15 frames (a quarter of a second) after you pick it, against 46 before;
-    the opponent's 7 frames after its "used" message, against 45. Animations no longer wait for
-    their last sound at the end either: a stat change ("Attack fell!") comes half a second sooner.
+  - **"X used Y!" at once** (with FAST BATTLES): the message appears whole instead of letter by
+    letter, and animations no longer wait for their last sound to end, at the start or at the end
+    (a stat change's "Attack fell!" comes half a second sooner).
+  - **A chosen move starts at once** (DECISIONS.md D40). The steps between picking a move and
+    the Pokémon moving (the choice confirmed, the turn order, the move's checks, "X used Y!")
+    now share frames: the move's animation starts 3 frames (a twentieth of a second) after you
+    pick it, against 46 in 0.12.0, and the next Pokémon's move starts 3 frames after the first
+    one's HP bar stops. A turn of two moves takes 211 frames from your choice to the next menu
+    (0.12.0: 489). The shared frames work with FAST BATTLES off too.
+  - With FAST BATTLES, the animations' colour changes (a darkened background, a flash, poison's
+    purple pulse) play at the same double speed as the rest of them, Growl-type cries no longer
+    hold the battle until they end, "fainted!" and "gained Exp. Points!" go on after about 0.4 s
+    (A or B still at once), a Pokémon sent out during the battle (a trainer's ball tray, the ball,
+    the health box sliding in) plays at double speed, and the Exp. bar fills as its sound starts.
+    Knocking out a trainer's Pokémon and seeing the next one sent out takes a third less time.
   - **The battle's menus no longer freeze the game** (FAST BATTLES or not): the moves take input
     5 frames after FIGHT (10 before), each turn's action menu comes 4 frames sooner, and going
     back from the moves with B pauses 1 frame (5 before). They look exactly as before.

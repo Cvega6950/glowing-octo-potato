@@ -462,6 +462,9 @@ void BtlController_Intro_DelayAndEnd(enum BattlerId battler);
 void BtlController_HandleSwitchInShowHealthbox(enum BattlerId battler);
 void BtlController_HandleSwitchInTryShinyAnim(enum BattlerId battler);
 bool32 BtlController_ContinueDuringCry(void);
+bool32 TryRunInstantControllerCommand(enum BattlerId battler);
+bool32 TryRunInstantControllerCommands(void);
+bool32 BtlController_IsSwitchInPlaying(void);
 void BtlController_HandleSwitchInSoundAndEnd(enum BattlerId battler);
 void BtlController_HandleSwitchInShowSubstitute(enum BattlerId battler);
 

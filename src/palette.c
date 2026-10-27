@@ -100,6 +100,25 @@ u32 UpdatePaletteFade(void)
     return result;
 }
 
+// Crystal Imperium (DECISIONS.md D40): a second step of a normal or hardware fade in the frame, for
+// battle animations at double speed (BattleMainCB2); its colours reach the screen with the first
+// step's at VBlank. Game Freak's code steps a fade once a frame, and a second UpdatePaletteFade in
+// the same frame only found the first step's transfer still pending. A hardware fade whose end has
+// been counted is left for VBlank to finish: a second count would wrap the one-bit
+// hardwareFadeFinishing, and the fade, and the animation waiting for it, would never end. Fast and
+// time-of-day fades, and fades whose transfer is held back, keep one step.
+void UpdatePaletteFadeSecondStep(void)
+{
+    if (!gPaletteFade.active || gPaletteFade.bufferTransferDisabled)
+        return;
+    if (gPaletteFade.mode != NORMAL_FADE && gPaletteFade.mode != HARDWARE_FADE)
+        return;
+    if (gPaletteFade.mode == HARDWARE_FADE && gPaletteFade.hardwareFadeFinishing)
+        return;
+    sPlttBufferTransferPending = FALSE;
+    UpdatePaletteFade();
+}
+
 void ResetPaletteFade(void)
 {
     ResetPaletteFadeControl();

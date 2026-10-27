@@ -1551,7 +1551,9 @@ static void Task_GiveExpWithExpBar(u8 taskId)
     u32 oldMaxHP;
     s32 currExp, expOnNextLvl, newExpPoints;
 
-    if (gTasks[taskId].tExpTask_frames < 13)
+    // Crystal Imperium (DECISIONS.md D40): with FAST BATTLES on, the bar fills as the Exp. sound starts
+    // (Game Freak's bar waited 13 frames first)
+    if (gTasks[taskId].tExpTask_frames < (IsFastBattleOn() ? 0 : 13))
     {
         gTasks[taskId].tExpTask_frames++;
     }

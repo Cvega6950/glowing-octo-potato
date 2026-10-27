@@ -916,6 +916,21 @@ void GetBgDataForTransform(struct BattleAnimBgData *out, enum BattlerId battler)
     }
 }
 
+// Crystal Imperium (DECISIONS.md D40): an animation background's tilemap cleared in one go. Game
+// Freak's 32x64 fill of tile 0 went entry by entry, about a frame of CPU, so the frame it fell in
+// (every stat change, every animation that clears its background) was dropped. On a 32x32 or 32x64
+// text background that fill writes 0 to every entry; any other keeps it.
+static void ClearAnimBgTilemapBuffer(u32 bgId)
+{
+    u32 screenSize = GetBgAttribute(bgId, BG_ATTR_SCREENSIZE);
+
+    if (!IsInvalidBg(bgId) && !IsTileMapOutsideWram(bgId) && GetBgAttribute(bgId, BG_ATTR_TYPE) == BG_TYPE_NORMAL
+     && (screenSize == 0 || screenSize == 2))
+        CpuFill16(0, GetBgTilemapBuffer(bgId), GetBgAttribute(bgId, BG_ATTR_METRIC));
+    else
+        FillBgTilemapBufferRect(bgId, 0, 0, 0, 32, 64, 17);
+}
+
 void ClearBattleAnimBg(u32 bgId)
 {
     struct BattleAnimBgData bgAnimData;
@@ -923,7 +938,7 @@ void ClearBattleAnimBg(u32 bgId)
     GetBattleAnimBgData(&bgAnimData, bgId);
     CpuFill32(0, bgAnimData.bgTiles, 0x2000);
     LoadBgTiles(bgAnimData.bgId, bgAnimData.bgTiles, 0x2000, bgAnimData.tilesOffset);
-    FillBgTilemapBufferRect(bgAnimData.bgId, 0, 0, 0, 32, 64, 17);
+    ClearAnimBgTilemapBuffer(bgAnimData.bgId);
     CopyBgTilemapBufferToVram(bgAnimData.bgId);
 }
 
@@ -936,7 +951,7 @@ void AnimLoadCompressedBgGfx(u32 bgId, const u32 *src, u32 tilesOffset)
 
 static void InitAnimBgTilemapBuffer(u32 bgId, const void *src)
 {
-    FillBgTilemapBufferRect(bgId, 0, 0, 0, 32, 64, 17);
+    ClearAnimBgTilemapBuffer(bgId);
     CopyToBgTilemapBuffer(bgId, src, 0, 0);
 }
 

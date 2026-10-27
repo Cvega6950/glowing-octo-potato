@@ -288,7 +288,9 @@ void SoundTask_WaitForCry(u8 taskId)
     }
     else
     {
-        if (!IsCryPlaying())
+        // Crystal Imperium (DECISIONS.md D40): with FAST BATTLES on, the animation doesn't wait for the
+        // end of the cry (Growl, Roar, Parting Shot), which plays on under the next message
+        if (!IsCryPlaying() || (!IsContest() && IsFastBattleOn()))
             DestroyAnimVisualTask(taskId);
     }
 }
