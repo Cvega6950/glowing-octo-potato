@@ -1381,10 +1381,21 @@ DexNav shows and that wild encounters draw from:
   next Pokémon sent out on the way: 395 frames (D38: 585; "fainted!" and "gained Exp. Points!" 57 and
   59 frames instead of 82 and 84). `battle_anims` uses every move once in
   207,278 frames (D38: 285,972), 851 of 851 back at the menu or the battle's end.
+- **The same battles.** In ordinary battles the random number generator also steps once a frame
+  (at VBlank), so a battle that takes fewer frames draws other numbers, with the same odds. With
+  that step switched off in two experiment builds, the code before and after D40 played 32
+  battles against Morty and 32 against Pryce turn for turn the same (moves, HP, results), once the
+  test autopilot's A nudge was kept off the menus (TESTING.md: it can skip a planned switch, and
+  timing decides when). With the step on, 80 battles against Morty (19 and 18 wins, before and
+  after D40) and 127 against Pryce (101 and 83; 98 and 83 with the nudge kept off the menus; 72
+  and 65 of the 95 after the first sample) show no clear difference: the first sample of 32, which
+  raised the question, was the outlier. Two of `bosses_m3`'s samples were too small for this:
+  the prepared six beat Morty about 1 time in 5, so 8 tries found no win about 18% of the time
+  (the first D40 build's did); Morty now gets 24 tries and Jasmine 16.
 - Not changed: the animations' own choreography (already at double speed), the hit blink (16
   frames, D38), messages typed at the TEXT SPEED chosen, the stat change's blend and hold, the
-  held-item animation, and the opponent's AI's think time (D38). Link and recorded battles keep
-  Game Freak's timing.
+  held-item animation, and the opponent's AI's think time (D38; KNOWN_ISSUES #67). Link and
+  recorded battles keep Game Freak's timing.
 - Evidence: `battle_turn_flow` (new: the animation within 6 frames of A, the opposing Pokémon's
   within 6 of the HP bar; it needs `within8/16/32`, a new `tools/emurun` command that checks timing
   to the frame), `battle_anims`, `battle_speed`, the Gym Leaders' and bosses' autobattles,

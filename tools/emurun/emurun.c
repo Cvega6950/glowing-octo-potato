@@ -18,6 +18,8 @@
 //   (peek/expect ADDR may be *PTR+OFF: the pointer stored at PTR plus OFF, e.g. *{gSaveBlock1Ptr}+4)
 //   savestate/loadstate FILE   write or restore a full emulator state
 //   poke8/poke16/poke32 ADDR VALUE   write memory
+//   pokebits8/pokebits16/pokebits32 ADDR MASK VALUE   write the MASK bits of the value at ADDR (VALUE's bits
+//                          in place, as in expectbits), keeping the others (for bitfields)
 //   reset                  soft reset the core
 //   autobattle MOVES MAXFRAMES key=ADDR...   play the current battle to the end (see AutoBattle)
 //   menuselect CURSOR LIST COUNT TARGET   with a list menu open whose u8 cursor, u8 action list and
@@ -67,7 +69,7 @@
 //                          most 8) on each frame where one of them changes (for profiling); with KEY,
 //                          tap it every 16 frames (e.g. a player hurrying the text along)
 //   profile FRAMES INTERVAL FILE [KEY|-] [STACKWORDS]   run FRAMES frames (KEY held), sampling the CPU every
-//                          INTERVAL cycles: each sample is a line "frame pc lr" in FILE, followed by the
+//                          INTERVAL cycles (at least 1): each sample is a line "frame pc lr" in FILE, followed by the
 //                          Thumb code addresses (return addresses, mostly) among the first STACKWORDS words
 //                          of the stack; tools/emurun/profile.py names the functions (mGBA only)
 //   snaprect NAME X Y W H  remember the frame's pixels in that screen rectangle as NAME
@@ -777,6 +779,13 @@ int main(int argc, char **argv)
             if (!ok)
                 failures++;
         }
+        else if (!strncmp(cmd, "pokebits", 8))
+        {
+            // pokebits8/16/32 ADDR MASK VALUE: the MASK bits become VALUE's, the others stay
+            int size = atoi(cmd + 8);
+            uint32_t addr = ParseAddr(a1), mask = strtoul(a2, NULL, 0), value = strtoul(a3, NULL, 0);
+            Backend_Write(size, addr, (Peek(size, addr) & ~mask) | (value & mask));
+        }
         else if (!strncmp(cmd, "poke", 4))
         {
             int size = atoi(cmd + 4);
@@ -1064,7 +1073,15 @@ int main(int argc, char **argv)
             // profile FRAMES INTERVAL FILE [KEY|-] [STACKWORDS]
             char a4[64] = {0}, a5[64] = {0};
             unsigned long frames = strtoul(a1, NULL, 0);
+            unsigned interval = strtoul(a2, NULL, 0);
             sscanf(line, "%*s %*s %*s %*s %63s %63s", a4, a5);
+            // INTERVAL 0 (also a word, which strtoul reads as 0) would sample the same cycle forever
+            if (!interval)
+            {
+                fprintf(stderr, "line %d: profile needs an INTERVAL of at least 1 cycle\n", lineNo);
+                failures++;
+                continue;
+            }
             sProfileOut = fopen(a3, "w");
             if (!sProfileOut)
             {
@@ -1072,7 +1089,7 @@ int main(int argc, char **argv)
                 failures++;
                 continue;
             }
-            if (Backend_Profile(a4[0] && strcmp(a4, "-") ? ParseKeys(a4) : 0, frames, strtoul(a2, NULL, 0),
+            if (Backend_Profile(a4[0] && strcmp(a4, "-") ? ParseKeys(a4) : 0, frames, interval,
                                 a5[0] ? strtoul(a5, NULL, 0) : 0, ProfileSample) < 0)
             {
                 fprintf(stderr, "line %d: profile needs the mGBA backend\n", lineNo);
@@ -1257,7 +1274,11 @@ int main(int argc, char **argv)
         else if (!strcmp(cmd, "reset"))
             Backend_Reset();
         else
+        {
+            // A misspelled command, or one this build doesn't know, must not pass silently
             fprintf(stderr, "line %d: unknown command '%s'\n", lineNo, cmd);
+            failures++;
+        }
     }
     fclose(script);
     printf("done: %lu frames, %d failures\n", frameCount, failures);

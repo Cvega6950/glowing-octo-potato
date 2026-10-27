@@ -152,6 +152,22 @@ def expect_challenge_bit(field, value, label):
     return [f"expectbits8 *{{gSaveBlock3Ptr}}+{v['off'] + byte} {mask} {mask if value else 0} {label}"]
 
 
+def set_challenge_option(field, value):
+    """Set a ChallengeSettings option in the save without the menu, e.g. ("fastBattle", 1) for FAST
+    BATTLES OFF (HnS's ON/OFF options store 0 for ON) or ("runType", 3) for QUICK RUN with B."""
+    byte, mask = probe.bitfield("ChallengeSettings", field)
+    v = probe.resolve({"off": "offsetof(struct SaveBlock3, challengeSettings)"})
+    shift = (mask & -mask).bit_length() - 1
+    return [f"pokebits8 *{{gSaveBlock3Ptr}}+{v['off'] + byte} {mask} {value << shift}"]
+
+
+def set_text_speed(choice):
+    """Set TEXT SPEED in the save without the menu: 0 SLOW, 1 MID, 2 FAST (a new game's), 3 FASTER."""
+    byte, mask = probe.bitfield("SaveBlock2", "optionsTextSpeed")
+    shift = (mask & -mask).bit_length() - 1
+    return [f"pokebits8 *{{gSaveBlock2Ptr}}+{byte} {mask} {choice << shift}"]
+
+
 # Moves the battle refuses to choose without an eaten Berry: the sweep's A presses would choose them
 # again and again
 SWEEP_UNSELECTABLE = ("MOVE_BELCH", "MOVE_STUFF_CHEEKS")
@@ -953,8 +969,9 @@ def main():
     with open(script, "w") as f:
         f.write("\n".join(expand(args.test, symbols(args.elf))) + "\n")
     emurun = os.path.join(HERE, "emurun" if args.emulator == "mgba" else "emurun-libretro")
-    if not os.path.exists(emurun):
-        subprocess.run(["make", "-C", HERE], check=True)
+    # Always ask make: a driver older than emurun.c would fail on the commands it doesn't know. Only
+    # the backend in use, so a VBA-M-only setup doesn't need libmgba
+    subprocess.run(["make", "-s", "-C", HERE, os.path.basename(emurun)], check=True)
     # Screenshot paths in tests are relative to the output directory
     cmd = [emurun, os.path.abspath(args.rom), os.path.abspath(script)]
     if args.save:

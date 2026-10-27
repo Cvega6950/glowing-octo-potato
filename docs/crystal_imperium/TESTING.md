@@ -38,7 +38,7 @@ that each test requires to be inside its accepted range.
 | `battle_healthbox_names` | Falkner battle: ONIX, then FERALIGATR, then ONIX again; ONIX's name strip in the health box matches the first time pixel for pixel (nothing of FERALIGATR's name is left; 8 pixels differ on the 0.10.0 ROM) | **PASS** | **PASS** |
 | `boss_levels` | Boss Pokémon at the player's cap at the start of a battle: Petrel at 50 with no badges, 66 with six; Brock at 90 as Johto Champion, 100 as Kanto Champion; a Rocket Grunt's level-20 Koffing on the cap curve, 31, with six badges, held at 15 with none. HARD level caps: Falkner at 12, Petrel at 47, 63 with six badges, the Grunt's Koffing at 12 | **PASS** | **PASS** |
 | `bosses_e4` | Elite Four and Lance, every Pokémon at the cap (85): Koga vs the prepared six (naive, 6 tries); Will, Bruno, Karen and Lance vs sixes built for them playing a game plan (8, 12, 12 and 24 tries); all hold care-package items; each beaten at least once; every Mega happens | **PASS** (wins vs Koga 6/6, wins vs Will 3/8, wins vs Bruno 10/12, wins vs Karen 10/12, wins vs Lance 8/24) | **PASS** (wins vs Koga 5/6, wins vs Will 4/8, wins vs Bruno 10/12, wins vs Karen 11/12, wins vs Lance 8/24) |
-| `bosses_m3` | Proton, the rival (Azalea, Burned Tower), Morty, every version of Chuck/Jasmine/Pryce, Clair, all with six Pokémon at the cap: each battle plays to a result against a naive team; the prepared six with care-package items beats Morty and Jasmine at least once in 8 and Clair in 16; sixes built for Chuck and Pryce, playing a game plan, beat them at least once in 8; every boss Mega Evolves | **PASS** (wins vs Morty 2/8, wins vs Jasmine 4/8, wins vs Chuck 8/8, wins vs Pryce 6/8, wins vs Clair 6/16) | **PASS** (wins vs Morty 2/8, wins vs Jasmine 2/8, wins vs Chuck 8/8, wins vs Pryce 7/8, wins vs Clair 6/16) |
+| `bosses_m3` | Proton, the rival (Azalea, Burned Tower), Morty, every version of Chuck/Jasmine/Pryce, Clair, all with six Pokémon at the cap: each battle plays to a result against a naive team; the prepared six with care-package items beats Morty at least once in 24, Jasmine in 16 and Clair in 16; sixes built for Chuck and Pryce, playing a game plan, beat them at least once in 8; every boss Mega Evolves | **PASS** (wins vs Morty 2/8, wins vs Jasmine 4/8, wins vs Chuck 8/8, wins vs Pryce 6/8, wins vs Clair 6/16) | **PASS** (wins vs Morty 2/8, wins vs Jasmine 2/8, wins vs Chuck 8/8, wins vs Pryce 7/8, wins vs Clair 6/16) |
 | `bosses_m4` | Rocket executives (Hideout, Radio Tower), rival 4–5, the five Kimono Girls: each battle plays to a result against the prepared six at the cap, holding care-package items; with the six at 100, Archer's and the rival's Megas happen | **PASS** | **PASS** |
 | `bosses_m5` | Kanto leaders at cap 90 vs the prepared six (one try each, tallied); a six built for Blue playing a game plan beats him at least once in 6; every leader's Mega happens within three battles of the prepared six at 100, and Blue's with the six built for him at 100 | **PASS** (wins vs Brock 0/1, wins vs Misty 0/1, wins vs Lt. Surge 1/1, wins vs Erika 0/1, wins vs Janine 1/1, wins vs Sabrina 0/1, wins vs Blaine 0/1, wins vs Blue 3/6, wins vs Brock (mega) 1/3, wins vs Misty (mega) 3/3, wins vs Lt. Surge (mega) 3/3, wins vs Erika (mega) 3/3, wins vs Janine (mega) 3/3, wins vs Sabrina (mega) 1/3, wins vs Blaine (mega) 2/3) | **PASS** (wins vs Brock 0/1, wins vs Misty 0/1, wins vs Lt. Surge 1/1, wins vs Erika 0/1, wins vs Janine 1/1, wins vs Sabrina 0/1, wins vs Blaine 0/1, wins vs Blue 5/6, wins vs Brock (mega) 2/3, wins vs Misty (mega) 1/3, wins vs Lt. Surge (mega) 3/3, wins vs Erika (mega) 3/3, wins vs Janine (mega) 3/3, wins vs Sabrina (mega) 0/3, wins vs Blaine (mega) 1/3) |
 | `bug_contest` | Wild Variety is skipped in Bug-Catching Contest mode (0 of 12) and applies outside it | **PASS** (variety_in_contest 0/12, variety_outside_contest 6/12) | **PASS** (variety_in_contest 0/12, variety_outside_contest 9/12) |
@@ -111,7 +111,10 @@ every frame: which battle controller is waiting for input, whether the party men
 and the battle outcome. Then it answers:
 - Each party slot uses one fixed move slot; `m` after the slot number Mega Evolves first.
 - Forced switches send out the first healthy Pokémon.
-- Text is nudged along.
+- Text is nudged along: A every 60 frames while nothing waits for an answer. The press isn't
+  checked against the screen first, so when an action menu opens in the frame before it, it picks
+  FIGHT, skipping a planned switch. A change to a battle's timing changes which battles that
+  happens in, by a few wins in a plan-driven sample (D40's check of the bosses' win rates).
 
 It logs every turn with both sides' HP, and each Pokémon's moveset the first time it is sent
 out. Pipe the output through `tools/emurun/names.py` to get species and move names.
@@ -140,9 +143,10 @@ free badge. The autopilot cannot drive double battles yet.
   animation starts within 6 frames of A, D40; `mega_evolution`: Lance's Gyarados Mega Evolves before
   a faster battle is over).
 - `profile FRAMES INTERVAL FILE [KEY|-] [STACKWORDS]` (mGBA only) samples the CPU every INTERVAL
-  cycles while FRAMES frames run; `tools/emurun/profile.py FILE --elf pokehns.elf [--frames A B]`
-  names the functions, with a rough inclusive time read from the return addresses on the stack
-  (D38: the battle menus' pixel-by-pixel copies).
+  cycles (at least 1) while FRAMES frames run;
+  `tools/emurun/profile.py FILE --elf pokehns.elf [--frames A B]` names the functions, with a rough
+  inclusive time read from the return addresses on the stack (D38: the battle menus'
+  pixel-by-pixel copies).
 - `!move_animation_sweep(state)` uses every move once from a saved battle (`battle_anims`).
 - `!open_relearner(slot, presses, category, label)` opens a party Pokémon's move relearner on a
   category (checked); `!expect_relearner_list(...)` checks the list on screen, its length (then
@@ -154,6 +158,12 @@ free badge. The autopilot cannot drive double battles yet.
   `expectrectwithin NAME FRAMES` on the first of the next FRAMES that matches: the player's
   health box bobs during the action menu, and the bob doesn't always start in the same phase
   (`battle_healthbox_names`).
+- `pokebits8/16/32 ADDR MASK VALUE` writes a bitfield and keeps the bits around it;
+  `!set_challenge_option(field, value)` and `!set_text_speed(choice)` set an option in the save
+  that way, without the menu (e.g. TEXT SPEED FASTER, QUICK RUN with B, FAST BATTLES off).
+- A command emurun doesn't know fails the test (it was skipped with a warning), and `emu.py` runs
+  `make` for the backend in use before each test: a driver built before a new command, such as
+  `within8`, let a test pass without its check.
 - Addresses can follow pointers: `*PTR+OFF`, `**PTR+A+B`. A static function or variable whose
   name several files use is `name@file` (`{HandleInputChooseAction@battle_controller_player}`,
   `{sMenu@menu}`), found through the linker map.

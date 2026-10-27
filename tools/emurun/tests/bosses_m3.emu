@@ -95,16 +95,20 @@ expectne8 {gBattleOutcome} 0 clair_resolved
 # prepared six beat Pryce only 1 time in 16 even with items and a game plan (0 in 16 without), so
 # Chuck and Pryce face sixes built for them, played with a game plan like the Elite Four's
 # (bosses_e4): they won 16 of 16 and 13 of 16 when built. Each Gym Leader must be beaten at least
-# once in eight tries (Clair sixteen), and every boss Mega Evolution happens.
+# once in eight tries (Jasmine and Clair sixteen, Morty twenty-four), and every boss Mega Evolution
+# happens. The prepared six beat Morty about 1 time in 5 and Jasmine about 1 in 3, so eight tries
+# missed every win by chance about 18% and 4% of the time. (With the battle's per-frame random number
+# advance switched off, the battle code before and after DECISIONS.md D40 plays the same battles
+# move for move: D40 only changes which random numbers a battle draws, not the odds.)
 loadstate base.ss
 !prepared_team(42, items=True)
 savestate prep42.ss
-!sample_battle("TRAINER_MORTY_1_HNS", "0,0,1,0,3,0", 8, 1, 8, "prep42.ss")
+!sample_battle("TRAINER_MORTY_1_HNS", "0,0,1,0,3,0", 24, 1, 24, "prep42.ss")
 loadstate base.ss
 !prepared_team(50, items=True)
 savestate prep50.ss
 seenreset
-!sample_battle("TRAINER_JASMINE_1_HNS", "1,2,2,0,0,2", 8, 1, 8, "prep50.ss")
+!sample_battle("TRAINER_JASMINE_1_HNS", "1,2,2,0,0,2", 16, 1, 16, "prep50.ss")
 !expect_const_seen("SPECIES_STEELIX_MEGA", "jasmine_mega_steelix")
 
 # Chuck: Psychic, Flying and Fairy attackers (Talonflame with a Lum Berry against Breloom's Spore)
