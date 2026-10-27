@@ -8,7 +8,11 @@
 !new_game(variety="60%")
 !give_mon(155, 20)
 !warp(24, 14, 0)
+# A Repel for the walk in (CYNDAQUIL at 20 keeps the park's Pokemon away): a wild Pokemon met on the
+# way, before contest mode is set, would be saved with the state and met in every run (VBA-M's RATTATA)
+!set_var("VAR_REPEL_STEP_COUNT", 250)
 !walkto(20, 32, path=True)
+!set_var("VAR_REPEL_STEP_COUNT", 0)
 !set_flag("FLAG_SYS_BUG_CONTEST_MODE", 1)
 savestate contest.ss
 !wild_variety_sample("variety_in_contest", 12, state="contest.ss", grass=(20, 14, 26, 29), species=NATIONAL_PARK_SPECIES)
