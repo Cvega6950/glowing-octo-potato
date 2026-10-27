@@ -205,6 +205,11 @@ static EWRAM_DATA struct {
 } sMoveRelearnerMenuState = {0};
 
 EWRAM_DATA enum MoveRelearnerStates gMoveRelearnerState = MOVE_RELEARNER_LEVEL_UP_MOVES;
+// Crystal Imperium: the category set before the summary screen's START chose another one for its own
+// relearner (bw_summary_screen.c); it is given back when that relearner returns to the summary, so the
+// party menu's relearner and a move tutor's script keep theirs (Blackthorn's tutor sets LEVEL UP before
+// the player picks a Pokemon, possibly through a summary). The category plus 1; 0: none to give back.
+static EWRAM_DATA u8 sStateBeforeSummary = 0;
 EWRAM_DATA enum RelearnMode gRelearnMode = RELEARN_MODE_NONE;
 
 static const u16 sUI_Pal[] = INCBIN_U16("graphics/interface/ui_learn_move.gbapal");
@@ -784,6 +789,11 @@ static void DoMoveRelearnerMain(void)
     case MENU_STATE_RETURN_TO_FIELD:
         if (!gPaletteFade.active)
         {
+            if (sStateBeforeSummary != 0)
+            {
+                gMoveRelearnerState = sStateBeforeSummary - 1;
+                sStateBeforeSummary = 0;
+            }
             if (gInitialSummaryScreenCallback != NULL)
             {
                 switch (gRelearnMode)
@@ -1341,6 +1351,13 @@ bool32 CanBoxMonRelearnAnyMove(struct BoxPokemon *boxMon)
             return TRUE;
     }
     return FALSE;
+}
+
+void SetMoveRelearnerStateForSummary(enum MoveRelearnerStates state)
+{
+    if (sStateBeforeSummary == 0)
+        sStateBeforeSummary = gMoveRelearnerState + 1;
+    gMoveRelearnerState = state;
 }
 
 bool32 CanBoxMonRelearnMoves(struct BoxPokemon *boxMon, enum MoveRelearnerStates state)

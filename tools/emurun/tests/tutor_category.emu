@@ -1,0 +1,71 @@
+# Crystal Imperium play test: Blackthorn's MOVE TUTOR (a Heart Scale for a level-up move) keeps its
+# category while the player picks a Pokemon. The tutor's script sets LEVEL UP, then opens the PC; there,
+# a party Pokemon's SUMMARY > moves page > START opens the summary's relearner, which chooses a category
+# that Pokemon has moves in (MAGIKARP: TUTOR, CELEBRATE). In 0.13.0's first build that category stayed
+# set, and the tutor then taught TYPHLOSION tutor moves for the Heart Scale (KNOWN_ISSUES #68): the
+# category set before is now given back when the summary's relearner returns.
+# Blackthorn City House 3 is map group 10, number 5; the tutor stands at (7,4).
+!new_game()
+!no_care_packages()
+!give_mon_complex("SPECIES_TYPHLOSION", 50, "NATURE_HARDY", 0, ["MOVE_SURF", "MOVE_ERUPTION", "MOVE_QUICK_ATTACK", "MOVE_SMOKESCREEN"])
+!give_mon_complex("SPECIES_MAGIKARP", 1, "NATURE_HARDY", 0, ["MOVE_SPLASH", "MOVE_NONE", "MOVE_NONE", "MOVE_NONE"])
+!give_item("ITEM_HEART_SCALE")
+!warp(10, 5, 0)
+wait 120
+shot 00_house.png
+!walkto(7, 5, path=True)
+press UP 2
+wait 20
+shot 01_facing_tutor.png
+press A
+waituntil32 {gMain+4} {CB2_PokeStorage} 2400 A in_pc
+wait 200
+!expect_const("{gMoveRelearnerState}", "MOVE_RELEARNER_LEVEL_UP_MOVES", "tutor_set_level_up", size=8)
+shot 02_pc.png
+# In the PC: up to the box's title, then the PARTY POKEMON button; MAGIKARP > SUMMARY > moves > START
+press UP
+wait 20
+press UP
+wait 20
+press A
+wait 120
+press DOWN
+wait 20
+shot 03_party_magikarp.png
+press A
+wait 40
+shot 04_mon_menu.png
+press DOWN
+wait 10
+press A
+waituntil32 {gMain+4} {MainCB2@bw_summary_screen} 600 - in_summary
+wait 60
+press RIGHT
+wait 60
+press RIGHT
+wait 60
+shot 05_magikarp_moves.png
+press START
+wait 200
+shot 06_summary_relearner.png
+# Give up, back to the summary, back to the PC
+press B
+wait 90
+press A
+waituntil32 {gMain+4} {MainCB2@bw_summary_screen} 900 - back_in_summary
+wait 60
+press B
+waituntil32 {gMain+4} {CB2_PokeStorage} 600 - back_in_pc
+wait 200
+shot 07_back_in_pc.png
+# TYPHLOSION (party slot 0) > SELECT: the tutor's relearner
+press LEFT
+wait 20
+press A
+wait 40
+shot 08_select_menu.png
+press A
+waituntil32 {gMain+4} {CB2_MoveRelearnerMain} 1500 A in_tutor_relearner
+wait 120
+shot 09_tutor_relearner.png
+!expect_const("{gMoveRelearnerState}", "MOVE_RELEARNER_LEVEL_UP_MOVES", "tutor_teaches_level_up", size=8)

@@ -53,7 +53,9 @@
   three field moves, SWITCH, ITEM and FOLLOWER: one more than the menu held), and B then froze
   the game. It now shows all nine (since 0.4.0).
 - The summary screen's START (relearn moves) opened the kind of moves last used in the party
-  menu's relearner, often an empty list; it now opens one the Pokémon has moves in.
+  menu's relearner, often an empty list; it now opens one the Pokémon has moves in, and leaves
+  the one set before as it was (so Blackthorn's Move Tutor teaches level-up moves even after a
+  summary was opened from its PC).
 
 ## 0.12.0-experimental (2026-10-26)
 

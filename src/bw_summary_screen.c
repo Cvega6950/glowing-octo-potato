@@ -2504,7 +2504,8 @@ static void Task_HandleInput(u8 taskId)
 
             // Crystal Imperium: open a category this Pokemon has moves in, as pokemon_summary_screen.c's
             // TryUpdateRelearnType does. The prompt shows when any category has moves, but the relearner
-            // opened the one last used (e.g. the party menu's TM MOVES), often an empty list
+            // opened the one last used (e.g. the party menu's TM MOVES), often an empty list. The
+            // category set before is given back when the relearner returns here.
             if (!CanBoxMonRelearnMoves(&sMonSummaryScreen->currentMon.box, gMoveRelearnerState))
             {
                 enum MoveRelearnerStates state;
@@ -2513,7 +2514,7 @@ static void Task_HandleInput(u8 taskId)
                 {
                     if (CanBoxMonRelearnMoves(&sMonSummaryScreen->currentMon.box, state))
                     {
-                        gMoveRelearnerState = state;
+                        SetMoveRelearnerStateForSummary(state);
                         break;
                     }
                 }
