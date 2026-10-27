@@ -91,7 +91,7 @@ From the first step of a new game:
   their stock grows with every badge: 71 TMs with none, 115 with one, 155 with two, 173 with
   three (Ice Beam, Thunderbolt, Flamethrower), up to all 198 with eight. The Goldenrod Dept.
   Store 5F sells the same. With the first badge, the Violet City Mart's clerk also gives four TMs
-  for free, once.
+  for free, once. The lists leave out the TMs you already have, so only new ones are there.
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
 - **A starting care package** from Prof. Elm as soon as you have a Pokémon, as in Emerald

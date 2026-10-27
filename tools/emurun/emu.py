@@ -284,17 +284,68 @@ def save_and_continue():
                                  "wait 320", "press A", "wait 100", "press A", "wait 900"]
 
 
-def tm_case_slot(index):
-    """Address of the TM case's index-th slot: it lives in EWRAM (gBagPockets[POCKET_TM_HM].itemSlots)."""
+def tm_case_slot(index, field=0):
+    """Address of the TM case's index-th slot (plus `field` bytes): it lives in EWRAM
+    (gBagPockets[POCKET_TM_HM].itemSlots)."""
     v = probe.resolve({"ptr": "POCKET_TM_HM * sizeof(struct BagPocket) + offsetof(struct BagPocket, itemSlots)",
                        "stride": "sizeof(struct ItemSlot)"})
-    return f"*{{gBagPockets+{v['ptr']}}}+{index * v['stride']}"
+    return f"*{{gBagPockets+{v['ptr']}}}+{index * v['stride'] + field}"
+
+
+def take_from_tm_case(*items):
+    """After fill_tm_case, which puts machine n in slot n - 1, take TMs ("ITEM_TM_SNATCH", ...) out of
+    the TM case again: each one's slot is checked to hold it, then emptied."""
+    out = []
+    for item in items:
+        v = probe.resolve({"slot": f"ENUM_TM_HM_{item[8:]}", "item": item, "qty": "offsetof(struct ItemSlot, quantity)"})
+        out += [f"expect16 {tm_case_slot(v['slot'])} {v['item']} case_slot_{v['slot']}_{item[8:].lower()}",
+                f"poke16 {tm_case_slot(v['slot'])} 0", f"poke16 {tm_case_slot(v['slot'], v['qty'])} 0"]
+    return out
 
 
 def expect_item_price(item, want, label):
     """Check an item's price in the item data (gItemsInfo), e.g. expect_item_price("ITEM_TM_TOXIC", 100, "l")."""
     v = probe.resolve({"off": f"{item} * sizeof(struct ItemInfo) + offsetof(struct ItemInfo, price)", "want": str(want)})
     return [f"expect32 {{gItemsInfo+{v['off']}}} {v['want']} {label}"]
+
+
+# A shop's buy list (src/shop.c, whose structs no header has): struct MartInfo's listCount, the
+# items before CANCEL; struct ShopData's selectedRow and scrollOffset, after its 0x2000 bytes of
+# tilemap buffers, a u32 and a u16 (Task_BuyMenu copies them from the list every frame)
+BUY_LIST_COUNT = "{sMartInfo+16}"
+BUY_LIST_ROW = "*{sShopData}+8198"
+BUY_LIST_SCROLL = "*{sShopData}+8200"
+
+
+def buy_list_entry(index):
+    """Address of the item id of the buy list's index-th entry (sListMenuItems, struct ListMenuItem)."""
+    v = probe.resolve({"id": "offsetof(struct ListMenuItem, id)", "size": "sizeof(struct ListMenuItem)"})
+    return f"*{{sListMenuItems}}+{v['id'] + index * v['size']}"
+
+
+def buy_one():
+    """In a shop's buy list, buy the item under the cursor when it comes one at a time (a reusable TM):
+    A, YES to "You wanted ...? That'll be ¥100.", then A after "Here you go! Thank you." Ends on the list."""
+    return ["press A", "wait 90", "press A", "wait 90", "press A", "wait 60"]
+
+
+def expect_buy_list(count, items, absent=(), label="buy_list"):
+    """Check a shop's buy list: `count` items, the first ones `items` in order (all of them when
+    len(items) == count), then CANCEL right after the last; and none of `absent`."""
+    v = probe.resolve({i: i for i in list(items) + list(absent)} | {"LIST_CANCEL": "LIST_CANCEL",
+                      "size": "sizeof(struct ListMenuItem)"})
+    out = [f"expect16 {BUY_LIST_COUNT} {count} {label}_count_{count}"]
+    out += [f"expect16 {buy_list_entry(n)} {v[i]} {label}_{n}_{i[8:].lower()}" for n, i in enumerate(items)]
+    out.append(f"expect16 {buy_list_entry(count)} {v['LIST_CANCEL'] & 0xFFFF} {label}_cancel_last")
+    out += [f"expectnotfind16 {buy_list_entry(0)} {count} {v['size']} {v[i]} {label}_lacks_{i[8:].lower()}" for i in absent]
+    return out
+
+
+def expect_buy_cursor(scroll, row, item, label):
+    """Check the buy list's scroll offset and cursor row, and the item there ("LIST_CANCEL" for CANCEL)."""
+    v = probe.resolve({item: item})
+    return [f"expect16 {BUY_LIST_SCROLL} {scroll} {label}_scroll_{scroll}", f"expect16 {BUY_LIST_ROW} {row} {label}_row_{row}",
+            f"expect16 {buy_list_entry(scroll + row)} {v[item] & 0xFFFF} {label}_on_{item.split('_', 2)[-1].lower()}"]
 
 
 def expect_bag_has(pocket, item, label=None):

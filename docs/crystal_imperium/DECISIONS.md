@@ -1081,7 +1081,7 @@ DexNav shows and that wild encounters draw from:
   8th (all 198). That is earlier than D22's tiers (3, 6 and 8 badges): Thunderbolt at 3 badges
   instead of 6, Close Combat at 6 instead of 8. ¥100 each, as before.
 - A TM the player has shows OWNED instead of its price. SOLD OUT ran into the longest names
-  ("TM01 FOCUS PUNCH").
+  ("TM01 FOCUS PUNCH"). (Until 0.14.2: since then such a TM isn't on the list at all, D43.)
 - Evidence: `tm_clerks` (Cherrygrove with no badges 71, Azalea with two 155, Pewter with eight
   198 and a purchase, Indigo Plateau 198), `tm_shop` (Goldenrod 5F: 71, 115, 173, 191, 198, the
   badge count deciding), `tm_clerk` (Violet: 71 before the badge, then the gift once and 115).
@@ -1547,3 +1547,33 @@ DexNav shows and that wild encounters draw from:
   battle is listed), `dexnav` and `level_cap_wild` (Rattata is now the fourth icon),
   `wild_variety`, `bug_contest` (the National Park lists eleven own Pokémon and one Wild Variety
   Pokémon; every battle outside the contest is listed), `dexnav_caves`, and the whole suite.
+
+## D43. The TM shops leave out the TMs the player has
+
+- The user asked: "when I buy the tms from the mart, can you get rid of the ones I've already
+  purchased and just leave the new ones there".
+- **What.** Every TM shop (each Poké Mart's TM clerk, the Goldenrod Dept. Store 5F and Celadon's
+  3F TM counter: all of them `EventScript_TMShop`, D36) lists only the TMs the player doesn't
+  have, in the TM case or in the PC. A TM bought there leaves the list at once. The cursor stays
+  on its row, which then holds the next TM (or CANCEL after the last one), and a list that has
+  become short enough to fit the window scrolls back to its top. With every TM on sale had, the
+  list is CANCEL alone, and its description says "You have every TM on sale here!". This replaces
+  D36's OWNED label.
+- **While TMs are reusable.** Heart & Soul's INFINITE TMS (on by default) makes every TM a
+  reusable item, so a TM the player has is one there is nothing more to buy of: the shop only
+  ever said "That item is sold out" for it. With INFINITE TMS off, teaching uses a TM up, so the
+  list keeps every TM and more of one can be bought, as before.
+- **How.** `src/shop.c`: `BuyMenuFillListMenuItems` builds the buy list without the TMs the player
+  has (`BuyMenuIsOwnedTM`: in a normal mart, a TM that is an important item and is in the bag or
+  the PC); `sMartInfo.listCount` counts what it lists, and the scroll arrows follow it. After a
+  purchase, `BuyMenuRemoveBoughtTM` rebuilds the list menu (`DestroyListMenuTask`, then
+  `ListMenuInit` at the same row, the scroll offset brought within the shorter list). Kurt's,
+  the decoration and the Battle Point shops are unchanged, and an important item that isn't a TM
+  still says SOLD OUT.
+- Evidence: `tm_shop_owned` (Cherrygrove with every TM but ten, one of the ten in the PC: nine
+  listed; the first, the last and a middle one bought, with the list, the scroll offset and the
+  cursor checked after each; BUY again; with every TM, CANCEL alone and its description; with
+  INFINITE TMS off, all 71 listed and a second Flip Turn bought), `tm_clerk` (Violet's four gift
+  TMs left out, 111 of the 115; Flip Turn bought, 110), `tm_clerks` (Focus Punch bought in
+  Pewter: 197 there and at the Indigo Plateau), `tm_shop` (Goldenrod 5F: 70, 114, 172, 190, 197,
+  then 196 listed as TMs are bought and badges earned).

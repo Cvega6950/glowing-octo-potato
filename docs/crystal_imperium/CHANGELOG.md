@@ -1,5 +1,19 @@
 # Crystal Imperium changelog
 
+## 0.14.2-experimental (2026-10-27)
+
+### TM shops list only the TMs you don't have (DECISIONS.md D43)
+- Every TM shop (the TM clerk in each Poké Mart, the Goldenrod Dept. Store 5F, Celadon's TM
+  counter) leaves out the TMs you already have, in the TM case or in the PC, instead of marking
+  them OWNED. A TM you buy leaves the list right away, with the cursor on the next one. Once you
+  have every TM on sale, the list is just CANCEL: "You have every TM on sale here!"
+- That's with INFINITE TMS on (the default). With it off, teaching uses a TM up, so the TMs you
+  have stay on the list and you can buy more.
+
+### Tools
+- `tools/emurun`: `buy_one`, `expect_buy_list` and `expect_buy_cursor` for a shop's buy list,
+  `take_from_tm_case`; new play test `tm_shop_owned`.
+
 ## 0.14.1-experimental (2026-10-27)
 
 ### The DexNav list is the same all day (DECISIONS.md D42)

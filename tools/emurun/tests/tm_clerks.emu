@@ -2,6 +2,7 @@
 # clerk at (2,2), talked to across the counter from (4,2), and one at the Indigo Plateau shop. All
 # of them, and the Goldenrod Dept. Store 5F, sell the same TMs for the badges the player has
 # (data/scripts/tm_shop_hns.inc): 71 with none, 115 with one, 155 with two, ... all 198 with eight.
+# A TM bought in one leaves every list (D43).
 !new_game()
 !max_money()
 
@@ -19,6 +20,7 @@ press A
 wait 90
 shot 02_cherrygrove_list.png
 expect16 {sMartInfo+12} 71 cherrygrove_no_badges
+!expect_buy_list(71, ["ITEM_TM_FLIP_TURN", "ITEM_TM_ROAR"], label="cherrygrove")
 mash B 300
 
 # Azalea Town Mart, two badges
@@ -36,6 +38,7 @@ press A
 wait 90
 shot 03_azalea_list.png
 expect16 {sMartInfo+12} 155 azalea_two_badges
+!expect_buy_list(155, ["ITEM_TM_DRAGON_CLAW", "ITEM_TM_FLIP_TURN"], label="azalea")
 mash B 300
 
 # Pewter City Mart (Kanto), eight badges: every TM. Buy the first, TM01 Focus Punch
@@ -57,17 +60,11 @@ press A
 wait 90
 shot 04_pewter_list.png
 expect16 {sMartInfo+12} 198 pewter_eight_badges
-press A
-wait 90
-press A
-wait 60
-press A
-wait 90
-press A
-wait 90
+!expect_buy_list(198, ["ITEM_TM_FOCUS_PUNCH", "ITEM_TM_DRAGON_CLAW"], label="pewter")
+!buy_one()
 shot 05_pewter_bought.png
-press A
-wait 60
+!expect_money("MAX_MONEY - 100", "paid_in_pewter")
+!expect_buy_list(197, ["ITEM_TM_DRAGON_CLAW", "ITEM_TM_FLIP_TURN"], absent=["ITEM_TM_FOCUS_PUNCH"], label="pewter_bought")
 mash B 300
 !expect_bag_has("TMsHMs", "ITEM_TM_FOCUS_PUNCH", "bought_focus_punch_in_pewter")
 
@@ -84,4 +81,5 @@ press A
 wait 90
 shot 06_indigo_list.png
 expect16 {sMartInfo+12} 198 indigo_every_tm
+!expect_buy_list(197, ["ITEM_TM_DRAGON_CLAW", "ITEM_TM_FLIP_TURN"], absent=["ITEM_TM_FOCUS_PUNCH"], label="indigo")
 mash B 300

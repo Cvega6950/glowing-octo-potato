@@ -1,8 +1,9 @@
-# Crystal Imperium play test: Emerald Imperium-style TMs (DECISIONS.md D22, D36). Every TM costs
+# Crystal Imperium play test: Emerald Imperium-style TMs (DECISIONS.md D22, D36, D43). Every TM costs
 # ¥100, Imperium's price. The Violet City Mart's TM clerk (2,2), talked to across the counter from
 # (4,2), sells TMs like every Poke Mart's TM clerk, more with each badge: 71 with no badges, 115
 # with the Zephyr Badge. With the badge, the first time, the clerk also gives the four TMs
 # Imperium gives away before its second Gym: Bullet Seed, Bulldoze, Bug Bite, Stomping Tantrum.
+# The list leaves out the TMs the player has: those four, and TM03 Flip Turn once bought.
 !new_game()
 !max_money()
 !expect_item_price("ITEM_TM_ELECTROWEB", 100, "tm_price_100")
@@ -22,6 +23,7 @@ press A
 wait 90
 shot 02_no_badge_list.png
 expect16 {sMartInfo+12} 71 no_badge_seventy_one_tms
+!expect_buy_list(71, ["ITEM_TM_FLIP_TURN", "ITEM_TM_ROAR"], label="no_badge")
 mash B 300
 wait 60
 !expect_flag("FLAG_RECEIVED_VIOLET_TMS", 0, "no_gift_without_the_badge")
@@ -47,20 +49,17 @@ press A
 wait 120
 press A
 wait 90
-shot 05_tm_list.png
+shot 05_shop_menu.png
 expect16 {sMartInfo+12} 115 one_badge_tms_on_sale
-# Buy the first, TM03 Flip Turn (quantity 1, confirm)
 press A
 wait 90
-press A
-wait 60
-press A
-wait 90
-press A
-wait 90
-shot 06_bought.png
-press A
-wait 60
+shot 06_tm_list.png
+!expect_buy_list(111, ["ITEM_TM_FLIP_TURN", "ITEM_TM_ROAR", "ITEM_TM_TOXIC", "ITEM_TM_SNOWSCAPE", "ITEM_TM_HIDDEN_POWER"], absent=["ITEM_TM_BULLET_SEED", "ITEM_TM_BULLDOZE", "ITEM_TM_BUG_BITE", "ITEM_TM_STOMPING_TANTRUM"], label="gift_left_out")
+# Buy the first, TM03 Flip Turn: it leaves the list
+!buy_one()
+shot 07_bought.png
+!expect_money("MAX_MONEY - 100", "paid_for_flip_turn")
+!expect_buy_list(110, ["ITEM_TM_ROAR", "ITEM_TM_TOXIC"], absent=["ITEM_TM_FLIP_TURN"], label="bought")
 mash B 300
 !expect_bag_has("TMsHMs", "ITEM_TM_FLIP_TURN", "bought_flip_turn")
 
@@ -71,6 +70,8 @@ press A
 wait 120
 press A
 wait 90
-shot 07_again.png
+shot 08_again.png
 expect16 {sMartInfo+12} 115 shop_again
+!expect_buy_list(110, ["ITEM_TM_ROAR", "ITEM_TM_TOXIC", "ITEM_TM_SNOWSCAPE", "ITEM_TM_HIDDEN_POWER"], absent=["ITEM_TM_FLIP_TURN", "ITEM_TM_BULLET_SEED", "ITEM_TM_BULLDOZE", "ITEM_TM_BUG_BITE", "ITEM_TM_STOMPING_TANTRUM"], label="again")
+!expect_money("MAX_MONEY - 100", "paid_once")
 mash B 300

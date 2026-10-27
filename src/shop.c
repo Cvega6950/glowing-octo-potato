@@ -103,6 +103,7 @@ struct MartInfo
     u16 itemCount;
     u8 windowId;
     u8 martType;
+    u16 listCount; // Crystal Imperium: the items the buy list shows, without the TMs the player has (D43)
 };
 
 struct ShopData
@@ -158,6 +159,8 @@ static void BuyMenuDrawGraphics(void);
 static void BuyMenuAddScrollIndicatorArrows(void);
 static void Task_BuyMenu(u8 taskId);
 static void BuyMenuBuildListMenuTemplate(void);
+static void BuyMenuFillListMenuItems(void);
+static bool32 BuyMenuIsOwnedTM(u16 item);
 static void BuyMenuInitBgs(void);
 static void BuyMenuInitWindows(void);
 static void BuyMenuDecompressBgGraphics(void);
@@ -178,6 +181,7 @@ static void ExitBuyMenu(u8 taskId);
 static void Task_ExitBuyMenu(u8 taskId);
 static void BuyMenuTryMakePurchase(u8 taskId);
 static void BuyMenuReturnToItemList(u8 taskId);
+static void BuyMenuRemoveBoughtTM(u8 taskId);
 static void Task_BuyHowManyDialogueInit(u8 taskId);
 static void BuyMenuConfirmPurchase(u8 taskId);
 static void BuyMenuPrintItemQuantityAndPrice(u8 taskId);
@@ -1183,26 +1187,50 @@ static void BuyMenuFreeMemory(void)
 
 static void BuyMenuBuildListMenuTemplate(void)
 {
-    u16 i;
-
     sListMenuItems = Alloc((sMartInfo.itemCount + 1) * sizeof(*sListMenuItems));
     sItemNames = Alloc((sMartInfo.itemCount + 1) * sizeof(*sItemNames));
-    for (i = 0; i < sMartInfo.itemCount; i++)
-        BuyMenuSetListEntry(&sListMenuItems[i], sMartInfo.itemList[i], sItemNames[i]);
+    BuyMenuFillListMenuItems();
+}
 
-    StringCopy(sItemNames[i], gText_Cancel2);
-    sListMenuItems[i].name = sItemNames[i];
-    sListMenuItems[i].id = LIST_CANCEL;
+// Crystal Imperium: the list leaves out the TMs the player has (D43); a TM bought here leaves it
+// at once (BuyMenuRemoveBoughtTM)
+static void BuyMenuFillListMenuItems(void)
+{
+    u16 i, count = 0;
+
+    for (i = 0; i < sMartInfo.itemCount; i++)
+    {
+        if (BuyMenuIsOwnedTM(sMartInfo.itemList[i]))
+            continue;
+        BuyMenuSetListEntry(&sListMenuItems[count], sMartInfo.itemList[i], sItemNames[count]);
+        count++;
+    }
+    sMartInfo.listCount = count;
+
+    StringCopy(sItemNames[count], gText_Cancel2);
+    sListMenuItems[count].name = sItemNames[count];
+    sListMenuItems[count].id = LIST_CANCEL;
 
     gMultiuseListMenuTemplate = sShopBuyMenuListTemplate;
     gMultiuseListMenuTemplate.items = sListMenuItems;
-    gMultiuseListMenuTemplate.totalItems = sMartInfo.itemCount + 1;
+    gMultiuseListMenuTemplate.totalItems = count + 1;
     if (gMultiuseListMenuTemplate.totalItems > MAX_ITEMS_SHOWN)
         gMultiuseListMenuTemplate.maxShowed = MAX_ITEMS_SHOWN;
     else
         gMultiuseListMenuTemplate.maxShowed = gMultiuseListMenuTemplate.totalItems;
 
     sShopData->itemsShowed = gMultiuseListMenuTemplate.maxShowed;
+}
+
+// Crystal Imperium: a TM the player has, in the bag or the PC, while TMs are reusable (Heart & Soul's
+// INFINITE TMS, on by default), so there is nothing to buy. With INFINITE TMS off, teaching uses a
+// TM up and the list keeps the TMs the player has, to buy more.
+static bool32 BuyMenuIsOwnedTM(u16 item)
+{
+    return sMartInfo.martType == MART_TYPE_NORMAL
+        && GetItemPocket(item) == POCKET_TM_HM
+        && GetItemImportance(item)
+        && (CheckBagHasItem(item, 1) || CheckPCHasItem(item, 1));
 }
 
 static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, enum Item item, u8 *name)
@@ -1256,7 +1284,13 @@ static void BuyMenuPrintItemDescriptionAndShowItemIcon(s32 item, bool8 onInit, s
     }
     else
     {
-        description = gText_QuitShopping;
+        static const u8 sText_HaveEveryTM[] = _("You have every TM\non sale here!");
+
+        // Crystal Imperium: every TM on sale is one the player has, so CANCEL is all the list shows
+        if (sMartInfo.listCount == 0 && sMartInfo.itemCount != 0)
+            description = sText_HaveEveryTM;
+        else
+            description = gText_QuitShopping;
         if (sMartInfo.martType == MART_TYPE_KURT)
         {
             FillWindowPixelBuffer(WIN_BERRIES, PIXEL_FILL(1));
@@ -1318,25 +1352,12 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
                 6);
         }
 
+        // Crystal Imperium: the TMs the player has aren't on the list (D43); another item the player
+        // has and can't buy again is SOLD OUT
         if (GetItemImportance(itemId) && (CheckBagHasItem(itemId, 1) || CheckPCHasItem(itemId, 1)))
-        {
-            // Crystal Imperium: a TM the player has says OWNED, in a font that fits between the
-            // longest names ("TM01 FOCUS PUNCH") and the right edge: SOLD OUT ran into them
-            if (GetItemPocket(itemId) == POCKET_TM_HM)
-            {
-                static const u8 sText_Owned[] = _("OWNED");
-                u32 fontId = GetFontIdToFit(sText_Owned, FONT_NARROW, 0,
-                                            120 - sShopBuyMenuListTemplate.item_X - sShopBuyMenuListTemplate.textNarrowWidth - 2);
-                x = GetStringRightAlignXOffset(fontId, sText_Owned, 120);
-                AddTextPrinterParameterized4(windowId, fontId, x, y, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, sText_Owned);
-                return;
-            }
             StringCopy(gStringVar4, gText_SoldOut);
-        }
         else
-        {
             StringExpandPlaceholders(gStringVar4, gText_PokedollarVar1);
-        }
         x = GetStringRightAlignXOffset(FONT_NARROW, gStringVar4, 120);
         AddTextPrinterParameterized4(windowId, FONT_NARROW, x, y, 0, 0, sShopBuyMenuTextColors[COLORID_ITEM_LIST], TEXT_SKIP_DRAW, gStringVar4);
     }
@@ -1344,14 +1365,14 @@ static void BuyMenuPrintPriceInList(u8 windowId, u32 itemId, u8 y)
 
 static void BuyMenuAddScrollIndicatorArrows(void)
 {
-    if (sShopData->scrollIndicatorsTaskId == TASK_NONE && sMartInfo.itemCount + 1 > MAX_ITEMS_SHOWN)
+    if (sShopData->scrollIndicatorsTaskId == TASK_NONE && sMartInfo.listCount + 1 > MAX_ITEMS_SHOWN)
     {
         sShopData->scrollIndicatorsTaskId = AddScrollIndicatorArrowPairParameterized(
             SCROLL_ARROW_UP,
             172,
             12,
             148,
-            sMartInfo.itemCount - (MAX_ITEMS_SHOWN - 1),
+            sMartInfo.listCount - (MAX_ITEMS_SHOWN - 1),
             TAG_SCROLL_ARROW,
             TAG_SCROLL_ARROW,
             &sShopData->scrollOffset);
@@ -2114,6 +2135,7 @@ static void BuyMenuReturnToItemList(u8 taskId)
     s16 *data = gTasks[taskId].data;
 
     ClearDialogWindowAndFrameToTransparent(WIN_MESSAGE, FALSE);
+    BuyMenuRemoveBoughtTM(taskId);
     RedrawListMenu(tListTaskId);
     BuyMenuPrintCursor(tListTaskId, COLORID_ITEM_LIST);
     PutWindowTilemap(WIN_ITEM_LIST);
@@ -2121,6 +2143,28 @@ static void BuyMenuReturnToItemList(u8 taskId)
     ScheduleBgCopyTilemapToVram(0);
     BuyMenuAddScrollIndicatorArrows();
     gTasks[taskId].func = Task_BuyMenu;
+}
+
+// Crystal Imperium: a TM just bought leaves the list at once (D43). The cursor stays on its row,
+// which now holds the next item, the list's end permitting.
+static void BuyMenuRemoveBoughtTM(u8 taskId)
+{
+    s16 *data = gTasks[taskId].data;
+    u16 scrollOffset, selectedRow, row;
+
+    if (!BuyMenuIsOwnedTM(tItemId))
+        return;
+
+    DestroyListMenuTask(tListTaskId, &scrollOffset, &selectedRow);
+    row = scrollOffset + selectedRow;
+    BuyMenuFillListMenuItems();
+    if (row >= gMultiuseListMenuTemplate.totalItems)
+        row = gMultiuseListMenuTemplate.totalItems - 1;
+    if (scrollOffset + gMultiuseListMenuTemplate.maxShowed > gMultiuseListMenuTemplate.totalItems)
+        scrollOffset = gMultiuseListMenuTemplate.totalItems - gMultiuseListMenuTemplate.maxShowed;
+    sShopData->scrollOffset = scrollOffset;
+    sShopData->selectedRow = row - scrollOffset;
+    tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, sShopData->scrollOffset, sShopData->selectedRow);
 }
 
 static void BuyMenuPrintItemQuantityAndPrice(u8 taskId)

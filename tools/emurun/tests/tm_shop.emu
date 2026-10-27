@@ -2,7 +2,8 @@
 # with each badge (data/scripts/tm_shop_hns.inc, the same shop as every Poke Mart's TM clerk): 71
 # TMs with no badges (Heart & Soul's own stock among them), 115 with one, 173 with three, 191 with
 # six, all 198 with eight. The badge count decides, not FLAG_BADGE06_GET (Gyms 5-7 come in any
-# order). A TM the player has shows OWNED instead of its price.
+# order). The list leaves out the TMs the player has (D43): TM03 Flip Turn once bought, then TM01
+# Focus Punch.
 !new_game()
 !max_money()
 # 5F, arriving on the stairs from 4F at (22,5); the clerk stands behind the counter at (17,11)
@@ -16,20 +17,17 @@ press A
 wait 120
 press A
 wait 90
-shot 01_tier0_list.png
+shot 01_shop_menu.png
 expect16 {sMartInfo+12} 71 shop_tier0_count
-# Buy the first TM: TM03 Flip Turn (quantity 1, confirm)
 press A
 wait 90
-press A
-wait 60
-press A
-wait 90
-press A
-wait 90
-shot 02_bought_tier0.png
-press A
-wait 60
+shot 02_tier0_list.png
+!expect_buy_list(71, ["ITEM_TM_FLIP_TURN", "ITEM_TM_ROAR"], label="tier0")
+# Buy the first TM: TM03 Flip Turn. It leaves the list
+!buy_one()
+shot 03_bought_tier0.png
+!expect_money("MAX_MONEY - 100", "paid_for_flip_turn")
+!expect_buy_list(70, ["ITEM_TM_ROAR", "ITEM_TM_TOXIC"], absent=["ITEM_TM_FLIP_TURN"], label="tier0_bought")
 mash B 300
 !expect_bag_has("TMsHMs", "ITEM_TM_FLIP_TURN", "bought_flip_turn")
 
@@ -39,8 +37,11 @@ press A
 wait 120
 press A
 wait 90
-shot 03_one_badge_list.png
 expect16 {sMartInfo+12} 115 shop_one_badge_count
+press A
+wait 90
+shot 04_one_badge_list.png
+!expect_buy_list(114, ["ITEM_TM_ROAR", "ITEM_TM_TOXIC"], absent=["ITEM_TM_FLIP_TURN"], label="shop_one_badge")
 mash B 300
 !set_flag("FLAG_BADGE02_GET")
 !set_flag("FLAG_BADGE03_GET")
@@ -48,8 +49,11 @@ press A
 wait 120
 press A
 wait 90
-shot 04_three_badges_list.png
 expect16 {sMartInfo+12} 173 shop_three_badges_count
+press A
+wait 90
+shot 05_three_badges_list.png
+!expect_buy_list(172, ["ITEM_TM_DRAGON_CLAW", "ITEM_TM_CALM_MIND"], absent=["ITEM_TM_FLIP_TURN"], label="shop_three_badges")
 mash B 300
 
 # Five badges plus Pryce's (FLAG_BADGE07_GET) is six badges without FLAG_BADGE06_GET
@@ -60,8 +64,11 @@ press A
 wait 120
 press A
 wait 90
-shot 05_six_badges_list.png
 expect16 {sMartInfo+12} 191 shop_six_badges_count
+press A
+wait 90
+shot 06_six_badges_list.png
+!expect_buy_list(190, ["ITEM_TM_DRAGON_CLAW", "ITEM_TM_CALM_MIND"], absent=["ITEM_TM_FLIP_TURN"], label="shop_six_badges")
 mash B 300
 
 # Eight badges: every TM, TM01 Focus Punch first
@@ -71,17 +78,14 @@ press A
 wait 120
 press A
 wait 90
-shot 06_eight_badges_list.png
 expect16 {sMartInfo+12} 198 shop_eight_badges_count
 press A
 wait 90
-press A
-wait 60
-press A
-wait 90
-press A
-wait 90
-press A
-wait 60
+shot 07_eight_badges_list.png
+!expect_buy_list(197, ["ITEM_TM_FOCUS_PUNCH", "ITEM_TM_DRAGON_CLAW", "ITEM_TM_CALM_MIND"], absent=["ITEM_TM_FLIP_TURN"], label="shop_eight_badges")
+!buy_one()
+shot 08_bought_focus_punch.png
+!expect_money("MAX_MONEY - 200", "paid_for_focus_punch")
+!expect_buy_list(196, ["ITEM_TM_DRAGON_CLAW", "ITEM_TM_CALM_MIND"], absent=["ITEM_TM_FOCUS_PUNCH", "ITEM_TM_FLIP_TURN"], label="eight_bought")
 mash B 300
 !expect_bag_has("TMsHMs", "ITEM_TM_FOCUS_PUNCH", "bought_focus_punch")

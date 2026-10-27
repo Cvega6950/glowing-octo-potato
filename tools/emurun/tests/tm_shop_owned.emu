@@ -1,0 +1,112 @@
+# Crystal Imperium play test: the TM shops leave out the TMs the player has (DECISIONS.md D43). With
+# Heart & Soul's INFINITE TMS (on by default) teaching never uses a TM up, so there is nothing to buy.
+# The Cherrygrove City Mart's TM clerk sells 71 TMs with no badges. With every TM in the TM case
+# but ten of those, and one of the ten in the PC, the list shows the other nine. A TM bought leaves
+# the list at once and the cursor stays on its row: the next TM, or CANCEL after the last one. With
+# every TM, CANCEL is all there is and the description says why. With INFINITE TMS off, teaching
+# uses a TM up, so every TM stays on the list and more of one can be bought.
+!new_game()
+!max_money()
+!fill_tm_case()
+!take_from_tm_case("ITEM_TM_SNATCH", "ITEM_TM_FALSE_SWIPE", "ITEM_TM_BRINE", "ITEM_TM_ENDURE", "ITEM_TM_EMBARGO", "ITEM_TM_PAYBACK", "ITEM_TM_RECYCLE", "ITEM_TM_AVALANCHE", "ITEM_TM_PSYCH_UP", "ITEM_TM_CAPTIVATE")
+!set_save(1, "pcItems[0].itemId", "ITEM_TM_SNATCH", 16)
+!set_save(1, "pcItems[0].quantity", 1, 16)
+!warp(2, 1, 0)
+!walkto(4, 2)
+press LEFT
+wait 20
+press A
+wait 120
+press A
+wait 120
+press A
+wait 90
+shot 01_nine_listed.png
+expect16 {sMartInfo+12} 71 seventy_one_on_sale
+!expect_buy_list(9, ["ITEM_TM_FALSE_SWIPE", "ITEM_TM_BRINE", "ITEM_TM_ENDURE", "ITEM_TM_EMBARGO", "ITEM_TM_PAYBACK", "ITEM_TM_RECYCLE", "ITEM_TM_AVALANCHE", "ITEM_TM_PSYCH_UP", "ITEM_TM_CAPTIVATE"], absent=["ITEM_TM_SNATCH", "ITEM_TM_FLIP_TURN", "ITEM_TM_SWAGGER"], label="nine")
+!expect_buy_cursor(0, 0, "ITEM_TM_FALSE_SWIPE", "start")
+
+# The first: the list moves up, the cursor on the next TM
+!buy_one()
+shot 02_first_bought.png
+!expect_money("MAX_MONEY - 100", "paid_once")
+!expect_buy_list(8, ["ITEM_TM_BRINE", "ITEM_TM_ENDURE", "ITEM_TM_EMBARGO", "ITEM_TM_PAYBACK", "ITEM_TM_RECYCLE", "ITEM_TM_AVALANCHE", "ITEM_TM_PSYCH_UP", "ITEM_TM_CAPTIVATE"], absent=["ITEM_TM_FALSE_SWIPE"], label="eight")
+!expect_buy_cursor(0, 0, "ITEM_TM_BRINE", "after_first")
+
+# Down to CANCEL (8 items and CANCEL, 8 rows shown: the list scrolls once), up to the last TM
+!["press DOWN", "wait 10"] * 8
+!expect_buy_cursor(1, 7, "LIST_CANCEL", "at_cancel")
+press UP
+wait 10
+!expect_buy_cursor(1, 6, "ITEM_TM_CAPTIVATE", "on_last")
+shot 03_on_last.png
+# The last: the list now fits the window, so it scrolls back; the cursor is on CANCEL
+!buy_one()
+shot 04_last_bought.png
+!expect_money("MAX_MONEY - 200", "paid_twice")
+!expect_buy_list(7, ["ITEM_TM_BRINE", "ITEM_TM_ENDURE", "ITEM_TM_EMBARGO", "ITEM_TM_PAYBACK", "ITEM_TM_RECYCLE", "ITEM_TM_AVALANCHE", "ITEM_TM_PSYCH_UP"], absent=["ITEM_TM_CAPTIVATE"], label="seven")
+!expect_buy_cursor(0, 7, "LIST_CANCEL", "after_last")
+
+# One in the middle: the cursor stays on its row, now the next TM
+!["press UP", "wait 10"] * 4
+!expect_buy_cursor(0, 3, "ITEM_TM_PAYBACK", "on_payback")
+!buy_one()
+shot 05_middle_bought.png
+!expect_money("MAX_MONEY - 300", "paid_three_times")
+!expect_buy_list(6, ["ITEM_TM_BRINE", "ITEM_TM_ENDURE", "ITEM_TM_EMBARGO", "ITEM_TM_RECYCLE", "ITEM_TM_AVALANCHE", "ITEM_TM_PSYCH_UP"], absent=["ITEM_TM_PAYBACK"], label="six")
+!expect_buy_cursor(0, 3, "ITEM_TM_RECYCLE", "after_middle")
+!expect_bag_has("TMsHMs", "ITEM_TM_FALSE_SWIPE", "bought_false_swipe")
+!expect_bag_has("TMsHMs", "ITEM_TM_CAPTIVATE", "bought_captivate")
+!expect_bag_has("TMsHMs", "ITEM_TM_PAYBACK", "bought_payback")
+
+# Out of the list and back in (BUY): the same six
+press B
+wait 120
+press A
+wait 120
+shot 06_buy_again.png
+!expect_buy_list(6, ["ITEM_TM_BRINE", "ITEM_TM_ENDURE", "ITEM_TM_EMBARGO", "ITEM_TM_RECYCLE", "ITEM_TM_AVALANCHE", "ITEM_TM_PSYCH_UP"], label="six_again")
+!expect_buy_cursor(0, 0, "ITEM_TM_BRINE", "again")
+mash B 300
+
+# Every TM: CANCEL alone, "You have every TM on sale here!"
+!fill_tm_case()
+press A
+wait 120
+press A
+wait 120
+press A
+wait 90
+shot 07_every_tm_had.png
+!expect_buy_list(0, [], label="none")
+!expect_buy_cursor(0, 0, "LIST_CANCEL", "none")
+press A
+wait 120
+shot 08_cancel_left_list.png
+mash B 300
+!expect_money("MAX_MONEY - 300", "nothing_more_paid")
+
+# INFINITE TMS off: all 71 listed although the player has them, and one more Flip Turn can be bought
+!set_challenge_option("tx_Mode_InfiniteTMs", 0)
+press A
+wait 120
+press A
+wait 120
+press A
+wait 90
+shot 09_used_up_tms_listed.png
+!expect_buy_list(71, ["ITEM_TM_FLIP_TURN", "ITEM_TM_ROAR"], label="consumable")
+# Flip Turn: "How many?" 1, then "That'll be ¥100" YES, then "Here you go"
+press A
+wait 90
+press A
+wait 90
+press A
+wait 90
+press A
+wait 60
+shot 10_second_flip_turn.png
+!expect_money("MAX_MONEY - 400", "paid_for_second_flip_turn")
+!expect_buy_list(71, ["ITEM_TM_FLIP_TURN", "ITEM_TM_ROAR"], label="consumable_after")
+!expect_buy_cursor(0, 0, "ITEM_TM_FLIP_TURN", "consumable_after")
+mash B 300
