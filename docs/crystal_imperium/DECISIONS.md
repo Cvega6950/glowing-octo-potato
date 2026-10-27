@@ -30,7 +30,8 @@ Short records of decisions that shape the project. Newest last.
   from the public Radical Red dex that Imperium's own documentation follows; since 0.13.0 also
   which TM and tutor moves they learn, and Radical Red's six moves of its own, written anew from
   the dex's numbers and the effects its change lists give (D39). Base stats, sprites and
-  Imperium's own Megas, moves and abilities stay out.
+  Imperium's own Megas, moves and abilities stay out, except the trainer battle sprites iriv24
+  released himself for use with credit on Team Aqua's Asset Repo (0.14.0, D41).
 
 ## D3. Minimal Grinding Mode is symmetric
 
@@ -1418,3 +1419,81 @@ DexNav shows and that wild encounters draw from:
   within 6 of the HP bar; it needs `within8/16/32`, a new `tools/emurun` command that checks timing
   to the frame), `battle_prompts` (new), `battle_anims`, `battle_speed`, the Gym Leaders' and
   bosses' autobattles, `mega_evolution` and the rest of the play tests.
+
+## D41. Side battles: newer Gym Leaders, and the postgame before Red
+
+- The user: "So throughout emerald imperium you battle newer gym leaders as side battles and they
+  give you items, can you add that in there? And maybe add some cooler characters to battle in the
+  post game leading up to the final battle with red". Their answers to our questions: the
+  postgame's characters scattered around the region, not a climb; Red as before (beating them is
+  optional); Kanto's eight from newer regions; only the characters' real sprites, no stand-ins;
+  one battle each.
+- Emerald Imperium (1.3.1) has Sinnoh's eight Gym Leaders as side battles in Hoenn: each at a set
+  place from a set badge, a YES/NO, one battle and a bundle of TMs, held items and Mega Stones.
+  Here the same idea is written anew (D2): `tools/crystal_imperium/side_battles.py` holds the
+  table and writes the trainer IDs, the party headers, the rewards, the scripts and the map objects.
+- **Who and where** (34 battles: 26 trainer IDs, 653-678, after Heart & Soul's own so its saved
+  defeat flags keep their meaning):
+  - Johto, Sinnoh's eight, one per badge stage: Candice (no badges, Violet City's Trainer School),
+    Gardenia (2, Ilex Forest by the Route 34 gate; a stronger team from 4 badges), Fantina (3,
+    Ecruteak City), Maylene (4, Cianwood City), Wake (5, Lake of Rage), Byron (6, Olivine City by
+    the lighthouse), Roark (7, Route 44 by the Ice Path), Volkner (8, Indigo Plateau).
+  - Kanto, Paldea's eight, after the Johto League: Katy (Pewter City), Larry (Viridian City),
+    Brassius (Route 25), Kofu (Vermilion City's pier), Iono (Lavender Town, by the Radio Tower),
+    Ryme (Celadon City), Tulip (Saffron City), Grusha (Cinnabar Island). Paldea is the only newer
+    region whose eight Gym Leaders have original GBA sprites free to use.
+  - The postgame, after the Kanto League (when Red battles too): Cynthia (Ruins of Alph), Iris
+    (Blackthorn City), Geeta (Route 28, on the way to Mt. Silver), N (National Park), Cyrus
+    (Mahogany Town), Wallace (Cherrygrove City), Maxie (Fuchsia City), Archie (Cerulean City) and
+    Wally (Pallet Town).
+- **A side battle:** they stand on their map from the start. Talking to one before its badges or
+  flag gets a line about when to come back; after it, a YES/NO. NO: they wait. YES: the battle
+  (`trainerbattle_no_intro`); a loss is the usual whiteout, and they wait for another try. A win
+  gives the reward once: `src/side_battles.c` puts it whole in the Bag, or in the PC when a pocket
+  is full or the item would take the items pocket's gift room (`AddItemToBagOrPC`, D16); a key
+  item the player has is skipped. If neither has room for all of it, nothing is given (what was
+  added is taken back) and talking to them again tries once more. One battle each: the trainer's
+  defeat flag; the reward's flag (`FLAG_SIDE_REWARD_*`, unused flags of Heart & Soul's).
+- **Teams** (`boss_teams.py`): every one is a boss at its stage's level cap (D21: raised to the
+  player's cap when fought later), six Pokémon, the bag items of the stage's own Gym Leaders, and
+  from the 5th Gym's stage one Mega Evolution (not Geeta and N, whose teams have none). The
+  Johto eight use none of their stage's Johto leaders' Pokémon. The postgame's nine are at level
+  100 like Red, who stays the hardest battle (D27): no EVs, no prediction AI, three Full Restores
+  to his four (`validate.py` checks). Rotom-Wash's Hydro Pump is allowed: the Rotom Catalog
+  teaches it (`validate.py`).
+- **Rewards:** ten Gems of the trainer's type (nothing else gives Gems), TMs before the TM shops
+  sell them (D36), Mega Stones before Goldenrod's Mega shop stocks them, an evolution item for
+  the trainer's own Pokémon, and items nothing else gives: Volkner's Rotom Catalog, Larry's Exp.
+  Charm, Iono's Catching Charm. The postgame gives a Master Ball, Ability Patches and Capsule, the
+  Oval Charm and PP Maxes. `side_battles.py` checks that a TM or Mega Stone isn't on sale at the
+  trainer's stage. Gracidea, the Adamant Crystal and the Lustrous Globe were planned and dropped:
+  Shaymin, Dialga and Palkia can't be caught here.
+- **Places:** `side_battles.py` checks that the player can walk up to the tile in front of each
+  trainer (from the map's warps and connections, with the game's elevation rule) and that the
+  trainer cuts no path off, on every layout of the map (the Lake of Rage's low tide). It caught
+  Gardenia's first spot in Ilex Forest's treetops and Byron facing a wall.
+- **Sprites** (CREDITS.md): their artists' free releases. Sinnoh's battle sprites are iriv24's
+  (Emerald Imperium's author), who released them himself on Team Aqua's Asset Repo for use with
+  credit; with Iris's (Kasen) and Cyrus's (Galaxeeh) they are 64x64 versions of the DS games'
+  sprites, like Heart & Soul's own Gym Leaders. Every overworld sprite and the Paldea, Geeta and N
+  sprites are original GBA art (PurrfectDoodle, RHcks commissioned by darklight177, Kasen,
+  PurpleZaffre). Their terms were read on the artists' own pages. Raihan was left out (his
+  overworld sprite is RPG Maker-sized, 27 colours), and Leon (no terms found for his overworld
+  sprite). Wallace, Maxie, Archie and Wally use Emerald's sprites; Steven, Giovanni and the
+  Frontier Brains are battles in Heart & Soul already.
+  - `tools/crystal_imperium/side_sprites.py` checks the PNGs (64x64 pictures; one row of 3 or 9
+    frames of 16x32 or 32x32; 16 colours, index 0 transparent) and keeps a marked block in each
+    file that lists trainer pictures and overworld sprites. A 3-frame sheet reuses its standing
+    frames for walking, as Emerald's Roxanne does: these trainers never walk.
+  - The conversion moved each background to palette index 0; Brassius's picture had six
+    near-duplicate shades merged to fit 16 colours; Geeta's transparent background was given a
+    colour of its own, since her art uses black.
+  - Trainer picture IDs are one byte (`TrainerPicID`): 21 new ones leave room for 10 more, which
+    `side_sprites.py` checks. The 21 overworld sprites move `OBJ_EVENT_GFX_VARS` up
+    (KNOWN_ISSUES #69).
+- ROM: D41 takes about 89 KB (99.47% to 99.74%).
+- Evidence: `side_battles` (new): Candice (NO; YES; her six at the cap of no badges; the reward
+  once; a full Bag and PC, then the reward later), Gardenia (no battle with one badge; her first
+  team with two, her second with four), Iono (no battle before the Johto League; her six at 90 and
+  the reward), Cynthia (no battle before the Kanto League; her six at 100), and screenshots of the
+  sprites; `validate.py`, and the generators' `--check` modes.

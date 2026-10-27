@@ -138,6 +138,12 @@ free badge. The autopilot cannot drive double battles yet.
   collision, `creep=True` holds A (DexNav), and targets can be read from memory. A soft walk lets
   go of the d-pad as soon as a battle starts (`stop=` on `gMain.inBattle`): since the battle's
   intro goes on by itself (D38), a walk that kept pressing would move the battle's menu cursor.
+  The route ignores people standing in the way: walk around a trainer you're going to talk to
+  (`side_battles`).
+- `!yes_no(yes, label)` answers a script's YES/NO box: it presses B through the message until the
+  box is up (`waituntil8` on `sGlobalScriptContextStatus`, which is 1 while a script waits for the
+  box), then A for YES or B for NO (`side_battles`). `waituntil8 ADDR VALUE MAXFRAMES [KEY]
+  [LABEL]` is `waituntil32` for one byte.
 - `!wait_action_menu(label)` waits for the battle's action menu without pressing anything; tests
   no longer press A through a battle's intro, which would now choose FIGHT.
 - `trace FRAMES ADDR,ADDR... [KEY]` prints the 32-bit values at up to 8 addresses on every frame

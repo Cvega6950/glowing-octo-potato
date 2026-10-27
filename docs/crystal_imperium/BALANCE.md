@@ -306,6 +306,43 @@ Every Pokémon is at the level shown, the NORMAL cap of the earliest point the b
 (D21): the Kanto Gym teams, which are also the Fighting Dojo rematches, are at 100 after the Kanto
 League, like every Heart & Soul rematch then.
 
+## Side battles
+
+Optional battles, one each (D41), every Pokémon at the level cap of the battle's stage like the bosses
+above. Bag items: none for Candice, a Potion for Gardenia's first team, two Hyper Potions at 3 and 4
+badges, two Full Restores from 5 badges and in Kanto, three for the postgame's visitors at 100 (Red
+keeps four, and the only EVs). One Mega Evolution from the 5th Gym's stage (not Geeta or N).
+
+| Trainer | Where | Level (every Pokémon) | Team (held item) |
+|---|---|---|---|
+| Candice | Violet City Trainer School | 15 | Snover (Eviolite), Sneasel (Eviolite), Spheal (Eviolite), Cetoddle (Eviolite), Meditite (Eviolite), Cryogonal (Sitrus Berry) |
+| Gardenia | Ilex Forest | 33 | Sudowoodo (Sitrus Berry), Cherrim (Miracle Seed), Gloom (Eviolite), Dolliv (Sitrus Berry), Grotle (Eviolite), Roserade (Black Sludge) |
+| Gardenia (second team) | Ilex Forest (4 badges) | 50 | Sudowoodo (Sitrus Berry), Vileplume (Black Sludge), Arboliva (Leftovers), Torterra (White Herb), Roserade (Focus Sash), Venusaur (Venusaurite) |
+| Fantina | Ecruteak City | 42 | Spiritomb (Sitrus Berry), Dusclops (Eviolite), Cursola (Life Orb), Zoroark Hisui (Focus Sash), Banette (Spell Tag), Mismagius (Wise Glasses) |
+| Maylene | Cianwood City | 50 | Medicham (Sitrus Berry), Mienshao (Life Orb), Pawmot (Shell Bell), Machamp (Expert Belt), Toxicroak (Black Sludge), Lucario (Lucarionite) |
+| Crasher Wake | Lake of Rage | 58 | Politoed (Damp Rock), Floatzel (Life Orb), Quagsire (Leftovers), Toedscruel (Sitrus Berry), Barraskewda (Choice Band), Gyarados (Gyaradosite) |
+| Byron | Olivine City | 66 | Bastiodon (Leftovers), Copperajah (Sitrus Berry), Excadrill (Focus Sash), Kingambit (Black Glasses), Corviknight (Leftovers), Aggron (Aggronite) |
+| Roark | Route 44 | 75 | Glimmora (Focus Sash), Garganacl (Leftovers), Tyrantrum (Life Orb), Kleavor (Lum Berry), Rampardos (Choice Scarf), Tyranitar (Tyranitarite) |
+| Volkner | Indigo Plateau | 85 | Jolteon (Life Orb), Raichu Alola (Focus Sash), Luxray (Choice Band), Rotom Wash (Leftovers), Electivire (Expert Belt), Manectric (Manectite) |
+| Katy | Pewter City | 90 | Ribombee (Focus Sash), Lokix (Life Orb), Volcarona (Heavy Duty Boots), Golisopod (Assault Vest), Ursaluna (Flame Orb), Pinsir (Pinsirite) |
+| Brassius | Route 25 | 90 | Brambleghast (Focus Sash), Meowscarada (Choice Band), Scovillain (Life Orb), Tsareena (Sitrus Berry), Rillaboom (Miracle Seed), Sceptile (Sceptilite) |
+| Iono | Lavender Town | 90 | Kilowattrel (Choice Specs), Bellibolt (Leftovers), Toxtricity (Throat Spray), Electrode Hisui (Focus Sash), Mismagius (Life Orb), Ampharos (Ampharosite) |
+| Kofu | Vermilion City | 90 | Wugtrio (Focus Sash), Veluza (Life Orb), Crabominable (Sitrus Berry), Dondozo (Leftovers), Clawitzer (Choice Specs), Sharpedo (Sharpedonite) |
+| Larry | Viridian City | 90 | Komala (Assault Vest), Dudunsparce (Leftovers), Staraptor (Choice Band), Porygon Z (Choice Specs), Bewear (Sitrus Berry), Kangaskhan (Kangaskhanite) |
+| Ryme | Celadon City | 90 | Houndstone (Choice Band), Annihilape (Leftovers), Ceruledge (Life Orb), Gholdengo (Choice Scarf), Dragapult (Focus Sash), Gengar (Gengarite) |
+| Tulip | Saffron City | 90 | Farigiraf (Sitrus Berry), Espathra (Life Orb), Florges (Leftovers), Hatterene (Focus Sash), Gallade (Choice Band), Gardevoir (Gardevoirite) |
+| Grusha | Cinnabar Island | 90 | Ninetales Alola (Light Clay), Frosmoth (Heavy Duty Boots), Beartic (Life Orb), Cetitan (Sitrus Berry), Baxcalibur (Loaded Dice), Altaria (Altarianite) |
+| Cynthia | Ruins of Alph | 100 | Spiritomb (Leftovers), Roserade (Black Sludge), Togekiss (Leftovers), Lucario (Life Orb), Milotic (Leftovers), Garchomp (Garchompite) |
+| Iris | Blackthorn City | 100 | Archeops (Focus Sash), Lapras (Leftovers), Hydreigon (Choice Specs), Aggron (Aggronite), Dragonite (Weakness Policy), Haxorus (Lum Berry) |
+| Geeta | Route 28 | 100 | Glimmora (Focus Sash), Espathra (Life Orb), Gogoat (Leftovers), Veluza (Sitrus Berry), Avalugg (Rocky Helmet), Kingambit (Black Glasses) |
+| N | National Park | 100 | Zoroark (Life Orb), Carracosta (White Herb), Vanilluxe (Icy Rock), Archeops (Choice Scarf), Klinklang (Leftovers), Zekrom (Life Orb) |
+| Cyrus | Mahogany Town | 100 | Crobat (Black Sludge), Honchkrow (Life Orb), Gyarados (Lum Berry), Weavile (Razor Claw), Sneasler (Focus Sash), Houndoom (Houndoominite) |
+| Wallace | Cherrygrove City | 100 | Pelipper (Damp Rock), Ludicolo (Life Orb), Starmie (Choice Specs), Whiscash (Leftovers), Swampert (Swampertite), Milotic (Leftovers) |
+| Maxie | Fuchsia City | 100 | Torkoal (Heat Rock), Mightyena (Choice Band), Weezing (Black Sludge), Arcanine (Life Orb), Blaziken (Focus Sash), Camerupt (Cameruptite) |
+| Archie | Cerulean City | 100 | Pelipper (Damp Rock), Tentacruel (Black Sludge), Muk (Black Sludge), Crobat (Life Orb), Crawdaunt (Choice Band), Sharpedo (Sharpedonite) |
+| Wally | Pallet Town | 100 | Altaria (Leftovers), Delcatty (Silk Scarf), Roserade (Focus Sash), Magnezone (Choice Specs), Flygon (Choice Scarf), Gallade (Galladite) |
+
+
 ## Route mini-bosses
 
 Since 0.8.0 one trainer on most routes has a competitive team at the level cap, like Emerald

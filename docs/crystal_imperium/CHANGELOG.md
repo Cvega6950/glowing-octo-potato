@@ -1,5 +1,51 @@
 # Crystal Imperium changelog
 
+## 0.14.0-experimental (2026-10-27)
+
+### Side battles (DECISIONS.md D41)
+Optional battles with Gym Leaders from newer regions, Emerald Imperium-style, and the postgame's
+visitors before Red. Talk to one, answer YES, win, and they give you a reward once. Each battles
+once, at your level cap with six Pokémon; lose, and they wait for another try.
+- **Johto: Sinnoh's eight Gym Leaders**, one for each badge count:
+  - Candice: Violet City's Trainer School, from the start.
+  - Gardenia: Ilex Forest, by the Route 34 gate, from 2 badges. Her stronger team comes out from 4.
+  - Fantina: Ecruteak City, 3 badges.
+  - Maylene: Cianwood City, 4 badges.
+  - Crasher Wake: Lake of Rage, 5 badges.
+  - Byron: Olivine City by the lighthouse, 6 badges.
+  - Roark: Route 44 by the Ice Path, 7 badges.
+  - Volkner: Indigo Plateau, 8 badges.
+- **Kanto: Paldea's eight Gym Leaders**, after the Johto League:
+  - Katy in Pewter City, Larry in Viridian City, Brassius on Route 25, Kofu on Vermilion City's
+    pier, Iono by Lavender Town's Radio Tower, Ryme in Celadon City, Tulip in Saffron City and
+    Grusha on Cinnabar Island.
+- **The postgame, after the Kanto League**, at level 100 like Red:
+  - Cynthia at the Ruins of Alph, Iris in Blackthorn City, Geeta on Route 28 on the way to
+    Mt. Silver, N in the National Park, Cyrus in Mahogany Town, Wallace in Cherrygrove City,
+    Maxie in Fuchsia City, Archie in Cerulean City and Wally in Pallet Town.
+  - Red is still the hardest battle, and still needs only the Kanto League.
+- **Rewards:**
+  - Ten Gems of the trainer's type, which nothing else gives.
+  - TMs before the TM shops sell them.
+  - Mega Stones before the Goldenrod Mega shop stocks them (Gengarite, Lucarionite, Gyaradosite,
+    Metagrossite, Tyranitarite).
+  - Evolution items, and the Rotom Catalog (Volkner).
+  - The Exp. Charm (Larry) and the Catching Charm (Iono).
+  - From the postgame: a Master Ball, Ability Patches, an Ability Capsule, the Oval Charm and
+    PP Maxes.
+  - A reward goes whole to the Bag, or to the PC when a pocket is full. If neither has room,
+    nothing is given until you come back with room.
+- **Their own sprites**, in battle and on the map, from their artists' free releases (CREDITS.md):
+  iriv24 (Emerald Imperium's author), PurrfectDoodle, RHcks (commissioned by darklight177), Kasen,
+  Galaxeeh and PurpleZaffre. Wallace, Maxie, Archie and Wally use Emerald's sprites.
+
+### Tools
+- `tools/crystal_imperium/side_battles.py` and `side_sprites.py` generate the side battles and
+  their sprites' entries, with checks: each trainer can be walked up to and blocks no path, a
+  reward's TMs and Mega Stones aren't on sale yet, the sprites fit the GBA's formats.
+- `tools/emurun`: `waituntil8`, and `yes_no()` in `emu.py` to answer a YES/NO box once it is up.
+- New play test `side_battles`.
+
 ## 0.13.0-experimental (2026-10-27)
 
 ### Quality of life

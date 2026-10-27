@@ -138,6 +138,13 @@ From the first step of a new game:
   Pokémon keep under Minimal Grinding, the boss AI with move and switch prediction, four Full
   Restores, and a sun team around Mega Charizard Y. He battles only the Kanto Champion, so win
   the Kanto League first (the level cap is gone by then).
+- **Side battles, Emerald Imperium-style:** Gym Leaders from newer regions wait around the map.
+  Talk to one, answer YES, and win for a reward, once: ten Gems of their type and items such as
+  TMs and Mega Stones before the shops sell them, the Rotom Catalog, the Exp. Charm and the
+  Catching Charm. Sinnoh's eight in Johto, one for each badge count (Candice in Violet City's
+  Trainer School from the start); Paldea's eight in Kanto after the Johto League; and after the
+  Kanto League, nine visitors at level 100 on the way to Red: Cynthia, Iris, Geeta, N, Cyrus,
+  Wallace, Maxie, Archie and Wally. Each has their own sprites (Credits).
 
 All of these are in the challenge menu at the start of a new game (and on the settings PC in
 your house), except Auto Run, which is in the Options menu and the L menu.
@@ -236,7 +243,11 @@ Grinding starts OFF for HnS saves and can be turned on from the settings PC.
   pokeemerald decompilation. DexNav is the expansion's (added by ghoulslash).
 - **Pokémon Emerald Imperium** (iriv24 and team): the design inspiration for Minimal Grinding
   Mode, Sleep Clause, the QoL key items, competitive trainer philosophy and the TM list (from
-  its public TM guide). No Imperium code or assets are used.
+  its public TM guide). No Imperium code is used; the battle sprites of Sinnoh's Gym Leaders and
+  Cynthia are iriv24's own release on Team Aqua's Asset Repo, used with credit as he asks.
+- **Side battle sprites** (the repository's `CREDITS.md`): PurrfectDoodle (Eva), iriv24, RHcks
+  (the Paldea Gym Leaders commissioned by darklight177; Geeta, N), Kasen, Galaxeeh and
+  PurpleZaffre, from their free releases, used with credit as they ask.
 - **BW Battle UI** by **mudskip** (mudskipper13), and **BW Summary Screen** by **RavePossum**
   with tiles by Againsts, grade sprites by Sphericalice, auto-format code by Vexx, IV/EV code by
   Buffelsaft, nature colors by DizzyEgg, wrapping by Zeturic, reference code by Greenphx9, the
