@@ -317,3 +317,10 @@ const char *Backend_Name(void)
 {
     return "libretro";
 }
+
+int Backend_Profile(unsigned keys, unsigned frames, unsigned interval, unsigned stackWords,
+                    void (*sample)(uint32_t frame, uint32_t pc, uint32_t lr, const uint32_t *stack, unsigned stackWords))
+{
+    (void)keys; (void)frames; (void)interval; (void)stackWords; (void)sample;
+    return -1; // a libretro core runs whole frames: profile with mGBA
+}

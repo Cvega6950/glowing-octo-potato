@@ -24,5 +24,11 @@ void Backend_Reset(void);
 int Backend_SaveState(const char *path);
 int Backend_LoadState(const char *path);
 const char *Backend_Name(void);
+// Profiling: run `frames` frames with `keys` held, one instruction at a time, calling sample() every
+// `interval` CPU cycles (so a function's share of the samples is its share of the time) with the CPU's
+// pc and lr and the first `stackWords` words of its stack. Returns -1, running nothing, if the backend
+// can't step the CPU (libretro).
+int Backend_Profile(unsigned keys, unsigned frames, unsigned interval, unsigned stackWords,
+                    void (*sample)(uint32_t frame, uint32_t pc, uint32_t lr, const uint32_t *stack, unsigned stackWords));
 
 #endif

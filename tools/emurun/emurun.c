@@ -63,6 +63,10 @@
 //   trace FRAMES ADDR[,ADDR...] [KEY]   run FRAMES frames, printing the 32-bit values at the ADDRs (at
 //                          most 8) on each frame where one of them changes (for profiling); with KEY,
 //                          tap it every 16 frames (e.g. a player hurrying the text along)
+//   profile FRAMES INTERVAL FILE [KEY|-] [STACKWORDS]   run FRAMES frames (KEY held), sampling the CPU every
+//                          INTERVAL cycles: each sample is a line "frame pc lr" in FILE, followed by the
+//                          Thumb code addresses (return addresses, mostly) among the first STACKWORDS words
+//                          of the stack; tools/emurun/profile.py names the functions (mGBA only)
 //   snaprect NAME X Y W H  remember the frame's pixels in that screen rectangle as NAME
 //   expectrect NAME [LABEL]   fail unless the frame's pixels in NAME's rectangle are as remembered
 // KEY: A B SELECT START RIGHT LEFT UP DOWN R L
@@ -135,6 +139,19 @@ static unsigned ParseKeys(const char *s)
             fprintf(stderr, "unknown key '%s'\n", tok);
     }
     return keys;
+}
+
+static FILE *sProfileOut;
+
+static void ProfileSample(uint32_t frame, uint32_t pc, uint32_t lr, const uint32_t *stack, unsigned stackWords)
+{
+    fprintf(sProfileOut, "%u %08X %08X", frame, pc, lr);
+    for (unsigned i = 0; i < stackWords; i++)
+    {
+        if ((stack[i] >> 24) == 0x08 && (stack[i] & 1))
+            fprintf(sProfileOut, " %08X", stack[i]);
+    }
+    fprintf(sProfileOut, "\n");
 }
 
 static void RunFrames(unsigned keys, unsigned n)
@@ -1038,6 +1055,30 @@ int main(int argc, char **argv)
                 printf("[frame %lu] tally %s: run %d value %u %s (%d/%d)\n", frameCount, a1, *runs, value,
                        hit ? "hit" : "miss", *hits, *runs);
             }
+        }
+        else if (!strcmp(cmd, "profile"))
+        {
+            // profile FRAMES INTERVAL FILE [KEY|-] [STACKWORDS]
+            char a4[64] = {0}, a5[64] = {0};
+            unsigned long frames = strtoul(a1, NULL, 0);
+            sscanf(line, "%*s %*s %*s %*s %63s %63s", a4, a5);
+            sProfileOut = fopen(a3, "w");
+            if (!sProfileOut)
+            {
+                fprintf(stderr, "line %d: can't write %s\n", lineNo, a3);
+                failures++;
+                continue;
+            }
+            if (Backend_Profile(a4[0] && strcmp(a4, "-") ? ParseKeys(a4) : 0, frames, strtoul(a2, NULL, 0),
+                                a5[0] ? strtoul(a5, NULL, 0) : 0, ProfileSample) < 0)
+            {
+                fprintf(stderr, "line %d: profile needs the mGBA backend\n", lineNo);
+                failures++;
+                frames = 0;
+            }
+            fclose(sProfileOut);
+            frameCount += frames;
+            printf("[frame %lu] profile %s\n", frameCount, a3);
         }
         else if (!strcmp(cmd, "trace"))
         {

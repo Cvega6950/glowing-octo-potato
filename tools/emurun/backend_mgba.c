@@ -4,6 +4,7 @@
 #include <mgba/core/config.h>
 #include <mgba/core/log.h>
 #include <mgba/core/serialize.h>
+#include <mgba/core/timing.h>
 #include <mgba/gba/core.h>
 #include <mgba-util/vfs.h>
 #include <fcntl.h>
@@ -110,3 +111,31 @@ static int State(const char *path, int saving)
 int Backend_SaveState(const char *path) { return State(path, 1); }
 int Backend_LoadState(const char *path) { return State(path, 0); }
 const char *Backend_Name(void) { return "mGBA"; }
+
+int Backend_Profile(unsigned keys, unsigned frames, unsigned interval, unsigned stackWords,
+                    void (*sample)(uint32_t frame, uint32_t pc, uint32_t lr, const uint32_t *stack, unsigned stackWords))
+{
+    uint32_t stack[64];
+    uint32_t start = core->frameCounter(core);
+    uint64_t next = mTimingGlobalTime(core->timing) + interval;
+
+    if (stackWords > 64)
+        stackWords = 64;
+    core->setKeys(core, keys);
+    while (core->frameCounter(core) - start < frames)
+    {
+        core->step(core);
+        while (mTimingGlobalTime(core->timing) >= next)
+        {
+            int32_t pc = 0, lr = 0, sp = 0;
+            next += interval;
+            core->readRegister(core, "pc", &pc);
+            core->readRegister(core, "lr", &lr);
+            core->readRegister(core, "sp", &sp);
+            for (unsigned i = 0; i < stackWords; i++)
+                stack[i] = core->busRead32(core, (uint32_t)sp + 4 * i);
+            sample(core->frameCounter(core) - start, (uint32_t)pc, (uint32_t)lr, stack, stackWords);
+        }
+    }
+    return 0;
+}
