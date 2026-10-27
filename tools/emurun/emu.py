@@ -9,6 +9,7 @@ A .emu file is an emurun script (see emurun.c) with two additions:
   !macro(args)               expanded by the helpers below (Python expression)
 """
 import argparse
+import bisect
 import probe
 import os
 import re
@@ -892,13 +893,15 @@ def symbols(elf):
     available as name@object (e.g. HandleInputChooseAction@battle_controller_player, sMenu@menu),
     resolved via the .map."""
     out = subprocess.run(["arm-none-eabi-nm", elf], check=True, capture_output=True, text=True).stdout
-    table, dupes = {}, {}
+    table, by_addr = {}, []
     for line in out.splitlines():
         parts = line.split()
         if len(parts) == 3:
             addr = int(parts[0], 16)
             table[parts[2]] = addr
-            dupes.setdefault(parts[2], []).append(addr)
+            by_addr.append((addr, parts[2]))
+    by_addr.sort()
+    addrs = [a for a, _ in by_addr]
     mapfile = os.path.splitext(elf)[0] + ".map"
     if os.path.exists(mapfile):
         for line in open(mapfile):
@@ -906,10 +909,12 @@ def symbols(elf):
             if not m:
                 continue
             lo, size, obj = int(m.group(1), 16), int(m.group(2), 16), m.group(3)
-            for name, addrs in dupes.items():
-                for a in addrs:
-                    if lo <= a < lo + size:
-                        table[f"{name}@{obj}"] = a
+            # Sections the linker discarded are listed at 0 (below EWRAM); the absolute assembler
+            # symbols there aren't variables
+            if lo < 0x02000000:
+                continue
+            for i in range(bisect.bisect_left(addrs, lo), bisect.bisect_left(addrs, lo + size)):
+                table[f"{by_addr[i][1]}@{obj}"] = by_addr[i][0]
     return table
 
 

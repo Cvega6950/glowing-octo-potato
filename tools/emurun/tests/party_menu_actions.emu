@@ -16,19 +16,22 @@ press A
 wait 40
 shot 01_lead_actions.png
 expect8 {sMenu@menu+4} 8 lead_menu_has_9_entries
-# B with the cursor on SUMMARY closes the menu (it used to run a field move's callback and freeze)
+# B with the cursor on SUMMARY closes the menu (it used to run a field move's callback and freeze):
+# the action window, sPartyMenuInternal->windowId[0] (+12), is gone (WINDOW_NONE)
 press B
 wait 30
-waituntil32 {gMain+4} {CB2_UpdatePartyMenu} 120 - b_closed_the_menu
+expect8 *{sPartyMenuInternal}+12 255 b_closed_the_menu
 press A
 wait 40
 expect8 {sMenu@menu+4} 8 lead_menu_has_9_entries_again
-# UP wraps to the last entry, CANCEL
+# UP wraps to the last entry, CANCEL, and A on it closes the menu
 press UP
 wait 10
 expect8 {sMenu@menu+2} 8 cursor_on_last_entry
 shot 02_cancel.png
 press A
 wait 30
+expect8 *{sPartyMenuInternal}+12 255 cancel_closed_the_menu
 # Out of the party menu and back to the field
-waituntil32 {gMain+4} {CB2_Overworld} 600 B back_in_field
+press B
+waituntil32 {gMain+4} {CB2_Overworld} 600 - back_in_field

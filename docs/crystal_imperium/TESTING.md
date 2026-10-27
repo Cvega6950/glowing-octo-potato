@@ -134,6 +134,10 @@ free badge. The autopilot cannot drive double battles yet.
   battle script's position); `waituntilany32` waits for one of several values. Tracing
   `*{gSaveBlock2Ptr}+16` (the play-time counter, which counts the frames whose work the main loop
   finished) shows the frames where the game stood still.
+- `within8/16/32 ADDR VALUE FRAMES [LABEL]` runs frame by frame until the value at ADDR is VALUE
+  and fails if that takes more than FRAMES frames (`waituntil32` checks every 10 frames): a timing
+  check to the frame, or a check that can't miss a short-lived state (`mega_evolution`: Lance's
+  Gyarados Mega Evolves before a faster battle is over).
 - `profile FRAMES INTERVAL FILE [KEY|-] [STACKWORDS]` (mGBA only) samples the CPU every INTERVAL
   cycles while FRAMES frames run; `tools/emurun/profile.py FILE --elf pokehns.elf [--frames A B]`
   names the functions, with a rough inclusive time read from the return addresses on the stack

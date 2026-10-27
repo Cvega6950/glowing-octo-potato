@@ -51,13 +51,7 @@ expect16 {gPlayerParty+288} 41 geodude_max_hp_31iv_0ev
 
 # Falkner
 !battle_trainer(402)
-wait 300
-press A
-wait 200
-press A
-wait 200
-press A
-wait 220
+!wait_action_menu("falkner_action_menu")
 shot 04_falkner_start.png
 expect16 {gBattleMons+136} 16 falkner_leads_pidgey
 # The battle is played by the autopilot (it follows the battle state, so it also runs on other

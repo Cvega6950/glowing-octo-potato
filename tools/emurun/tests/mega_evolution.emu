@@ -45,6 +45,7 @@ expect16 {gBattleMons+136} 130 lance_leads_gyarados
 press A
 wait 40
 press A
-wait 1200
+# Checked frame by frame: with FAST BATTLES the battle can be over (Golem knocked out) well within the
+# 1,200 frames this used to wait
+within16 {gBattleMons+136} 917 1200 lance_gyarados_mega_evolved
 shot 03_lance_mega_gyarados.png
-expect16 {gBattleMons+136} 917 lance_gyarados_mega_evolved

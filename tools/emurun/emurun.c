@@ -56,6 +56,9 @@
 //                          while it isn't ("-": no key); fail if it isn't within MAXFRAMES
 //   waituntilany32 MAXFRAMES KEY LABEL ADDR=VALUE[,ADDR=VALUE...]   like waituntil32, until one of the
 //                          32-bit values at the ADDRs is its VALUE; KEY "-" taps nothing
+//   within8/within16/within32 ADDR VALUE FRAMES [LABEL]   run frame by frame until the value at ADDR is
+//                          VALUE (within32 ignores the Thumb bit), failing if that takes more than FRAMES
+//                          frames: a timing check to the frame (waituntil32 checks every 10 frames)
 //   expecttally NAME MIN MAX   fail unless the matching count of NAME is within [MIN, MAX]
 //   expectseen SPECIES [LABEL]   fail unless an autobattle since the last seenreset saw the
 //                          opponent's battler as SPECIES (e.g. a boss's Mega Evolved form)
@@ -1190,6 +1193,22 @@ int main(int argc, char **argv)
             else
                 printf("none of %d values after %lu frames (timed out)\n", count, frameCount - start);
             if (hit < 0)
+                failures++;
+        }
+        else if (!strncmp(cmd, "within", 6) && cmd[6] >= '0' && cmd[6] <= '9')
+        {
+            char label[128] = {0};
+            sscanf(line, "%*s %*s %*s %*s %127s", label);
+            int size = atoi(cmd + 6);
+            uint32_t mask = size == 32 ? ~1u : 0xFFFFFFFFu;
+            uint32_t addr = ParseAddr(a1), want = strtoul(a2, NULL, 0) & mask;
+            unsigned long maxFrames = strtoul(a3, NULL, 0), start = frameCount;
+            while ((Peek(size, addr) & mask) != want && frameCount - start < maxFrames)
+                RunFrames(0, 1);
+            int ok = (Peek(size, addr) & mask) == want;
+            printf("[frame %lu] %s %s: @0x%08X = 0x%X after %lu frames (at most %lu)\n", frameCount, ok ? "PASS" : "FAIL",
+                   label[0] ? label : cmd, addr, Peek(size, addr), frameCount - start, maxFrames);
+            if (!ok)
                 failures++;
         }
         else if (!strcmp(cmd, "snap16"))
