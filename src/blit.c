@@ -1,6 +1,48 @@
 #include "global.h"
 #include "blit.h"
 
+// Crystal Imperium (DECISIONS.md D38): a rectangle of whole 8x8 tiles is copied a tile row (8 pixels,
+// one word) at a time. Pixel by pixel, the BW battle UI's action and move boxes took 3 and 6 frames
+// to draw, and the battle's menus waited for them
+static bool32 TryBlitBitmapRect4BitTiles(const struct Bitmap *src, struct Bitmap *dst, s32 srcX, s32 srcY, s32 dstX, s32 dstY, s32 xEnd, s32 yEnd, u8 colorKey)
+{
+    s32 srcTilesPerRow = src->width >> 3, dstTilesPerRow = dst->width >> 3;
+    s32 tileX, tileY, row;
+    u32 key = (colorKey & 0xF) * 0x11111111u;
+
+    if (((srcX | srcY | dstX | dstY | xEnd | yEnd | src->width | dst->width) & 7) != 0
+     || xEnd <= srcX || yEnd <= srcY
+     || (((uintptr_t)src->pixels | (uintptr_t)dst->pixels) & 3) != 0
+     || src->pixels == dst->pixels)
+        return FALSE;
+
+    for (tileY = 0; tileY < (yEnd - srcY) >> 3; tileY++)
+    {
+        for (tileX = 0; tileX < (xEnd - srcX) >> 3; tileX++)
+        {
+            const u32 *srcRow = (const u32 *)(src->pixels + ((((srcY >> 3) + tileY) * srcTilesPerRow + (srcX >> 3) + tileX) << 5));
+            u32 *dstRow = (u32 *)(dst->pixels + ((((dstY >> 3) + tileY) * dstTilesPerRow + (dstX >> 3) + tileX) << 5));
+
+            for (row = 0; row < 8; row++)
+            {
+                u32 pixels = srcRow[row];
+
+                if (colorKey <= 0xF)
+                {
+                    // The pixels not of the key's color: the nibbles of the XOR that aren't zero
+                    u32 opaque = pixels ^ key;
+                    opaque |= opaque >> 1;
+                    opaque |= opaque >> 2;
+                    opaque = (opaque & 0x11111111) * 0xF;
+                    pixels = (pixels & opaque) | (dstRow[row] & ~opaque);
+                }
+                dstRow[row] = pixels;
+            }
+        }
+    }
+    return TRUE;
+}
+
 void BlitBitmapRect4BitWithoutColorKey(const struct Bitmap *src, struct Bitmap *dst, u16 srcX, u16 srcY, u16 dstX, u16 dstY, u16 width, u16 height)
 {
     BlitBitmapRect4Bit(src, dst, srcX, srcY, dstX, dstY, width, height, 0xFF);
@@ -32,6 +74,9 @@ void BlitBitmapRect4Bit(const struct Bitmap *src, struct Bitmap *dst, u16 srcX, 
 
     multiplierSrcY = (src->width + (src->width & 7)) >> 3;
     multiplierDstY = (dst->width + (dst->width & 7)) >> 3;
+
+    if (TryBlitBitmapRect4BitTiles(src, dst, srcX, srcY, dstX, dstY, xEnd, yEnd, colorKey))
+        return;
 
     if (colorKey == 0xFF)
     {

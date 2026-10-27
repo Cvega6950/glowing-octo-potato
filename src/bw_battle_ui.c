@@ -295,14 +295,14 @@ enum BWBattleUICursorMode BattleUI_GetCursorMode(void)
 
 void BattleUI_DisplayMoveBox(enum BattlerId battler)
 {
-    u32 *tilemap = malloc_and_decompress(BattleUI_GetTextboxTilemap(), NULL);
-    CopyRectToBgTilemapBufferRect(0, tilemap,
+    // Crystal Imperium (DECISIONS.md D38): the textbox's tilemap is copied from its uncompressed data.
+    // Decompressing all of it each time the moves were shown took most of a frame
+    CopyRectToBgTilemapBufferRect(0, sBWBattleUI_TextboxTilemapRaw,
         0, 0,
         32, DISPLAY_TILE_HEIGHT, // we only need top-most part
         0, 40,
         DISPLAY_TILE_WIDTH, DISPLAY_TILE_HEIGHT,
         0, 0, 0);
-    Free(tilemap);
 
     struct ChooseMoveStruct *moveInfo = (struct ChooseMoveStruct *)(&gBattleResources->bufferA[battler][4]);
     bool32 hasZMove = (gBattleStruct->zmove.viable && IsGimmickSelected(battler, GIMMICK_Z_MOVE));

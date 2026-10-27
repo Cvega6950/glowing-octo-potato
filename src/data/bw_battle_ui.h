@@ -4,6 +4,8 @@
 static const u32 sBWBattleUI_TextboxTiles[] = INCBIN_U32("graphics/battle_interface/bw/textbox.4bpp.smol");
 static const u16 sBWBattleUI_TextboxPalette[] = INCBIN_U16("graphics/battle_interface/bw/textbox.gbapal");
 static const u32 sBWBattleUI_TextboxTilemap[] = INCBIN_U32("graphics/battle_interface/bw/textbox.bin.smolTM");
+// Crystal Imperium (DECISIONS.md D38): uncompressed, for the move menu (BattleUI_DisplayMoveBox)
+static const u16 sBWBattleUI_TextboxTilemapRaw[] = INCBIN_U16("graphics/battle_interface/bw/textbox.bin");
 
 // inputbox->actionbox
 static const u8 sBWBattleUI_ActionBox[] = INCBIN_U8("graphics/battle_interface/bw/actionbox.4bpp");
