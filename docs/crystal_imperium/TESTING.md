@@ -131,18 +131,27 @@ free badge. The autopilot cannot drive double battles yet.
   no longer press A through a battle's intro, which would now choose FIGHT.
 - `trace FRAMES ADDR,ADDR... [KEY]` prints the 32-bit values at up to 8 addresses on every frame
   one of them changes (D38's measurements: the battle's main function, each controller, the
-  battle script's position); `waituntilany32` waits for one of several values.
+  battle script's position); `waituntilany32` waits for one of several values. Tracing
+  `*{gSaveBlock2Ptr}+16` (the play-time counter, which counts the frames whose work the main loop
+  finished) shows the frames where the game stood still.
+- `profile FRAMES INTERVAL FILE [KEY|-] [STACKWORDS]` (mGBA only) samples the CPU every INTERVAL
+  cycles while FRAMES frames run; `tools/emurun/profile.py FILE --elf pokehns.elf [--frames A B]`
+  names the functions, with a rough inclusive time read from the return addresses on the stack
+  (D38: the battle menus' pixel-by-pixel copies).
 - `!move_animation_sweep(state)` uses every move once from a saved battle (`battle_anims`).
 - `!open_relearner(slot, presses, category, label)` opens a party Pokémon's move relearner on a
   category (checked); `!expect_relearner_list(...)` checks the list on screen, its length (then
   CANCEL) and the moves it must and mustn't have, against the moves `relearner_list()` reads from
-  the teachable learnsets the build generated; `!close_relearner()` leaves it (`move_pools`).
+  the teachable learnsets the build generated (TM and tutor lists; a level-up list is given with
+  `moves=`); `!close_relearner()` leaves it (`move_pools`, `summary_relearner`).
   `expectfind16` / `expectnotfind16` check whether one of a table's entries holds a value.
 - `snaprect` remembers a screen rectangle; `expectrect` compares it on one frame, and
   `expectrectwithin NAME FRAMES` on the first of the next FRAMES that matches: the player's
   health box bobs during the action menu, and the bob doesn't always start in the same phase
   (`battle_healthbox_names`).
-- Addresses can follow pointers: `*PTR+OFF`, `**PTR+A+B`.
+- Addresses can follow pointers: `*PTR+OFF`, `**PTR+A+B`. A static function or variable whose
+  name several files use is `name@file` (`{HandleInputChooseAction@battle_controller_player}`,
+  `{sMenu@menu}`), found through the linker map.
 - `expect_flag`, `expect_var`, `expect_save3`, `expect_bag_has`, `expect_battler`,
   `expect_const` resolve game constants and struct offsets by compiling against the game's own
   headers (`probe.py`), so tests don't hard-code numbers that move when the source changes.

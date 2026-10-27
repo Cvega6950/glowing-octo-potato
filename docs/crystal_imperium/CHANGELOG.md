@@ -18,6 +18,9 @@
     animation starts 15 frames (a quarter of a second) after you pick it, against 46 before;
     the opponent's 7 frames after its "used" message, against 45. Animations no longer wait for
     their last sound at the end either: a stat change ("Attack fell!") comes half a second sooner.
+  - **The battle's menus no longer freeze the game** (FAST BATTLES or not): the moves take input
+    5 frames after FIGHT (10 before), each turn's action menu comes 4 frames sooner, and going
+    back from the moves with B pauses 1 frame (5 before). They look exactly as before.
   - **FAST INTRO** (no slide-in at the start of a battle) is on for new games.
   - Saves from earlier versions get FAST INTRO and FAST BATTLES turned on once. Turn either off
     in START > OPTION > BATTLE for the classic pace; TEXT SPEED FASTER prints text almost at once.
@@ -44,6 +47,11 @@
 - The move relearner's TM MOVES list held 60 moves. With most TMs in the Bag, opening it for
   MEW, or any Pokémon that learns more than 60 of them, could crash the game; it now holds all
   206 TMs and HMs.
+- The party menu showed only three entries for a Pokémon that had nine (a lead with LEARN MOVES,
+  three field moves, SWITCH, ITEM and FOLLOWER: one more than the menu held), and B then froze
+  the game. It now shows all nine (since 0.4.0).
+- The summary screen's START (relearn moves) opened the kind of moves last used in the party
+  menu's relearner, often an empty list; it now opens one the Pokémon has moves in.
 
 ## 0.12.0-experimental (2026-10-26)
 

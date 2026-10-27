@@ -1159,6 +1159,17 @@ DexNav shows and that wild encounters draw from:
     action, the turn or the battle.
   - The intro and the switch-ins no longer wait for the cry to end: a task turns the music back up
     when it does, as Game Freak's code already did for the player's switch-ins.
+  - **The battle's menus.** The game stood still while it drew them. Measured with the play-time
+    counter (it counts the frames whose work the main loop finished) and a CPU profiler added to
+    `tools/emurun` for this (`profile`, `profile.py`): 8 frames after FIGHT, 4 before each turn's
+    action menu, 5 after B from the moves. The BW battle UI's action box and move boxes were
+    copied pixel by pixel (`BlitBitmapRect4Bit`, 40% of the time after FIGHT), and the moves'
+    screen decompressed the whole text box tilemap each time. Rectangles of whole tiles are now
+    copied a tile row (8 pixels, one word) at a time (`src/blit.c`, for every screen): the same
+    pixels as Game Freak's routine on 2,000,000 random rectangles, and the menus' screenshots are
+    identical. The move box copies the tilemap from an uncompressed copy (4 KB of ROM). The moves
+    take input 5 frames after FIGHT (10 before), each turn's action menu comes 4 frames sooner,
+    B from the moves pauses 1 frame; what remains is printing the moves' names and PP.
 - **With FAST BATTLES on** (`IsFastBattleOn`; HnS's option, on by default):
   - The intro (Poké Balls thrown, Pokémon sent out), battle animations (moves, stat changes,
     status, Poké Balls) and the Pokémon's own animations (sent out, after a knockout) play at
@@ -1197,7 +1208,11 @@ DexNav shows and that wild encounters draw from:
 - Link and recorded battles keep Game Freak's timing (one command a frame, single steps, cries
   waited for, prompts waiting), as does pokeemerald-expansion's test runner.
 - Not changed: sounds and cries play in real time; every other message prints at the TEXT SPEED
-  chosen (FASTER is nearly instant).
+  chosen (FASTER is nearly instant). The opponent's AI (D20) thinks once a turn, before the
+  action menu: about 9 frames against a trainer with six Pokémon, most of it working out the
+  damage of each move its party could use (pokeemerald-expansion's design; the profile shows no
+  single slow step to cut). BATTLE SCENE OFF (START > OPTION, first page) skips move animations
+  altogether.
 - Results (mGBA): the trainer battle above takes 968 frames, 36% less (first menu after 440
   frames, 0.12.0: 704); with no button pressed, the battle now runs from "Try Battle" to the
   trainer's defeat text by itself. A turn against Whitney (Swift, then Charm, back to the action
