@@ -726,9 +726,9 @@ class MapData:
         """The tiles the player can walk to from where they come in (the warps, and the map's edges
         toward its connections), not over the blocked tiles, with the game's elevation rule
         (IsElevationMismatchAt: a move between two different elevations is blocked unless one of
-        them is 0; 15, a bridge, keeps the elevation). No ledges or field moves; the edge of a water
-        connection starts on the water, as if surfing in. A warp is a start even where its tile
-        blocks walking (a door): the player comes out of it."""
+        them is 0; 15, a bridge, keeps the elevation). No ledges, sideways stairs' one-way steps or
+        field moves; the edge of a water connection starts on the water, as if surfing in. A warp is
+        a start even where its tile blocks walking (a door): the player comes out of it."""
         lay = self.layouts[layout or self.json["layout"]]
         w, h = lay["width"], lay["height"]
         warps = [(int(e["x"]), int(e["y"])) for e in self.json.get("warp_events") or []]

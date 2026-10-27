@@ -47,6 +47,8 @@ once, at your level cap with six Pokémon; lose, and they wait for another try.
   their sprites' entries, with checks: each trainer stands on land, can be walked up to and blocks
   no path, a reward's TMs and Mega Stones aren't on sale yet, the sprites fit the GBA's formats.
 - `tools/emurun`: `waituntil8`, and `yes_no()` in `emu.py` to answer a YES/NO box once it is up.
+  `probe.py` compiles under `build/emurun/probe/` instead of `src/`, where a build running at the
+  same time as the tests picked its file up and failed to link.
 - New play test `side_battles`.
 
 ## 0.13.0-experimental (2026-10-27)

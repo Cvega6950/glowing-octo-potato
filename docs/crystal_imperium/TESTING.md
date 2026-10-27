@@ -184,7 +184,9 @@ free badge. The autopilot cannot drive double battles yet.
   `{sMenu@menu}`), found through the linker map.
 - `expect_flag`, `expect_var`, `expect_save3`, `expect_bag_has`, `expect_battler`,
   `expect_const` resolve game constants and struct offsets by compiling against the game's own
-  headers (`probe.py`), so tests don't hard-code numbers that move when the source changes.
+  headers (`probe.py`), so tests don't hard-code numbers that move when the source changes. The
+  probe's C file is written under `build/emurun/probe/` (until 0.13.0 it was in `src/`, where a
+  build running at the same time as the tests compiled it into the ROM and failed to link).
 
 ## Upstream unit-test suite
 

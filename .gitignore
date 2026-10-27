@@ -71,5 +71,6 @@ tools/poryscript
 porymap.user.json
 tools/mid2gbs/.venv
 
-# Crystal Imperium: tools/emurun/probe.py compiles one of these for a moment while a play test runs
+# Crystal Imperium: tools/emurun/probe.py compiled one of these here for a moment while a play test
+# ran, up to 0.13.0 (now under build/emurun/probe, where a build doesn't pick it up)
 src/zz_emurun_probe_*.c

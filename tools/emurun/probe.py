@@ -8,6 +8,14 @@ ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 _cache = {}
 
 
+def _probe_path():
+    """One file per process, so test runs in parallel don't overwrite each other's probe; under
+    build/, not src/, where a build running at the same time would compile and link it"""
+    folder = os.path.join(ROOT, "build", "emurun", "probe")
+    os.makedirs(folder, exist_ok=True)
+    return os.path.join(folder, f"zz_emurun_probe_{os.getpid()}.c")
+
+
 def resolve(exprs):
     """exprs: {name: C expression}. Returns {name: int}. Results are cached per expression."""
     todo = sorted({v for v in exprs.values() if v not in _cache})
@@ -17,8 +25,7 @@ def resolve(exprs):
                '#include "dexnav.h"', '#include "money.h"', '#include "constants/opponents.h"', '#include "window.h"', '#include "battle_setup.h"',
                '#include "constants/move_relearner.h"', '#include "list_menu.h"']
         src += [f"const int kProbe_{i} = ({v});" for i, v in enumerate(todo)]
-        # One file per process, so test runs in parallel don't overwrite each other's probe
-        path = os.path.join(ROOT, "src", f"zz_emurun_probe_{os.getpid()}.c")
+        path = _probe_path()
         with open(path, "w") as f:
             f.write("\n".join(src) + "\n")
         try:
@@ -47,7 +54,7 @@ def bitfield(struct, field):
     key = ("bitfield", struct, field)
     if key not in _cache:
         src = ['#include "global.h"', '#include "main.h"', f"const struct {struct} kBitfieldProbe = {{ .{field} = -1 }};"]
-        path = os.path.join(ROOT, "src", f"zz_emurun_probe_{os.getpid()}.c")
+        path = _probe_path()
         with open(path, "w") as f:
             f.write("\n".join(src) + "\n")
         try:

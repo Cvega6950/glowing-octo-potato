@@ -1503,4 +1503,7 @@ DexNav shows and that wild encounters draw from:
   battle with one badge; her first team with two, her second with four), Iono (no battle before
   the Johto League; her six at 90, to Kanto's Gym Leader theme, and the reward), Cynthia (no
   battle before the Kanto League; her six at 100, to the Champion theme), and screenshots of the
-  sprites; `validate.py`, and the generators' `--check` modes.
+  sprites; `validate.py`, and the generators' `--check` modes. Before the release, a scratch run
+  (mGBA, every badge and both Leagues) walked up to all 25 from a door of their maps, said YES and
+  checked each battle's trainer and six Pokémon, with a screenshot of each on the map and in
+  battle: every spot, sprite and battle picture as intended.
