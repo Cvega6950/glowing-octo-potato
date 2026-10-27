@@ -5,6 +5,8 @@
 # Gardenia in Ilex Forest waits for two badges, and from four uses her second team.
 # With the Bag's items pocket and the PC full, a won battle gives nothing yet; the reward comes
 # when the player talks to her again with room for it.
+# Each battles to their class's theme: Johto's Gym Leader theme for Sinnoh's eight, Kanto's for
+# Paldea's eight, the Champion theme for Cynthia.
 !new_game()
 !battle_style_set()
 !no_care_packages()
@@ -40,6 +42,7 @@ shot 04_battle_menu.png
 expect8 {gEnemyPartyCount} 6 candice_has_6
 expect8 {gEnemyParty+84} 15 candice_lead_at_cap_15
 expect8 {gEnemyParty+584} 15 candice_ace_at_cap_15
+expect32 {gMPlayInfo_BGM} {mus_hg_vs_gym_leader} candice_johto_leader_theme
 !autobattle("0,0,0,0,0,0")
 expect8 {gBattleOutcome} 1 candice_beaten
 # Her defeat text, back to the field, her reward (Ice Gems, two TMs) and her last words
@@ -159,6 +162,7 @@ shot 16_iono_battle.png
 !expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_IONO_HNS", "opponent_is_iono")
 expect8 {gEnemyPartyCount} 6 iono_has_6
 expect8 {gEnemyParty+84} 90 iono_lead_at_kanto_cap_90
+expect32 {gMPlayInfo_BGM} {mus_hg_vs_gym_leader_kanto} iono_kanto_leader_theme
 !autobattle("0,0,0,0,0,0")
 expect8 {gBattleOutcome} 1 iono_beaten
 mash B 900
@@ -195,6 +199,7 @@ waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller
 expect8 {gEnemyPartyCount} 6 cynthia_has_6
 expect8 {gEnemyParty+84} 100 cynthia_lead_at_100
 expect8 {gEnemyParty+584} 100 cynthia_ace_at_100
+expect32 {gMPlayInfo_BGM} {mus_hg_vs_champion} cynthia_champion_theme
 
 # Emerald's own sprites in Johto and Kanto: Wallace in Cherrygrove City, Wally in Pallet Town
 loadstate team.ss

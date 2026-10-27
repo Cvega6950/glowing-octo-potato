@@ -24,6 +24,9 @@ once, at your level cap with six Pokémon; lose, and they wait for another try.
     Mt. Silver, N in the National Park, Cyrus in Mahogany Town, Wallace in Cherrygrove City,
     Maxie in Fuchsia City, Archie in Cerulean City and Wally in Pallet Town.
   - Red is still the hardest battle, and still needs only the Kanto League.
+- **Battle music:** Johto's Gym Leader theme for Sinnoh's eight, Kanto's for Paldea's eight, and
+  the Champion theme for the postgame (Maxie and Archie: Emerald's Team Magma and Team Aqua leader
+  theme).
 - **Rewards:**
   - Ten Gems of the trainer's type, which nothing else gives.
   - TMs before the TM shops sell them.
@@ -41,8 +44,8 @@ once, at your level cap with six Pokémon; lose, and they wait for another try.
 
 ### Tools
 - `tools/crystal_imperium/side_battles.py` and `side_sprites.py` generate the side battles and
-  their sprites' entries, with checks: each trainer can be walked up to and blocks no path, a
-  reward's TMs and Mega Stones aren't on sale yet, the sprites fit the GBA's formats.
+  their sprites' entries, with checks: each trainer stands on land, can be walked up to and blocks
+  no path, a reward's TMs and Mega Stones aren't on sale yet, the sprites fit the GBA's formats.
 - `tools/emurun`: `waituntil8`, and `yes_no()` in `emu.py` to answer a YES/NO box once it is up.
 - New play test `side_battles`.
 

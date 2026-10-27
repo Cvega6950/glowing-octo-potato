@@ -1461,6 +1461,10 @@ DexNav shows and that wild encounters draw from:
   100 like Red, who stays the hardest battle (D27): no EVs, no prediction AI, three Full Restores
   to his four (`validate.py` checks). Rotom-Wash's Hydro Pump is allowed: the Rotom Catalog
   teaches it (`validate.py`).
+- **Music** (from the trainer class): Sinnoh's eight battle to Johto's Gym Leader theme, Paldea's
+  eight to Kanto's (Heart & Soul's Kanto Gym Leader class, which changes nothing else), the
+  postgame's nine to the Champion theme, except Maxie and Archie: Emerald's Team Magma and Team
+  Aqua leader theme.
 - **Rewards:** ten Gems of the trainer's type (nothing else gives Gems), TMs before the TM shops
   sell them (D36), Mega Stones before Goldenrod's Mega shop stocks them, an evolution item for
   the trainer's own Pokémon, and items nothing else gives: Volkner's Rotom Catalog, Larry's Exp.
@@ -1469,9 +1473,11 @@ DexNav shows and that wild encounters draw from:
   trainer's stage. Gracidea, the Adamant Crystal and the Lustrous Globe were planned and dropped:
   Shaymin, Dialga and Palkia can't be caught here.
 - **Places:** `side_battles.py` checks that the player can walk up to the tile in front of each
-  trainer (from the map's warps and connections, with the game's elevation rule) and that the
-  trainer cuts no path off, on every layout of the map (the Lake of Rage's low tide). It caught
-  Gardenia's first spot in Ilex Forest's treetops and Byron facing a wall.
+  trainer (from the map's warps, doors included, and connections, with the game's elevation
+  rule), that neither tile is water, and that the trainer cuts no path off, on every layout of
+  the map (the Lake of Rage's low tide). It caught Gardenia's first spot in Ilex Forest's treetops
+  and Byron facing a wall; the water rule, added before the release, caught Grusha and Archie
+  standing in the sea off Cinnabar Island and in Cerulean City's river.
 - **Sprites** (CREDITS.md): their artists' free releases. Sinnoh's battle sprites are iriv24's
   (Emerald Imperium's author), who released them himself on Team Aqua's Asset Repo for use with
   credit; with Iris's (Kasen) and Cyrus's (Galaxeeh) they are 64x64 versions of the DS games'
@@ -1492,8 +1498,9 @@ DexNav shows and that wild encounters draw from:
     `side_sprites.py` checks. The 21 overworld sprites move `OBJ_EVENT_GFX_VARS` up
     (KNOWN_ISSUES #69).
 - ROM: D41 takes about 89 KB (99.47% to 99.74%).
-- Evidence: `side_battles` (new): Candice (NO; YES; her six at the cap of no badges; the reward
-  once; a full Bag and PC, then the reward later), Gardenia (no battle with one badge; her first
-  team with two, her second with four), Iono (no battle before the Johto League; her six at 90 and
-  the reward), Cynthia (no battle before the Kanto League; her six at 100), and screenshots of the
+- Evidence: `side_battles` (new): Candice (NO; YES; her six at the cap of no badges, to Johto's
+  Gym Leader theme; the reward once; a full Bag and PC, then the reward later), Gardenia (no
+  battle with one badge; her first team with two, her second with four), Iono (no battle before
+  the Johto League; her six at 90, to Kanto's Gym Leader theme, and the reward), Cynthia (no
+  battle before the Kanto League; her six at 100, to the Champion theme), and screenshots of the
   sprites; `validate.py`, and the generators' `--check` modes.

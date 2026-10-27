@@ -19051,7 +19051,7 @@ Nature: Timid
 
 === TRAINER_SIDE_KATY_HNS ===
 Name: KATY
-Class: Leader Hns
+Class: Leader Kanto Hns
 Pic: Katy Hns
 Gender: Female
 Music: Hg Girl 1
@@ -19122,7 +19122,7 @@ Nature: Jolly
 
 === TRAINER_SIDE_BRASSIUS_HNS ===
 Name: BRASSIUS
-Class: Leader Hns
+Class: Leader Kanto Hns
 Pic: Brassius Hns
 Gender: Male
 Music: Hg Boy 1
@@ -19193,7 +19193,7 @@ Nature: Timid
 
 === TRAINER_SIDE_IONO_HNS ===
 Name: IONO
-Class: Leader Hns
+Class: Leader Kanto Hns
 Pic: Iono Hns
 Gender: Female
 Music: Hg Girl 1
@@ -19264,7 +19264,7 @@ Nature: Modest
 
 === TRAINER_SIDE_KOFU_HNS ===
 Name: KOFU
-Class: Leader Hns
+Class: Leader Kanto Hns
 Pic: Kofu Hns
 Gender: Male
 Music: Hg Boy 1
@@ -19335,7 +19335,7 @@ Nature: Adamant
 
 === TRAINER_SIDE_LARRY_HNS ===
 Name: LARRY
-Class: Leader Hns
+Class: Leader Kanto Hns
 Pic: Larry Hns
 Gender: Male
 Music: Hg Boy 1
@@ -19406,7 +19406,7 @@ Nature: Jolly
 
 === TRAINER_SIDE_RYME_HNS ===
 Name: RYME
-Class: Leader Hns
+Class: Leader Kanto Hns
 Pic: Ryme Hns
 Gender: Female
 Music: Hg Girl 1
@@ -19477,7 +19477,7 @@ Nature: Timid
 
 === TRAINER_SIDE_TULIP_HNS ===
 Name: TULIP
-Class: Leader Hns
+Class: Leader Kanto Hns
 Pic: Tulip Hns
 Gender: Female
 Music: Hg Girl 1
@@ -19548,7 +19548,7 @@ Nature: Timid
 
 === TRAINER_SIDE_GRUSHA_HNS ===
 Name: GRUSHA
-Class: Leader Hns
+Class: Leader Kanto Hns
 Pic: Grusha Hns
 Gender: Male
 Music: Hg Boy 1

@@ -20,10 +20,10 @@ Run it before boss_teams.py, which needs the trainers' headers.
 Emerald Imperium (1.3.1) has Sinnoh's eight Gym Leaders as side battles in Hoenn, each at a set place
 from a set badge, with a YES/NO prompt, one battle and a bundle of TMs, held items and Mega Stones
 (emeraldimperium.info/walkthrough.html). Here the same idea is written anew (D2): Johto has Sinnoh's
-eight, one per badge stage; Kanto has eight leaders from Unova, Kalos, Galar and Paldea; the postgame
-has other regions' Champions and rivals around Johto and Kanto. Every one battles at the player's
-level cap with six Pokemon (boss_teams.py, D21). A reward holds what this game doesn't already give
-ten at a time (the care packages, D16): ten Gems of the trainer's type, TMs before the TM shops sell
+eight, one per badge stage; Kanto has Paldea's eight Gym Leaders; the postgame has other regions'
+Champions, rivals and villains around Johto and Kanto. Every one battles at the player's level cap
+with six Pokemon (boss_teams.py, D21). A reward holds what this game doesn't already give ten at a
+time (the care packages, D16): ten Gems of the trainer's type, TMs before the TM shops sell
 them (D36), Mega Stones before the Goldenrod Mega shop sells them, an evolution item for the
 trainer's own Pokemon, and items nothing else gives (the Rotom Catalog). It goes whole to the Bag,
 or to the PC when a pocket is full; if neither has room, nothing is given and talking to the trainer
@@ -194,11 +194,11 @@ JOHTO = [
 ]
 
 # --- Kanto: Paldea's eight Gym Leaders, after the Johto League (all at Kanto's cap) ------------------
-# One in each of eight Kanto towns, near a place that suits them. Every TM and Mega Stone is on sale
-# by then, so a reward is ten Gems and an item of the leader's own: Larry's Exp. Charm and Iono's
-# Catching Charm are the only ones in the game.
+# One in each of eight Kanto towns, near a place that suits them; Kanto's Gym Leader class, for its
+# battle music. Every TM and Mega Stone is on sale by then, so a reward is ten Gems and an item of
+# the leader's own: Larry's Exp. Charm and Iono's Catching Charm are the only ones in the game.
 KANTO = [
-    Battle("KATY", 662, "KATY", "Leader Hns", "Katy Hns", "Female", "Hg Girl 1", "Orange",
+    Battle("KATY", 662, "KATY", "Leader Kanto Hns", "Katy Hns", "Female", "Hg Girl 1", "Orange",
            "OBJ_EVENT_GFX_KATY_HNS", [("PewterCity_hns", 22, 12, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("BUG_GEM", 10), ("SWEET_APPLE", 1), ("TART_APPLE", 1), ("SYRUPY_APPLE", 1)],
@@ -211,7 +211,7 @@ KANTO = [
             "defeat": ["Oh my! That battle was sweeter than any cake!"],
             "reward": ["A sweet battle deserves a sweet treat! Here you go!"],
             "after": ["If you ever visit PALDEA, come by my bakery in CORTONDO!"]}),
-    Battle("BRASSIUS", 663, "BRASSIUS", "Leader Hns", "Brassius Hns", "Male", "Hg Boy 1", "Green",
+    Battle("BRASSIUS", 663, "BRASSIUS", "Leader Kanto Hns", "Brassius Hns", "Male", "Hg Boy 1", "Green",
            "OBJ_EVENT_GFX_BRASSIUS_HNS", [("Route25_hns", 80, 15, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("GRASS_GEM", 10), ("SUN_STONE", 1), ("GRASSY_SEED", 3)],
@@ -223,7 +223,7 @@ KANTO = [
             "defeat": ["Magnificent! Our battle was a masterpiece!"],
             "reward": ["Take these, as thanks for the inspiration!"],
             "after": ["Art and battles both bloom when you pour your heart into them!"]}),
-    Battle("IONO", 664, "IONO", "Leader Hns", "Iono Hns", "Female", "Hg Girl 1", "Yellow",
+    Battle("IONO", 664, "IONO", "Leader Kanto Hns", "Iono Hns", "Female", "Hg Girl 1", "Yellow",
            "OBJ_EVENT_GFX_IONO_HNS", [("LavenderTown_hns", 23, 9, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("ELECTRIC_GEM", 10), ("CATCHING_CHARM", 1)],
@@ -235,7 +235,7 @@ KANTO = [
             "defeat": ["Ack! My chat is going wild! You zapped me good!"],
             "reward": ["Here's a little something from your favorite streamer!"],
             "after": ["Thanks for being on my stream! The views are through the roof!"]}),
-    Battle("KOFU", 665, "KOFU", "Leader Hns", "Kofu Hns", "Male", "Hg Boy 1", "Blue",
+    Battle("KOFU", 665, "KOFU", "Leader Kanto Hns", "Kofu Hns", "Male", "Hg Boy 1", "Blue",
            "OBJ_EVENT_GFX_KOFU_HNS", [("VermilionCity_hns", 49, 27, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("WATER_GEM", 10), ("PRISM_SCALE", 1), ("DAMP_ROCK", 1)],
@@ -248,7 +248,7 @@ KANTO = [
             "defeat": ["Whoa! You cooked me but good!"],
             "reward": ["A great battle earns a great prize! Take it!"],
             "after": ["Life is like the sea: full of surprises, and full of flavor!"]}),
-    Battle("LARRY", 666, "LARRY", "Leader Hns", "Larry Hns", "Male", "Hg Boy 1", "Dark Red",
+    Battle("LARRY", 666, "LARRY", "Leader Kanto Hns", "Larry Hns", "Male", "Hg Boy 1", "Dark Red",
            "OBJ_EVENT_GFX_LARRY_HNS", [("ViridianCity_hns", 22, 23, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("NORMAL_GEM", 10), ("EXP_CHARM", 1)],
@@ -260,7 +260,7 @@ KANTO = [
             "defeat": ["...You're strong. I'll put that in my report."],
             "reward": ["My boss said to hand these out. Here."],
             "after": ["Ordinary is best. Remember that, kid."]}),
-    Battle("RYME", 667, "RYME", "Leader Hns", "Ryme Hns", "Female", "Hg Girl 1", "Purple",
+    Battle("RYME", 667, "RYME", "Leader Kanto Hns", "Ryme Hns", "Female", "Hg Girl 1", "Purple",
            "OBJ_EVENT_GFX_RYME_HNS", [("CeladonCity_hns", 36, 22, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("GHOST_GEM", 10), ("DUSK_STONE", 1), ("SPELL_TAG", 1)],
@@ -272,7 +272,7 @@ KANTO = [
             "defeat": ["Mic drop! You stole the whole show!"],
             "reward": ["A star performance deserves some love! Here!"],
             "after": ["Keep your rhythm, and your POKéMON will follow your beat!"]}),
-    Battle("TULIP", 668, "TULIP", "Leader Hns", "Tulip Hns", "Female", "Hg Girl 1", "Pink",
+    Battle("TULIP", 668, "TULIP", "Leader Kanto Hns", "Tulip Hns", "Female", "Hg Girl 1", "Pink",
            "OBJ_EVENT_GFX_TULIP_HNS", [("SaffronCity_hns", 34, 33, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("PSYCHIC_GEM", 10), ("DAWN_STONE", 1), ("PSYCHIC_SEED", 3)],
@@ -285,8 +285,8 @@ KANTO = [
             "defeat": ["How lovely. You and your POKéMON shine brighter than I do."],
             "reward": ["Please accept these. You've earned them."],
             "after": ["True beauty comes from the bond you share with your POKéMON."]}),
-    Battle("GRUSHA", 669, "GRUSHA", "Leader Hns", "Grusha Hns", "Male", "Hg Boy 1", "Light Blue",
-           "OBJ_EVENT_GFX_GRUSHA_HNS", [("CinnabarIsland_hns", 40, 35, "down")],
+    Battle("GRUSHA", 669, "GRUSHA", "Leader Kanto Hns", "Grusha Hns", "Male", "Hg Boy 1", "Light Blue",
+           "OBJ_EVENT_GFX_GRUSHA_HNS", [("CinnabarIsland_hns", 42, 34, "left")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("ICE_GEM", 10), ("ICY_ROCK", 1), ("RAZOR_CLAW", 1)],
            {"not_yet": ["I'm GRUSHA, GYM LEADER of GLASEADO. This island is way too hot for me.",
@@ -390,7 +390,7 @@ POSTGAME = [
             "reward": ["Take these. A token of my recalculated respect."],
             "after": ["The land and the sea must stay in balance. I have learned that, at least."]}),
     Battle("ARCHIE", 677, "ARCHIE", "Aqua Leader", "Aqua Leader Archie", "Male", "Hg Boy 1", "Blue",
-           "OBJ_EVENT_GFX_ARCHIE", [("CeruleanCity_hns", 11, 13, "down")],
+           "OBJ_EVENT_GFX_ARCHIE", [("CeruleanCity_hns", 18, 8, "down")],
            ("flag", KANTO_CHAMPION_FLAG),
            [("POISON_GEM", 10), ("DEEP_SEA_TOOTH", 1), ("DEEP_SEA_SCALE", 1)],
            {"not_yet": ["Bwahahaha! ARCHIE of TEAM AQUA here! I came to see KANTO's seas!",
@@ -657,6 +657,33 @@ def render_party(text):
 
 # --- Maps ---------------------------------------------------------------------------------------------
 
+_CACHE = {}
+
+
+def behaviors():
+    """MB_* names in order (include/constants/metatile_behaviors.h)"""
+    if "behaviors" not in _CACHE:
+        _CACHE["behaviors"] = re.findall(r"^\s*(MB_\w+)", read("include/constants/metatile_behaviors.h"), re.M)
+    return _CACHE["behaviors"]
+
+
+def surfable():
+    """The water behaviors (TILE_FLAG_SURFABLE in src/metatile_behavior.c)"""
+    if "surfable" not in _CACHE:
+        _CACHE["surfable"] = set(re.findall(r"\[(MB_\w+)\]\s*=[^,\n]*TILE_FLAG_SURFABLE", read("src/metatile_behavior.c")))
+    return _CACHE["surfable"]
+
+
+def tileset_attributes(tileset):
+    """A tileset's metatile attributes file (src/data/tilesets/headers.h, metatiles.h)"""
+    if tileset not in _CACHE:
+        header = re.search(r"const struct Tileset " + tileset + r"\s*=\s*\{(.*?)\};", read("src/data/tilesets/headers.h"), re.S)
+        symbol = re.search(r"\.metatileAttributes\s*=\s*(\w+)", header.group(1)).group(1)
+        path = re.search(symbol + r"\[\]\s*=\s*INCBIN_U16\(\"([^\"]+)\"\)", read("src/data/tilesets/metatiles.h")).group(1)
+        _CACHE[tileset] = open(os.path.join(ROOT, path), "rb").read()
+    return _CACHE[tileset]
+
+
 class MapData:
     """A map's tiles (collision, elevation) and what stands on them, for a side battle's spot."""
     def __init__(self, folder):
@@ -675,6 +702,19 @@ class MapData:
         c = struct.unpack(f"<{w * h}H", data)[y * w + x]
         return (c >> 10) & 3, c >> 12
 
+    def behavior(self, x, y, layout=None):
+        """The metatile behavior (MB_*) at (x, y): Heart & Soul's layouts keep 16-bit attributes, the
+        behavior in the low byte, and 640 metatiles in a primary tileset (include/fieldmap.h)"""
+        lay = self.layouts[layout or self.json["layout"]]
+        if lay.get("layout_version") != "hns":
+            sys.exit(f"{lay['id']}: only Heart & Soul's layouts are read here")
+        w, h = lay["width"], lay["height"]
+        data = open(os.path.join(ROOT, lay["blockdata_filepath"]), "rb").read()[:w * h * 2]
+        metatile = struct.unpack(f"<{w * h}H", data)[y * w + x] & 0x3FF
+        primary = metatile < 640
+        attributes = tileset_attributes(lay["primary_tileset" if primary else "secondary_tileset"])
+        return behaviors()[struct.unpack_from("<H", attributes, 2 * (metatile if primary else metatile - 640))[0] & 0xFF]
+
     def taken(self, x, y, script):
         for kind in ("object_events", "warp_events", "coord_events", "bg_events"):
             for e in self.json.get(kind) or []:
@@ -687,16 +727,19 @@ class MapData:
         toward its connections), not over the blocked tiles, with the game's elevation rule
         (IsElevationMismatchAt: a move between two different elevations is blocked unless one of
         them is 0; 15, a bridge, keeps the elevation). No ledges or field moves; the edge of a water
-        connection starts on the water, as if surfing in."""
+        connection starts on the water, as if surfing in. A warp is a start even where its tile
+        blocks walking (a door): the player comes out of it."""
         lay = self.layouts[layout or self.json["layout"]]
         w, h = lay["width"], lay["height"]
-        starts = [(int(e["x"]), int(e["y"])) for e in self.json.get("warp_events") or []]
+        warps = [(int(e["x"]), int(e["y"])) for e in self.json.get("warp_events") or []]
+        edges = []
         for c in self.json.get("connections") or []:
-            starts += {"up": [(x, 0) for x in range(w)], "down": [(x, h - 1) for x in range(w)],
-                       "left": [(0, y) for y in range(h)], "right": [(w - 1, y) for y in range(h)]}.get(c["direction"], [])
+            edges += {"up": [(x, 0) for x in range(w)], "down": [(x, h - 1) for x in range(w)],
+                      "left": [(0, y) for y in range(h)], "right": [(w - 1, y) for y in range(h)]}.get(c["direction"], [])
         seen, todo = set(), []
-        for x, y in starts:
-            if (x, y) not in blocked and 0 <= x < w and 0 <= y < h and self.tile(x, y, layout)[0] == 0:
+        for x, y in warps + edges:
+            if ((x, y) not in blocked and 0 <= x < w and 0 <= y < h
+                    and ((x, y) in warps or self.tile(x, y, layout)[0] == 0)):
                 todo.append((x, y, self.tile(x, y, layout)[1]))
         seen.update(todo)
         while todo:
@@ -723,16 +766,20 @@ def place_objects(check_only):
             script = script_label(b)
             if not (0 <= x < m.w and 0 <= y < m.h):
                 sys.exit(f"{b.key}: ({x},{y}) is outside {folder}")
+            dx, dy = {"down": (0, 1), "up": (0, -1), "left": (-1, 0), "right": (1, 0)}[facing]
             for layout in [None] + (layouts[0] if layouts else []):
                 if m.tile(x, y, layout)[0]:
                     sys.exit(f"{b.key}: ({x},{y}) on {folder} ({layout or 'its layout'}) is blocked")
+                # Not in the water, and the player talks from land
+                for tx, ty in ((x, y), (x + dx, y + dy)):
+                    if m.behavior(tx, ty, layout) in surfable():
+                        sys.exit(f"{b.key}: ({tx},{ty}) on {folder} ({layout or 'its layout'}) is water")
             other = m.taken(x, y, script)
             if other:
                 sys.exit(f"{b.key}: ({x},{y}) on {folder} already has one of its {other}")
             # The player can walk up to talk, and the trainer cuts no one off: every other object
             # counts as standing in the way, wherever its flag hides it
             others = {(int(o["x"]), int(o["y"])) for o in m.json["object_events"] if o.get("script") != script}
-            dx, dy = {"down": (0, 1), "up": (0, -1), "left": (-1, 0), "right": (1, 0)}[facing]
             for layout in [None] + (layouts[0] if layouts else []):
                 free = m.reachable(others, layout)
                 there = m.reachable(others | {(x, y)}, layout)
