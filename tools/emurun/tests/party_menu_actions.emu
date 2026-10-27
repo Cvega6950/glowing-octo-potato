@@ -1,0 +1,34 @@
+# Crystal Imperium play test: a party menu with every entry. The lead knows SURF, has moves to
+# relearn, and HM02 and HM05 are in the Bag, so its list is SUMMARY, LEARN MOVES, SURF, FLY, FLASH,
+# SWITCH, ITEM, FOLLOWER and CANCEL: nine entries. Before 0.13.0 the list held eight, the ninth
+# overwrote its count, the menu showed three entries and B froze the game (KNOWN_ISSUES #64).
+!new_game()
+!no_care_packages()
+!give_mon_complex("SPECIES_TYPHLOSION", 50, "NATURE_HARDY", 0, ["MOVE_SURF", "MOVE_ERUPTION", "MOVE_QUICK_ATTACK", "MOVE_SMOKESCREEN"])
+!give_mon_complex("SPECIES_MEW", 50, "NATURE_HARDY", 0, ["MOVE_POUND", "MOVE_TRANSFORM", "MOVE_AMNESIA", "MOVE_BARRIER"])
+!give_item("ITEM_HM_FLY")
+!give_item("ITEM_HM_FLASH")
+
+# The lead's menu: nine entries (sMenu, menu.c, all u8: +2 cursorPos, +4 maxCursorPos)
+!start_menu("POKEMON")
+wait 60
+press A
+wait 40
+shot 01_lead_actions.png
+expect8 {sMenu@menu+4} 8 lead_menu_has_9_entries
+# B with the cursor on SUMMARY closes the menu (it used to run a field move's callback and freeze)
+press B
+wait 30
+waituntil32 {gMain+4} {CB2_UpdatePartyMenu} 120 - b_closed_the_menu
+press A
+wait 40
+expect8 {sMenu@menu+4} 8 lead_menu_has_9_entries_again
+# UP wraps to the last entry, CANCEL
+press UP
+wait 10
+expect8 {sMenu@menu+2} 8 cursor_on_last_entry
+shot 02_cancel.png
+press A
+wait 30
+# Out of the party menu and back to the field
+waituntil32 {gMain+4} {CB2_Overworld} 600 B back_in_field

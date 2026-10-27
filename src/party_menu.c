@@ -194,7 +194,11 @@ struct PartyMenuInternal
     u32 spriteIdCancelPokeball:7;
     u32 messageId:14;
     u8 windowId[3];
-    u8 actions[8];
+    // Crystal Imperium: 9, not 8. With LEARN MOVES the lead's list can be SUMMARY, LEARN MOVES, 3 field
+    // moves, SWITCH, ITEM, FOLLOWER and CANCEL, and the 9th entry overwrote numActions: the menu showed 3
+    // entries, and B ran a field move's callback with a bad index (the game froze). Nine rows still fit
+    // the action window, whose tiles then end where the next window's start (0x2E9 + 10 * 18 = 0x39D)
+    u8 actions[9];
     u8 numActions;
     // In vanilla Emerald, only the first 0xB0 hwords (0x160 bytes) are actually used.
     // However, a full 0x100 hwords (0x200 bytes) are allocated.

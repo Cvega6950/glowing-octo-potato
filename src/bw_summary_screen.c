@@ -2502,6 +2502,23 @@ static void Task_HandleInput(u8 taskId)
             sMonSummaryScreen->callback = CB2_InitLearnMove;
             gSpecialVar_0x8004 = sMonSummaryScreen->curMonIndex;
 
+            // Crystal Imperium: open a category this Pokemon has moves in, as pokemon_summary_screen.c's
+            // TryUpdateRelearnType does. The prompt shows when any category has moves, but the relearner
+            // opened the one last used (e.g. the party menu's TM MOVES), often an empty list
+            if (!CanBoxMonRelearnMoves(&sMonSummaryScreen->currentMon.box, gMoveRelearnerState))
+            {
+                enum MoveRelearnerStates state;
+
+                for (state = MOVE_RELEARNER_LEVEL_UP_MOVES; state < MOVE_RELEARNER_COUNT; state++)
+                {
+                    if (CanBoxMonRelearnMoves(&sMonSummaryScreen->currentMon.box, state))
+                    {
+                        gMoveRelearnerState = state;
+                        break;
+                    }
+                }
+            }
+
             switch (sMonSummaryScreen->currPageIndex)
             {
             case PSS_PAGE_BATTLE_MOVES:

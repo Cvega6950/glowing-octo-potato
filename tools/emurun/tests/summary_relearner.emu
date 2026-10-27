@@ -1,0 +1,33 @@
+# Crystal Imperium play test: the summary screen's START > relearner opens a category the Pokémon
+# has moves in. After the party menu's relearner was left on MEW's TM MOVES, MAGIKARP (Lv 30, only
+# SPLASH, no TM in the Bag it can learn) showed START on its moves page, and START opened TM MOVES
+# with nothing but CANCEL (KNOWN_ISSUES #65). It now opens LEVEL UP: TACKLE and FLAIL.
+!new_game()
+!no_care_packages()
+!give_mon_complex("SPECIES_MEW", 50, "NATURE_HARDY", 0, ["MOVE_POUND", "MOVE_TRANSFORM", "MOVE_AMNESIA", "MOVE_BARRIER"])
+!give_mon_complex("SPECIES_MAGIKARP", 30, "NATURE_HARDY", 0, ["MOVE_SPLASH", "MOVE_NONE", "MOVE_NONE", "MOVE_NONE"])
+!give_item("ITEM_TM_FOCUS_PUNCH")
+# MEW (slot 0: LEVEL UP, TM, TUTOR): the party menu's relearner on TM MOVES, then back out
+!open_relearner(0, 1, "MOVE_RELEARNER_TM_MOVES", "mew_tm")
+!close_relearner()
+!expect_const("{gMoveRelearnerState}", "MOVE_RELEARNER_TM_MOVES", "last_category_tm", size=8)
+
+# MAGIKARP > SUMMARY > the moves page > START
+!start_menu("POKEMON")
+wait 60
+press DOWN
+wait 10
+press A
+wait 30
+press A
+wait 200
+press RIGHT
+wait 60
+press RIGHT
+wait 60
+shot 01_magikarp_moves_page.png
+press START
+wait 200
+shot 02_relearner.png
+!expect_const("{gMoveRelearnerState}", "MOVE_RELEARNER_LEVEL_UP_MOVES", "opened_level_up_moves", size=8)
+!expect_relearner_list("Magikarp", "MOVE_RELEARNER_LEVEL_UP_MOVES", ("MOVE_SPLASH",), present=("MOVE_TACKLE", "MOVE_FLAIL"), label="magikarp_level_up", moves=("MOVE_TACKLE", "MOVE_FLAIL"))

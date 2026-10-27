@@ -706,10 +706,12 @@ def open_relearner(slot, presses, category, label):
     return out + expect_const("{gMoveRelearnerState}", category, f"{label}_category", size=8)
 
 
-def expect_relearner_list(learnset, category, known=(), present=(), absent=(), label="relearner", game_clear=False):
+def expect_relearner_list(learnset, category, known=(), present=(), absent=(), label="relearner", game_clear=False,
+                          moves=None):
     """With the relearner's list open (open_relearner), check that it holds relearner_list(...)'s
-    number of moves, then CANCEL, and has the moves `present` and not the moves `absent`."""
-    moves = relearner_list(learnset, category, known, game_clear)
+    number of moves (or the moves `moves`: relearner_list reads TM and tutor lists only), then
+    CANCEL, and has the moves `present` and not the moves `absent`."""
+    moves = list(moves) if moves is not None else relearner_list(learnset, category, known, game_clear)
     v = probe.resolve({"items": "offsetof(struct ListMenuTemplate, items)",
                        "count_word": "offsetof(struct ListMenuTemplate, itemPrintFunc) + sizeof(void *)",
                        "size": "sizeof(struct ListMenuItem)", "id": "offsetof(struct ListMenuItem, id)",
@@ -883,8 +885,9 @@ def send_out(slot):
 
 
 def symbols(elf):
-    """name -> address. Static functions that exist in several objects are also available as
-    name@object (e.g. HandleInputChooseAction@battle_controller_player), resolved via the .map."""
+    """name -> address. Static functions and variables that exist in several objects are also
+    available as name@object (e.g. HandleInputChooseAction@battle_controller_player, sMenu@menu),
+    resolved via the .map."""
     out = subprocess.run(["arm-none-eabi-nm", elf], check=True, capture_output=True, text=True).stdout
     table, dupes = {}, {}
     for line in out.splitlines():
@@ -896,7 +899,7 @@ def symbols(elf):
     mapfile = os.path.splitext(elf)[0] + ".map"
     if os.path.exists(mapfile):
         for line in open(mapfile):
-            m = re.match(r"\s*\.text\s+0x([0-9a-f]+)\s+0x([0-9a-f]+)\s+\S*?([\w]+)\.o$", line)
+            m = re.match(r"\s*\.(?:text|rodata|data|bss|sbss)\s+0x([0-9a-f]+)\s+0x([0-9a-f]+)\s+\S*?([\w]+)\.o$", line)
             if not m:
                 continue
             lo, size, obj = int(m.group(1), 16), int(m.group(2), 16), m.group(3)
