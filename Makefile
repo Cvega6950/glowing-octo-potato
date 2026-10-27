@@ -566,8 +566,17 @@ $(OBJ_DIR)/sym_common.ld: sym_common.txt $(C_OBJS) $(wildcard common_syms/*.txt)
 $(OBJ_DIR)/sym_ewram.ld: sym_ewram.txt
 	$(RAMSCRGEN) ewram_data $< ENGLISH > $@
 
-# Crystal Imperium (DECISIONS.md D39): imperium_teachables.json is Radical Red's TM and tutor compatibility
-TEACHABLE_DEPS := $(ALL_LEARNABLES_JSON) $(INCLUDE_DIRS)/constants/tms_hms.h $(INCLUDE_DIRS)/config/pokemon.h $(DATA_SRC_SUBDIR)/pokemon/special_movesets.json $(INCLUDE_DIRS)/config/pokedex_plus_hgss.h $(LEARNSET_HELPERS_DIR)/make_teachables.py $(DATA_SRC_SUBDIR)/pokemon/imperium_teachables.json
+# Crystal Imperium (DECISIONS.md D39): imperium_teachables.json is Radical Red's TM and tutor compatibility.
+# The two headers depend on the game (--build $(GAME_VERSION)), but every game's build writes the same
+# files: the stamp holds the game they were last made for, and changes (so they're remade) with it. Only
+# a build sets it: the `make generated` run at the start of every build has the default GAME_VERSION
+LEARNSET_GAME_STAMP := $(LEARNSET_HELPERS_BUILD_DIR)/game_version
+ifeq ($(SETUP_PREREQS),1)
+  $(shell mkdir -p $(LEARNSET_HELPERS_BUILD_DIR); [ "`cat $(LEARNSET_GAME_STAMP) 2>/dev/null`" = "$(GAME_VERSION)" ] || echo "$(GAME_VERSION)" > $(LEARNSET_GAME_STAMP))
+endif
+$(LEARNSET_GAME_STAMP): | $(LEARNSET_HELPERS_BUILD_DIR)
+	echo "$(GAME_VERSION)" > $@
+TEACHABLE_DEPS := $(ALL_LEARNABLES_JSON) $(INCLUDE_DIRS)/constants/tms_hms.h $(INCLUDE_DIRS)/config/pokemon.h $(DATA_SRC_SUBDIR)/pokemon/special_movesets.json $(INCLUDE_DIRS)/config/pokedex_plus_hgss.h $(LEARNSET_HELPERS_DIR)/make_teachables.py $(DATA_SRC_SUBDIR)/pokemon/imperium_teachables.json $(LEARNSET_GAME_STAMP)
 
 $(LEARNSET_HELPERS_BUILD_DIR):
 	@mkdir -p $@
