@@ -1,8 +1,8 @@
 # Crystal Imperium play test: Emerald Imperium's and Radical Red's move pools (DECISIONS.md D39),
 # checked in the party menu's move relearner and in a battle. With every TM and HM in the Bag:
 # - TYPHLOSION learns what Radical Red teaches it: Aura Sphere and Mystical Fire by TM, Blast Burn
-#   by tutor, but not Shadow Ball (a TM) or Body Slam (a tutor move), which only Scarlet and
-#   Violet teach it;
+#   by tutor, but not Shadow Ball (a TM) or Body Slam (a tutor move), which Scarlet and Violet
+#   teach it;
 # - MEW's TM list has all 206 TMs and HMs (more than the 60 the relearner's list held before
 #   0.13.0: the rest overflowed it), and its tutor list 61 moves, then 63 once the game is
 #   cleared: Dark Hole and Draco Barrage, Emerald Imperium's postgame TMs, wait until then;

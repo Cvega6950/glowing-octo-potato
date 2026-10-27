@@ -1226,7 +1226,7 @@ DexNav shows and that wild encounters draw from:
   time, applies it with `P_IMPERIUM_SPECIES_DATA`:
   - For a move Radical Red teaches by TM or tutor, Radical Red decides. TYPHLOSION gains Aura
     Sphere and Mystical Fire, and loses Body Slam, Fire Fang, Iron Head, Shadow Ball and Zen
-    Headbutt, which only Scarlet and Violet teach it.
+    Headbutt, which Scarlet and Violet's TMs teach it (and Gen 3's tutors Body Slam).
   - The other TMs and tutor moves (61: Hyper Beam, Frustration, Heart & Soul's tutors...) follow
     the official rule as before: a species learns one if it does in any official game.
   - An HM move stays teachable to a species that learns it in an official game too: Radical Red's
@@ -1284,7 +1284,7 @@ DexNav shows and that wild encounters draw from:
   species any more: Chuck's Primeape's Drain Punch (his three versions) and the rival's
   Meganium's Earth Power (two battles). Trainer Pokémon can know any move; `validate.py` checks
   boss moves against the official games, as before.
-- Players' Pokémon keep the moves they know. ROM: +1,680 bytes (with the relearner fix).
+- Players' Pokémon keep the moves they know. ROM: +1,792 bytes (with the relearner fix).
 - Evidence: `move_pools` (new), on mGBA and VBA-M. In the party menu's relearner, with every TM
   and HM in the Bag: TYPHLOSION's TM list has Aura Sphere and Mystical Fire and not Shadow Ball,
   its tutor list Blast Burn and not Body Slam; MEW's TM list has all 206 TMs and HMs, its tutor
