@@ -1,6 +1,6 @@
 # Crystal Imperium changelog
 
-## 0.13.0-experimental (2026-10-26)
+## 0.13.0-experimental (2026-10-27)
 
 ### Quality of life
 - **Faster battles** (DECISIONS.md D38). A trainer battle against one Pokémon takes about a third
