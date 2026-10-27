@@ -4,12 +4,15 @@
 #   choice confirmed, the turn order, the move's checks and its "used" message a frame each);
 # - from the end of Swift's HP bar to the opposing Pokemon's move animation: at most 6 frames (16);
 # - the turn ends with the next action menu.
-# gBattlerControllerFuncs+4 is the opposing Pokemon's controller, which runs its HP bar.
+# gBattlerControllerFuncs+4 is the opposing Pokemon's controller, which runs its HP bar. The opposing
+# Pokemon gets Battle Armor: a critical hit's message would come between Swift's HP bar and its move
+# (the random numbers differ between emulators: VBA-M's Swift was a critical hit).
 !new_game()
 !give_mon(157, 50)
 !no_care_packages()
 !battle_trainer(406)
 !wait_action_menu("action_menu", 3000)
+![f"poke16 {{gBattleMons+{v['size'] + v['ability']}}} {v['armor']}" for v in [probe.resolve({'size': 'sizeof(struct BattlePokemon)', 'ability': 'offsetof(struct BattlePokemon, ability)', 'armor': 'ABILITY_BATTLE_ARMOR'})]]
 press A
 wait 16
 shot 01_moves.png

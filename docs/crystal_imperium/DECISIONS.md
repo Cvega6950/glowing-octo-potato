@@ -1392,11 +1392,12 @@ DexNav shows and that wild encounters draw from:
     frames now (`TextPrinterWaitWithDownArrow`).
   - `battle_prompts` (new) checks both: it fails on the first 0.13.0 build and passes on this one.
 - **Results** (mGBA, the same turn as D38): from A on Swift to its animation, 3 frames (D38: 15;
-  0.12.0: 46); from the end of Swift's HP bar to Charm's animation, 3 frames (D38: 16); the turn,
+  0.12.0: 46; VBA-M, the core Delta uses, 4); from the end of Swift's HP bar to Charm's animation,
+  3 frames (D38: 16; VBA-M 4); the turn,
   from A to the next action menu, 211 frames (D38: 253; 0.12.0: 489). With FAST BATTLES off the
   same turn takes 487 frames (D38: 520). A knockout of Whitney's lead to the next action menu, her
-  next Pokémon sent out on the way: 395 frames (D38: 585; "fainted!" and "gained Exp. Points!" 57 and
-  59 frames instead of 82 and 84). `battle_anims` uses every move once in
+  next Pokémon sent out on the way: 402 frames (D38: 585; "fainted!" and "gained Exp. Points!" 57 and
+  59 frames instead of 82 and 84, then the Exp. sound's 8). `battle_anims` uses every move once in
   207,278 frames (D38: 285,972), 851 of 851 back at the menu or the battle's end.
 - **The same battles.** In ordinary battles the random number generator also steps once a frame
   (at VBlank), so a battle that takes fewer frames draws other numbers, with the same odds. With
