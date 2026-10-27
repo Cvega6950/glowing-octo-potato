@@ -693,9 +693,18 @@
 #define TRAINER_SIDE_RYME_HNS                 667
 #define TRAINER_SIDE_TULIP_HNS                668
 #define TRAINER_SIDE_GRUSHA_HNS               669
+#define TRAINER_SIDE_CYNTHIA_HNS              670
+#define TRAINER_SIDE_IRIS_HNS                 671
+#define TRAINER_SIDE_GEETA_HNS                672
+#define TRAINER_SIDE_N_HNS                    673
+#define TRAINER_SIDE_CYRUS_HNS                674
+#define TRAINER_SIDE_WALLACE_HNS              675
+#define TRAINER_SIDE_MAXIE_HNS                676
+#define TRAINER_SIDE_ARCHIE_HNS               677
+#define TRAINER_SIDE_WALLY_HNS                678
 // End of the side battles
 
-#define TRAINERS_COUNT_HNS                       670
+#define TRAINERS_COUNT_HNS                       679
 #define MAX_TRAINERS_COUNT_HNS                   864
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_HNS_H

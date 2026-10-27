@@ -1001,3 +1001,551 @@ SideBattle_Text_Grusha_NotYet:
 	.string "This island is way too hot for me.\p"
 	.string "Come back once you're JOHTO's\n"
 	.string "CHAMPION.$"
+
+SideBattle_Cynthia_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_CYNTHIA, SideBattle_Cynthia_After
+	goto_if_defeated TRAINER_SIDE_CYNTHIA_HNS, SideBattle_Cynthia_Reward
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, SideBattle_Cynthia_NotYet
+	msgbox SideBattle_Text_Cynthia_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Cynthia_Declined
+	trainerbattle_no_intro TRAINER_SIDE_CYNTHIA_HNS, SideBattle_Text_Cynthia_Defeat
+	goto SideBattle_Cynthia_Reward
+
+SideBattle_Cynthia_Reward:
+	msgbox SideBattle_Text_Cynthia_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 16
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_CYNTHIA
+SideBattle_Cynthia_After:
+	msgbox SideBattle_Text_Cynthia_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Cynthia_NotYet:
+	msgbox SideBattle_Text_Cynthia_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Cynthia_Declined:
+	msgbox SideBattle_Text_Cynthia_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Cynthia_Challenge:
+	.string "I'm CYNTHIA, SINNOH's CHAMPION. These\n"
+	.string "ruins hold so many mysteries...\p"
+	.string "You won the KANTO LEAGUE? Then show\n"
+	.string "me. A battle worthy of two CHAMPIONS!$"
+
+SideBattle_Text_Cynthia_Declined:
+	.string "I'll be here. The UNOWN have plenty to\n"
+	.string "teach me while I wait.$"
+
+SideBattle_Text_Cynthia_Defeat:
+	.string "Splendid! That was the best battle\n"
+	.string "I've had in a long time!$"
+
+SideBattle_Text_Cynthia_Reward:
+	.string "You're truly strong. Please, take\n"
+	.string "these.$"
+
+SideBattle_Text_Cynthia_After:
+	.string "RED is waiting atop MT. SILVER. I think\n"
+	.string "you're ready for him.$"
+
+SideBattle_Text_Cynthia_NotYet:
+	.string "I'm CYNTHIA, SINNOH's CHAMPION. These\n"
+	.string "ruins hold so many mysteries...\p"
+	.string "Once you've won the KANTO LEAGUE, I'd\n"
+	.string "love to see how strong you've become.$"
+
+SideBattle_Iris_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_IRIS, SideBattle_Iris_After
+	goto_if_defeated TRAINER_SIDE_IRIS_HNS, SideBattle_Iris_Reward
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, SideBattle_Iris_NotYet
+	msgbox SideBattle_Text_Iris_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Iris_Declined
+	trainerbattle_no_intro TRAINER_SIDE_IRIS_HNS, SideBattle_Text_Iris_Defeat
+	goto SideBattle_Iris_Reward
+
+SideBattle_Iris_Reward:
+	msgbox SideBattle_Text_Iris_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 17
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_IRIS
+SideBattle_Iris_After:
+	msgbox SideBattle_Text_Iris_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Iris_NotYet:
+	msgbox SideBattle_Text_Iris_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Iris_Declined:
+	msgbox SideBattle_Text_Iris_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Iris_Challenge:
+	.string "Hiya! I'm IRIS, UNOVA's CHAMPION!\n"
+	.string "BLACKTHORN's DRAGONS are super cool!\p"
+	.string "You're a CHAMPION too? Yay! My\n"
+	.string "DRAGONS and I won't hold back!$"
+
+SideBattle_Text_Iris_Declined:
+	.string "Aww! I'll go play in the DRAGON'S DEN\n"
+	.string "until you're ready!$"
+
+SideBattle_Text_Iris_Defeat:
+	.string "Wow! You and your POKéMON really\n"
+	.string "trust each other!$"
+
+SideBattle_Text_Iris_Reward:
+	.string "That was super fun! Here, these are\n"
+	.string "for you!$"
+
+SideBattle_Text_Iris_After:
+	.string "CLAIR told me all about RED. I bet you\n"
+	.string "can beat him!$"
+
+SideBattle_Text_Iris_NotYet:
+	.string "Hiya! I'm IRIS, UNOVA's CHAMPION!\n"
+	.string "BLACKTHORN's DRAGONS are super cool!\p"
+	.string "Win the KANTO LEAGUE, and then we can\n"
+	.string "battle, okay?$"
+
+SideBattle_Geeta_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_GEETA, SideBattle_Geeta_After
+	goto_if_defeated TRAINER_SIDE_GEETA_HNS, SideBattle_Geeta_Reward
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, SideBattle_Geeta_NotYet
+	msgbox SideBattle_Text_Geeta_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Geeta_Declined
+	trainerbattle_no_intro TRAINER_SIDE_GEETA_HNS, SideBattle_Text_Geeta_Defeat
+	goto SideBattle_Geeta_Reward
+
+SideBattle_Geeta_Reward:
+	msgbox SideBattle_Text_Geeta_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 18
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_GEETA
+SideBattle_Geeta_After:
+	msgbox SideBattle_Text_Geeta_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Geeta_NotYet:
+	msgbox SideBattle_Text_Geeta_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Geeta_Declined:
+	msgbox SideBattle_Text_Geeta_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Geeta_Challenge:
+	.string "I am GEETA, chairwoman of PALDEA's\n"
+	.string "POKéMON LEAGUE. I came to see the\l"
+	.string "trainer on MT. SILVER.\p"
+	.string "A KANTO CHAMPION. Very well. Consider\n"
+	.string "this your final interview before MT.\l"
+	.string "SILVER.$"
+
+SideBattle_Text_Geeta_Declined:
+	.string "Come back when you are prepared. I do\n"
+	.string "not grade on effort.$"
+
+SideBattle_Text_Geeta_Defeat:
+	.string "...Remarkable. You pass, with\n"
+	.string "distinction.$"
+
+SideBattle_Text_Geeta_Reward:
+	.string "Accept these, with the LEAGUE's\n"
+	.string "compliments.$"
+
+SideBattle_Text_Geeta_After:
+	.string "The road ahead leads to MT. SILVER.\n"
+	.string "Show RED what you showed me.$"
+
+SideBattle_Text_Geeta_NotYet:
+	.string "I am GEETA, chairwoman of PALDEA's\n"
+	.string "POKéMON LEAGUE. I came to see the\l"
+	.string "trainer on MT. SILVER.\p"
+	.string "Win the KANTO LEAGUE first. Then I will\n"
+	.string "judge your strength myself.$"
+
+SideBattle_N_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_N, SideBattle_N_After
+	goto_if_defeated TRAINER_SIDE_N_HNS, SideBattle_N_Reward
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, SideBattle_N_NotYet
+	msgbox SideBattle_Text_N_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_N_Declined
+	trainerbattle_no_intro TRAINER_SIDE_N_HNS, SideBattle_Text_N_Defeat
+	goto SideBattle_N_Reward
+
+SideBattle_N_Reward:
+	msgbox SideBattle_Text_N_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 19
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_N
+SideBattle_N_After:
+	msgbox SideBattle_Text_N_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_N_NotYet:
+	msgbox SideBattle_Text_N_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_N_Declined:
+	msgbox SideBattle_Text_N_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_N_Challenge:
+	.string "...I'm N. I came to hear the voices of\n"
+	.string "the POKéMON in this park.\p"
+	.string "Your POKéMON say they trust you. Let\n"
+	.string "me see that truth for myself!$"
+
+SideBattle_Text_N_Declined:
+	.string "...I see. I'll keep listening to the\n"
+	.string "POKéMON here.$"
+
+SideBattle_Text_N_Defeat:
+	.string "Your POKéMON... they're happy. That is\n"
+	.string "the answer I was looking for.$"
+
+SideBattle_Text_N_Reward:
+	.string "Please, take these. For you, and for\n"
+	.string "your friends.$"
+
+SideBattle_Text_N_After:
+	.string "POKéMON and people can understand\n"
+	.string "each other. You've shown me that.$"
+
+SideBattle_Text_N_NotYet:
+	.string "...I'm N. I came to hear the voices of\n"
+	.string "the POKéMON in this park.\p"
+	.string "Win the KANTO LEAGUE. Then let me hear\n"
+	.string "your POKéMON's voices in battle.$"
+
+SideBattle_Cyrus_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_CYRUS, SideBattle_Cyrus_After
+	goto_if_defeated TRAINER_SIDE_CYRUS_HNS, SideBattle_Cyrus_Reward
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, SideBattle_Cyrus_NotYet
+	msgbox SideBattle_Text_Cyrus_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Cyrus_Declined
+	trainerbattle_no_intro TRAINER_SIDE_CYRUS_HNS, SideBattle_Text_Cyrus_Defeat
+	goto SideBattle_Cyrus_Reward
+
+SideBattle_Cyrus_Reward:
+	msgbox SideBattle_Text_Cyrus_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 20
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_CYRUS
+SideBattle_Cyrus_After:
+	msgbox SideBattle_Text_Cyrus_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Cyrus_NotYet:
+	msgbox SideBattle_Text_Cyrus_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Cyrus_Declined:
+	msgbox SideBattle_Text_Cyrus_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Cyrus_Challenge:
+	.string "I am CYRUS. I seek a world without\n"
+	.string "spirit... and the strength to make it\l"
+	.string "real.\p"
+	.string "A CHAMPION. Let us see whether your\n"
+	.string "bonds are strength... or weakness.$"
+
+SideBattle_Text_Cyrus_Declined:
+	.string "Hmph. Hesitation is the weakness of\n"
+	.string "spirit.$"
+
+SideBattle_Text_Cyrus_Defeat:
+	.string "...So this is the strength that spirit\n"
+	.string "gives. Interesting.$"
+
+SideBattle_Text_Cyrus_Reward:
+	.string "Take these. I have no use for\n"
+	.string "sentiment.$"
+
+SideBattle_Text_Cyrus_After:
+	.string "Go. Seek your answer atop MT. SILVER,\n"
+	.string "as I seek mine.$"
+
+SideBattle_Text_Cyrus_NotYet:
+	.string "I am CYRUS. I seek a world without\n"
+	.string "spirit... and the strength to make it\l"
+	.string "real.\p"
+	.string "Win the KANTO LEAGUE. Then you will be\n"
+	.string "worth my time.$"
+
+SideBattle_Wallace_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_WALLACE, SideBattle_Wallace_After
+	goto_if_defeated TRAINER_SIDE_WALLACE_HNS, SideBattle_Wallace_Reward
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, SideBattle_Wallace_NotYet
+	msgbox SideBattle_Text_Wallace_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Wallace_Declined
+	trainerbattle_no_intro TRAINER_SIDE_WALLACE_HNS, SideBattle_Text_Wallace_Defeat
+	goto SideBattle_Wallace_Reward
+
+SideBattle_Wallace_Reward:
+	msgbox SideBattle_Text_Wallace_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 21
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_WALLACE
+SideBattle_Wallace_After:
+	msgbox SideBattle_Text_Wallace_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Wallace_NotYet:
+	msgbox SideBattle_Text_Wallace_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Wallace_Declined:
+	msgbox SideBattle_Text_Wallace_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Wallace_Challenge:
+	.string "I'm WALLACE, HOENN's CHAMPION.\n"
+	.string "JOHTO's sea breeze is simply\l"
+	.string "exquisite!\p"
+	.string "A KANTO CHAMPION! Then let us create\n"
+	.string "a battle as beautiful as the sea!$"
+
+SideBattle_Text_Wallace_Declined:
+	.string "Ah, a pity! I'll admire the waves a\n"
+	.string "while longer.$"
+
+SideBattle_Text_Wallace_Defeat:
+	.string "Magnificent! A battle of true\n"
+	.string "elegance!$"
+
+SideBattle_Text_Wallace_Reward:
+	.string "Please, accept these with my\n"
+	.string "sincerest admiration.$"
+
+SideBattle_Text_Wallace_After:
+	.string "Beauty and strength flow together,\n"
+	.string "like the tide.$"
+
+SideBattle_Text_Wallace_NotYet:
+	.string "I'm WALLACE, HOENN's CHAMPION.\n"
+	.string "JOHTO's sea breeze is simply\l"
+	.string "exquisite!\p"
+	.string "Win the KANTO LEAGUE, and we shall\n"
+	.string "battle with elegance!$"
+
+SideBattle_Maxie_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_MAXIE, SideBattle_Maxie_After
+	goto_if_defeated TRAINER_SIDE_MAXIE_HNS, SideBattle_Maxie_Reward
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, SideBattle_Maxie_NotYet
+	msgbox SideBattle_Text_Maxie_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Maxie_Declined
+	trainerbattle_no_intro TRAINER_SIDE_MAXIE_HNS, SideBattle_Text_Maxie_Defeat
+	goto SideBattle_Maxie_Reward
+
+SideBattle_Maxie_Reward:
+	msgbox SideBattle_Text_Maxie_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 22
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_MAXIE
+SideBattle_Maxie_After:
+	msgbox SideBattle_Text_Maxie_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Maxie_NotYet:
+	msgbox SideBattle_Text_Maxie_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Maxie_Declined:
+	msgbox SideBattle_Text_Maxie_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Maxie_Challenge:
+	.string "I am MAXIE of TEAM MAGMA. I am\n"
+	.string "studying KANTO's land... purely for\l"
+	.string "science.\p"
+	.string "A CHAMPION. Fufufu... let's see if you\n"
+	.string "can withstand the heat of the land!$"
+
+SideBattle_Text_Maxie_Declined:
+	.string "Prudence. I can respect that.$"
+
+SideBattle_Text_Maxie_Defeat:
+	.string "Fufufu... I miscalculated. Again.$"
+
+SideBattle_Text_Maxie_Reward:
+	.string "Take these. A token of my\n"
+	.string "recalculated respect.$"
+
+SideBattle_Text_Maxie_After:
+	.string "The land and the sea must stay in\n"
+	.string "balance. I have learned that, at least.$"
+
+SideBattle_Text_Maxie_NotYet:
+	.string "I am MAXIE of TEAM MAGMA. I am\n"
+	.string "studying KANTO's land... purely for\l"
+	.string "science.\p"
+	.string "Win the KANTO LEAGUE. Then I shall\n"
+	.string "test your strength.$"
+
+SideBattle_Archie_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_ARCHIE, SideBattle_Archie_After
+	goto_if_defeated TRAINER_SIDE_ARCHIE_HNS, SideBattle_Archie_Reward
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, SideBattle_Archie_NotYet
+	msgbox SideBattle_Text_Archie_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Archie_Declined
+	trainerbattle_no_intro TRAINER_SIDE_ARCHIE_HNS, SideBattle_Text_Archie_Defeat
+	goto SideBattle_Archie_Reward
+
+SideBattle_Archie_Reward:
+	msgbox SideBattle_Text_Archie_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 23
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_ARCHIE
+SideBattle_Archie_After:
+	msgbox SideBattle_Text_Archie_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Archie_NotYet:
+	msgbox SideBattle_Text_Archie_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Archie_Declined:
+	msgbox SideBattle_Text_Archie_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Archie_Challenge:
+	.string "Bwahahaha! ARCHIE of TEAM AQUA here!\n"
+	.string "I came to see KANTO's seas!\p"
+	.string "A CHAMPION, eh? Let's see if you can\n"
+	.string "swim against the tide!$"
+
+SideBattle_Text_Archie_Declined:
+	.string "Scared of a little water? Bwahahaha!$"
+
+SideBattle_Text_Archie_Defeat:
+	.string "Bwahahaha! You sank me fair and\n"
+	.string "square!$"
+
+SideBattle_Text_Archie_Reward:
+	.string "Here! Treasures from the bottom of\n"
+	.string "the sea!$"
+
+SideBattle_Text_Archie_After:
+	.string "The sea is vast, and so is your\n"
+	.string "strength. Bwahahaha!$"
+
+SideBattle_Text_Archie_NotYet:
+	.string "Bwahahaha! ARCHIE of TEAM AQUA here!\n"
+	.string "I came to see KANTO's seas!\p"
+	.string "Win the KANTO LEAGUE, and I'll show\n"
+	.string "you the power of the sea!$"
+
+SideBattle_Wally_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_WALLY, SideBattle_Wally_After
+	goto_if_defeated TRAINER_SIDE_WALLY_HNS, SideBattle_Wally_Reward
+	goto_if_unset FLAG_IS_KANTO_CHAMPION, SideBattle_Wally_NotYet
+	msgbox SideBattle_Text_Wally_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Wally_Declined
+	trainerbattle_no_intro TRAINER_SIDE_WALLY_HNS, SideBattle_Text_Wally_Defeat
+	goto SideBattle_Wally_Reward
+
+SideBattle_Wally_Reward:
+	msgbox SideBattle_Text_Wally_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 24
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_WALLY
+SideBattle_Wally_After:
+	msgbox SideBattle_Text_Wally_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Wally_NotYet:
+	msgbox SideBattle_Text_Wally_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Wally_Declined:
+	msgbox SideBattle_Text_Wally_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Wally_Challenge:
+	.string "Hi! I'm WALLY. I came to see the town\n"
+	.string "where RED grew up!\p"
+	.string "You won the KANTO LEAGUE? Then\n"
+	.string "please, battle me! I want to see how\l"
+	.string "far I've come!$"
+
+SideBattle_Text_Wally_Declined:
+	.string "Okay... I'll keep training until you're\n"
+	.string "ready!$"
+
+SideBattle_Text_Wally_Defeat:
+	.string "I lost... but I'm not sad. You're\n"
+	.string "amazing!$"
+
+SideBattle_Text_Wally_Reward:
+	.string "Please take these! Thank you for\n"
+	.string "battling me!$"
+
+SideBattle_Text_Wally_After:
+	.string "Someday I'll be strong enough to\n"
+	.string "battle RED too!$"
+
+SideBattle_Text_Wally_NotYet:
+	.string "Hi! I'm WALLY. I came to see the town\n"
+	.string "where RED grew up!\p"
+	.string "When you've won the KANTO LEAGUE, will\n"
+	.string "you battle me? I've gotten a lot\l"
+	.string "stronger!$"

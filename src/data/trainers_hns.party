@@ -19617,3 +19617,642 @@ Nature: Adamant
 - Earthquake
 - Roost
 
+=== TRAINER_SIDE_CYNTHIA_HNS ===
+Name: CYNTHIA
+Class: Champion Hns
+Pic: Cynthia Hns
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Dark Red
+Items: Full Restore / Full Restore / Full Restore
+
+Spiritomb @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Pressure
+Nature: Careful
+- Foul Play
+- Will O Wisp
+- Sucker Punch
+- Pain Split
+
+Roserade @ Black Sludge
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Timid
+- Giga Drain
+- Sludge Bomb
+- Dazzling Gleam
+- Toxic Spikes
+
+Togekiss @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Serene Grace
+Nature: Timid
+- Air Slash
+- Dazzling Gleam
+- Nasty Plot
+- Roost
+
+Lucario @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Inner Focus
+Nature: Timid
+- Aura Sphere
+- Flash Cannon
+- Vacuum Wave
+- Nasty Plot
+
+Milotic @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Marvel Scale
+Nature: Bold
+- Scald
+- Ice Beam
+- Recover
+- Haze
+
+Garchomp @ Garchompite
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Rough Skin
+Nature: Jolly
+- Earthquake
+- Dragon Claw
+- Stone Edge
+- Swords Dance
+
+=== TRAINER_SIDE_IRIS_HNS ===
+Name: IRIS
+Class: Champion Hns
+Pic: Iris Hns
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Purple
+Items: Full Restore / Full Restore / Full Restore
+
+Archeops @ Focus Sash
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Defeatist
+Nature: Jolly
+- Stone Edge
+- Acrobatics
+- Earthquake
+- U Turn
+
+Lapras @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Water Absorb
+Nature: Modest
+- Freeze Dry
+- Hydro Pump
+- Thunderbolt
+- Ice Shard
+
+Hydreigon @ Choice Specs
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Timid
+- Draco Meteor
+- Dark Pulse
+- Flamethrower
+- U Turn
+
+Aggron @ Aggronite
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Rock Head
+Nature: Adamant
+- Heavy Slam
+- Earthquake
+- Head Smash
+- Ice Punch
+
+Dragonite @ Weakness Policy
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Multiscale
+Nature: Adamant
+- Dragon Dance
+- Extreme Speed
+- Earthquake
+- Outrage
+
+Haxorus @ Lum Berry
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Mold Breaker
+Nature: Jolly
+- Swords Dance
+- Outrage
+- Earthquake
+- Poison Jab
+
+=== TRAINER_SIDE_GEETA_HNS ===
+Name: GEETA
+Class: Champion Hns
+Pic: Geeta Hns
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Dark Red
+Items: Full Restore / Full Restore / Full Restore
+
+Glimmora @ Focus Sash
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Toxic Debris
+Nature: Timid
+- Stealth Rock
+- Mortal Spin
+- Power Gem
+- Earth Power
+
+Espathra @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Speed Boost
+Nature: Timid
+- Calm Mind
+- Stored Power
+- Dazzling Gleam
+- Protect
+
+Gogoat @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sap Sipper
+Nature: Adamant
+- Horn Leech
+- Earthquake
+- Bulk Up
+- Milk Drink
+
+Veluza @ Sitrus Berry
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sharpness
+Nature: Adamant
+- Aqua Cutter
+- Psycho Cut
+- Night Slash
+- Fillet Away
+
+Avalugg @ Rocky Helmet
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sturdy
+Nature: Impish
+- Avalanche
+- Body Press
+- Rapid Spin
+- Recover
+
+Kingambit @ Black Glasses
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Supreme Overlord
+Nature: Adamant
+- Kowtow Cleave
+- Iron Head
+- Sucker Punch
+- Swords Dance
+
+=== TRAINER_SIDE_N_HNS ===
+Name: N
+Class: Pkmn Trainer 1 Hns
+Pic: N Hns
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Green
+Items: Full Restore / Full Restore / Full Restore
+
+Zoroark @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Illusion
+Nature: Timid
+- Night Daze
+- Flamethrower
+- Focus Blast
+- Nasty Plot
+
+Carracosta @ White Herb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Solid Rock
+Nature: Adamant
+- Shell Smash
+- Liquidation
+- Stone Edge
+- Aqua Jet
+
+Vanilluxe @ Icy Rock
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Snow Warning
+Nature: Modest
+- Blizzard
+- Freeze Dry
+- Flash Cannon
+- Explosion
+
+Archeops @ Choice Scarf
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Defeatist
+Nature: Adamant
+- Head Smash
+- Dragon Claw
+- Earthquake
+- U Turn
+
+Klinklang @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Clear Body
+Nature: Adamant
+- Shift Gear
+- Gear Grind
+- Wild Charge
+- Substitute
+
+Zekrom @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Teravolt
+Nature: Adamant
+- Bolt Strike
+- Outrage
+- Dragon Dance
+- Crunch
+
+=== TRAINER_SIDE_CYRUS_HNS ===
+Name: CYRUS
+Class: Pkmn Trainer 1 Hns
+Pic: Cyrus Hns
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Blue
+Items: Full Restore / Full Restore / Full Restore
+
+Crobat @ Black Sludge
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Brave Bird
+- Cross Poison
+- U Turn
+- Taunt
+
+Honchkrow @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Moxie
+Nature: Adamant
+- Brave Bird
+- Sucker Punch
+- Night Slash
+- Heat Wave
+
+Gyarados @ Lum Berry
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Jolly
+- Waterfall
+- Bounce
+- Earthquake
+- Dragon Dance
+
+Weavile @ Razor Claw
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Pressure
+Nature: Jolly
+- Knock Off
+- Triple Axel
+- Ice Shard
+- Swords Dance
+
+Sneasler @ Focus Sash
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Unburden
+Nature: Jolly
+- Dire Claw
+- Close Combat
+- Gunk Shot
+- Swords Dance
+
+Houndoom @ Houndoominite
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Flash Fire
+Nature: Timid
+- Fire Blast
+- Dark Pulse
+- Sludge Bomb
+- Nasty Plot
+
+=== TRAINER_SIDE_WALLACE_HNS ===
+Name: WALLACE
+Class: Champion Hns
+Pic: Champion Wallace
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Light Blue
+Items: Full Restore / Full Restore / Full Restore
+
+Pelipper @ Damp Rock
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Drizzle
+Nature: Bold
+- Hurricane
+- Scald
+- U Turn
+- Roost
+
+Ludicolo @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Swift Swim
+Nature: Modest
+- Hydro Pump
+- Giga Drain
+- Ice Beam
+- Rain Dance
+
+Starmie @ Choice Specs
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Analytic
+Nature: Timid
+- Hydro Pump
+- Psychic
+- Thunderbolt
+- Rapid Spin
+
+Whiscash @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Hydration
+Nature: Adamant
+- Earthquake
+- Waterfall
+- Dragon Dance
+- Stone Edge
+
+Swampert @ Swampertite
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Damp
+Nature: Adamant
+- Waterfall
+- Earthquake
+- Ice Punch
+- Superpower
+
+Milotic @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Competitive
+Nature: Bold
+- Scald
+- Ice Beam
+- Recover
+- Dragon Tail
+
+=== TRAINER_SIDE_MAXIE_HNS ===
+Name: MAXIE
+Class: Magma Leader
+Pic: Magma Leader Maxie
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Dark Red
+Items: Full Restore / Full Restore / Full Restore
+
+Torkoal @ Heat Rock
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Drought
+Nature: Bold
+- Stealth Rock
+- Lava Plume
+- Rapid Spin
+- Yawn
+
+Mightyena @ Choice Band
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Jolly
+- Crunch
+- Sucker Punch
+- Play Rough
+- Fire Fang
+
+Weezing @ Black Sludge
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Bold
+- Sludge Bomb
+- Fire Blast
+- Will O Wisp
+- Pain Split
+
+Arcanine @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Adamant
+- Flare Blitz
+- Extreme Speed
+- Wild Charge
+- Morning Sun
+
+Blaziken @ Focus Sash
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Blaze
+Nature: Jolly
+- Flare Blitz
+- Close Combat
+- Stone Edge
+- Swords Dance
+
+Camerupt @ Cameruptite
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Solid Rock
+Nature: Modest
+- Fire Blast
+- Earth Power
+- Ancient Power
+- Flash Cannon
+
+=== TRAINER_SIDE_ARCHIE_HNS ===
+Name: ARCHIE
+Class: Aqua Leader
+Pic: Aqua Leader Archie
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Blue
+Items: Full Restore / Full Restore / Full Restore
+
+Pelipper @ Damp Rock
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Drizzle
+Nature: Modest
+- Hurricane
+- Hydro Pump
+- Knock Off
+- Roost
+
+Tentacruel @ Black Sludge
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Clear Body
+Nature: Timid
+- Scald
+- Sludge Bomb
+- Rapid Spin
+- Toxic Spikes
+
+Muk @ Black Sludge
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Poison Touch
+Nature: Adamant
+- Gunk Shot
+- Knock Off
+- Drain Punch
+- Shadow Sneak
+
+Crobat @ Life Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Brave Bird
+- Poison Fang
+- Super Fang
+- Roost
+
+Crawdaunt @ Choice Band
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Adaptability
+Nature: Adamant
+- Crabhammer
+- Knock Off
+- Aqua Jet
+- Close Combat
+
+Sharpedo @ Sharpedonite
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Speed Boost
+Nature: Adamant
+- Waterfall
+- Crunch
+- Close Combat
+- Protect
+
+=== TRAINER_SIDE_WALLY_HNS ===
+Name: WALLY
+Class: Pkmn Trainer 1 Hns
+Pic: Wally
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Green
+Items: Full Restore / Full Restore / Full Restore
+
+Altaria @ Leftovers
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Adamant
+- Dragon Dance
+- Brave Bird
+- Earthquake
+- Roost
+
+Delcatty @ Silk Scarf
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Wonder Skin
+Nature: Jolly
+- Fake Out
+- Double Edge
+- Sucker Punch
+- Thunder Wave
+
+Roserade @ Focus Sash
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Timid
+- Leaf Storm
+- Sludge Bomb
+- Shadow Ball
+- Sleep Powder
+
+Magnezone @ Choice Specs
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Magnet Pull
+Nature: Modest
+- Thunderbolt
+- Flash Cannon
+- Volt Switch
+- Body Press
+
+Flygon @ Choice Scarf
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Jolly
+- Earthquake
+- Dragon Claw
+- U Turn
+- Fire Punch
+
+Gallade @ Galladite
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sharpness
+Nature: Jolly
+- Close Combat
+- Psycho Cut
+- Leaf Blade
+- Swords Dance
+

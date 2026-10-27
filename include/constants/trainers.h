@@ -245,6 +245,11 @@ enum __attribute__((packed)) TrainerPicID
     TRAINER_PIC_FRONT_RYME_HNS,
     TRAINER_PIC_FRONT_TULIP_HNS,
     TRAINER_PIC_FRONT_GRUSHA_HNS,
+    TRAINER_PIC_FRONT_CYNTHIA_HNS,
+    TRAINER_PIC_FRONT_IRIS_HNS,
+    TRAINER_PIC_FRONT_GEETA_HNS,
+    TRAINER_PIC_FRONT_N_HNS,
+    TRAINER_PIC_FRONT_CYRUS_HNS,
     // End of the side battle sprites
     TRAINER_PIC_FRONT_COUNT,
     TRAINER_PIC_BACK_BRENDAN = TRAINER_PIC_FRONT_COUNT, // The player back pics are assumed to alternate according to the gender values (MALE/FEMALE)

@@ -664,6 +664,16 @@ const u32 gTrainerFrontPic_TulipHns[] = INCBIN_U32("graphics/trainers/front_pics
 const u16 gTrainerPalette_TulipHns[] = INCBIN_U16("graphics/trainers/front_pics/tulip_hns.gbapal");
 const u32 gTrainerFrontPic_GrushaHns[] = INCBIN_U32("graphics/trainers/front_pics/grusha_hns.4bpp.smol");
 const u16 gTrainerPalette_GrushaHns[] = INCBIN_U16("graphics/trainers/front_pics/grusha_hns.gbapal");
+const u32 gTrainerFrontPic_CynthiaHns[] = INCBIN_U32("graphics/trainers/front_pics/cynthia_hns.4bpp.smol");
+const u16 gTrainerPalette_CynthiaHns[] = INCBIN_U16("graphics/trainers/front_pics/cynthia_hns.gbapal");
+const u32 gTrainerFrontPic_IrisHns[] = INCBIN_U32("graphics/trainers/front_pics/iris_hns.4bpp.smol");
+const u16 gTrainerPalette_IrisHns[] = INCBIN_U16("graphics/trainers/front_pics/iris_hns.gbapal");
+const u32 gTrainerFrontPic_GeetaHns[] = INCBIN_U32("graphics/trainers/front_pics/geeta_hns.4bpp.smol");
+const u16 gTrainerPalette_GeetaHns[] = INCBIN_U16("graphics/trainers/front_pics/geeta_hns.gbapal");
+const u32 gTrainerFrontPic_NHns[] = INCBIN_U32("graphics/trainers/front_pics/n_hns.4bpp.smol");
+const u16 gTrainerPalette_NHns[] = INCBIN_U16("graphics/trainers/front_pics/n_hns.gbapal");
+const u32 gTrainerFrontPic_CyrusHns[] = INCBIN_U32("graphics/trainers/front_pics/cyrus_hns.4bpp.smol");
+const u16 gTrainerPalette_CyrusHns[] = INCBIN_U16("graphics/trainers/front_pics/cyrus_hns.gbapal");
 // End of the side battle sprites
 
 const u8 gTrainerBackPic_Brendan[] = INCBIN_U8("graphics/trainers/back_pics/brendan.4bpp");
@@ -936,6 +946,11 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_FRONT_RYME_HNS, gTrainerFrontPic_RymeHns, gTrainerPalette_RymeHns),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_TULIP_HNS, gTrainerFrontPic_TulipHns, gTrainerPalette_TulipHns),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_GRUSHA_HNS, gTrainerFrontPic_GrushaHns, gTrainerPalette_GrushaHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_CYNTHIA_HNS, gTrainerFrontPic_CynthiaHns, gTrainerPalette_CynthiaHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_IRIS_HNS, gTrainerFrontPic_IrisHns, gTrainerPalette_IrisHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_GEETA_HNS, gTrainerFrontPic_GeetaHns, gTrainerPalette_GeetaHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_N_HNS, gTrainerFrontPic_NHns, gTrainerPalette_NHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_CYRUS_HNS, gTrainerFrontPic_CyrusHns, gTrainerPalette_CyrusHns),
     // End of the side battle sprites
 };
 

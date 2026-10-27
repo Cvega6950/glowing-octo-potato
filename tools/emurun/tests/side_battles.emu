@@ -166,3 +166,50 @@ wait 60
 !expect_flag("FLAG_SIDE_REWARD_IONO", 1, "iono_reward_given")
 !expect_bag_quantity("items", "ITEM_ELECTRIC_GEM", 10)
 !expect_bag_has("keyItems", "ITEM_CATCHING_CHARM")
+
+# The postgame's visitors battle once the player has won the Kanto League, at level 100.
+# Cynthia, outside the Ruins of Alph, from the lab's door (36,16): she stands at (33,19), facing down
+loadstate team.ss
+!warp(24, 5, 4)
+wait 60
+!walkto(32, 20, path=True)
+!walkto(33, 20)
+press UP
+wait 20
+shot 17_cynthia.png
+savestate cynthia.ss
+press A
+wait 60
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 cynthia_no_battle_before_the_kanto_league
+loadstate cynthia.ss
+!set_flag("FLAG_IS_CHAMPION")
+!set_flag("FLAG_IS_KANTO_CHAMPION")
+press A
+!yes_no(True, "cynthia_asks")
+wait 330
+shot 18_cynthia_intro.png
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B cynthia_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_CYNTHIA_HNS", "opponent_is_cynthia")
+expect8 {gEnemyPartyCount} 6 cynthia_has_6
+expect8 {gEnemyParty+84} 100 cynthia_lead_at_100
+expect8 {gEnemyParty+584} 100 cynthia_ace_at_100
+
+# Emerald's own sprites in Johto and Kanto: Wallace in Cherrygrove City, Wally in Pallet Town
+loadstate team.ss
+!warp(0, 1, 2)
+wait 60
+!walkto(31, 18, path=True)
+!walkto(30, 18)
+press UP
+wait 20
+shot 19_wallace.png
+loadstate team.ss
+!warp(0, 31, 0)
+wait 60
+!walkto(9, 10, path=True)
+!walkto(8, 10)
+press UP
+wait 20
+shot 20_wally.png

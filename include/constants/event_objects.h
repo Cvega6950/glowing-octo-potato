@@ -600,8 +600,13 @@
 #define OBJ_EVENT_GFX_RYME_HNS                  561
 #define OBJ_EVENT_GFX_TULIP_HNS                 562
 #define OBJ_EVENT_GFX_GRUSHA_HNS                563
+#define OBJ_EVENT_GFX_CYNTHIA_HNS               564
+#define OBJ_EVENT_GFX_IRIS_HNS                  565
+#define OBJ_EVENT_GFX_GEETA_HNS                 566
+#define OBJ_EVENT_GFX_N_HNS                     567
+#define OBJ_EVENT_GFX_CYRUS_HNS                 568
 // End of the side battle sprites
-#define NUM_OBJ_EVENT_GFX                        564
+#define NUM_OBJ_EVENT_GFX                        569
 
 
 // These are dynamic object gfx ids.
@@ -814,6 +819,11 @@
 #define OBJ_EVENT_PAL_TAG_RYME_HNS                0x11AA
 #define OBJ_EVENT_PAL_TAG_TULIP_HNS               0x11AB
 #define OBJ_EVENT_PAL_TAG_GRUSHA_HNS              0x11AC
+#define OBJ_EVENT_PAL_TAG_CYNTHIA_HNS             0x11AD
+#define OBJ_EVENT_PAL_TAG_IRIS_HNS                0x11AE
+#define OBJ_EVENT_PAL_TAG_GEETA_HNS               0x11AF
+#define OBJ_EVENT_PAL_TAG_N_HNS                   0x11B0
+#define OBJ_EVENT_PAL_TAG_CYRUS_HNS               0x11B1
 // End of the side battle sprites
 
 #if OW_FOLLOWERS_POKEBALLS

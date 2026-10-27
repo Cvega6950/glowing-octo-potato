@@ -455,6 +455,21 @@ $(OBJEVENTGFXDIR)/people/tulip_hns.4bpp: %.4bpp: %.png
 
 $(OBJEVENTGFXDIR)/people/grusha_hns.4bpp: %.4bpp: %.png
 	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/cynthia_hns.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/iris_hns.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/geeta_hns.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/n_hns.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 2 -mheight 4
+
+$(OBJEVENTGFXDIR)/people/cyrus_hns.4bpp: %.4bpp: %.png
+	$(GFX) $< $@ -mwidth 4 -mheight 4
 # End of the side battle sprites
 
 $(OBJEVENTGFXDIR)/misc/breakable_rock_hns.4bpp: %.4bpp: %.png

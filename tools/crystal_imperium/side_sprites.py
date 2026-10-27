@@ -49,6 +49,10 @@ SPRITES = [
     # darklight177 (their Paldea Gym Leader Sprite Sheet)
     ("katy", True), ("brassius", True), ("iono", True), ("kofu", True),
     ("larry", True), ("ryme", True), ("tulip", True), ("grusha", True),
+    # The postgame's visitors: Cynthia's battle picture by iriv24 and overworld sprite by
+    # PurrfectDoodle; Iris's by Kasen; Geeta's and N's by RHcks; Cyrus's battle picture by Galaxeeh,
+    # his overworld sprite by PurpleZaffre, resized by Galaxeeh
+    ("cynthia", True), ("iris", True), ("geeta", True), ("n", True), ("cyrus", True),
 ]
 
 FRONT = "graphics/trainers/front_pics/{}_hns.png"

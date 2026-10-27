@@ -187,6 +187,99 @@ static const u8 sSideBattleRewardText15[] = _(
     "{PLAYER} received ICE GEM ×10,\n"
     "ICY ROCK and RAZOR CLAW!");
 
+static const struct SideBattleRewardItem sSideBattleReward16[] =  // CYNTHIA
+{
+    {ITEM_GROUND_GEM, 10},
+    {ITEM_MASTER_BALL, 1},
+};
+
+static const u8 sSideBattleRewardText16[] = _(
+    "{PLAYER} received GROUND GEM ×10\n"
+    "and MASTER BALL!");
+
+static const struct SideBattleRewardItem sSideBattleReward17[] =  // IRIS
+{
+    {ITEM_DRAGON_GEM, 10},
+    {ITEM_ABILITY_PATCH, 1},
+};
+
+static const u8 sSideBattleRewardText17[] = _(
+    "{PLAYER} received DRAGON GEM ×10\n"
+    "and ABILITY PATCH!");
+
+static const struct SideBattleRewardItem sSideBattleReward18[] =  // GEETA
+{
+    {ITEM_STEEL_GEM, 10},
+    {ITEM_OVAL_CHARM, 1},
+};
+
+static const u8 sSideBattleRewardText18[] = _(
+    "{PLAYER} received STEEL GEM ×10\n"
+    "and OVAL CHARM!");
+
+static const struct SideBattleRewardItem sSideBattleReward19[] =  // N
+{
+    {ITEM_ELECTRIC_GEM, 10},
+    {ITEM_ABILITY_CAPSULE, 1},
+};
+
+static const u8 sSideBattleRewardText19[] = _(
+    "{PLAYER} received ELECTRIC GEM\n"
+    "×10 and ABILITY CAPSULE!");
+
+static const struct SideBattleRewardItem sSideBattleReward20[] =  // CYRUS
+{
+    {ITEM_DARK_GEM, 10},
+    {ITEM_PP_MAX, 3},
+};
+
+static const u8 sSideBattleRewardText20[] = _(
+    "{PLAYER} received DARK GEM ×10\n"
+    "and PP MAX ×3!");
+
+static const struct SideBattleRewardItem sSideBattleReward21[] =  // WALLACE
+{
+    {ITEM_WATER_GEM, 10},
+    {ITEM_ABILITY_PATCH, 1},
+};
+
+static const u8 sSideBattleRewardText21[] = _(
+    "{PLAYER} received WATER GEM ×10\n"
+    "and ABILITY PATCH!");
+
+static const struct SideBattleRewardItem sSideBattleReward22[] =  // MAXIE
+{
+    {ITEM_FIRE_GEM, 10},
+    {ITEM_HEAT_ROCK, 1},
+};
+
+static const u8 sSideBattleRewardText22[] = _(
+    "{PLAYER} received FIRE GEM ×10\n"
+    "and HEAT ROCK!");
+
+static const struct SideBattleRewardItem sSideBattleReward23[] =  // ARCHIE
+{
+    {ITEM_POISON_GEM, 10},
+    {ITEM_DEEP_SEA_TOOTH, 1},
+    {ITEM_DEEP_SEA_SCALE, 1},
+};
+
+static const u8 sSideBattleRewardText23[] = _(
+    "{PLAYER} received POISON GEM\n"
+    "×10, DEEP SEA TOOTH and DEEP SEA\l"
+    "SCALE!");
+
+static const struct SideBattleRewardItem sSideBattleReward24[] =  // WALLY
+{
+    {ITEM_PSYCHIC_GEM, 10},
+    {ITEM_DAWN_STONE, 1},
+    {ITEM_SHINY_STONE, 1},
+};
+
+static const u8 sSideBattleRewardText24[] = _(
+    "{PLAYER} received PSYCHIC GEM\n"
+    "×10, DAWN STONE and SHINY STONE!");
+
 static const struct SideBattleReward sSideBattleRewards[] =
 {
     {sSideBattleReward0, ARRAY_COUNT(sSideBattleReward0), sSideBattleRewardText0},
@@ -205,4 +298,13 @@ static const struct SideBattleReward sSideBattleRewards[] =
     {sSideBattleReward13, ARRAY_COUNT(sSideBattleReward13), sSideBattleRewardText13},
     {sSideBattleReward14, ARRAY_COUNT(sSideBattleReward14), sSideBattleRewardText14},
     {sSideBattleReward15, ARRAY_COUNT(sSideBattleReward15), sSideBattleRewardText15},
+    {sSideBattleReward16, ARRAY_COUNT(sSideBattleReward16), sSideBattleRewardText16},
+    {sSideBattleReward17, ARRAY_COUNT(sSideBattleReward17), sSideBattleRewardText17},
+    {sSideBattleReward18, ARRAY_COUNT(sSideBattleReward18), sSideBattleRewardText18},
+    {sSideBattleReward19, ARRAY_COUNT(sSideBattleReward19), sSideBattleRewardText19},
+    {sSideBattleReward20, ARRAY_COUNT(sSideBattleReward20), sSideBattleRewardText20},
+    {sSideBattleReward21, ARRAY_COUNT(sSideBattleReward21), sSideBattleRewardText21},
+    {sSideBattleReward22, ARRAY_COUNT(sSideBattleReward22), sSideBattleRewardText22},
+    {sSideBattleReward23, ARRAY_COUNT(sSideBattleReward23), sSideBattleRewardText23},
+    {sSideBattleReward24, ARRAY_COUNT(sSideBattleReward24), sSideBattleRewardText24},
 };

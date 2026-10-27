@@ -316,6 +316,91 @@ SIDE_GRUSHA = [
     mon("Baxcalibur", "Loaded Dice", "Thermal Exchange", "Jolly", ["Glaive Rush", "Icicle Crash", "Earthquake", "Dragon Dance"]),
     mon("Altaria", "Altarianite", "Natural Cure", "Adamant", ["Hyper Voice", "Dragon Dance", "Earthquake", "Roost"]),
 ]
+# --- Side battles: the postgame's visitors (D41), once the player has won the Kanto League ---------
+# Level 100, when Red battles too. Red stays the hardest battle (D27): these have no EVs, the Ace AI
+# without prediction and three Full Restores to his four.
+POST_ITEMS = "Full Restore / Full Restore / Full Restore"
+#   Cynthia (Ruins of Alph): her Platinum six, with Mega Garchomp.
+POST_CYNTHIA = [
+    mon("Spiritomb", "Leftovers", "Pressure", "Careful", ["Foul Play", "Will O Wisp", "Sucker Punch", "Pain Split"]),
+    mon("Roserade", "Black Sludge", "Natural Cure", "Timid", ["Giga Drain", "Sludge Bomb", "Dazzling Gleam", "Toxic Spikes"]),
+    mon("Togekiss", "Leftovers", "Serene Grace", "Timid", ["Air Slash", "Dazzling Gleam", "Nasty Plot", "Roost"]),
+    mon("Lucario", "Life Orb", "Inner Focus", "Timid", ["Aura Sphere", "Flash Cannon", "Vacuum Wave", "Nasty Plot"]),
+    mon("Milotic", "Leftovers", "Marvel Scale", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"]),
+    mon("Garchomp", "Garchompite", "Rough Skin", "Jolly", ["Earthquake", "Dragon Claw", "Stone Edge", "Swords Dance"]),
+]
+#   Iris (Blackthorn City): her Champion team's dragons, Mega Aggron and her Haxorus.
+POST_IRIS = [
+    mon("Archeops", "Focus Sash", "Defeatist", "Jolly", ["Stone Edge", "Acrobatics", "Earthquake", "U Turn"]),
+    mon("Lapras", "Leftovers", "Water Absorb", "Modest", ["Freeze Dry", "Hydro Pump", "Thunderbolt", "Ice Shard"]),
+    mon("Hydreigon", "Choice Specs", "Levitate", "Timid", ["Draco Meteor", "Dark Pulse", "Flamethrower", "U Turn"]),
+    mon("Aggron", "Aggronite", "Rock Head", "Adamant", ["Heavy Slam", "Earthquake", "Head Smash", "Ice Punch"]),
+    mon("Dragonite", "Weakness Policy", "Multiscale", "Adamant", ["Dragon Dance", "Extreme Speed", "Earthquake", "Outrage"]),
+    mon("Haxorus", "Lum Berry", "Mold Breaker", "Jolly", ["Swords Dance", "Outrage", "Earthquake", "Poison Jab"]),
+]
+#   Geeta (Route 28, before Mt. Silver): her Top Champion team, Kingambit last.
+POST_GEETA = [
+    mon("Glimmora", "Focus Sash", "Toxic Debris", "Timid", ["Stealth Rock", "Mortal Spin", "Power Gem", "Earth Power"]),
+    mon("Espathra", "Life Orb", "Speed Boost", "Timid", ["Calm Mind", "Stored Power", "Dazzling Gleam", "Protect"]),
+    mon("Gogoat", "Leftovers", "Sap Sipper", "Adamant", ["Horn Leech", "Earthquake", "Bulk Up", "Milk Drink"]),
+    mon("Veluza", "Sitrus Berry", "Sharpness", "Adamant", ["Aqua Cutter", "Psycho Cut", "Night Slash", "Fillet Away"]),
+    mon("Avalugg", "Rocky Helmet", "Sturdy", "Impish", ["Avalanche", "Body Press", "Rapid Spin", "Recover"]),
+    mon("Kingambit", "Black Glasses", "Supreme Overlord", "Adamant", ["Kowtow Cleave", "Iron Head", "Sucker Punch", "Swords Dance"]),
+]
+#   N (National Park): his Black and White team; Zoroark's Illusion shows Zekrom.
+POST_N = [
+    mon("Zoroark", "Life Orb", "Illusion", "Timid", ["Night Daze", "Flamethrower", "Focus Blast", "Nasty Plot"]),
+    mon("Carracosta", "White Herb", "Solid Rock", "Adamant", ["Shell Smash", "Liquidation", "Stone Edge", "Aqua Jet"]),
+    mon("Vanilluxe", "Icy Rock", "Snow Warning", "Modest", ["Blizzard", "Freeze Dry", "Flash Cannon", "Explosion"]),
+    mon("Archeops", "Choice Scarf", "Defeatist", "Adamant", ["Head Smash", "Dragon Claw", "Earthquake", "U Turn"]),
+    mon("Klinklang", "Leftovers", "Clear Body", "Adamant", ["Shift Gear", "Gear Grind", "Wild Charge", "Substitute"]),
+    mon("Zekrom", "Life Orb", "Teravolt", "Adamant", ["Bolt Strike", "Outrage", "Dragon Dance", "Crunch"]),
+]
+#   Cyrus (Mahogany Town): his Platinum team, Sneasler and Mega Houndoom.
+POST_CYRUS = [
+    mon("Crobat", "Black Sludge", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Taunt"]),
+    mon("Honchkrow", "Life Orb", "Moxie", "Adamant", ["Brave Bird", "Sucker Punch", "Night Slash", "Heat Wave"]),
+    mon("Gyarados", "Lum Berry", "Intimidate", "Jolly", ["Waterfall", "Bounce", "Earthquake", "Dragon Dance"]),
+    mon("Weavile", "Razor Claw", "Pressure", "Jolly", ["Knock Off", "Triple Axel", "Ice Shard", "Swords Dance"]),
+    mon("Sneasler", "Focus Sash", "Unburden", "Jolly", ["Dire Claw", "Close Combat", "Gunk Shot", "Swords Dance"]),
+    mon("Houndoom", "Houndoominite", "Flash Fire", "Timid", ["Fire Blast", "Dark Pulse", "Sludge Bomb", "Nasty Plot"]),
+]
+#   Wallace (Cherrygrove City): Drizzle rain, Mega Swampert and his Milotic.
+POST_WALLACE = [
+    mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Hurricane", "Scald", "U Turn", "Roost"]),
+    mon("Ludicolo", "Life Orb", "Swift Swim", "Modest", ["Hydro Pump", "Giga Drain", "Ice Beam", "Rain Dance"]),
+    mon("Starmie", "Choice Specs", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Thunderbolt", "Rapid Spin"]),
+    mon("Whiscash", "Leftovers", "Hydration", "Adamant", ["Earthquake", "Waterfall", "Dragon Dance", "Stone Edge"]),
+    mon("Swampert", "Swampertite", "Damp", "Adamant", ["Waterfall", "Earthquake", "Ice Punch", "Superpower"]),
+    mon("Milotic", "Leftovers", "Competitive", "Bold", ["Scald", "Ice Beam", "Recover", "Dragon Tail"]),
+]
+#   Maxie (Fuchsia City): Drought sun and Mega Camerupt.
+POST_MAXIE = [
+    mon("Torkoal", "Heat Rock", "Drought", "Bold", ["Stealth Rock", "Lava Plume", "Rapid Spin", "Yawn"]),
+    mon("Mightyena", "Choice Band", "Intimidate", "Jolly", ["Crunch", "Sucker Punch", "Play Rough", "Fire Fang"]),
+    mon("Weezing", "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Fire Blast", "Will O Wisp", "Pain Split"]),
+    mon("Arcanine", "Life Orb", "Intimidate", "Adamant", ["Flare Blitz", "Extreme Speed", "Wild Charge", "Morning Sun"]),
+    mon("Blaziken", "Focus Sash", "Blaze", "Jolly", ["Flare Blitz", "Close Combat", "Stone Edge", "Swords Dance"]),
+    mon("Camerupt", "Cameruptite", "Solid Rock", "Modest", ["Fire Blast", "Earth Power", "Ancient Power", "Flash Cannon"]),
+]
+#   Archie (Cerulean City): Drizzle rain and Mega Sharpedo.
+POST_ARCHIE = [
+    mon("Pelipper", "Damp Rock", "Drizzle", "Modest", ["Hurricane", "Hydro Pump", "Knock Off", "Roost"]),
+    mon("Tentacruel", "Black Sludge", "Clear Body", "Timid", ["Scald", "Sludge Bomb", "Rapid Spin", "Toxic Spikes"]),
+    mon("Muk", "Black Sludge", "Poison Touch", "Adamant", ["Gunk Shot", "Knock Off", "Drain Punch", "Shadow Sneak"]),
+    mon("Crobat", "Life Orb", "Infiltrator", "Jolly", ["Brave Bird", "Poison Fang", "Super Fang", "Roost"]),
+    mon("Crawdaunt", "Choice Band", "Adaptability", "Adamant", ["Crabhammer", "Knock Off", "Aqua Jet", "Close Combat"]),
+    mon("Sharpedo", "Sharpedonite", "Speed Boost", "Adamant", ["Waterfall", "Crunch", "Close Combat", "Protect"]),
+]
+#   Wally (Pallet Town): his Omega Ruby team and Mega Gallade.
+POST_WALLY = [
+    mon("Altaria", "Leftovers", "Natural Cure", "Adamant", ["Dragon Dance", "Brave Bird", "Earthquake", "Roost"]),
+    mon("Delcatty", "Silk Scarf", "Wonder Skin", "Jolly", ["Fake Out", "Double Edge", "Sucker Punch", "Thunder Wave"]),
+    mon("Roserade", "Focus Sash", "Natural Cure", "Timid", ["Leaf Storm", "Sludge Bomb", "Shadow Ball", "Sleep Powder"]),
+    mon("Magnezone", "Choice Specs", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Body Press"]),
+    mon("Flygon", "Choice Scarf", "Levitate", "Jolly", ["Earthquake", "Dragon Claw", "U Turn", "Fire Punch"]),
+    mon("Gallade", "Galladite", "Sharpness", "Jolly", ["Close Combat", "Psycho Cut", "Leaf Blade", "Swords Dance"]),
+]
 # Trainer -> (stage, bag items, Pokemon)
 SIDE_BATTLES = {
     "TRAINER_SIDE_CANDICE_HNS": (0, "", SIDE_CANDICE),
@@ -335,6 +420,15 @@ SIDE_BATTLES = {
     "TRAINER_SIDE_RYME_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_RYME),
     "TRAINER_SIDE_TULIP_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_TULIP),
     "TRAINER_SIDE_GRUSHA_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_GRUSHA),
+    "TRAINER_SIDE_CYNTHIA_HNS": (KANTO_CHAMPION, POST_ITEMS, POST_CYNTHIA),
+    "TRAINER_SIDE_IRIS_HNS": (KANTO_CHAMPION, POST_ITEMS, POST_IRIS),
+    "TRAINER_SIDE_GEETA_HNS": (KANTO_CHAMPION, POST_ITEMS, POST_GEETA),
+    "TRAINER_SIDE_N_HNS": (KANTO_CHAMPION, POST_ITEMS, POST_N),
+    "TRAINER_SIDE_CYRUS_HNS": (KANTO_CHAMPION, POST_ITEMS, POST_CYRUS),
+    "TRAINER_SIDE_WALLACE_HNS": (KANTO_CHAMPION, POST_ITEMS, POST_WALLACE),
+    "TRAINER_SIDE_MAXIE_HNS": (KANTO_CHAMPION, POST_ITEMS, POST_MAXIE),
+    "TRAINER_SIDE_ARCHIE_HNS": (KANTO_CHAMPION, POST_ITEMS, POST_ARCHIE),
+    "TRAINER_SIDE_WALLY_HNS": (KANTO_CHAMPION, POST_ITEMS, POST_WALLY),
 }
 
 # --- Rival (Silver): TRAINER_RIVAL_<his starter>_<n>_HNS ------------------------------------------

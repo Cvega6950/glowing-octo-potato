@@ -127,9 +127,12 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 
 ### Crystal Imperium Trainer Sprite Credits:
 The side battles' trainers (docs/crystal_imperium/DECISIONS.md D41), from their artists' free releases:
-- [PurrfectDoodle (Eva)](http://purrfectdoodle.com): overworld sprites of Candice, Gardenia, Fantina, Maylene, Crasher Wake, Byron, Roark and Volkner; Roark's battle sprite
-- [iriv24](https://github.com/iriv24): battle sprites of Candice, Gardenia, Fantina, Maylene, Crasher Wake, Byron and Volkner
+- [PurrfectDoodle (Eva)](http://purrfectdoodle.com): overworld sprites of Candice, Gardenia, Fantina, Maylene, Crasher Wake, Byron, Roark, Volkner and Cynthia; Roark's battle sprite
+- [iriv24](https://github.com/iriv24): battle sprites of Candice, Gardenia, Fantina, Maylene, Crasher Wake, Byron, Volkner and Cynthia
 - [RHcks](https://www.deviantart.com/rhcks), commissioned by [darklight177](https://www.deviantart.com/darklight177): battle and overworld sprites of Katy, Brassius, Iono, Kofu, Larry, Ryme, Tulip and Grusha ([Paldea Gym Leader Sprite Sheet](https://www.deviantart.com/darklight177/art/Paldea-Gym-Leader-Sprite-Sheet-960117644))
+- [RHcks](https://www.deviantart.com/rhcks): battle and overworld sprites of Geeta and N
+- [Kasen](https://github.com/TeamAquasHideout/Team-Aquas-Asset-Repo/tree/main/Trainer%20Front%20Sprites/Kasen): Iris's battle and overworld sprites
+- [Galaxeeh](https://github.com/TeamAquasHideout/Team-Aquas-Asset-Repo/tree/main/Trainer%20Front%20Sprites/Galaxeeh): Cyrus's battle sprite, and the GBA version of his overworld sprite by [PurpleZaffre](https://www.deviantart.com/purplezaffre)
 - Shared through [Team Aqua's Asset Repo](https://github.com/TeamAquasHideout/Team-Aquas-Asset-Repo)
 
 ## Resources

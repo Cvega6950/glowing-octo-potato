@@ -569,6 +569,11 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Larry_hns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ryme_hns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Tulip_hns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Grusha_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cynthia_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Iris_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Geeta_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_N_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Cyrus_hns;
 // End of the side battle sprites
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
@@ -1111,6 +1116,11 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_RYME_HNS] =              &gObjectEventGraphicsInfo_Ryme_hns,
     [OBJ_EVENT_GFX_TULIP_HNS] =             &gObjectEventGraphicsInfo_Tulip_hns,
     [OBJ_EVENT_GFX_GRUSHA_HNS] =            &gObjectEventGraphicsInfo_Grusha_hns,
+    [OBJ_EVENT_GFX_CYNTHIA_HNS] =           &gObjectEventGraphicsInfo_Cynthia_hns,
+    [OBJ_EVENT_GFX_IRIS_HNS] =              &gObjectEventGraphicsInfo_Iris_hns,
+    [OBJ_EVENT_GFX_GEETA_HNS] =             &gObjectEventGraphicsInfo_Geeta_hns,
+    [OBJ_EVENT_GFX_N_HNS] =                 &gObjectEventGraphicsInfo_N_hns,
+    [OBJ_EVENT_GFX_CYRUS_HNS] =             &gObjectEventGraphicsInfo_Cyrus_hns,
     // End of the side battle sprites
     // HnS protagonists
     [OBJ_EVENT_GFX_GOLD_NORMAL_HNS] =       &gObjectEventGraphicsInfo_GoldNormal_hns,

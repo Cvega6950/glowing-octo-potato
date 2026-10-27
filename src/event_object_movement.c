@@ -602,6 +602,11 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Ryme_hns, OBJ_EVENT_PAL_TAG_RYME_HNS},
     {gObjectEventPal_Tulip_hns, OBJ_EVENT_PAL_TAG_TULIP_HNS},
     {gObjectEventPal_Grusha_hns, OBJ_EVENT_PAL_TAG_GRUSHA_HNS},
+    {gObjectEventPal_Cynthia_hns, OBJ_EVENT_PAL_TAG_CYNTHIA_HNS},
+    {gObjectEventPal_Iris_hns, OBJ_EVENT_PAL_TAG_IRIS_HNS},
+    {gObjectEventPal_Geeta_hns, OBJ_EVENT_PAL_TAG_GEETA_HNS},
+    {gObjectEventPal_N_hns, OBJ_EVENT_PAL_TAG_N_HNS},
+    {gObjectEventPal_Cyrus_hns, OBJ_EVENT_PAL_TAG_CYRUS_HNS},
     // End of the side battle sprites
 #endif // IS_HNS
 #if OW_FOLLOWERS_POKEBALLS

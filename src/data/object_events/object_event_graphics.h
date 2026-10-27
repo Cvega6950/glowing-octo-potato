@@ -826,6 +826,11 @@ const u32 gObjectEventPic_Larry_hns[] = INCBIN_U32("graphics/object_events/pics/
 const u32 gObjectEventPic_Ryme_hns[] = INCBIN_U32("graphics/object_events/pics/people/ryme_hns.4bpp");
 const u32 gObjectEventPic_Tulip_hns[] = INCBIN_U32("graphics/object_events/pics/people/tulip_hns.4bpp");
 const u32 gObjectEventPic_Grusha_hns[] = INCBIN_U32("graphics/object_events/pics/people/grusha_hns.4bpp");
+const u32 gObjectEventPic_Cynthia_hns[] = INCBIN_U32("graphics/object_events/pics/people/cynthia_hns.4bpp");
+const u32 gObjectEventPic_Iris_hns[] = INCBIN_U32("graphics/object_events/pics/people/iris_hns.4bpp");
+const u32 gObjectEventPic_Geeta_hns[] = INCBIN_U32("graphics/object_events/pics/people/geeta_hns.4bpp");
+const u32 gObjectEventPic_N_hns[] = INCBIN_U32("graphics/object_events/pics/people/n_hns.4bpp");
+const u32 gObjectEventPic_Cyrus_hns[] = INCBIN_U32("graphics/object_events/pics/people/cyrus_hns.4bpp");
 // End of the side battle sprites
 
 // HnS palette data
@@ -886,6 +891,11 @@ const u16 gObjectEventPal_Larry_hns[] = INCBIN_U16("graphics/object_events/palet
 const u16 gObjectEventPal_Ryme_hns[] = INCBIN_U16("graphics/object_events/palettes/ryme_hns.gbapal");
 const u16 gObjectEventPal_Tulip_hns[] = INCBIN_U16("graphics/object_events/palettes/tulip_hns.gbapal");
 const u16 gObjectEventPal_Grusha_hns[] = INCBIN_U16("graphics/object_events/palettes/grusha_hns.gbapal");
+const u16 gObjectEventPal_Cynthia_hns[] = INCBIN_U16("graphics/object_events/palettes/cynthia_hns.gbapal");
+const u16 gObjectEventPal_Iris_hns[] = INCBIN_U16("graphics/object_events/palettes/iris_hns.gbapal");
+const u16 gObjectEventPal_Geeta_hns[] = INCBIN_U16("graphics/object_events/palettes/geeta_hns.gbapal");
+const u16 gObjectEventPal_N_hns[] = INCBIN_U16("graphics/object_events/palettes/n_hns.gbapal");
+const u16 gObjectEventPal_Cyrus_hns[] = INCBIN_U16("graphics/object_events/palettes/cyrus_hns.gbapal");
 // End of the side battle sprites
 
 // HnS protagonist sprite data
