@@ -3,8 +3,10 @@
 # health box's second sprite; until 0.10.1 only 6 tiles were cleared first, so after FERALIGATR
 # a shorter name kept the tail of its R ("LARVITAR -|", reported on Delta). Here ONIX is sent out,
 # switched for FERALIGATR and back: its name strip (y 74-87, below the opponent's Pokemon, which
-# the AI may switch), 30 frames into the action menu each time (the health box bobs in step with
-# the menu), must look exactly as the first time.
+# the AI may switch), 30 frames into the action menu the first time, must look exactly the same
+# within one bob of the health box (37 frames) the second time: the bob doesn't always start in
+# the same phase (it didn't on VBA-M after the opponent's hit in 0.13.0), and a leftover R would
+# never match.
 # Action menu cursor: 0 FIGHT, 1 BAG, 2 POKEMON, 3 RUN; it is back on FIGHT every turn.
 !new_game()
 !give_mon(95, 21)
@@ -44,4 +46,4 @@ waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller
 wait 30
 shot 03_onix_again.png
 !expect_battler(0, "species", "SPECIES_ONIX", "onix_back_in")
-expectrect onix_name no_leftover_of_feraligatr
+expectrectwithin onix_name 40 no_leftover_of_feraligatr

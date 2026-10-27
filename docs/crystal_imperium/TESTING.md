@@ -138,6 +138,10 @@ free badge. The autopilot cannot drive double battles yet.
   CANCEL) and the moves it must and mustn't have, against the moves `relearner_list()` reads from
   the teachable learnsets the build generated; `!close_relearner()` leaves it (`move_pools`).
   `expectfind16` / `expectnotfind16` check whether one of a table's entries holds a value.
+- `snaprect` remembers a screen rectangle; `expectrect` compares it on one frame, and
+  `expectrectwithin NAME FRAMES` on the first of the next FRAMES that matches: the player's
+  health box bobs during the action menu, and the bob doesn't always start in the same phase
+  (`battle_healthbox_names`).
 - Addresses can follow pointers: `*PTR+OFF`, `**PTR+A+B`.
 - `expect_flag`, `expect_var`, `expect_save3`, `expect_bag_has`, `expect_battler`,
   `expect_const` resolve game constants and struct offsets by compiling against the game's own

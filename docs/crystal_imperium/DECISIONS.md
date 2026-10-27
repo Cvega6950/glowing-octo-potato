@@ -1163,7 +1163,9 @@ DexNav shows and that wild encounters draw from:
   - The intro (Poké Balls thrown, Pokémon sent out), battle animations (moves, stat changes,
     status, Poké Balls) and the Pokémon's own animations (sent out, after a knockout) play at
     double speed: `BattleMainCB2` runs a second step of the battle, its sprites and its tasks,
-    without the frame's button presses. Text prints at the TEXT SPEED chosen, and palettes fade
+    without the frame's button presses. Not while the player chooses an action: a Pokémon's own
+    animation can outlast its switch-in, and the menu (its cursor, the bouncing health box, the
+    input handler) keeps the usual speed. Text prints at the TEXT SPEED chosen, and palettes fade
     at their usual speed: a hardware fade counts its end in a one-bit field cleared at VBlank,
     and a second `UpdatePaletteFade` in a frame wrapped it to zero, so the fade never ended (the
     first build hung on Tailwind's sky; `falkner` found it).

@@ -30,6 +30,8 @@
 //                          walls and tiles of another elevation (water, seen from land); "stop=ADDR/MASK"
 //                          stops pressing the d-pad once the byte at ADDR has a MASK bit set (gMain.inBattle:
 //                          a battle started). X/Y may be @ADDR~BIAS: an s16 in memory minus BIAS
+//   expectrectwithin NAME FRAMES [LABEL]   like expectrect, passing at the first of this frame and the next
+//                          FRAMES where the rectangle matches (for a sprite that bobs, like the health box)
 //   expectfind16 BASE COUNT STRIDE VALUE [LABEL]   fail unless one of COUNT entries STRIDE bytes apart
 //                          from BASE (which may be *PTR+OFF) holds the 16-bit VALUE
 //   expectnotfind16 BASE COUNT STRIDE VALUE [LABEL]   fail if one of them does
@@ -648,7 +650,7 @@ int main(int argc, char **argv)
             else
                 printf("[frame %lu] shot %s\n", frameCount, a1);
         }
-        else if (!strcmp(cmd, "snaprect") || !strcmp(cmd, "expectrect"))
+        else if (!strcmp(cmd, "snaprect") || !strcmp(cmd, "expectrect") || !strcmp(cmd, "expectrectwithin"))
         {
             unsigned width, height, x = 0, y = 0, w = 0, h = 0;
             const uint32_t *video = Backend_Video(&width, &height);
@@ -678,19 +680,43 @@ int main(int argc, char **argv)
             }
             else
             {
-                unsigned diff = 0;
+                // expectrect NAME [LABEL]: this frame; expectrectwithin NAME FRAMES [LABEL]: this frame or one of
+                // the next FRAMES (e.g. a sprite that bobs), the first that matches; the fewest differences otherwise
+                unsigned diff = 0, best = ~0u, frames = 0, f;
+                char a4[128] = {0};
+                const char *label = n > 2 ? a2 : cmd;
+                if (!strcmp(cmd, "expectrectwithin"))
+                {
+                    sscanf(line, "%*s %*s %*s %127s", a4);
+                    frames = strtoul(a2, NULL, 0);
+                    label = a4[0] ? a4 : cmd;
+                }
                 if (slot < 0)
                 {
                     fprintf(stderr, "line %d: no snaprect %s\n", lineNo, a1);
                     failures++;
                     continue;
                 }
-                for (unsigned row = 0; row < sRects[slot].h; row++)
-                    for (unsigned col = 0; col < sRects[slot].w; col++)
-                        diff += video[(sRects[slot].y + row) * width + sRects[slot].x + col] != sRects[slot].pixels[row * sRects[slot].w + col];
-                printf("[frame %lu] %s %s: %u of %u pixels differ from %s\n", frameCount, diff ? "FAIL" : "PASS",
-                       n > 2 ? a2 : "expectrect", diff, sRects[slot].w * sRects[slot].h, a1);
-                if (diff)
+                for (f = 0; ; f++)
+                {
+                    video = Backend_Video(&width, &height);
+                    diff = 0;
+                    for (unsigned row = 0; row < sRects[slot].h; row++)
+                        for (unsigned col = 0; col < sRects[slot].w; col++)
+                            diff += video[(sRects[slot].y + row) * width + sRects[slot].x + col] != sRects[slot].pixels[row * sRects[slot].w + col];
+                    if (diff < best)
+                        best = diff;
+                    if (diff == 0 || f >= frames)
+                        break;
+                    RunFrames(0, 1);
+                }
+                if (frames)
+                    printf("[frame %lu] %s %s: %u of %u pixels differ from %s (best of %u frames)\n", frameCount,
+                           best ? "FAIL" : "PASS", label, best, sRects[slot].w * sRects[slot].h, a1, f + 1);
+                else
+                    printf("[frame %lu] %s %s: %u of %u pixels differ from %s\n", frameCount, diff ? "FAIL" : "PASS",
+                           label, diff, sRects[slot].w * sRects[slot].h, a1);
+                if (best)
                     failures++;
             }
         }

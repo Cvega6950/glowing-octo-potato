@@ -1882,7 +1882,10 @@ bool32 IsFastBattleOn(void)
 
 static bool32 IsBattleAnimationPlaying(void)
 {
-    return gAnimScriptActive || gBattleMainFunc == DoBattleIntro || IsMonAnimationTaskActive();
+    // A Pokemon's own animation can outlast its switch-in into the next choice of actions: the
+    // choice keeps the usual speed (its menu's cursor, the bouncing health box, the input)
+    return gAnimScriptActive || gBattleMainFunc == DoBattleIntro
+        || (IsMonAnimationTaskActive() && gBattleMainFunc != HandleTurnActionSelectionState);
 }
 
 void BattleMainCB2(void)
