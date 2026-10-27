@@ -2,8 +2,10 @@
 # Wild Variety skips encounters while FLAG_SYS_BUG_CONTEST_MODE is set. On the National Park
 # (group 24, number 14; its own Pokemon are NATIONAL_PARK_SPECIES), with WILD VARIETY at 60%,
 # twelve wild battles in contest mode (the flag set directly) must all be the park's own
-# Pokemon; the same twelve battles with the flag clear must include other Pokemon. A run where a
-# contestant talks to the player first has no battle: at least 9 of the 12 must have one.
+# Pokemon. A run where a contestant talks to the player first has no battle: at least 9 of the 12
+# must have one. With the flag clear, the park's day and night Pokemon (eleven, D42) leave
+# DexNav's row room for one Wild Variety Pokemon, listed in its twelfth icon, and the battles are
+# on the list (the L menu has no DexNav in contest mode).
 # Entrance (12,49); grass rows 28-31, x 10-31.
 !new_game(variety="60%")
 !give_mon(155, 20)
@@ -19,10 +21,16 @@ savestate contest.ss
 expecttally variety_in_contest 0 0
 expecttally variety_in_contest_battles 9 12
 
-# Same battles without contest mode: Wild Variety applies
+# Without contest mode: Wild Variety applies, listed in the twelfth icon, and every battle is listed
 loadstate contest.ss
 !set_flag("FLAG_SYS_BUG_CONTEST_MODE", 0)
 savestate park.ss
-!wild_variety_sample("variety_outside_contest", 12, state="park.ss", grass=(20, 14, 26, 29), species=NATIONAL_PARK_SPECIES)
-expecttally variety_outside_contest 1 12
+!l_menu("DEXNAV")
+wait 120
+shot dexnav_outside_contest.png
+expectne16 *{sDexNavUiDataPtr}+26 0 park_lists_its_eleven
+expectne16 *{sDexNavUiDataPtr}+28 0 variety_listed_outside_contest
+!snap_dexnav_rows("park")
+!wild_variety_sample("variety_outside_contest", 12, state="park.ss", grass=(20, 14, 26, 29), species=NATIONAL_PARK_SPECIES, listed="park")
+expecttally variety_outside_contest_not_listed 0 0
 expecttally variety_outside_contest_battles 9 12

@@ -2,7 +2,7 @@
 # Route 29's own wild Pokemon are Pidgey, Sentret, Hoppip, Rattata and Hoothoot. Twelve wild
 # battles start from the same spot at different frame offsets. With WILD VARIETY at 30% some of
 # them must be other Pokemon (Gen 1-9); with it OFF none may be, and DexNav lists only the
-# route's own Pokemon (Hoothoot and Rattata at night; sDexNavUiDataPtr->landSpecies is at +6).
+# route's own Pokemon (all five, day and night, D42; sDexNavUiDataPtr->landSpecies is at +6).
 # dexnav_wild_match checks that the Wild Variety Pokemon are the ones DexNav lists.
 !new_game()
 !give_mon(155, 5)
@@ -21,7 +21,7 @@ savestate route29_off.ss
 !l_menu("DEXNAV")
 wait 120
 shot dexnav_variety_off.png
-expectne16 *{sDexNavUiDataPtr}+8 0 off_lists_own_pokemon
-expect16 *{sDexNavUiDataPtr}+10 0 off_lists_no_variety_pokemon
+expectne16 *{sDexNavUiDataPtr}+14 0 off_lists_own_pokemon
+expect16 *{sDexNavUiDataPtr}+16 0 off_lists_no_variety_pokemon
 !wild_variety_sample("variety_off", 12, state="route29_off.ss")
 expecttally variety_off 0 0

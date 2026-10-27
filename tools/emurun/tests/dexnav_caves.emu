@@ -107,7 +107,9 @@ wait 60
 press B
 wait 200
 press B
-wait 60
+# One frame more than the other searches: with 0.14.1's level ranges (D42) the search at frame
+# 60 put the Geodude across the water, out of a walk's reach (DexNav may pick such a tile)
+wait 61
 press R
 wait 200
 shot 07_union_cave_search.png

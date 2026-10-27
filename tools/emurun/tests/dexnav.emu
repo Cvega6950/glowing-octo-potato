@@ -1,6 +1,7 @@
 # Crystal Imperium play test: the DexNav, in the L menu from a new game (the start menu until 0.10.0).
-# Route 29 at night lists Hoothoot and Rattata (second land icon). DexNav shows every Pokemon
-# in the area, seen or not: nothing has been seen yet, and Rattata is registered with R anyway.
+# Route 29 lists its day and night Pokemon at every hour (D42): Pidgey, Sentret, Hoppip, Rattata
+# (fourth land icon) and Hoothoot. DexNav shows every Pokemon in the area, seen or not: nothing
+# has been seen yet, and Rattata is registered with R anyway.
 # Close DexNav, press R in the grass to search, walk normally (no sneaking with A) to the
 # rustling tile, and the DexNav battle starts.
 # Catching the DexNav Rattata raises its search level and the DexNav chain. The Infinite Repel
@@ -23,6 +24,10 @@ expect32 {gMain+4} {CB2_Overworld+1} in_route29_grass
 wait 120
 expect32 {gMain+4} {DexNav_MainCB+1} dexnav_opens
 shot 01_dexnav_nothing_seen.png
+press RIGHT
+wait 20
+press RIGHT
+wait 20
 press RIGHT
 wait 20
 press R

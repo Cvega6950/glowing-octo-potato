@@ -599,8 +599,10 @@ DexNav shows and that wild encounters draw from:
   Pokémon and MAP SEEDED on, each encounter slot always gives the same randomized Pokémon, and
   DexNav lists those (one per slot, so the land row is often full).
 - **A mass outbreak's Pokémon**, in the grass.
-- **The day's Wild Variety set** in the free slots of DexNav's row (12 in the grass, 5 on the
-  water): up to six Pokémon in the grass and three Water-type ones on the water. The set is
+- **The day's Wild Variety set** (since 0.14.1 the area's set, the same every day, and the
+  area's own Pokémon those of every time of day: D42) in the free slots of DexNav's row (12 in
+  the grass, 5 on the water): up to six Pokémon in the grass and three Water-type ones on the
+  water. The set is
   drawn from the variety pool with a seed made of the map, the area, the RTC day counter (real
   clock or Heart & Soul's fake clock) and the trainer ID, and evolved for the area's highest
   level. It stays the same all day, changes at midnight, and differs between saves. A Wild
@@ -1507,3 +1509,41 @@ DexNav shows and that wild encounters draw from:
   (mGBA, every badge and both Leagues) walked up to all 25 from a door of their maps, said YES and
   checked each battle's trainer and six Pokémon, with a screenshot of each on the map and in
   battle: every spot, sprite and battle picture as intended.
+
+## D42. The DexNav list is the same all day
+
+- The user: "Just found this out, when you leave a route and walk back into the same route, the
+  Pokemon on the dexnav are different". Their save uses the real clock (CLOCK TYPE: RTC). Asked
+  what DexNav should show when they come back to a route, they chose "Same list all day": each
+  route uses one list (its day and night Pokémon together) at all hours, and the wild Pokémon
+  match it.
+- What changed the list: Heart & Soul's time-of-day tables (Route 29 at night: Hoothoot and
+  Rattata; by day Pidgey, Sentret, Hoppip, Rattata and Hoothoot) and D24's Wild Variety set,
+  new every day. Coming straight back on the same day and at the same time of day gave the same
+  list (checked through a gate, a warp and the walk in from Cherrygrove City).
+- **One list per area.** `GetWildMonsInfos` (`src/wild_encounter.c`) gives an area's tables of
+  every time of day. DexNav's rows, its hidden row, its search levels and caught-all marks, and
+  the Pokédex area map (whichever time it shows) use all of them. `GetTimeOfDayForEncounters`
+  picks one of them at random for each lookup (a step's encounter, fishing, Rock Smash, Sweet
+  Scent, the detector), so every listed Pokémon can turn up at any hour. The pick uses the
+  second RNG (battle animations' only other use), so the game's own random numbers come out as
+  before. The time of day still sets the light and the day and night events.
+- A table only joins while the area's Pokémon still fit DexNav's row (12 in the grass, 5 on the
+  water, 3 hidden). Sinjoh Ruins' night table would make 14, so its night Pokémon (Houndour,
+  Mismagius, Haunter, Duskull, Shuppet, Houndoom, all found elsewhere) are left out there. With
+  the map-based randomizer, which makes each table's slots other Pokémon, the first table alone
+  counts.
+- **The Wild Variety set is the area's own.** Its seed is the map, the area and the trainer ID,
+  no longer the day: a route keeps its six. After becoming Champion, a quarter of the areas'
+  sets end with a Legend. The set still fills the row's free slots, and with its day and night
+  Pokémon together an area has fewer of them: of the 81 maps with several land tables, 30 keep
+  all six, 22 have two or fewer (the National Park has room for one).
+- **Hidden Pokémon.** `gen_hidden_encounters.py` gave a map's day and night tables different
+  hidden Pokémon (six in all, for three icons). Now a map's tables share one set of three. All
+  258 families with no other source still have hidden slots: the 21 Water and Ice families the
+  nine water-only maps have no room for go to the caves (Ice) and the grass.
+- Evidence: `dexnav_wild_match` (Route 29 lists its five own Pokémon and six Wild Variety
+  Pokémon at night, the next day and at noon alike; at night the day's Pokémon turn up; every
+  battle is listed), `dexnav` and `level_cap_wild` (Rattata is now the fourth icon),
+  `wild_variety`, `bug_contest` (the National Park lists eleven own Pokémon and one Wild Variety
+  Pokémon; every battle outside the contest is listed), `dexnav_caves`, and the whole suite.

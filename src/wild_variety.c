@@ -1,10 +1,11 @@
 // Crystal Imperium: Wild Variety.
-// Every Gen 1-9 Pokemon can be found on the routes. Every day, each area's grass and water get
-// a set of extra Pokemon from the variety pool: up to six in the grass and three on the water,
-// as many as fit in the DexNav row next to the area's own Pokemon, evolved as far as the area's
-// highest level allows. A share of wild encounters (the WILD VARIETY option) is one of them, and
-// DexNav lists them with the area's own Pokemon, so what turns up in the wild is what DexNav
-// shows. The pool holds every base form (no pre-evolution), regional base forms included, but
+// Every Gen 1-9 Pokemon can be found on the routes. Each area's grass and water get a set of extra
+// Pokemon from the variety pool: up to six in the grass and three on the water, as many as fit in
+// the DexNav row next to the area's own Pokemon (those of every time of day, D42), evolved as far
+// as the area's highest level allows. The set is the area's own: it stays the same (since 0.14.1;
+// it changed every day before). A share of wild encounters (the WILD VARIETY option) is one of
+// them, and DexNav lists them with the area's own Pokemon, so what turns up in the wild is what
+// DexNav shows. The pool holds every base form (no pre-evolution), regional base forms included, but
 // not battle-only forms or cosmetic form duplicates; Legendary, Mythical, Ultra Beast and
 // Paradox Pokemon join it after the player becomes Champion. Besides that, DexNav can search
 // for any Pokemon at all, in any evolution stage, on any route with wild encounters.
@@ -25,7 +26,7 @@
 #define VARIETY_POOL_MAGIC 0xC1A5
 #define LAND_VARIETY_COUNT 6
 #define WATER_VARIETY_COUNT 3
-#define LEGEND_CHANCE 25 // percent of the day's sets with a Legend in them, after becoming Champion
+#define LEGEND_CHANCE 25 // percent of the areas' sets with a Legend in them, after becoming Champion
 #define POOL_PICK_TRIES 200
 
 static EWRAM_DATA u16 sPool[VARIETY_POOL_SIZE] = {0};
@@ -182,15 +183,16 @@ static bool32 IsOnList(const u16 *list, u32 count, u16 species)
     return FALSE;
 }
 
-// Adds today's Wild Variety Pokemon of the current map's land or water area to `list`, in the
-// `free` slots left. The set only depends on the map, the area, the day and the player.
+// Adds the Wild Variety Pokemon of the current map's land or water area to `list`, in the `free`
+// slots left. The set only depends on the map, the area and the player (since 0.14.1 not on the
+// day, D42: coming back to a route finds the same Pokemon).
 static u32 AddVarietySet(enum WildPokemonArea area, u16 *list, u32 count, u32 free, u8 level)
 {
     u32 i, tries, size = area == WILD_AREA_LAND ? LAND_VARIETY_COUNT : WATER_VARIETY_COUNT;
     bool32 legend;
     rng_value_t rng = LocalRandomSeed(((u32)gSaveBlock1Ptr->location.mapGroup << 24
                                      | (u32)gSaveBlock1Ptr->location.mapNum << 16 | area << 8)
-                                     ^ ((u32)(u16)gLocalTime.days * 0x9E3779B1) ^ READ_OTID_FROM_SAVE);
+                                     ^ READ_OTID_FROM_SAVE);
 
     BuildPoolIfNeeded();
     legend = LocalRandom(&rng) % 100 < LEGEND_CHANCE && FlagGet(FLAG_SYS_GAME_CLEAR) && sPoolCount > sLegendStart;
@@ -224,46 +226,53 @@ static u32 AddVarietySet(enum WildPokemonArea area, u16 *list, u32 count, u32 fr
 }
 
 // The current map's land or water Pokemon, as DexNav lists them and wild encounters turn them
-// up: the area's own Pokemon (as the randomizer turns them out when it is map-based), a mass
-// outbreak's Pokemon in the grass, then today's Wild Variety Pokemon. Fishing uses the water
-// list. `list` needs room for DexNav's row: LAND_WILD_COUNT or WATER_WILD_COUNT entries.
-// Returns the number of entries; *varietyStart is the index of the first Wild Variety one.
+// up: the area's own Pokemon of every time of day (D42; as the randomizer turns them out when it
+// is map-based), a mass outbreak's Pokemon in the grass, then the area's Wild Variety Pokemon.
+// Fishing uses the water list. `list` needs room for DexNav's row: LAND_WILD_COUNT or
+// WATER_WILD_COUNT entries. Returns the number of entries; *varietyStart is the index of the
+// first Wild Variety one.
 u32 WildVariety_GetAreaList(enum WildPokemonArea area, u16 *list, u32 *varietyStart)
 {
     u32 headerId = GetCurrentMapWildMonHeaderId();
-    const struct WildPokemonInfo *info;
-    u32 i, rowSize, count = 0;
+    const struct WildPokemonInfo *infos[TIMES_OF_DAY_COUNT];
+    u32 i, t, tables, rowSize, count = 0;
     u8 maxLevel = 1;
+    bool32 encounters = FALSE;
 
     *varietyStart = 0;
     if (area == WILD_AREA_FISHING)
         area = WILD_AREA_WATER;
     if (headerId == HEADER_NONE || (area != WILD_AREA_LAND && area != WILD_AREA_WATER))
         return 0;
-    // This also brings gLocalTime up to date
-    info = (area == WILD_AREA_LAND)
-         ? gWildMonHeaders[headerId].encounterTypes[GetTimeOfDayForEncounters(headerId, area)].landMonsInfo
-         : gWildMonHeaders[headerId].encounterTypes[GetTimeOfDayForEncounters(headerId, area)].waterMonsInfo;
-    if (info == NULL || info->encounterRate == 0)
-        return 0;
 
     rowSize = area == WILD_AREA_LAND ? LAND_WILD_COUNT : WATER_WILD_COUNT;
-    for (i = 0; i < rowSize; i++)
+    tables = GetWildMonsInfos(headerId, area, infos, NULL);
+    for (t = 0; t < tables; t++)
     {
-        u16 species = info->wildPokemon[i].species;
+        const struct WildPokemonInfo *info = infos[t];
 
-        if (species == SPECIES_NONE)
+        if (info->encounterRate == 0)
             continue;
-    #if RANDOMIZER_AVAILABLE == TRUE
-        // Without map seeding, or in chaos mode, every encounter is a new random Pokemon
-        if (gSaveBlock3Ptr->challengeSettings.tx_Random_MapBased && !gSaveBlock3Ptr->challengeSettings.tx_Random_Chaos)
-            species = RandomizeWildEncounter(species, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, area, i);
-    #endif
-        if (!IsOnList(list, count, species))
-            list[count++] = species;
-        if (info->wildPokemon[i].maxLevel > maxLevel)
-            maxLevel = info->wildPokemon[i].maxLevel;
+        encounters = TRUE;
+        for (i = 0; i < rowSize; i++)
+        {
+            u16 species = info->wildPokemon[i].species;
+
+            if (species == SPECIES_NONE)
+                continue;
+        #if RANDOMIZER_AVAILABLE == TRUE
+            // Without map seeding, or in chaos mode, every encounter is a new random Pokemon
+            if (gSaveBlock3Ptr->challengeSettings.tx_Random_MapBased && !gSaveBlock3Ptr->challengeSettings.tx_Random_Chaos)
+                species = RandomizeWildEncounter(species, gSaveBlock1Ptr->location.mapNum, gSaveBlock1Ptr->location.mapGroup, area, i);
+        #endif
+            if (count < rowSize && !IsOnList(list, count, species))
+                list[count++] = species;
+            if (info->wildPokemon[i].maxLevel > maxLevel)
+                maxLevel = info->wildPokemon[i].maxLevel;
+        }
     }
+    if (!encounters)
+        return 0;
 
     if (area == WILD_AREA_LAND && gSaveBlock1Ptr->outbreakPokemonSpecies != SPECIES_NONE
      && gSaveBlock1Ptr->location.mapNum == gSaveBlock1Ptr->outbreakLocationMapNum

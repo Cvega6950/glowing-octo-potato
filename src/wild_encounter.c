@@ -416,41 +416,143 @@ u16 GetCurrentMapWildMonHeaderId(void)
     return HEADER_NONE;
 }
 
-enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area)
+static const struct WildPokemonInfo *GetWildMonsInfoAtTime(u32 headerId, enum WildPokemonArea area, enum TimeOfDay timeOfDay)
 {
-    const struct WildPokemonInfo *wildMonInfo;
-    enum TimeOfDay timeOfDay = GetTimeOfDay();
-
-    if (!OW_TIME_OF_DAY_ENCOUNTERS)
-        return TIME_OF_DAY_DEFAULT;
-
-    if (InBattlePike() || CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
-        return OW_TIME_OF_DAY_FALLBACK;
+    const struct WildEncounterTypes *types = &gWildMonHeaders[headerId].encounterTypes[timeOfDay];
 
     switch (area)
     {
     default:
     case WILD_AREA_LAND:
-        wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].landMonsInfo;
-        break;
+        return types->landMonsInfo;
     case WILD_AREA_WATER:
-        wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].waterMonsInfo;
-        break;
+        return types->waterMonsInfo;
     case WILD_AREA_ROCKS:
-        wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].rockSmashMonsInfo;
-        break;
+        return types->rockSmashMonsInfo;
     case WILD_AREA_FISHING:
-        wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].fishingMonsInfo;
-        break;
+        return types->fishingMonsInfo;
     case WILD_AREA_HIDDEN:
-        wildMonInfo = gWildMonHeaders[headerId].encounterTypes[timeOfDay].hiddenMonsInfo;
-        break;
+        return types->hiddenMonsInfo;
     }
+}
 
-    if (wildMonInfo == NULL && !OW_TIME_OF_DAY_DISABLE_FALLBACK)
+// The slots of an area's table, and how many Pokemon DexNav's row for it shows (0: no row)
+static u32 GetAreaSlots(enum WildPokemonArea area, u32 *rowSize)
+{
+    switch (area)
+    {
+    default:
+    case WILD_AREA_LAND:
+        *rowSize = LAND_WILD_COUNT;
+        return LAND_WILD_COUNT;
+    case WILD_AREA_WATER:
+        *rowSize = WATER_WILD_COUNT;
+        return WATER_WILD_COUNT;
+    case WILD_AREA_HIDDEN:
+        *rowSize = HIDDEN_WILD_COUNT;
+        return HIDDEN_WILD_COUNT;
+    case WILD_AREA_ROCKS:
+        *rowSize = 0;
+        return ROCK_WILD_COUNT;
+    case WILD_AREA_FISHING:
+        *rowSize = 0;
+        return FISH_WILD_COUNT;
+    }
+}
+
+// Crystal Imperium (DECISIONS.md D42): an area's Pokemon don't change with the time of day. Its
+// tables for every time of day it has one count at all hours: `infos` gets each of them once
+// (TIMES_OF_DAY_COUNT entries at most) and `times` (if not NULL) their times of day. Lists, such
+// as DexNav's, hold the Pokemon of all of them, so a table only joins while its Pokemon still fit
+// in the area's DexNav row (Sinjoh Ruins' night Pokemon don't), and with the map-based randomizer,
+// which makes each table's slots other Pokemon, the first table alone counts.
+u32 GetWildMonsInfos(u32 headerId, enum WildPokemonArea area, const struct WildPokemonInfo **infos, enum TimeOfDay *times)
+{
+    u16 dexNums[LAND_WILD_COUNT];
+    u32 i, j, k, slots, rowSize, listed = 0, count = 0;
+
+    if (!OW_TIME_OF_DAY_ENCOUNTERS || InBattlePike() || CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
+    {
+        enum TimeOfDay timeOfDay = OW_TIME_OF_DAY_ENCOUNTERS ? OW_TIME_OF_DAY_FALLBACK : TIME_OF_DAY_DEFAULT;
+
+        infos[0] = GetWildMonsInfoAtTime(headerId, area, timeOfDay);
+        if (times != NULL)
+            times[0] = timeOfDay;
+        return infos[0] != NULL;
+    }
+    slots = GetAreaSlots(area, &rowSize);
+    for (i = 0; i < TIMES_OF_DAY_COUNT; i++)
+    {
+        const struct WildPokemonInfo *info = GetWildMonsInfoAtTime(headerId, area, i);
+        u32 added = listed;
+
+        // A hidden table's encounter rate says whether it is on land (0) or water (1)
+        if (info == NULL || (area != WILD_AREA_HIDDEN && info->encounterRate == 0))
+            continue;
+        for (j = 0; j < count && infos[j] != info; j++)
+            ;
+        if (j < count)
+            continue;
+        if (count > 0)
+        {
+        #if RANDOMIZER_AVAILABLE == TRUE
+            if (RandomizerFeatureEnabled(RANDOMIZE_WILD_MON) && gSaveBlock3Ptr->challengeSettings.tx_Random_MapBased
+             && !gSaveBlock3Ptr->challengeSettings.tx_Random_Chaos)
+                break;
+        #endif
+        }
+        if (rowSize != 0)
+        {
+            bool32 fits = TRUE;
+
+            for (j = 0; j < slots && fits; j++)
+            {
+                u16 dexNum = SpeciesToNationalPokedexNum(info->wildPokemon[j].species);
+
+                if (info->wildPokemon[j].species == SPECIES_NONE)
+                    continue;
+                for (k = 0; k < added && dexNums[k] != dexNum; k++)
+                    ;
+                if (k < added)
+                    continue;
+                if (added == rowSize)
+                    fits = FALSE;
+                else
+                    dexNums[added++] = dexNum;
+            }
+            if (!fits)
+                continue;
+            listed = added;
+        }
+        if (times != NULL)
+            times[count] = i;
+        infos[count++] = info;
+    }
+    return count;
+}
+
+// Crystal Imperium (D42): the time of day whose table a lookup uses. Where an area has different
+// tables for different times of day, each lookup takes one of them at random, so every one of the
+// area's Pokemon can turn up at any hour. The pick uses the second RNG (battle animations' only
+// other use), so the game's own random numbers come out as they did.
+enum TimeOfDay GetTimeOfDayForEncounters(u32 headerId, enum WildPokemonArea area)
+{
+    const struct WildPokemonInfo *infos[TIMES_OF_DAY_COUNT];
+    enum TimeOfDay times[TIMES_OF_DAY_COUNT];
+    u32 count;
+
+    GetTimeOfDay(); // keeps the clock and the time of day's colours up to date, as it always did
+    if (!OW_TIME_OF_DAY_ENCOUNTERS)
+        return TIME_OF_DAY_DEFAULT;
+    if (InBattlePike() || CurrentBattlePyramidLocation() != PYRAMID_LOCATION_NONE)
         return OW_TIME_OF_DAY_FALLBACK;
-    else
-        return GenConfigTimeOfDay(timeOfDay);
+
+    count = GetWildMonsInfos(headerId, area, infos, times);
+    if (count == 0)
+        return OW_TIME_OF_DAY_FALLBACK;
+    if (count == 1)
+        return times[0];
+    return times[Random2() % count];
 }
 
 static u8 PickWildMonNature(u32 species)

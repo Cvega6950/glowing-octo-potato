@@ -5,8 +5,9 @@ Pokemon, and write them into src/data/wild_encounters.json.
 The hidden slots are filled with the evolution families that have no other source in the game
 (the families validate.py reports), matched to the area: Water and Ice families on water,
 Rock/Ground/Steel/Ghost/Dark/Dragon families in caves, the rest in grass. Families are dealt out
-round-robin, so every family appears in several areas, and Day and Night tables of the same map
-get different Pokemon. Levels are the range of the area's own Pokemon.
+round-robin, so every family appears in several areas; a map's tables for every time of day get
+the same ones (since 0.14.1, D42: DexNav's list is the same at every hour). Levels are the range
+of the area's own Pokemon.
 
   python3 tools/crystal_imperium/gen_hidden_encounters.py          # rewrite hidden_mons
   python3 tools/crystal_imperium/gen_hidden_encounters.py --list   # print the assignment
@@ -106,33 +107,49 @@ def main():
     for root in missing:
         families_by_habitat[habitat_of_family(details.get(root, {}).get("types", []))].append(root)
 
-    entries_by_habitat = {"grass": [], "cave": [], "water": []}
+    # A map's tables for every time of day, in the JSON's order
+    tables_by_map = {}
     for entry in group["encounters"]:
         mapname = entry.get("map", "")
         if not mapname.endswith("_HNS") or not ("land_mons" in entry or "water_mons" in entry):
             continue
-        entries_by_habitat[habitat_of_map(mapname, entry)].append(entry)
+        tables_by_map.setdefault(mapname, []).append(entry)
+    maps_by_habitat = {"grass": {}, "cave": {}, "water": {}}
+    for mapname, entries in tables_by_map.items():
+        land = next((e for e in entries if "land_mons" in e), entries[0])
+        maps_by_habitat[habitat_of_map(mapname, land)][mapname] = entries
     # A habitat without maps hands its families to grass
     for habitat in ("cave", "water"):
-        if not entries_by_habitat[habitat]:
+        if not maps_by_habitat[habitat]:
             families_by_habitat["grass"] += families_by_habitat[habitat]
             families_by_habitat[habitat] = []
 
+    # One set per map, the same in its tables for every time of day: DexNav's list is the same at
+    # every hour (DECISIONS.md D42), and its hidden row has room for three
+    # Water first: the few water-only maps have fewer slots than the Water and Ice families, so
+    # those that don't fit go to the caves (Ice) and the grass (the rest)
     assignment = []
-    for habitat, entries in entries_by_habitat.items():
+    for habitat in ("water", "cave", "grass"):
+        maps = maps_by_habitat[habitat]
         pool = families_by_habitat[habitat] or families_by_habitat["grass"]
-        if not pool or not entries:
+        if not pool or not maps:
             continue
+        for root in pool[HIDDEN_SLOTS * len(maps):] if habitat != "grass" else []:
+            to = "cave" if "TYPE_ICE" in details.get(root, {}).get("types", []) and habitat == "water" else "grass"
+            families_by_habitat[to].append(root)
         cursor = 0
-        for entry in entries:
-            table = entry["land_mons"] if habitat != "water" else entry["water_mons"]
-            low, high = level_range(table)
-            mons = []
+        key = "water_mons" if habitat == "water" else "land_mons"
+        for mapname, entries in maps.items():
+            ranges = [level_range(e[key]) for e in entries if key in e]
+            low, high = min(r[0] for r in ranges), max(r[1] for r in ranges)
+            picks = []
             for _ in range(HIDDEN_SLOTS):
-                mons.append({"min_level": low, "max_level": high, "species": pool[cursor % len(pool)]})
+                picks.append(pool[cursor % len(pool)])
                 cursor += 1
-            entry["hidden_mons"] = {"encounter_rate": 1 if habitat == "water" else 0, "mons": mons}
-            assignment.append((entry["base_label"], habitat, [m["species"] for m in mons]))
+            for entry in entries:
+                entry["hidden_mons"] = {"encounter_rate": 1 if habitat == "water" else 0,
+                                        "mons": [{"min_level": low, "max_level": high, "species": p} for p in picks]}
+                assignment.append((entry["base_label"], habitat, picks))
 
     if args.list:
         for label, habitat, mons in assignment:

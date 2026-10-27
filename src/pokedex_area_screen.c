@@ -125,6 +125,7 @@ static void SetAreaHasMon(u16, u16);
 static void SetSpecialMapHasMon(u16, u16);
 static mapsec_u16_t GetRegionMapSectionId(u8, u8);
 static bool8 MapHasSpecies(const struct WildEncounterTypes *, u32, u16);
+static bool8 MapHasSpeciesAtAnyTime(u32, u32, u16);
 static bool8 MonListHasSpecies(const struct WildPokemonInfo *, u16, u16);
 static void DoAreaGlow(void);
 static void Task_ShowPokedexAreaScreen(u8 taskId);
@@ -360,7 +361,7 @@ static void FindMapsWithMon(u16 species)
             continue;
 #endif
 
-        if (MapHasSpecies(&gWildMonHeaders[i].encounterTypes[gAreaTimeOfDay], headerSectionId, species))
+        if (MapHasSpeciesAtAnyTime(i, headerSectionId, species))
         {
             switch (gWildMonHeaders[i].mapGroup)
             {
@@ -450,6 +451,20 @@ static void SetSpecialMapHasMon(u16 mapGroup, u16 mapNum)
 static mapsec_u16_t GetRegionMapSectionId(u8 mapGroup, u8 mapNum)
 {
     return Overworld_GetMapHeaderByGroupAndId(mapGroup, mapNum)->regionMapSectionId;
+}
+
+// Crystal Imperium: an area's Pokemon of every time of day turn up at all hours (DECISIONS.md D42),
+// so the map shows them whichever time of day is picked
+static bool8 MapHasSpeciesAtAnyTime(u32 headerId, u32 headerSectionId, u16 species)
+{
+    u32 timeOfDay;
+
+    for (timeOfDay = 0; timeOfDay < TIMES_OF_DAY_COUNT; timeOfDay++)
+    {
+        if (MapHasSpecies(&gWildMonHeaders[headerId].encounterTypes[timeOfDay], headerSectionId, species))
+            return TRUE;
+    }
+    return FALSE;
 }
 
 static bool8 MapHasSpecies(const struct WildEncounterTypes *info, u32 headerSectionId, u16 species)

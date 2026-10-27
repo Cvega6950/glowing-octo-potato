@@ -1,5 +1,25 @@
 # Crystal Imperium changelog
 
+## 0.14.1-experimental (2026-10-27)
+
+### The DexNav list is the same all day (DECISIONS.md D42)
+Leaving a route and coming back could show other Pokémon in the DexNav: the route's own Pokémon
+changed with the time of day, and its Wild Variety Pokémon every day. Now:
+- **Each area keeps one list at every hour:** its morning, day and night Pokémon together, and
+  the wild Pokémon match it (Route 29's Pidgey, Sentret and Hoppip turn up at night too, and its
+  Hoothoot by day). The Pokédex's area map shows them whichever time of day it shows.
+- **Each area's Wild Variety Pokémon stay the same** (they changed every day). They fill the
+  DexNav row's free icons, so a route with many Pokémon of its own has fewer of them.
+- **Hidden Pokémon:** a map's three hidden Pokémon are the same at every hour (its day and night
+  tables had three each); every family that had a hidden spot still has one.
+- Sinjoh Ruins keeps its daytime Pokémon at night: its night ones would not fit in the DexNav
+  row (they are all found elsewhere).
+
+### Tools
+- `gen_hidden_encounters.py`: one hidden set per map; Water and Ice families the water-only maps
+  have no room for go to the caves and the grass.
+- `tools/emurun`: `wild_variety_sample(..., not_in=...)` tallies battles against more lists.
+
 ## 0.14.0-experimental (2026-10-27)
 
 ### Side battles (DECISIONS.md D41)

@@ -603,13 +603,16 @@ NATIONAL_PARK_SPECIES = ("SPECIES_CATERPIE", "SPECIES_NIDORAN_F", "SPECIES_NIDOR
                          "SPECIES_VENONAT")
 
 
-def wild_variety_sample(name, runs, state="route29.ss", grass=(24, 21, 25, 14), species=ROUTE29_SPECIES, listed=None):
+def wild_variety_sample(name, runs, state="route29.ss", grass=(24, 21, 25, 14), species=ROUTE29_SPECIES, listed=None,
+                        not_in=()):
     """From a saved state at a grass edge, walk into the grass until a wild battle starts, `runs`
     times at different frame offsets, tallying wild Pokemon that are not one of the area's own
     `species`. grass = (entry x, pace from x, pace to x, row y), Route 29's by default. Each
     battle is left by loading the state again. listed="LIST" also tallies, as NAME_not_listed,
     wild Pokemon missing from a list remembered by snap_dexnav_rows (DexNav's rows). A run without
-    a battle (an NPC talked first) counts for neither; NAME_battles counts the runs with one."""
+    a battle (an NPC talked first) counts for neither; NAME_battles counts the runs with one.
+    not_in=(("SUFFIX", "LIST"), ...) tallies, as NAME_SUFFIX, wild Pokemon missing from each other
+    remembered LIST."""
     entry, x1, x2, y = grass
     out = []
     for k in range(runs):
@@ -619,6 +622,7 @@ def wild_variety_sample(name, runs, state="route29.ss", grass=(24, 21, 25, 14), 
         out += tally_species_not_in(name, *species, "0")
         if listed:
             out += [f"tallynotin {name}_not_listed {{gBattleMons+136}} @{listed},0"]
+        out += [f"tallynotin {name}_{suffix} {{gBattleMons+136}} @{other},0" for suffix, other in not_in]
     return out
 
 

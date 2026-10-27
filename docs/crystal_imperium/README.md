@@ -34,10 +34,11 @@ From the first step of a new game:
 - **Fast Egg hatching:** an Egg cycle is 8 steps instead of 256, so most Eggs hatch in a
   short walk (a Togepi Egg in about 90 steps).
 - **DexNav** (L menu):
-  - It shows each area's Pokémon by icon and name, seen or not: the area's own, the day's
-    Wild Variety Pokémon and three hidden ones. What you run into in the grass or on the water
-    is on the list (with Heart & Soul's randomizer on, the randomized Pokémon are). Pick any
-    of them: A searches, R registers.
+  - It shows each area's Pokémon by icon and name, seen or not: the area's own, its Wild
+    Variety Pokémon and three hidden ones. The list is the same at every hour and every day:
+    an area's morning, day and night Pokémon are all there, and all of them turn up at any
+    time. What you run into in the grass or on the water is on the list (with Heart & Soul's
+    randomizer on, the randomized Pokémon are). Pick any of them: A searches, R registers.
   - SELECT lists **every** Gen 1–9 Pokémon (all 1,074: every evolution stage, regional
     forms, Legendaries), and you can search for any of them anywhere. LEFT/RIGHT jump 100.
   - Walk or run up to a Pokémon found by searching to battle it: no sneaking needed. It stays
@@ -47,10 +48,10 @@ From the first step of a new game:
     DexNav chain.
   - Hidden Pokémon are also detected while walking.
   - Search levels improve the chances of egg moves, Hidden Abilities and held items.
-- **Wild Variety:** every area gets a daily set of other Gen 1–9 Pokémon (up to six in the
-  grass and three Water-types on the water, already evolved if the area's level allows it),
-  shown in DexNav. 30% of wild encounters (adjustable) are one of them. The sets change every
-  day.
+- **Wild Variety:** every area has its own set of other Gen 1–9 Pokémon (up to six in the
+  grass and three Water-types on the water, as many as fit in the DexNav row beside the area's
+  own, already evolved if the area's level allows it), shown in DexNav. 30% of wild encounters
+  (adjustable) are one of them. An area keeps its set (it changed every day before 0.14.1).
 - **Easy Catch:** every Poké Ball catches (can be turned off).
 - **Faster battles** (START > OPTION > BATTLE: FAST BATTLES and FAST INTRO, both on): no
   slide-in at the start; the intro, move animations, the Pokémon's own animations, the HP bar
@@ -120,7 +121,7 @@ From the first step of a new game:
   | SHINYR | SHR | the roaming Pokémon shiny |
   | DEXALL | DXA | the DexNav already shows every Pokémon |
 - Legendary and Mythical Pokémon are on the DexNav list from the start. Once you are
-  Champion, about a quarter of each day's Wild Variety sets include one.
+  Champion, about a quarter of the areas' Wild Variety sets include one.
 - **Cheat menu:** hold R and press START in the overworld for HnS's debug menu (give any
   Pokémon or item, and more; *Flags & Vars… → Pokédex Flags All* fills the Pokédex). Use it
   with care: it can also change story flags.
