@@ -487,7 +487,7 @@
       "flag": "FLAG_HIDE_OLIVINE_CITY_GYM_JASMINE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_HIKER_HNS",
+      "graphics_id": "OBJ_EVENT_GFX_BYRON_HNS",
       "x": 41,
       "y": 51,
       "elevation": 0,

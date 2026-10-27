@@ -286,7 +286,7 @@
       "flag": "FLAG_HIDE_CAPE_MISTY"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_M_HNS",
+      "graphics_id": "OBJ_EVENT_GFX_BRASSIUS_HNS",
       "x": 80,
       "y": 15,
       "elevation": 0,

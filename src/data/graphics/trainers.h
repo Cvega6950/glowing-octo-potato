@@ -631,6 +631,40 @@ const u16 gTrainerPalette_YoungsterHns[] = INCBIN_U16("graphics/trainers/palette
 
 const u32 gTrainerFrontPic_SamsonOakHns[] = INCBIN_U32("graphics/trainers/front_pics/samson_oak_hns.4bpp.smol");
 const u16 gTrainerPalette_SamsonOakHns[] = INCBIN_U16("graphics/trainers/front_pics/samson_oak_hns.gbapal");
+// Crystal Imperium side battle sprites (DECISIONS.md D41): written by tools/crystal_imperium/side_sprites.py
+const u32 gTrainerFrontPic_CandiceHns[] = INCBIN_U32("graphics/trainers/front_pics/candice_hns.4bpp.smol");
+const u16 gTrainerPalette_CandiceHns[] = INCBIN_U16("graphics/trainers/front_pics/candice_hns.gbapal");
+const u32 gTrainerFrontPic_GardeniaHns[] = INCBIN_U32("graphics/trainers/front_pics/gardenia_hns.4bpp.smol");
+const u16 gTrainerPalette_GardeniaHns[] = INCBIN_U16("graphics/trainers/front_pics/gardenia_hns.gbapal");
+const u32 gTrainerFrontPic_FantinaHns[] = INCBIN_U32("graphics/trainers/front_pics/fantina_hns.4bpp.smol");
+const u16 gTrainerPalette_FantinaHns[] = INCBIN_U16("graphics/trainers/front_pics/fantina_hns.gbapal");
+const u32 gTrainerFrontPic_MayleneHns[] = INCBIN_U32("graphics/trainers/front_pics/maylene_hns.4bpp.smol");
+const u16 gTrainerPalette_MayleneHns[] = INCBIN_U16("graphics/trainers/front_pics/maylene_hns.gbapal");
+const u32 gTrainerFrontPic_WakeHns[] = INCBIN_U32("graphics/trainers/front_pics/wake_hns.4bpp.smol");
+const u16 gTrainerPalette_WakeHns[] = INCBIN_U16("graphics/trainers/front_pics/wake_hns.gbapal");
+const u32 gTrainerFrontPic_ByronHns[] = INCBIN_U32("graphics/trainers/front_pics/byron_hns.4bpp.smol");
+const u16 gTrainerPalette_ByronHns[] = INCBIN_U16("graphics/trainers/front_pics/byron_hns.gbapal");
+const u32 gTrainerFrontPic_RoarkHns[] = INCBIN_U32("graphics/trainers/front_pics/roark_hns.4bpp.smol");
+const u16 gTrainerPalette_RoarkHns[] = INCBIN_U16("graphics/trainers/front_pics/roark_hns.gbapal");
+const u32 gTrainerFrontPic_VolknerHns[] = INCBIN_U32("graphics/trainers/front_pics/volkner_hns.4bpp.smol");
+const u16 gTrainerPalette_VolknerHns[] = INCBIN_U16("graphics/trainers/front_pics/volkner_hns.gbapal");
+const u32 gTrainerFrontPic_KatyHns[] = INCBIN_U32("graphics/trainers/front_pics/katy_hns.4bpp.smol");
+const u16 gTrainerPalette_KatyHns[] = INCBIN_U16("graphics/trainers/front_pics/katy_hns.gbapal");
+const u32 gTrainerFrontPic_BrassiusHns[] = INCBIN_U32("graphics/trainers/front_pics/brassius_hns.4bpp.smol");
+const u16 gTrainerPalette_BrassiusHns[] = INCBIN_U16("graphics/trainers/front_pics/brassius_hns.gbapal");
+const u32 gTrainerFrontPic_IonoHns[] = INCBIN_U32("graphics/trainers/front_pics/iono_hns.4bpp.smol");
+const u16 gTrainerPalette_IonoHns[] = INCBIN_U16("graphics/trainers/front_pics/iono_hns.gbapal");
+const u32 gTrainerFrontPic_KofuHns[] = INCBIN_U32("graphics/trainers/front_pics/kofu_hns.4bpp.smol");
+const u16 gTrainerPalette_KofuHns[] = INCBIN_U16("graphics/trainers/front_pics/kofu_hns.gbapal");
+const u32 gTrainerFrontPic_LarryHns[] = INCBIN_U32("graphics/trainers/front_pics/larry_hns.4bpp.smol");
+const u16 gTrainerPalette_LarryHns[] = INCBIN_U16("graphics/trainers/front_pics/larry_hns.gbapal");
+const u32 gTrainerFrontPic_RymeHns[] = INCBIN_U32("graphics/trainers/front_pics/ryme_hns.4bpp.smol");
+const u16 gTrainerPalette_RymeHns[] = INCBIN_U16("graphics/trainers/front_pics/ryme_hns.gbapal");
+const u32 gTrainerFrontPic_TulipHns[] = INCBIN_U32("graphics/trainers/front_pics/tulip_hns.4bpp.smol");
+const u16 gTrainerPalette_TulipHns[] = INCBIN_U16("graphics/trainers/front_pics/tulip_hns.gbapal");
+const u32 gTrainerFrontPic_GrushaHns[] = INCBIN_U32("graphics/trainers/front_pics/grusha_hns.4bpp.smol");
+const u16 gTrainerPalette_GrushaHns[] = INCBIN_U16("graphics/trainers/front_pics/grusha_hns.gbapal");
+// End of the side battle sprites
 
 const u8 gTrainerBackPic_Brendan[] = INCBIN_U8("graphics/trainers/back_pics/brendan.4bpp");
 const u8 gTrainerBackPic_May[] = INCBIN_U8("graphics/trainers/back_pics/may.4bpp");
@@ -885,6 +919,24 @@ const struct TrainerSprite gTrainerSprites[] =
     TRAINER_SPRITE(TRAINER_PIC_FRONT_TWINS_HNS, gTrainerFrontPic_TwinsHns, gTrainerPalette_TwinsHns),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_YOUNGSTER_HNS, gTrainerFrontPic_YoungsterHns, gTrainerPalette_YoungsterHns),
     TRAINER_SPRITE(TRAINER_PIC_FRONT_SAMSON_OAK_HNS, gTrainerFrontPic_SamsonOakHns, gTrainerPalette_SamsonOakHns),
+    // Crystal Imperium side battle sprites (DECISIONS.md D41): written by tools/crystal_imperium/side_sprites.py
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_CANDICE_HNS, gTrainerFrontPic_CandiceHns, gTrainerPalette_CandiceHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_GARDENIA_HNS, gTrainerFrontPic_GardeniaHns, gTrainerPalette_GardeniaHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_FANTINA_HNS, gTrainerFrontPic_FantinaHns, gTrainerPalette_FantinaHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_MAYLENE_HNS, gTrainerFrontPic_MayleneHns, gTrainerPalette_MayleneHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_WAKE_HNS, gTrainerFrontPic_WakeHns, gTrainerPalette_WakeHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_BYRON_HNS, gTrainerFrontPic_ByronHns, gTrainerPalette_ByronHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_ROARK_HNS, gTrainerFrontPic_RoarkHns, gTrainerPalette_RoarkHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_VOLKNER_HNS, gTrainerFrontPic_VolknerHns, gTrainerPalette_VolknerHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_KATY_HNS, gTrainerFrontPic_KatyHns, gTrainerPalette_KatyHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_BRASSIUS_HNS, gTrainerFrontPic_BrassiusHns, gTrainerPalette_BrassiusHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_IONO_HNS, gTrainerFrontPic_IonoHns, gTrainerPalette_IonoHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_KOFU_HNS, gTrainerFrontPic_KofuHns, gTrainerPalette_KofuHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_LARRY_HNS, gTrainerFrontPic_LarryHns, gTrainerPalette_LarryHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_RYME_HNS, gTrainerFrontPic_RymeHns, gTrainerPalette_RymeHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_TULIP_HNS, gTrainerFrontPic_TulipHns, gTrainerPalette_TulipHns),
+    TRAINER_SPRITE(TRAINER_PIC_FRONT_GRUSHA_HNS, gTrainerFrontPic_GrushaHns, gTrainerPalette_GrushaHns),
+    // End of the side battle sprites
 };
 
 static const union AnimCmd sAnimCmd_Hoenn[] =

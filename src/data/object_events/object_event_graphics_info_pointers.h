@@ -552,6 +552,24 @@ extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KrisFishing
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KrisWatering_hns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_KrisDecorating_hns;
 extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_AlolaOak_hns;
+// Crystal Imperium side battle sprites (DECISIONS.md D41): written by tools/crystal_imperium/side_sprites.py
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Candice_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Gardenia_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Fantina_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Maylene_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Wake_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Byron_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Roark_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Volkner_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Katy_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Brassius_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Iono_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Kofu_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Larry_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Ryme_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Tulip_hns;
+extern const struct ObjectEventGraphicsInfo gObjectEventGraphicsInfo_Grusha_hns;
+// End of the side battle sprites
 
 const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM_OBJ_EVENT_GFX] = {
     [OBJ_EVENT_GFX_BRENDAN_NORMAL] =           &gObjectEventGraphicsInfo_BrendanNormal,
@@ -1076,6 +1094,24 @@ const struct ObjectEventGraphicsInfo *const gObjectEventGraphicsInfoPointers[NUM
     [OBJ_EVENT_GFX_POKE_CENTER_LIGHT_HNS] = &gObjectEventGraphicsInfo_PokeCenterLight_Hns,
     [OBJ_EVENT_GFX_SMALL_LIGHT_HNS] =       &gObjectEventGraphicsInfo_SmallLight_Hns,
     [OBJ_EVENT_GFX_ALOLA_OAK_HNS] =         &gObjectEventGraphicsInfo_AlolaOak_hns,
+    // Crystal Imperium side battle sprites (DECISIONS.md D41): written by tools/crystal_imperium/side_sprites.py
+    [OBJ_EVENT_GFX_CANDICE_HNS] =           &gObjectEventGraphicsInfo_Candice_hns,
+    [OBJ_EVENT_GFX_GARDENIA_HNS] =          &gObjectEventGraphicsInfo_Gardenia_hns,
+    [OBJ_EVENT_GFX_FANTINA_HNS] =           &gObjectEventGraphicsInfo_Fantina_hns,
+    [OBJ_EVENT_GFX_MAYLENE_HNS] =           &gObjectEventGraphicsInfo_Maylene_hns,
+    [OBJ_EVENT_GFX_WAKE_HNS] =              &gObjectEventGraphicsInfo_Wake_hns,
+    [OBJ_EVENT_GFX_BYRON_HNS] =             &gObjectEventGraphicsInfo_Byron_hns,
+    [OBJ_EVENT_GFX_ROARK_HNS] =             &gObjectEventGraphicsInfo_Roark_hns,
+    [OBJ_EVENT_GFX_VOLKNER_HNS] =           &gObjectEventGraphicsInfo_Volkner_hns,
+    [OBJ_EVENT_GFX_KATY_HNS] =              &gObjectEventGraphicsInfo_Katy_hns,
+    [OBJ_EVENT_GFX_BRASSIUS_HNS] =          &gObjectEventGraphicsInfo_Brassius_hns,
+    [OBJ_EVENT_GFX_IONO_HNS] =              &gObjectEventGraphicsInfo_Iono_hns,
+    [OBJ_EVENT_GFX_KOFU_HNS] =              &gObjectEventGraphicsInfo_Kofu_hns,
+    [OBJ_EVENT_GFX_LARRY_HNS] =             &gObjectEventGraphicsInfo_Larry_hns,
+    [OBJ_EVENT_GFX_RYME_HNS] =              &gObjectEventGraphicsInfo_Ryme_hns,
+    [OBJ_EVENT_GFX_TULIP_HNS] =             &gObjectEventGraphicsInfo_Tulip_hns,
+    [OBJ_EVENT_GFX_GRUSHA_HNS] =            &gObjectEventGraphicsInfo_Grusha_hns,
+    // End of the side battle sprites
     // HnS protagonists
     [OBJ_EVENT_GFX_GOLD_NORMAL_HNS] =       &gObjectEventGraphicsInfo_GoldNormal_hns,
     [OBJ_EVENT_GFX_GOLD_MACH_BIKE_HNS] =    &gObjectEventGraphicsInfo_GoldMachBike_hns,

@@ -585,6 +585,24 @@ static const struct SpritePalette sObjectEventSpritePalettes[] = {
     {gObjectEventPal_Kris_hns, OBJ_EVENT_PAL_TAG_KRIS_HNS},
     {gObjectEventPal_KrisReflection_hns, OBJ_EVENT_PAL_TAG_KRIS_REFLECTION_HNS},
     {gObjectEventPal_AlolaOak_hns, OBJ_EVENT_PAL_TAG_ALOLA_OAK_HNS},
+    // Crystal Imperium side battle sprites (DECISIONS.md D41): written by tools/crystal_imperium/side_sprites.py
+    {gObjectEventPal_Candice_hns, OBJ_EVENT_PAL_TAG_CANDICE_HNS},
+    {gObjectEventPal_Gardenia_hns, OBJ_EVENT_PAL_TAG_GARDENIA_HNS},
+    {gObjectEventPal_Fantina_hns, OBJ_EVENT_PAL_TAG_FANTINA_HNS},
+    {gObjectEventPal_Maylene_hns, OBJ_EVENT_PAL_TAG_MAYLENE_HNS},
+    {gObjectEventPal_Wake_hns, OBJ_EVENT_PAL_TAG_WAKE_HNS},
+    {gObjectEventPal_Byron_hns, OBJ_EVENT_PAL_TAG_BYRON_HNS},
+    {gObjectEventPal_Roark_hns, OBJ_EVENT_PAL_TAG_ROARK_HNS},
+    {gObjectEventPal_Volkner_hns, OBJ_EVENT_PAL_TAG_VOLKNER_HNS},
+    {gObjectEventPal_Katy_hns, OBJ_EVENT_PAL_TAG_KATY_HNS},
+    {gObjectEventPal_Brassius_hns, OBJ_EVENT_PAL_TAG_BRASSIUS_HNS},
+    {gObjectEventPal_Iono_hns, OBJ_EVENT_PAL_TAG_IONO_HNS},
+    {gObjectEventPal_Kofu_hns, OBJ_EVENT_PAL_TAG_KOFU_HNS},
+    {gObjectEventPal_Larry_hns, OBJ_EVENT_PAL_TAG_LARRY_HNS},
+    {gObjectEventPal_Ryme_hns, OBJ_EVENT_PAL_TAG_RYME_HNS},
+    {gObjectEventPal_Tulip_hns, OBJ_EVENT_PAL_TAG_TULIP_HNS},
+    {gObjectEventPal_Grusha_hns, OBJ_EVENT_PAL_TAG_GRUSHA_HNS},
+    // End of the side battle sprites
 #endif // IS_HNS
 #if OW_FOLLOWERS_POKEBALLS
     {gObjectEventPal_MasterBall,            OBJ_EVENT_PAL_TAG_BALL_MASTER},

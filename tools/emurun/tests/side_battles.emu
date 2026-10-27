@@ -32,8 +32,10 @@ shot 03_declined.png
 # YES: her six at the cap of no badges (15)
 press A
 !yes_no(True, "candice_asks_again")
+wait 330
+shot 04_intro.png
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B candice_action_menu
-shot 04_battle.png
+shot 04_battle_menu.png
 !expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_CANDICE_HNS", "opponent_is_candice")
 expect8 {gEnemyPartyCount} 6 candice_has_6
 expect8 {gEnemyParty+84} 15 candice_lead_at_cap_15

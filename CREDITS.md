@@ -125,6 +125,13 @@ This project follows the [all-contributors](https://github.com/all-contributors/
 - [larryturbo](https://www.deviantart.com/larryturbo)
 - [kidkatt](https://www.deviantart.com/kidkatt)
 
+### Crystal Imperium Trainer Sprite Credits:
+The side battles' trainers (docs/crystal_imperium/DECISIONS.md D41), from their artists' free releases:
+- [PurrfectDoodle (Eva)](http://purrfectdoodle.com): overworld sprites of Candice, Gardenia, Fantina, Maylene, Crasher Wake, Byron, Roark and Volkner; Roark's battle sprite
+- [iriv24](https://github.com/iriv24): battle sprites of Candice, Gardenia, Fantina, Maylene, Crasher Wake, Byron and Volkner
+- [RHcks](https://www.deviantart.com/rhcks), commissioned by [darklight177](https://www.deviantart.com/darklight177): battle and overworld sprites of Katy, Brassius, Iono, Kofu, Larry, Ryme, Tulip and Grusha ([Paldea Gym Leader Sprite Sheet](https://www.deviantart.com/darklight177/art/Paldea-Gym-Leader-Sprite-Sheet-960117644))
+- Shared through [Team Aqua's Asset Repo](https://github.com/TeamAquasHideout/Team-Aquas-Asset-Repo)
+
 ## Resources
 - [Sugimori Palettes and Sprites](https://www.pokecommunity.com/showthread.php?t=336945)
 - [DS Style Gen VI Sprites](https://www.pokecommunity.com/showthread.php?t=314422)

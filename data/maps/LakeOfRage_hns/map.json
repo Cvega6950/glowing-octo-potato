@@ -247,7 +247,7 @@
       "flag": "FLAG_HIDE_LAKE_PRYCE"
     },
     {
-      "graphics_id": "OBJ_EVENT_GFX_BLACK_BELT_HNS",
+      "graphics_id": "OBJ_EVENT_GFX_WAKE_HNS",
       "x": 49,
       "y": 30,
       "elevation": 0,

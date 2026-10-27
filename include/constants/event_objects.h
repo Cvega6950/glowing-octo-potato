@@ -583,7 +583,25 @@
 #define OBJ_EVENT_GFX_SKIER_F_HNS               545
 #define OBJ_EVENT_GFX_SKIER_M_HNS               546
 #define OBJ_EVENT_GFX_ALOLA_OAK_HNS             547
-#define NUM_OBJ_EVENT_GFX                        548
+// Crystal Imperium side battle sprites (DECISIONS.md D41): written by tools/crystal_imperium/side_sprites.py
+#define OBJ_EVENT_GFX_CANDICE_HNS               548
+#define OBJ_EVENT_GFX_GARDENIA_HNS              549
+#define OBJ_EVENT_GFX_FANTINA_HNS               550
+#define OBJ_EVENT_GFX_MAYLENE_HNS               551
+#define OBJ_EVENT_GFX_WAKE_HNS                  552
+#define OBJ_EVENT_GFX_BYRON_HNS                 553
+#define OBJ_EVENT_GFX_ROARK_HNS                 554
+#define OBJ_EVENT_GFX_VOLKNER_HNS               555
+#define OBJ_EVENT_GFX_KATY_HNS                  556
+#define OBJ_EVENT_GFX_BRASSIUS_HNS              557
+#define OBJ_EVENT_GFX_IONO_HNS                  558
+#define OBJ_EVENT_GFX_KOFU_HNS                  559
+#define OBJ_EVENT_GFX_LARRY_HNS                 560
+#define OBJ_EVENT_GFX_RYME_HNS                  561
+#define OBJ_EVENT_GFX_TULIP_HNS                 562
+#define OBJ_EVENT_GFX_GRUSHA_HNS                563
+// End of the side battle sprites
+#define NUM_OBJ_EVENT_GFX                        564
 
 
 // These are dynamic object gfx ids.
@@ -779,6 +797,24 @@
 #define OBJ_EVENT_PAL_TAG_KRIS_HNS                0x119A
 #define OBJ_EVENT_PAL_TAG_KRIS_REFLECTION_HNS     0x119B
 #define OBJ_EVENT_PAL_TAG_ALOLA_OAK_HNS           0x119C
+// Crystal Imperium side battle sprites (DECISIONS.md D41): written by tools/crystal_imperium/side_sprites.py
+#define OBJ_EVENT_PAL_TAG_CANDICE_HNS             0x119D
+#define OBJ_EVENT_PAL_TAG_GARDENIA_HNS            0x119E
+#define OBJ_EVENT_PAL_TAG_FANTINA_HNS             0x119F
+#define OBJ_EVENT_PAL_TAG_MAYLENE_HNS             0x11A0
+#define OBJ_EVENT_PAL_TAG_WAKE_HNS                0x11A1
+#define OBJ_EVENT_PAL_TAG_BYRON_HNS               0x11A2
+#define OBJ_EVENT_PAL_TAG_ROARK_HNS               0x11A3
+#define OBJ_EVENT_PAL_TAG_VOLKNER_HNS             0x11A4
+#define OBJ_EVENT_PAL_TAG_KATY_HNS                0x11A5
+#define OBJ_EVENT_PAL_TAG_BRASSIUS_HNS            0x11A6
+#define OBJ_EVENT_PAL_TAG_IONO_HNS                0x11A7
+#define OBJ_EVENT_PAL_TAG_KOFU_HNS                0x11A8
+#define OBJ_EVENT_PAL_TAG_LARRY_HNS               0x11A9
+#define OBJ_EVENT_PAL_TAG_RYME_HNS                0x11AA
+#define OBJ_EVENT_PAL_TAG_TULIP_HNS               0x11AB
+#define OBJ_EVENT_PAL_TAG_GRUSHA_HNS              0x11AC
+// End of the side battle sprites
 
 #if OW_FOLLOWERS_POKEBALLS
 // Vanilla

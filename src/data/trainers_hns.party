@@ -18414,7 +18414,7 @@ Nature: Timid
 === TRAINER_SIDE_CANDICE_HNS ===
 Name: CANDICE
 Class: Leader Hns
-Pic: Skier F Hns
+Pic: Candice Hns
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
@@ -18484,7 +18484,7 @@ Nature: Calm
 === TRAINER_SIDE_GARDENIA_HNS ===
 Name: GARDENIA
 Class: Leader Hns
-Pic: Picnicker
+Pic: Gardenia Hns
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
@@ -18555,7 +18555,7 @@ Nature: Timid
 === TRAINER_SIDE_GARDENIA_2_HNS ===
 Name: GARDENIA
 Class: Leader Hns
-Pic: Picnicker
+Pic: Gardenia Hns
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
@@ -18626,7 +18626,7 @@ Nature: Modest
 === TRAINER_SIDE_FANTINA_HNS ===
 Name: FANTINA
 Class: Leader Hns
-Pic: Hex Maniac
+Pic: Fantina Hns
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
@@ -18697,7 +18697,7 @@ Nature: Timid
 === TRAINER_SIDE_MAYLENE_HNS ===
 Name: MAYLENE
 Class: Leader Hns
-Pic: Battle Girl
+Pic: Maylene Hns
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
@@ -18768,7 +18768,7 @@ Nature: Jolly
 === TRAINER_SIDE_WAKE_HNS ===
 Name: WAKE
 Class: Leader Hns
-Pic: Black Belt
+Pic: Wake Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
@@ -18839,7 +18839,7 @@ Nature: Jolly
 === TRAINER_SIDE_BYRON_HNS ===
 Name: BYRON
 Class: Leader Hns
-Pic: Hiker
+Pic: Byron Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
@@ -18910,7 +18910,7 @@ Nature: Impish
 === TRAINER_SIDE_ROARK_HNS ===
 Name: ROARK
 Class: Leader Hns
-Pic: Engineer Hns
+Pic: Roark Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
@@ -18981,7 +18981,7 @@ Nature: Jolly
 === TRAINER_SIDE_VOLKNER_HNS ===
 Name: VOLKNER
 Class: Leader Hns
-Pic: Cooltrainer M
+Pic: Volkner Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
@@ -19052,7 +19052,7 @@ Nature: Timid
 === TRAINER_SIDE_KATY_HNS ===
 Name: KATY
 Class: Leader Hns
-Pic: Picnicker
+Pic: Katy Hns
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
@@ -19123,7 +19123,7 @@ Nature: Jolly
 === TRAINER_SIDE_BRASSIUS_HNS ===
 Name: BRASSIUS
 Class: Leader Hns
-Pic: Cooltrainer M
+Pic: Brassius Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
@@ -19194,7 +19194,7 @@ Nature: Timid
 === TRAINER_SIDE_IONO_HNS ===
 Name: IONO
 Class: Leader Hns
-Pic: Lass
+Pic: Iono Hns
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
@@ -19265,7 +19265,7 @@ Nature: Modest
 === TRAINER_SIDE_KOFU_HNS ===
 Name: KOFU
 Class: Leader Hns
-Pic: Fisherman
+Pic: Kofu Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
@@ -19336,7 +19336,7 @@ Nature: Adamant
 === TRAINER_SIDE_LARRY_HNS ===
 Name: LARRY
 Class: Leader Hns
-Pic: Gentleman
+Pic: Larry Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No
@@ -19407,7 +19407,7 @@ Nature: Jolly
 === TRAINER_SIDE_RYME_HNS ===
 Name: RYME
 Class: Leader Hns
-Pic: Guitarist
+Pic: Ryme Hns
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
@@ -19478,7 +19478,7 @@ Nature: Timid
 === TRAINER_SIDE_TULIP_HNS ===
 Name: TULIP
 Class: Leader Hns
-Pic: Beauty
+Pic: Tulip Hns
 Gender: Female
 Music: Hg Girl 1
 Double Battle: No
@@ -19549,7 +19549,7 @@ Nature: Timid
 === TRAINER_SIDE_GRUSHA_HNS ===
 Name: GRUSHA
 Class: Leader Hns
-Pic: Skier M Hns
+Pic: Grusha Hns
 Gender: Male
 Music: Hg Boy 1
 Double Battle: No

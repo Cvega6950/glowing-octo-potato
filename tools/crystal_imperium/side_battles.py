@@ -97,8 +97,8 @@ class Battle:
 # (Evergrande City, badge 8). Here Gardenia waits for badge 2 (Cut) and Maylene for badge 4
 # (Cianwood needs Surf); Roark stands beside the Ice Path, not in it.
 JOHTO = [
-    Battle("CANDICE", 653, "CANDICE", "Leader Hns", "Skier F Hns", "Female", "Hg Girl 1", "Light Blue",
-           "OBJ_EVENT_GFX_SKIER_F_HNS", [("VioletCity_TrainerSchool_hns", 8, 3, "down")],
+    Battle("CANDICE", 653, "CANDICE", "Leader Hns", "Candice Hns", "Female", "Hg Girl 1", "Light Blue",
+           "OBJ_EVENT_GFX_CANDICE_HNS", [("VioletCity_TrainerSchool_hns", 8, 3, "down")],
            ("badges", 0),
            [("ICE_GEM", 10), ("TM_TRIPLE_AXEL", 1), ("TM_ICE_PUNCH", 1)],
            {"challenge": ["Hi! I'm CANDICE, the GYM LEADER of SNOWPOINT CITY, way up north in SINNOH!",
@@ -108,8 +108,8 @@ JOHTO = [
             "defeat": ["Brrr! Your focus cut right through my ice!"],
             "reward": ["You earned these! Take them with you!"],
             "after": ["Train with all your focus, and your POKéMON will sparkle like diamond dust!"]}),
-    Battle("GARDENIA", 654, "GARDENIA", "Leader Hns", "Picnicker", "Female", "Hg Girl 1", "Green",
-           "OBJ_EVENT_GFX_PICNICKER_HNS", [("IlexForest_hns", 18, 17, "right")],
+    Battle("GARDENIA", 654, "GARDENIA", "Leader Hns", "Gardenia Hns", "Female", "Hg Girl 1", "Green",
+           "OBJ_EVENT_GFX_GARDENIA_HNS", [("IlexForest_hns", 18, 17, "right")],
            ("badges", 2),
            [("GRASS_GEM", 10), ("TM_ENERGY_BALL", 1), ("TM_LEAF_BLADE", 1), ("LEAF_STONE", 1)],
            {"not_yet": ["Hi there! I'm GARDENIA, ETERNA CITY's GYM LEADER. This forest is just wonderful!",
@@ -121,8 +121,8 @@ JOHTO = [
             "after": ["The trees here have been growing for ages. Grow strong like them, okay?"]},
            second=(655, 4, ["Four BADGES? Then I'll use the team I've been raising in this forest! "
                             "It's grown a lot, just like you!"])),
-    Battle("FANTINA", 656, "FANTINA", "Leader Hns", "Hex Maniac", "Female", "Hg Girl 1", "Purple",
-           "OBJ_EVENT_GFX_CHANNELER_HNS", [("EcruteakCity_hns", 41, 41, "down")],
+    Battle("FANTINA", 656, "FANTINA", "Leader Hns", "Fantina Hns", "Female", "Hg Girl 1", "Purple",
+           "OBJ_EVENT_GFX_FANTINA_HNS", [("EcruteakCity_hns", 41, 41, "down")],
            ("badges", 3),
            [("GHOST_GEM", 10), ("TM_POLTERGEIST", 1), ("GENGARITE", 1), ("REAPER_CLOTH", 1)],
            {"not_yet": ["Bonjour! I am FANTINA, GYM LEADER of HEARTHOME CITY. I came to see the dances of "
@@ -133,8 +133,8 @@ JOHTO = [
             "reward": ["A wonderful battle deserves a gift!"],
             "after": ["The dances of this city, they are like my GHOST POKéMON: graceful and a little "
                       "mysterious!"]}),
-    Battle("MAYLENE", 657, "MAYLENE", "Leader Hns", "Battle Girl", "Female", "Hg Girl 1", "Orange",
-           "OBJ_EVENT_GFX_BATTLE_GIRL_HNS", [("CianwoodCity_hns", 17, 46, "down")],
+    Battle("MAYLENE", 657, "MAYLENE", "Leader Hns", "Maylene Hns", "Female", "Hg Girl 1", "Orange",
+           "OBJ_EVENT_GFX_MAYLENE_HNS", [("CianwoodCity_hns", 17, 46, "down")],
            ("badges", 4),
            [("FIGHTING_GEM", 10), ("TM_CLOSE_COMBAT", 1), ("LUCARIONITE", 1)],
            {"not_yet": ["I'm MAYLENE, GYM LEADER of VEILSTONE CITY. I came to train with CHUCK!",
@@ -145,8 +145,8 @@ JOHTO = [
             "reward": ["Please, take these. You earned them!"],
             "after": ["Training with CHUCK under the waterfall is cold, but I'm getting stronger every "
                       "day!"]}),
-    Battle("WAKE", 658, "WAKE", "Leader Hns", "Black Belt", "Male", "Hg Boy 1", "Blue",
-           "OBJ_EVENT_GFX_BLACK_BELT_HNS", [("LakeOfRage_hns", 49, 30, "left", ["LAYOUT_LAKE_OF_RAGE_LOW_TIDE_HNS"])],
+    Battle("WAKE", 658, "WAKE", "Leader Hns", "Wake Hns", "Male", "Hg Boy 1", "Blue",
+           "OBJ_EVENT_GFX_WAKE_HNS", [("LakeOfRage_hns", 49, 30, "left", ["LAYOUT_LAKE_OF_RAGE_LOW_TIDE_HNS"])],
            ("badges", 5),
            [("WATER_GEM", 10), ("GYARADOSITE", 1), ("KINGS_ROCK", 1)],
            {"not_yet": ["Wahahah! I'm CRASHER WAKE, PASTORIA CITY's GYM LEADER! I heard this lake makes "
@@ -156,8 +156,8 @@ JOHTO = [
             "defeat": ["Wahahah! I got washed away!"],
             "reward": ["What a battle! Here, a prize from CRASHER WAKE!"],
             "after": ["Crash through anything in your way, just like a wave!"]}),
-    Battle("BYRON", 659, "BYRON", "Leader Hns", "Hiker", "Male", "Hg Boy 1", "Dark Red",
-           "OBJ_EVENT_GFX_HIKER_HNS", [("OlivineCity_hns", 41, 51, "left")],
+    Battle("BYRON", 659, "BYRON", "Leader Hns", "Byron Hns", "Male", "Hg Boy 1", "Dark Red",
+           "OBJ_EVENT_GFX_BYRON_HNS", [("OlivineCity_hns", 41, 51, "left")],
            ("badges", 6),
            [("STEEL_GEM", 10), ("TM_STEEL_BEAM", 1), ("METAGROSSITE", 1), ("METAL_COAT", 1)],
            {"not_yet": ["Bwahahaha! I'm BYRON, GYM LEADER of CANALAVE CITY! I sailed here to see "
@@ -167,8 +167,8 @@ JOHTO = [
             "defeat": ["Bwahahaha! You cracked my steel!"],
             "reward": ["Take these! Fine work deserves fine rewards!"],
             "after": ["My son ROARK is somewhere in JOHTO too. He's always digging for fossils!"]}),
-    Battle("ROARK", 660, "ROARK", "Leader Hns", "Engineer Hns", "Male", "Hg Boy 1", "Orange",
-           "OBJ_EVENT_GFX_ENGINEER_HNS", [("Route44_hns", 69, 13, "down")],
+    Battle("ROARK", 660, "ROARK", "Leader Hns", "Roark Hns", "Male", "Hg Boy 1", "Orange",
+           "OBJ_EVENT_GFX_ROARK_HNS", [("Route44_hns", 69, 13, "down")],
            ("badges", 7),
            [("ROCK_GEM", 10), ("TM_EXPLOSION", 1), ("TYRANITARITE", 1), ("PROTECTOR", 1)],
            {"not_yet": ["I'm ROARK, OREBURGH CITY's GYM LEADER. I'm looking for fossils near the ICE PATH.",
@@ -179,8 +179,8 @@ JOHTO = [
             "reward": ["Here, take these. I dug them up myself... well, some of them!"],
             "after": ["Dad's in OLIVINE CITY, looking at the lighthouse. He loves anything made of "
                       "steel!"]}),
-    Battle("VOLKNER", 661, "VOLKNER", "Leader Hns", "Cooltrainer M", "Male", "Hg Boy 1", "Yellow",
-           "OBJ_EVENT_GFX_COOLTRAINER_M_HNS", [("IndigoPlateau_hns", 13, 8, "down")],
+    Battle("VOLKNER", 661, "VOLKNER", "Leader Hns", "Volkner Hns", "Male", "Hg Boy 1", "Yellow",
+           "OBJ_EVENT_GFX_VOLKNER_HNS", [("IndigoPlateau_hns", 13, 8, "down")],
            ("badges", 8),
            [("ELECTRIC_GEM", 10), ("ROTOM_CATALOG", 1), ("ELECTIRIZER", 1)],
            {"not_yet": ["...I'm VOLKNER. SUNYSHORE CITY's GYM LEADER. I'm waiting for a trainer worth "
@@ -198,8 +198,8 @@ JOHTO = [
 # by then, so a reward is ten Gems and an item of the leader's own: Larry's Exp. Charm and Iono's
 # Catching Charm are the only ones in the game.
 KANTO = [
-    Battle("KATY", 662, "KATY", "Leader Hns", "Picnicker", "Female", "Hg Girl 1", "Orange",
-           "OBJ_EVENT_GFX_PICNICKER_HNS", [("PewterCity_hns", 22, 12, "down")],
+    Battle("KATY", 662, "KATY", "Leader Hns", "Katy Hns", "Female", "Hg Girl 1", "Orange",
+           "OBJ_EVENT_GFX_KATY_HNS", [("PewterCity_hns", 22, 12, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("BUG_GEM", 10), ("SWEET_APPLE", 1), ("TART_APPLE", 1), ("SYRUPY_APPLE", 1)],
            {"not_yet": ["Hi there! I'm KATY, CORTONDO's GYM LEADER in PALDEA. I'm on a tour of KANTO's "
@@ -211,8 +211,8 @@ KANTO = [
             "defeat": ["Oh my! That battle was sweeter than any cake!"],
             "reward": ["A sweet battle deserves a sweet treat! Here you go!"],
             "after": ["If you ever visit PALDEA, come by my bakery in CORTONDO!"]}),
-    Battle("BRASSIUS", 663, "BRASSIUS", "Leader Hns", "Cooltrainer M", "Male", "Hg Boy 1", "Green",
-           "OBJ_EVENT_GFX_COOLTRAINER_M_HNS", [("Route25_hns", 80, 15, "down")],
+    Battle("BRASSIUS", 663, "BRASSIUS", "Leader Hns", "Brassius Hns", "Male", "Hg Boy 1", "Green",
+           "OBJ_EVENT_GFX_BRASSIUS_HNS", [("Route25_hns", 80, 15, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("GRASS_GEM", 10), ("SUN_STONE", 1), ("GRASSY_SEED", 3)],
            {"not_yet": ["I am BRASSIUS, artist and GYM LEADER of ARTAZON! The flowers by this sea inspire "
@@ -223,8 +223,8 @@ KANTO = [
             "defeat": ["Magnificent! Our battle was a masterpiece!"],
             "reward": ["Take these, as thanks for the inspiration!"],
             "after": ["Art and battles both bloom when you pour your heart into them!"]}),
-    Battle("IONO", 664, "IONO", "Leader Hns", "Lass", "Female", "Hg Girl 1", "Yellow",
-           "OBJ_EVENT_GFX_LASS_HNS", [("LavenderTown_hns", 23, 9, "down")],
+    Battle("IONO", 664, "IONO", "Leader Hns", "Iono Hns", "Female", "Hg Girl 1", "Yellow",
+           "OBJ_EVENT_GFX_IONO_HNS", [("LavenderTown_hns", 23, 9, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("ELECTRIC_GEM", 10), ("CATCHING_CHARM", 1)],
            {"not_yet": ["Ello, ello, hola! It's your electrifying streamer, IONO! I'm live from KANTO's "
@@ -235,8 +235,8 @@ KANTO = [
             "defeat": ["Ack! My chat is going wild! You zapped me good!"],
             "reward": ["Here's a little something from your favorite streamer!"],
             "after": ["Thanks for being on my stream! The views are through the roof!"]}),
-    Battle("KOFU", 665, "KOFU", "Leader Hns", "Fisherman", "Male", "Hg Boy 1", "Blue",
-           "OBJ_EVENT_GFX_FISHERMAN_HNS", [("VermilionCity_hns", 49, 27, "down")],
+    Battle("KOFU", 665, "KOFU", "Leader Hns", "Kofu Hns", "Male", "Hg Boy 1", "Blue",
+           "OBJ_EVENT_GFX_KOFU_HNS", [("VermilionCity_hns", 49, 27, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("WATER_GEM", 10), ("PRISM_SCALE", 1), ("DAMP_ROCK", 1)],
            {"not_yet": ["Hola! I'm KOFU, CASCARRAFA's GYM LEADER! I came to VERMILION for the freshest "
@@ -248,8 +248,8 @@ KANTO = [
             "defeat": ["Whoa! You cooked me but good!"],
             "reward": ["A great battle earns a great prize! Take it!"],
             "after": ["Life is like the sea: full of surprises, and full of flavor!"]}),
-    Battle("LARRY", 666, "LARRY", "Leader Hns", "Gentleman", "Male", "Hg Boy 1", "Dark Red",
-           "OBJ_EVENT_GFX_GENTLEMAN_HNS", [("ViridianCity_hns", 22, 23, "down")],
+    Battle("LARRY", 666, "LARRY", "Leader Hns", "Larry Hns", "Male", "Hg Boy 1", "Dark Red",
+           "OBJ_EVENT_GFX_LARRY_HNS", [("ViridianCity_hns", 22, 23, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("NORMAL_GEM", 10), ("EXP_CHARM", 1)],
            {"not_yet": ["...I'm LARRY. GYM LEADER of MEDALI, in PALDEA. I'm on a business trip. Again.",
@@ -260,8 +260,8 @@ KANTO = [
             "defeat": ["...You're strong. I'll put that in my report."],
             "reward": ["My boss said to hand these out. Here."],
             "after": ["Ordinary is best. Remember that, kid."]}),
-    Battle("RYME", 667, "RYME", "Leader Hns", "Guitarist", "Female", "Hg Girl 1", "Purple",
-           "OBJ_EVENT_GFX_ROCKER_HNS", [("CeladonCity_hns", 36, 22, "down")],
+    Battle("RYME", 667, "RYME", "Leader Hns", "Ryme Hns", "Female", "Hg Girl 1", "Purple",
+           "OBJ_EVENT_GFX_RYME_HNS", [("CeladonCity_hns", 36, 22, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("GHOST_GEM", 10), ("DUSK_STONE", 1), ("SPELL_TAG", 1)],
            {"not_yet": ["Yo! MC RYME, from MONTENEVERA, in the house! CELADON's crowd better be ready!",
@@ -272,8 +272,8 @@ KANTO = [
             "defeat": ["Mic drop! You stole the whole show!"],
             "reward": ["A star performance deserves some love! Here!"],
             "after": ["Keep your rhythm, and your POKéMON will follow your beat!"]}),
-    Battle("TULIP", 668, "TULIP", "Leader Hns", "Beauty", "Female", "Hg Girl 1", "Pink",
-           "OBJ_EVENT_GFX_BEAUTY_HNS", [("SaffronCity_hns", 34, 33, "down")],
+    Battle("TULIP", 668, "TULIP", "Leader Hns", "Tulip Hns", "Female", "Hg Girl 1", "Pink",
+           "OBJ_EVENT_GFX_TULIP_HNS", [("SaffronCity_hns", 34, 33, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("PSYCHIC_GEM", 10), ("DAWN_STONE", 1), ("PSYCHIC_SEED", 3)],
            {"not_yet": ["Hello. I'm TULIP, GYM LEADER of ALFORNADA, and a makeup artist. SAFFRON's style "
@@ -285,8 +285,8 @@ KANTO = [
             "defeat": ["How lovely. You and your POKéMON shine brighter than I do."],
             "reward": ["Please accept these. You've earned them."],
             "after": ["True beauty comes from the bond you share with your POKéMON."]}),
-    Battle("GRUSHA", 669, "GRUSHA", "Leader Hns", "Skier M Hns", "Male", "Hg Boy 1", "Light Blue",
-           "OBJ_EVENT_GFX_SKIER_M_HNS", [("CinnabarIsland_hns", 40, 35, "down")],
+    Battle("GRUSHA", 669, "GRUSHA", "Leader Hns", "Grusha Hns", "Male", "Hg Boy 1", "Light Blue",
+           "OBJ_EVENT_GFX_GRUSHA_HNS", [("CinnabarIsland_hns", 40, 35, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
            [("ICE_GEM", 10), ("ICY_ROCK", 1), ("RAZOR_CLAW", 1)],
            {"not_yet": ["I'm GRUSHA, GYM LEADER of GLASEADO. This island is way too hot for me.",

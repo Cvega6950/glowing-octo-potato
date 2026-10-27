@@ -809,6 +809,24 @@ const u32 gObjectEventPic_TrainEast_hns[] = INCBIN_U32("graphics/object_events/p
 const u32 gObjectEventPic_TrainWest_hns[] = INCBIN_U32("graphics/object_events/pics/misc/train_west_hns.4bpp");
 const u32 gObjectEventPic_Whirlpool_hns[] = INCBIN_U32("graphics/object_events/pics/misc/whirlpool_hns.4bpp");
 const u32 gObjectEventPic_AlolaOak_hns[] = INCBIN_U32("graphics/object_events/pics/people/alola_oak_hns.4bpp");
+// Crystal Imperium side battle sprites (DECISIONS.md D41): written by tools/crystal_imperium/side_sprites.py
+const u32 gObjectEventPic_Candice_hns[] = INCBIN_U32("graphics/object_events/pics/people/candice_hns.4bpp");
+const u32 gObjectEventPic_Gardenia_hns[] = INCBIN_U32("graphics/object_events/pics/people/gardenia_hns.4bpp");
+const u32 gObjectEventPic_Fantina_hns[] = INCBIN_U32("graphics/object_events/pics/people/fantina_hns.4bpp");
+const u32 gObjectEventPic_Maylene_hns[] = INCBIN_U32("graphics/object_events/pics/people/maylene_hns.4bpp");
+const u32 gObjectEventPic_Wake_hns[] = INCBIN_U32("graphics/object_events/pics/people/wake_hns.4bpp");
+const u32 gObjectEventPic_Byron_hns[] = INCBIN_U32("graphics/object_events/pics/people/byron_hns.4bpp");
+const u32 gObjectEventPic_Roark_hns[] = INCBIN_U32("graphics/object_events/pics/people/roark_hns.4bpp");
+const u32 gObjectEventPic_Volkner_hns[] = INCBIN_U32("graphics/object_events/pics/people/volkner_hns.4bpp");
+const u32 gObjectEventPic_Katy_hns[] = INCBIN_U32("graphics/object_events/pics/people/katy_hns.4bpp");
+const u32 gObjectEventPic_Brassius_hns[] = INCBIN_U32("graphics/object_events/pics/people/brassius_hns.4bpp");
+const u32 gObjectEventPic_Iono_hns[] = INCBIN_U32("graphics/object_events/pics/people/iono_hns.4bpp");
+const u32 gObjectEventPic_Kofu_hns[] = INCBIN_U32("graphics/object_events/pics/people/kofu_hns.4bpp");
+const u32 gObjectEventPic_Larry_hns[] = INCBIN_U32("graphics/object_events/pics/people/larry_hns.4bpp");
+const u32 gObjectEventPic_Ryme_hns[] = INCBIN_U32("graphics/object_events/pics/people/ryme_hns.4bpp");
+const u32 gObjectEventPic_Tulip_hns[] = INCBIN_U32("graphics/object_events/pics/people/tulip_hns.4bpp");
+const u32 gObjectEventPic_Grusha_hns[] = INCBIN_U32("graphics/object_events/pics/people/grusha_hns.4bpp");
+// End of the side battle sprites
 
 // HnS palette data
 const u16 gObjectEventPal_BirthIslandStone_hns[] = INCBIN_U16("graphics/object_events/palettes/birth_island_stone_hns.gbapal");
@@ -851,6 +869,24 @@ const u16 gObjectEventPal_Whitney_hns[] = INCBIN_U16("graphics/object_events/pal
 const u16 gObjectEventPal_Will_hns[] = INCBIN_U16("graphics/object_events/palettes/will_hns.gbapal");
 const u32 gObjectEventPic_NurseChansey_hns[] = INCBIN_U32("graphics/object_events/pics/misc/nurse_chansey_hns.4bpp");
 const u16 gObjectEventPal_AlolaOak_hns[] = INCBIN_U16("graphics/object_events/palettes/alola_oak_hns.gbapal");
+// Crystal Imperium side battle sprites (DECISIONS.md D41): written by tools/crystal_imperium/side_sprites.py
+const u16 gObjectEventPal_Candice_hns[] = INCBIN_U16("graphics/object_events/palettes/candice_hns.gbapal");
+const u16 gObjectEventPal_Gardenia_hns[] = INCBIN_U16("graphics/object_events/palettes/gardenia_hns.gbapal");
+const u16 gObjectEventPal_Fantina_hns[] = INCBIN_U16("graphics/object_events/palettes/fantina_hns.gbapal");
+const u16 gObjectEventPal_Maylene_hns[] = INCBIN_U16("graphics/object_events/palettes/maylene_hns.gbapal");
+const u16 gObjectEventPal_Wake_hns[] = INCBIN_U16("graphics/object_events/palettes/wake_hns.gbapal");
+const u16 gObjectEventPal_Byron_hns[] = INCBIN_U16("graphics/object_events/palettes/byron_hns.gbapal");
+const u16 gObjectEventPal_Roark_hns[] = INCBIN_U16("graphics/object_events/palettes/roark_hns.gbapal");
+const u16 gObjectEventPal_Volkner_hns[] = INCBIN_U16("graphics/object_events/palettes/volkner_hns.gbapal");
+const u16 gObjectEventPal_Katy_hns[] = INCBIN_U16("graphics/object_events/palettes/katy_hns.gbapal");
+const u16 gObjectEventPal_Brassius_hns[] = INCBIN_U16("graphics/object_events/palettes/brassius_hns.gbapal");
+const u16 gObjectEventPal_Iono_hns[] = INCBIN_U16("graphics/object_events/palettes/iono_hns.gbapal");
+const u16 gObjectEventPal_Kofu_hns[] = INCBIN_U16("graphics/object_events/palettes/kofu_hns.gbapal");
+const u16 gObjectEventPal_Larry_hns[] = INCBIN_U16("graphics/object_events/palettes/larry_hns.gbapal");
+const u16 gObjectEventPal_Ryme_hns[] = INCBIN_U16("graphics/object_events/palettes/ryme_hns.gbapal");
+const u16 gObjectEventPal_Tulip_hns[] = INCBIN_U16("graphics/object_events/palettes/tulip_hns.gbapal");
+const u16 gObjectEventPal_Grusha_hns[] = INCBIN_U16("graphics/object_events/palettes/grusha_hns.gbapal");
+// End of the side battle sprites
 
 // HnS protagonist sprite data
 const u32 gObjectEventPic_GoldNormalRunning_hns[] = INCBIN_U32("graphics/object_events/pics/people/gold/walking_hns.4bpp", "graphics/object_events/pics/people/gold/running_hns.4bpp");
