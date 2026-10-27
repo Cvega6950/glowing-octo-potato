@@ -8269,7 +8269,7 @@
   },
   "TRAINER_SIDE_BRASSIUS_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
-   "class": "Leader Hns",
+   "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_SIDE_BRASSIUS_HNS",
@@ -9150,7 +9150,7 @@
   },
   "TRAINER_SIDE_GRUSHA_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
-   "class": "Leader Hns",
+   "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_SIDE_GRUSHA_HNS",
@@ -9248,7 +9248,7 @@
   },
   "TRAINER_SIDE_IONO_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
-   "class": "Leader Hns",
+   "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Female",
    "id": "TRAINER_SIDE_IONO_HNS",
@@ -9444,7 +9444,7 @@
   },
   "TRAINER_SIDE_KATY_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
-   "class": "Leader Hns",
+   "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Female",
    "id": "TRAINER_SIDE_KATY_HNS",
@@ -9542,7 +9542,7 @@
   },
   "TRAINER_SIDE_KOFU_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
-   "class": "Leader Hns",
+   "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_SIDE_KOFU_HNS",
@@ -9640,7 +9640,7 @@
   },
   "TRAINER_SIDE_LARRY_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
-   "class": "Leader Hns",
+   "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Male",
    "id": "TRAINER_SIDE_LARRY_HNS",
@@ -10130,7 +10130,7 @@
   },
   "TRAINER_SIDE_RYME_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
-   "class": "Leader Hns",
+   "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Female",
    "id": "TRAINER_SIDE_RYME_HNS",
@@ -10228,7 +10228,7 @@
   },
   "TRAINER_SIDE_TULIP_HNS": {
    "ai": "Smart Trainer / Ace Pokemon / HP Aware",
-   "class": "Leader Hns",
+   "class": "Leader Kanto Hns",
    "double_battle": "No",
    "gender": "Female",
    "id": "TRAINER_SIDE_TULIP_HNS",
