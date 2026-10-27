@@ -42,6 +42,8 @@
     stronger of Attack and Sp. Atk and hurts the user; Forbidden Spell calls one of eight moves.
   - Imperium's changes: Jirachi learns Moonblast, Dragapult Shadow Claw, Galarian Moltres Trick
     Room, and Dusclops and Dusknoir Amnesia.
+  - Terapagos follows Radical Red's (its Terastal Form's) list too, and female Basculegion has a
+    list of its own, as in Radical Red.
 
 ### Fixes
 - The move relearner's TM MOVES list held 60 moves. With most TMs in the Bag, opening it for

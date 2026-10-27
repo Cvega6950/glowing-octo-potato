@@ -1239,10 +1239,17 @@ DexNav shows and that wild encounters draw from:
   ([New Mega Evolutions](https://pokemonemeraldimperium.com/new-mega-evolutions/)).
 - **TM and tutor compatibility.** `imperium_species.py` also writes
   `src/data/pokemon/imperium_teachables.json`: the 182 moves Radical Red teaches by TM or tutor,
-  and the ones each species learns there, for the 1,098 teachable learnsets it has (matched by
-  species number, so Deoxys-Normal's list is Radical Red's "Deoxys"; white-striped Basculin and
-  Terapagos aren't in it). `make_teachables.py`, which writes the teachable learnsets at build
-  time, applies it with `P_IMPERIUM_SPECIES_DATA`:
+  and the ones each species learns there, for 1,100 teachable learnsets. As for level-up moves, a
+  list takes the data of the first species using it that Radical Red has: Deoxys-Normal's list is
+  Radical Red's "Deoxys", and Terapagos's (shared by its forms) the Terastal Form's, the only one
+  Radical Red has; only white-striped Basculin isn't in it. A form whose Radical Red list differs
+  from its base form's needs a list of its own: female Basculegion has one now (Radical Red
+  teaches it five moves fewer), and `make_teachables.py` gives a form without official data its
+  base species'. The forms that share a list but that Radical Red teaches a few more moves (Rotom's
+  appliance forms: Hydro Pump for Rotom-Wash...; Origin Dialga and Palkia; the Cosplay Pikachus)
+  can't be obtained in this game, where nothing gives their items; `--report` lists them.
+  `make_teachables.py`, which writes the teachable learnsets at build time, applies it with
+  `P_IMPERIUM_SPECIES_DATA`:
   - For a move Radical Red teaches by TM or tutor, Radical Red decides. TYPHLOSION gains Aura
     Sphere and Mystical Fire, and loses Body Slam, Fire Fang, Iron Head, Shadow Ball and Zen
     Headbutt, which Scarlet and Violet's TMs teach it (and Gen 3's tutors Body Slam).
@@ -1288,7 +1295,9 @@ DexNav shows and that wild encounters draw from:
     (`EFFECT_FORBIDDEN_SPELL`, through Metronome's code). Unown 34, Chimecho 50. 1 PP, as in the
     dex; the change list that names the eight moves gave it 5.
   - Each borrows an official move's animation: Fishious Rend, Dark Void, Spectral Thief, Aerial
-    Ace, Draco Meteor and Nasty Plot.
+    Ace, Draco Meteor and Nasty Plot. Dark Void's hits both foes: Dark Hole plays a copy for its
+    target alone, with Dark Void's black holes (`gBattleAnimMove_DarkHole`; the 0.13.0 review found
+    it showed Destiny Bond's white shadows and slid the other foe away in a double battle).
   - Imperium hasn't added Draco Barrage and Soul Robbery ("not yet added", its list); Radical Red
     has them, and the user asked for both games' move pools.
   - With them, and "Soupercell Slam" matched to Supercell Slam (Radical Red's spelling), no Radical
