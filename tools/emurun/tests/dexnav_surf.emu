@@ -50,8 +50,7 @@ wait 400
 shot 03_dexnav_water_battle.png
 expect32 {gMain+4} {BattleMainCB2+1} dexnav_water_battle_started
 !expect_flag("FLAG_DEXNAV_SEARCHING", 0, "search_ends_at_battle")
-press A
-wait 300
+!wait_action_menu("dexnav_tentacool_action_menu")
 !expect_battler(1, "species", "SPECIES_TENTACOOL", "dexnav_tentacool")
 press R
 wait 1000

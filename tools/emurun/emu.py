@@ -565,9 +565,9 @@ def expect_follower(on, label):
 
 def tally_species_not_in(name, *species, addr="{gBattleMons+136}"):
     """Count a run as a hit when the wild Pokemon (battler 1), or the species at `addr`, is none
-    of the given species."""
-    v = probe.resolve({s: s for s in species})
-    return [f"tallynotin {name} {addr} " + ",".join(str(v[s]) for s in species)]
+    of the given species (SPECIES_ constants, or numbers such as "0")."""
+    v = probe.resolve({s: s for s in species if not s.isdigit()})
+    return [f"tallynotin {name} {addr} " + ",".join(s if s.isdigit() else str(v[s]) for s in species)]
 
 
 ROUTE29_SPECIES = ("SPECIES_PIDGEY", "SPECIES_SENTRET", "SPECIES_HOPPIP", "SPECIES_RATTATA", "SPECIES_HOOTHOOT")
@@ -581,14 +581,17 @@ def wild_variety_sample(name, runs, state="route29.ss", grass=(24, 21, 25, 14), 
     times at different frame offsets, tallying wild Pokemon that are not one of the area's own
     `species`. grass = (entry x, pace from x, pace to x, row y), Route 29's by default. Each
     battle is left by loading the state again. listed="LIST" also tallies, as NAME_not_listed,
-    wild Pokemon missing from a list remembered by snap_dexnav_rows (DexNav's rows)."""
+    wild Pokemon missing from a list remembered by snap_dexnav_rows (DexNav's rows). A run without
+    a battle (an NPC talked first) counts for neither; NAME_battles counts the runs with one."""
     entry, x1, x2, y = grass
     out = []
     for k in range(runs):
-        out += [f"loadstate {state}", f"wait {1 + 23 * k}"] + walkto(entry, y, soft=True) + pace(x1, x2, y, 10, soft=True)
-        out += ["wait 300", f"shot {name}_{k:02d}.png"] + tally_species_not_in(name, *species)
+        out += [f"loadstate {state}", f"wait {1 + 23 * k}", "poke16 {gBattleMons+136} 0"]
+        out += walkto(entry, y, soft=True) + pace(x1, x2, y, 10, soft=True)
+        out += ["wait 300", f"shot {name}_{k:02d}.png", f"tally32 {name}_battles {{gMain+4}} {{BattleMainCB2+1}}"]
+        out += tally_species_not_in(name, *species, "0")
         if listed:
-            out += [f"tallynotin {name}_not_listed {{gBattleMons+136}} @{listed}"]
+            out += [f"tallynotin {name}_not_listed {{gBattleMons+136}} @{listed},0"]
     return out
 
 
