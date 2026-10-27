@@ -145,7 +145,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 
 | Feature | Status | Evidence / notes |
 |---|---|---|
-| Valid GBA ROM (header fixed by gbafix, 32 MB) | Done | build. ROM 99.44% of 32 MB (about 184 KB free), EWRAM 99.13%, SaveBlock1 15,760 / 15,872 bytes, SaveBlock3 1,548 / 1,624 bytes. |
+| Valid GBA ROM (header fixed by gbafix, 32 MB) | Done | build. ROM 99.74% of 32 MB (about 86 KB free), EWRAM 99.14%, SaveBlock1 15,760 / 15,872 bytes, SaveBlock3 1,548 / 1,624 bytes. |
 | mGBA (libmgba 0.10.2) | Done | emu: full suite. |
 | Delta (iOS) emulator core: VBA-M at GBADeltaCore's pinned commit `453fa0de` | Done | emu: full suite on `run_all.sh vbam` (see TESTING.md for the run). ROM keeps game code `BPEE` → Delta's `vba-over.ini` gives RTC on and 128 KB Flash, matching the game. |
 | Delta app on an iPhone | **Unverified** | No iOS device here. The app layer (touch controls, save files, suspend/resume) needs the device checklist in TESTING.md. |
