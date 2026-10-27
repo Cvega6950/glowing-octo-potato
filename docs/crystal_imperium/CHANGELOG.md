@@ -16,7 +16,8 @@
   - **A chosen move starts at once** (with FAST BATTLES): "X used Y!" appears whole instead of
     letter by letter, and the animation no longer waits for the last sound to end. The move's
     animation starts 15 frames (a quarter of a second) after you pick it, against 46 before;
-    the opponent's 7 frames after its "used" message, against 45.
+    the opponent's 7 frames after its "used" message, against 45. Animations no longer wait for
+    their last sound at the end either: a stat change ("Attack fell!") comes half a second sooner.
   - **FAST INTRO** (no slide-in at the start of a battle) is on for new games.
   - Saves from earlier versions get FAST INTRO and FAST BATTLES turned on once. Turn either off
     in START > OPTION > BATTLE for the classic pace; TEXT SPEED FASTER prints text almost at once.

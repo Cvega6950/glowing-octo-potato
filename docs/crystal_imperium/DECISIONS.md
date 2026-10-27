@@ -1177,7 +1177,10 @@ DexNav shows and that wild encounters draw from:
     `STRINGID_USEDMOVE` only; it fits the box's two lines, so it never has a prompt to wait at).
     A move's animation no longer waits for the last sound effect to end (`IsBattleSEPlaying`, up to
     30 steps in 0.12.0, typically between one Pokémon's hit and the next one's move); the
-    animation's own sounds take over. Traced on mGBA (TYPHLOSION's Swift against Whitney's first
+    animation's own sounds take over. Nor does an animation's end (`Cmd_end`, `src/battle_anim.c`,
+    which waited up to 90 frames for the animation's last sound): with its pictures at double
+    speed, a stat change's sound outlasted its arrows by 27 frames, and the battle waited for it
+    before "fell!". The sound plays on under the next message; contests keep the wait. Traced on mGBA (TYPHLOSION's Swift against Whitney's first
     Pokémon, which used Charm): from the frame the move is chosen to its animation, 15 frames
     (0.12.0: 46); from the opponent's "used" message to its animation, 7 frames (0.12.0: 45).
     The 15 left are the turn's own steps (each battler's choice confirmed, the turn order, the
@@ -1198,7 +1201,8 @@ DexNav shows and that wild encounters draw from:
 - Results (mGBA): the trainer battle above takes 968 frames, 36% less (first menu after 440
   frames, 0.12.0: 704); with no button pressed, the battle now runs from "Try Battle" to the
   trainer's defeat text by itself. A turn against Whitney (Swift, then Charm, back to the action
-  menu) takes 282 frames from choosing the move (0.12.0: 489).
+  menu) takes 254 frames from choosing the move (0.12.0: 489); Charm's stat drop takes 46 of
+  them (74 while its animation still waited for its sound).
 - Evidence: `battle_speed` (new game defaults; the first menu with no button pressed; the battle
   runs to the defeat text, which waits for A; with FAST BATTLES off the intro's message waits
   again), `battle_anims` (every move from 1 to the last, Z-Moves and Max Moves aside, used once at

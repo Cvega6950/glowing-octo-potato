@@ -1,5 +1,6 @@
 #include "global.h"
 #include "battle.h"
+#include "battle_main.h"
 #include "battle_anim.h"
 #include "battle_anim_scripts.h"
 #include "battle_controllers.h"
@@ -887,7 +888,10 @@ static void Cmd_end(void)
     }
 
     // Finish the sound effects.
-    if (IsSEPlaying())
+    // Crystal Imperium (DECISIONS.md D38): not with FAST BATTLES on, where the animation's pictures play at
+    // double speed and its last sound would hold the battle up (27 frames after a stat drop's arrows):
+    // the sound plays on while the battle goes on
+    if (IsSEPlaying() && (IsContest() || !IsFastBattleOn()))
     {
         if (++sSoundAnimFramesToWait <= 90) // Wait 90 frames, then halt the sound effect.
         {
