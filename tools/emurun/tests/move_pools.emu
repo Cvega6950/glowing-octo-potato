@@ -9,7 +9,9 @@
 # - DRAGONITE's tutor list has Draco Barrage once the game is cleared; it learns it, and in battle
 #   knocks out Whitney's Fairy-type CLEFAIRY (99 HP, Eviolite) with it: Draco Barrage hits
 #   Fairy-types, and with DRAGONITE's Attack above its Sp. Atk it is physical (117-138 damage;
-#   special, 79-93). The user takes a third of the 99 HP as recoil.
+#   special, 79-93). The user takes a third of the 99 HP as recoil;
+# - TERAPAGOS learns what Radical Red's Terapagos (its Terastal Form) does: Hyper Voice by TM, not
+#   Solar Beam or Power Gem.
 # Each list is checked against the build's own teachable learnsets (relearner_list).
 !new_game()
 !no_care_packages()
@@ -19,6 +21,7 @@
 !give_mon_complex("SPECIES_DRAGONITE", 50, "NATURE_HARDY", 0, ["MOVE_EXTREME_SPEED", "MOVE_WING_ATTACK", "MOVE_SLAM", "MOVE_WRAP"])
 !give_mon_complex("SPECIES_MEW", 50, "NATURE_HARDY", 0, ["MOVE_POUND", "MOVE_TRANSFORM", "MOVE_AMNESIA", "MOVE_BARRIER"])
 !give_mon_complex("SPECIES_TYPHLOSION", 50, "NATURE_HARDY", 0, ["MOVE_ERUPTION", "MOVE_LAVA_PLUME", "MOVE_QUICK_ATTACK", "MOVE_SMOKESCREEN"])
+!give_mon_complex("SPECIES_TERAPAGOS", 50, "NATURE_HARDY", 0, ["MOVE_TACKLE", "MOVE_WITHDRAW", "MOVE_RAPID_SPIN", "MOVE_PROTECT"])
 
 # TYPHLOSION (slot 2: LEVEL UP, EGG, TM, TUTOR)
 !open_relearner(2, 2, "MOVE_RELEARNER_TM_MOVES", "typhlosion_tm")
@@ -27,6 +30,12 @@ shot 01_typhlosion_tm.png
 !close_relearner()
 !open_relearner(2, 3, "MOVE_RELEARNER_TUTOR_MOVES", "typhlosion_tutor")
 !expect_relearner_list("Typhlosion", "MOVE_RELEARNER_TUTOR_MOVES", ("MOVE_ERUPTION", "MOVE_LAVA_PLUME", "MOVE_QUICK_ATTACK", "MOVE_SMOKESCREEN"), present=("MOVE_BLAST_BURN",), absent=("MOVE_BODY_SLAM",), label="typhlosion_tutor")
+!close_relearner()
+
+# TERAPAGOS (slot 3: LEVEL UP, TM, TUTOR): Radical Red has only its Terastal Form, whose list it
+# takes: Hyper Voice, not Solar Beam or Power Gem (official ones Radical Red doesn't teach it)
+!open_relearner(3, 1, "MOVE_RELEARNER_TM_MOVES", "terapagos_tm")
+!expect_relearner_list("Terapagos", "MOVE_RELEARNER_TM_MOVES", ("MOVE_TACKLE", "MOVE_WITHDRAW", "MOVE_RAPID_SPIN", "MOVE_PROTECT"), present=("MOVE_HYPER_VOICE",), absent=("MOVE_SOLAR_BEAM", "MOVE_POWER_GEM"), label="terapagos_tm")
 !close_relearner()
 
 # MEW (slot 1: LEVEL UP, TM, TUTOR; no Egg Moves)

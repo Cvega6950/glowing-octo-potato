@@ -188,7 +188,8 @@ def species_table(pre):
         if a:
             abl = [x.strip() for x in a.group(1).split(",") if x.strip()]
             info["abilities"] = (abl + ["ABILITY_NONE"] * 3)[:3]
-        for key, field in (("levelUp", "levelUpLearnset"), ("egg", "eggMoveLearnset"), ("forms", "formSpeciesIdTable")):
+        for key, field in (("levelUp", "levelUpLearnset"), ("egg", "eggMoveLearnset"), ("teach", "teachableLearnset"),
+                           ("forms", "formSpeciesIdTable")):
             f = re.search(rf"\.{field}\s*=\s*(\w+)", block)
             if f:
                 info[key] = f.group(1)
@@ -205,15 +206,15 @@ def form_tables(pre):
     return out
 
 
-def teachable_list_species():
-    """SPECIES_X for each teachable learnset in the species tables (s<Name>TeachableLearnset), named
+def teachable_lists():
+    """SPECIES_X -> s<Name>TeachableLearnset for each teachable learnset in the species tables, named
     as tools/learnset_helpers/make_teachables.py names them: <Name> in snake case."""
     names = set()
     for path in sorted(glob.glob(os.path.join(ROOT, "src/data/pokemon/species_info/*_families.h"))):
         with open(path, encoding="utf-8") as f:
             names |= set(re.findall(r"\.teachableLearnset\s*=\s*s(\w+?)TeachableLearnset", f.read()))
     names.discard("None")
-    return {"SPECIES_" + re.sub(r"(?!^)([A-Z]+)", r"_\1", n).upper() for n in names}
+    return {"SPECIES_" + re.sub(r"(?!^)([A-Z]+)", r"_\1", n).upper(): f"s{n}TeachableLearnset" for n in names}
 
 
 def render_teachables(universe, species):
@@ -490,20 +491,33 @@ def generate(rr, report=False):
     abilities_out = "\n".join(lines) + "\n"
 
     # TM and tutor compatibility: every move Radical Red teaches by TM or tutor, and the ones each
-    # species with a teachable learnset of its own learns there (with Imperium's changes)
-    # (a list named after a form, such as SPECIES_DEOXYS_NORMAL, gets the data of the species with
-    # its number, Radical Red's "Deoxys")
+    # teachable learnset's Pokemon learn there (with Imperium's changes). As for level-up learnsets, a
+    # list gets the data of the first species using it that Radical Red has: SPECIES_DEOXYS_NORMAL's
+    # list its "Deoxys", SPECIES_TERAPAGOS's (Normal Form, which Radical Red lacks) its "Terapagos-Terastal"
     universe = sorted({mp.move(v) for v in list(rr["tmMoves"].values()) + list(rr["tutorMoves"].values()) if v} - {None})
+    teach_src = symbol_sources(table, consts, data, "teach")
+    compiled = {info.get("teach") for info in table.values()}
     by_number = {}
     for sp in sorted(data, key=len):
         by_number.setdefault(consts.get(sp), sp)
     teach = {}
-    for sp in sorted(teachable_list_species()):
-        src = sp if sp in data else by_number.get(consts.get(sp)) if sp in consts else None
+    for sp, sym in sorted(teachable_lists().items()):
+        src = teach_src.get(sym)
+        if src is None and sym not in compiled:  # a list this build compiles out (P_FUSION_FORMS): by its name
+            src = sp if sp in data else by_number.get(consts.get(sp)) if sp in consts else None
         if src:
             teach[sp] = sorted(data[src]["teach"])
         else:
             notes.append(f"{sp}: no Radical Red data, its TM and tutor moves stay the official ones")
+    # A form that shares a list but that Radical Red teaches more moves (Rotom's appliance forms, Origin
+    # Dialga and Palkia) needs a list of its own (in species_info) to learn them
+    for num in sorted(table):
+        sym = table[num].get("teach")
+        src = teach_src.get(sym)
+        other = next((n for n in sorted(names_of[num], key=len) if n in data), None)
+        if src and other and other != src and data[other]["teach"] - data[src]["teach"]:
+            extra = ", ".join(m[5:] for m in sorted(data[other]["teach"] - data[src]["teach"]))
+            notes.append(f"{other}: shares {src}'s TM and tutor list; Radical Red also teaches it {extra}")
     teachables_out = render_teachables(universe, teach)
 
     stats = {"level": len(level_src), "egg": len(egg_src), "abilities": len(new_abilities), "teach": len(teach)}

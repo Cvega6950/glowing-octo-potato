@@ -4860,7 +4860,7 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
             gShinyOverworldPalette_BasculegionF
         )
         .levelUpLearnset = sBasculegionLevelUpLearnset,
-        .teachableLearnset = sBasculegionTeachableLearnset,
+        .teachableLearnset = sBasculegionFTeachableLearnset, // Crystal Imperium (DECISIONS.md D39): Radical Red teaches it less
         .formSpeciesIdTable = sBasculegionFormSpeciesIdTable,
     },
 #endif //P_HISUIAN_FORMS

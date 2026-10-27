@@ -136,6 +136,16 @@ def imperium_extra_tutors(imperium, repo_tms: list[str], repo_tutors: list[str])
         return []
     return sorted(imperium["moves"] - set(repo_tms) - set(repo_tutors))
 
+def official_learnables(all_learnables: dict[str, set[str]], species_upper: str):
+    """
+    Crystal Imperium (DECISIONS.md D39): the official learnables of a list's species. A form without
+    data of its own (BASCULEGION_F, given a list to follow Radical Red's) has its base species'.
+    """
+    name = species_upper
+    while name not in all_learnables and "_" in name:
+        name = name.rsplit("_", 1)[0]
+    return all_learnables[name]
+
 def extract_tm_litteracy_config() -> bool:
     config = False
     with open("./include/config/pokemon.h", "r") as cfg_pokemon_fp:
@@ -176,11 +186,11 @@ def prepare_output(all_learnables: dict[str, set[str]], tms: list[str], tutors: 
             part2 = list(filter(lambda m: m not in special_movesets["signatureTeachables"], tutors))
         else:
             if teaching_type == "TM_ILLITERATE":
-                learnables = all_learnables[species_upper]
+                learnables = official_learnables(all_learnables, species_upper)
                 if not tm_litteracy_config:
                     learnables = filter(lambda m: m not in special_movesets["universalMoves"], learnables)
             else:
-                learnables = all_learnables[species_upper] + special_movesets["universalMoves"]
+                learnables = official_learnables(all_learnables, species_upper) + special_movesets["universalMoves"]
             part1 = list(filter(lambda m: m in learnables, tms))
             part2 = list(filter(lambda m: m in learnables, tutors))
 
