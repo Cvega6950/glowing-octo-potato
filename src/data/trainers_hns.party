@@ -19049,3 +19049,571 @@ Nature: Timid
 - Volt Switch
 - Snarl
 
+=== TRAINER_SIDE_KATY_HNS ===
+Name: KATY
+Class: Leader Hns
+Pic: Picnicker
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Orange
+Items: Full Restore / Full Restore
+
+Ribombee @ Focus Sash
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Shield Dust
+Nature: Timid
+- Sticky Web
+- Moonblast
+- Stun Spore
+- U Turn
+
+Lokix @ Life Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Tinted Lens
+Nature: Jolly
+- First Impression
+- Sucker Punch
+- Lunge
+- Swords Dance
+
+Volcarona @ Heavy Duty Boots
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Flame Body
+Nature: Timid
+- Quiver Dance
+- Fiery Dance
+- Bug Buzz
+- Giga Drain
+
+Golisopod @ Assault Vest
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Emergency Exit
+Nature: Adamant
+- First Impression
+- Liquidation
+- Leech Life
+- Knock Off
+
+Ursaluna @ Flame Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Guts
+Nature: Adamant
+- Facade
+- Headlong Rush
+- Crunch
+- Swords Dance
+
+Pinsir @ Pinsirite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Moxie
+Nature: Jolly
+- Double Edge
+- Close Combat
+- Earthquake
+- Swords Dance
+
+=== TRAINER_SIDE_BRASSIUS_HNS ===
+Name: BRASSIUS
+Class: Leader Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Green
+Items: Full Restore / Full Restore
+
+Brambleghast @ Focus Sash
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Wind Rider
+Nature: Jolly
+- Spikes
+- Power Whip
+- Poltergeist
+- Rapid Spin
+
+Meowscarada @ Choice Band
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Protean
+Nature: Jolly
+- Flower Trick
+- Knock Off
+- U Turn
+- Play Rough
+
+Scovillain @ Life Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Chlorophyll
+Nature: Modest
+- Fire Blast
+- Energy Ball
+- Sunny Day
+- Solar Beam
+
+Tsareena @ Sitrus Berry
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Queenly Majesty
+Nature: Jolly
+- Power Whip
+- High Jump Kick
+- Triple Axel
+- Rapid Spin
+
+Rillaboom @ Miracle Seed
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Grassy Surge
+Nature: Adamant
+- Grassy Glide
+- Wood Hammer
+- Knock Off
+- U Turn
+
+Sceptile @ Sceptilite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Unburden
+Nature: Timid
+- Leaf Storm
+- Dragon Pulse
+- Focus Blast
+- Earthquake
+
+=== TRAINER_SIDE_IONO_HNS ===
+Name: IONO
+Class: Leader Hns
+Pic: Lass
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Yellow
+Items: Full Restore / Full Restore
+
+Kilowattrel @ Choice Specs
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Volt Absorb
+Nature: Timid
+- Thunderbolt
+- Hurricane
+- Volt Switch
+- Roost
+
+Bellibolt @ Leftovers
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Electromorphosis
+Nature: Bold
+- Discharge
+- Muddy Water
+- Slack Off
+- Toxic
+
+Toxtricity @ Throat Spray
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Punk Rock
+Nature: Modest
+- Overdrive
+- Boomburst
+- Sludge Bomb
+- Volt Switch
+
+Electrode Hisui @ Focus Sash
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Soundproof
+Nature: Timid
+- Volt Switch
+- Leaf Storm
+- Thunderbolt
+- Taunt
+
+Mismagius @ Life Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Thunderbolt
+- Nasty Plot
+- Dazzling Gleam
+
+Ampharos @ Ampharosite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Static
+Nature: Modest
+- Thunderbolt
+- Dragon Pulse
+- Focus Blast
+- Volt Switch
+
+=== TRAINER_SIDE_KOFU_HNS ===
+Name: KOFU
+Class: Leader Hns
+Pic: Fisherman
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Blue
+Items: Full Restore / Full Restore
+
+Wugtrio @ Focus Sash
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Gooey
+Nature: Jolly
+- Triple Dive
+- Sucker Punch
+- Memento
+- Liquidation
+
+Veluza @ Life Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sharpness
+Nature: Adamant
+- Aqua Cutter
+- Psycho Cut
+- Night Slash
+- Fillet Away
+
+Crabominable @ Sitrus Berry
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Iron Fist
+Nature: Adamant
+- Ice Hammer
+- Close Combat
+- Crabhammer
+- Bulk Up
+
+Dondozo @ Leftovers
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Unaware
+Nature: Impish
+- Wave Crash
+- Body Press
+- Rest
+- Curse
+
+Clawitzer @ Choice Specs
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Mega Launcher
+Nature: Modest
+- Water Pulse
+- Dark Pulse
+- Aura Sphere
+- Dragon Pulse
+
+Sharpedo @ Sharpedonite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Speed Boost
+Nature: Adamant
+- Waterfall
+- Crunch
+- Psychic Fangs
+- Protect
+
+=== TRAINER_SIDE_LARRY_HNS ===
+Name: LARRY
+Class: Leader Hns
+Pic: Gentleman
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Dark Red
+Items: Full Restore / Full Restore
+
+Komala @ Assault Vest
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Comatose
+Nature: Adamant
+- Wood Hammer
+- Sucker Punch
+- Earthquake
+- Rapid Spin
+
+Dudunsparce @ Leftovers
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Serene Grace
+Nature: Bold
+- Hyper Drill
+- Glare
+- Roost
+- Boomburst
+
+Staraptor @ Choice Band
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Reckless
+Nature: Jolly
+- Brave Bird
+- Close Combat
+- Double Edge
+- U Turn
+
+Porygon Z @ Choice Specs
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Adaptability
+Nature: Timid
+- Tri Attack
+- Shadow Ball
+- Ice Beam
+- Thunderbolt
+
+Bewear @ Sitrus Berry
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Fluffy
+Nature: Adamant
+- Double Edge
+- Close Combat
+- Drain Punch
+- Swords Dance
+
+Kangaskhan @ Kangaskhanite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Scrappy
+Nature: Jolly
+- Fake Out
+- Double Edge
+- Earthquake
+- Sucker Punch
+
+=== TRAINER_SIDE_RYME_HNS ===
+Name: RYME
+Class: Leader Hns
+Pic: Guitarist
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Purple
+Items: Full Restore / Full Restore
+
+Houndstone @ Choice Band
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Fluffy
+Nature: Adamant
+- Last Respects
+- Body Press
+- Play Rough
+- Trick
+
+Annihilape @ Leftovers
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Defiant
+Nature: Adamant
+- Rage Fist
+- Drain Punch
+- Bulk Up
+- Gunk Shot
+
+Ceruledge @ Life Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Flash Fire
+Nature: Adamant
+- Bitter Blade
+- Poltergeist
+- Close Combat
+- Swords Dance
+
+Gholdengo @ Choice Scarf
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Good As Gold
+Nature: Timid
+- Make It Rain
+- Shadow Ball
+- Nasty Plot
+- Recover
+
+Dragapult @ Focus Sash
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Dragon Darts
+- Phantom Force
+- U Turn
+- Dragon Dance
+
+Gengar @ Gengarite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Sludge Wave
+- Focus Blast
+- Nasty Plot
+
+=== TRAINER_SIDE_TULIP_HNS ===
+Name: TULIP
+Class: Leader Hns
+Pic: Beauty
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Pink
+Items: Full Restore / Full Restore
+
+Farigiraf @ Sitrus Berry
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Armor Tail
+Nature: Modest
+- Hyper Voice
+- Psychic
+- Nasty Plot
+- Shadow Ball
+
+Espathra @ Life Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Speed Boost
+Nature: Timid
+- Lumina Crash
+- Dazzling Gleam
+- Calm Mind
+- Stored Power
+
+Florges @ Leftovers
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Calm
+- Moonblast
+- Psychic
+- Calm Mind
+- Synthesis
+
+Hatterene @ Focus Sash
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Magic Bounce
+Nature: Quiet
+- Psychic
+- Draining Kiss
+- Mystical Fire
+- Trick Room
+
+Gallade @ Choice Band
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sharpness
+Nature: Jolly
+- Sacred Sword
+- Psycho Cut
+- Leaf Blade
+- Swords Dance
+
+Gardevoir @ Gardevoirite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Trace
+Nature: Timid
+- Hyper Voice
+- Psyshock
+- Focus Blast
+- Calm Mind
+
+=== TRAINER_SIDE_GRUSHA_HNS ===
+Name: GRUSHA
+Class: Leader Hns
+Pic: Skier M Hns
+Gender: Male
+Music: Hg Boy 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+Mugshot: Light Blue
+Items: Full Restore / Full Restore
+
+Ninetales Alola @ Light Clay
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Snow Warning
+Nature: Timid
+- Aurora Veil
+- Blizzard
+- Moonblast
+- Freeze Dry
+
+Frosmoth @ Heavy Duty Boots
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Ice Scales
+Nature: Timid
+- Quiver Dance
+- Ice Beam
+- Bug Buzz
+- Giga Drain
+
+Beartic @ Life Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Slush Rush
+Nature: Adamant
+- Icicle Crash
+- Close Combat
+- Aqua Jet
+- Swords Dance
+
+Cetitan @ Sitrus Berry
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Slush Rush
+Nature: Adamant
+- Icicle Crash
+- Earthquake
+- Ice Shard
+- Belly Drum
+
+Baxcalibur @ Loaded Dice
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Thermal Exchange
+Nature: Jolly
+- Glaive Rush
+- Icicle Crash
+- Earthquake
+- Dragon Dance
+
+Altaria @ Altarianite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Natural Cure
+Nature: Adamant
+- Hyper Voice
+- Dragon Dance
+- Earthquake
+- Roost
+

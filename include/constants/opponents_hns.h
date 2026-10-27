@@ -685,9 +685,17 @@
 #define TRAINER_SIDE_BYRON_HNS                659
 #define TRAINER_SIDE_ROARK_HNS                660
 #define TRAINER_SIDE_VOLKNER_HNS              661
+#define TRAINER_SIDE_KATY_HNS                 662
+#define TRAINER_SIDE_BRASSIUS_HNS             663
+#define TRAINER_SIDE_IONO_HNS                 664
+#define TRAINER_SIDE_KOFU_HNS                 665
+#define TRAINER_SIDE_LARRY_HNS                666
+#define TRAINER_SIDE_RYME_HNS                 667
+#define TRAINER_SIDE_TULIP_HNS                668
+#define TRAINER_SIDE_GRUSHA_HNS               669
 // End of the side battles
 
-#define TRAINERS_COUNT_HNS                       662
+#define TRAINERS_COUNT_HNS                       670
 #define MAX_TRAINERS_COUNT_HNS                   864
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_HNS_H

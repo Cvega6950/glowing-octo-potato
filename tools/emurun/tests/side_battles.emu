@@ -130,3 +130,37 @@ shot 13_gardenia_after.png
 !expect_flag("FLAG_SIDE_REWARD_GARDENIA", 1, "gardenia_reward_given")
 !expect_bag_quantity("items", "ITEM_GRASS_GEM", 10)
 !expect_bag_has("items", "ITEM_LEAF_STONE")
+
+# Lavender Town, from the Radio Tower's door (22,6): Iono stands at (23,9), facing down. Paldea's
+# leaders battle after the Johto League, at Kanto's cap (90)
+loadstate team.ss
+!warp(0, 36, 2)
+wait 60
+!walkto(24, 10, path=True)
+!walkto(23, 10)
+press UP
+wait 20
+shot 14_iono.png
+savestate iono.ss
+press A
+wait 60
+shot 15_iono_not_yet.png
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 iono_no_battle_before_the_league
+loadstate iono.ss
+!set_flag("FLAG_IS_CHAMPION")
+press A
+!yes_no(True, "iono_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B iono_action_menu
+shot 16_iono_battle.png
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_IONO_HNS", "opponent_is_iono")
+expect8 {gEnemyPartyCount} 6 iono_has_6
+expect8 {gEnemyParty+84} 90 iono_lead_at_kanto_cap_90
+!autobattle("0,0,0,0,0,0")
+expect8 {gBattleOutcome} 1 iono_beaten
+mash B 900
+wait 60
+!expect_flag("FLAG_SIDE_REWARD_IONO", 1, "iono_reward_given")
+!expect_bag_quantity("items", "ITEM_ELECTRIC_GEM", 10)
+!expect_bag_has("keyItems", "ITEM_CATCHING_CHARM")

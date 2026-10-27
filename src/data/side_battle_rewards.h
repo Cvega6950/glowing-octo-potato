@@ -99,6 +99,94 @@ static const u8 sSideBattleRewardText7[] = _(
     "{PLAYER} received ELECTRIC GEM\n"
     "×10, ROTOM CATALOG and ELECTIRIZER!");
 
+static const struct SideBattleRewardItem sSideBattleReward8[] =  // KATY
+{
+    {ITEM_BUG_GEM, 10},
+    {ITEM_SWEET_APPLE, 1},
+    {ITEM_TART_APPLE, 1},
+    {ITEM_SYRUPY_APPLE, 1},
+};
+
+static const u8 sSideBattleRewardText8[] = _(
+    "{PLAYER} received BUG GEM ×10,\n"
+    "SWEET APPLE, TART APPLE and SYRUPY\l"
+    "APPLE!");
+
+static const struct SideBattleRewardItem sSideBattleReward9[] =  // BRASSIUS
+{
+    {ITEM_GRASS_GEM, 10},
+    {ITEM_SUN_STONE, 1},
+    {ITEM_GRASSY_SEED, 3},
+};
+
+static const u8 sSideBattleRewardText9[] = _(
+    "{PLAYER} received GRASS GEM ×10,\n"
+    "SUN STONE and GRASSY SEED ×3!");
+
+static const struct SideBattleRewardItem sSideBattleReward10[] =  // IONO
+{
+    {ITEM_ELECTRIC_GEM, 10},
+    {ITEM_CATCHING_CHARM, 1},
+};
+
+static const u8 sSideBattleRewardText10[] = _(
+    "{PLAYER} received ELECTRIC GEM\n"
+    "×10 and CATCHING CHARM!");
+
+static const struct SideBattleRewardItem sSideBattleReward11[] =  // KOFU
+{
+    {ITEM_WATER_GEM, 10},
+    {ITEM_PRISM_SCALE, 1},
+    {ITEM_DAMP_ROCK, 1},
+};
+
+static const u8 sSideBattleRewardText11[] = _(
+    "{PLAYER} received WATER GEM ×10,\n"
+    "PRISM SCALE and DAMP ROCK!");
+
+static const struct SideBattleRewardItem sSideBattleReward12[] =  // LARRY
+{
+    {ITEM_NORMAL_GEM, 10},
+    {ITEM_EXP_CHARM, 1},
+};
+
+static const u8 sSideBattleRewardText12[] = _(
+    "{PLAYER} received NORMAL GEM ×10\n"
+    "and EXP. CHARM!");
+
+static const struct SideBattleRewardItem sSideBattleReward13[] =  // RYME
+{
+    {ITEM_GHOST_GEM, 10},
+    {ITEM_DUSK_STONE, 1},
+    {ITEM_SPELL_TAG, 1},
+};
+
+static const u8 sSideBattleRewardText13[] = _(
+    "{PLAYER} received GHOST GEM ×10,\n"
+    "DUSK STONE and SPELL TAG!");
+
+static const struct SideBattleRewardItem sSideBattleReward14[] =  // TULIP
+{
+    {ITEM_PSYCHIC_GEM, 10},
+    {ITEM_DAWN_STONE, 1},
+    {ITEM_PSYCHIC_SEED, 3},
+};
+
+static const u8 sSideBattleRewardText14[] = _(
+    "{PLAYER} received PSYCHIC GEM\n"
+    "×10, DAWN STONE and PSYCHIC SEED ×3!");
+
+static const struct SideBattleRewardItem sSideBattleReward15[] =  // GRUSHA
+{
+    {ITEM_ICE_GEM, 10},
+    {ITEM_ICY_ROCK, 1},
+    {ITEM_RAZOR_CLAW, 1},
+};
+
+static const u8 sSideBattleRewardText15[] = _(
+    "{PLAYER} received ICE GEM ×10,\n"
+    "ICY ROCK and RAZOR CLAW!");
+
 static const struct SideBattleReward sSideBattleRewards[] =
 {
     {sSideBattleReward0, ARRAY_COUNT(sSideBattleReward0), sSideBattleRewardText0},
@@ -109,4 +197,12 @@ static const struct SideBattleReward sSideBattleRewards[] =
     {sSideBattleReward5, ARRAY_COUNT(sSideBattleReward5), sSideBattleRewardText5},
     {sSideBattleReward6, ARRAY_COUNT(sSideBattleReward6), sSideBattleRewardText6},
     {sSideBattleReward7, ARRAY_COUNT(sSideBattleReward7), sSideBattleRewardText7},
+    {sSideBattleReward8, ARRAY_COUNT(sSideBattleReward8), sSideBattleRewardText8},
+    {sSideBattleReward9, ARRAY_COUNT(sSideBattleReward9), sSideBattleRewardText9},
+    {sSideBattleReward10, ARRAY_COUNT(sSideBattleReward10), sSideBattleRewardText10},
+    {sSideBattleReward11, ARRAY_COUNT(sSideBattleReward11), sSideBattleRewardText11},
+    {sSideBattleReward12, ARRAY_COUNT(sSideBattleReward12), sSideBattleRewardText12},
+    {sSideBattleReward13, ARRAY_COUNT(sSideBattleReward13), sSideBattleRewardText13},
+    {sSideBattleReward14, ARRAY_COUNT(sSideBattleReward14), sSideBattleRewardText14},
+    {sSideBattleReward15, ARRAY_COUNT(sSideBattleReward15), sSideBattleRewardText15},
 };

@@ -242,6 +242,80 @@ SIDE_VOLKNER = [
     mon("Electivire", "Expert Belt", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Earthquake", "Cross Chop"]),
     mon("Manectric", "Manectite", "Lightning Rod", "Timid", ["Thunderbolt", "Flamethrower", "Volt Switch", "Snarl"]),
 ]
+# --- Side battles: Paldea's Gym Leaders visiting Kanto (D41), after the Johto League ---------------
+# Each at Kanto's cap like Kanto's own leaders: six Pokemon, two Full Restores and one Mega Evolution.
+#   Katy (Pewter City): Sticky Web, Quiver Dance Volcarona, Guts Ursaluna and Mega Pinsir.
+SIDE_KATY = [
+    mon("Ribombee", "Focus Sash", "Shield Dust", "Timid", ["Sticky Web", "Moonblast", "Stun Spore", "U Turn"]),
+    mon("Lokix", "Life Orb", "Tinted Lens", "Jolly", ["First Impression", "Sucker Punch", "Lunge", "Swords Dance"]),
+    mon("Volcarona", "Heavy Duty Boots", "Flame Body", "Timid", ["Quiver Dance", "Fiery Dance", "Bug Buzz", "Giga Drain"]),
+    mon("Golisopod", "Assault Vest", "Emergency Exit", "Adamant", ["First Impression", "Liquidation", "Leech Life", "Knock Off"]),
+    mon("Ursaluna", "Flame Orb", "Guts", "Adamant", ["Facade", "Headlong Rush", "Crunch", "Swords Dance"]),
+    mon("Pinsir", "Pinsirite", "Moxie", "Jolly", ["Double Edge", "Close Combat", "Earthquake", "Swords Dance"]),
+]
+#   Brassius (Route 25, Cerulean Cape): Grassy Surge Rillaboom and Mega Sceptile.
+SIDE_BRASSIUS = [
+    mon("Brambleghast", "Focus Sash", "Wind Rider", "Jolly", ["Spikes", "Power Whip", "Poltergeist", "Rapid Spin"]),
+    mon("Meowscarada", "Choice Band", "Protean", "Jolly", ["Flower Trick", "Knock Off", "U Turn", "Play Rough"]),
+    mon("Scovillain", "Life Orb", "Chlorophyll", "Modest", ["Fire Blast", "Energy Ball", "Sunny Day", "Solar Beam"]),
+    mon("Tsareena", "Sitrus Berry", "Queenly Majesty", "Jolly", ["Power Whip", "High Jump Kick", "Triple Axel", "Rapid Spin"]),
+    mon("Rillaboom", "Miracle Seed", "Grassy Surge", "Adamant", ["Grassy Glide", "Wood Hammer", "Knock Off", "U Turn"]),
+    mon("Sceptile", "Sceptilite", "Unburden", "Timid", ["Leaf Storm", "Dragon Pulse", "Focus Blast", "Earthquake"]),
+]
+#   Iono (Lavender Town, by the Radio Tower): Volt Switch pivots, her Mismagius and Mega Ampharos.
+SIDE_IONO = [
+    mon("Kilowattrel", "Choice Specs", "Volt Absorb", "Timid", ["Thunderbolt", "Hurricane", "Volt Switch", "Roost"]),
+    mon("Bellibolt", "Leftovers", "Electromorphosis", "Bold", ["Discharge", "Muddy Water", "Slack Off", "Toxic"]),
+    mon("Toxtricity", "Throat Spray", "Punk Rock", "Modest", ["Overdrive", "Boomburst", "Sludge Bomb", "Volt Switch"]),
+    mon("Electrode Hisui", "Focus Sash", "Soundproof", "Timid", ["Volt Switch", "Leaf Storm", "Thunderbolt", "Taunt"]),
+    mon("Mismagius", "Life Orb", "Levitate", "Timid", ["Shadow Ball", "Thunderbolt", "Nasty Plot", "Dazzling Gleam"]),
+    mon("Ampharos", "Ampharosite", "Static", "Modest", ["Thunderbolt", "Dragon Pulse", "Focus Blast", "Volt Switch"]),
+]
+#   Kofu (Vermilion City's pier): Dondozo, Mega Launcher Clawitzer and Mega Sharpedo.
+SIDE_KOFU = [
+    mon("Wugtrio", "Focus Sash", "Gooey", "Jolly", ["Triple Dive", "Sucker Punch", "Memento", "Liquidation"]),
+    mon("Veluza", "Life Orb", "Sharpness", "Adamant", ["Aqua Cutter", "Psycho Cut", "Night Slash", "Fillet Away"]),
+    mon("Crabominable", "Sitrus Berry", "Iron Fist", "Adamant", ["Ice Hammer", "Close Combat", "Crabhammer", "Bulk Up"]),
+    mon("Dondozo", "Leftovers", "Unaware", "Impish", ["Wave Crash", "Body Press", "Rest", "Curse"]),
+    mon("Clawitzer", "Choice Specs", "Mega Launcher", "Modest", ["Water Pulse", "Dark Pulse", "Aura Sphere", "Dragon Pulse"]),
+    mon("Sharpedo", "Sharpedonite", "Speed Boost", "Adamant", ["Waterfall", "Crunch", "Psychic Fangs", "Protect"]),
+]
+#   Larry (Viridian City): his Staraptor and Komala, Serene Grace Dudunsparce and Mega Kangaskhan.
+SIDE_LARRY = [
+    mon("Komala", "Assault Vest", "Comatose", "Adamant", ["Wood Hammer", "Sucker Punch", "Earthquake", "Rapid Spin"]),
+    mon("Dudunsparce", "Leftovers", "Serene Grace", "Bold", ["Hyper Drill", "Glare", "Roost", "Boomburst"]),
+    mon("Staraptor", "Choice Band", "Reckless", "Jolly", ["Brave Bird", "Close Combat", "Double Edge", "U Turn"]),
+    mon("Porygon Z", "Choice Specs", "Adaptability", "Timid", ["Tri Attack", "Shadow Ball", "Ice Beam", "Thunderbolt"]),
+    mon("Bewear", "Sitrus Berry", "Fluffy", "Adamant", ["Double Edge", "Close Combat", "Drain Punch", "Swords Dance"]),
+    mon("Kangaskhan", "Kangaskhanite", "Scrappy", "Jolly", ["Fake Out", "Double Edge", "Earthquake", "Sucker Punch"]),
+]
+#   Ryme (Celadon City): Last Respects, Rage Fist, Gholdengo and Mega Gengar.
+SIDE_RYME = [
+    mon("Houndstone", "Choice Band", "Fluffy", "Adamant", ["Last Respects", "Body Press", "Play Rough", "Trick"]),
+    mon("Annihilape", "Leftovers", "Defiant", "Adamant", ["Rage Fist", "Drain Punch", "Bulk Up", "Gunk Shot"]),
+    mon("Ceruledge", "Life Orb", "Flash Fire", "Adamant", ["Bitter Blade", "Poltergeist", "Close Combat", "Swords Dance"]),
+    mon("Gholdengo", "Choice Scarf", "Good As Gold", "Timid", ["Make It Rain", "Shadow Ball", "Nasty Plot", "Recover"]),
+    mon("Dragapult", "Focus Sash", "Infiltrator", "Jolly", ["Dragon Darts", "Phantom Force", "U Turn", "Dragon Dance"]),
+    mon("Gengar", "Gengarite", "Levitate", "Timid", ["Shadow Ball", "Sludge Wave", "Focus Blast", "Nasty Plot"]),
+]
+#   Tulip (Saffron City): Armor Tail Farigiraf against priority, Calm Mind and Mega Gardevoir.
+SIDE_TULIP = [
+    mon("Farigiraf", "Sitrus Berry", "Armor Tail", "Modest", ["Hyper Voice", "Psychic", "Nasty Plot", "Shadow Ball"]),
+    mon("Espathra", "Life Orb", "Speed Boost", "Timid", ["Lumina Crash", "Dazzling Gleam", "Calm Mind", "Stored Power"]),
+    mon("Florges", "Leftovers", "Natural Cure", "Calm", ["Moonblast", "Psychic", "Calm Mind", "Synthesis"]),
+    mon("Hatterene", "Focus Sash", "Magic Bounce", "Quiet", ["Psychic", "Draining Kiss", "Mystical Fire", "Trick Room"]),
+    mon("Gallade", "Choice Band", "Sharpness", "Jolly", ["Sacred Sword", "Psycho Cut", "Leaf Blade", "Swords Dance"]),
+    mon("Gardevoir", "Gardevoirite", "Trace", "Timid", ["Hyper Voice", "Psyshock", "Focus Blast", "Calm Mind"]),
+]
+#   Grusha (Cinnabar Island): Alolan Ninetales' snow and Aurora Veil, Slush Rush and Mega Altaria.
+SIDE_GRUSHA = [
+    mon("Ninetales Alola", "Light Clay", "Snow Warning", "Timid", ["Aurora Veil", "Blizzard", "Moonblast", "Freeze Dry"]),
+    mon("Frosmoth", "Heavy Duty Boots", "Ice Scales", "Timid", ["Quiver Dance", "Ice Beam", "Bug Buzz", "Giga Drain"]),
+    mon("Beartic", "Life Orb", "Slush Rush", "Adamant", ["Icicle Crash", "Close Combat", "Aqua Jet", "Swords Dance"]),
+    mon("Cetitan", "Sitrus Berry", "Slush Rush", "Adamant", ["Icicle Crash", "Earthquake", "Ice Shard", "Belly Drum"]),
+    mon("Baxcalibur", "Loaded Dice", "Thermal Exchange", "Jolly", ["Glaive Rush", "Icicle Crash", "Earthquake", "Dragon Dance"]),
+    mon("Altaria", "Altarianite", "Natural Cure", "Adamant", ["Hyper Voice", "Dragon Dance", "Earthquake", "Roost"]),
+]
 # Trainer -> (stage, bag items, Pokemon)
 SIDE_BATTLES = {
     "TRAINER_SIDE_CANDICE_HNS": (0, "", SIDE_CANDICE),
@@ -253,6 +327,14 @@ SIDE_BATTLES = {
     "TRAINER_SIDE_BYRON_HNS": (6, "Full Restore / Full Restore", SIDE_BYRON),
     "TRAINER_SIDE_ROARK_HNS": (7, "Full Restore / Full Restore", SIDE_ROARK),
     "TRAINER_SIDE_VOLKNER_HNS": (8, "Full Restore / Full Restore", SIDE_VOLKNER),
+    "TRAINER_SIDE_KATY_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_KATY),
+    "TRAINER_SIDE_BRASSIUS_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_BRASSIUS),
+    "TRAINER_SIDE_IONO_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_IONO),
+    "TRAINER_SIDE_KOFU_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_KOFU),
+    "TRAINER_SIDE_LARRY_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_LARRY),
+    "TRAINER_SIDE_RYME_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_RYME),
+    "TRAINER_SIDE_TULIP_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_TULIP),
+    "TRAINER_SIDE_GRUSHA_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", SIDE_GRUSHA),
 }
 
 # --- Rival (Silver): TRAINER_RIVAL_<his starter>_<n>_HNS ------------------------------------------

@@ -516,3 +516,488 @@ SideBattle_Text_Volkner_NotYet:
 	.string "LEADER. I'm waiting for a trainer worth\l"
 	.string "battling.\p"
 	.string "Come back with all eight GYM BADGES.$"
+
+SideBattle_Katy_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_KATY, SideBattle_Katy_After
+	goto_if_defeated TRAINER_SIDE_KATY_HNS, SideBattle_Katy_Reward
+	goto_if_unset FLAG_IS_CHAMPION, SideBattle_Katy_NotYet
+	msgbox SideBattle_Text_Katy_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Katy_Declined
+	trainerbattle_no_intro TRAINER_SIDE_KATY_HNS, SideBattle_Text_Katy_Defeat
+	goto SideBattle_Katy_Reward
+
+SideBattle_Katy_Reward:
+	msgbox SideBattle_Text_Katy_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 8
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_KATY
+SideBattle_Katy_After:
+	msgbox SideBattle_Text_Katy_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Katy_NotYet:
+	msgbox SideBattle_Text_Katy_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Katy_Declined:
+	msgbox SideBattle_Text_Katy_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Katy_Challenge:
+	.string "Hi there! I'm KATY, CORTONDO's GYM\n"
+	.string "LEADER in PALDEA. I'm on a tour of\l"
+	.string "KANTO's bakeries!\p"
+	.string "My BUG POKéMON are as sweet as my\n"
+	.string "cakes, but they still sting! Shall we\l"
+	.string "battle?$"
+
+SideBattle_Text_Katy_Declined:
+	.string "Okay! I'll go find more sweets while I\n"
+	.string "wait.$"
+
+SideBattle_Text_Katy_Defeat:
+	.string "Oh my! That battle was sweeter than\n"
+	.string "any cake!$"
+
+SideBattle_Text_Katy_Reward:
+	.string "A sweet battle deserves a sweet\n"
+	.string "treat! Here you go!$"
+
+SideBattle_Text_Katy_After:
+	.string "If you ever visit PALDEA, come by my\n"
+	.string "bakery in CORTONDO!$"
+
+SideBattle_Text_Katy_NotYet:
+	.string "Hi there! I'm KATY, CORTONDO's GYM\n"
+	.string "LEADER in PALDEA. I'm on a tour of\l"
+	.string "KANTO's bakeries!\p"
+	.string "Once you're JOHTO's CHAMPION, let's\n"
+	.string "have a battle, okay?$"
+
+SideBattle_Brassius_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_BRASSIUS, SideBattle_Brassius_After
+	goto_if_defeated TRAINER_SIDE_BRASSIUS_HNS, SideBattle_Brassius_Reward
+	goto_if_unset FLAG_IS_CHAMPION, SideBattle_Brassius_NotYet
+	msgbox SideBattle_Text_Brassius_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Brassius_Declined
+	trainerbattle_no_intro TRAINER_SIDE_BRASSIUS_HNS, SideBattle_Text_Brassius_Defeat
+	goto SideBattle_Brassius_Reward
+
+SideBattle_Brassius_Reward:
+	msgbox SideBattle_Text_Brassius_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 9
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_BRASSIUS
+SideBattle_Brassius_After:
+	msgbox SideBattle_Text_Brassius_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Brassius_NotYet:
+	msgbox SideBattle_Text_Brassius_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Brassius_Declined:
+	msgbox SideBattle_Text_Brassius_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Brassius_Challenge:
+	.string "I am BRASSIUS, artist and GYM LEADER\n"
+	.string "of ARTAZON! The flowers by this sea\l"
+	.string "inspire me!\p"
+	.string "Will you join me in a battle? A living\n"
+	.string "work of art!$"
+
+SideBattle_Text_Brassius_Declined:
+	.string "Inspiration cannot be rushed. I shall\n"
+	.string "wait.$"
+
+SideBattle_Text_Brassius_Defeat:
+	.string "Magnificent! Our battle was a\n"
+	.string "masterpiece!$"
+
+SideBattle_Text_Brassius_Reward:
+	.string "Take these, as thanks for the\n"
+	.string "inspiration!$"
+
+SideBattle_Text_Brassius_After:
+	.string "Art and battles both bloom when you\n"
+	.string "pour your heart into them!$"
+
+SideBattle_Text_Brassius_NotYet:
+	.string "I am BRASSIUS, artist and GYM LEADER\n"
+	.string "of ARTAZON! The flowers by this sea\l"
+	.string "inspire me!\p"
+	.string "Return as JOHTO's CHAMPION, and we\n"
+	.string "shall create art together!$"
+
+SideBattle_Iono_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_IONO, SideBattle_Iono_After
+	goto_if_defeated TRAINER_SIDE_IONO_HNS, SideBattle_Iono_Reward
+	goto_if_unset FLAG_IS_CHAMPION, SideBattle_Iono_NotYet
+	msgbox SideBattle_Text_Iono_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Iono_Declined
+	trainerbattle_no_intro TRAINER_SIDE_IONO_HNS, SideBattle_Text_Iono_Defeat
+	goto SideBattle_Iono_Reward
+
+SideBattle_Iono_Reward:
+	msgbox SideBattle_Text_Iono_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 10
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_IONO
+SideBattle_Iono_After:
+	msgbox SideBattle_Text_Iono_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Iono_NotYet:
+	msgbox SideBattle_Text_Iono_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Iono_Declined:
+	msgbox SideBattle_Text_Iono_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Iono_Challenge:
+	.string "Ello, ello, hola! It's your electrifying\n"
+	.string "streamer, IONO! I'm live from KANTO's\l"
+	.string "RADIO TOWER!\p"
+	.string "Wanna star in my stream? Let's battle,\n"
+	.string "and make it shocking!$"
+
+SideBattle_Text_Iono_Declined:
+	.string "Boo! My chat is sad now! Come back\n"
+	.string "soon, 'kay?$"
+
+SideBattle_Text_Iono_Defeat:
+	.string "Ack! My chat is going wild! You zapped\n"
+	.string "me good!$"
+
+SideBattle_Text_Iono_Reward:
+	.string "Here's a little something from your\n"
+	.string "favorite streamer!$"
+
+SideBattle_Text_Iono_After:
+	.string "Thanks for being on my stream! The\n"
+	.string "views are through the roof!$"
+
+SideBattle_Text_Iono_NotYet:
+	.string "Ello, ello, hola! It's your electrifying\n"
+	.string "streamer, IONO! I'm live from KANTO's\l"
+	.string "RADIO TOWER!\p"
+	.string "Become JOHTO's CHAMPION, and you can\n"
+	.string "star in my stream!$"
+
+SideBattle_Kofu_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_KOFU, SideBattle_Kofu_After
+	goto_if_defeated TRAINER_SIDE_KOFU_HNS, SideBattle_Kofu_Reward
+	goto_if_unset FLAG_IS_CHAMPION, SideBattle_Kofu_NotYet
+	msgbox SideBattle_Text_Kofu_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Kofu_Declined
+	trainerbattle_no_intro TRAINER_SIDE_KOFU_HNS, SideBattle_Text_Kofu_Defeat
+	goto SideBattle_Kofu_Reward
+
+SideBattle_Kofu_Reward:
+	msgbox SideBattle_Text_Kofu_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 11
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_KOFU
+SideBattle_Kofu_After:
+	msgbox SideBattle_Text_Kofu_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Kofu_NotYet:
+	msgbox SideBattle_Text_Kofu_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Kofu_Declined:
+	msgbox SideBattle_Text_Kofu_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Kofu_Challenge:
+	.string "Hola! I'm KOFU, CASCARRAFA's GYM\n"
+	.string "LEADER! I came to VERMILION for the\l"
+	.string "freshest seafood!\p"
+	.string "You look like a fine catch! Let's\n"
+	.string "battle, and see who's freshest!$"
+
+SideBattle_Text_Kofu_Declined:
+	.string "No? Then I'll go haggle with the\n"
+	.string "fishermen!$"
+
+SideBattle_Text_Kofu_Defeat:
+	.string "Whoa! You cooked me but good!$"
+
+SideBattle_Text_Kofu_Reward:
+	.string "A great battle earns a great prize!\n"
+	.string "Take it!$"
+
+SideBattle_Text_Kofu_After:
+	.string "Life is like the sea: full of surprises,\n"
+	.string "and full of flavor!$"
+
+SideBattle_Text_Kofu_NotYet:
+	.string "Hola! I'm KOFU, CASCARRAFA's GYM\n"
+	.string "LEADER! I came to VERMILION for the\l"
+	.string "freshest seafood!\p"
+	.string "Once you're JOHTO's CHAMPION, we'll\n"
+	.string "have a battle, fresh off the boat!$"
+
+SideBattle_Larry_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_LARRY, SideBattle_Larry_After
+	goto_if_defeated TRAINER_SIDE_LARRY_HNS, SideBattle_Larry_Reward
+	goto_if_unset FLAG_IS_CHAMPION, SideBattle_Larry_NotYet
+	msgbox SideBattle_Text_Larry_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Larry_Declined
+	trainerbattle_no_intro TRAINER_SIDE_LARRY_HNS, SideBattle_Text_Larry_Defeat
+	goto SideBattle_Larry_Reward
+
+SideBattle_Larry_Reward:
+	msgbox SideBattle_Text_Larry_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 12
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_LARRY
+SideBattle_Larry_After:
+	msgbox SideBattle_Text_Larry_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Larry_NotYet:
+	msgbox SideBattle_Text_Larry_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Larry_Declined:
+	msgbox SideBattle_Text_Larry_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Larry_Challenge:
+	.string "...I'm LARRY. GYM LEADER of MEDALI, in\n"
+	.string "PALDEA. I'm on a business trip. Again.\p"
+	.string "A battle? Fine. Let's get it over with.\n"
+	.string "I won't go easy, though.$"
+
+SideBattle_Text_Larry_Declined:
+	.string "Good. I'd rather sit down for a while\n"
+	.string "anyway.$"
+
+SideBattle_Text_Larry_Defeat:
+	.string "...You're strong. I'll put that in my\n"
+	.string "report.$"
+
+SideBattle_Text_Larry_Reward:
+	.string "My boss said to hand these out. Here.$"
+
+SideBattle_Text_Larry_After:
+	.string "Ordinary is best. Remember that, kid.$"
+
+SideBattle_Text_Larry_NotYet:
+	.string "...I'm LARRY. GYM LEADER of MEDALI, in\n"
+	.string "PALDEA. I'm on a business trip. Again.\p"
+	.string "Come back when you're JOHTO's\n"
+	.string "CHAMPION. I'll be here. Working.$"
+
+SideBattle_Ryme_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_RYME, SideBattle_Ryme_After
+	goto_if_defeated TRAINER_SIDE_RYME_HNS, SideBattle_Ryme_Reward
+	goto_if_unset FLAG_IS_CHAMPION, SideBattle_Ryme_NotYet
+	msgbox SideBattle_Text_Ryme_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Ryme_Declined
+	trainerbattle_no_intro TRAINER_SIDE_RYME_HNS, SideBattle_Text_Ryme_Defeat
+	goto SideBattle_Ryme_Reward
+
+SideBattle_Ryme_Reward:
+	msgbox SideBattle_Text_Ryme_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 13
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_RYME
+SideBattle_Ryme_After:
+	msgbox SideBattle_Text_Ryme_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Ryme_NotYet:
+	msgbox SideBattle_Text_Ryme_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Ryme_Declined:
+	msgbox SideBattle_Text_Ryme_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Ryme_Challenge:
+	.string "Yo! MC RYME, from MONTENEVERA, in the\n"
+	.string "house! CELADON's crowd better be\l"
+	.string "ready!\p"
+	.string "Step up to the mic! Let's battle, and\n"
+	.string "drop some beats!$"
+
+SideBattle_Text_Ryme_Declined:
+	.string "Nah? Then I'll keep the crowd warm for\n"
+	.string "ya!$"
+
+SideBattle_Text_Ryme_Defeat:
+	.string "Mic drop! You stole the whole show!$"
+
+SideBattle_Text_Ryme_Reward:
+	.string "A star performance deserves some\n"
+	.string "love! Here!$"
+
+SideBattle_Text_Ryme_After:
+	.string "Keep your rhythm, and your POKéMON\n"
+	.string "will follow your beat!$"
+
+SideBattle_Text_Ryme_NotYet:
+	.string "Yo! MC RYME, from MONTENEVERA, in the\n"
+	.string "house! CELADON's crowd better be\l"
+	.string "ready!\p"
+	.string "Come back as JOHTO's CHAMPION, and\n"
+	.string "we'll take the stage together!$"
+
+SideBattle_Tulip_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_TULIP, SideBattle_Tulip_After
+	goto_if_defeated TRAINER_SIDE_TULIP_HNS, SideBattle_Tulip_Reward
+	goto_if_unset FLAG_IS_CHAMPION, SideBattle_Tulip_NotYet
+	msgbox SideBattle_Text_Tulip_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Tulip_Declined
+	trainerbattle_no_intro TRAINER_SIDE_TULIP_HNS, SideBattle_Text_Tulip_Defeat
+	goto SideBattle_Tulip_Reward
+
+SideBattle_Tulip_Reward:
+	msgbox SideBattle_Text_Tulip_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 14
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_TULIP
+SideBattle_Tulip_After:
+	msgbox SideBattle_Text_Tulip_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Tulip_NotYet:
+	msgbox SideBattle_Text_Tulip_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Tulip_Declined:
+	msgbox SideBattle_Text_Tulip_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Tulip_Challenge:
+	.string "Hello. I'm TULIP, GYM LEADER of\n"
+	.string "ALFORNADA, and a makeup artist.\l"
+	.string "SAFFRON's style is... interesting.\p"
+	.string "Shall we battle? I'll show you how\n"
+	.string "beautiful PSYCHIC POKéMON can be.$"
+
+SideBattle_Text_Tulip_Declined:
+	.string "Then I'll wait. Beauty is worth waiting\n"
+	.string "for.$"
+
+SideBattle_Text_Tulip_Defeat:
+	.string "How lovely. You and your POKéMON shine\n"
+	.string "brighter than I do.$"
+
+SideBattle_Text_Tulip_Reward:
+	.string "Please accept these. You've earned\n"
+	.string "them.$"
+
+SideBattle_Text_Tulip_After:
+	.string "True beauty comes from the bond you\n"
+	.string "share with your POKéMON.$"
+
+SideBattle_Text_Tulip_NotYet:
+	.string "Hello. I'm TULIP, GYM LEADER of\n"
+	.string "ALFORNADA, and a makeup artist.\l"
+	.string "SAFFRON's style is... interesting.\p"
+	.string "Come back as JOHTO's CHAMPION. Then\n"
+	.string "we'll battle.$"
+
+SideBattle_Grusha_EventScript::
+	lock
+	faceplayer
+	goto_if_set FLAG_SIDE_REWARD_GRUSHA, SideBattle_Grusha_After
+	goto_if_defeated TRAINER_SIDE_GRUSHA_HNS, SideBattle_Grusha_Reward
+	goto_if_unset FLAG_IS_CHAMPION, SideBattle_Grusha_NotYet
+	msgbox SideBattle_Text_Grusha_Challenge, MSGBOX_YESNO
+	goto_if_eq VAR_RESULT, NO, SideBattle_Grusha_Declined
+	trainerbattle_no_intro TRAINER_SIDE_GRUSHA_HNS, SideBattle_Text_Grusha_Defeat
+	goto SideBattle_Grusha_Reward
+
+SideBattle_Grusha_Reward:
+	msgbox SideBattle_Text_Grusha_Reward, MSGBOX_DEFAULT
+	setvar VAR_0x8004, 15
+	call SideBattle_EventScript_GiveReward
+	goto_if_eq VAR_RESULT, FALSE, SideBattle_EventScript_Release
+	setflag FLAG_SIDE_REWARD_GRUSHA
+SideBattle_Grusha_After:
+	msgbox SideBattle_Text_Grusha_After, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Grusha_NotYet:
+	msgbox SideBattle_Text_Grusha_NotYet, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Grusha_Declined:
+	msgbox SideBattle_Text_Grusha_Declined, MSGBOX_DEFAULT
+	release
+	end
+
+SideBattle_Text_Grusha_Challenge:
+	.string "I'm GRUSHA, GYM LEADER of GLASEADO.\n"
+	.string "This island is way too hot for me.\p"
+	.string "...Fine, let's battle. I'll cool you down.$"
+
+SideBattle_Text_Grusha_Declined:
+	.string "Your loss.$"
+
+SideBattle_Text_Grusha_Defeat:
+	.string "...You've got real heat. I respect that.$"
+
+SideBattle_Text_Grusha_Reward:
+	.string "Here. You earned these.$"
+
+SideBattle_Text_Grusha_After:
+	.string "Even on a hot island, ice holds its own.\n"
+	.string "So should you.$"
+
+SideBattle_Text_Grusha_NotYet:
+	.string "I'm GRUSHA, GYM LEADER of GLASEADO.\n"
+	.string "This island is way too hot for me.\p"
+	.string "Come back once you're JOHTO's\n"
+	.string "CHAMPION.$"

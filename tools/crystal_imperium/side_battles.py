@@ -193,8 +193,113 @@ JOHTO = [
             "after": ["Go win the POKéMON LEAGUE. Then come back and tell me about it."]}),
 ]
 
-# Kanto's eight and the postgame's visitors are added once their sprites are in (DECISIONS.md D41)
-KANTO = []
+# --- Kanto: Paldea's eight Gym Leaders, after the Johto League (all at Kanto's cap) ------------------
+# One in each of eight Kanto towns, near a place that suits them. Every TM and Mega Stone is on sale
+# by then, so a reward is ten Gems and an item of the leader's own: Larry's Exp. Charm and Iono's
+# Catching Charm are the only ones in the game.
+KANTO = [
+    Battle("KATY", 662, "KATY", "Leader Hns", "Picnicker", "Female", "Hg Girl 1", "Orange",
+           "OBJ_EVENT_GFX_PICNICKER_HNS", [("PewterCity_hns", 22, 12, "down")],
+           ("flag", JOHTO_CHAMPION_FLAG),
+           [("BUG_GEM", 10), ("SWEET_APPLE", 1), ("TART_APPLE", 1), ("SYRUPY_APPLE", 1)],
+           {"not_yet": ["Hi there! I'm KATY, CORTONDO's GYM LEADER in PALDEA. I'm on a tour of KANTO's "
+                        "bakeries!", "Once you're JOHTO's CHAMPION, let's have a battle, okay?"],
+            "challenge": ["Hi there! I'm KATY, CORTONDO's GYM LEADER in PALDEA. I'm on a tour of KANTO's "
+                          "bakeries!", "My BUG POKéMON are as sweet as my cakes, but they still sting! "
+                          "Shall we battle?"],
+            "declined": ["Okay! I'll go find more sweets while I wait."],
+            "defeat": ["Oh my! That battle was sweeter than any cake!"],
+            "reward": ["A sweet battle deserves a sweet treat! Here you go!"],
+            "after": ["If you ever visit PALDEA, come by my bakery in CORTONDO!"]}),
+    Battle("BRASSIUS", 663, "BRASSIUS", "Leader Hns", "Cooltrainer M", "Male", "Hg Boy 1", "Green",
+           "OBJ_EVENT_GFX_COOLTRAINER_M_HNS", [("Route25_hns", 80, 15, "down")],
+           ("flag", JOHTO_CHAMPION_FLAG),
+           [("GRASS_GEM", 10), ("SUN_STONE", 1), ("GRASSY_SEED", 3)],
+           {"not_yet": ["I am BRASSIUS, artist and GYM LEADER of ARTAZON! The flowers by this sea inspire "
+                        "me!", "Return as JOHTO's CHAMPION, and we shall create art together!"],
+            "challenge": ["I am BRASSIUS, artist and GYM LEADER of ARTAZON! The flowers by this sea inspire "
+                          "me!", "Will you join me in a battle? A living work of art!"],
+            "declined": ["Inspiration cannot be rushed. I shall wait."],
+            "defeat": ["Magnificent! Our battle was a masterpiece!"],
+            "reward": ["Take these, as thanks for the inspiration!"],
+            "after": ["Art and battles both bloom when you pour your heart into them!"]}),
+    Battle("IONO", 664, "IONO", "Leader Hns", "Lass", "Female", "Hg Girl 1", "Yellow",
+           "OBJ_EVENT_GFX_LASS_HNS", [("LavenderTown_hns", 23, 9, "down")],
+           ("flag", JOHTO_CHAMPION_FLAG),
+           [("ELECTRIC_GEM", 10), ("CATCHING_CHARM", 1)],
+           {"not_yet": ["Ello, ello, hola! It's your electrifying streamer, IONO! I'm live from KANTO's "
+                        "RADIO TOWER!", "Become JOHTO's CHAMPION, and you can star in my stream!"],
+            "challenge": ["Ello, ello, hola! It's your electrifying streamer, IONO! I'm live from KANTO's "
+                          "RADIO TOWER!", "Wanna star in my stream? Let's battle, and make it shocking!"],
+            "declined": ["Boo! My chat is sad now! Come back soon, 'kay?"],
+            "defeat": ["Ack! My chat is going wild! You zapped me good!"],
+            "reward": ["Here's a little something from your favorite streamer!"],
+            "after": ["Thanks for being on my stream! The views are through the roof!"]}),
+    Battle("KOFU", 665, "KOFU", "Leader Hns", "Fisherman", "Male", "Hg Boy 1", "Blue",
+           "OBJ_EVENT_GFX_FISHERMAN_HNS", [("VermilionCity_hns", 49, 27, "down")],
+           ("flag", JOHTO_CHAMPION_FLAG),
+           [("WATER_GEM", 10), ("PRISM_SCALE", 1), ("DAMP_ROCK", 1)],
+           {"not_yet": ["Hola! I'm KOFU, CASCARRAFA's GYM LEADER! I came to VERMILION for the freshest "
+                        "seafood!", "Once you're JOHTO's CHAMPION, we'll have a battle, fresh off the "
+                        "boat!"],
+            "challenge": ["Hola! I'm KOFU, CASCARRAFA's GYM LEADER! I came to VERMILION for the freshest "
+                          "seafood!", "You look like a fine catch! Let's battle, and see who's freshest!"],
+            "declined": ["No? Then I'll go haggle with the fishermen!"],
+            "defeat": ["Whoa! You cooked me but good!"],
+            "reward": ["A great battle earns a great prize! Take it!"],
+            "after": ["Life is like the sea: full of surprises, and full of flavor!"]}),
+    Battle("LARRY", 666, "LARRY", "Leader Hns", "Gentleman", "Male", "Hg Boy 1", "Dark Red",
+           "OBJ_EVENT_GFX_GENTLEMAN_HNS", [("ViridianCity_hns", 22, 23, "down")],
+           ("flag", JOHTO_CHAMPION_FLAG),
+           [("NORMAL_GEM", 10), ("EXP_CHARM", 1)],
+           {"not_yet": ["...I'm LARRY. GYM LEADER of MEDALI, in PALDEA. I'm on a business trip. Again.",
+                        "Come back when you're JOHTO's CHAMPION. I'll be here. Working."],
+            "challenge": ["...I'm LARRY. GYM LEADER of MEDALI, in PALDEA. I'm on a business trip. Again.",
+                          "A battle? Fine. Let's get it over with. I won't go easy, though."],
+            "declined": ["Good. I'd rather sit down for a while anyway."],
+            "defeat": ["...You're strong. I'll put that in my report."],
+            "reward": ["My boss said to hand these out. Here."],
+            "after": ["Ordinary is best. Remember that, kid."]}),
+    Battle("RYME", 667, "RYME", "Leader Hns", "Guitarist", "Female", "Hg Girl 1", "Purple",
+           "OBJ_EVENT_GFX_ROCKER_HNS", [("CeladonCity_hns", 36, 22, "down")],
+           ("flag", JOHTO_CHAMPION_FLAG),
+           [("GHOST_GEM", 10), ("DUSK_STONE", 1), ("SPELL_TAG", 1)],
+           {"not_yet": ["Yo! MC RYME, from MONTENEVERA, in the house! CELADON's crowd better be ready!",
+                        "Come back as JOHTO's CHAMPION, and we'll take the stage together!"],
+            "challenge": ["Yo! MC RYME, from MONTENEVERA, in the house! CELADON's crowd better be ready!",
+                          "Step up to the mic! Let's battle, and drop some beats!"],
+            "declined": ["Nah? Then I'll keep the crowd warm for ya!"],
+            "defeat": ["Mic drop! You stole the whole show!"],
+            "reward": ["A star performance deserves some love! Here!"],
+            "after": ["Keep your rhythm, and your POKéMON will follow your beat!"]}),
+    Battle("TULIP", 668, "TULIP", "Leader Hns", "Beauty", "Female", "Hg Girl 1", "Pink",
+           "OBJ_EVENT_GFX_BEAUTY_HNS", [("SaffronCity_hns", 34, 33, "down")],
+           ("flag", JOHTO_CHAMPION_FLAG),
+           [("PSYCHIC_GEM", 10), ("DAWN_STONE", 1), ("PSYCHIC_SEED", 3)],
+           {"not_yet": ["Hello. I'm TULIP, GYM LEADER of ALFORNADA, and a makeup artist. SAFFRON's style "
+                        "is... interesting.", "Come back as JOHTO's CHAMPION. Then we'll battle."],
+            "challenge": ["Hello. I'm TULIP, GYM LEADER of ALFORNADA, and a makeup artist. SAFFRON's style "
+                          "is... interesting.", "Shall we battle? I'll show you how beautiful PSYCHIC "
+                          "POKéMON can be."],
+            "declined": ["Then I'll wait. Beauty is worth waiting for."],
+            "defeat": ["How lovely. You and your POKéMON shine brighter than I do."],
+            "reward": ["Please accept these. You've earned them."],
+            "after": ["True beauty comes from the bond you share with your POKéMON."]}),
+    Battle("GRUSHA", 669, "GRUSHA", "Leader Hns", "Skier M Hns", "Male", "Hg Boy 1", "Light Blue",
+           "OBJ_EVENT_GFX_SKIER_M_HNS", [("CinnabarIsland_hns", 40, 35, "down")],
+           ("flag", JOHTO_CHAMPION_FLAG),
+           [("ICE_GEM", 10), ("ICY_ROCK", 1), ("RAZOR_CLAW", 1)],
+           {"not_yet": ["I'm GRUSHA, GYM LEADER of GLASEADO. This island is way too hot for me.",
+                        "Come back once you're JOHTO's CHAMPION."],
+            "challenge": ["I'm GRUSHA, GYM LEADER of GLASEADO. This island is way too hot for me.",
+                          "...Fine, let's battle. I'll cool you down."],
+            "declined": ["Your loss."],
+            "defeat": ["...You've got real heat. I respect that."],
+            "reward": ["Here. You earned these."],
+            "after": ["Even on a hot island, ice holds its own. So should you."]}),
+]
+
+# The postgame's visitors are added once their sprites are in (DECISIONS.md D41)
 POSTGAME = []
 
 BATTLES = JOHTO + KANTO + POSTGAME
