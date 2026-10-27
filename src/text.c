@@ -80,6 +80,7 @@ static EWRAM_DATA union TextColor sLastTextColor;
 
 EWRAM_DATA const struct FontInfo *gFonts = NULL;
 EWRAM_DATA bool8 gDisableTextPrinters = 0;
+static EWRAM_DATA u32 sAutoContinuePromptFrame = 0; // Crystal Imperium: the frame a prompt last counted
 EWRAM_DATA TextFlags gTextFlags = {0};
 IWRAM_DATA struct TextGlyph gCurGlyph = {0};
 
@@ -1428,8 +1429,11 @@ bool32 TextPrinterWaitWithDownArrow(struct TextPrinter *textPrinter)
                 textPrinter->autoScrollDelay = 0;
                 result = TRUE;
             }
-            else
+            // Frames, not calls: at TEXT SPEED FASTER, RunTextPrinters runs a printer up to 12 times
+            // a frame
+            else if (sAutoContinuePromptFrame != gMain.vblankCounter2)
             {
+                sAutoContinuePromptFrame = gMain.vblankCounter2;
                 textPrinter->autoScrollDelay++;
             }
         }

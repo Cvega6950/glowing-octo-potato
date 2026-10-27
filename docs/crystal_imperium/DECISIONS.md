@@ -1174,7 +1174,8 @@ DexNav shows and that wild encounters draw from:
   - The intro (Poké Balls thrown, Pokémon sent out), battle animations (moves, stat changes,
     status, Poké Balls) and the Pokémon's own animations (sent out, after a knockout) play at
     double speed: `BattleMainCB2` runs a second step of the battle, its sprites and its tasks,
-    without the frame's button presses. Not while the player chooses an action: a Pokémon's own
+    without the frame's button presses (the rest of the frame, its text printers and tasks, still
+    gets them: D40). Not while the player chooses an action: a Pokémon's own
     animation can outlast its switch-in, and the menu (its cursor, the bouncing health box, the
     input handler) keeps the usual speed. Text prints at the TEXT SPEED chosen, and palettes fade
     at their usual speed: a hardware fade counts its end in a one-bit field cleared at VBlank,
@@ -1296,8 +1297,9 @@ DexNav shows and that wild encounters draw from:
     dex; the change list that names the eight moves gave it 5.
   - Each borrows an official move's animation: Fishious Rend, Dark Void, Spectral Thief, Aerial
     Ace, Draco Meteor and Nasty Plot. Dark Void's hits both foes: Dark Hole plays a copy for its
-    target alone, with Dark Void's black holes (`gBattleAnimMove_DarkHole`; the 0.13.0 review found
-    it showed Destiny Bond's white shadows and slid the other foe away in a double battle).
+    target alone, the user's partner too, with Dark Void's black holes (`gBattleAnimMove_DarkHole`;
+    the 0.13.0 reviews found it showed Destiny Bond's white shadows and slid the other foe away in a
+    double battle, then that a partner it was aimed at got no black hole).
   - Imperium hasn't added Draco Barrage and Soul Robbery ("not yet added", its list); Radical Red
     has them, and the user asked for both games' move pools.
   - With them, and "Soupercell Slam" matched to Supercell Slam (Radical Red's spelling), no Radical
@@ -1367,13 +1369,26 @@ DexNav shows and that wild encounters draw from:
     animation's second fade could be refused while its first, slower one still ran, so Ice Shard
     left the foe tinted blue (Shadow Force and Magical Torque left background palettes changed).
   - The animation doesn't wait for a cry to end (Growl 119 frames, now 26; Parting Shot, Disarming
-    Voice): the cry plays on under the next message. Contests keep the wait.
+    Voice): the cry plays on under the next message, with the music kept down until it ends (the
+    animation's end turned it back up at once, under the cry, until the review found it:
+    `Cmd_end` leaves it to the cry's own task). Contests keep the wait.
   - A battle message's prompt goes on after 24 frames, not 49 ("fainted!", "gained Exp. Points!"),
     and the Exp. bar fills as its sound starts (it waited 13 frames).
   - A Pokémon sent out during the battle plays at double speed, as the intro already did (D38):
     the party's balls before a trainer's next Pokémon (47 frames, not 94), the ball (33, not 64)
     and the health box sliding in (12, not 23) (`BtlController_IsSwitchInPlaying` in
     `IsBattleAnimationPlaying`). The Pokémon's own animation was already at double speed.
+- **Fixed by the review** (from D38, with FAST BATTLES on):
+  - The second step took the frame's button presses away from the text printers and tasks too, not
+    only from its own run of the battle: A or B didn't answer the intro's message, which waited for
+    its auto-continue, and QUICK RUN with B (START > OPTION > BATTLE) never ran from a wild battle,
+    since the prompt went on by itself after B was let go. The second step now runs without the
+    presses and gives them back for the rest of the frame (`BattleMainCB2`), so the battle and the
+    text printers each see a press once, as in Game Freak's frame.
+  - A prompt's auto-continue counted the printer's runs, and at TEXT SPEED FASTER the printers run
+    up to 12 times a frame: "fainted!" or "gained Exp. Points!" stayed up 2 frames. It counts
+    frames now (`TextPrinterWaitWithDownArrow`).
+  - `battle_prompts` (new) checks both: it fails on the first 0.13.0 build and passes on this one.
 - **Results** (mGBA, the same turn as D38): from A on Swift to its animation, 3 frames (D38: 15;
   0.12.0: 46); from the end of Swift's HP bar to Charm's animation, 3 frames (D38: 16); the turn,
   from A to the next action menu, 211 frames (D38: 253; 0.12.0: 489). With FAST BATTLES off the
@@ -1398,5 +1413,5 @@ DexNav shows and that wild encounters draw from:
   recorded battles keep Game Freak's timing.
 - Evidence: `battle_turn_flow` (new: the animation within 6 frames of A, the opposing Pokémon's
   within 6 of the HP bar; it needs `within8/16/32`, a new `tools/emurun` command that checks timing
-  to the frame), `battle_anims`, `battle_speed`, the Gym Leaders' and bosses' autobattles,
-  `mega_evolution` and the rest of the play tests.
+  to the frame), `battle_prompts` (new), `battle_anims`, `battle_speed`, the Gym Leaders' and
+  bosses' autobattles, `mega_evolution` and the rest of the play tests.

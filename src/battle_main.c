@@ -1868,8 +1868,9 @@ static void CB2_HandleStartMultiBattle(void)
 // Crystal Imperium (DECISIONS.md D38): with FAST BATTLES on, the battle's intro (Poke Balls thrown,
 // Pokemon sent out), battle animations (moves, stat changes, status conditions, Poke Balls) and a
 // Pokemon's own animation (sent out, after it knocks out a foe) play at double speed: the frame runs
-// a second step of the battle, its sprites and its tasks, without the frame's button presses. Text
-// prints at the usual speed. A palette fade steps once a frame through UpdatePaletteFade, and a
+// a second step of the battle, its sprites and its tasks, without the frame's button presses (the
+// main loop's BattleMainCB1 had them, and the text printers and tasks after the second step get them
+// as usual: a prompt shown meanwhile still answers A and B). Text prints at the usual speed. A palette fade steps once a frame through UpdatePaletteFade, and a
 // battle animation's gets a second step from UpdatePaletteFadeSecondStep (D40), which leaves a
 // hardware fade's finish to VBlank: it counts the finish in a one-bit field, and a second count wraps
 // it back to zero, so the fade, and the animation waiting for it, never ended. Not in link or
@@ -1904,11 +1905,16 @@ void BattleMainCB2(void)
 {
     if (gMain.callback1 == BattleMainCB1 && IsFastBattleOn() && IsBattleAnimationPlaying())
     {
-        AnimateSprites();
-        RunTasks();
+        u16 newKeys = gMain.newKeys;
+        u16 newAndRepeatedKeys = gMain.newAndRepeatedKeys;
+
         gMain.newKeys = 0;
         gMain.newAndRepeatedKeys = 0;
+        AnimateSprites();
+        RunTasks();
         BattleMainCB1();
+        gMain.newKeys = newKeys;
+        gMain.newAndRepeatedKeys = newAndRepeatedKeys;
     }
     AnimateSprites();
     BuildOamBuffer();

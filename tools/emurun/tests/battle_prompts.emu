@@ -1,0 +1,76 @@
+# Crystal Imperium play test: battle messages' prompts with FAST BATTLES on (DECISIONS.md D38, D40).
+# New game, CYNDAQUIL (Lv 5); Youngster Joey (trainer 7) and a wild Pokemon in Route 29's grass:
+# - "You are challenged by..." goes on by itself about 24 frames after it's printed, at TEXT SPEED
+#   FAST and at FASTER (0.13.0's first build: after 2 frames at FASTER, counting the printer's runs);
+# - A goes on at once, during the intro too (it waited for the 24 frames: FAST BATTLES' second step
+#   took the frame's presses from the text printers);
+# - QUICK RUN with B: B at "Wild X appeared! Run? Press B." runs, with FAST BATTLES on or off (where
+#   "Got away safely!" then waits for A); A goes on with the battle.
+# A TextPrinter's state is at +36 (2: a "\p" prompt waits). The wild battle starts as the second
+# walk in the grass begins.
+!new_game()
+!give_mon(155, 5)
+!no_care_packages()
+savestate base.ss
+
+!battle_trainer(7)
+waituntil32 {gBattlerControllerFuncs} {Controller_WaitForString} 600 - intro_message
+within8 *{sFirstTextPrinter}+36 2 300 intro_prompt
+wait 20
+expect8 *{sFirstTextPrinter}+36 2 prompt_still_up_after_20_frames
+within8 *{sFirstTextPrinter}+36 0 10 prompt_goes_on_by_itself
+
+# TEXT SPEED FASTER: the message is printed at once, so the prompt has counted a few frames when
+# the controller's wait is seen
+loadstate base.ss
+!set_text_speed(3)
+!battle_trainer(7)
+waituntil32 {gBattlerControllerFuncs} {Controller_WaitForString} 600 - intro_message_faster
+within8 *{sFirstTextPrinter}+36 2 300 intro_prompt_faster
+wait 10
+expect8 *{sFirstTextPrinter}+36 2 prompt_still_up_after_10_frames_faster
+within8 *{sFirstTextPrinter}+36 0 20 prompt_goes_on_by_itself_faster
+
+loadstate base.ss
+!battle_trainer(7)
+waituntil32 {gBattlerControllerFuncs} {Controller_WaitForString} 600 - intro_message_a
+within8 *{sFirstTextPrinter}+36 2 300 intro_prompt_a
+press A 2
+within8 *{sFirstTextPrinter}+36 0 4 a_goes_on_at_once
+
+loadstate base.ss
+!set_challenge_option("runType", 3)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!walkto(24, 14, soft=True)
+savestate grass.ss
+!walkto(21, 14, soft=True)
+!walkto(25, 14, soft=True)
+within32 {gBattlerControllerFuncs} {Controller_WaitForString} 1500 wild_intro_message
+within8 *{sFirstTextPrinter}+36 2 300 run_press_b
+shot 01_run_press_b.png
+press B 8
+waituntil32 {gMain+4} {CB2_Overworld+1} 600 - ran_with_b
+expect8 {gBattleOutcome} 4 outcome_ran
+
+loadstate grass.ss
+!set_challenge_option("fastBattle", 1)
+!expect_challenge_bit("fastBattle", 1, "fast_battles_off")
+!walkto(21, 14, soft=True)
+!walkto(25, 14, soft=True)
+within32 {gBattlerControllerFuncs} {Controller_WaitForString} 1500 wild_intro_message_fast_battles_off
+within8 *{sFirstTextPrinter}+36 2 300 run_press_b_fast_battles_off
+press B 8
+wait 120
+expect8 {gBattleOutcome} 4 outcome_ran_fast_battles_off
+
+loadstate grass.ss
+!walkto(21, 14, soft=True)
+!walkto(25, 14, soft=True)
+within32 {gBattlerControllerFuncs} {Controller_WaitForString} 1500 wild_intro_message_a
+within8 *{sFirstTextPrinter}+36 2 300 run_press_b_a
+press A 8
+wait 300
+expect8 {gBattleOutcome} 0 a_doesnt_run
+expect32 {gMain+4} {BattleMainCB2+1} still_in_the_battle
+shot 02_battle_goes_on.png

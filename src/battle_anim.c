@@ -922,7 +922,18 @@ static void Cmd_end(void)
     {
         assertf(!FuncIsActiveTask(Task_UpdateMonBg), "move %d still has Task_UpdateMonBg active at the end", gAnimMoveIndex);
 
-        m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 256);
+        // Crystal Imperium (DECISIONS.md D40): with FAST BATTLES on, the animation doesn't wait for its cry
+        // (Growl, Roar, Parting Shot, Alluring Voice's echo), which plays on: the music stays down until
+        // the cry ends, as when the animation waited, and the cry's task turns it back up
+        if (!IsContest() && IsFastBattleOn() && IsCryPlaying())
+        {
+            if (!FuncIsActiveTask(Task_DuckBGMForPokemonCry)) // an echo played with PlayCry_DuckNoRestore
+                CreateTask(Task_DuckBGMForPokemonCry, 80);
+        }
+        else
+        {
+            m4aMPlayVolumeControl(&gMPlayInfo_BGM, TRACKS_ALL, 256);
+        }
         if (!IsContest())
         {
             InitPrioritiesForVisibleBattlers();

@@ -160,7 +160,8 @@ free badge. The autopilot cannot drive double battles yet.
   (`battle_healthbox_names`).
 - `pokebits8/16/32 ADDR MASK VALUE` writes a bitfield and keeps the bits around it;
   `!set_challenge_option(field, value)` and `!set_text_speed(choice)` set an option in the save
-  that way, without the menu (e.g. TEXT SPEED FASTER, QUICK RUN with B, FAST BATTLES off).
+  that way, without the menu (`battle_prompts`: TEXT SPEED FASTER, QUICK RUN with B, FAST
+  BATTLES off).
 - A command emurun doesn't know fails the test (it was skipped with a warning), and `emu.py` runs
   `make` for the backend in use before each test: a driver built before a new command, such as
   `within8`, let a test pass without its check.

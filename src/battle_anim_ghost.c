@@ -850,9 +850,9 @@ void AnimTask_DestinyBondWhiteShadow(u8 taskId)
         for (battler = 0; battler < MAX_BATTLERS_COUNT; battler++)
         {
             if (battler != gBattleAnimAttacker
-             && battler != BATTLE_PARTNER(gBattleAnimAttacker)
-             && IsBattlerSpriteVisible(battler)
-             && (gAnimMoveIndex != MOVE_DARK_HOLE || battler == gBattleAnimTarget)) // Crystal Imperium: one target
+             && (gAnimMoveIndex == MOVE_DARK_HOLE ? battler == gBattleAnimTarget // Crystal Imperium: its one target, an ally too
+                                                  : battler != BATTLE_PARTNER(gBattleAnimAttacker))
+             && IsBattlerSpriteVisible(battler))
             {
                 if (gAnimMoveIndex == MOVE_DARK_VOID
                  || gAnimMoveIndex == MOVE_POLTERGEIST
