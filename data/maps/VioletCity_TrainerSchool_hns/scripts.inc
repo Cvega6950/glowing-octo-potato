@@ -124,17 +124,19 @@ VioletCity_TrainerSchool_Text_NoMoreToTeach:
 	.string "If you want more, talk to\n"
 	.string "pupils!$"
 
+@ Crystal Imperium: the trade evolutions take a Linking Cord (DECISIONS.md D44)
 VioletCity_TrainerSchool_Text_Youngster1:
 	.string "POKéMON previously thought to\n"
 	.string "only evolve through trade can\p"
-	.string "evolve through leveling.\n"
-	.string "MACHOKE and GRAVELER evolve\p"
-	.string "at LVL 38, while KADABRA and\n"
-	.string "HAUNTER evolve at LVL 42.\p"
+	.string "evolve with a LINKING CORD.\n"
+	.string "MACHOKE, GRAVELER, KADABRA\p"
+	.string "and HAUNTER all evolve that way.\p"
 	.string "Some items, like the METAL\n"
 	.string "COAT, have also been found to\p"
 	.string "evolve certain POKéMON\n"
-	.string "while holding and leveling up.$"
+	.string "when used, like a stone.\p"
+	.string "GOLDENROD DEPT. STORE sells\n"
+	.string "them all on its second floor!$"
 
 VioletCity_TrainerSchool_Text_GameboyKid1:
 	.string "Notable POKéMON available in an\n"

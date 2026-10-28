@@ -43,6 +43,7 @@ GoldenrodDeptStore_Text_4FBugCatcher:
     .string "IRON adds to your POKéMON's\n"
     .string "DEFENSE.$"
 
+@ Crystal Imperium: the trade evolutions take a Linking Cord (DECISIONS.md D44)
 GoldenrodDeptStore_Text_4FGameboyKid:
     .string "There were rumours that some\n"
     .string "POKéMON evolve only by\l"
@@ -54,8 +55,8 @@ GoldenrodDeptStore_Text_4FGameboyKid:
     .string "POKéMON:\l"
     .string "MACHOKE, KADABRA, HAUNTER and,\l"
     .string "um, GRAVELER,\l"
-    .string "but they all evolve through\l"
-    .string "level up.$"
+    .string "but they all evolve with a\l"
+    .string "LINKING CORD.$"
 
 GoldenrodDeptStore4_EventScript_Clerk::
 	lock

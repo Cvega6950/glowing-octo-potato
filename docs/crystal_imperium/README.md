@@ -92,6 +92,13 @@ From the first step of a new game:
   three (Ice Beam, Thunderbolt, Flamethrower), up to all 198 with eight. The Goldenrod Dept.
   Store 5F sells the same. With the first badge, the Violet City Mart's clerk also gives four TMs
   for free, once. The lists leave out the TMs you already have, so only new ones are there.
+- **Emerald Imperium's evolutions** (that is, Radical Red's): trade evolutions use a Linking Cord
+  (Radical Red's Link Cable), regional forms come by time of day or an item anywhere (a Shiny
+  Stone makes Alolan Raichu, Quilava at 36 at night becomes Hisuian Typhlosion), friendship and
+  special methods became levels or stones (Munchlax at 30, Kingambit at 50, Gliscor with a Dusk
+  Stone), and many Pokémon evolve earlier (starters at 16 and 36, Pidgey and Rattata at 16).
+  The Goldenrod Dept. Store 2F sells Imperium's fifteen evolution items for ¥500 each: every
+  stone, the Linking Cord, Prism Scale, King's Rock, Metal Coat and Up-Grade.
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
 - **A starting care package** from Prof. Elm as soon as you have a Pokémon, as in Emerald
@@ -154,7 +161,7 @@ your house), except Auto Run, which is in the Options menu and the L menu.
 
 | # | Requirement | Status | Evidence |
 |---|---|---|---|
-| 1 | Gen 1–9 Pokémon, abilities, moves, evolution methods, sprites, wild encounters | **Done** | Engine data for all 1,025 species, with Emerald Imperium's abilities, level-up moves and Egg Moves (D35; `validate.py`, `summary_nature`). Wild Variety on every route (`wild_variety`). The DexNav list of any Pokémon (`dexnav_any`). Hidden slots for the 258 families that had no source. Care packages hold the missing evolution items (`care_packages`). Every trade evolution has a non-trade method. |
+| 1 | Gen 1–9 Pokémon, abilities, moves, evolution methods, sprites, wild encounters | **Done** | Engine data for all 1,025 species, with Emerald Imperium's abilities, level-up moves and Egg Moves (D35; `validate.py`, `summary_nature`). Wild Variety on every route (`wild_variety`). The DexNav list of any Pokémon (`dexnav_any`). Hidden slots for the 258 families that had no source. Emerald Imperium's evolution methods, Radical Red's (D44; `imperium_evolutions`), with its evolution items for ¥500 in Goldenrod. |
 | 2 | DexNav: route lists, species search, hidden Pokémon hunting | **Done** | `dexnav`, `dexnav_any`, `dexnav_hidden`; the lists match the wild Pokémon you meet (`dexnav_wild_match`, `dexnav_water_match`, `dexnav_randomizer`); caves, Dark Cave after Flash and water (`dexnav_caves`, `dexnav_surf`) |
 | 3 | Infinite Rare Candy in normal play, regardless of Nuzlocke | **Done** | `qol_items` (no Nuzlocke, before the first Gym); several at a time, no jingle or stat pages (`rare_candy`) |
 | 4 | Toggleable Auto Run in Options | **Done** | `autorun` (walk/run distances with it off and on) |

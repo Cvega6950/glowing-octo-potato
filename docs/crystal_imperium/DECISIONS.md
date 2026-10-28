@@ -265,9 +265,10 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 - The evolution items found nowhere else in HnS stay where they were: Linking Cord, Upgrade,
   Sachet, Whipped Dream, Prism Scale, Sun Stone, Sweet/Tart/Syrupy Apple, the Alcremie Sweets,
   Cracked/Chipped Pot, both Teacups, Leader's Crest, both Armors, Metal Alloy, 999 Gimmighoul
-  Coins and, for the Champion, both Scrolls.
+  Coins and, for the Champion, both Scrolls. (Since 0.15.0 the evolutions are Emerald Imperium's,
+  and the items none of them uses are out of the packages: D44.)
 - All 30 trade evolutions also have a non-trade method in the data, so no evolution needs a
-  link cable.
+  link cable. (Since 0.15.0 they take a Linking Cord, Radical Red's Link Cable: D44.)
 - **Emerald Imperium's care packages (0.12.0).** The user found the packages "lackluster" and
   asked for them to match Emerald Imperium. Imperium's care packages are Radical Red's: its
   cheat-code doc says "SO2Toxic and Woyaopp (Rare Candies and Item Care Packages from Radical Red)
@@ -1589,3 +1590,84 @@ DexNav shows and that wild encounters draw from:
   0.14.2 and on a build drawing the list twice, 10 and 12 frames; 197 at the Indigo Plateau too),
   `tm_shop` (Goldenrod 5F: 70, 114, 172, 190, 197, then 196 listed as TMs are bought and badges
   earned).
+
+## D44. Emerald Imperium's evolutions
+
+- The user asked, about the list of special evolutions: "Can you make all of these evolutions match
+  what is needed from Pokemon emerald imperium". Asked about the details, they chose: every
+  evolution, ordinary levels included; only Imperium's ways (the ways that worked before go, unless
+  that leaves a form impossible to get); and Imperium's evolution shop.
+- **Source.** Imperium's evolutions are Radical Red's: its developer, asked whether there are trade
+  evolutions, answered that most evolutions are the same as RR, so you can use RR Dex
+  ([PokéCommunity](https://www.pokecommunity.com/threads/new-release-pokemon-emerald-imperium.534582/page-4)),
+  and its changelogs fix evolutions to "match RR data" (Rattata, Swinub and Piloswine, Pineco). So
+  the data is the Radical Red dex's (the `data.js` of D35, SHA-256 `04c9dc94…5596df9`): each
+  species' evolutions, `[method, parameter, target, extra]`, with the methods' meanings in the
+  file's own `evolutions` table. Where Radical Red's Evolution Changes v4.1 document and its data
+  differ, the data wins, as in Imperium: Bayleef evolves at 32 (the document says every starter
+  evolves at 16 and 36), and Koffing becomes Galarian Weezing at 35 at night (the document says
+  40). Imperium's changelogs add one fix on top: White-Striped Basculin evolves at 44 like the
+  other two stripes, its form by gender (1.2). Its other evolution fixes (Dusk Lycanroc, Dipplin,
+  Roaming Gimmighoul, Tandemaus without a battle) are already Radical Red's data.
+- **How.** `tools/crystal_imperium/imperium_evolutions.py` reads the dex data and the species
+  table as compiled (`src/pokemon.c` through the preprocessor, as `imperium_species.py` does) and
+  writes `src/data/pokemon/species_info/imperium_evolutions.h`: one line for each of the 231
+  species whose evolutions change, `[SPECIES_X].evolutions = EVOLUTION(...)` at the end of
+  `gSpeciesInfo`, with what it replaces in a comment (`P_IMPERIUM_EVOLUTIONS`). `--report` prints
+  every change. ROM: 1.5 KB smaller (89.6 KB free).
+  - Radical Red's Link Cable is the Linking Cord. Its "day" is "not at night" here (6:00–18:59,
+    `IF_NOT_TIME TIME_NIGHT`, so every hour has one form), its night 19:00–5:59 and its dusk the
+    evening (18:00–18:59, Dusk Lycanroc). The engine takes the first route that applies, so
+    Sylveon's comes before Espeon's and Umbreon's, and Dusk Lycanroc's before Midday's.
+  - Radical Red lists some forms as several entries under one name (three Burmy, two Shellos, four
+    Deerling and four Pumpkaboo): they go to this game's forms in order (East Shellos evolves at 32,
+    West at 30). A form it doesn't list (the Vivillon patterns, Flabébé's colours, White-Striped
+    Basculin, Antique Sinistea, Artisan Poltchageist) takes its base form's methods and evolves
+    into its own form.
+  - **What Heart & Soul keeps**, because no Radical Red method reaches the form: the Alcremie
+    flavours (the stones for the other creams and the spins with Sweets, besides Radical Red's
+    Shiny Stone for Vanilla Cream), Bloodmoon Ursaluna (a Peat Block at night in the Mt. Moon area
+    or in Sinjoh; Ursaring becomes Ursaluna at 48), Three-Segment Dudunsparce and the Family of
+    Three (1 in 100 by personality value, on each of Radical Red's routes) and Own Tempo Rockruff's
+    Dusk Lycanroc. Goodra keeps fog with the rain. Porygon also evolves with an Up-Grade: Imperium's
+    shop sells one and no other evolution uses it.
+  - What goes: every trade, held-item-trade and "trade for" route; levels that replaced trades
+    (Kadabra 42...); place routes (Route 10, the Power Plant, the forests and ice caves, Shoal
+    Cave); regions (Alolan, Hisuian and Galarian forms now come by time of day or an item, so every
+    one, Galarian Weezing and Mr. Mime included, can be made anywhere); Beauty, recoil, critical
+    hits, steps, coins, move-use counts, Leader's Crests, Scrolls, script triggers; and Heart &
+    Soul's extra items (Dragon Scale, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper
+    Cloth, Oval Stone, Razor Claw and Fang, Deep Sea Tooth and Scale, Sachet, Whipped Dream, the
+    apples, pots, teacups and armours, Metal Alloy, Galarica Cuff and Wreath, Black Augurite).
+- **Imperium's shop.** Its Verdanturf Town Mart sells its fifteen evolution items for 500 each
+  (Fire, Thunder, Leaf, Water, Sun and Moon Stone, Prism Scale, Ice Stone, Link Cable, Dusk, Dawn
+  and Shiny Stone, King's Rock, Metal Coat, Upgrade: its item document, "Poké Marts items").
+  Here the Goldenrod Dept. Store 2F clerk, open from the second badge like Verdanturf, sells the
+  same fifteen after the balls, and the lines at the end of `gItemsInfo` (`src/data/items.h`)
+  make them all 500, in every shop.
+- **Items no evolution uses.** The care packages no longer give them (the apples, Sachet, Whipped
+  Dream, Dragon Scale, Oval Stone, the pots and teacups, Protector, Electirizer, Magmarizer,
+  Leader's Crest, the armours, Dubious Disc, Reaper Cloth, Metal Alloy, the Galarica items, the 999
+  Gimmighoul Coins, Black Augurite, the Scrolls); Razor Claw and Fang, King's Rock, the Deep Sea
+  items, the Sweets and the Peat Block stay, as held items or for the forms above. The Mahogany
+  shop stops selling them. Four side-battle rewards that were evolution items for the trainer's
+  own Pokémon now give that Pokémon's new one: Fantina's Reaper Cloth and Volkner's Electirizer
+  become Linking Cords (Dusclops, Electivire), Roark's Protector a King's Rock (Kleavor), Katy's
+  three apples a Leaf Stone and a Sun Stone (Flapple, Appletun). Item balls on the maps are
+  Heart & Soul's and stay; their items sell.
+- Two people who said the trade evolutions happen by level (Violet City's Trainer School, the
+  Goldenrod Dept. Store 4F) name the Linking Cord now, and the school's sends the player to the
+  2F shop. Eggs walk the evolutions back (`GetEggSpecies`, `src/daycare.c`): only two hatch
+  something else, Basculegion's (Red-Striped Basculin, the first species that evolves into it)
+  and Dusk Lycanroc's (an ordinary Rockruff, as in the official games).
+- **The Milcery spin, fixed.** `CanTriggerSpinEvolution` (`src/field_player_avatar.c`) tested
+  `gSpecialVar_0x8000 != EVO_NONE`, but a short clockwise spin, `SPIN_CW_SHORT`, is 0 too, so it
+  never evolved anything: no Vanilla or Matcha Cream with a Sweet. Now a judged spin is tracked
+  apart. A spin that evolves nothing starts the next from 0 (its time used to add to the next
+  one's), and the frame counter, 11 bits wide, stops at 2047 (34 s) instead of wrapping to 0.
+- Evidence: `imperium_evolutions` (a Linking Cord evolves Kadabra, a Shiny Stone makes Alolan
+  Raichu in Johto, a Rare Candy above the cap evolves a level-30 Munchlax, a level-45 Kadabra
+  doesn't evolve; by day, LEFT UP RIGHT DOWN in place turns Milcery holding a Strawberry Sweet into
+  Alcremie; the Goldenrod 2F list and the prices), `care_packages` (no Dubious Disc, Electirizer,
+  Sweet Apple, Gimmighoul Coin or Scroll), `side_battles`, `validate.py` (the overrides in the
+  evolution families) and the whole suite.

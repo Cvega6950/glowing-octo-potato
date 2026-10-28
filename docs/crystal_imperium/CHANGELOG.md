@@ -1,5 +1,70 @@
 # Crystal Imperium changelog
 
+## 0.15.0-experimental (2026-10-28)
+
+### Emerald Imperium's evolutions (DECISIONS.md D44)
+Pokémon evolve the way they do in Emerald Imperium, whose evolutions are Radical Red's: 231
+species change. The ways Heart & Soul added on top are gone, except where nothing else gives a
+form.
+- **Trade evolutions take a Linking Cord** (Radical Red's Link Cable), with or without the item
+  the trade needed: Kadabra, Machoke, Graveler, Haunter, Rhydon, Electabuzz, Magmar, Porygon,
+  Dusclops, Boldore, Gurdurr, Karrablast, Shelmet, Phantump and Pumpkaboo. They no longer evolve
+  by level (Kadabra did at 42). Others take another item: a Metal Coat for Onix and Scyther, a
+  King's Rock for Slowpoke, Poliwhirl and Scyther's Kleavor, a Prism Scale for Seadra and Feebas,
+  a Water or Sun Stone for Clamperl (Huntail, Gorebyss), a Dusk Stone for Porygon2, a Shiny Stone
+  for Spritzee and Swirlix. Porygon still evolves with an Up-Grade too.
+- **Regional forms, anywhere**, by time of day or by an item: a Shiny Stone makes Alolan Raichu,
+  a Sun Stone Alolan Exeggutor, an Ice Stone Galarian Mr. Mime and Hisuian Avalugg, a Leaf Stone
+  Hisuian Lilligant, a Metal Coat Hisuian Sliggoo. At night Cubone becomes Alolan Marowak (28),
+  Koffing Galarian Weezing (35), Quilava, Dewott and Rufflet their Hisuian forms (36); by day
+  Dartrix becomes Hisuian Decidueye. Galarian Slowpoke becomes Galarian Slowbro at 37 and
+  Galarian Slowking with a King's Rock. "Day" is any time but night (6:00 to 18:59).
+- **Friendship, places and special methods** became levels or items: Munchlax at 30, Riolu at 30
+  by day, Alolan Meowth at 28, Crabrawler at 30; Magnezone and Vikavolt by Thunder Stone,
+  Probopass by Metal Coat, Leafeon and Glaceon by their stones only; Gliscor, Weavile and
+  Porygon-Z with a Dusk Stone, Chansey from Happiny with a Shiny Stone. Kingambit at 50,
+  Archaludon at 50, Sneasler at 47, Gholdengo at 45 (both Gimmighoul), Wyrdeer at 44, Hydrapple
+  at 44, Overqwil at 36, Runerigus at 35, Pawmot at 32, Sirfetch'd at 30, Dipplin at 30,
+  Brambleghast at 27, Rabsca at 16. Annihilape at 45 or knowing Shadow Punch. Urshifu: a Dusk
+  Stone (Single Strike) or a Water Stone (Rapid Strike); Armarouge and Ceruledge: a Sun or Moon
+  Stone; Polteageist: a Moon Stone. Basculegion from any Basculin at 44, its form by gender.
+  Meltan becomes Melmetal with a Metal Coat.
+- Pokémon that evolve knowing a move also evolve at a level: Lickilicky 35, Mr. Mime 35, Ambipom
+  and Sudowoodo 34, Grapploct 36, Tangrowth, Yanmega, Mamoswine, Farigiraf, Tsareena and
+  Dudunsparce 45. Mantine at 30 too, and Ursaluna at 48. Sylveon: friendship with a Fairy-type
+  move (a Shiny Stone no longer).
+- **Levels:** starters at 16 and 36 (Bayleef at 32), most early two-stage Pokémon at 16 (Pidgey,
+  Rattata, Hoothoot, Ledyba, Spinarak, Hoppip, Zigzagoon...), and many earlier than before
+  (Ponyta 28, Mienfoo 28, Pawniard 36, Deino 44 and Zweilous 59, Noibat 36). A few later: Grimer
+  40, Ivysaur, Croconaw, Grotle and the Gen 7 and 8 starters 36, Cosmoem 64.
+- **Kept from Heart & Soul**, for the forms nothing else reaches: the Alcremie flavours (stones
+  and spins holding a Sweet; Vanilla Cream also with a Shiny Stone), Bloodmoon Ursaluna (a Peat
+  Block at night in the Mt. Moon area or in Sinjoh), Three-Segment Dudunsparce and the Family of
+  Three (1 in 100), and Own Tempo Rockruff's Dusk Lycanroc. Goodra also evolves in fog.
+
+### Imperium's evolution shop
+- The Goldenrod Dept. Store 2F clerk sells Emerald Imperium's fifteen evolution items for ¥500
+  each, after the balls: the Fire, Thunder, Leaf, Water, Sun, Moon, Ice, Dusk, Dawn and Shiny
+  Stones, the Prism Scale, the Linking Cord, the King's Rock, the Metal Coat and the Up-Grade.
+  They cost ¥500 in every shop.
+- Items no evolution uses any more leave the care packages and the Mahogany shop (the Dragon
+  Scale, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Oval Stone, Sachet,
+  Whipped Dream, the apples, pots, teacups and armours, Metal Alloy, the Galarica items, Black
+  Augurite, the Gimmighoul Coins, the Scrolls). Side battles that gave one give the trainer's
+  Pokémon's new item: Fantina and Volkner a Linking Cord, Roark a King's Rock, Katy a Leaf Stone
+  and a Sun Stone.
+
+### Fixes
+- Milcery never evolved after a short clockwise spin (the engine read it as no spin at all), so
+  a Sweet gave no Vanilla or Matcha Cream that way. A spin that evolves nothing now starts the
+  next one from zero, and a very long one no longer counts from zero again after 34 seconds.
+
+### Tools
+- `tools/crystal_imperium/imperium_evolutions.py` writes the evolutions from the Radical Red dex
+  data (`--report` lists every change, `--check` that the header is up to date); `validate.py`
+  reads them.
+- `tools/emurun`: `party_cursor`, `expect_bag_lacks`; new play test `imperium_evolutions`.
+
 ## 0.14.3-experimental (2026-10-28)
 
 ### No pause after buying a TM (DECISIONS.md D43)
