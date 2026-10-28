@@ -160,7 +160,9 @@ static void BuyMenuAddScrollIndicatorArrows(void);
 static void Task_BuyMenu(u8 taskId);
 static void BuyMenuBuildListMenuTemplate(void);
 static void BuyMenuFillListMenuItems(void);
-static bool32 BuyMenuIsOwnedTM(u16 item);
+static void BuyMenuSetListMenuTemplate(void);
+static bool32 BuyMenuIsReusableTM(u16 item);
+static void BuyMenuFindOwnedTMs(u32 *owned);
 static void BuyMenuInitBgs(void);
 static void BuyMenuInitWindows(void);
 static void BuyMenuDecompressBgGraphics(void);
@@ -181,7 +183,7 @@ static void ExitBuyMenu(u8 taskId);
 static void Task_ExitBuyMenu(u8 taskId);
 static void BuyMenuTryMakePurchase(u8 taskId);
 static void BuyMenuReturnToItemList(u8 taskId);
-static void BuyMenuRemoveBoughtTM(u8 taskId);
+static bool32 BuyMenuRemoveBoughtTM(u8 taskId);
 static void Task_BuyHowManyDialogueInit(u8 taskId);
 static void BuyMenuConfirmPurchase(u8 taskId);
 static void BuyMenuPrintItemQuantityAndPrice(u8 taskId);
@@ -1196,13 +1198,17 @@ static void BuyMenuBuildListMenuTemplate(void)
 // at once (BuyMenuRemoveBoughtTM)
 static void BuyMenuFillListMenuItems(void)
 {
+    u32 owned[(ITEMS_COUNT + 31) / 32];
     u16 i, count = 0;
 
+    BuyMenuFindOwnedTMs(owned);
     for (i = 0; i < sMartInfo.itemCount; i++)
     {
-        if (BuyMenuIsOwnedTM(sMartInfo.itemList[i]))
+        u16 item = sMartInfo.itemList[i];
+
+        if (BuyMenuIsReusableTM(item) && item < ITEMS_COUNT && (owned[item / 32] & (1u << (item % 32))))
             continue;
-        BuyMenuSetListEntry(&sListMenuItems[count], sMartInfo.itemList[i], sItemNames[count]);
+        BuyMenuSetListEntry(&sListMenuItems[count], item, sItemNames[count]);
         count++;
     }
     sMartInfo.listCount = count;
@@ -1210,10 +1216,14 @@ static void BuyMenuFillListMenuItems(void)
     StringCopy(sItemNames[count], gText_Cancel2);
     sListMenuItems[count].name = sItemNames[count];
     sListMenuItems[count].id = LIST_CANCEL;
+    BuyMenuSetListMenuTemplate();
+}
 
+static void BuyMenuSetListMenuTemplate(void)
+{
     gMultiuseListMenuTemplate = sShopBuyMenuListTemplate;
     gMultiuseListMenuTemplate.items = sListMenuItems;
-    gMultiuseListMenuTemplate.totalItems = count + 1;
+    gMultiuseListMenuTemplate.totalItems = sMartInfo.listCount + 1;
     if (gMultiuseListMenuTemplate.totalItems > MAX_ITEMS_SHOWN)
         gMultiuseListMenuTemplate.maxShowed = MAX_ITEMS_SHOWN;
     else
@@ -1222,15 +1232,35 @@ static void BuyMenuFillListMenuItems(void)
     sShopData->itemsShowed = gMultiuseListMenuTemplate.maxShowed;
 }
 
-// Crystal Imperium: a TM the player has, in the bag or the PC, while TMs are reusable (Heart & Soul's
-// INFINITE TMS, on by default), so there is nothing to buy. With INFINITE TMS off, teaching uses a
-// TM up and the list keeps the TMs the player has, to buy more.
-static bool32 BuyMenuIsOwnedTM(u16 item)
+// Crystal Imperium: a TM on sale in a normal mart while TMs are reusable (Heart & Soul's INFINITE
+// TMS, on by default): once the player has it, there is nothing to buy. With INFINITE TMS off,
+// teaching uses a TM up and the list keeps the TMs the player has, to buy more.
+static bool32 BuyMenuIsReusableTM(u16 item)
 {
-    return sMartInfo.martType == MART_TYPE_NORMAL
-        && GetItemPocket(item) == POCKET_TM_HM
-        && GetItemImportance(item)
-        && (CheckBagHasItem(item, 1) || CheckPCHasItem(item, 1));
+    return sMartInfo.martType == MART_TYPE_NORMAL && GetItemPocket(item) == POCKET_TM_HM && GetItemImportance(item);
+}
+
+// Crystal Imperium: one bit per item for the machines in the TM case and the items in the PC, from
+// one pass over each (a CheckBagHasItem for each TM on sale held the game up 13 frames with 198)
+static void BuyMenuFindOwnedTMs(u32 *owned)
+{
+    u32 i;
+
+    memset(owned, 0, sizeof(u32) * ((ITEMS_COUNT + 31) / 32));
+    for (i = 0; i < gBagPockets[POCKET_TM_HM].capacity; i++)
+    {
+        struct ItemSlot slot = GetBagItemIdAndQuantity(POCKET_TM_HM, i);
+
+        if (slot.itemId != ITEM_NONE && slot.itemId < ITEMS_COUNT && slot.quantity != 0)
+            owned[slot.itemId / 32] |= 1u << (slot.itemId % 32);
+    }
+    for (i = 0; i < PC_ITEMS_COUNT; i++)
+    {
+        u16 itemId = gSaveBlock1Ptr->pcItems[i].itemId;
+
+        if (itemId != ITEM_NONE && itemId < ITEMS_COUNT && gSaveBlock1Ptr->pcItems[i].quantity != 0)
+            owned[itemId / 32] |= 1u << (itemId % 32);
+    }
 }
 
 static void BuyMenuSetListEntry(struct ListMenuItem *menuItem, enum Item item, u8 *name)
@@ -2135,8 +2165,8 @@ static void BuyMenuReturnToItemList(u8 taskId)
     s16 *data = gTasks[taskId].data;
 
     ClearDialogWindowAndFrameToTransparent(WIN_MESSAGE, FALSE);
-    BuyMenuRemoveBoughtTM(taskId);
-    RedrawListMenu(tListTaskId);
+    if (!BuyMenuRemoveBoughtTM(taskId)) // Crystal Imperium: a list made again is drawn already
+        RedrawListMenu(tListTaskId);
     BuyMenuPrintCursor(tListTaskId, COLORID_ITEM_LIST);
     PutWindowTilemap(WIN_ITEM_LIST);
     PutWindowTilemap(WIN_ITEM_DESCRIPTION);
@@ -2145,19 +2175,27 @@ static void BuyMenuReturnToItemList(u8 taskId)
     gTasks[taskId].func = Task_BuyMenu;
 }
 
-// Crystal Imperium: a TM just bought leaves the list at once (D43). The cursor stays on its row,
-// which now holds the next item, the list's end permitting.
-static void BuyMenuRemoveBoughtTM(u8 taskId)
+// Crystal Imperium: a TM just bought leaves the list at once (D43). Nothing else has changed, so
+// only its entry goes; each entry keeps its own name buffer, so the ones after it (CANCEL too)
+// move up with theirs. The cursor stays on its row, which now holds the next item, the list's end
+// permitting. Returns whether the list menu was made again.
+static bool32 BuyMenuRemoveBoughtTM(u8 taskId)
 {
     s16 *data = gTasks[taskId].data;
-    u16 scrollOffset, selectedRow, row;
+    u16 i, scrollOffset, selectedRow, row;
 
-    if (!BuyMenuIsOwnedTM(tItemId))
-        return;
+    if (!BuyMenuIsReusableTM(tItemId) || !(CheckBagHasItem(tItemId, 1) || CheckPCHasItem(tItemId, 1)))
+        return FALSE;
+    for (i = 0; i < sMartInfo.listCount && sListMenuItems[i].id != tItemId; i++)
+        ;
+    if (i == sMartInfo.listCount)
+        return FALSE;
 
     DestroyListMenuTask(tListTaskId, &scrollOffset, &selectedRow);
+    memmove(&sListMenuItems[i], &sListMenuItems[i + 1], (sMartInfo.listCount - i) * sizeof(*sListMenuItems));
+    sMartInfo.listCount--;
+    BuyMenuSetListMenuTemplate();
     row = scrollOffset + selectedRow;
-    BuyMenuFillListMenuItems();
     if (row >= gMultiuseListMenuTemplate.totalItems)
         row = gMultiuseListMenuTemplate.totalItems - 1;
     if (scrollOffset + gMultiuseListMenuTemplate.maxShowed > gMultiuseListMenuTemplate.totalItems)
@@ -2165,6 +2203,7 @@ static void BuyMenuRemoveBoughtTM(u8 taskId)
     sShopData->scrollOffset = scrollOffset;
     sShopData->selectedRow = row - scrollOffset;
     tListTaskId = ListMenuInit(&gMultiuseListMenuTemplate, sShopData->scrollOffset, sShopData->selectedRow);
+    return TRUE;
 }
 
 static void BuyMenuPrintItemQuantityAndPrice(u8 taskId)

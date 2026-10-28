@@ -1564,16 +1564,25 @@ DexNav shows and that wild encounters draw from:
   ever said "That item is sold out" for it. With INFINITE TMS off, teaching uses a TM up, so the
   list keeps every TM and more of one can be bought, as before.
 - **How.** `src/shop.c`: `BuyMenuFillListMenuItems` builds the buy list without the TMs the player
-  has (`BuyMenuIsOwnedTM`: in a normal mart, a TM that is an important item and is in the bag or
-  the PC); `sMartInfo.listCount` counts what it lists, and the scroll arrows follow it. After a
-  purchase, `BuyMenuRemoveBoughtTM` rebuilds the list menu (`DestroyListMenuTask`, then
-  `ListMenuInit` at the same row, the scroll offset brought within the shorter list). Kurt's,
-  the decoration and the Battle Point shops are unchanged, and an important item that isn't a TM
+  has (`BuyMenuIsReusableTM`: in a normal mart, a TM that is an important item; `BuyMenuFindOwnedTMs`
+  marks what the TM case and the PC hold, in one pass over each). `sMartInfo.listCount` counts
+  what it lists, and the scroll arrows follow it. After a purchase, `BuyMenuRemoveBoughtTM` takes
+  out only the bought TM's entry and makes the list menu again (`DestroyListMenuTask`, then
+  `ListMenuInit` at the same row, the scroll offset brought within the shorter list). Kurt's, the
+  decoration and the Battle Point shops are unchanged, and an important item that isn't a TM
   still says SOLD OUT.
+- **No pause (0.14.3).** 0.14.2 asked `CheckBagHasItem` and `CheckPCHasItem` about every TM on sale,
+  each going through all 208 slots of the TM case for a TM the player doesn't have, and did it
+  all again after each purchase. With eight badges and few TMs, "Here you go! Thank you." stayed
+  on screen 13 frames longer after A (emurun's profiler: 12.7 frames in those checks, 0.5 in
+  0.14.3), and the black screen before the list was as much longer. The review of 0.14.2 found it.
 - Evidence: `tm_shop_owned` (Cherrygrove with every TM but ten, one of the ten in the PC: nine
-  listed; the first, the last and a middle one bought, with the list, the scroll offset and the
-  cursor checked after each; BUY again; with every TM, CANCEL alone and its description; with
-  INFINITE TMS off, all 71 listed and a second Flip Turn bought), `tm_clerk` (Violet's four gift
-  TMs left out, 111 of the 115; Flip Turn bought, 110), `tm_clerks` (Focus Punch bought in
-  Pewter: 197 there and at the Indigo Plateau), `tm_shop` (Goldenrod 5F: 70, 114, 172, 190, 197,
-  then 196 listed as TMs are bought and badges earned).
+  listed; the last bought twice, first with the list still longer than the window (it scrolls
+  back one row, the arrows stay), then once it fits (back to the top, no arrows); then the first
+  and a middle one, with the list, the scroll offset and the cursor checked after each; BUY
+  again; with every TM, CANCEL alone and its description (screenshot); with INFINITE TMS off, all
+  71 listed and a second Flip Turn bought), `tm_clerk` (Violet's four gift TMs left out, 111 of
+  the 115; Flip Turn bought, 110), `tm_clerks` (Focus Punch bought in Pewter: the list of 197 back
+  within 3 frames of A, 0 frames in 0.14.3, the check failing on 0.14.2; 197 at the Indigo
+  Plateau too), `tm_shop` (Goldenrod 5F: 70, 114, 172, 190, 197, then 196 listed as TMs are bought
+  and badges earned).

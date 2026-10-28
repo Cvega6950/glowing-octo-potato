@@ -1,5 +1,18 @@
 # Crystal Imperium changelog
 
+## 0.14.3-experimental (2026-10-28)
+
+### No pause after buying a TM (DECISIONS.md D43)
+- 0.14.2 checked every TM on sale against the whole TM case again after each purchase: with eight
+  badges and few TMs, "Here you go! Thank you." stayed on screen about 13 frames (a fifth of a
+  second) longer, and the list took as long to open. Now the bought TM alone leaves the list,
+  and opening it checks the TM case once.
+
+### Tools
+- `tools/emurun`: `buy_one_quickly` (the list must be back within a few frames of a purchase),
+  `expect_buy_arrows`; `tm_shop_owned` also buys the last TM while the list is longer than the
+  window, and checks the scroll arrows.
+
 ## 0.14.2-experimental (2026-10-27)
 
 ### TM shops list only the TMs you don't have (DECISIONS.md D43)

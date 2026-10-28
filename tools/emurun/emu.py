@@ -311,10 +311,12 @@ def expect_item_price(item, want, label):
 
 # A shop's buy list (src/shop.c, whose structs no header has): struct MartInfo's listCount, the
 # items before CANCEL; struct ShopData's selectedRow and scrollOffset, after its 0x2000 bytes of
-# tilemap buffers, a u32 and a u16 (Task_BuyMenu copies them from the list every frame)
+# tilemap buffers, a u32 and a u16 (Task_BuyMenu copies them from the list every frame), then
+# after maxQuantity the task of the scroll arrows (TASK_NONE, 0xFF, when there are none)
 BUY_LIST_COUNT = "{sMartInfo+16}"
 BUY_LIST_ROW = "*{sShopData}+8198"
 BUY_LIST_SCROLL = "*{sShopData}+8200"
+BUY_LIST_ARROWS = "*{sShopData}+8204"
 
 
 def buy_list_entry(index):
@@ -329,6 +331,13 @@ def buy_one():
     return ["press A", "wait 90", "press A", "wait 90", "press A", "wait 60"]
 
 
+def buy_one_quickly(count, label, frames=3):
+    """buy_one, checking that the list is back with `count` items within `frames` frames of the
+    last A (D43: making the list again from the whole stock held the game up for 13 frames)."""
+    return ["press A", "wait 90", "press A", "wait 90", "hold A 1", f"within16 {BUY_LIST_COUNT} {count} {frames} {label}",
+            "wait 60"]
+
+
 def expect_buy_list(count, items, absent=(), label="buy_list"):
     """Check a shop's buy list: `count` items, the first ones `items` in order (all of them when
     len(items) == count), then CANCEL right after the last; and none of `absent`."""
@@ -339,6 +348,11 @@ def expect_buy_list(count, items, absent=(), label="buy_list"):
     out.append(f"expect16 {buy_list_entry(count)} {v['LIST_CANCEL'] & 0xFFFF} {label}_cancel_last")
     out += [f"expectnotfind16 {buy_list_entry(0)} {count} {v['size']} {v[i]} {label}_lacks_{i[8:].lower()}" for i in absent]
     return out
+
+
+def expect_buy_arrows(shown, label):
+    """Check whether the buy list has its scroll arrows (only a list longer than the window does)."""
+    return [f"expect{'ne' if shown else ''}8 {BUY_LIST_ARROWS} 255 {label}_{'arrows' if shown else 'no_arrows'}"]
 
 
 def expect_buy_cursor(scroll, row, item, label):
