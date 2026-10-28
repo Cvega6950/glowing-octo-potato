@@ -1572,17 +1572,20 @@ DexNav shows and that wild encounters draw from:
   decoration and the Battle Point shops are unchanged, and an important item that isn't a TM
   still says SOLD OUT.
 - **No pause (0.14.3).** 0.14.2 asked `CheckBagHasItem` and `CheckPCHasItem` about every TM on sale,
-  each going through all 208 slots of the TM case for a TM the player doesn't have, and did it
-  all again after each purchase. With eight badges and few TMs, "Here you go! Thank you." stayed
-  on screen 13 frames longer after A (emurun's profiler: 12.7 frames in those checks, 0.5 in
-  0.14.3), and the black screen before the list was as much longer. The review of 0.14.2 found it.
+  each going through all 208 slots of the TM case for a TM the player doesn't have (12.7 frames
+  of CPU time with 198 on sale, by emurun's profiler; 0.5 in 0.14.3), and after each purchase it
+  did that again and drew the list twice. With eight badges and few TMs, the list came back on
+  screen 26 frames after A on "Here you go! Thank you very much." (6 in 0.14.3, 5 in 0.14.1,
+  which only drew it again), and BUY showed the list 66 frames after A (50 in 0.14.1 and 0.14.3).
+  Those are mGBA's; VBA-M's are 30, 8, 70 and 52. The review of 0.14.2 found it.
 - Evidence: `tm_shop_owned` (Cherrygrove with every TM but ten, one of the ten in the PC: nine
   listed; the last bought twice, first with the list still longer than the window (it scrolls
   back one row, the arrows stay), then once it fits (back to the top, no arrows); then the first
-  and a middle one, with the list, the scroll offset and the cursor checked after each; BUY
-  again; with every TM, CANCEL alone and its description (screenshot); with INFINITE TMS off, all
+  and a middle one, with the list, the scroll offset, the cursor and the arrows checked after
+  each; BUY again; with every TM, CANCEL alone and its description (screenshot); with INFINITE TMS off, all
   71 listed and a second Flip Turn bought), `tm_clerk` (Violet's four gift TMs left out, 111 of
   the 115; Flip Turn bought, 110), `tm_clerks` (Focus Punch bought in Pewter: the list of 197 back
-  within 3 frames of A, 0 frames in 0.14.3, the check failing on 0.14.2; 197 at the Indigo
-  Plateau too), `tm_shop` (Goldenrod 5F: 70, 114, 172, 190, 197, then 196 listed as TMs are bought
-  and badges earned).
+  on screen within 8 frames of A, the strip under its last row showing again, which fails on
+  0.14.2 and on a build drawing the list twice, 10 and 12 frames; 197 at the Indigo Plateau too),
+  `tm_shop` (Goldenrod 5F: 70, 114, 172, 190, 197, then 196 listed as TMs are bought and badges
+  earned).

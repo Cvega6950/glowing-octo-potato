@@ -3,15 +3,16 @@
 ## 0.14.3-experimental (2026-10-28)
 
 ### No pause after buying a TM (DECISIONS.md D43)
-- 0.14.2 checked every TM on sale against the whole TM case again after each purchase: with eight
-  badges and few TMs, "Here you go! Thank you." stayed on screen about 13 frames (a fifth of a
-  second) longer, and the list took as long to open. Now the bought TM alone leaves the list,
-  and opening it checks the TM case once.
+- 0.14.2 checked every TM on sale against the whole TM case again after each purchase, and drew
+  the list twice: with eight badges and few TMs, "Here you go! Thank you very much." stayed on
+  screen about 20 frames (a third of a second) longer, and BUY took 16 frames longer to show the
+  list. Now the bought TM alone leaves the list, and opening it checks the TM case once: both are
+  as quick as before 0.14.2.
 
 ### Tools
-- `tools/emurun`: `buy_one_quickly` (the list must be back within a few frames of a purchase),
-  `expect_buy_arrows`; `tm_shop_owned` also buys the last TM while the list is longer than the
-  window, and checks the scroll arrows.
+- `tools/emurun`: `snap_buy_list_edge` and `buy_one_on_time` (the list must be back on screen
+  within some frames of a purchase), `expect_buy_arrows`; `tm_shop_owned` also buys the last TM
+  while the list is longer than the window, and checks the scroll arrows.
 
 ## 0.14.2-experimental (2026-10-27)
 

@@ -1241,7 +1241,7 @@ static bool32 BuyMenuIsReusableTM(u16 item)
 }
 
 // Crystal Imperium: one bit per item for the machines in the TM case and the items in the PC, from
-// one pass over each (a CheckBagHasItem for each TM on sale held the game up 13 frames with 198)
+// one pass over each (in 0.14.2, a CheckBagHasItem for each of 198 TMs on sale took 13 frames)
 static void BuyMenuFindOwnedTMs(u32 *owned)
 {
     u32 i;

@@ -61,6 +61,7 @@ shot 05_first_bought.png
 !expect_money("MAX_MONEY - 300", "paid_three_times")
 !expect_buy_list(6, ["ITEM_TM_BRINE", "ITEM_TM_ENDURE", "ITEM_TM_EMBARGO", "ITEM_TM_PAYBACK", "ITEM_TM_RECYCLE", "ITEM_TM_AVALANCHE"], absent=["ITEM_TM_FALSE_SWIPE"], label="six")
 !expect_buy_cursor(0, 0, "ITEM_TM_BRINE", "after_first")
+!expect_buy_arrows(False, "after_first")
 
 # One in the middle: the cursor stays on its row, now the next TM
 !["press DOWN", "wait 10"] * 3
@@ -70,6 +71,7 @@ shot 06_middle_bought.png
 !expect_money("MAX_MONEY - 400", "paid_four_times")
 !expect_buy_list(5, ["ITEM_TM_BRINE", "ITEM_TM_ENDURE", "ITEM_TM_EMBARGO", "ITEM_TM_RECYCLE", "ITEM_TM_AVALANCHE"], absent=["ITEM_TM_PAYBACK"], label="five")
 !expect_buy_cursor(0, 3, "ITEM_TM_RECYCLE", "after_middle")
+!expect_buy_arrows(False, "after_middle")
 !expect_bag_has("TMsHMs", "ITEM_TM_CAPTIVATE", "bought_captivate")
 !expect_bag_has("TMsHMs", "ITEM_TM_PSYCH_UP", "bought_psych_up")
 !expect_bag_has("TMsHMs", "ITEM_TM_FALSE_SWIPE", "bought_false_swipe")

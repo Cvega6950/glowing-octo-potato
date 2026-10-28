@@ -331,10 +331,17 @@ def buy_one():
     return ["press A", "wait 90", "press A", "wait 90", "press A", "wait 60"]
 
 
-def buy_one_quickly(count, label, frames=3):
-    """buy_one, checking that the list is back with `count` items within `frames` frames of the
-    last A (D43: making the list again from the whole stock held the game up for 13 frames)."""
-    return ["press A", "wait 90", "press A", "wait 90", "hold A 1", f"within16 {BUY_LIST_COUNT} {count} {frames} {label}",
+def snap_buy_list_edge():
+    """Remember the strip under the buy list's last row (left of its scroll arrow): only a message
+    box covers it, so buy_one_on_time can see the list come back."""
+    return ["snaprect buy_list_edge 120 145 36 6"]
+
+
+def buy_one_on_time(frames, label):
+    """buy_one, checking that the list is back on screen within `frames` frames of the last A, the
+    strip snap_buy_list_edge remembered showing again (D43: 6 to 8 frames with 198 TMs on sale;
+    0.14.2, which checked every TM again and drew the list twice, took 26 to 30)."""
+    return ["press A", "wait 90", "press A", "wait 90", "hold A 1", f"expectrectwithin buy_list_edge {frames} {label}",
             "wait 60"]
 
 
