@@ -261,6 +261,13 @@ def hold_item(item, party_slot=0, pocket="POCKET_ITEMS"):
     return out + ["press A", "wait 120", "mash B 200", "wait 60"]
 
 
+def party_cursor(slot):
+    """In the party menu, move the cursor to a party slot: it starts where the last party menu left
+    it (after a GIVE to slot 4, on slot 4)."""
+    v = probe.resolve({"off": "offsetof(struct PartyMenu, slotId)"})
+    return [f"seek8 {{gPartyMenu+{v['off']}}} {slot} DOWN UP", "wait 10"]
+
+
 def dex_flags_from_party():
     """Debug menu > Flags & Vars > Pokedex Flags Reset: the Pokedex lists exactly the Pokemon in
     the party and boxes as seen and caught (debug-given Pokemon are not registered otherwise)."""
@@ -379,6 +386,15 @@ def expect_bag_has(pocket, item, label=None):
                        "count": f"ARRAY_COUNT(((struct SaveBlock1 *)0)->bag.{pocket})",
                        "stride": "sizeof(struct ItemSlot)", item: item})
     return [f"expectfind16 *{{gSaveBlock1Ptr}}+{v['off']} {v['count']} {v['stride']} {v[item]} {label or 'bag_has_' + item.lower()}"]
+
+
+def expect_bag_lacks(pocket, item, label=None):
+    """Check that a bag pocket (struct Bag field) doesn't hold the item."""
+    v = probe.resolve({"off": f"offsetof(struct SaveBlock1, bag.{pocket})",
+                       "count": f"ARRAY_COUNT(((struct SaveBlock1 *)0)->bag.{pocket})",
+                       "stride": "sizeof(struct ItemSlot)", item: item})
+    return [f"expectnotfind16 *{{gSaveBlock1Ptr}}+{v['off']} {v['count']} {v['stride']} {v[item]} "
+            f"{label or 'bag_lacks_' + item.lower()}"]
 
 
 def expect_bag_quantity(pocket, item, want, label=None):

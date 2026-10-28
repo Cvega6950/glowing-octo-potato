@@ -25,7 +25,8 @@ Champions, rivals and villains around Johto and Kanto. Every one battles at the 
 with six Pokemon (boss_teams.py, D21). A reward holds what this game doesn't already give ten at a
 time (the care packages, D16): ten Gems of the trainer's type, TMs before the TM shops sell
 them (D36), Mega Stones before the Goldenrod Mega shop sells them, an evolution item for the
-trainer's own Pokemon, and items nothing else gives (the Rotom Catalog). It goes whole to the Bag,
+trainer's own Pokemon (since 0.15.0 the one Emerald Imperium's evolutions use, D44), and items
+nothing else gives (the Rotom Catalog). It goes whole to the Bag,
 or to the PC when a pocket is full; if neither has room, nothing is given and talking to the trainer
 again tries once more (src/side_battles.c).
 """
@@ -124,7 +125,7 @@ JOHTO = [
     Battle("FANTINA", 656, "FANTINA", "Leader Hns", "Fantina Hns", "Female", "Hg Girl 1", "Purple",
            "OBJ_EVENT_GFX_FANTINA_HNS", [("EcruteakCity_hns", 41, 41, "down")],
            ("badges", 3),
-           [("GHOST_GEM", 10), ("TM_POLTERGEIST", 1), ("GENGARITE", 1), ("REAPER_CLOTH", 1)],
+           [("GHOST_GEM", 10), ("TM_POLTERGEIST", 1), ("GENGARITE", 1), ("LINKING_CORD", 1)],
            {"not_yet": ["Bonjour! I am FANTINA, GYM LEADER of HEARTHOME CITY. I came to see the dances of "
                         "ECRUTEAK!", "Come back with three GYM BADGES. Then we dance a battle, yes?"],
             "challenge": ["Ah, three BADGES! Then you are ready to dance with my GHOST POKéMON! Shall we?"],
@@ -170,7 +171,7 @@ JOHTO = [
     Battle("ROARK", 660, "ROARK", "Leader Hns", "Roark Hns", "Male", "Hg Boy 1", "Orange",
            "OBJ_EVENT_GFX_ROARK_HNS", [("Route44_hns", 69, 13, "down")],
            ("badges", 7),
-           [("ROCK_GEM", 10), ("TM_EXPLOSION", 1), ("TYRANITARITE", 1), ("PROTECTOR", 1)],
+           [("ROCK_GEM", 10), ("TM_EXPLOSION", 1), ("TYRANITARITE", 1), ("KINGS_ROCK", 1)],
            {"not_yet": ["I'm ROARK, OREBURGH CITY's GYM LEADER. I'm looking for fossils near the ICE PATH.",
                         "Come back with seven GYM BADGES, and my ROCK POKéMON will battle you!"],
             "challenge": ["Seven BADGES, huh? Then my ROCK POKéMON won't hold back! Let's battle!"],
@@ -182,7 +183,7 @@ JOHTO = [
     Battle("VOLKNER", 661, "VOLKNER", "Leader Hns", "Volkner Hns", "Male", "Hg Boy 1", "Yellow",
            "OBJ_EVENT_GFX_VOLKNER_HNS", [("IndigoPlateau_hns", 13, 8, "down")],
            ("badges", 8),
-           [("ELECTRIC_GEM", 10), ("ROTOM_CATALOG", 1), ("ELECTIRIZER", 1)],
+           [("ELECTRIC_GEM", 10), ("ROTOM_CATALOG", 1), ("LINKING_CORD", 1)],
            {"not_yet": ["...I'm VOLKNER. SUNYSHORE CITY's GYM LEADER. I'm waiting for a trainer worth "
                         "battling.", "Come back with all eight GYM BADGES."],
             "challenge": ["Eight BADGES. You might be the one who can make my battles exciting again. "
@@ -201,7 +202,7 @@ KANTO = [
     Battle("KATY", 662, "KATY", "Leader Kanto Hns", "Katy Hns", "Female", "Hg Girl 1", "Orange",
            "OBJ_EVENT_GFX_KATY_HNS", [("PewterCity_hns", 22, 12, "down")],
            ("flag", JOHTO_CHAMPION_FLAG),
-           [("BUG_GEM", 10), ("SWEET_APPLE", 1), ("TART_APPLE", 1), ("SYRUPY_APPLE", 1)],
+           [("BUG_GEM", 10), ("LEAF_STONE", 1), ("SUN_STONE", 1)],
            {"not_yet": ["Hi there! I'm KATY, CORTONDO's GYM LEADER in PALDEA. I'm on a tour of KANTO's "
                         "bakeries!", "Once you're JOHTO's CHAMPION, let's have a battle, okay?"],
             "challenge": ["Hi there! I'm KATY, CORTONDO's GYM LEADER in PALDEA. I'm on a tour of KANTO's "

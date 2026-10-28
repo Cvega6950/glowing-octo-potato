@@ -1,0 +1,128 @@
+# Crystal Imperium play test: Emerald Imperium's evolutions (Radical Red's, DECISIONS.md D44) and its
+# evolution items for 500 each. Since 0.15.0 the trade evolutions use a Linking Cord (Radical Red's
+# Link Cable) and no longer evolve by level: Kadabra takes a Linking Cord, and a level-45 Kadabra
+# doesn't evolve. Munchlax evolves at level 30 instead of by friendship (a Rare Candy above the cap
+# still evolves it, D33), and Pikachu with a Shiny Stone becomes Alolan Raichu anywhere. A short
+# clockwise spin by day turns Milcery holding a Strawberry Sweet into Alcremie: that never happened
+# before (SPIN_CW_SHORT is 0 like EVO_NONE, src/field_player_avatar.c). The Goldenrod Dept. Store
+# 2F clerk sells Imperium's fifteen evolution items for 500 each. Debug-given Pokemon aren't in the
+# Pokedex, so an evolved one's caught flag shows what it became. The harness clock starts at night.
+!new_game()
+!no_care_packages()
+!give_mon(64, 20)
+!give_mon(25, 20)
+!give_mon(446, 30)
+!give_mon(64, 45)
+!give_mon(868, 20)
+!hold_item("ITEM_STRAWBERRY_SWEET", 4)
+!expect_dex_caught("SPECIES_ALAKAZAM", 0, "no_alakazam_yet")
+!expect_dex_caught("SPECIES_RAICHU_ALOLA", 0, "no_alolan_raichu_yet")
+!expect_dex_caught("SPECIES_SNORLAX", 0, "no_snorlax_yet")
+!expect_dex_caught("SPECIES_ALCREMIE", 0, "no_alcremie_yet")
+
+# A Linking Cord on the first Kadabra: Alakazam, then back in the field (an item's evolution can't
+# be cancelled, so B only says no to a new move)
+!give_item("ITEM_LINKING_CORD")
+!open_bag_at("POCKET_ITEMS", 0)
+press A
+wait 20
+press A
+wait 120
+!party_cursor(0)
+shot 01_linking_cord_party.png
+press A
+waituntil32 {gMain+4} {CB2_EvolutionSceneUpdate+1} 600 - linking_cord_evolves_kadabra
+wait 120
+shot 02_kadabra_evolving.png
+waituntil32 {gMain+4} {CB2_Overworld+1} 4000 B back_in_the_field
+!expect_dex_caught("SPECIES_ALAKAZAM", 1, "kadabra_became_alakazam")
+!expect_bag_lacks("items", "ITEM_LINKING_CORD", "linking_cord_used_up")
+mash B 120
+wait 60
+
+# A Shiny Stone on Pikachu: Alolan Raichu, here in Johto
+!give_item("ITEM_SHINY_STONE")
+!open_bag_at("POCKET_ITEMS", 0)
+press A
+wait 20
+press A
+wait 120
+!party_cursor(1)
+press A
+waituntil32 {gMain+4} {CB2_EvolutionSceneUpdate+1} 600 - shiny_stone_evolves_pikachu
+waituntil32 {gMain+4} {CB2_Overworld+1} 4000 B back_in_the_field_again
+!expect_dex_caught("SPECIES_RAICHU_ALOLA", 1, "pikachu_became_alolan_raichu")
+mash B 120
+wait 60
+
+# Rare Candies (the cap is 15): Munchlax at 30 evolves, Kadabra at 45 doesn't
+!use_key_item(0)
+!open_bag_at("POCKET_MEDICINE", 0)
+press A
+wait 20
+press A
+wait 120
+!party_cursor(2)
+press A
+waituntil32 {gMain+4} {CB2_EvolutionSceneUpdate+1} 600 - munchlax_evolves_at_30
+waituntil32 {gMain+4} {CB2_UpdatePartyMenu+1} 4000 A back_in_the_party_menu
+!expect_dex_caught("SPECIES_SNORLAX", 1, "munchlax_became_snorlax")
+expect8 {gPlayerParty+284} 30 snorlax_still_at_30
+!party_cursor(3)
+press A
+wait 300
+shot 03_kadabra_no_effect.png
+expect32 {gMain+4} {CB2_UpdatePartyMenu+1} kadabra_at_45_does_not_evolve
+expect8 {gPlayerParty+384} 45 kadabra_still_at_45
+mash B 300
+wait 60
+
+# The Goldenrod Dept. Store 2F clerk: balls, then Imperium's evolution items, 500 each
+!max_money()
+!warp(5, 21, 1)
+# The woman at (20, 9) stands in row 9: round her by row 11
+!walkto(24, 11)
+!walkto(17, 11)
+!walkto(17, 9)
+!walkto(14, 9)
+press DOWN
+wait 20
+press A
+wait 120
+press A
+wait 120
+press A
+wait 120
+shot 04_goldenrod_2f.png
+!expect_buy_list(33, ["ITEM_POKE_BALL", "ITEM_GREAT_BALL", "ITEM_ULTRA_BALL", "ITEM_FIRE_STONE", "ITEM_THUNDER_STONE", "ITEM_LEAF_STONE", "ITEM_WATER_STONE", "ITEM_SUN_STONE", "ITEM_MOON_STONE", "ITEM_PRISM_SCALE", "ITEM_ICE_STONE", "ITEM_LINKING_CORD", "ITEM_DUSK_STONE", "ITEM_DAWN_STONE", "ITEM_SHINY_STONE", "ITEM_KINGS_ROCK", "ITEM_METAL_COAT", "ITEM_UPGRADE", "ITEM_POTION"], label="goldenrod_2f")
+!expect_item_price("ITEM_LINKING_CORD", 500, "linking_cord_500")
+!expect_item_price("ITEM_THUNDER_STONE", 500, "thunder_stone_500")
+!expect_item_price("ITEM_PRISM_SCALE", 500, "prism_scale_500")
+!expect_item_price("ITEM_KINGS_ROCK", 500, "kings_rock_500")
+!expect_item_price("ITEM_METAL_COAT", 500, "metal_coat_500")
+!expect_item_price("ITEM_UPGRADE", 500, "upgrade_500")
+mash B 300
+wait 60
+expect32 {gMain+4} {CB2_Overworld+1} out_of_the_shop
+
+# Day (12:00 PM), then, facing the counter, a short clockwise spin in place: LEFT, UP, RIGHT, DOWN
+# (a 6-frame tap turns without a step), then a second's pause. Milcery holding a Strawberry Sweet
+# becomes Alcremie (Vanilla Cream)
+!l_menu("TIME")
+press UP
+wait 10
+press UP
+wait 10
+press A
+wait 400
+expect8 {gTimeOfDay} 1 time_of_day_day
+press DOWN
+wait 30
+press LEFT
+press UP
+press RIGHT
+press DOWN
+waituntil32 {gMain+4} {CB2_EvolutionSceneUpdate+1} 300 - short_clockwise_spin_evolves_milcery
+shot 05_milcery_evolving.png
+waituntil32 {gMain+4} {CB2_Overworld+1} 4000 A back_in_the_store
+!expect_dex_caught("SPECIES_ALCREMIE", 1, "milcery_became_alcremie")

@@ -20,6 +20,8 @@
 #define P_IMPERIUM_SPECIES_DATA     TRUE        // Crystal Imperium: Emerald Imperium's abilities, level-up moves and Egg Moves (Radical Red's,
                                                 // DECISIONS.md D35), written by tools/crystal_imperium/imperium_species.py on top of the GEN_7
                                                 // learnsets above: level_up_learnsets/imperium.h, egg_moves_imperium.h and species_info/imperium_abilities.h.
+#define P_IMPERIUM_EVOLUTIONS       TRUE        // Crystal Imperium: Emerald Imperium's evolution methods (Radical Red's, DECISIONS.md D44),
+                                                // written by tools/crystal_imperium/imperium_evolutions.py: species_info/imperium_evolutions.h.
 #define P_EVOLUTION_LEVEL_1_LEARN   GEN_LATEST  // Since Gen 8, Pokémon evolving while at level 1 do not get the chance to learn their level 1 moves, while before they did.
 
 // Evolution settings

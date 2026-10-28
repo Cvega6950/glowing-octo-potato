@@ -17,7 +17,7 @@ wait 120
 press A
 wait 60
 expect16 {sRareCandyCount} 10 rare_candies_up_to_the_cap
-# Use them (Cyndaquil evolves at 14 on the way) and keep trying: the cap stops it at 15
+# Use them and keep trying: the cap stops it at 15 (Cyndaquil evolves at 16 since 0.15.0, D44)
 mash A 7000
 shot 02_stopped_at_cap.png
 expect8 {gPlayerParty+84} 15 rare_candies_stop_at_level_cap

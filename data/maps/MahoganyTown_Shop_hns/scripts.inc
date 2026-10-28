@@ -203,25 +203,20 @@ MahoganyTown_Shop_EventScript_GrannyShop::
 
 	.align 2
 MahoganyTown_Pokemart:
+	@ Crystal Imperium: without the items no evolution uses since Emerald Imperium's evolutions
+	@ (Dragon Scale, Dubious Disc, Reaper Cloth, Protector, Electirizer, Magmarizer, Oval Stone and
+	@ Black Augurite; DECISIONS.md D44)
 	.2byte ITEM_RAGE_CANDY_BAR
 	.2byte ITEM_ICE_STONE
 	.2byte ITEM_METAL_COAT
-	.2byte ITEM_DRAGON_SCALE
 	.2byte ITEM_KINGS_ROCK
 	.2byte ITEM_UP_GRADE
-	.2byte ITEM_DUBIOUS_DISC
-	.2byte ITEM_REAPER_CLOTH
 	.2byte ITEM_NEVER_MELT_ICE
-	.2byte ITEM_PROTECTOR
-	.2byte ITEM_ELECTIRIZER
-	.2byte ITEM_MAGMARIZER
-	.2byte ITEM_OVAL_STONE
 	.2byte ITEM_RAZOR_FANG
 	.2byte ITEM_RAZOR_CLAW
 	.2byte ITEM_DUSK_STONE
 	.2byte ITEM_DAWN_STONE
 	.2byte ITEM_SHINY_STONE
-	.2byte ITEM_BLACK_AUGURITE
 	.2byte ITEM_PEAT_BLOCK
 	.2byte ITEM_NONE
 	release

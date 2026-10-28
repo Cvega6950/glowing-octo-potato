@@ -159,6 +159,9 @@ static const u8 sGenericMulchDesc[]   = _("A fertilizer that\n"
                                           "is unsuitable for\n"
                                           "local soil.");
 
+// Crystal Imperium: the lines at the end of gItemsInfo replace some prices
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Woverride-init"
 const struct ItemInfo gItemsInfo[] =
 {
     [ITEM_NONE] =
@@ -16511,7 +16514,26 @@ const struct ItemInfo gItemsInfo[] =
         .iconPic = gItemIcon_LargePotion,
         .iconPalette = gItemIconPalette_FullRestore,
     },
+
+    // Crystal Imperium: Emerald Imperium's evolution items cost 500 each, as in its Verdanturf Town
+    // Mart (DECISIONS.md D44); the Goldenrod Dept. Store 2F clerk sells them all
+    [ITEM_FIRE_STONE].price = 500,
+    [ITEM_THUNDER_STONE].price = 500,
+    [ITEM_LEAF_STONE].price = 500,
+    [ITEM_WATER_STONE].price = 500,
+    [ITEM_SUN_STONE].price = 500,
+    [ITEM_MOON_STONE].price = 500,
+    [ITEM_PRISM_SCALE].price = 500,
+    [ITEM_ICE_STONE].price = 500,
+    [ITEM_LINKING_CORD].price = 500,
+    [ITEM_DUSK_STONE].price = 500,
+    [ITEM_DAWN_STONE].price = 500,
+    [ITEM_SHINY_STONE].price = 500,
+    [ITEM_KINGS_ROCK].price = 500,
+    [ITEM_METAL_COAT].price = 500,
+    [ITEM_UPGRADE].price = 500,
 };
+#pragma GCC diagnostic pop
 
 #undef ITEM_NAME
 #undef ITEM_PLURAL_NAME

@@ -31,13 +31,13 @@ static const struct SideBattleRewardItem sSideBattleReward2[] =  // FANTINA
     {ITEM_GHOST_GEM, 10},
     {ITEM_TM_POLTERGEIST, 1},
     {ITEM_GENGARITE, 1},
-    {ITEM_REAPER_CLOTH, 1},
+    {ITEM_LINKING_CORD, 1},
 };
 
 static const u8 sSideBattleRewardText2[] = _(
     "{PLAYER} received GHOST GEM ×10,\n"
     "TM67 POLTERGEIST, GENGARITE and\l"
-    "REAPER CLOTH!");
+    "LINKING CORD!");
 
 static const struct SideBattleRewardItem sSideBattleReward3[] =  // MAYLENE
 {
@@ -80,37 +80,35 @@ static const struct SideBattleRewardItem sSideBattleReward6[] =  // ROARK
     {ITEM_ROCK_GEM, 10},
     {ITEM_TM_EXPLOSION, 1},
     {ITEM_TYRANITARITE, 1},
-    {ITEM_PROTECTOR, 1},
+    {ITEM_KINGS_ROCK, 1},
 };
 
 static const u8 sSideBattleRewardText6[] = _(
     "{PLAYER} received ROCK GEM ×10,\n"
     "TM64 EXPLOSION, TYRANITARITE and\l"
-    "PROTECTOR!");
+    "KING'S ROCK!");
 
 static const struct SideBattleRewardItem sSideBattleReward7[] =  // VOLKNER
 {
     {ITEM_ELECTRIC_GEM, 10},
     {ITEM_ROTOM_CATALOG, 1},
-    {ITEM_ELECTIRIZER, 1},
+    {ITEM_LINKING_CORD, 1},
 };
 
 static const u8 sSideBattleRewardText7[] = _(
     "{PLAYER} received ELECTRIC GEM\n"
-    "×10, ROTOM CATALOG and ELECTIRIZER!");
+    "×10, ROTOM CATALOG and LINKING CORD!");
 
 static const struct SideBattleRewardItem sSideBattleReward8[] =  // KATY
 {
     {ITEM_BUG_GEM, 10},
-    {ITEM_SWEET_APPLE, 1},
-    {ITEM_TART_APPLE, 1},
-    {ITEM_SYRUPY_APPLE, 1},
+    {ITEM_LEAF_STONE, 1},
+    {ITEM_SUN_STONE, 1},
 };
 
 static const u8 sSideBattleRewardText8[] = _(
     "{PLAYER} received BUG GEM ×10,\n"
-    "SWEET APPLE, TART APPLE and SYRUPY\l"
-    "APPLE!");
+    "LEAF STONE and SUN STONE!");
 
 static const struct SideBattleRewardItem sSideBattleReward9[] =  // BRASSIUS
 {

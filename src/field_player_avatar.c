@@ -736,7 +736,8 @@ void UpdateSpinData(void)
     if (gPlayerSpinData.spinTimeout != 0)
     {
         gPlayerSpinData.spinTimeout--;
-        if (gPlayerSpinData.VBlanksSpinning < 2048)
+        // Crystal Imperium: stop at the 11-bit field's 2047 (34 s); counting to 2048 wrapped it to 0
+        if (gPlayerSpinData.VBlanksSpinning < 2047)
             gPlayerSpinData.VBlanksSpinning++;
         if (gPlayerSpinData.spinTimeout == 0 && gPlayerSpinData.spinDirection != SPIN_DIRECTION_NONE)
             gPlayerSpinData.triggerEvo = TRUE;
@@ -805,12 +806,16 @@ static void WindUpSpinTimer(enum Direction direction)
 
 bool32 CanTriggerSpinEvolution()
 {
+    // Crystal Imperium: whether a spin was judged. gSpecialVar_0x8000 can't tell: a short clockwise
+    // spin (SPIN_CW_SHORT) is 0 like EVO_NONE, so it never evolved anything (DECISIONS.md D44).
+    bool32 judged = FALSE;
     gSpecialVar_0x8000 = EVO_NONE;
     bool32 canStopEvo = TRUE;
     if (gPlayerSpinData.triggerEvo)
     {
         u32 seconds = gPlayerSpinData.VBlanksSpinning / 60;
         u32 direction = gPlayerSpinData.spinDirection;
+        judged = seconds >= 10 || direction == SPIN_DIRECTION_CLOCKWISE || direction == SPIN_DIRECTION_COUNTER_CLOCKWISE;
         if (seconds >= 10)
         {
             gSpecialVar_0x8000 = SPIN_EITHER;
@@ -835,7 +840,7 @@ bool32 CanTriggerSpinEvolution()
         gSpecialVar_0x8002 = TRUE; //tryMultiple
         gPlayerSpinData.triggerEvo = FALSE;
     }
-    if (gSpecialVar_0x8000 != EVO_NONE)
+    if (judged)
     {
         for (u32 i = 0; i < PARTY_SIZE; i++)
         {
@@ -845,6 +850,8 @@ bool32 CanTriggerSpinEvolution()
                 return TRUE;
             }
         }
+        // Crystal Imperium: a spin that evolves nothing doesn't add its time to the next one
+        ResetSpinTimer();
     }
 
     return FALSE;

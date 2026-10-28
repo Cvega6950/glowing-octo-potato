@@ -167,8 +167,6 @@ static const struct CarePackageItem sCarePackage1[] =
     {ITEM_STAR_PIECE, 10},
     {ITEM_MOON_STONE, 10},
     {ITEM_LINKING_CORD, 10},
-    {ITEM_SWEET_APPLE, 10},
-    {ITEM_TART_APPLE, 10},
 };
 
 static const u8 sCarePackageText1[] = _(
@@ -181,8 +179,7 @@ static const u8 sCarePackageText1[] = _(
     "LUCKY EGG, IRON BALL, WIDE LENS,\n"
     "CHERI, CHESTO, LEPPA, SITRUS and\p"
     "LUM BERRIES, STARDUST, STAR PIECE,\n"
-    "MOON STONE, LINKING CORD, SWEET and\p"
-    "TART APPLES.");
+    "MOON STONE, LINKING CORD.");
 
 static const struct CarePackageItem sCarePackage2[] =
 {
@@ -205,9 +202,6 @@ static const struct CarePackageItem sCarePackage2[] =
     {ITEM_BIG_PEARL, 10},
     {ITEM_LEAF_STONE, 10},
     {ITEM_UPGRADE, 10},
-    {ITEM_SACHET, 10},
-    {ITEM_WHIPPED_DREAM, 10},
-    {ITEM_SYRUPY_APPLE, 10},
 };
 
 static const u8 sCarePackageText2[] = _(
@@ -219,8 +213,7 @@ static const u8 sCarePackageText2[] = _(
     "HP UP, IRON, ZINC, HEALTH FEATHER,\p"
     "LIFE ORB, TERRAIN EXTENDER, LEEK,\n"
     "PEARL, BIG PEARL, LEAF STONE,\p"
-    "UPGRADE, SACHET, WHIPPED DREAM,\n"
-    "SYRUPY APPLE.");
+    "UPGRADE.");
 
 static const struct CarePackageItem sCarePackage3[] =
 {
@@ -299,22 +292,13 @@ static const struct CarePackageItem sCarePackage5[] =
     {ITEM_LUM_BERRY, 10},
     {ITEM_DAWN_STONE, 10},
     {ITEM_ICE_STONE, 10},
-    {ITEM_DRAGON_SCALE, 10},
-    {ITEM_OVAL_STONE, 10},
-    {ITEM_CRACKED_POT, 10},
-    {ITEM_CHIPPED_POT, 10},
-    {ITEM_UNREMARKABLE_TEACUP, 10},
-    {ITEM_MASTERPIECE_TEACUP, 10},
 };
 
 static const u8 sCarePackageText5[] = _(
     "Inside: ULTRA BALL ×20,\n"
     "FULL HEAL ×20; ×10 each: MAX REVIVE,\p"
     "PP MAX, ELECTRIC SEED, SITRUS and\n"
-    "LUM BERRIES, DAWN and ICE STONES,\p"
-    "DRAGON SCALE, OVAL STONE, CRACKED\n"
-    "and CHIPPED POTS, UNREMARKABLE and\p"
-    "MASTERPIECE TEACUPS.");
+    "LUM BERRIES, DAWN and ICE STONES.");
 
 static const struct CarePackageItem sCarePackage6[] =
 {
@@ -342,12 +326,6 @@ static const struct CarePackageItem sCarePackage6[] =
     {ITEM_YELLOW_NECTAR, 10},
     {ITEM_PINK_NECTAR, 10},
     {ITEM_PURPLE_NECTAR, 10},
-    {ITEM_PROTECTOR, 10},
-    {ITEM_ELECTIRIZER, 10},
-    {ITEM_MAGMARIZER, 10},
-    {ITEM_LEADERS_CREST, 10},
-    {ITEM_AUSPICIOUS_ARMOR, 10},
-    {ITEM_MALICIOUS_ARMOR, 10},
 };
 
 static const u8 sCarePackageText6[] = _(
@@ -359,10 +337,7 @@ static const u8 sCarePackageText6[] = _(
     "LUCKY PUNCH, METAL POWDER, RAZOR and\p"
     "QUICK CLAWS, LIECHI, SALAC and\n"
     "PETAYA BERRIES, HEART SCALE, RED,\p"
-    "YELLOW, PINK and PURPLE NECTARS,\n"
-    "PROTECTOR, ELECTIRIZER, MAGMARIZER,\p"
-    "LEADER'S CREST, AUSPICIOUS and\n"
-    "MALICIOUS ARMOR.");
+    "YELLOW, PINK and PURPLE NECTARS.");
 
 static const struct CarePackageItem sCarePackage7[] =
 {
@@ -377,11 +352,6 @@ static const struct CarePackageItem sCarePackage7[] =
     {ITEM_BINDING_BAND, 10},
     {ITEM_GRIP_CLAW, 10},
     {ITEM_RAZOR_FANG, 10},
-    {ITEM_DUBIOUS_DISC, 10},
-    {ITEM_REAPER_CLOTH, 10},
-    {ITEM_METAL_ALLOY, 10},
-    {ITEM_GALARICA_CUFF, 10},
-    {ITEM_GALARICA_WREATH, 10},
 };
 
 static const u8 sCarePackageText7[] = _(
@@ -389,32 +359,25 @@ static const u8 sCarePackageText7[] = _(
     "ULTRA BALL ×20; ×10 each: MAX REVIVE,\p"
     "LIFE ORB, POWER HERB, X ACCURACY,\n"
     "DIRE HIT, GUARD SPEC., BINDING BAND,\p"
-    "GRIP CLAW, RAZOR FANG, DUBIOUS DISC,\n"
-    "REAPER CLOTH, METAL ALLOY,\p"
-    "GALARICA CUFF, GALARICA WREATH.");
+    "GRIP CLAW, RAZOR FANG.");
 
 static const struct CarePackageItem sCarePackage8[] =
 {
-    {ITEM_GIMMIGHOUL_COIN, 999},
     {ITEM_FULL_RESTORE, 20},
     {ITEM_ULTRA_BALL, 20},
     {ITEM_MAX_REVIVE, 10},
     {ITEM_MAX_ELIXIR, 10},
-    {ITEM_BLACK_AUGURITE, 10},
     {ITEM_PEAT_BLOCK, 10},
 };
 
 static const u8 sCarePackageText8[] = _(
-    "Inside: GIMMIGHOUL COIN ×999,\n"
-    "FULL RESTORE ×20, ULTRA BALL ×20;\p"
-    "×10 each: MAX REVIVE, MAX ELIXIR,\n"
-    "BLACK AUGURITE, PEAT BLOCK.");
+    "Inside: FULL RESTORE ×20,\n"
+    "ULTRA BALL ×20; ×10 each: MAX REVIVE,\p"
+    "MAX ELIXIR, PEAT BLOCK.");
 
 static const struct CarePackageItem sCarePackage9[] =
 {
     {ITEM_MASTER_BALL, 1},
-    {ITEM_SCROLL_OF_DARKNESS, 1},
-    {ITEM_SCROLL_OF_WATERS, 1},
     {ITEM_BEAST_BALL, 100},
     {ITEM_FULL_RESTORE, 20},
     {ITEM_SITRUS_BERRY, 20},
@@ -438,9 +401,7 @@ static const struct CarePackageItem sCarePackage9[] =
 };
 
 static const u8 sCarePackageText9[] = _(
-    "Inside: MASTER BALL,\n"
-    "SCROLL OF DARKNESS,\p"
-    "SCROLL OF WATERS, BEAST BALL ×100;\n"
+    "Inside: MASTER BALL, BEAST BALL ×100;\n"
     "×20 each: FULL RESTORE, SITRUS and\p"
     "LUM BERRIES; ×10 each: CHOICE BAND,\n"
     "CHOICE SPECS, CHOICE SCARF,\p"

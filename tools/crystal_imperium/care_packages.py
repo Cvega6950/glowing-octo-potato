@@ -62,7 +62,8 @@ def each(n, *items):
 
 
 # One list per package: (item without ITEM_, quantity). Radical Red's packages, by where they arrive
-# there, are named in the comments; Emerald Imperium's own changes are marked EI.
+# there, are named in the comments; Emerald Imperium's own changes are marked EI. Since 0.15.0 the
+# evolution items are Emerald Imperium's (D44): the ones no evolution uses any more are gone.
 PACKAGES = [
     # 0: the start (after the first Pokemon): RR's Route 2 and Viridian Forest packages; EI adds the
     #    Shiny Charm, and swaps RR's Pixie Plate for the Fairy Feather (all 18 type boosters here, with
@@ -78,15 +79,13 @@ PACKAGES = [
      ("SWIFT_FEATHER", 20)] +
     each(10, "ETHER", "BERRY_JUICE", "PP_UP", "PP_MAX", "PROTEIN", "CALCIUM", "MUSCLE_FEATHER", "GENIUS_FEATHER",
          "THROAT_SPRAY", "LUCKY_EGG", "IRON_BALL", "WIDE_LENS", "CHERI_BERRY", "CHESTO_BERRY", "LEPPA_BERRY",
-         "SITRUS_BERRY", "LUM_BERRY", "STARDUST", "STAR_PIECE", "MOON_STONE", "LINKING_CORD", "SWEET_APPLE",
-         "TART_APPLE"),
+         "SITRUS_BERRY", "LUM_BERRY", "STARDUST", "STAR_PIECE", "MOON_STONE", "LINKING_CORD"),
     # 2: Hive Badge: RR's Nugget Bridge and Cerulean City packages (RR's 306 Ability Pills: 153 Ability
     #    Capsules and 153 Ability Patches)
     [("ABILITY_CAPSULE", 153), ("ABILITY_PATCH", 153), ("CLEVER_FEATHER", 50), ("RESIST_FEATHER", 50),
      ("GREAT_BALL", 30)] +
     each(10, "ULTRA_BALL", "REVIVE", "PP_MAX", "HP_UP", "IRON", "ZINC", "HEALTH_FEATHER", "LIFE_ORB",
-         "TERRAIN_EXTENDER", "LEEK", "PEARL", "BIG_PEARL", "LEAF_STONE", "UPGRADE", "SACHET", "WHIPPED_DREAM",
-         "SYRUPY_APPLE"),
+         "TERRAIN_EXTENDER", "LEEK", "PEARL", "BIG_PEARL", "LEAF_STONE", "UPGRADE"),
     # 3: Plain Badge: RR's Vermilion City and Lt. Surge packages (50 Dream Balls), the Choice items
     [("DREAM_BALL", 50), ("ULTRA_BALL", 20), ("HYPER_POTION", 20)] +
     each(10, "GREAT_BALL", "PP_MAX", "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "ROCKY_HELMET", "SHUCA_BERRY",
@@ -98,25 +97,22 @@ PACKAGES = [
          "BERRY_SWEET", "LOVE_SWEET", "STAR_SWEET", "CLOVER_SWEET", "FLOWER_SWEET", "RIBBON_SWEET"),
     # 5: 5th badge: RR's Celadon Gym package
     [("ULTRA_BALL", 20), ("FULL_HEAL", 20)] +
-    each(10, "MAX_REVIVE", "PP_MAX", "ELECTRIC_SEED", "SITRUS_BERRY", "LUM_BERRY", "DAWN_STONE", "ICE_STONE",
-         "DRAGON_SCALE", "OVAL_STONE", "CRACKED_POT", "CHIPPED_POT", "UNREMARKABLE_TEACUP", "MASTERPIECE_TEACUP"),
+    each(10, "MAX_REVIVE", "PP_MAX", "ELECTRIC_SEED", "SITRUS_BERRY", "LUM_BERRY", "DAWN_STONE", "ICE_STONE"),
     # 6: 6th badge: RR's big Fuchsia City package (153 PP Max)
     [("PP_MAX", 153), ("ULTRA_BALL", 20)] +
     each(10, "MAX_ELIXIR", "LEFTOVERS", "EXPERT_BELT", "X_ATTACK", "X_DEFENSE", "X_SP_ATK", "X_SP_DEF", "X_SPEED",
          "GRASSY_SEED", "KINGS_ROCK", "LUCKY_PUNCH", "METAL_POWDER", "RAZOR_CLAW", "QUICK_CLAW", "LIECHI_BERRY",
-         "SALAC_BERRY", "PETAYA_BERRY", "HEART_SCALE", "RED_NECTAR", "YELLOW_NECTAR", "PINK_NECTAR", "PURPLE_NECTAR",
-         "PROTECTOR", "ELECTIRIZER", "MAGMARIZER", "LEADERS_CREST", "AUSPICIOUS_ARMOR", "MALICIOUS_ARMOR"),
+         "SALAC_BERRY", "PETAYA_BERRY", "HEART_SCALE", "RED_NECTAR", "YELLOW_NECTAR", "PINK_NECTAR", "PURPLE_NECTAR"),
     # 7: 7th badge: RR's Blaine package (Life Orb, Power Herb)
     [("MAX_POTION", 20), ("ULTRA_BALL", 20)] +
     each(10, "MAX_REVIVE", "LIFE_ORB", "POWER_HERB", "X_ACCURACY", "DIRE_HIT", "GUARD_SPEC", "BINDING_BAND",
-         "GRIP_CLAW", "RAZOR_FANG", "DUBIOUS_DISC", "REAPER_CLOTH", "METAL_ALLOY", "GALARICA_CUFF",
-         "GALARICA_WREATH"),
+         "GRIP_CLAW", "RAZOR_FANG"),
     # 8: Rising Badge
-    [("GIMMIGHOUL_COIN", 999), ("FULL_RESTORE", 20), ("ULTRA_BALL", 20)] +
-    each(10, "MAX_REVIVE", "MAX_ELIXIR", "BLACK_AUGURITE", "PEAT_BLOCK"),
+    [("FULL_RESTORE", 20), ("ULTRA_BALL", 20)] +
+    each(10, "MAX_REVIVE", "MAX_ELIXIR", "PEAT_BLOCK"),
     # 9: Champion: RR's Clair and post-game packages (100 Beast Balls; Choice items, Eviolites, Rocky
     #    Helmets), the rest of the pinch Berries
-    [("MASTER_BALL", 1), ("SCROLL_OF_DARKNESS", 1), ("SCROLL_OF_WATERS", 1), ("BEAST_BALL", 100)] +
+    [("MASTER_BALL", 1), ("BEAST_BALL", 100)] +
     each(20, "FULL_RESTORE", "SITRUS_BERRY", "LUM_BERRY") +
     each(10, "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "EVIOLITE", "ROCKY_HELMET", "GANLON_BERRY",
          "APICOT_BERRY", "LANSAT_BERRY", "STARF_BERRY", "MICLE_BERRY", "CUSTAP_BERRY", "ENIGMA_BERRY",
