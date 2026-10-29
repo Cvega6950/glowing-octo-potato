@@ -2054,7 +2054,7 @@
      "species": "Hitmonchan"
     },
     {
-     "ability": "Pure Power",
+     "ability": "Huge Power",
      "level": 100,
      "moves": [
       "Acupressure",
@@ -4093,7 +4093,7 @@
      "species": "Clodsire"
     },
     {
-     "ability": "Poison Touch",
+     "ability": "Intimidate",
      "item": "Black Sludge",
      "level": 100,
      "moves": [
@@ -8527,7 +8527,7 @@
      "species": "Cetoddle"
     },
     {
-     "ability": "Pure Power",
+     "ability": "Huge Power",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 15,
@@ -9843,7 +9843,7 @@
    "items": "Hyper Potion / Hyper Potion",
    "mons": [
     {
-     "ability": "Pure Power",
+     "ability": "Huge Power",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 50,
@@ -10941,7 +10941,7 @@
      "species": "Ambipom"
     },
     {
-     "ability": "Scrappy",
+     "ability": "Mind's Eye",
      "ivs": "0 Atk",
      "level": 100,
      "moves": [

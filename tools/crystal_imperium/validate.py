@@ -326,6 +326,10 @@ def main():
                         errors.append(f"{tid}: {mon['species']} cannot learn {move}")
             if boss and "level" not in mon:
                 errors.append(f"{tid}: {mon['species']} has no Level (trainerproc defaults it)")
+            friendship_moves = sorted(boss_teams.FRIENDSHIP_MOVES & set(mon["moves"]))
+            if friendship_moves and int(mon.get("happiness", 0)) < 250:
+                errors.append(f"{tid}: {mon['species']} knows {', '.join(friendship_moves)} with Happiness "
+                              f"{mon.get('happiness', 0)}; a trainer's Pokemon needs 250 or more for full power")
 
     # Boss levels: every Pokemon at the cap of the boss's stage (DECISIONS.md D21)
     for badge, (leader, tid) in enumerate(GYM_LEADERS):

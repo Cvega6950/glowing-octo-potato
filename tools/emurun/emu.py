@@ -768,13 +768,13 @@ def dexnav_hidden_sample(runs, state="grass.ss"):
     return out
 
 
-def expect_battler(battler, field, const, label=None, negate=False):
+def expect_battler(battler, field, const, label=None, negate=False, bits=16):
     """Check a gBattleMons field (species, ability, moves[N], hp, ...) of a battler against a game
-    constant or a number (negate: it must differ)."""
+    constant or a number (negate: it must differ); bits=8 for a u8 field such as friendship."""
     v = probe.resolve({f"bm_{field}".replace("[", "_").replace("]", ""): f"offsetof(struct BattlePokemon, {field})",
                        "bm_size": "sizeof(struct BattlePokemon)", const: const})
     off = v[f"bm_{field}".replace("[", "_").replace("]", "")] + battler * v["bm_size"]
-    return [f"expect{'ne' if negate else ''}16 {{gBattleMons+{off}}} {v[const]} {label or field + '_is_' + const.lower()}"]
+    return [f"expect{'ne' if negate else ''}{bits} {{gBattleMons+{off}}} {v[const]} {label or field + '_is_' + const.lower()}"]
 
 
 def expect_battler_ivs(battler, want, label):

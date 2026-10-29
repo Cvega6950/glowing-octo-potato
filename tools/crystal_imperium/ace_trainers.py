@@ -93,6 +93,8 @@ def render_mons(mons, levels):
         if m.get("evs"):
             out += f"EVs: {m['evs']}\n"
         out += f"Ability: {m['ability']}\nNature: {m['nature']}\n"
+        if boss_teams.FRIENDSHIP_MOVES & set(m["moves"]):
+            out += f"Happiness: {boss_teams.FULL_FRIENDSHIP}\n"
         out += "".join(f"- {mv}\n" for mv in m["moves"])
     return out
 

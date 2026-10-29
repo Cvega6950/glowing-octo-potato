@@ -11,6 +11,9 @@
 # - A level-10 TYPHLOSION with six badges: a Rocket Grunt's Koffing (Heart & Soul: 20) stays on
 #   the cap curve, 31, a Koffing (Weezing at 35).
 # - A level-90 TYPHLOSION with eight badges: Paul's four at the cap, 85.
+# - Friendship: a trainer's Pokemon has its party entry's Happiness, 0 without one, so every
+#   trainer Pokemon that knows Return has one of 250 or more (validate.py). Hiker Frank's lead
+#   Kangaskhan (Return) battles with his 254, Paul's Dratini with 0.
 # gEnemyParty: 100 bytes a Pokemon, level at +84.
 !new_game()
 !battle_style_set()
@@ -37,6 +40,7 @@ expect8 {gEnemyParty+284} 71 second_dragonair_one_below_72
 expect8 {gEnemyParty+384} 71 third_dragonair_one_below_72
 !expect_battler(1, "species", "SPECIES_DRAGONITE", "dratini_at_69_is_a_dragonite")
 !expect_battler_ivs(1, 0x3FFFFFFF, "paul_ivs_31")
+!expect_battler(1, "friendship", "0", "paul_dratini_no_happiness", bits=8)
 
 # Ben (a route boss): at the cap, his Eviolite Lickitung doesn't evolve
 loadstate level72.ss
@@ -62,3 +66,11 @@ loadstate eight_badges.ss
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B paul_capped_action_menu
 expect8 {gEnemyParty+84} 85 dratini_held_at_cap
 expect8 {gEnemyParty+384} 85 dragonair_held_at_cap
+
+# Hiker Frank's Kangaskhan knows Return: his party's Happiness, 254
+loadstate eight_badges.ss
+!give_mon(157, 72)
+!battle("TRAINER_AKALA_CAVE_HIKER_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B frank_action_menu
+!expect_battler(1, "species", "SPECIES_KANGASKHAN", "frank_lead_kangaskhan")
+!expect_battler(1, "friendship", "254", "frank_kangaskhan_happiness_254", bits=8)

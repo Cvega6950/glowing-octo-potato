@@ -39,6 +39,11 @@ JOHTO_CHAMPION = "Johto Champion"
 KANTO_CHAMPION = "Kanto Champion"
 MAX_LEVEL = 100
 
+# Moves whose power comes from friendship. A trainer's Pokemon has its party entry's Happiness,
+# 0 when it has none (CreateNPCTrainerPartyFromTrainer), which would leave Return at power 1.
+FRIENDSHIP_MOVES = {"Return", "Pika Papow", "Veevee Volley"}
+FULL_FRIENDSHIP = 255
+
 
 def read_caps():
     """The NORMAL level caps by badge count and the Kanto cap, from src/caps.c."""
@@ -1030,6 +1035,8 @@ def render(tid, header, stage, items, mons, ai=BOSS_AI):
             out += f"EVs: {m['evs']}\n"
         out += f"Ability: {m['ability']}\n"
         out += f"Nature: {m['nature']}\n"
+        if FRIENDSHIP_MOVES & set(m["moves"]):
+            out += f"Happiness: {FULL_FRIENDSHIP}\n"
         out += "".join(f"- {mv}\n" for mv in m["moves"])
     return out
 
