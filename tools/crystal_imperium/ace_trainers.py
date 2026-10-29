@@ -30,6 +30,7 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import side_battles as sb  # noqa: E402  (maps, texts, the trainer ID block's neighbour)
 import ace_trainer_data as data  # noqa: E402  (the trainers and their teams)
+import boss_teams  # noqa: E402  (the caps, from src/caps.c, and the friendship moves)
 
 ROOT = sb.ROOT
 OPPONENTS, PARTY = sb.OPPONENTS, sb.PARTY
@@ -57,7 +58,6 @@ def label(ace):
 
 def stage_cap(stage):
     """The NORMAL level cap at a stage (boss_teams.py's caps; 9 is after the Johto League)."""
-    import boss_teams  # its caps come from src/caps.c
     return boss_teams.cap(boss_teams.JOHTO_CHAMPION if stage >= 9 else stage)
 
 

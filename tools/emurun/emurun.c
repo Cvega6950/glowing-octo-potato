@@ -44,6 +44,10 @@
 //                          a text pointer the game set and the table entry it should come from)
 //   expectxor32 ADDR KEY WANT [LABEL]   fail unless the 32-bit value at ADDR XORed with the 32-bit value
 //                          at KEY is WANT (e.g. the player's money and the save's encryption key)
+//   expectpartyspecies ADDR SECURE SIZE SPECIES [LABEL]   fail unless the struct Pokemon at ADDR is a
+//                          SPECIES: its substructs (SIZE bytes each, from offset SECURE) are XORed with
+//                          personality ^ OT ID (+0, +4), and the first one, whose low 11 bits are the
+//                          species, is in the slot the personality mod 24 picks (src/pokemon.c)
 //   setflag SB1PTR FLAGSOFF FLAG VALUE   set (1) or clear (0) event flag FLAG in (*SB1PTR)->flags
 //   expectflag SB1PTR FLAGSOFF FLAG WANT [LABEL]   check event flag FLAG (0/1) in (*SB1PTR)->flags
 //   seek8/seek16 ADDR TARGET KEYUP KEYDOWN   tap KEYUP while the value at ADDR is below TARGET and
@@ -960,6 +964,20 @@ int main(int argc, char **argv)
             uint32_t got = Peek(32, ParseAddr(a1)) ^ Peek(32, ParseAddr(a2)), want = strtoul(a3, NULL, 0);
             printf("[frame %lu] %s %s: %u (want %u)\n", frameCount, got == want ? "PASS" : "FAIL",
                    a4[0] ? a4 : "expectxor32", got, want);
+            if (got != want)
+                failures++;
+        }
+        else if (!strcmp(cmd, "expectpartyspecies"))
+        {
+            // sSubstructOffsets[SUBSTRUCT_TYPE_0] in src/pokemon.c
+            static const uint8_t growthSlot[24] = {0, 0, 0, 0, 0, 0, 1, 1, 2, 3, 2, 3, 1, 1, 2, 3, 2, 3, 1, 1, 2, 3, 2, 3};
+            char label[128] = "expectpartyspecies";
+            unsigned secure = 0, size = 0, want = 0;
+            sscanf(line, "%*s %*s %u %u %u %127s", &secure, &size, &want, label);
+            uint32_t addr = ParseAddr(a1), personality = Peek(32, addr), key = personality ^ Peek(32, addr + 4);
+            uint32_t got = (Peek(32, addr + secure + growthSlot[personality % 24] * size) ^ key) & 0x7FF;
+            printf("[frame %lu] %s %s: @0x%08X species %u (want %u)\n", frameCount, got == want ? "PASS" : "FAIL",
+                   label, addr, got, want);
             if (got != want)
                 failures++;
         }

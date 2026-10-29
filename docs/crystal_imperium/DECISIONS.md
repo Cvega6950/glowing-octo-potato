@@ -1769,18 +1769,24 @@ follows is the first build's; D45 lists what changed.)
 - **Evolutions** (`GetTrainerMonEvolvedSpecies`). A trainer's Pokémon is as evolved as its level
   allows, as Imperium's always are: by a level evolution at its level, by any other (an item, a
   trade, friendship, a move) from level 32, taking the first route that applies (Eevee's first is
-  Sylveon's). Bosses too, except that a boss's Pokémon holding an Eviolite or Everstone stays as it
-  is, and so does one holding an item that works for its own species only (Light Ball, Lucky Punch,
-  the Deep Sea items, Metal and Quick Powder): a boss is at its stage's cap, the level its team is
-  made for, and an Eviolite marks the ones meant to stay. An ordinary trainer's level follows the
-  player's, so its Pokémon evolve whatever they hold. The Dragonair of Dragon's Den and the
-  Blackthorn Gym (Heart & Soul's 40 to 43, the 70s on the curve) are Dragonite now. An ability the party data names is taken from the slot the
-  evolved species has it in, or its slot in the party data's species.
+  Sylveon's). A boss's team is made for its stage's cap, the level in its party data: there it
+  stays as designed (Whitney's Aipom at 33, though a trainer's would evolve knowing Double Hit
+  from 32), and only a boss fought later, raised to a later cap, evolves. Even then a Pokémon
+  holding an Eviolite or Everstone stays as it is, and so does one holding an item that works for
+  its own species only (Light Ball, Lucky Punch, the Deep Sea items, Metal and Quick Powder): an
+  Eviolite marks the ones meant to stay. (The first build evolved bosses at their own level too:
+  Whitney's Aipom became an Ambipom, and the `whitney` balance test's team lost all 24 battles.)
+  An ordinary trainer's level follows the player's, so its Pokémon evolve whatever they hold. The
+  Dragonair of Dragon's Den and the Blackthorn Gym (Heart & Soul's 40 to 43, the 70s on the curve)
+  are Dragonite now. An ability the party data names is taken from the slot the evolved species
+  has it in, or its slot in the party data's species.
 - **IVs.** Heart & Soul's ordinary trainers have 0 in every IV (796 Pokémon); an opponent's all-0
   IVs are 31s now, as Imperium's. Other spreads (a special attacker's 0 Attack) stay.
 - Only opponents' parties: a partner's party, or one made for the player, stays as its data has it.
 - Evidence: `trainer_levels` (new: Dragon Tamer Paul against a level-72 TYPHLOSION, his Dratini
-  at 69 and Dragonair at 71, all Dragonite, 31 IVs; Ben's Eviolite Lickitung at the cap; the cap
-  curve's 31 for a level-10 player; the cap, 85, for a level-90 one), `boss_levels` (the Grunt's
-  Koffing one below the player), `difficulty` (Albert's Pokémon one below the player, then 90% and
-  110%), the boss and Gym tests.
+  at 69 and Dragonair at 71, all Dragonite, 31 IVs; Ben's Eviolite Lickitung raised to the cap;
+  Whitney's Aipom and Stantler at her 33, Ambipom and Wyrdeer raised to 85; the cap curve's 31 for
+  a level-10 player; the cap, 85, for a level-90 one), `boss_levels` (the Grunt's Koffing one
+  below the player), `difficulty` (Albert's Pokémon one below the player, then 90% and 110%),
+  `whitney` (2 wins in 24 for its team), the boss and Gym tests. The tests read a party member's
+  species, which is encrypted, with the runner's `expectpartyspecies` (`expect_party_species`).

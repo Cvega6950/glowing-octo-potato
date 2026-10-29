@@ -777,6 +777,14 @@ def expect_battler(battler, field, const, label=None, negate=False, bits=16):
     return [f"expect{'ne' if negate else ''}{bits} {{gBattleMons+{off}}} {v[const]} {label or field + '_is_' + const.lower()}"]
 
 
+def expect_party_species(party, slot, species, label):
+    """Check the species of a Pokemon of gPlayerParty or gEnemyParty (party, a symbol) at slot 0-5,
+    which is in the encrypted part of struct Pokemon (the runner decrypts it: expectpartyspecies)."""
+    v = probe.resolve({"mon_size": "sizeof(struct Pokemon)", "secure": "offsetof(struct BoxPokemon, secure)",
+                       "substruct": "NUM_SUBSTRUCT_BYTES", species: species})
+    return [f"expectpartyspecies {{{party}+{slot * v['mon_size']}}} {v['secure']} {v['substruct']} {v[species]} {label}"]
+
+
 def expect_battler_ivs(battler, want, label):
     """Check a battler's six IVs (gBattleMons: 5-bit fields hpIV..spDefenseIV, lowest bits first,
     in the word before statStages) against `want` (the low 30 bits)."""

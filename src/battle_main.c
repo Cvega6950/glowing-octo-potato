@@ -2135,10 +2135,11 @@ static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
 // Crystal Imperium (DECISIONS.md D46): a trainer's Pokemon is as evolved as its level allows, as
 // in Emerald Imperium, where no trainer uses one far above its evolution level: by a level evolution
 // at its level, by any other (an item, a trade, friendship, a move) from TRAINER_OTHER_EVOLUTION_LEVEL.
-// The first route that applies is taken. A boss's Pokemon that holds an Eviolite or Everstone, or an
-// item that works only for its own species (Light Ball, Lucky Punch, the Deep Sea items, Metal and
-// Quick Powder), stays as its team has it: a boss is at its stage's cap, the level its team is made
-// for. An ordinary trainer's level follows the player's, so its Pokemon evolve whatever they hold.
+// The first route that applies is taken. A boss's team is made for its stage's cap, the level in its
+// party data: there it stays as it is, and fought later (raised to a later cap) it evolves, except a
+// Pokemon that holds an Eviolite or Everstone, or an item that works only for its own species (Light
+// Ball, Lucky Punch, the Deep Sea items, Metal and Quick Powder). An ordinary trainer's level follows
+// the player's, so its Pokemon evolve whatever they hold.
 #define TRAINER_OTHER_EVOLUTION_LEVEL 32
 
 static u32 GetTrainerEvolutionLevel(const struct Evolution *evolution)
@@ -2156,10 +2157,12 @@ static u32 GetTrainerEvolutionLevel(const struct Evolution *evolution)
     }
 }
 
-static u16 GetTrainerMonEvolvedSpecies(u16 species, u32 level, u16 heldItem)
+static u16 GetTrainerMonEvolvedSpecies(u16 species, u32 level, u32 teamLevel, u16 heldItem)
 {
     u32 stage, i;
 
+    if (sBossLevel && level <= teamLevel)
+        return species;
     switch (sBossLevel ? GetItemHoldEffect(heldItem) : HOLD_EFFECT_NONE)
     {
     case HOLD_EFFECT_EVIOLITE:
@@ -2261,7 +2264,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 species = RandomizeTrainerMon(trainer->trainerClass, i, monsCount, species);
                 #endif
                 if (sTrainerLevelCap) // an opponent's party, not a partner's or a party for the player
-                    species = GetTrainerMonEvolvedSpecies(species, level, partyData[monIndex].heldItem);
+                    species = GetTrainerMonEvolvedSpecies(species, level, partyData[monIndex].lvl, partyData[monIndex].heldItem);
                 CreateMon(&party[i], species, level, personalityValue, otId);
             }
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);

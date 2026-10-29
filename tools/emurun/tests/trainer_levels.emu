@@ -6,17 +6,21 @@
 # - Dragon Tamer Paul (Heart & Soul: Dratini 34, three Dragonair 40) against a level-72 TYPHLOSION
 #   with eight badges (cap 85): the Dratini three levels below, 69, the Dragonair one below, 71,
 #   and all four Dragonite (Dratini at 30, Dragonair at 55), with 31 IVs.
-# - Pokemaniac Ben, a route boss at the cap: his Eviolite Lickitung stays a Lickitung (it would
-#   evolve at 35).
+# - Pokemaniac Ben, a route boss raised to the cap: his Eviolite Lickitung stays a Lickitung (it
+#   would evolve at 35).
+# - A boss at its team's own level keeps its team as designed: Whitney's Silk Scarf Aipom (a
+#   trainer's evolves knowing Double Hit from 32) at her 33 with no badges; raised to 85 with eight
+#   badges, it is an Ambipom and her Stantler a Wyrdeer (44).
 # - A level-10 TYPHLOSION with six badges: a Rocket Grunt's Koffing (Heart & Soul: 20) stays on
 #   the cap curve, 31, a Koffing (Weezing at 35).
 # - A level-90 TYPHLOSION with eight badges: Paul's four at the cap, 85.
 # - Friendship: a trainer's Pokemon has its party entry's Happiness, 0 without one, so every
 #   trainer Pokemon that knows Return has one of 250 or more (validate.py). Hiker Frank's lead
 #   Kangaskhan (Return) battles with his 254, Paul's Dratini with 0.
-# gEnemyParty: 100 bytes a Pokemon, level at +84.
+# gEnemyParty: 100 bytes a Pokemon, level at +84 (the species is encrypted: expect_party_species).
 !new_game()
 !battle_style_set()
+savestate start.ss
 !set_flag("FLAG_BADGE01_GET")
 !set_flag("FLAG_BADGE02_GET")
 !set_flag("FLAG_BADGE03_GET")
@@ -39,10 +43,12 @@ expect8 {gEnemyParty+184} 71 dragonair_one_below_72
 expect8 {gEnemyParty+284} 71 second_dragonair_one_below_72
 expect8 {gEnemyParty+384} 71 third_dragonair_one_below_72
 !expect_battler(1, "species", "SPECIES_DRAGONITE", "dratini_at_69_is_a_dragonite")
+!expect_party_species("gEnemyParty", 0, "SPECIES_DRAGONITE", "party_data_dragonite_too")
+!expect_party_species("gPlayerParty", 0, "SPECIES_TYPHLOSION", "players_typhlosion")
 !expect_battler_ivs(1, 0x3FFFFFFF, "paul_ivs_31")
 !expect_battler(1, "friendship", "0", "paul_dratini_no_happiness", bits=8)
 
-# Ben (a route boss): at the cap, his Eviolite Lickitung doesn't evolve
+# Ben (a route boss, his team at 42, the 3-badge cap): raised to 85, his Eviolite Lickitung doesn't evolve
 loadstate level72.ss
 !battle("TRAINER_BEN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ben_action_menu
@@ -74,3 +80,21 @@ loadstate eight_badges.ss
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B frank_action_menu
 !expect_battler(1, "species", "SPECIES_KANGASKHAN", "frank_lead_kangaskhan")
 !expect_battler(1, "friendship", "254", "frank_kangaskhan_happiness_254", bits=8)
+
+# Whitney at her team's own level, 33: her Aipom stays an Aipom
+loadstate start.ss
+!give_mon(157, 33)
+!battle("TRAINER_WHITNEY_1_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B whitney_action_menu
+expect8 {gEnemyParty+184} 33 whitney_aipom_at_33
+!expect_party_species("gEnemyParty", 1, "SPECIES_AIPOM", "whitney_aipom_stays")
+!expect_party_species("gEnemyParty", 3, "SPECIES_STANTLER", "whitney_stantler_stays")
+
+# Raised to 85 with eight badges: Ambipom and Wyrdeer
+loadstate eight_badges.ss
+!give_mon(157, 72)
+!battle("TRAINER_WHITNEY_1_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B whitney_raised_action_menu
+expect8 {gEnemyParty+184} 85 whitney_aipom_raised_to_85
+!expect_party_species("gEnemyParty", 1, "SPECIES_AMBIPOM", "whitney_aipom_evolves_when_raised")
+!expect_party_species("gEnemyParty", 3, "SPECIES_WYRDEER", "whitney_stantler_evolves_when_raised")
