@@ -1763,11 +1763,12 @@ follows is the first build's; D45 lists what changed.)
 - **Evolutions** (`GetTrainerMonEvolvedSpecies`). A trainer's Pokémon is as evolved as its level
   allows, as Imperium's always are: by a level evolution at its level, by any other (an item, a
   trade, friendship, a move) from level 32, taking the first route that applies (Eevee's first is
-  Sylveon's). A Pokémon holding an Eviolite or Everstone stays as it is, and so does one holding an
-  item that works for its own species only (Light Ball, Lucky Punch, the Deep Sea items, Metal and
-  Quick Powder). Bosses too: their teams name their species, and an Eviolite marks the ones meant
-  to stay. The Dragonair of Dragon's Den and the Blackthorn Gym (Heart & Soul's 40 to 43, the
-  70s on the curve) are Dragonite now. An ability the party data names is taken from the slot the
+  Sylveon's). Bosses too, except that a boss's Pokémon holding an Eviolite or Everstone stays as it
+  is, and so does one holding an item that works for its own species only (Light Ball, Lucky Punch,
+  the Deep Sea items, Metal and Quick Powder): a boss is at its stage's cap, the level its team is
+  made for, and an Eviolite marks the ones meant to stay. An ordinary trainer's level follows the
+  player's, so its Pokémon evolve whatever they hold. The Dragonair of Dragon's Den and the
+  Blackthorn Gym (Heart & Soul's 40 to 43, the 70s on the curve) are Dragonite now. An ability the party data names is taken from the slot the
   evolved species has it in, or its slot in the party data's species.
 - **IVs.** Heart & Soul's ordinary trainers have 0 in every IV (796 Pokémon); an opponent's all-0
   IVs are 31s now, as Imperium's. Other spreads (a special attacker's 0 Attack) stay.

@@ -704,6 +704,9 @@
 #define TRAINER_SIDE_WALLY_HNS                678
 // End of the side battles
 
+// Crystal Imperium Ace Trainers (DECISIONS.md D47): written by tools/crystal_imperium/ace_trainers.py
+// End of the Ace Trainers
+
 #define TRAINERS_COUNT_HNS                       679
 #define MAX_TRAINERS_COUNT_HNS                   864
 

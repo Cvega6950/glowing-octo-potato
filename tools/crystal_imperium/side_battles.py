@@ -620,14 +620,18 @@ def render_opponents(text):
     rows = sorted((tid, trainer) for b in BATTLES for trainer, tid in b.trainers())
     block = [OPP_START] + [f"#define {trainer:<37} {tid}" for tid, trainer in rows] + [OPP_END, ""]
     start = text.find(OPP_START)
-    if start >= 0:
+    if start >= 0:  # in place, so that the Ace Trainers' block (ace_trainers.py) stays after it
         end = text.index(OPP_END, start) + len(OPP_END) + 1
-        text = text[:start] + text[end:].lstrip("\n")
+        text = text[:start] + "\n".join(block) + text[end:]
+    else:
+        count = re.search(r"#define TRAINERS_COUNT_HNS\s+(\d+)", text)
+        text = text.replace(count.group(0), "\n".join(block) + "\n" + count.group(0))
     count = re.search(r"#define TRAINERS_COUNT_HNS\s+(\d+)", text)
     base = 653  # Heart & Soul's own trainers end at 652
-    new_count = max([base - 1] + [tid for tid, _ in rows]) + 1
-    text = text.replace(count.group(0), "\n".join(block) + "\n" + re.sub(r"\d+$", str(new_count), count.group(0)))
-    return text
+    # Every trainer ID counts, the Ace Trainers' too
+    others = [int(v) for v in re.findall(r"(?m)^#define TRAINER_\w+\s+(\d+)\s*$", text)]
+    new_count = max([base - 1] + others + [tid for tid, _ in rows]) + 1
+    return text.replace(count.group(0), re.sub(r"\d+$", str(new_count), count.group(0)))
 
 
 def header_block(b, trainer):

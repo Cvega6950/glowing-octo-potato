@@ -67,6 +67,9 @@ REWORKED = {"TRAINER_FALKNER_1_HNS", "TRAINER_LI_HNS", "TRAINER_BUGSY_1_HNS", "T
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import boss_teams  # noqa: E402
 REWORKED |= set(boss_teams.TEAMS)
+# The Ace Trainers (DECISIONS.md D47) and Heart & Soul's Ace Trainers given competitive teams
+import ace_trainer_data  # noqa: E402
+REWORKED |= {f"TRAINER_ACE_{a['key']}_HNS" for a in ace_trainer_data.ACES} | set(ace_trainer_data.UPGRADES)
 
 # Gym Leader versions HnS picks by badge count: Chuck, Jasmine and Pryce can be the 5th, 6th or
 # 7th Gym (_1, _1_2, _1_3), so the versions' stages are 4, 5 and 6 badges
