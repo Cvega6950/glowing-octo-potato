@@ -105,6 +105,7 @@ it changed.
 | Kirlia | Gardevoir | Level 30 |  |
 | Kirlia | Gallade | Use a Dawn Stone if male |  |
 | Nincada | Ninjask | Level 20 |  |
+| Nincada | Shedinja | No longer: SELECT in the DexNav finds it | When it evolves into Ninjask, with a free party slot and 1 Poke Ball in the Bag |
 | Azurill | Marill | Level up with high friendship |  |
 | Nosepass | Probopass | Use a Metal Coat | Level up on Route 10, or level up in the Power Plant, or use a Thunder Stone |
 | Skitty | Delcatty | Use a Moon Stone |  |
