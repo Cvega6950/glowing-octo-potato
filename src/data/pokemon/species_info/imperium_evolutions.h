@@ -383,10 +383,10 @@
     [SPECIES_IMPIDIMP].evolutions = EVOLUTION({EVO_LEVEL, 27, SPECIES_MORGREM}),
     // was: level 42 -> Grimmsnarl
     [SPECIES_MORGREM].evolutions = EVOLUTION({EVO_LEVEL, 36, SPECIES_GRIMMSNARL}),
-    // was: Up Grade -> Archaludon; Metal Alloy -> Archaludon
+    // was: Up-Grade -> Archaludon; Metal Alloy -> Archaludon
     [SPECIES_DURALUDON].evolutions = EVOLUTION({EVO_ITEM, ITEM_METAL_ALLOY, SPECIES_ARCHALUDON},
         {EVO_LEVEL, 50, SPECIES_ARCHALUDON}),
-    // was: Razor Claw -> Urshifu Single Strike; Water Stone -> Urshifu Rapid Strike; script trigger -> Urshifu Single Strike; script trigger 1 -> Urshifu Rapid Strike; Scroll Of Darkness -> Urshifu Single Strike; Scroll Of Waters -> Urshifu Rapid Strike
+    // was: Razor Claw -> Urshifu Single Strike; Water Stone -> Urshifu Rapid Strike; script trigger -> Urshifu Single Strike; script trigger 1 -> Urshifu Rapid Strike; Scroll of Darkness -> Urshifu Single Strike; Scroll of Waters -> Urshifu Rapid Strike
     [SPECIES_KUBFU].evolutions = EVOLUTION({EVO_ITEM, ITEM_DUSK_STONE, SPECIES_URSHIFU_SINGLE_STRIKE},
         {EVO_ITEM, ITEM_WATER_STONE, SPECIES_URSHIFU_RAPID_STRIKE}),
     // was: level 20, at night -> Raticate Alola
