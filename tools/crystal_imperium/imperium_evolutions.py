@@ -328,7 +328,9 @@ def render_route(route, game):
     return text + "}"
 
 
-ITEM_WORDS = {"ITEM_LINKING_CORD": "Linking Cord", "ITEM_UPGRADE": "Up-Grade", "ITEM_KINGS_ROCK": "King's Rock"}
+ITEM_WORDS = {"ITEM_LINKING_CORD": "Linking Cord", "ITEM_UPGRADE": "Up-Grade", "ITEM_UP_GRADE": "Up-Grade",
+              "ITEM_KINGS_ROCK": "King's Rock", "ITEM_LEADERS_CREST": "Leader's Crest",
+              "ITEM_SCROLL_OF_DARKNESS": "Scroll of Darkness", "ITEM_SCROLL_OF_WATERS": "Scroll of Waters"}
 COND_WORDS = {
     "IF_MIN_FRIENDSHIP": lambda a: "friendship",
     "IF_TIME": lambda a: {"TIME_NIGHT": "at night", "TIME_EVENING": "in the evening", "TIME_DAY": "by day"}[a[0]],
@@ -396,12 +398,246 @@ def generate(ei, game):
     return "\n".join(lines) + "\n", changes
 
 
+# --- The evolution guide (docs/crystal_imperium/EVOLUTIONS.md) ----------------------------------------
+
+GUIDE = "docs/crystal_imperium/EVOLUTIONS.md"
+REGIONAL = {"ALOLA": "Alolan", "GALAR": "Galarian", "HISUI": "Hisuian", "PALDEA": "Paldean"}
+HOURS = {"night": "at night (19:00-5:59)", "day": "by day (6:00-18:59)", "evening": "in the evening (18:00-18:59)",
+         "daytime": "in the daytime (10:00-17:59)", "morning": "in the morning (6:00-9:59)"}
+NATURE_GROUPS = {"IF_AMPED_NATURE": "an Amped nature (Hardy, Brave, Adamant, Naughty, Docile, Impish, Lax, Hasty, Jolly, "
+                                    "Naive, Rash, Sassy, Quirky)",
+                 "IF_LOW_KEY_NATURE": "a Low Key nature (Lonely, Bold, Relaxed, Timid, Serious, Modest, Mild, Quiet, "
+                                      "Bashful, Calm, Gentle, Careful)"}
+PLACES = {"MAPSEC_ROUTE_10": "on Route 10", "MAPSEC_POWER_PLANT": "in the Power Plant", "MAPSEC_MT_MOON": "in the Mt. Moon area"}
+
+
+def display_names(ei, game):
+    """number -> a readable name: the dex's ("Mr. Mime", "Flabebe (Red)", "Alolan Raichu"), else the constant's."""
+    mp = isp.Mapper(ei)
+    out = {}
+    for sid, s in sorted(ei["species"].items()):
+        const = mp.species(s)
+        if not const or game.consts[const] in out:
+            continue
+        name = s["speciesName"]
+        base_key = isp.constify(name, "")
+        key = isp.constify(s["nameKey"], "")
+        suffix = s["nameKey"][len(s["nameKey"]) - (len(key) - len(base_key)) + 1:] if key.startswith(base_key + "_") else ""
+        if suffix.upper() in REGIONAL:
+            out[game.consts[const]] = f"{REGIONAL[suffix.upper()]} {name}"
+        elif suffix:
+            label = {"F": "Female", "M": "Male"}.get(suffix, suffix)
+            if not re.search(r"Striped|Segment", label):
+                label = label.replace("-", " ")
+            out[game.consts[const]] = f"{name} ({label})"
+        else:
+            out[game.consts[const]] = name
+    return out
+
+
+def article(item):
+    """ "a Moon Stone", "an Ice Stone" """
+    name = item_words(item)
+    return ("an " if name[0] in "AEIOU" else "a ") + name
+
+
+def guide_name(num, game, names):
+    if num in names:
+        return names[num]
+    return words(game.name(num), "SPECIES_")
+
+
+def how(route, game, names):
+    """A route in a player's words: "Level 36 at night", "Use a Linking Cord"."""
+    method, param, target, conds = route
+    parts = []
+    if method in ("EVO_LEVEL", "EVO_LEVEL_BATTLE_ONLY"):
+        parts.append(f"Level {param}" if param != "0" else "Level up")
+        if method == "EVO_LEVEL_BATTLE_ONLY":
+            parts.append("in a battle")
+    elif method == "EVO_ITEM":
+        parts.append(f"Use {article(param)}")
+    elif method == "EVO_TRADE":
+        parts.append("Trade it")
+    elif method == "EVO_SPIN":
+        parts.append("Spin in place")
+    elif method == "EVO_BATTLE_END":
+        parts.append("At the end of a battle")
+    elif method == "EVO_SCRIPT_TRIGGER":
+        parts.append("At a special place")
+    elif method == "EVO_SPLIT_FROM_EVO":
+        parts.append(f"When it becomes a {guide_name(param, game, names)}")
+    else:
+        parts.append(words(method, "EVO_").lower())
+    for c in conds:
+        name, args = c[0], c[1:]
+        if c == FRIENDSHIP:
+            parts.append("with high friendship")
+        elif c == NIGHT:
+            parts.append(HOURS["night"])
+        elif c == NOT_NIGHT:
+            parts.append(HOURS["day"])
+        elif c == EVENING:
+            parts.append(HOURS["evening"])
+        elif name == "IF_TIME":
+            parts.append(HOURS.get(args[0][5:].lower().replace("day", "daytime"), args[0]))
+        elif name == "IF_GENDER":
+            parts.append("if female" if args[0] == "MON_FEMALE" else "if male")
+        elif name == "IF_KNOWS_MOVE":
+            parts.append("knowing " + words(args[0], "MOVE_"))
+        elif name == "IF_KNOWS_MOVE_TYPE":
+            parts.append(f"knowing a {words(args[0], 'TYPE_')}-type move")
+        elif name == "IF_SPECIES_IN_PARTY":
+            parts.append(f"with {guide_name(game.consts[args[0]], game, names)} in the party")
+        elif name == "IF_TYPE_IN_PARTY":
+            parts.append(f"with a {words(args[0], 'TYPE_')}-type Pokémon in the party")
+        elif name == "IF_TRADE_PARTNER_SPECIES":
+            parts.append(f"for a {guide_name(game.consts[args[0]], game, names)}")
+        elif name == "IF_HOLD_ITEM":
+            parts.append(f"holding {article(args[0])}")
+        elif name == "IF_WEATHER":
+            parts.append({"WEATHER_RAIN": "in the rain", "WEATHER_FOG": "in fog"}.get(args[0], "in " + words(args[0], "WEATHER_")))
+        elif name == "IF_MIN_BEAUTY":
+            parts.append(f"with Beauty {args[0]} or more")
+        elif name == "IF_IN_MAPSEC":
+            parts.append(PLACES.get(args[0], "in " + words(args[0], "MAPSEC_")))
+        elif name == "IF_PID_MODULO_100_EQ":
+            parts.append("(1 in 100, by its personality)")
+        elif name == "IF_PID_MODULO_100_GT":
+            parts.append("(99 in 100, by its personality)")
+        elif name in ("IF_PID_UPPER_MODULO_10_GT", "IF_PID_UPPER_MODULO_10_LT"):
+            parts.append("(half of them, by personality)")
+        elif name in ("IF_ATK_GT_DEF", "IF_ATK_EQ_DEF", "IF_ATK_LT_DEF"):
+            parts.append({"IF_ATK_GT_DEF": "with Attack above Defense", "IF_ATK_EQ_DEF": "with Attack equal to Defense",
+                          "IF_ATK_LT_DEF": "with Attack below Defense"}[name])
+        elif name in NATURE_GROUPS:
+            parts.append("with " + NATURE_GROUPS[name])
+        elif name in ("IF_REGION", "IF_NOT_REGION"):
+            region = "Sinjoh" if args[0] == "REGION_HISUI" else words(args[0], "REGION_")  # Heart & Soul's Hisui
+            parts.append(("in " if name == "IF_REGION" else "outside ") + region)
+        elif name == "IF_IN_MAP":
+            parts.append("in " + words(args[0], "MAP_").replace(" Hns", ""))
+        elif name == "IF_USED_MOVE_X_TIMES":
+            parts.append(f"after using {words(args[0], 'MOVE_')} {args[1]} times")
+        elif name == "IF_MIN_OVERWORLD_STEPS":
+            parts.append(f"after walking {args[0]} steps with it")
+        elif name == "IF_BAG_ITEM_COUNT":
+            parts.append(f"with {args[1]} {item_words(args[0])} in the Bag")
+        elif name == "IF_RECOIL_DAMAGE_GE":
+            parts.append(f"after losing {args[0]} HP to recoil")
+        elif name == "IF_CRITICAL_HITS_GE":
+            parts.append(f"after {args[0]} critical hits in a battle")
+        elif name == "IF_CURRENT_DAMAGE_GE":
+            parts.append(f"after losing {args[0]} HP")
+        elif name == "IF_DEFEAT_X_WITH_ITEMS":
+            parts.append(f"after defeating {args[2]} {guide_name(game.consts.get(args[0], 0), game, names)} holding {article(args[1])}")
+        else:
+            parts.append(words(name, "IF_").lower() + (" " + " ".join(args) if args else ""))
+    return " ".join(parts)
+
+
+def guide(ei, game, changes):
+    names = display_names(ei, game)
+    final = {num: list(routes) for num, routes in game.evos.items()}
+    for num, (old, new) in changes.items():
+        final[num] = new
+
+    def plain(routes):
+        return all(r[0] == "EVO_LEVEL" and r[1] != "0" and not r[3] for r in routes)
+
+    def key(routes):
+        return sorted(repr((r[0], r[1], game.base(r[2]), r[3])) for r in routes)
+
+    def order(num):
+        return (game.base(num), num)
+
+    special, levels = [], []
+    for num in sorted((n for n, r in final.items() if r), key=order):
+        routes = final[num]
+        base = game.base(num)
+        if base != num and base in final and key(final[base]) == key(routes):
+            continue  # a form evolving as its base form does, into its own form
+        old = [norm(r) for r in game.evos.get(num, [])]
+        if plain(routes) and plain(old):
+            was = {r[2]: r[1] for r in old}
+            for r in routes:
+                before = was.get(r[2])
+                levels.append((guide_name(num, game, names), guide_name(r[2], game, names), r[1],
+                               before if before and before != r[1] else ""))
+        else:
+            if game.name(num) == "SPECIES_MILCERY":
+                special.append(("Milcery", "Alcremie", "Use a Shiny Stone (Vanilla Cream), another stone, or spin in place "
+                                "holding a Sweet: see Alcremie below", ""))
+                continue
+            targets = list(dict.fromkeys(r[2] for r in routes))
+            changed = sorted(map(repr, old)) != sorted(map(repr, [norm(r) for r in routes]))
+            def joined(ways):
+                ways = list(dict.fromkeys(ways))
+                return ways[0] + "".join(", or " + w[0].lower() + w[1:] for w in ways[1:])
+            for i, target in enumerate(targets):
+                cell = joined([how(r, game, names) for r in routes if r[2] == target])
+                before = ""
+                if changed:
+                    was = ([how(r, game, names) for r in old if r[2] == target]
+                           or [how(r, game, names) for r in old if game.base(r[2]) == game.base(target)])
+                    before = joined(was) if was else "no evolution"
+                    if before == cell:
+                        before = ""
+                special.append((guide_name(num, game, names), guide_name(target, game, names), cell, before))
+
+    out = ["# Crystal Imperium: how every Pokémon evolves", "",
+           "Generated by `tools/crystal_imperium/imperium_evolutions.py --guide` from the game's own data: the",
+           "evolutions of Emerald Imperium's official dex (DECISIONS.md D44, D45). Edit the script, not this file.", "",
+           "## What you need", "",
+           "- **Evolution items:** the Goldenrod Dept. Store 2F clerk sells Emerald Imperium's fifteen for ¥500 each: the",
+           "  Fire, Thunder, Leaf, Water, Sun, Moon, Ice, Dusk, Dawn and Shiny Stones, the Prism Scale, the Linking Cord,",
+           "  the King's Rock, the Metal Coat and the Up-Grade. Use one from the Bag on the Pokémon. Most are in the",
+           "  care packages too; the Metal Alloy (Duraludon) comes in the 7th badge's, the Sweets (Alcremie) in the 4th's.",
+           "- **Trade evolutions** also take a Linking Cord, so no trade is needed.",
+           "- **Friendship:** the same clerk sells the Pomeg, Kelpsy, Qualot, Hondew, Grepa and Tamato Berries (¥20), which",
+           "  raise it (and lower an EV each). Walking, battling and a Soothe Bell raise it too.",
+           "- **Time of day:** night is 19:00-5:59, \"by day\" 6:00-18:59, the evening 18:00-18:59. The L button menu's",
+           "  TIME sets the morning, day, evening or night.",
+           "- **\"Level up knowing a move\":** teach the move with the party menu's LEARN MOVES, then level up once. A Rare",
+           "  Candy works, even at the level cap: a Pokémon at the cap still evolves (D33).", "",
+           "## Special evolutions", "",
+           "Everything that isn't a plain level, and the ones that used to be special. *Before* is Heart & Soul's way, where",
+           "it changed.", "",
+           "| Pokémon | Becomes | How | Before |", "|---|---|---|---|"]
+    out += [f"| {a} | {b} | {c} | {d} |" for a, b, c, d in special]
+    out += ["", "### Alcremie", "",
+            "Milcery's cream comes from what you use or how you spin (holding a Sweet, which gives the decoration):", "",
+            "| Way | Cream |", "|---|---|"]
+    milcery = final.get(game.consts["SPECIES_MILCERY"], [])
+    seen = set()
+    for r in milcery:
+        target = guide_name(r[2], game, names)
+        cream = target.split("(", 1)[-1].rstrip(")").replace("Strawberry ", "") if "(" in target else target
+        way = how(r, game, names)
+        if r[0] == "EVO_SPIN":
+            spin = {"SPIN_CW_SHORT": "clockwise, under 5 s", "SPIN_CW_LONG": "clockwise, over 5 s", "SPIN_CCW_SHORT":
+                    "counterclockwise, under 5 s", "SPIN_CCW_LONG": "counterclockwise, over 5 s"}.get(r[1], "either way, over 10 s")
+            times = [how(("EVO_LEVEL", "0", 0, (c,)), game, names).replace("Level up ", "") for c in r[3] if c[0] in ("IF_TIME", "IF_NOT_TIME")]
+            way = f"Spin {spin}, holding a Sweet, {' '.join(times)}"
+            if "Strawberry" not in target:
+                continue  # the same spins with the other Sweets: their decoration
+        if (way, cream) not in seen:
+            seen.add((way, cream))
+            out.append(f"| {way} | {cream} |")
+    out += ["", "## Level evolutions", "",
+            "*Before* is Heart & Soul's level, where it changed. A regional or other form evolves at its base form's",
+            "level, into its own form, unless it is listed.", "",
+            "| Pokémon | Becomes | Level | Before |", "|---|---|---|---|"]
+    out += [f"| {a} | {b} | {c} | {d} |" for a, b, c, d in levels]
+    return "\n".join(out) + "\n"
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--ei-dex", required=True, help="a saved copy of the Emerald Imperium dex's script (" + ei_dex.EI_DEX_URL + ")")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--report", action="store_true")
-    args = ap.parse_args()
+    args = ap.parse_args()  # the guide (GUIDE) is written and checked with the header
     ei, digest = ei_dex.load_ei(args.ei_dex)
     if digest != ei_dex.EI_DEX_SHA256:
         sys.exit(f"{args.ei_dex} isn't the dex script these files came from (SHA-256 {digest})")
@@ -414,17 +650,19 @@ def main():
             print("   new: " + "; ".join(describe(r, game) for r in new))
         print(f"{len(changes)} species change")
         return
-    path = os.path.join(isp.ROOT, OUT)
-    current = open(path, encoding="utf-8").read() if os.path.exists(path) else ""
+    outputs = {OUT: text, GUIDE: guide(ei, game, changes)}
+    stale = [p for p, new in outputs.items() if not os.path.exists(os.path.join(isp.ROOT, p))
+             or open(os.path.join(isp.ROOT, p), encoding="utf-8").read() != new]
     if args.check:
-        if current != text:
-            sys.exit(f"{OUT} is out of date: run tools/crystal_imperium/imperium_evolutions.py")
-        print(f"{OUT} is up to date ({len(changes)} species)")
+        if stale:
+            sys.exit(f"{', '.join(stale)} out of date: run tools/crystal_imperium/imperium_evolutions.py")
+        print(f"{OUT} and {GUIDE} are up to date ({len(changes)} species)")
         return
-    if current != text:
-        with open(path, "w", encoding="utf-8") as f:
-            f.write(text)
-    print(f"wrote {OUT}: {len(changes)} species")
+    for p in stale:
+        with open(os.path.join(isp.ROOT, p), "w", encoding="utf-8") as f:
+            f.write(outputs[p])
+        print(f"wrote {p}")
+    print(f"{len(changes)} species with Imperium's evolutions")
 
 
 if __name__ == "__main__":
