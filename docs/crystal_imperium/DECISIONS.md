@@ -1593,6 +1593,9 @@ DexNav shows and that wild encounters draw from:
 
 ## D44. Emerald Imperium's evolutions
 
+(Since 0.15.0's second build the data is Imperium's own dex's, not the Radical Red dex's: D45. What
+follows is the first build's; D45 lists what changed.)
+
 - The user asked, about the list of special evolutions: "Can you make all of these evolutions match
   what is needed from Pokemon emerald imperium". Asked about the details, they chose: every
   evolution, ordinary levels included; only Imperium's ways (the ways that worked before go, unless
@@ -1671,3 +1674,69 @@ DexNav shows and that wild encounters draw from:
   Alcremie; the Goldenrod 2F list and the prices), `care_packages` (no Dubious Disc, Electirizer,
   Sweet Apple, Gimmighoul Coin or Scroll), `side_battles`, `validate.py` (the overrides in the
   evolution families) and the whole suite.
+
+## D45. The official Emerald Imperium dex
+
+- The user asked, after D44: "Especially Gengar, also make the levels they learn moves the same as
+  imperium, like primape learns rage fist at 35 I think so I can get the evolution earlier", and
+  "Can you update movesets to match exactly what imperium mons can learn, like pikachu can learn
+  zippy zap, I feel like the move sets aren't that great now"; also "add friendship berries" and
+  "Make them available in goldenrod not mahogany".
+- **Source.** Imperium's documentation (its Boss Battles sheet's front page) links its own dex,
+  "Official online Pokedex tool for Pokemon Emerald Imperium" (https://dex.emeraldimperium.net).
+  The dex's page script holds Imperium's data as JavaScript literals: species (abilities, level-up,
+  TM and tutor moves, Egg Moves, evolutions), moves, items, abilities and types.
+  `tools/crystal_imperium/ei_dex.py` reads them from a saved copy of the script
+  (`assets/index-Cgh1ktsP.js`, SHA-256 `7eddbfdc…947abdbb`) as data, without running it; the file
+  isn't kept in this repository. `imperium_species.py` and `imperium_evolutions.py` read it
+  (`--ei-dex`) in place of the Radical Red dex (D35, D39, D44). Like that one, it is design data
+  (D2): which moves, abilities and evolutions each species has. Its 1,534 entries map onto this
+  game's species by their names ("Raichu-Alola", "Basculin-Blue-Striped"); Imperium's own Megas
+  and Primal forms and two Pikachu forms aren't in this game, and stay out.
+- **What changes against the Radical Red data.** Mostly nothing: Imperium's list of differences
+  is in its dex already. But not everywhere:
+  - Evolutions, 47 species (219 in all differ from Heart & Soul's). Imperium keeps the trades beside
+    its items (Kadabra, Machoke, Graveler, Haunter, Boldore, Gurdurr, Phantump and Pumpkaboo trade or
+    take a Linking Cord; Rhydon, Seadra, Electabuzz, Magmar, Dusclops, Onix, Scyther, Poliwhirl,
+    Slowpoke and Feebas trade holding their item or take Imperium's; Karrablast and Shelmet trade
+    for each other). Bayleef evolves at 36 ("All starters evolve at level 16 and 36"), Riolu at 30
+    at any hour, Mantyke at 30 only, Slakoth at 18, Tympole at 25, Scraggy at 39, West Shellos at
+    32, Bergmite at 37, Girafarig at 45 only, Nincada at 20 with no Shedinja ("catchable post game";
+    the DexNav finds it here). Primeape, Tangela, Aipom, Yanma, Bonsly, Steenee and Mime Jr. evolve
+    by their move only (no level). Ursaring evolves at 48: Ursaluna by day, Bloodmoon at night,
+    so the Peat Block goes. Dunsparce: Two-Segment by Hyper Drill, Three-Segment at 45. Duraludon
+    also takes a Metal Alloy, Feebas also evolves by Beauty, Porygon by the Linking Cord only.
+    Magneton and Charjabug also evolve in a place, New Mauville in Imperium: Route 10 and the
+    Power Plant here, as in Heart & Soul. Imperium's changelog fix on top: Tandemaus evolves
+    without a battle (1.2). Imperium's nine Shiny Stone routes for Milcery give Vanilla Cream (the
+    first one that applies wins), so the other flavours keep Heart & Soul's ways (D44).
+  - Moves: 63 level-up learnsets (Empoleon's Iron Head at 42, the Hoenn starters' first move at 6,
+    Detect for Protect, Greninja's Bounce...), the TM and tutor lists (Heavy Slam, Gravity and Water
+    Pulse for many species; Radical Red's tutor moves Uproar, Hone Claws, Toxic Spikes, Frost Breath
+    and Cosmic Power, which Imperium doesn't teach, go), a few Egg Moves. Moves Imperium teaches no
+    one (Blast Burn, Hydro Cannon, Frenzy Plant) keep their official compatibility, as Heart &
+    Soul's other moves do (D39). Draco Barrage and Dark Hole stay Imperium's postgame TMs.
+  - Abilities: 474 species have Imperium's (Abomasnow's Slush Rush, Medicham's Huge Power,
+    Garbodor's Stench, Emboar's Blaze and Reckless...). Its own abilities stay out (D2): Striker,
+    Feline Prowess, Fatal Precision, Sage Power, Bone Zone, Bull Rush, Self Sufficient, Blazing
+    Soul, Quill Rush, Bad Company; a slot with one keeps one of Heart & Soul's, except the Torchic
+    line's (no hidden ability, rather than the Speed Boost Imperium took away).
+- The user's examples: Pikachu learns Zippy Zap at 55 (Raichu at 62), in Imperium as here since
+  0.11.0. Primeape learns Shadow Punch at 35 and evolves into Annihilape when it levels up knowing
+  it; Rage Fist comes at 64. Gengar comes from Haunter by trade or a Linking Cord.
+- **Items.** The Metal Alloy is back in the 7th badge's care package; the Peat Block leaves the 8th
+  badge's. The items only a trade uses (Protector, Dragon Scale, Electirizer, Magmarizer, Reaper
+  Cloth) stay out of the packages: a Linking Cord or Imperium's item evolves the same Pokémon.
+- **Shops.** The Goldenrod Dept. Store 2F clerk also sells the six Berries that raise friendship
+  (Pomeg, Kelpsy, Qualot, Hondew, Grepa and Tamato: they lower an EV each), after the evolution
+  items, for ¥20 each (Imperium's Rustboro clerk gives Pomeg Berries away). The Mahogany shop sells no
+  evolution items any more (all of the ones evolutions use are on the 2F list): Rage Candy Bars,
+  Never-Melt Ice, Razor Fang and Razor Claw.
+- **Trainers.** Five boss Pokémon had abilities their species lost: Medicham and Meditite's Pure
+  Power (Chuck's rematch, Candice's and Maylene's side battles) becomes Huge Power, Whitney's
+  rematch Bloodmoon Ursaluna's Scrappy becomes Mind's Eye, Koga's rematch Overqwil's Poison Touch
+  Intimidate.
+- Evidence: `imperium_species.py --check`, `imperium_evolutions.py --check` and `validate.py`
+  against the dex; `move_pools` (Mew's tutor list: Scald and Work Up, not Cosmic Power),
+  `tutor_category` (a Caterpie: Magikarp has no tutor move any more), `imperium_evolutions` (the 2F
+  list with the Berries), `care_packages` (a Metal Alloy, no Peat Block) and the whole suite.

@@ -352,6 +352,7 @@ static const struct CarePackageItem sCarePackage7[] =
     {ITEM_BINDING_BAND, 10},
     {ITEM_GRIP_CLAW, 10},
     {ITEM_RAZOR_FANG, 10},
+    {ITEM_METAL_ALLOY, 10},
 };
 
 static const u8 sCarePackageText7[] = _(
@@ -359,7 +360,7 @@ static const u8 sCarePackageText7[] = _(
     "ULTRA BALL ×20; ×10 each: MAX REVIVE,\p"
     "LIFE ORB, POWER HERB, X ACCURACY,\n"
     "DIRE HIT, GUARD SPEC., BINDING BAND,\p"
-    "GRIP CLAW, RAZOR FANG.");
+    "GRIP CLAW, RAZOR FANG, METAL ALLOY.");
 
 static const struct CarePackageItem sCarePackage8[] =
 {
@@ -367,13 +368,12 @@ static const struct CarePackageItem sCarePackage8[] =
     {ITEM_ULTRA_BALL, 20},
     {ITEM_MAX_REVIVE, 10},
     {ITEM_MAX_ELIXIR, 10},
-    {ITEM_PEAT_BLOCK, 10},
 };
 
 static const u8 sCarePackageText8[] = _(
     "Inside: FULL RESTORE ×20,\n"
-    "ULTRA BALL ×20; ×10 each: MAX REVIVE,\p"
-    "MAX ELIXIR, PEAT BLOCK.");
+    "ULTRA BALL ×20, MAX REVIVE ×10,\p"
+    "MAX ELIXIR ×10.");
 
 static const struct CarePackageItem sCarePackage9[] =
 {

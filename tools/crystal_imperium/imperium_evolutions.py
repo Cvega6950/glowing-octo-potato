@@ -1,31 +1,27 @@
 #!/usr/bin/env python3
-"""Crystal Imperium: Emerald Imperium's evolution methods (DECISIONS.md D44).
+"""Crystal Imperium: Emerald Imperium's evolution methods (DECISIONS.md D44, D45).
 
-Emerald Imperium's evolutions are Radical Red's: its developer answers "most evolutions are the same
-as RR, so you can use RR Dex", and its changelogs fix a few to "match RR data". This script reads the
-Radical Red dex's data file (the one imperium_species.py reads, RR_DATA_URL) and writes
+This script reads the official Emerald Imperium dex (ei_dex.py: the dex's page script, EI_DEX_URL) and
+writes
 
   src/data/pokemon/species_info/imperium_evolutions.h   the evolutions that differ from Heart & Soul's,
                                                         as overrides of the species table
 
-  python3 tools/crystal_imperium/imperium_evolutions.py --rr-data PATH           # rewrite the file
-  python3 tools/crystal_imperium/imperium_evolutions.py --rr-data PATH --check   # exit 1 if out of date
-  python3 tools/crystal_imperium/imperium_evolutions.py --rr-data PATH --report  # every change, readable
+  python3 tools/crystal_imperium/imperium_evolutions.py --ei-dex PATH           # rewrite the file
+  python3 tools/crystal_imperium/imperium_evolutions.py --ei-dex PATH --check   # exit 1 if out of date
+  python3 tools/crystal_imperium/imperium_evolutions.py --ei-dex PATH --report  # every change, readable
 
-Each species takes Radical Red's methods in place of Heart & Soul's (the user chose "only Imperium's
-ways"), ordinary levels included. Kept from Heart & Soul, because no Radical Red method reaches them:
-the Alcremie flavours (stones and spins), Bloodmoon Ursaluna (a Peat Block at night in the Mt. Moon
-area or in Sinjoh), Three-Segment Dudunsparce and the Family of Three (1 in 100, by personality value,
-on each of Radical Red's methods) and Own Tempo Rockruff's Dusk Lycanroc. Imperium's own fixes on top
-of Radical Red's data: White-Striped Basculin evolves like the other two stripes (changelog 1.2), and
-Porygon also evolves with an Up-Grade, which Imperium's evolution shop sells (no other evolution uses
-one). Radical Red's Link Cable is this engine's Linking Cord. Its "day" is "not at night" here
-(6:00-18:59), its night 19:00-5:59 and its dusk the evening (18:00-18:59).
+Each species takes Imperium's methods in place of Heart & Soul's (the user chose "only Imperium's
+ways"), ordinary levels included; its trade routes stay beside its items, as in Imperium. Imperium's
+changelog fix on top of the dex's data: Tandemaus evolves without a battle (1.2). Kept from Heart &
+Soul: the Alcremie flavours other than Vanilla Cream (Imperium's nine Shiny Stone routes give Vanilla
+Cream only), and the places for Magnezone and Vikavolt (Route 10, the Power Plant), standing in for
+Imperium's Hoenn one. Its "day" is "not at night" here (6:00-18:59), its night 19:00-5:59 and its dusk
+the evening (18:00-18:59). A form the dex lacks takes its base form's methods, evolving into its own
+form; a species the dex lists without evolutions keeps Heart & Soul's.
 
-Radical Red lists some forms as several entries under one name (the three Burmy, both Shellos, the four
-Deerling and Pumpkaboo); they are matched to this game's forms in order. A form Radical Red doesn't
-list (the Vivillon patterns, Flabebe's colours, White-Striped Basculin...) takes its base form's
-methods, each evolving into its own form.
+Until 0.15.0's first build the data was the Radical Red dex's, which Imperium's documentation sends
+players to; its own dex differs in some places (D45).
 """
 import argparse
 import os
@@ -33,16 +29,15 @@ import re
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import imperium_species as isp  # noqa: E402  (Radical Red's data, the species table)
+import ei_dex  # noqa: E402  (the official Emerald Imperium dex's data)
+import imperium_species as isp  # noqa: E402  (its mapping onto this engine, the species table)
 
 OUT = "src/data/pokemon/species_info/imperium_evolutions.h"
 
-ITEM_ALIASES = {"ThunderStone": "ITEM_THUNDER_STONE", "Link Cable": "ITEM_LINKING_CORD", "Up-Grade": "ITEM_UPGRADE"}
 FRIENDSHIP = ("IF_MIN_FRIENDSHIP", "FRIENDSHIP_EVO_THRESHOLD")
 NIGHT = ("IF_TIME", "TIME_NIGHT")
 NOT_NIGHT = ("IF_NOT_TIME", "TIME_NIGHT")
 EVENING = ("IF_TIME", "TIME_EVENING")
-TIME_RANGES = {1041: NOT_NIGHT, 5144: NIGHT, 4372: EVENING}  # Radical Red's day, night and dusk
 
 
 # --- The species table as Heart & Soul compiles it ----------------------------------------------------
@@ -164,85 +159,100 @@ class Game:
         return self.forms.get(sym, [num])
 
 
-# --- Radical Red's evolutions in this engine's terms --------------------------------------------------
+# --- Imperium's evolutions in this engine's terms -----------------------------------------------------
+
+PLACE = "PLACE"  # Imperium's "level up in a place" (Hoenn's): Heart & Soul's places for it stay (adapt)
+
 
 class Translator:
-    def __init__(self, rr, game):
-        self.rr = rr
+    def __init__(self, ei, game):
+        self.ei = ei
         self.game = game
-        self.mp = isp.Mapper(rr)
+        self.mp = isp.Mapper(ei)
 
-    def species_num(self, rr_id):
-        s = self.rr["species"].get(rr_id)
-        const = self.mp.species(s) if s else None
+    def species_num(self, sid):
+        const = self.mp.species_by_id(sid)
         return self.game.consts[const] if const else None
 
     def item(self, item_id):
-        name = self.rr["items"][item_id]["name"]
-        const = ITEM_ALIASES.get(name, isp.constify(name, "ITEM_"))
-        if const not in self.game.items:
-            sys.exit(f"Radical Red's evolution item {name} has no constant here ({const})")
+        const = self.mp.item(item_id)
+        if const is None:
+            sys.exit(f"Imperium's evolution item {self.ei['items'][item_id]['Name']} has no constant here")
         return const
 
-    def type(self, type_id):
-        return "TYPE_" + self.rr["types"][type_id]["name"].upper()
+    def move(self, move_id):
+        const = self.mp.move(move_id)
+        if const is None:
+            sys.exit(f"Imperium's evolution move {self.ei['moves'][move_id]['name']} isn't in this engine")
+        return const
 
-    def routes(self, rr_species):
-        """Radical Red's evolutions of one species as routes (method, param, target, conditions)."""
+    def routes(self, s):
+        """The dex's evolutions of one species, [method, target, parameter], as routes (method, param,
+        target, conditions)."""
         out = []
-        for method, p, tgt, x in rr_species.get("evolutions", []):
-            if method in (253, 254):
-                continue  # Mega Evolution and Gigantamax, not evolutions
+        for method, tgt, p in s.get("evolutions") or []:
+            if method == 0:
+                continue  # EVO_NONE: a Totem form, not an evolution
             target = self.species_num(tgt)
             if target is None:
-                continue  # one of Radical Red's own forms
-            out.append(self.route(method, p, target, x))
+                continue  # one of Imperium's own forms
+            out.append(self.route(method, p, target))
         return out
 
-    def route(self, method, p, target, x):
+    def route(self, method, p, target):
+        lv = str(p)
         if method == 1:
             return ("EVO_LEVEL", "0", target, (FRIENDSHIP,))
         if method == 2:
             return ("EVO_LEVEL", "0", target, (FRIENDSHIP, NOT_NIGHT))
         if method == 3:
             return ("EVO_LEVEL", "0", target, (FRIENDSHIP, NIGHT))
-        if method == 4 or method == 13:
-            return ("EVO_LEVEL", str(p), target, ())
+        if method in (4, 13):  # 13: Nincada into Ninjask; Imperium has no Shedinja route (14)
+            return ("EVO_LEVEL", lv, target, ())
+        if method == 5:
+            return ("EVO_TRADE", "0", target, ())
+        if method == 6:
+            return ("EVO_TRADE", "0", target, (("IF_HOLD_ITEM", self.item(p)),))
         if method == 7:
-            item = self.item(p)
-            if item == "ITEM_DAWN_STONE":  # Radical Red's Dawn Stone routes are Gallade's and Froslass's
-                return ("EVO_ITEM", item, target, (("IF_GENDER", "MON_FEMALE" if x == 254 else "MON_MALE"),))
-            return ("EVO_ITEM", item, target, ())
+            return ("EVO_ITEM", self.item(p), target, ())
         if method in (8, 9, 10):
-            return ("EVO_LEVEL", str(p), target, ({8: "IF_ATK_GT_DEF", 9: "IF_ATK_EQ_DEF", 10: "IF_ATK_LT_DEF"}[method],))
-        if method in (11, 12):  # Wurmple: Heart & Soul's personality split, as Radical Red's 50%
+            return ("EVO_LEVEL", lv, target, ({8: "IF_ATK_GT_DEF", 9: "IF_ATK_EQ_DEF", 10: "IF_ATK_LT_DEF"}[method],))
+        if method in (11, 12):  # Wurmple: Heart & Soul's personality split
             cond = ("IF_PID_UPPER_MODULO_10_GT", "4") if method == 11 else ("IF_PID_UPPER_MODULO_10_LT", "5")
-            return ("EVO_LEVEL", str(p), target, (cond,))
-        if method == 14:  # Shedinja: a free party slot and a Poke Ball, when Nincada becomes Ninjask
-            return ("EVO_SPLIT_FROM_EVO", self.game.consts["SPECIES_NINJASK"], target,
-                    (("IF_BAG_ITEM_COUNT", "ITEM_POKE_BALL", "1"),))
-        if method == 16:  # rain in the overworld; Heart & Soul's fog route stays with it (see below)
-            return ("EVO_LEVEL", str(p), target, (("IF_WEATHER", "WEATHER_RAIN"),))
-        if method == 17:
-            return ("EVO_LEVEL", "0", target, (FRIENDSHIP, ("IF_KNOWS_MOVE_TYPE", self.type(p))))
-        if method == 18:
-            return ("EVO_LEVEL", str(p), target, (("IF_TYPE_IN_PARTY", self.type(x)),))
-        if method in (20, 21):
-            return ("EVO_LEVEL", str(p), target, (("IF_GENDER", "MON_MALE" if method == 20 else "MON_FEMALE"),))
-        if method in (22, 23):
-            return ("EVO_LEVEL", str(p), target, (NIGHT if method == 22 else NOT_NIGHT,))
-        if method == 26:
-            move = self.mp.move(p)
-            if move is None:
-                sys.exit(f"Radical Red's evolution move {self.rr['moves'][p]['name']} isn't in this engine")
-            return ("EVO_LEVEL", "0", target, (("IF_KNOWS_MOVE", move),))
-        if method == 27:
+            return ("EVO_LEVEL", lv, target, (cond,))
+        if method == 15:
+            return ("EVO_LEVEL", "0", target, (("IF_MIN_BEAUTY", lv),))
+        if method in (16, 17):
+            return ("EVO_LEVEL", lv, target, (("IF_GENDER", "MON_FEMALE" if method == 16 else "MON_MALE"),))
+        if method in (18, 19, 20):
+            return ("EVO_LEVEL", lv, target, ({18: NIGHT, 19: NOT_NIGHT, 20: EVENING}[method],))
+        if method in (21, 22):
+            return ("EVO_LEVEL", "0", target, (("IF_HOLD_ITEM", self.item(p)), NOT_NIGHT if method == 21 else NIGHT))
+        if method == 23:
+            return ("EVO_LEVEL", "0", target, (("IF_KNOWS_MOVE", self.move(p)),))
+        if method == 24:
+            return ("EVO_LEVEL", "0", target, (FRIENDSHIP, ("IF_KNOWS_MOVE_TYPE", self.mp.type(p))))
+        if method == 25:
+            return (PLACE, "0", target, ())
+        if method in (26, 27):
+            return ("EVO_ITEM", self.item(p), target, (("IF_GENDER", "MON_MALE" if method == 26 else "MON_FEMALE"),))
+        if method in (28, 42):
+            return ("EVO_LEVEL", lv, target, (("IF_WEATHER", "WEATHER_RAIN" if method == 28 else "WEATHER_FOG"),))
+        if method == 29:
             return ("EVO_LEVEL", "0", target, (("IF_SPECIES_IN_PARTY", self.game.name(self.species_num(p))),))
-        if method == 28:
-            return ("EVO_LEVEL", str(p), target, (TIME_RANGES[x],))
-        if method in (30, 31):
-            return ("EVO_LEVEL", str(p), target, ("IF_AMPED_NATURE" if method == 30 else "IF_LOW_KEY_NATURE",))
-        sys.exit(f"unknown Radical Red evolution method {method}")
+        if method == 30:
+            return ("EVO_LEVEL", lv, target, (("IF_TYPE_IN_PARTY", "TYPE_DARK"),))
+        if method == 31:
+            return ("EVO_TRADE", "0", target, (("IF_TRADE_PARTNER_SPECIES", self.game.name(self.species_num(p))),))
+        if method in (33, 34):
+            return ("EVO_LEVEL", lv, target, ("IF_AMPED_NATURE" if method == 33 else "IF_LOW_KEY_NATURE",))
+        if method in (43, 44):
+            pid = ("IF_PID_MODULO_100_GT", "0") if method == 43 else ("IF_PID_MODULO_100_EQ", "0")
+            return ("EVO_LEVEL", "0", target, (("IF_KNOWS_MOVE", self.move(p)), pid))
+        if method in (45, 46):  # Imperium 1.2: "no longer require leveling up in battle"
+            pid = ("IF_PID_MODULO_100_EQ", "0") if method == 45 else ("IF_PID_MODULO_100_GT", "0")
+            return ("EVO_LEVEL", lv, target, (pid,))
+        sys.exit(f"Imperium evolution method {method} ({ei_dex.EI_METHODS.get(method)}) has no translation here")
 
 
 def norm(route):
@@ -251,34 +261,23 @@ def norm(route):
     return (method, param, target, tuple(c if isinstance(c, tuple) else (c,) for c in conds))
 
 
-def plan(rr, game):
+def plan(ei, game):
     """number -> (old routes, new routes) for every species whose evolutions change."""
-    tr = Translator(rr, game)
-    by_num = {}  # number -> [Radical Red species], in Radical Red's order
-    for s in sorted(rr["species"].values(), key=lambda s: s["ID"]):
+    tr = Translator(ei, game)
+    ei_routes = {}  # number -> Imperium's routes; the dex has one entry for each form
+    for sid, s in sorted(ei["species"].items()):
         const = tr.mp.species(s)
         if const:
-            by_num.setdefault(game.consts[const], []).append(s)
-
-    # Radical Red's routes for each of this game's species: duplicates (one name, several forms) in
-    # form-table order, other forms from their base form
-    rr_routes = {}
-    for num, entries in by_num.items():
-        forms = [f for f in game.form_list(num) if f not in by_num or f == num]
-        if len(entries) > 1 and len(entries) <= len(forms):
-            for form, s in zip(forms, entries):
-                rr_routes[form] = tr.routes(s)
-        else:
-            rr_routes[num] = tr.routes(entries[0])
-    for num in game.evos:
-        if num not in rr_routes and game.base(num) in rr_routes and game.evos[num]:
-            rr_routes[num] = list(rr_routes[game.base(num)])
+            ei_routes.setdefault(game.consts[const], tr.routes(s))
+    for num in game.evos:  # a form the dex lacks takes its base form's routes, into its own form (adapt)
+        if num not in ei_routes and game.base(num) in ei_routes and game.evos[num]:
+            ei_routes[num] = list(ei_routes[game.base(num)])
 
     changes = {}
-    for num, routes in sorted(rr_routes.items()):
+    for num, routes in sorted(ei_routes.items()):
         old = [norm(r) for r in game.evos.get(num, [])]
-        if not routes and old:
-            continue  # Radical Red lists the species without its evolutions: keep Heart & Soul's
+        if not routes:
+            continue  # no evolution in the dex: Heart & Soul's stay, if any (no form becomes unreachable)
         new = adapt(num, [norm(r) for r in routes], old, game)
         if sorted(map(repr, new)) != sorted(map(repr, old)):  # the same routes in another order: no change
             changes[num] = (old, new)
@@ -286,41 +285,35 @@ def plan(rr, game):
 
 
 def adapt(num, new, old, game):
-    """This game's forms for Radical Red's targets, then what Heart & Soul keeps."""
+    """This game's forms for Imperium's targets, then what Heart & Soul keeps."""
     name = game.name(num)
     old_targets = {r[2] for r in old}
-    fixed = []
+    routes = []
     for method, param, target, conds in new:
         if target not in old_targets:
             same_base = {t for t in old_targets if game.base(t) == game.base(target)}
             if len(same_base) == 1:
                 target = same_base.pop()  # the matching form: Burmy Sandy's Mothim is Sandy Mothim
-        fixed.append((method, param, target, conds))
-    new = fixed
-
-    if name in ("SPECIES_DUNSPARCE", "SPECIES_TANDEMAUS"):
-        # Each of Radical Red's routes splits by personality value like Heart & Soul's: 1 in 100
-        # Three-Segment Dudunsparce, or the Family of Three
-        split = [(r[2], r[3][-1]) for r in old]  # (form, its IF_PID_MODULO_100 condition)
-        new = [(m, p, form, conds + (pid,)) for m, p, _, conds in new for form, pid in split]
-    if name == "SPECIES_URSARING":
-        # Bloodmoon Ursaluna: Heart & Soul's Peat Block at night in the Mt. Moon area or in Sinjoh
-        new += [r for r in old if game.name(r[2]) == "SPECIES_URSALUNA_BLOODMOON"]
+        if method == PLACE:
+            # Imperium's place is in Hoenn (New Mauville for Magnezone and Vikavolt): Heart & Soul's
+            # places for the same evolution stand in for it
+            routes += [r for r in old if r[2] == target and r not in routes
+                       and any(c[0] in ("IF_IN_MAPSEC", "IF_IN_MAP") for c in r[3])]
+        elif (method, param, target, conds) not in routes:
+            routes.append((method, param, target, conds))
     if name == "SPECIES_MILCERY":
-        # The other flavours: Heart & Soul's stones and spins (Radical Red's Shiny Stone is among them)
-        new += [r for r in old if r not in new]
-    if name == "SPECIES_ROCKRUFF_OWN_TEMPO":
-        new = old  # Dusk Lycanroc in the evening, as Radical Red's Rockruff
-    if name == "SPECIES_PORYGON":
-        new.append(("EVO_ITEM", "ITEM_UPGRADE", game.consts["SPECIES_PORYGON2"], ()))
-    for r in old:
-        # Goodra: rain or fog, as Heart & Soul (Radical Red's dex calls it overworld rain)
-        if ("IF_WEATHER", "WEATHER_FOG") in r[3] and any(("IF_WEATHER", "WEATHER_RAIN") in n[3] for n in new):
-            new.append(r)
+        # Imperium lists a Shiny Stone for each of the nine creams; the first route that applies wins,
+        # so it gives Vanilla Cream. Heart & Soul's stones and spins give the other flavours.
+        first, seen = [], set()
+        for r in routes:
+            if (r[0], r[1], r[3]) not in seen:
+                seen.add((r[0], r[1], r[3]))
+                first.append(r)
+        routes = first + [r for r in old if r not in first]
     # First match wins: Sylveon before Espeon and Umbreon, Dusk Lycanroc before Midday
-    new.sort(key=lambda r: 0 if r[0] == "EVO_LEVEL" and any(c[0] == "IF_KNOWS_MOVE_TYPE" or c == EVENING
-                                                            for c in r[3]) else 1)
-    return new
+    routes.sort(key=lambda r: 0 if r[0] == "EVO_LEVEL" and any(c[0] == "IF_KNOWS_MOVE_TYPE" or c == EVENING
+                                                               for c in r[3]) else 1)
+    return routes
 
 
 # --- Output -------------------------------------------------------------------------------------------
@@ -352,6 +345,10 @@ COND_WORDS = {
     "IF_NOT_REGION": lambda a: "outside " + words(a[0], "REGION_"),
     "IF_WEATHER": lambda a: "in " + words(a[0], "WEATHER_"),
     "IF_BAG_ITEM_COUNT": lambda a: f"{a[1]} {item_words(a[0])} in the Bag",
+    "IF_MIN_BEAUTY": lambda a: f"beauty {a[0]}",
+    "IF_TRADE_PARTNER_SPECIES": lambda a: "for " + words(a[0], "SPECIES_"),
+    "IF_PID_MODULO_100_GT": lambda a: "personality % 100 > " + a[0],
+    "IF_PID_MODULO_100_EQ": lambda a: "personality % 100 = " + a[0],
 }
 
 
@@ -384,10 +381,10 @@ def describe(route, game):
     return ", ".join(parts) + " -> " + words(game.name(target), "SPECIES_")
 
 
-def generate(rr, game):
-    changes = plan(rr, game)
+def generate(ei, game):
+    changes = plan(ei, game)
     lines = ["// Generated by tools/crystal_imperium/imperium_evolutions.py: Emerald Imperium's evolution methods",
-             "// (Radical Red's, DECISIONS.md D44) where they differ from Heart & Soul's. Included at the end of",
+             "// (its dex, DECISIONS.md D44, D45) where they differ from Heart & Soul's. Included at the end of",
              "// gSpeciesInfo (src/data/pokemon/species_info.h): each line replaces one species' evolutions.",
              "// Edit the script, not this file.",
              ""]
@@ -401,15 +398,15 @@ def generate(rr, game):
 
 def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
-    ap.add_argument("--rr-data", required=True, help="the Radical Red dex's data.js")
+    ap.add_argument("--ei-dex", required=True, help="a saved copy of the Emerald Imperium dex's script (" + ei_dex.EI_DEX_URL + ")")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--report", action="store_true")
     args = ap.parse_args()
-    rr, digest = isp.load_rr(args.rr_data)
-    if digest != isp.RR_DATA_SHA256:
-        sys.exit(f"{args.rr_data} isn't the data file these files came from (SHA-256 {digest})")
+    ei, digest = ei_dex.load_ei(args.ei_dex)
+    if digest != ei_dex.EI_DEX_SHA256:
+        sys.exit(f"{args.ei_dex} isn't the dex script these files came from (SHA-256 {digest})")
     game = Game()
-    text, changes = generate(rr, game)
+    text, changes = generate(ei, game)
     if args.report:
         for num, (old, new) in changes.items():
             print(words(game.name(num), "SPECIES_"))

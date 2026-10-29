@@ -159,14 +159,14 @@ CLAIR = [
 # Each is a Gym Leader at its stage's cap: six Pokemon, the bag items of the real Gym Leaders of the
 # stage, and from the 5th Gym's stage (4 badges) on one Mega Evolution. None is a Pokemon the Johto
 # Gym Leaders of the stage use, so the side battle is a different fight.
-#   Candice (no badges, Violet City's Trainer School): Fake Out and Icy Wind for Speed, Pure Power
+#   Candice (no badges, Violet City's Trainer School): Fake Out and Icy Wind for Speed, Huge Power
 #   Meditite and a Recover Cryogonal as the ace.
 SIDE_CANDICE = [
     mon("Snover", "Eviolite", "Ice Body", "Modest", ["Icy Wind", "Razor Leaf", "Leech Seed", "Ice Shard"]),
     mon("Sneasel", "Eviolite", "Inner Focus", "Jolly", ["Fake Out", "Ice Shard", "Bite", "Quick Attack"]),
     mon("Spheal", "Eviolite", "Thick Fat", "Bold", ["Ice Ball", "Defense Curl", "Brine", "Yawn"]),
     mon("Cetoddle", "Eviolite", "Thick Fat", "Adamant", ["Ice Shard", "Ice Fang", "Bulldoze", "Body Slam"]),
-    mon("Meditite", "Eviolite", "Pure Power", "Adamant", ["Force Palm", "Ice Punch", "Bullet Punch", "Detect"]),
+    mon("Meditite", "Eviolite", "Huge Power", "Adamant", ["Force Palm", "Ice Punch", "Bullet Punch", "Detect"]),
     mon("Cryogonal", "Sitrus Berry", "Levitate", "Calm", ["Freeze Dry", "Icy Wind", "Recover", "Reflect"]),
 ]
 #   Gardenia (2 badges, Ilex Forest): Cherrim's sun for Solar Beam, Weather Ball and a Harvest Dolliv;
@@ -199,7 +199,7 @@ SIDE_FANTINA = [
 ]
 #   Maylene (4 badges, Cianwood City): fast Fighting types and Mega Lucario.
 SIDE_MAYLENE = [
-    mon("Medicham", "Sitrus Berry", "Pure Power", "Jolly", ["Fake Out", "High Jump Kick", "Zen Headbutt", "Bullet Punch"]),
+    mon("Medicham", "Sitrus Berry", "Huge Power", "Jolly", ["Fake Out", "High Jump Kick", "Zen Headbutt", "Bullet Punch"]),
     mon("Mienshao", "Life Orb", "Regenerator", "Jolly", ["Drain Punch", "U Turn", "Knock Off", "Stone Edge"]),
     mon("Pawmot", "Shell Bell", "Iron Fist", "Jolly", ["Double Shock", "Close Combat", "Mach Punch", "Ice Punch"]),
     mon("Machamp", "Expert Belt", "No Guard", "Adamant", ["Dynamic Punch", "Knock Off", "Stone Edge", "Ice Punch"]),

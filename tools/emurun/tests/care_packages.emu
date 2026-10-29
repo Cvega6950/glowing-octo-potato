@@ -59,8 +59,10 @@ shot 03_after_badge_packages.png
 !expect_bag_quantity("items", "ITEM_PRISM_SCALE", 10)
 !expect_bag_quantity("items", "ITEM_UPGRADE", 10)
 !expect_bag_quantity("items", "ITEM_LINKING_CORD", 10)
-!expect_bag_quantity("items", "ITEM_PEAT_BLOCK", 10)
-# Since 0.15.0 the evolution items are Emerald Imperium's (D44): none that no evolution uses
+!expect_bag_quantity("items", "ITEM_METAL_ALLOY", 10)
+# Since 0.15.0 the evolution items are Emerald Imperium's (D44, D45): none that no evolution uses
+# (a Peat Block), nor one only a trade uses (an Electirizer: a Linking Cord evolves Electabuzz too)
+!expect_bag_lacks("items", "ITEM_PEAT_BLOCK")
 !expect_bag_lacks("items", "ITEM_DUBIOUS_DISC")
 !expect_bag_lacks("items", "ITEM_ELECTIRIZER")
 !expect_bag_lacks("items", "ITEM_SWEET_APPLE")

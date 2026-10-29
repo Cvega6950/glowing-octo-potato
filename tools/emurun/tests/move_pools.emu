@@ -1,16 +1,17 @@
-# Crystal Imperium play test: Emerald Imperium's and Radical Red's move pools (DECISIONS.md D39),
-# checked in the party menu's move relearner and in a battle. With every TM and HM in the Bag:
-# - TYPHLOSION learns what Radical Red teaches it: Aura Sphere and Mystical Fire by TM, Blast Burn
-#   by tutor, but not Shadow Ball (a TM) or Body Slam (a tutor move), which Scarlet and Violet
-#   teach it;
+# Crystal Imperium play test: Emerald Imperium's move pools (its dex since 0.15.0, DECISIONS.md D39,
+# D45), checked in the party menu's move relearner and in a battle. With every TM and HM in the Bag:
+# - TYPHLOSION learns what Imperium teaches it: Aura Sphere and Mystical Fire by TM, but not Shadow
+#   Ball (a TM) or Body Slam (a tutor move), which Scarlet and Violet teach it; Blast Burn, a tutor
+#   move Imperium teaches no one, by its official compatibility;
 # - MEW's TM list has all 206 TMs and HMs (more than the 60 the relearner's list held before
-#   0.13.0: the rest overflowed it), and its tutor list 61 moves, then 63 once the game is
-#   cleared: Dark Hole and Draco Barrage, Emerald Imperium's postgame TMs, wait until then;
+#   0.13.0: the rest overflowed it), and its tutor list Scald and Work Up but not Radical Red's
+#   Cosmic Power, then Dark Hole and Draco Barrage once the game is cleared: Emerald Imperium's
+#   postgame TMs wait until then;
 # - DRAGONITE's tutor list has Draco Barrage once the game is cleared; it learns it, and in battle
 #   knocks out Whitney's Fairy-type CLEFAIRY (99 HP, Eviolite) with it: Draco Barrage hits
 #   Fairy-types, and with DRAGONITE's Attack above its Sp. Atk it is physical (117-138 damage;
 #   special, 79-93). The user takes a third of the 99 HP as recoil;
-# - TERAPAGOS learns what Radical Red's Terapagos (its Terastal Form) does: Hyper Voice by TM, not
+# - TERAPAGOS learns what Imperium's Terapagos (its Terastal Form) does: Hyper Voice by TM, not
 #   Solar Beam or Power Gem.
 # Each list is checked against the build's own teachable learnsets (relearner_list).
 !new_game()
@@ -32,8 +33,8 @@ shot 01_typhlosion_tm.png
 !expect_relearner_list("Typhlosion", "MOVE_RELEARNER_TUTOR_MOVES", ("MOVE_ERUPTION", "MOVE_LAVA_PLUME", "MOVE_QUICK_ATTACK", "MOVE_SMOKESCREEN"), present=("MOVE_BLAST_BURN",), absent=("MOVE_BODY_SLAM",), label="typhlosion_tutor")
 !close_relearner()
 
-# TERAPAGOS (slot 3: LEVEL UP, TM, TUTOR): Radical Red has only its Terastal Form, whose list it
-# takes: Hyper Voice, not Solar Beam or Power Gem (official ones Radical Red doesn't teach it)
+# TERAPAGOS (slot 3: LEVEL UP, TM, TUTOR): its list is its Terastal Form's (the first form the dex
+# has): Hyper Voice, not Solar Beam or Power Gem (official ones Imperium doesn't teach it)
 !open_relearner(3, 1, "MOVE_RELEARNER_TM_MOVES", "terapagos_tm")
 !expect_relearner_list("Terapagos", "MOVE_RELEARNER_TM_MOVES", ("MOVE_TACKLE", "MOVE_WITHDRAW", "MOVE_RAPID_SPIN", "MOVE_PROTECT"), present=("MOVE_HYPER_VOICE",), absent=("MOVE_SOLAR_BEAM", "MOVE_POWER_GEM"), label="terapagos_tm")
 !close_relearner()
@@ -44,7 +45,7 @@ shot 02_mew_tm.png
 !expect_relearner_list("Mew", "MOVE_RELEARNER_TM_MOVES", ("MOVE_POUND", "MOVE_TRANSFORM", "MOVE_AMNESIA", "MOVE_BARRIER"), present=("MOVE_FOCUS_PUNCH", "MOVE_WHIRLPOOL"), label="mew_tm")
 !close_relearner()
 !open_relearner(1, 2, "MOVE_RELEARNER_TUTOR_MOVES", "mew_tutor")
-!expect_relearner_list("Mew", "MOVE_RELEARNER_TUTOR_MOVES", ("MOVE_POUND", "MOVE_TRANSFORM", "MOVE_AMNESIA", "MOVE_BARRIER"), present=("MOVE_COSMIC_POWER", "MOVE_WORK_UP"), absent=("MOVE_BLAST_BURN", "MOVE_DARK_HOLE", "MOVE_DRACO_BARRAGE"), label="mew_tutor_before_game_clear")
+!expect_relearner_list("Mew", "MOVE_RELEARNER_TUTOR_MOVES", ("MOVE_POUND", "MOVE_TRANSFORM", "MOVE_AMNESIA", "MOVE_BARRIER"), present=("MOVE_SCALD", "MOVE_WORK_UP"), absent=("MOVE_COSMIC_POWER", "MOVE_DARK_HOLE", "MOVE_DRACO_BARRAGE"), label="mew_tutor_before_game_clear")
 !close_relearner()
 
 # DRAGONITE (slot 0: LEVEL UP, EGG, TM, TUTOR): no Draco Barrage yet

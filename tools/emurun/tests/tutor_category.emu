@@ -1,14 +1,14 @@
 # Crystal Imperium play test: Blackthorn's MOVE TUTOR (a Heart Scale for a level-up move) keeps its
 # category while the player picks a Pokemon. The tutor's script sets LEVEL UP, then opens the PC; there,
 # a party Pokemon's SUMMARY > moves page > START opens the summary's relearner, which chooses a category
-# that Pokemon has moves in (MAGIKARP: TUTOR, CELEBRATE). In 0.13.0's first build that category stayed
+# that Pokemon has moves in (CATERPIE: TUTOR, SNORE). In 0.13.0's first build that category stayed
 # set, and the tutor then taught TYPHLOSION tutor moves for the Heart Scale (KNOWN_ISSUES #68): the
 # category set before is now given back when the summary's relearner returns.
 # Blackthorn City House 3 is map group 10, number 5; the tutor stands at (7,4).
 !new_game()
 !no_care_packages()
 !give_mon_complex("SPECIES_TYPHLOSION", 50, "NATURE_HARDY", 0, ["MOVE_SURF", "MOVE_ERUPTION", "MOVE_QUICK_ATTACK", "MOVE_SMOKESCREEN"])
-!give_mon_complex("SPECIES_MAGIKARP", 1, "NATURE_HARDY", 0, ["MOVE_SPLASH", "MOVE_NONE", "MOVE_NONE", "MOVE_NONE"])
+!give_mon_complex("SPECIES_CATERPIE", 1, "NATURE_HARDY", 0, ["MOVE_TACKLE", "MOVE_STRING_SHOT", "MOVE_NONE", "MOVE_NONE"])
 !give_item("ITEM_HEART_SCALE")
 !warp(10, 5, 0)
 wait 120
@@ -22,7 +22,7 @@ waituntil32 {gMain+4} {CB2_PokeStorage} 2400 A in_pc
 wait 200
 !expect_const("{gMoveRelearnerState}", "MOVE_RELEARNER_LEVEL_UP_MOVES", "tutor_set_level_up", size=8)
 shot 02_pc.png
-# In the PC: up to the box's title, then the PARTY POKEMON button; MAGIKARP > SUMMARY > moves > START
+# In the PC: up to the box's title, then the PARTY POKEMON button; CATERPIE > SUMMARY > moves > START
 press UP
 wait 20
 press UP
@@ -31,7 +31,7 @@ press A
 wait 120
 press DOWN
 wait 20
-shot 03_party_magikarp.png
+shot 03_party_caterpie.png
 press A
 wait 40
 shot 04_mon_menu.png
@@ -44,7 +44,7 @@ press RIGHT
 wait 60
 press RIGHT
 wait 60
-shot 05_magikarp_moves.png
+shot 05_caterpie_moves.png
 press START
 wait 200
 shot 06_summary_relearner.png

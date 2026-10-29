@@ -81,6 +81,13 @@ GoldenrodDeptStore2_Pokemart:
 	.2byte ITEM_KINGS_ROCK
 	.2byte ITEM_METAL_COAT
 	.2byte ITEM_UPGRADE
+	@ Crystal Imperium: the Berries that raise friendship (and lower EVs), for the friendship evolutions
+	.2byte ITEM_POMEG_BERRY
+	.2byte ITEM_KELPSY_BERRY
+	.2byte ITEM_QUALOT_BERRY
+	.2byte ITEM_HONDEW_BERRY
+	.2byte ITEM_GREPA_BERRY
+	.2byte ITEM_TAMATO_BERRY
 	.2byte ITEM_POTION
 	.2byte ITEM_SUPER_POTION
 	.2byte ITEM_HYPER_POTION

@@ -5,7 +5,7 @@
 # still evolves it, D33), and Pikachu with a Shiny Stone becomes Alolan Raichu anywhere. A short
 # clockwise spin by day turns Milcery holding a Strawberry Sweet into Alcremie: that never happened
 # before (SPIN_CW_SHORT is 0 like EVO_NONE, src/field_player_avatar.c). The Goldenrod Dept. Store
-# 2F clerk sells Imperium's fifteen evolution items for 500 each. Debug-given Pokemon aren't in the
+# 2F clerk sells Imperium's fifteen evolution items for 500 each, and the six friendship Berries. Debug-given Pokemon aren't in the
 # Pokedex, so an evolved one's caught flag shows what it became. The harness clock starts at night.
 !new_game()
 !no_care_packages()
@@ -77,7 +77,8 @@ expect8 {gPlayerParty+384} 45 kadabra_still_at_45
 mash B 300
 wait 60
 
-# The Goldenrod Dept. Store 2F clerk: balls, then Imperium's evolution items, 500 each
+# The Goldenrod Dept. Store 2F clerk: balls, then Imperium's evolution items, 500 each, and the Berries
+# that raise friendship
 !max_money()
 !warp(5, 21, 1)
 # The woman at (20, 9) stands in row 9: round her by row 11
@@ -94,7 +95,7 @@ wait 120
 press A
 wait 120
 shot 04_goldenrod_2f.png
-!expect_buy_list(33, ["ITEM_POKE_BALL", "ITEM_GREAT_BALL", "ITEM_ULTRA_BALL", "ITEM_FIRE_STONE", "ITEM_THUNDER_STONE", "ITEM_LEAF_STONE", "ITEM_WATER_STONE", "ITEM_SUN_STONE", "ITEM_MOON_STONE", "ITEM_PRISM_SCALE", "ITEM_ICE_STONE", "ITEM_LINKING_CORD", "ITEM_DUSK_STONE", "ITEM_DAWN_STONE", "ITEM_SHINY_STONE", "ITEM_KINGS_ROCK", "ITEM_METAL_COAT", "ITEM_UPGRADE", "ITEM_POTION"], label="goldenrod_2f")
+!expect_buy_list(39, ["ITEM_POKE_BALL", "ITEM_GREAT_BALL", "ITEM_ULTRA_BALL", "ITEM_FIRE_STONE", "ITEM_THUNDER_STONE", "ITEM_LEAF_STONE", "ITEM_WATER_STONE", "ITEM_SUN_STONE", "ITEM_MOON_STONE", "ITEM_PRISM_SCALE", "ITEM_ICE_STONE", "ITEM_LINKING_CORD", "ITEM_DUSK_STONE", "ITEM_DAWN_STONE", "ITEM_SHINY_STONE", "ITEM_KINGS_ROCK", "ITEM_METAL_COAT", "ITEM_UPGRADE", "ITEM_POMEG_BERRY", "ITEM_KELPSY_BERRY", "ITEM_QUALOT_BERRY", "ITEM_HONDEW_BERRY", "ITEM_GREPA_BERRY", "ITEM_TAMATO_BERRY", "ITEM_POTION"], label="goldenrod_2f")
 !expect_item_price("ITEM_LINKING_CORD", 500, "linking_cord_500")
 !expect_item_price("ITEM_THUNDER_STONE", 500, "thunder_stone_500")
 !expect_item_price("ITEM_PRISM_SCALE", 500, "prism_scale_500")

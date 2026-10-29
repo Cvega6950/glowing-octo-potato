@@ -1,37 +1,34 @@
 #!/usr/bin/env python3
 """Crystal Imperium: Emerald Imperium's abilities, level-up moves, Egg Moves (DECISIONS.md D35) and
-TM and tutor compatibility (D39).
+TM and tutor compatibility (D39), from the official Emerald Imperium dex (D45).
 
-Emerald Imperium takes its Pokemon data from Radical Red (its documentation sends players to the
-Radical Red dex for it), with a short list of documented differences (imperium_changes below).
-This script reads the Radical Red dex's data file and writes, for every species it has:
+Until 0.15.0 these came from the Radical Red dex, which Imperium's documentation pointed to; since
+then from Imperium's own dex (ei_dex.py, EI_DEX_URL), which has its documented differences from
+Radical Red already. This script reads that dex and writes, for every species it has:
 
   src/data/pokemon/level_up_learnsets/imperium.h   level-up moves (Heart & Soul's Gen 7 learnsets,
-                                                   gen_7.h, for every species Radical Red lacks)
+                                                   gen_7.h, for every species the dex lacks)
   src/data/pokemon/egg_moves_imperium.h            Egg Moves (egg_moves.h for the rest)
   src/data/pokemon/species_info/imperium_abilities.h   the abilities that differ, as overrides of
                                                    the species table (src/data/pokemon/species_info.h)
-  src/data/pokemon/imperium_teachables.json        the moves Radical Red teaches by TM or tutor, and
+  src/data/pokemon/imperium_teachables.json        the moves Imperium teaches by TM or tutor, and
                                                    which of them each species learns, for
                                                    tools/learnset_helpers/make_teachables.py
 
-  python3 tools/crystal_imperium/imperium_species.py --rr-data PATH           # rewrite the files
-  python3 tools/crystal_imperium/imperium_species.py --rr-data PATH --check   # exit 1 if out of date
-  python3 tools/crystal_imperium/imperium_species.py --rr-data PATH --report  # what was left out
+  python3 tools/crystal_imperium/imperium_species.py --ei-dex PATH           # rewrite the files
+  python3 tools/crystal_imperium/imperium_species.py --ei-dex PATH --check   # exit 1 if out of date
+  python3 tools/crystal_imperium/imperium_species.py --ei-dex PATH --report  # what was left out
 
-PATH is the Radical Red dex's data.js (RR_DATA_URL; these files came from RR_DATA_SHA256). It is
-not kept in this repository. Its ability lists put the hidden ability first: [hidden, 1st, 2nd].
-Radical Red has a few abilities and moves of its own that this engine doesn't have: a slot whose
-ability doesn't exist keeps one of Heart & Soul's abilities for the species, and a move that
-doesn't exist is left out (--report lists both). Radical Red's own forms (its Sevii forms and its
-extra Megas) don't exist here and are skipped. Crystal Imperium's TM list is Emerald Imperium's
-(tools/crystal_imperium/tm_list.py); make_teachables.py decides with Radical Red's lists which
-species learn the TMs and tutor moves Radical Red also has, and makes its other ones tutor moves.
+PATH is a saved copy of the dex's page script (ei_dex.EI_DEX_URL; these files came from
+ei_dex.EI_DEX_SHA256). It is not kept in this repository. Imperium has abilities of its own that this
+engine doesn't have (Striker, Feline Prowess, Bone Zone...): a slot whose ability doesn't exist keeps
+one of Heart & Soul's abilities for the species (--report lists them). Its own Megas and Primal forms
+don't exist here and are skipped (D2). Crystal Imperium's TM list is Emerald Imperium's
+(tools/crystal_imperium/tm_list.py); make_teachables.py decides with Imperium's lists which species
+learn the TMs and tutor moves Imperium also has, and makes its other ones tutor moves.
 """
 import argparse
-import ast
 import glob
-import hashlib
 import json
 import os
 import re
@@ -39,9 +36,10 @@ import subprocess
 import sys
 from collections import Counter, defaultdict
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import ei_dex  # noqa: E402  (the official Emerald Imperium dex's data)
+
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
-RR_DATA_URL = "https://raw.githubusercontent.com/JwowSquared/Radical-Red-Pokedex/master/data.js"
-RR_DATA_SHA256 = "04c9dc94b6a7e3d33f5dcb5e804487466e7a249f4d340cf19853d70f37596df9"
 
 LEVEL_UP_BASE = "src/data/pokemon/level_up_learnsets/gen_7.h"  # P_LVL_UP_LEARNSETS is GEN_7
 LEVEL_UP_OUT = "src/data/pokemon/level_up_learnsets/imperium.h"
@@ -53,35 +51,14 @@ TEACHABLES_OUT = "src/data/pokemon/imperium_teachables.json"
 MAX_LEVEL_UP_MOVES = 40     # include/constants/pokemon.h
 EGG_MOVES_ARRAY_COUNT = 19  # include/constants/daycare.h: the daycare's and DexNav's buffers
 
-# Radical Red keys whose constant isn't the key itself
-SPECIES_ALIASES = {
-    "Screamtail": "SPECIES_SCREAM_TAIL",
-}
-
-# Radical Red names (cut to its 12-letter limit) for this engine's moves
-MOVE_ALIASES = {
-    "Disarm Cry": "MOVE_DISARMING_VOICE",
-    "Drain Kiss": "MOVE_DRAINING_KISS",
-    "Crafty Guard": "MOVE_CRAFTY_SHIELD",
-    "Flower Guard": "MOVE_FLOWER_SHIELD",
-    "Prism Laser": "MOVE_PRISMATIC_LASER",
-    "Inferno Parade": "MOVE_INFERNAL_PARADE",
-    "Soupercell Slam": "MOVE_SUPERCELL_SLAM",
-}
-
-# Radical Red ability names for this engine's abilities: cut names, both "As One"s (by Radical Red
-# ID) and Valiant Shield, Radical Red's name for Dauntless Shield's effect ("Raises Defense on entry")
+# The dex's ability names shared by several abilities, by its ability ID (the same numbers here)
 ABILITY_ALIASES = {
-    "Neutralize Gas": "ABILITY_NEUTRALIZING_GAS",
-    "Wandering Soul": "ABILITY_WANDERING_SPIRIT",
-    "WaterCompaction": "ABILITY_WATER_COMPACTION",
-    "ThermalExchange": "ABILITY_THERMAL_EXCHANGE",
-    "Electromrphosis": "ABILITY_ELECTROMORPHOSIS",
-    "SupremeOverlord": "ABILITY_SUPREME_OVERLORD",
-    "OrichalcumPulse": "ABILITY_ORICHALCUM_PULSE",
-    "Valiant Shield": "ABILITY_DAUNTLESS_SHIELD",
-    ("As One", 73): "ABILITY_AS_ONE_SHADOW_RIDER",  # "Both Unnerve and Grim Neigh"
-    ("As One", 77): "ABILITY_AS_ONE_ICE_RIDER",     # "Both Unnerve and Moxie" (Chilling Neigh)
+    266: "ABILITY_AS_ONE_ICE_RIDER",                # "Unnerve and Chilling Neigh."
+    267: "ABILITY_AS_ONE_SHADOW_RIDER",             # "Unnerve and Grim Neigh."
+    301: "ABILITY_EMBODY_ASPECT_TEAL_MASK",         # "Raises Speed."
+    302: "ABILITY_EMBODY_ASPECT_HEARTHFLAME_MASK",  # "Raises Attack."
+    303: "ABILITY_EMBODY_ASPECT_WELLSPRING_MASK",   # "Raises Sp. Def."
+    304: "ABILITY_EMBODY_ASPECT_CORNERSTONE_MASK",  # "Raises Defense."
 }
 
 
@@ -95,16 +72,6 @@ def constify(name, prefix):
     s = re.sub(r"[’'.:]", "", s)
     s = re.sub(r"[^A-Za-z0-9]+", "_", s).strip("_").upper()
     return prefix + s
-
-
-# --- Radical Red's data --------------------------------------------------------------------------
-
-def load_rr(path):
-    with open(path, "rb") as f:
-        raw = f.read()
-    digest = hashlib.sha256(raw).hexdigest()
-    src = raw.decode("utf-8").strip().rstrip(";")
-    return ast.literal_eval(src), digest
 
 
 # --- This game's data ----------------------------------------------------------------------------
@@ -219,9 +186,9 @@ def teachable_lists():
 
 def render_teachables(universe, species):
     out = ["{",
-           '  "comment": "Generated by tools/crystal_imperium/imperium_species.py: the moves Radical Red '
-           'teaches by TM or tutor, and which of them each species learns there (DECISIONS.md D39). '
-           'Edit the script, not this file.",',
+           '  "comment": "Generated by tools/crystal_imperium/imperium_species.py: the moves Emerald Imperium '
+           'teaches by TM or tutor, and which of them each species learns there (its dex, DECISIONS.md D39, '
+           'D45). Edit the script, not this file.",',
            '  "moves": [']
     out.append(",\n".join(f"    {json.dumps(m)}" for m in universe))
     out += ["  ],", '  "species": {']
@@ -239,110 +206,101 @@ def learnset_blocks(text, kind):
 # --- Mapping -------------------------------------------------------------------------------------
 
 class Mapper:
-    def __init__(self, rr):
-        self.rr = rr
+    """The dex's species, moves, abilities, items and types as this engine's constants."""
+
+    def __init__(self, ei):
+        self.ei = ei
         self.consts = species_constants()
         self.moves = enum_names("include/constants/moves.h", "MOVE_")
         self.abilities = enum_names("include/constants/abilities.h", "ABILITY_")
+        self.items = enum_names("include/constants/items.h", "ITEM_")
         self.missing_moves = Counter()
         self.missing_abilities = Counter()
+        self.missing_items = Counter()
 
     def species(self, s):
-        name = SPECIES_ALIASES.get(s["key"], constify(s["key"], "SPECIES_"))
-        return name if name in self.consts else None
-
-    def move(self, move_id):
-        name = self.rr["moves"][move_id]["name"]
-        const = MOVE_ALIASES.get(name, constify(name, "MOVE_"))
-        if const in self.moves:
-            return const
-        self.missing_moves[name] += 1
+        """SPECIES_X for a dex species, by its name key ("Raichu-Alola", "Furfrou-Heart-Trim")."""
+        name = constify(s["nameKey"], "SPECIES_")
+        for const in (name, re.sub(r"_TRIM$", "", name)):
+            if const in self.consts:
+                return const
         return None
 
-    def ability(self, slot):
-        ab_id, index = slot
+    def species_by_id(self, sid):
+        s = self.ei["species"].get(sid)
+        return self.species(s) if s else None
+
+    def move(self, move_id):
+        m = self.ei["moves"].get(move_id)
+        if not m:
+            return None
+        const = constify(m["name"], "MOVE_")
+        if const in self.moves:
+            return const
+        self.missing_moves[m["name"]] += 1
+        return None
+
+    def ability(self, ab_id):
         if not ab_id:
             return "ABILITY_NONE"
-        names = self.rr["abilities"][ab_id]["names"]
-        name = names[index] if index < len(names) else names[0]
-        for const in (ABILITY_ALIASES.get((name, ab_id)), ABILITY_ALIASES.get(name), constify(name, "ABILITY_"),
-                      constify(names[0], "ABILITY_")):  # names sharing a Radical Red ID work the same there
-            if const in self.abilities:
-                return const
+        name = self.ei["abilities"][ab_id]["name"]
+        const = ABILITY_ALIASES.get(ab_id, constify(name, "ABILITY_"))
+        if const in self.abilities:
+            return const
         self.missing_abilities[name.strip()] += 1
         return None
 
+    def item(self, item_id):
+        name = self.ei["items"][item_id]["Name"]
+        const = constify(name, "ITEM_")
+        for c in (const, const.replace("_", ""), const.replace("BLACKAUGURITE", "BLACK_AUGURITE")):
+            if c in self.items:
+                return c
+        self.missing_items[name] += 1
+        return None
 
-# Emerald Imperium's documented differences from Radical Red ("New Mega Evolutions" page of its
-# documentation), as far as they touch abilities and moves
-def imperium_changes(data):
-    """Edit data[SPECIES_X] = {abilities, levelUp: [(level, MOVE)], egg: [MOVE], teach: {MOVE}} in
-    place. In abilities, None marks a Radical Red ability this engine doesn't have."""
+    def type(self, type_id):
+        return "TYPE_" + self.ei["types"][type_id]["typeName"].upper()
+
+
+def imperium_ability_rules(data):
+    """Edit data[SPECIES_X]["abilities"] in place where an ability of Imperium's own (None) shouldn't
+    fall back to one of Heart & Soul's: "Removed Speed Boost from Torchic / Combusken / Blaziken, now
+    get Blaze, Early Bird, Striker" (Imperium's differences from Radical Red). Striker isn't in this
+    engine: no hidden ability, rather than Heart & Soul's Speed Boost."""
     for sp in ("SPECIES_TORCHIC", "SPECIES_COMBUSKEN", "SPECIES_BLAZIKEN"):
-        # "Removed Speed Boost ... now get Blaze, Early Bird, Striker" (Striker isn't in this
-        # engine: no hidden ability, rather than Heart & Soul's Speed Boost)
         if sp in data:
-            data[sp]["abilities"] = ["ABILITY_BLAZE", "ABILITY_EARLY_BIRD", "ABILITY_NONE"]
-    if "SPECIES_BLAZIKEN" in data:
-        data["SPECIES_BLAZIKEN"]["levelUp"].append((64, "MOVE_THUNDEROUS_KICK"))
-    for sp, move in (("SPECIES_LATIOS", "MOVE_MEMENTO"), ("SPECIES_LATIAS", "MOVE_HEALING_WISH")):
-        # "Latios/Latias learn Memento/Healing Wish at level 71 instead of 61"
-        if sp in data:
-            data[sp]["levelUp"] = [(71 if (lv, m) == (61, move) else lv, m) for lv, m in data[sp]["levelUp"]]
-    if "SPECIES_MAROWAK_ALOLA" in data:
-        # "Alolan Marowak has Battle Armor instead of Bone Zone"
-        abl = data["SPECIES_MAROWAK_ALOLA"]["abilities"]
-        data["SPECIES_MAROWAK_ALOLA"]["abilities"] = ["ABILITY_BATTLE_ARMOR" if a is None else a for a in abl]
-    for sp, move in (("SPECIES_URSHIFU_SINGLE_STRIKE", "MOVE_WICKED_BLOW"),
-                     ("SPECIES_URSHIFU_RAPID_STRIKE", "MOVE_SURGING_STRIKES")):
-        # "Urshifu gets signature move upon evolution"
-        if sp in data and (0, move) not in data[sp]["levelUp"]:
-            data[sp]["levelUp"].insert(0, (0, move))
-    for sp in ("SPECIES_DUSCLOPS", "SPECIES_DUSKNOIR"):
-        # "Dusclops/Dusknoir get access to Amnesia" (how isn't said: a level 1 move, which the move
-        # relearner teaches at any time; Amnesia is no TM or tutor move in either game)
-        if sp in data and (1, "MOVE_AMNESIA") not in data[sp]["levelUp"]:
-            data[sp]["levelUp"].append((1, "MOVE_AMNESIA"))
-    for sp, move in (("SPECIES_JIRACHI", "MOVE_MOONBLAST"),       # "Jircahi learns Moonblast from TM"
-                     ("SPECIES_DRAGAPULT", "MOVE_SHADOW_CLAW"),   # "Dragapult learns Shadow Claw via TM"
-                     ("SPECIES_MOLTRES_GALAR", "MOVE_TRICK_ROOM")):  # "Galarian Moltres gets access to Trick Room"
-        if sp in data:
-            data[sp]["teach"].add(move)
+            data[sp]["abilities"] = [a or "ABILITY_NONE" for a in data[sp]["abilities"]]
 
 
-def build(rr):
-    mp = Mapper(rr)
-    data = {}       # SPECIES_X -> {abilities, levelUp, egg}
+def build(ei):
+    mp = Mapper(ei)
+    data = {}       # SPECIES_X -> {abilities: [1st, 2nd, hidden], levelUp, egg, teach}
     unmatched = []
-    seen = set()
-    for s in rr["species"].values():
+    for sid, s in sorted(ei["species"].items()):
         const = mp.species(s)
         if const is None:
-            unmatched.append(s["key"])
+            unmatched.append(s["nameKey"])
             continue
-        if const in seen:
+        if const in data:
             continue
-        seen.add(const)
         level_up = []
-        for move_id, level in s["levelupMoves"]:
+        for move_id, level in s.get("levelUpMoves") or []:
             m = mp.move(move_id)
             if m and (level, m) not in level_up:
                 level_up.append((level, m))
         egg = []
-        for move_id in s.get("eggMoves", []):
+        for move_id in s.get("eggMoves") or []:
             m = mp.move(move_id)
             if m and m not in egg:
                 egg.append(m)
-        teach = {mp.move(rr["tmMoves"][i]) for i in s.get("tmMoves", []) if rr["tmMoves"].get(i)}
-        teach |= {mp.move(rr["tutorMoves"][i]) for i in s.get("tutorMoves", []) if rr["tutorMoves"].get(i)}
+        teach = {mp.move(m) for m in s.get("tmMoves") or []}
         teach.discard(None)
-        hidden, first, second = (mp.ability(a) for a in s["abilities"])
-        if first == "ABILITY_NONE":
-            first, second = second, "ABILITY_NONE"
+        first, second, hidden = (mp.ability(a) for a in s["abilities"])
         data[const] = {"abilities": [first, second, hidden], "levelUp": level_up, "egg": egg, "teach": teach}
-    imperium_changes(data)
+    imperium_ability_rules(data)
     for d in data.values():
-        d["levelUp"].sort(key=lambda e: e[0])  # stable: same-level moves keep Radical Red's order
+        d["levelUp"].sort(key=lambda e: e[0])  # stable: same-level moves keep the dex's order
     return mp, data, unmatched
 
 
@@ -377,8 +335,8 @@ def render_egg(entries):
 
 
 def symbol_sources(table, consts, data, key):
-    """learnset symbol -> SPECIES_X whose Radical Red data it gets: the first species (lowest number)
-    using the symbol that Radical Red has."""
+    """learnset symbol -> SPECIES_X whose dex data it gets: the first species (lowest number) using
+    the symbol that the dex has."""
     by_number = defaultdict(list)
     for name, num in consts.items():
         by_number[num].append(name)
@@ -394,8 +352,8 @@ def symbol_sources(table, consts, data, key):
     return out
 
 
-def generate(rr, report=False):
-    mp, data, unmatched = build(rr)
+def generate(ei, report=False):
+    mp, data, unmatched = build(ei)
     pre = preprocessed_pokemon_c()
     table = species_table(pre)
     forms = form_tables(pre)
@@ -423,8 +381,8 @@ def generate(rr, report=False):
         return m.group(1) + render_level_up(entries) + m.group(4)
 
     level_out = learnset_blocks(base, "levelUp").sub(level_sub, base)
-    level_out = (f"// Generated by tools/crystal_imperium/imperium_species.py: Radical Red's level-up moves (Emerald\n"
-                 f"// Imperium's, DECISIONS.md D35) for {len(level_src)} learnsets, Heart & Soul's Gen 7 ones ({LEVEL_UP_BASE})\n"
+    level_out = (f"// Generated by tools/crystal_imperium/imperium_species.py: Emerald Imperium's level-up moves (its\n"
+                 f"// dex, DECISIONS.md D35, D45) for {len(level_src)} learnsets, Heart & Soul's Gen 7 ones ({LEVEL_UP_BASE})\n"
                  f"// for the rest. Edit the script, not this file.\n") + level_out
 
     # Egg Moves
@@ -445,11 +403,11 @@ def generate(rr, report=False):
         return m.group(1) + render_egg(entries) + m.group(4)
 
     egg_out = learnset_blocks(base, "egg").sub(egg_sub, base)
-    egg_out = (f"// Generated by tools/crystal_imperium/imperium_species.py: Radical Red's Egg Moves (Emerald\n"
-               f"// Imperium's, DECISIONS.md D35) for {len(egg_src)} species, Heart & Soul's ({EGG_BASE}) for the rest.\n"
+    egg_out = (f"// Generated by tools/crystal_imperium/imperium_species.py: Emerald Imperium's Egg Moves (its\n"
+               f"// dex, DECISIONS.md D35, D45) for {len(egg_src)} species, Heart & Soul's ({EGG_BASE}) for the rest.\n"
                f"// Edit the script, not this file.\n") + egg_out
 
-    # Abilities: species Radical Red has; a form it lacks that had the same abilities and level-up
+    # Abilities: species the dex has; a form it lacks that had the same abilities and level-up
     # moves as its base form (a Gigantamax form, a cosmetic form) follows the base form
     new_abilities = {}
     protected = form_change_abilities()
@@ -469,7 +427,7 @@ def generate(rr, report=False):
         old = info["abilities"]
         new = []
         for i, r in enumerate(rr_abl):
-            if r is None:  # Radical Red's own ability: one of Heart & Soul's not in the list yet
+            if r is None:  # Imperium's own ability: one of Heart & Soul's not in the list yet
                 keep = [old[i]] + [a for a in old if a != old[i]] if i < len(old) else old
                 r = next((a for a in keep if a != "ABILITY_NONE" and a not in rr_abl and a not in new), "ABILITY_NONE")
             new.append(r)
@@ -481,8 +439,8 @@ def generate(rr, report=False):
             continue
         if effective_abilities(new) != effective_abilities(old):
             new_abilities[num] = (new, old)
-    lines = ["// Generated by tools/crystal_imperium/imperium_species.py: Radical Red's abilities (Emerald",
-             "// Imperium's, DECISIONS.md D35) where they differ from Heart & Soul's. Included at the end of",
+    lines = ["// Generated by tools/crystal_imperium/imperium_species.py: Emerald Imperium's abilities (its",
+             "// dex, DECISIONS.md D35, D45) where they differ from Heart & Soul's. Included at the end of",
              "// gSpeciesInfo (src/data/pokemon/species_info.h): each line replaces one species' abilities.",
              "// Edit the script, not this file.", ""]
     for num, (new, old) in sorted(new_abilities.items()):
@@ -490,11 +448,10 @@ def generate(rr, report=False):
         lines.append(f"    [{name}].abilities = {{ {', '.join(new)} }}, // was {', '.join(a.replace('ABILITY_', '') for a in old)}")
     abilities_out = "\n".join(lines) + "\n"
 
-    # TM and tutor compatibility: every move Radical Red teaches by TM or tutor, and the ones each
-    # teachable learnset's Pokemon learn there (with Imperium's changes). As for level-up learnsets, a
-    # list gets the data of the first species using it that Radical Red has: SPECIES_DEOXYS_NORMAL's
-    # list its "Deoxys", SPECIES_TERAPAGOS's (Normal Form, which Radical Red lacks) its "Terapagos-Terastal"
-    universe = sorted({mp.move(v) for v in list(rr["tmMoves"].values()) + list(rr["tutorMoves"].values()) if v} - {None})
+    # TM and tutor compatibility: every move Imperium teaches by TM or tutor (its dex lists both as
+    # one), and the ones each teachable learnset's Pokemon learn there. As for level-up learnsets, a
+    # list gets the data of the first species using it that the dex has
+    universe = sorted(set().union(*(d["teach"] for d in data.values())))
     teach_src = symbol_sources(table, consts, data, "teach")
     compiled = {info.get("teach") for info in table.values()}
     by_number = {}
@@ -508,8 +465,8 @@ def generate(rr, report=False):
         if src:
             teach[sp] = sorted(data[src]["teach"])
         else:
-            notes.append(f"{sp}: no Radical Red data, its TM and tutor moves stay the official ones")
-    # A form that shares a list but that Radical Red teaches more moves (Rotom's appliance forms, Origin
+            notes.append(f"{sp}: no dex data, its TM and tutor moves stay the official ones")
+    # A form that shares a list but that Imperium teaches more moves (Rotom's appliance forms, Origin
     # Dialga and Palkia) needs a list of its own (in species_info) to learn them
     for num in sorted(table):
         sym = table[num].get("teach")
@@ -517,17 +474,17 @@ def generate(rr, report=False):
         other = next((n for n in sorted(names_of[num], key=len) if n in data), None)
         if src and other and other != src and data[other]["teach"] - data[src]["teach"]:
             extra = ", ".join(m[5:] for m in sorted(data[other]["teach"] - data[src]["teach"]))
-            notes.append(f"{other}: shares {src}'s TM and tutor list; Radical Red also teaches it {extra}")
+            notes.append(f"{other}: shares {src}'s TM and tutor list; Imperium also teaches it {extra}")
     teachables_out = render_teachables(universe, teach)
 
     stats = {"level": len(level_src), "egg": len(egg_src), "abilities": len(new_abilities), "teach": len(teach)}
     if report:
-        print(f"Radical Red species matched: {len(data)}; not in this game: {len(unmatched)}")
+        print(f"dex species matched: {len(data)}; not in this game: {len(unmatched)}")
         print("  " + ", ".join(unmatched))
-        print(f"learnsets from Radical Red: {stats['level']} level-up, {stats['egg']} Egg Move lists, "
+        print(f"learnsets from the dex: {stats['level']} level-up, {stats['egg']} Egg Move lists, "
               f"{stats['teach']} TM and tutor lists; {stats['abilities']} species with new abilities")
         print("moves left out (not in this engine): " + ", ".join(f"{k} ({v})" for k, v in mp.missing_moves.most_common()))
-        print("abilities kept as Heart & Soul's (not in this engine): "
+        print("abilities kept as Heart & Soul's (Imperium's own, not in this engine): "
               + ", ".join(f"{k} ({v})" for k, v in mp.missing_abilities.most_common()))
         for n in notes:
             print(n)
@@ -536,14 +493,14 @@ def generate(rr, report=False):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--rr-data", required=True, help="the Radical Red dex's data.js (" + RR_DATA_URL + ")")
+    ap.add_argument("--ei-dex", required=True, help="a saved copy of the Emerald Imperium dex's script (" + ei_dex.EI_DEX_URL + ")")
     ap.add_argument("--check", action="store_true")
     ap.add_argument("--report", action="store_true")
     args = ap.parse_args()
-    rr, digest = load_rr(args.rr_data)
-    if digest != RR_DATA_SHA256:
-        print(f"note: {args.rr_data} has SHA-256 {digest}, not the {RR_DATA_SHA256} these files came from")
-    files, stats = generate(rr, args.report)
+    ei, digest = ei_dex.load_ei(args.ei_dex)
+    if digest != ei_dex.EI_DEX_SHA256:
+        print(f"note: {args.ei_dex} has SHA-256 {digest}, not the {ei_dex.EI_DEX_SHA256} these files came from")
+    files, stats = generate(ei, args.report)
     stale = [p for p, text in files.items() if not os.path.exists(os.path.join(ROOT, p)) or read(p) != text]
     if args.check:
         for p in stale:
@@ -554,7 +511,7 @@ def main():
             f.write(files[p])
         print(f"wrote {p}")
     print(f"{stats['level']} level-up learnsets, {stats['egg']} Egg Move lists and {stats['teach']} TM and tutor "
-          f"lists from Radical Red; {stats['abilities']} species with new abilities")
+          f"lists from the Emerald Imperium dex; {stats['abilities']} species with new abilities")
     return 0
 
 

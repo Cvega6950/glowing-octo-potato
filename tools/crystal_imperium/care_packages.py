@@ -63,7 +63,8 @@ def each(n, *items):
 
 # One list per package: (item without ITEM_, quantity). Radical Red's packages, by where they arrive
 # there, are named in the comments; Emerald Imperium's own changes are marked EI. Since 0.15.0 the
-# evolution items are Emerald Imperium's (D44): the ones no evolution uses any more are gone.
+# evolution items are Emerald Imperium's (D44, D45): the ones no evolution uses any more are gone, and
+# so are the ones only a trade uses (Protector, Electirizer...: a Linking Cord evolves the same Pokemon).
 PACKAGES = [
     # 0: the start (after the first Pokemon): RR's Route 2 and Viridian Forest packages; EI adds the
     #    Shiny Charm, and swaps RR's Pixie Plate for the Fairy Feather (all 18 type boosters here, with
@@ -106,10 +107,10 @@ PACKAGES = [
     # 7: 7th badge: RR's Blaine package (Life Orb, Power Herb)
     [("MAX_POTION", 20), ("ULTRA_BALL", 20)] +
     each(10, "MAX_REVIVE", "LIFE_ORB", "POWER_HERB", "X_ACCURACY", "DIRE_HIT", "GUARD_SPEC", "BINDING_BAND",
-         "GRIP_CLAW", "RAZOR_FANG"),
+         "GRIP_CLAW", "RAZOR_FANG", "METAL_ALLOY"),
     # 8: Rising Badge
     [("FULL_RESTORE", 20), ("ULTRA_BALL", 20)] +
-    each(10, "MAX_REVIVE", "MAX_ELIXIR", "PEAT_BLOCK"),
+    each(10, "MAX_REVIVE", "MAX_ELIXIR"),
     # 9: Champion: RR's Clair and post-game packages (100 Beast Balls; Choice items, Eviolites, Rocky
     #    Helmets), the rest of the pinch Berries
     [("MASTER_BALL", 1), ("BEAST_BALL", 100)] +

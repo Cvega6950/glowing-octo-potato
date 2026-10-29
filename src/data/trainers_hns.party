@@ -17197,7 +17197,7 @@ Level: 100
 - Aerial Ace  
 
 Ursaluna-Bloodmoon  
-Ability: Scrappy
+Ability: Mind's Eye
 Level: 100
 IVs: 0 Atk  
 - Blood Moon  
@@ -17305,7 +17305,7 @@ Level: 100
 - Mach Punch  
 
 Medicham  
-Ability: Pure Power  
+Ability: Huge Power
 Level: 100
 - Acupressure  
 - Stored Power  
@@ -18111,7 +18111,7 @@ Level: 100
 - Curse  
 
 Overqwil @ Black Sludge  
-Ability: Poison Touch
+Ability: Intimidate
 Level: 100
 - Barb Barrage  
 - Lash Out  
@@ -18464,7 +18464,7 @@ Nature: Adamant
 Meditite @ Eviolite
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pure Power
+Ability: Huge Power
 Nature: Adamant
 - Force Palm
 - Ice Punch
@@ -18708,7 +18708,7 @@ Items: Hyper Potion / Hyper Potion
 Medicham @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pure Power
+Ability: Huge Power
 Nature: Jolly
 - Fake Out
 - High Jump Kick
