@@ -1740,3 +1740,40 @@ follows is the first build's; D45 lists what changed.)
   against the dex; `move_pools` (Mew's tutor list: Scald and Work Up, not Cosmic Power),
   `tutor_category` (a Caterpie: Magikarp has no tutor move any more), `imperium_evolutions` (the 2F
   list with the Berries), `care_packages` (a Metal Alloy, no Peat Block) and the whole suite.
+
+## D46. Trainers like Emerald Imperium's: levels, evolutions, IVs
+
+- The user: "I need the game to be harder. Some of the teams created are duds like why am I
+  fighting a lvl 72 dragonair why is it not evolved. Also I was level 72 fighting a lvl 44
+  trainer. I need more ace trainers, more put together competitive teams for boss and leaders, I
+  really want it more like emerald imperium honestly". This entry is the engine part; the teams
+  are D47.
+- Imperium's Boss Battles sheet (its documentation) gives an ordinary trainer's levels as
+  "Highest Lv -1", "-2" or "-3": below the player's highest level, whatever it is; every trainer's
+  IVs are 31; its bosses are at the level cap, as here (D21).
+- **Why a level-44 trainer at 72.** The cap curve (D29) puts each trainer's Heart & Soul level at
+  the same place under this game's caps, once: a route's trainers stayed at the curve's level for
+  that part of the game when the player came back much stronger.
+- **Levels** (`GetDifficultyAdjustedTrainerLevel`, `src/battle_main.c`). An ordinary trainer's
+  Pokémon are now at the player's highest level (`GetHighestLevelInPlayerParty`, Eggs aside) minus
+  1 to 3: the trainer's strongest one level below, each other one more level below for each level
+  it was below the strongest in Heart & Soul, at most three. Never below its place on the cap
+  curve, never above the cap; then EASY and HARD scale it as before (D4), within the cap. Bosses
+  stay at the cap.
+- **Evolutions** (`GetTrainerMonEvolvedSpecies`). A trainer's Pokémon is as evolved as its level
+  allows, as Imperium's always are: by a level evolution at its level, by any other (an item, a
+  trade, friendship, a move) from level 32, taking the first route that applies (Eevee's first is
+  Sylveon's). A Pokémon holding an Eviolite or Everstone stays as it is, and so does one holding an
+  item that works for its own species only (Light Ball, Lucky Punch, the Deep Sea items, Metal and
+  Quick Powder). Bosses too: their teams name their species, and an Eviolite marks the ones meant
+  to stay. The Dragonair of Dragon's Den and the Blackthorn Gym (Heart & Soul's 40 to 43, the
+  70s on the curve) are Dragonite now. An ability the party data names is taken from the slot the
+  evolved species has it in, or its slot in the party data's species.
+- **IVs.** Heart & Soul's ordinary trainers have 0 in every IV (796 Pokémon); an opponent's all-0
+  IVs are 31s now, as Imperium's. Other spreads (a special attacker's 0 Attack) stay.
+- Only opponents' parties: a partner's party, or one made for the player, stays as its data has it.
+- Evidence: `trainer_levels` (new: Dragon Tamer Paul against a level-72 TYPHLOSION, his Dratini
+  at 69 and Dragonair at 71, all Dragonite, 31 IVs; Ben's Eviolite Lickitung at the cap; the cap
+  curve's 31 for a level-10 player; the cap, 85, for a level-90 one), `boss_levels` (the Grunt's
+  Koffing one below the player), `difficulty` (Albert's Pokémon one below the player, then 90% and
+  110%), the boss and Gym tests.

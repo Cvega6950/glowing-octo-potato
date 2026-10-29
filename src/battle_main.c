@@ -2061,13 +2061,17 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
 // Crystal Imperium: every boss's Pokemon are at the player's level cap, on every difficulty
 // (DECISIONS.md D21): the cap of the boss's stage or of the player's progress, whichever is later,
 // from the player's cap table (HARD caps on HARD). Other trainers' Heart & Soul levels are mapped
-// onto the player's cap curve (D29), then scaled by the difficulty, and are never above the
-// player's cap. While a party is created, sBossLevel is the boss's level (0 for other trainers)
-// and sTrainerLevelCap the player's cap (0: no party being created).
+// onto the player's cap curve (D29) and raised to the player's own level as in Emerald Imperium
+// (D46), then scaled by the difficulty, and are never above the player's cap. While a party is
+// created, sBossLevel is the boss's level (0 for other trainers), sTrainerLevelCap the player's
+// cap (0: no party being created), sPlayerHighestLevel the player's highest level and
+// sTrainerTopLevel the highest level in the trainer's party data.
 #include "data/level_cap_bosses.h"
 
 static u8 sBossLevel;
 static u8 sTrainerLevelCap;
+static u8 sPlayerHighestLevel;
+static u8 sTrainerTopLevel;
 
 static u32 GetLevelCapBossLevel(u16 trainerNum)
 {
@@ -2098,17 +2102,96 @@ static u8 GetDifficultyScaledTrainerLevel(u8 level)
     }
 }
 
+// Crystal Imperium (DECISIONS.md D46): an ordinary trainer's Pokemon are at the player's highest
+// level minus 1 to 3, as Emerald Imperium's ("Highest Lv -2" in its Boss Battles document): the
+// trainer's strongest one level below, each other one more level below for each level it was below
+// it in Heart & Soul, at most three. Never below the cap curve's level.
+static u32 GetLevelBelowPlayer(u32 level)
+{
+    u32 below = 1 + (sTrainerTopLevel > level ? sTrainerTopLevel - level : 0);
+
+    if (below > 3)
+        below = 3;
+    return sPlayerHighestLevel > below ? sPlayerHighestLevel - below : 1;
+}
+
 static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
 {
+    u32 original = level;
+
     if (sBossLevel)
         return sBossLevel;
     if (sTrainerLevelCap)
         level = GetLevelOnCapCurve(level);
+    if (sPlayerHighestLevel && GetLevelBelowPlayer(original) > level)
+        level = GetLevelBelowPlayer(original);
     if (sScaleTrainerLevels)
         level = GetDifficultyScaledTrainerLevel(level);
     if (sTrainerLevelCap && level > sTrainerLevelCap)
         level = sTrainerLevelCap;
     return level;
+}
+
+// Crystal Imperium (DECISIONS.md D46): a trainer's Pokemon is as evolved as its level allows, as
+// in Emerald Imperium, where no trainer uses one far above its evolution level: by a level evolution
+// at its level, by any other (an item, a trade, friendship, a move) from TRAINER_OTHER_EVOLUTION_LEVEL.
+// The first route that applies is taken. Not one that holds an Eviolite or Everstone, or an item that
+// works only for its own species (Light Ball, Lucky Punch, the Deep Sea items, Metal and Quick Powder).
+#define TRAINER_OTHER_EVOLUTION_LEVEL 32
+
+static u32 GetTrainerEvolutionLevel(const struct Evolution *evolution)
+{
+    switch (evolution->method)
+    {
+    case EVO_LEVEL:
+    case EVO_LEVEL_BATTLE_ONLY:
+        return evolution->param > 1 ? evolution->param : TRAINER_OTHER_EVOLUTION_LEVEL;
+    case EVO_ITEM:
+    case EVO_TRADE:
+        return TRAINER_OTHER_EVOLUTION_LEVEL;
+    default:
+        return 0; // never: Shedinja's split, spins, script triggers
+    }
+}
+
+static u16 GetTrainerMonEvolvedSpecies(u16 species, u32 level, u16 heldItem)
+{
+    u32 stage, i;
+
+    switch (GetItemHoldEffect(heldItem))
+    {
+    case HOLD_EFFECT_EVIOLITE:
+    case HOLD_EFFECT_PREVENT_EVOLVE:
+    case HOLD_EFFECT_LIGHT_BALL:
+    case HOLD_EFFECT_LUCKY_PUNCH:
+    case HOLD_EFFECT_DEEP_SEA_TOOTH:
+    case HOLD_EFFECT_DEEP_SEA_SCALE:
+    case HOLD_EFFECT_METAL_POWDER:
+    case HOLD_EFFECT_QUICK_POWDER:
+        return species;
+    default:
+        break;
+    }
+    for (stage = 0; stage < 2; stage++)
+    {
+        const struct Evolution *evolutions = GetSpeciesEvolutions(species);
+        u16 next = SPECIES_NONE;
+
+        for (i = 0; evolutions != NULL && evolutions[i].method != EVOLUTIONS_END; i++)
+        {
+            u32 evolutionLevel = GetTrainerEvolutionLevel(&evolutions[i]);
+
+            if (evolutionLevel != 0 && level >= evolutionLevel && IsSpeciesEnabled(evolutions[i].targetSpecies))
+            {
+                next = evolutions[i].targetSpecies;
+                break;
+            }
+        }
+        if (next == SPECIES_NONE)
+            break;
+        species = next;
+    }
+    return species;
 }
 
 u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer *trainer, bool32 firstTrainer, u32 battleTypeFlags)
@@ -2171,15 +2254,26 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             }
             {
                 u16 species = partyData[monIndex].species;
+                u8 level = GetDifficultyAdjustedTrainerLevel(partyData[monIndex].lvl);
                 #if RANDOMIZER_AVAILABLE == TRUE
                 species = RandomizeTrainerMon(trainer->trainerClass, i, monsCount, species);
                 #endif
-                CreateMon(&party[i], species, GetDifficultyAdjustedTrainerLevel(partyData[monIndex].lvl), personalityValue, otId);
+                if (sTrainerLevelCap) // an opponent's party, not a partner's or a party for the player
+                    species = GetTrainerMonEvolvedSpecies(species, level, partyData[monIndex].heldItem);
+                CreateMon(&party[i], species, level, personalityValue, otId);
             }
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
-            SetMonData(&party[i], MON_DATA_IVS, &(partyData[monIndex].iv));
+            {
+                // Crystal Imperium (D46): Heart & Soul's ordinary trainers have 0 in every IV, Emerald
+                // Imperium's 31 (its Boss Battles document): an opponent's all-0 IVs are 31s. Other
+                // spreads (a special attacker's 0 Attack) stay as the party data has them.
+                u32 ivs = partyData[monIndex].iv;
+                if (ivs == 0 && sTrainerLevelCap)
+                    ivs = TRAINER_PARTY_IVS(MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS);
+                SetMonData(&party[i], MON_DATA_IVS, &ivs);
+            }
             if (partyData[monIndex].ev != NULL)
             {
                 SetMonData(&party[i], MON_DATA_HP_EV, &(partyData[monIndex].ev[0]));
@@ -2191,18 +2285,29 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             }
             if (partyData[monIndex].ability != ABILITY_NONE)
             {
+                // Crystal Imperium (D46): the slot of the ability in the party data's species, for the
+                // Pokemon it evolved into if that one has it in another slot
                 const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[monIndex].species];
+                const struct SpeciesInfo *evolvedInfo = &gSpeciesInfo[GetMonData(&party[i], MON_DATA_SPECIES)];
                 u32 maxAbilityNum = ARRAY_COUNT(speciesInfo->abilities);
                 for (abilityNum = 0; abilityNum < maxAbilityNum; ++abilityNum)
                 {
-                    if (speciesInfo->abilities[abilityNum] == partyData[monIndex].ability)
+                    if (evolvedInfo->abilities[abilityNum] == partyData[monIndex].ability)
                         break;
+                }
+                if (abilityNum == maxAbilityNum)
+                {
+                    for (abilityNum = 0; abilityNum < maxAbilityNum; ++abilityNum)
+                    {
+                        if (speciesInfo->abilities[abilityNum] == partyData[monIndex].ability)
+                            break;
+                    }
                 }
                 assertf(abilityNum < maxAbilityNum, "illegal ability %S for %S", gAbilitiesInfo[partyData[monIndex].ability].name, speciesInfo->speciesName);
             }
             else if (B_TRAINER_MON_RANDOM_ABILITY)
             {
-                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[partyData[monIndex].species];
+                const struct SpeciesInfo *speciesInfo = &gSpeciesInfo[GetMonData(&party[i], MON_DATA_SPECIES)];
                 abilityNum = personalityHash % 3;
                 while (speciesInfo->abilities[abilityNum] == ABILITY_NONE)
                 {
@@ -2286,6 +2391,22 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     return trainer->partySize;
 }
 
+// Crystal Imperium (D46): the highest level in a trainer's party data (all of its pool, for a party
+// pool; its original's, for a trainer that overrides another's party), for GetLevelBelowPlayer
+static u8 GetTrainerTopLevel(const struct Trainer *trainer)
+{
+    const struct Trainer *source = trainer->overrideTrainer ? GetTrainerStructFromId(trainer->overrideTrainer) : trainer;
+    u32 i, count = source->poolSize ? source->poolSize : (trainer->partySize ? trainer->partySize : source->partySize);
+    u8 top = 0;
+
+    for (i = 0; i < count; i++)
+    {
+        if (source->party[i].lvl > top)
+            top = source->party[i].lvl;
+    }
+    return top;
+}
+
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer)
 {
     u8 retVal;
@@ -2296,6 +2417,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
                            && GetTrainerDifficultyLevel(trainerNum) == DIFFICULTY_NORMAL);
     sBossLevel = GetLevelCapBossLevel(trainerNum);
     sTrainerLevelCap = GetCurrentLevelCap();
+    sPlayerHighestLevel = GetHighestLevelInPlayerParty();
+    sTrainerTopLevel = GetTrainerTopLevel(GetTrainerStructFromId(trainerNum));
     if (GetTrainerStructFromId(trainerNum)->overrideTrainer)
     {
         struct Trainer tempTrainer;
@@ -2317,6 +2440,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     sScaleTrainerLevels = FALSE;
     sBossLevel = 0;
     sTrainerLevelCap = 0;
+    sPlayerHighestLevel = 0;
+    sTrainerTopLevel = 0;
     return retVal;
 }
 

@@ -1,0 +1,64 @@
+# Crystal Imperium play test: ordinary trainers like Emerald Imperium's (DECISIONS.md D46). Their
+# Pokemon are at the player's highest level minus 1 to 3 (the trainer's strongest one below, the
+# others one more for each level they were below it in Heart & Soul, at most three), never below
+# the cap curve (D29) and never above the cap. A trainer's Pokemon is as evolved as its level
+# allows, unless it holds an Eviolite; Heart & Soul's all-0 IVs are 31s.
+# - Dragon Tamer Paul (Heart & Soul: Dratini 34, three Dragonair 40) against a level-72 TYPHLOSION
+#   with eight badges (cap 85): the Dratini three levels below, 69, the Dragonair one below, 71,
+#   and all four Dragonite (Dratini at 30, Dragonair at 55), with 31 IVs.
+# - Pokemaniac Ben, a route boss at the cap: his Eviolite Lickitung stays a Lickitung (it would
+#   evolve at 35).
+# - A level-10 TYPHLOSION with six badges: a Rocket Grunt's Koffing (Heart & Soul: 20) stays on
+#   the cap curve, 31, a Koffing (Weezing at 35).
+# - A level-90 TYPHLOSION with eight badges: Paul's four at the cap, 85.
+# gEnemyParty: 100 bytes a Pokemon, level at +84.
+!new_game()
+!battle_style_set()
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_flag("FLAG_BADGE04_GET")
+!set_flag("FLAG_BADGE05_GET")
+!set_flag("FLAG_BADGE06_GET")
+savestate six_badges.ss
+!set_flag("FLAG_BADGE07_GET")
+!set_flag("FLAG_BADGE08_GET")
+savestate eight_badges.ss
+!give_mon(157, 72)
+savestate level72.ss
+
+# Paul: one to three below the player's 72, Dragonite all, 31 IVs
+!battle("TRAINER_PAUL_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B paul_action_menu
+shot 01_paul.png
+expect8 {gEnemyParty+84} 69 dratini_three_below_72
+expect8 {gEnemyParty+184} 71 dragonair_one_below_72
+expect8 {gEnemyParty+284} 71 second_dragonair_one_below_72
+expect8 {gEnemyParty+384} 71 third_dragonair_one_below_72
+!expect_battler(1, "species", "SPECIES_DRAGONITE", "dratini_at_69_is_a_dragonite")
+!expect_battler_ivs(1, 0x3FFFFFFF, "paul_ivs_31")
+
+# Ben (a route boss): at the cap, his Eviolite Lickitung doesn't evolve
+loadstate level72.ss
+!battle("TRAINER_BEN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ben_action_menu
+shot 02_ben.png
+expect8 {gEnemyParty+84} 85 ben_at_the_cap
+!expect_battler(1, "species", "SPECIES_LICKITUNG", "eviolite_lickitung_stays")
+
+# A level-10 player with six badges: the Grunt's Koffing stays on the cap curve
+loadstate six_badges.ss
+!give_mon(157, 10)
+!battle("TRAINER_GRUNT_33_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B grunt_action_menu
+shot 03_grunt.png
+expect8 {gEnemyParty+84} 31 koffing_on_the_cap_curve
+!expect_battler(1, "species", "SPECIES_KOFFING", "koffing_below_35_stays")
+
+# A level-90 player with eight badges: Paul's four held at the cap, 85
+loadstate eight_badges.ss
+!give_mon(157, 90)
+!battle("TRAINER_PAUL_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B paul_capped_action_menu
+expect8 {gEnemyParty+84} 85 dratini_held_at_cap
+expect8 {gEnemyParty+384} 85 dragonair_held_at_cap
