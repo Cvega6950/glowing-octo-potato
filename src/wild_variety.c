@@ -22,7 +22,7 @@
 #include "constants/battle_pyramid.h"
 #include "constants/flags.h"
 
-#define VARIETY_POOL_SIZE 600 // holds 445 Pokemon and 122 legends (dexnav_wild_match checks the counts)
+#define VARIETY_POOL_SIZE 600 // holds 446 Pokemon and 121 legends (dexnav_wild_match checks the counts)
 #define VARIETY_POOL_MAGIC 0xC1A5
 #define LAND_VARIETY_COUNT 6
 #define WATER_VARIETY_COUNT 3

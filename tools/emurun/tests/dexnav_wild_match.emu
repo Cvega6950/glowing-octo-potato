@@ -23,9 +23,10 @@ expectne16 *{sDexNavUiDataPtr}+26 0 route29_lists_variety_pokemon
 expect16 *{sDexNavUiDataPtr}+28 0 five_own_and_six_variety_pokemon
 # Rattata, Hoothoot and the six Wild Variety Pokemon: the list without the day's own Pokemon
 snap16 not_day *{sDexNavUiDataPtr}+12 8
-# The variety pool (sPool, VARIETY_POOL_SIZE entries) holds 445 Pokemon, then 122 legends
+# The variety pool (sPool, VARIETY_POOL_SIZE entries) holds 446 Pokemon, then 121 legends (445 and
+# 122 before 0.15.0: Nincada no longer evolves into Shedinja, Meltan does into Melmetal, D45)
 expect16 {sPoolCount} 567 variety_pool_size
-expect16 {sLegendStart} 445 variety_pool_legends_start
+expect16 {sLegendStart} 446 variety_pool_legends_start
 press B
 wait 200
 press B

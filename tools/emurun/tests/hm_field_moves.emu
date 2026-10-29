@@ -33,8 +33,9 @@ shot 03_tree_cut.png
 # The way west is open: step onto the tree's tile
 !walkto(31, 23)
 
-# Fly from the lead's party menu (SUMMARY, LEARN MOVES, FLY, ITEM, ...: since 0.13.0 MAGIKARP can
-# learn Celebrate, a Radical Red tutor move, DECISIONS.md D39) with HM02 and the Storm Badge
+# Fly from the lead's party menu (SUMMARY, FLY, ITEM, ...: no LEARN MOVES, since in Emerald
+# Imperium's data MAGIKARP's only TM or tutor move is Hydro Pump, a TM not in the Bag, D45) with
+# HM02 and the Storm Badge
 !give_item("ITEM_HM_FLY")
 !set_flag("FLAG_BADGE05_GET")
 !start_menu("POKEMON")
@@ -42,8 +43,6 @@ wait 60
 press A
 wait 30
 shot 04_party_menu_fly.png
-press DOWN
-wait 10
 press DOWN
 wait 10
 press A

@@ -1736,10 +1736,16 @@ follows is the first build's; D45 lists what changed.)
   Power (Chuck's rematch, Candice's and Maylene's side battles) becomes Huge Power, Whitney's
   rematch Bloodmoon Ursaluna's Scrappy becomes Mind's Eye, Koga's rematch Overqwil's Poison Touch
   Intimidate.
+- **Wild Variety.** The pool (D14) is every Pokémon nothing evolves into, so the evolutions change
+  it: Shedinja joins (446 Pokémon), Melmetal leaves the legends (121). Each area's draw depends on
+  the pool's size, so most areas have other Wild Variety Pokémon than in 0.14 (still the same at
+  every hour, D42). The guide lists Nincada's Shedinja as gone, with SELECT in the DexNav to find
+  it (the dex lists Imperium's Ninjask route only: "catchable post game").
 - Evidence: `imperium_species.py --check`, `imperium_evolutions.py --check` and `validate.py`
   against the dex; `move_pools` (Mew's tutor list: Scald and Work Up, not Cosmic Power),
   `tutor_category` (a Caterpie: Magikarp has no tutor move any more), `imperium_evolutions` (the 2F
-  list with the Berries), `care_packages` (a Metal Alloy, no Peat Block) and the whole suite.
+  list with the Berries), `care_packages` (a Metal Alloy, no Peat Block), `dexnav_wild_match` (the
+  pool's counts), `hm_field_moves` (Magikarp's party menu has no LEARN MOVES) and the whole suite.
 
 ## D46. Trainers like Emerald Imperium's: levels, evolutions, IVs
 
