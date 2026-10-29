@@ -16,8 +16,8 @@ teams, as Emerald Imperium has. From the tables in ace_trainer_data.py this writ
 
 Run it after side_battles.py and before boss_teams.py. They are ordinary trainers, not bosses: their
 levels follow the player's highest level, one to three below (src/battle_main.c, D46), never below
-the cap curve's level for their party data's levels, which stand a little below the cap of the
-route's stage. A spot is checked as a side battle's is (side_battles.MapData): on foot, not water,
+the cap curve's level for their party data's levels, which the script sets three below the cap of
+the route's stage (party_levels). A spot is checked as a side battle's is (side_battles.MapData): on foot, not water,
 not a ledge, nothing else on the tile, no door next to it, and it cuts no one off; its line of sight
 is ground the trainer can walk and meets no other trainer's.
 """
@@ -55,11 +55,33 @@ def label(ace):
     return "AceTrainer_" + ace["key"].title().replace("_", "")
 
 
+def stage_cap(stage):
+    """The NORMAL level cap at a stage (boss_teams.py's caps; 9 is after the Johto League)."""
+    import boss_teams  # its caps come from src/caps.c
+    return boss_teams.cap(boss_teams.JOHTO_CHAMPION if stage >= 9 else stage)
+
+
+def curve(level):
+    """src/caps.c GetLevelOnCapCurve with the NORMAL caps: a Heart & Soul level on this game's curve."""
+    if level <= 1:
+        return level
+    hns_from, cap_from = 1, 1
+    for stage, hns_to in enumerate(HNS_CAPS):
+        cap_to = stage_cap(stage) if stage < 10 else 100
+        if level <= hns_to:
+            return cap_from + ((level - hns_from) * (cap_to - cap_from) + (hns_to - hns_from) // 2) // (hns_to - hns_from)
+        hns_from, cap_from = hns_to, cap_to
+    return 100
+
+
 def party_levels(stage, size):
-    """The party data's levels: the strongest two below Heart & Soul's cap for the route's stage (the
-    cap curve puts it a little below this game's cap there), the others a level less each, as an
-    ordinary trainer's are spread (GetLevelBelowPlayer)."""
-    top = HNS_CAPS[stage] - 2
+    """The party data's levels: the strongest at the highest Heart & Soul level the cap curve puts at
+    least three below the cap of the route's stage (its floor), the next one a level less, the others
+    two less; the
+    battle code then puts them one, two and three below the player's highest level
+    (GetLevelBelowPlayer), never below their floors."""
+    target = stage_cap(stage) - 3
+    top = max(level for level in range(1, 101) if curve(level) <= target)
     return [top - min(2, i) for i in range(size)][::-1]
 
 
