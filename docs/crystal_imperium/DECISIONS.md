@@ -1694,7 +1694,12 @@ follows is the first build's; D45 lists what changed.)
   game's species by their names ("Raichu-Alola", "Basculin-Blue-Striped"); Imperium's own Megas
   and Primal forms and two Pikachu forms aren't in this game, and stay out.
 - **What changes against the Radical Red data.** Mostly nothing: Imperium's list of differences
-  is in its dex already. But not everywhere:
+  is in its dex already, except two that the dex lacks and that are gone since 0.15.0 (they were
+  D35's and D39's explicit rules): Galarian Moltres learns no Trick Room by TM, and Alolan
+  Marowak's third ability is Heart & Soul's Cursed Body, not Battle Armor. Mega Blaziken keeps
+  Speed Boost: the dex gives it Imperium's own Striker, which isn't in the engine, and a slot
+  with one keeps Heart & Soul's (Blaine's postgame Mega Blaziken counts on it). Elsewhere the
+  data changes:
   - Evolutions, 47 species (219 in all differ from Heart & Soul's). Imperium keeps the trades beside
     its items (Kadabra, Machoke, Graveler, Haunter, Boldore, Gurdurr, Phantump and Pumpkaboo trade or
     take a Linking Cord; Rhydon, Seadra, Electabuzz, Magmar, Dusclops, Onix, Scyther, Poliwhirl,
