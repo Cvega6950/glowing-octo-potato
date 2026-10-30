@@ -1,0 +1,41 @@
+# Crystal Imperium play test: DexNav marks the Pokemon already caught (DECISIONS.md D52): a Poke Ball
+# at the lower right of a caught Pokemon's icon in the area's rows, and after its name in the SELECT
+# list of every Pokemon. The same screens are compared with nothing caught and with everything caught
+# (the CAUGHTALL code): the frames match, so only the marks differ. Land row slots 0 and 1: icons at
+# (20,72) and (44,72), balls at (+10,+10) (8x8: (26,78), (50,78)); the list's first row: its window
+# at (8,24), the ball 16 pixels from its right edge and 4 below the row's top: (136,29).
+!new_game()
+savestate bedroom.ss
+!battle_style_set()
+!give_mon(155, 10)
+!no_care_packages()
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!l_menu("DEXNAV")
+wait 120
+shot 01_nothing_caught.png
+snaprect slot0_corner 26 78 8 8
+snaprect slot1_corner 50 78 8 8
+press SELECT
+wait 60
+shot 02_list_nothing_caught.png
+snaprect list_row0_ball 136 29 8 8
+
+# Everything caught: the same screens have the marks
+loadstate bedroom.ss
+!nes_code("CAUGHTALL")
+mash B 300
+!battle_style_set()
+!give_mon(155, 10)
+!no_care_packages()
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!l_menu("DEXNAV")
+wait 120
+shot 03_all_caught.png
+expectrectne slot0_corner slot0_marked_caught
+expectrectne slot1_corner slot1_marked_caught
+press SELECT
+wait 60
+shot 04_list_all_caught.png
+expectrectne list_row0_ball list_bulbasaur_marked_caught

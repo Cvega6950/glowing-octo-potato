@@ -24,16 +24,25 @@
 - Pikachu shows its newest sprites (the Gen 4/5-style ones), front and back; the other Pokémon keep
   theirs.
 
+### DexNav marks the Pokémon you've caught (D52)
+- A small Poké Ball at the corner of each caught Pokémon's icon in DexNav, and after its name in
+  the list of every Pokémon (SELECT).
+
 ### A code for shiny Pokémon (D49)
 - **SHINYA** (or SHA, or ALLSHINY) at the NES in your room: every wild Pokémon, gift Pokémon and
   Egg is shiny until you enter it again.
+
+### Fixes
+- After the PokéVial healed a fainted lead, the Pokémon following you was still the one that had
+  been next in line; now the healed lead follows again at once (D53).
 
 ### Tools
 - `tools/crystal_imperium/care_packages.py` takes the TM tiers from `tm_list.py`; `tools/emurun`'s
   `no_care_packages()` marks the TMs as received too.
 - `tools/crystal_imperium/imperium_species.py` writes the base stats
   (`species_info/imperium_stats.h`); `tools/emurun`: `expect_base_stat`, new play tests
-  `imperium_stats`, `cheat_shiny_all` and `pikachu`; `expect_species_field`.
+  `imperium_stats`, `cheat_shiny_all`, `pikachu`, `dexnav_caught` and `pokevial_follower`;
+  `expect_species_field`, `expect_follower_species`; the runner's `expectrectne` and `expectfind`.
 
 ## 0.15.0-experimental (2026-10-30)
 

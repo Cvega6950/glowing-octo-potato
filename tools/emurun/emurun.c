@@ -79,6 +79,11 @@
 //                          of the stack; tools/emurun/profile.py names the functions (mGBA only)
 //   snaprect NAME X Y W H  remember the frame's pixels in that screen rectangle as NAME
 //   expectrect NAME [LABEL]   fail unless the frame's pixels in NAME's rectangle are as remembered
+//   expectrectne NAME [LABEL] fail if they are all as remembered (something was drawn there since)
+//   expectfind BASE STRIDE COUNT KEYOFF KEYBITS KEY VALOFF VALBITS VALUE [LABEL]   in the array of COUNT
+//                          elements of STRIDE bytes at BASE, the first whose KEYBITS-bit field at KEYOFF is KEY
+//                          must have VALUE in its VALBITS-bit field at VALOFF (fail if none has the key);
+//                          VALBITS&MASK compares only the MASK bits of the field
 // KEY: A B SELECT START RIGHT LEFT UP DOWN R L
 #include "backend.h"
 #include <png.h>
@@ -677,7 +682,8 @@ int main(int argc, char **argv)
             else
                 printf("[frame %lu] shot %s\n", frameCount, a1);
         }
-        else if (!strcmp(cmd, "snaprect") || !strcmp(cmd, "expectrect") || !strcmp(cmd, "expectrectwithin"))
+        else if (!strcmp(cmd, "snaprect") || !strcmp(cmd, "expectrect") || !strcmp(cmd, "expectrectwithin")
+                 || !strcmp(cmd, "expectrectne"))
         {
             unsigned width, height, x = 0, y = 0, w = 0, h = 0;
             const uint32_t *video = Backend_Video(&width, &height);
@@ -736,6 +742,14 @@ int main(int argc, char **argv)
                     if (diff == 0 || f >= frames)
                         break;
                     RunFrames(0, 1);
+                }
+                if (!strcmp(cmd, "expectrectne"))
+                {
+                    printf("[frame %lu] %s %s: %u of %u pixels differ from %s (want some)\n", frameCount,
+                           diff ? "PASS" : "FAIL", label, diff, sRects[slot].w * sRects[slot].h, a1);
+                    if (!diff)
+                        failures++;
+                    continue;
                 }
                 if (frames)
                     printf("[frame %lu] %s %s: %u of %u pixels differ from %s (best of %u frames)\n", frameCount,
@@ -1007,6 +1021,26 @@ int main(int argc, char **argv)
             byte = atoi(a4) ? byte | (1u << (flag % 8)) : byte & ~(1u << (flag % 8));
             Backend_Write(8, addr, byte);
             printf("[frame %lu] setflag %u = %d\n", frameCount, flag, atoi(a4) ? 1 : 0);
+        }
+        else if (!strcmp(cmd, "expectfind"))
+        {
+            char a4[32] = {0}, a5[32] = {0}, a6[32] = {0}, a7[32] = {0}, a8[32] = {0}, a9[32] = {0}, label[128] = {0};
+            sscanf(line, "%*s %*s %*s %*s %31s %31s %31s %31s %31s %31s %127s", a4, a5, a6, a7, a8, a9, label);
+            uint32_t base = strtoul(a1, NULL, 0), stride = strtoul(a2, NULL, 0), count = strtoul(a3, NULL, 0);
+            uint32_t keyOff = strtoul(a4, NULL, 0), key = strtoul(a6, NULL, 0);
+            uint32_t valOff = strtoul(a7, NULL, 0), want = strtoul(a9, NULL, 0), got = 0, i;
+            int keyBits = atoi(a5), valBits = atoi(a8);
+            const char *amp = strchr(a8, '&');
+            uint32_t mask = amp ? strtoul(amp + 1, NULL, 0) : 0xFFFFFFFFu;
+            for (i = 0; i < count; i++)
+                if (Peek(keyBits, base + i * stride + keyOff) == key)
+                    break;
+            if (i < count)
+                got = Peek(valBits, base + i * stride + valOff) & mask;
+            printf("[frame %lu] %s %s: element %u of 0x%08X has 0x%X (want 0x%X)\n", frameCount,
+                   i < count && got == want ? "PASS" : "FAIL", label[0] ? label : "expectfind", i, base, got, want);
+            if (i >= count || got != want)
+                failures++;
         }
         else if (!strcmp(cmd, "expectflag"))
         {

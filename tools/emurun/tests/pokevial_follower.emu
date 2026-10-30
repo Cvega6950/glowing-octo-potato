@@ -1,0 +1,23 @@
+# Crystal Imperium play test: after the PokeVial heals the party, the follower is the lead again
+# (DECISIONS.md D53). The follower is the first Pokemon able to battle: with the lead fainted (its HP
+# set to 0, then a warp so the follower is made again) the second one follows; the PokeVial from the
+# L menu heals the lead, which follows at once. The follower object's graphicsId is
+# OBJ_EVENT_MON + species (the follower is the object after the player's on Route 29: index 1).
+!new_game()
+!battle_style_set()
+!give_mon(155, 20)
+!give_mon(16, 20)
+!no_care_packages()
+# The lead (Cyndaquil) fainted: struct Pokemon's hp, +86
+poke16 {gPlayerParty+86} 0
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!expect_follower_species("SPECIES_PIDGEY", "fainted_lead_second_follows")
+shot 01_pidgey_follows.png
+!l_menu("POKEVIAL")
+mash B 120
+!expect_follower_species("SPECIES_CYNDAQUIL", "healed_lead_follows_again")
+!walkto(34, 13)
+shot 02_cyndaquil_follows.png
+# Cyndaquil at level 20 with Minimal Grinding's 31 IVs: 51 HP
+expect16 {gPlayerParty+86} 51 lead_healed_to_51_hp

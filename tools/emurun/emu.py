@@ -795,6 +795,18 @@ def expect_species_field(species, field, want, label, bits=8):
     return [f"expect{bits} {{gSpeciesInfo+{v['off'] + v['size'] * v[species]}}} {v['want']} {label}"]
 
 
+def expect_follower_species(species, label):
+    """Check the species the follower Pokemon shows: the object event whose localId is
+    OBJ_EVENT_ID_FOLLOWER has the graphicsId OBJ_EVENT_MON + species (its shiny and female bits,
+    OBJ_EVENT_MON_SHINY and OBJ_EVENT_MON_FEMALE, aside)."""
+    v = probe.resolve({"stride": "sizeof(struct ObjectEvent)", "count": "OBJECT_EVENTS_COUNT",
+                       "keyoff": "offsetof(struct ObjectEvent, localId)", "valoff": "offsetof(struct ObjectEvent, graphicsId)",
+                       "key": "OBJ_EVENT_ID_FOLLOWER", "want": f"OBJ_EVENT_MON + {species}",
+                       "mask": "~(OBJ_EVENT_MON_SHINY | OBJ_EVENT_MON_FEMALE) & 0xFFFF"})
+    return [f"expectfind {{gObjectEvents}} {v['stride']} {v['count']} {v['keyoff']} 8 {v['key']} "
+            f"{v['valoff']} 16&{v['mask']} {v['want']} {label}"]
+
+
 def expect_party_species(party, slot, species, label):
     """Check the species of a Pokemon of gPlayerParty or gEnemyParty (party, a symbol) at slot 0-5,
     which is in the encrypted part of struct Pokemon (the runner decrypts it: expectpartyspecies)."""

@@ -48,6 +48,7 @@ From the first step of a new game:
   - R repeats a search for the registered Pokémon; L (or START) ends a search and keeps the
     DexNav chain.
   - Hidden Pokémon are also detected while walking.
+  - A small Poké Ball marks the Pokémon you've caught, on their icons and in the SELECT list.
   - Search levels improve the chances of egg moves, Hidden Abilities and held items.
 - **Wild Variety:** every area has its own set of other Gen 1–9 Pokémon (up to six in the
   grass and three Water-types on the water, as many as fit in the DexNav row beside the area's

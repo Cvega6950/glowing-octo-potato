@@ -1623,6 +1623,11 @@ void HealPartyWithPokeVial(void)
             continue;
         HealPokemon(&gPlayerParty[i]);
     }
+    // The follower is the first Pokemon able to battle: healed, a fainted lead follows again (D53).
+    // From the L menu or a registered PokeVial the field is up; from the Bag, the way back to the
+    // field updates it
+    if (gMain.callback2 == CB2_Overworld)
+        UpdateFollowingPokemon();
 }
 
 void ItemUseOutOfBattle_PokeVial(u8 taskId)

@@ -1799,7 +1799,8 @@ static void DexNavLoadCapturedAllSymbols(void)
     if (headerId == HEADER_NONE)
         return;
 
-    LoadCompressedSpriteSheetUsingHeap(&sCapturedAllPokemonSpriteSheet);
+    if (GetSpriteTileStartByTag(CAPTURED_ALL_TAG) == 0xFFFF)
+        LoadCompressedSpriteSheetUsingHeap(&sCapturedAllPokemonSpriteSheet);
 
     if (CapturedAllLandMons(headerId))
         CreateSprite(&sCaptureAllMonsSpriteTemplate, 152, 58, 0);
@@ -1938,12 +1939,27 @@ static void DexNavLoadEncounterData(void)
     }
 }
 
+// Crystal Imperium: whether the Pokedex has the species as caught (the DexNav marks it, D52)
+static bool32 IsSpeciesCaught(u16 species)
+{
+    return species != SPECIES_NONE && species <= NUM_SPECIES
+        && GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_CAUGHT);
+}
+
 static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
 {
     if (species == SPECIES_NONE || species > NUM_SPECIES)
+    {
         CreateNoDataIcon(x, y);   //'X' in slot
+    }
     else
+    {
         CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); // Crystal Imperium: seen or not
+        // Crystal Imperium (D52): a caught Pokemon has a Poke Ball at its icon's lower right corner,
+        // the one that marks a row whose Pokemon are all caught
+        if (IsSpeciesCaught(species))
+            CreateSprite(&sCaptureAllMonsSpriteTemplate, x + 10, y + 10, 0);
+    }
 }
 
 static void DrawSpeciesIcons(void)
@@ -1953,6 +1969,8 @@ static void DrawSpeciesIcons(void)
     u16 species;
 
     LoadCompressedSpriteSheetUsingHeap(&sNoDataIconSpriteSheet);
+    if (GetSpriteTileStartByTag(CAPTURED_ALL_TAG) == 0xFFFF)
+        LoadCompressedSpriteSheetUsingHeap(&sCapturedAllPokemonSpriteSheet);
     for (i = 0; i < LAND_WILD_COUNT; i++)
     {
         species = sDexNavUiDataPtr->landSpecies[i];
@@ -2503,6 +2521,28 @@ static void PickerMoveCursor(s32 itemIndex, bool8 onInit, struct ListMenu *list)
     PrintSpeciesInfo(sDexNavUiDataPtr->pickerSpecies[itemIndex]);
 }
 
+// Crystal Imperium (D52): an 8x8 Poke Ball in the text window's colours (1 white, 2 dark gray, 3 light
+// gray, 4 red), drawn after the name of each caught Pokemon in the list
+#define PICKER_BALL_ROW(a, b, c, d, e, f, g, h) ((b) << 4 | (a)), ((d) << 4 | (c)), ((f) << 4 | (e)), ((h) << 4 | (g))
+static const u8 sPickerCaughtBall[] =
+{
+    PICKER_BALL_ROW(1, 1, 2, 2, 2, 2, 1, 1),
+    PICKER_BALL_ROW(1, 2, 4, 4, 4, 4, 2, 1),
+    PICKER_BALL_ROW(2, 4, 4, 4, 4, 4, 4, 2),
+    PICKER_BALL_ROW(2, 2, 2, 3, 3, 2, 2, 2),
+    PICKER_BALL_ROW(2, 1, 1, 3, 3, 1, 1, 2),
+    PICKER_BALL_ROW(2, 1, 1, 1, 1, 1, 1, 2),
+    PICKER_BALL_ROW(1, 2, 1, 1, 1, 1, 2, 1),
+    PICKER_BALL_ROW(1, 1, 2, 2, 2, 2, 1, 1),
+};
+#undef PICKER_BALL_ROW
+
+static void PickerPrintCaught(u8 windowId, u32 itemId, u8 y)
+{
+    if (itemId < sDexNavUiDataPtr->pickerCount && IsSpeciesCaught(sDexNavUiDataPtr->pickerSpecies[itemId]))
+        BlitBitmapRectToWindow(windowId, sPickerCaughtBall, 0, 0, 8, 8, sDexNavPickerWindowTemplate.width * 8 - 16, y + 4, 8, 8);
+}
+
 static void PrintPickerHelp(void)
 {
     FillWindowPixelBuffer(WINDOW_REGISTERED, PIXEL_FILL(TEXT_COLOR_TRANSPARENT));
@@ -2549,6 +2589,7 @@ static bool32 OpenSpeciesPicker(void)
     memset(template, 0, sizeof(*template));
     template->items = sDexNavUiDataPtr->pickerItems;
     template->moveCursorFunc = PickerMoveCursor;
+    template->itemPrintFunc = PickerPrintCaught;
     template->totalItems = count;
     template->maxShowed = PICKER_ROWS;
     template->windowId = sDexNavUiDataPtr->pickerWindowId;

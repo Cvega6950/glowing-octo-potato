@@ -1989,3 +1989,30 @@ follows is the first build's; D45 lists what changed.)
   level-50 Pikachu with 135 HP, 110 before; the Gen 4/5 sprite sizes for Pikachu and the GBA ones
   for Raichu; screenshots of its summary and of its back in a battle), `red` (Pikachu's 372 Speed).
 
+## D52. DexNav marks the Pokémon already caught
+
+- The user: "can you put something in the dexnav to show I've already caught that mon".
+- **Rows.** A caught Pokémon (the Pokédex's caught flag) has a small Poké Ball at its icon's lower
+  right in the area's rows: the 8x8 ball DexNav already draws at the end of a row whose Pokémon
+  are all caught. The hidden row marks its Pokémon only when it shows them (detector mode on).
+- **The list of every Pokémon** (SELECT): a Poké Ball at the right end of a caught Pokémon's row,
+  drawn into the list's window in its own colours as each row is printed (the list menu's
+  `itemPrintFunc`), so it scrolls with the names.
+- Evidence: `dexnav_caught` (Route 29's DexNav and the list with nothing caught, then the same
+  frames with everything caught by the CAUGHTALL code: the two first land slots' corners and the
+  list's first row differ, by the balls; screenshots). `tools/emurun`'s `expectrectne` checks that
+  something was drawn where it wasn't.
+
+## D53. The follower is the lead again after the PokéVial
+
+- The user: "when I use the pokevial, it keeps the Pokemon that was last alive as my follower
+  instead of resetting to my newly healed mon".
+- The follower is the first Pokémon in the party able to battle. With the lead fainted, the next
+  one follows; the PokéVial healed the lead but nothing told the follower, from the L menu or a
+  registered PokéVial (from the Bag, the way back to the field updates it). `HealPartyWithPokeVial`
+  now calls `UpdateFollowingPokemon` when the field is up (`gMain.callback2 == CB2_Overworld`).
+- Evidence: `pokevial_follower` (a fainted Cyndaquil lead and a Pidgey: the follower object is
+  Pidgey; after the L menu's PokéVial it is Cyndaquil, healed to 51 HP; on 0.15.0 it stays Pidgey).
+  `tools/emurun`'s `expectfind` finds an array element by a field (the follower object by its
+  local ID) and checks another.
+
