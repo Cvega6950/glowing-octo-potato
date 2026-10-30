@@ -201,7 +201,6 @@ static const struct CarePackageItem sCarePackage2[] =
     {ITEM_PEARL, 10},
     {ITEM_BIG_PEARL, 10},
     {ITEM_LEAF_STONE, 10},
-    {ITEM_UPGRADE, 10},
 };
 
 static const u8 sCarePackageText2[] = _(
@@ -212,8 +211,7 @@ static const u8 sCarePackageText2[] = _(
     "×10 each: ULTRA BALL, REVIVE, PP MAX,\n"
     "HP UP, IRON, ZINC, HEALTH FEATHER,\p"
     "LIFE ORB, TERRAIN EXTENDER, LEEK,\n"
-    "PEARL, BIG PEARL, LEAF STONE,\p"
-    "UPGRADE.");
+    "PEARL, BIG PEARL, LEAF STONE.");
 
 static const struct CarePackageItem sCarePackage3[] =
 {

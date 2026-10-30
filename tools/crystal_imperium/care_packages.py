@@ -86,7 +86,7 @@ PACKAGES = [
     [("ABILITY_CAPSULE", 153), ("ABILITY_PATCH", 153), ("CLEVER_FEATHER", 50), ("RESIST_FEATHER", 50),
      ("GREAT_BALL", 30)] +
     each(10, "ULTRA_BALL", "REVIVE", "PP_MAX", "HP_UP", "IRON", "ZINC", "HEALTH_FEATHER", "LIFE_ORB",
-         "TERRAIN_EXTENDER", "LEEK", "PEARL", "BIG_PEARL", "LEAF_STONE", "UPGRADE"),
+         "TERRAIN_EXTENDER", "LEEK", "PEARL", "BIG_PEARL", "LEAF_STONE"),
     # 3: Plain Badge: RR's Vermilion City and Lt. Surge packages (50 Dream Balls), the Choice items
     [("DREAM_BALL", 50), ("ULTRA_BALL", 20), ("HYPER_POTION", 20)] +
     each(10, "GREAT_BALL", "PP_MAX", "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "ROCKY_HELMET", "SHUCA_BERRY",
