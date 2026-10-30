@@ -812,7 +812,7 @@ ACES = [
              "252 SpA / 4 SpD / 252 Spe"),
          mon("Hitmonlee", "White Herb", "Unburden", "Jolly", ["Close Combat", "Knock Off", "Poison Jab", "Mach Punch"],
              "252 Atk / 4 SpD / 252 Spe"),
-         mon("Pangoro", "Leftovers", "Fur Coat", "Careful", ["Drain Punch", "Knock Off", "Parting Shot", "Ice Punch"],
+         mon("Pangoro", "Leftovers", "Iron Fist", "Careful", ["Drain Punch", "Knock Off", "Parting Shot", "Ice Punch"],
              "252 HP / 4 Atk / 252 SpD"),
          mon("Toxicroak", "Life Orb", "Dry Skin", "Jolly", ["Swords Dance", "Gunk Shot", "Drain Punch", "Sucker Punch"],
              "252 Atk / 4 SpD / 252 Spe"),

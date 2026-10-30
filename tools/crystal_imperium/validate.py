@@ -196,9 +196,69 @@ def compiled_text(text, values):
     return "\n".join(out)
 
 
+MACRO = re.compile(r"(?m)^[ \t]*#define[ \t]+(\w+)(?:\(([^)]*)\))?((?:[^\n]*\\\n)*[^\n]*)")
+
+
+def take_macros(text):
+    """The #define blocks of a species file, {name: (parameters or None, body)}, and the text
+    without them (a block between two species entries would otherwise count as the first's)."""
+    macros = {}
+
+    def take(m):
+        params = None if m.group(2) is None else [p.strip() for p in m.group(2).split(",") if p.strip()]
+        macros[m.group(1)] = (params, m.group(3).replace("\\\n", "\n"))
+        return ""
+    return macros, MACRO.sub(take, text)
+
+
+def macro_args(text, start):
+    """The comma-separated arguments of a call whose "(" is just before start, and the end index."""
+    args, depth, cur, i = [], 0, [], start
+    while i < len(text):
+        c = text[i]
+        if c in "({[":
+            depth += 1
+        elif c in ")}]":
+            if depth == 0:
+                args.append("".join(cur).strip())
+                return args, i + 1
+            depth -= 1
+        elif c == "," and depth == 0:
+            args.append("".join(cur).strip())
+            cur = []
+            i += 1
+            continue
+        cur.append(c)
+        i += 1
+    return args, i
+
+
+def expand_macros(body, macros, depth=3):
+    """body and the expansion of every macro it calls that sets abilities or evolutions (FURFROU_MISC_INFO,
+    SCATTERBUG_SPECIES_INFO...), with the call's arguments in place of the parameters (## pastes)."""
+    out = [body]
+    for name, (params, mbody) in macros.items():
+        if ".abilities" not in mbody and "EVOLUTION(" not in mbody and not any(
+                re.search(rf"\b{n}\b", mbody) for n in macros if n != name):
+            continue
+        if params is None:
+            if re.search(rf"\b{name}\b", body):
+                out.append(expand_macros(mbody, macros, depth - 1) if depth else mbody)
+            continue
+        for m in re.finditer(rf"\b{name}\s*\(", body):
+            args, _ = macro_args(body, m.end())
+            text = mbody
+            for p, a in zip(params, args):
+                text = re.sub(rf"\s*##\s*{p}\b|\b{p}\s*##\s*|\b{p}\b", lambda _m, a=a: a, text)
+            text = text.replace("##", "")
+            out.append(expand_macros(text, macros, depth - 1) if depth else text)
+    return "\n".join(out)
+
+
 def parse_species():
     """SPECIES_X -> {abilities:set, evolutions:[SPECIES_Y], name}, as the game is built: only the #if
-    branches the build compiles (P_UPDATED_ABILITIES picks one ability list, P_FAMILY_* the families)."""
+    branches the build compiles (P_UPDATED_ABILITIES picks one ability list, P_FAMILY_* the families),
+    with the abilities and evolutions of the macros an entry calls (Furfrou's, Vivillon's...)."""
     species = {}
     paths = sorted(glob.glob(os.path.join(ROOT, "src/data/pokemon/species_info/*.h")))
     texts = [open(path, encoding="utf-8").read() for path in paths]
@@ -206,14 +266,17 @@ def parse_species():
                                  for text in texts for m in map(DIRECTIVE.match, text.split("\n"))
                                  if m and m.group(1) not in ("else", "endif"))
     for text in texts:
-        text = compiled_text(text, values)
+        macros, text = take_macros(compiled_text(text, values))
         # Abilities given by a macro (e.g. GENGAR_ABILITIES)
         ability_macros = defaultdict(list)
-        for macro, abl in re.findall(r"#define\s+(\w+_ABILITIES)\s*\{([^}]*)\}", text):
-            ability_macros[macro].append(abl)
+        for macro, (params, mbody) in macros.items():
+            m = re.fullmatch(r"\s*\{([^}]*)\}\s*", mbody)
+            if macro.endswith("_ABILITIES") and params is None and m:
+                ability_macros[macro].append(m.group(1))
         parts = re.split(r"(?m)^\s*\[(SPECIES_\w+)\]\s*=", text)
         for name, body in zip(parts[1::2], parts[2::2]):
             entry = species.setdefault(name, {"abilities": set(), "evolutions": []})
+            body = expand_macros(body, macros)
             lists = re.findall(r"\.abilities\s*=\s*\{([^}]*)\}", body)
             for macro in re.findall(r"\.abilities\s*=\s*(\w+_ABILITIES)\b", body):
                 lists += ability_macros[macro]
