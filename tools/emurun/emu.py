@@ -39,9 +39,10 @@ def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, 
     RANDOMIZER on with WILD randomized (MAP SEEDED stays ON); level_cap="OFF"/"NORMAL"/"HARD"
     sets LEVEL CAP (fourth row of the Difficulty tab; NORMAL, or HARD with the HARD preset);
     minimal_grinding=False turns MIN. GRINDING (second row of the Difficulty tab) off. PROF. ELM's
-    starting and location care packages are marked as received, so they don't arrive on the first
-    steps once the test has a Pokemon (the debug menu's Give Pokemon sets FLAG_SYS_POKEMON_GET);
-    place_packages=True leaves them to arrive."""
+    starting and location care packages are marked as received (the starting package with its TMs,
+    D48, as a new game gets them), so they don't arrive on the first steps once the test has a
+    Pokemon (the debug menu's Give Pokemon sets FLAG_SYS_POKEMON_GET); place_packages=True leaves
+    them to arrive."""
     out = ["wait 1300", "press START", "wait 60", "press A", "wait 500", "mash A 900", "mash A 900", "mash A 700"]
     # Tabs: MODE, FEATURES, RANDOMIZER, NUZLOCKE, DIFFICULTY, CHALLENGES (confirm)
     out += ["press R", "wait 20"]
@@ -77,7 +78,8 @@ def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, 
     out += ["wait 10", "press UP", "wait 30", "press A", "wait 120", "press A", "wait 120"]
     out += ["mash A 1500", "mash A 1200", "wait 300"]
     if not place_packages:
-        out += set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE") + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
+        out += (set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE") + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
+                + set_var("VAR_CARE_PACKAGE_TMS", 1))
     return out
 
 
