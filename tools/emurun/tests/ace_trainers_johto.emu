@@ -302,3 +302,21 @@ expect8 {gEnemyParty+84} 82 ace_r27_maxim_lead_at_82
 expect8 {gEnemyParty+584} 84 ace_r27_maxim_last_at_84
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r27_maxim_resolved
+
+loadstate stage8.ss
+!battle("TRAINER_ACE_R23_LEANDER_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r23_leander_action_menu
+expect8 {gEnemyPartyCount} 6 ace_r23_leander_has_6
+expect8 {gEnemyParty+84} 82 ace_r23_leander_lead_at_82
+expect8 {gEnemyParty+584} 84 ace_r23_leander_last_at_84
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 ace_r23_leander_resolved
+
+loadstate stage8.ss
+!battle("TRAINER_ACE_R23_OPHELIA_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r23_ophelia_action_menu
+expect8 {gEnemyPartyCount} 6 ace_r23_ophelia_has_6
+expect8 {gEnemyParty+84} 82 ace_r23_ophelia_lead_at_82
+expect8 {gEnemyParty+584} 84 ace_r23_ophelia_last_at_84
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 ace_r23_ophelia_resolved

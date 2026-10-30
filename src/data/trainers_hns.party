@@ -23558,3 +23558,2511 @@ Nature: Timid
 - Glare
 - Synthesis
 
+
+=== TRAINER_ACE_R1_MERRICK_HNS ===
+Name: MERRICK
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Golem @ Custap Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Sturdy
+Nature: Adamant
+- Stealth Rock
+- Earthquake
+- Stone Edge
+- Explosion
+
+Starmie @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Natural Cure
+Nature: Timid
+- Hydro Pump
+- Ice Beam
+- Thunderbolt
+- Rapid Spin
+
+Arcanine @ Heavy Duty Boots
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Intimidate
+Nature: Adamant
+- Flare Blitz
+- Extreme Speed
+- Close Combat
+- Morning Sun
+
+Exeggutor @ Sitrus Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Harvest
+Nature: Modest
+- Sleep Powder
+- Leech Seed
+- Giga Drain
+- Psychic
+
+Tauros @ Choice Band
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Intimidate
+Nature: Jolly
+- Double Edge
+- Close Combat
+- Earthquake
+- Throat Chop
+
+Gyarados @ Lum Berry
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Moxie
+Nature: Jolly
+- Dragon Dance
+- Waterfall
+- Earthquake
+- Temper Flare
+
+
+=== TRAINER_ACE_R2_SYLVIE_HNS ===
+Name: SYLVIE
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Araquanid @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Water Bubble
+Nature: Adamant
+- Sticky Web
+- Liquidation
+- Leech Life
+- Mirror Coat
+
+Kleavor @ Choice Scarf
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sharpness
+Nature: Jolly
+- Stone Axe
+- X Scissor
+- Close Combat
+- U Turn
+
+Scizor @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Technician
+Nature: Adamant
+- Bullet Punch
+- U Turn
+- Knock Off
+- Close Combat
+
+Heracross @ Flame Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Guts
+Nature: Jolly
+- Close Combat
+- Megahorn
+- Knock Off
+- Facade
+
+Butterfree @ Heavy Duty Boots
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Compound Eyes
+Nature: Timid
+- Quiver Dance
+- Sleep Powder
+- Bug Buzz
+- Hurricane
+
+Yanmega @ Heavy Duty Boots
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Speed Boost
+Nature: Timid
+- Protect
+- Bug Buzz
+- Air Slash
+- Giga Drain
+
+
+=== TRAINER_ACE_R3_GIDEON_HNS ===
+Name: GIDEON
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Aerodactyl @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Unnerve
+Nature: Jolly
+- Stealth Rock
+- Taunt
+- Stone Edge
+- Earthquake
+
+Cradily @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Storm Drain
+Nature: Calm
+- Giga Drain
+- Earth Power
+- Sludge Bomb
+- Recover
+
+Bastiodon @ Chesto Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Dauntless Shield
+Nature: Impish
+- Iron Defense
+- Body Press
+- Roar
+- Rest
+
+Dracovish @ Choice Scarf
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Strong Jaw
+Nature: Jolly
+- Fishious Rend
+- Psychic Fangs
+- Crunch
+- Ice Fang
+
+Kabutops @ Life Orb
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sharpness
+Nature: Adamant
+- Swords Dance
+- Razor Shell
+- Stone Edge
+- Aqua Jet
+
+Tyrantrum @ Lum Berry
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Rock Head
+Nature: Jolly
+- Dragon Dance
+- Head Smash
+- Outrage
+- Earthquake
+
+
+=== TRAINER_ACE_R4_ESTELLE_HNS ===
+Name: ESTELLE
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Glimmora @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Toxic Debris
+Nature: Timid
+- Stealth Rock
+- Mortal Spin
+- Power Gem
+- Earth Power
+
+Clefable @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Magic Guard
+Nature: Bold
+- Moonblast
+- Moonlight
+- Knock Off
+- Thunder Wave
+
+Nidoking @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Sheer Force
+Nature: Timid
+- Earth Power
+- Sludge Wave
+- Ice Beam
+- Flamethrower
+
+Lycanroc Midnight @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: No Guard
+Nature: Jolly
+- Stone Edge
+- Close Combat
+- Crunch
+- Psychic Fangs
+
+Ursaluna Bloodmoon @ Assault Vest
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Minds Eye
+Nature: Modest
+- Blood Moon
+- Hyper Voice
+- Earth Power
+- Vacuum Wave
+
+Cresselia @ Leftovers
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Levitate
+Nature: Bold
+- Calm Mind
+- Moonblast
+- Psyshock
+- Moonlight
+
+
+=== TRAINER_ACE_R4_TOBIAS_HNS ===
+Name: TOBIAS
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Gigalith @ Custap Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Sturdy
+Nature: Adamant
+- Stealth Rock
+- Gravity
+- Stone Edge
+- Explosion
+
+Sigilyph @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Magic Guard
+Nature: Timid
+- Gravity
+- Hypnosis
+- Psyshock
+- Air Slash
+
+Golurk @ Assault Vest
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: No Guard
+Nature: Adamant
+- High Horsepower
+- Poltergeist
+- Dynamic Punch
+- Ice Punch
+
+Glaceon @ Choice Specs
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Ice Body
+Nature: Modest
+- Blizzard
+- Freeze Dry
+- Shadow Ball
+- Water Pulse
+
+Rampardos @ Choice Scarf
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Mold Breaker
+Nature: Jolly
+- Head Smash
+- Earthquake
+- Zen Headbutt
+- Fire Punch
+
+Xurkitree @ Life Orb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Beast Boost
+Nature: Timid
+- Tail Glow
+- Thunderbolt
+- Energy Ball
+- Hypnosis
+
+
+=== TRAINER_ACE_R5_VERA_HNS ===
+Name: VERA
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Hitmontop @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Intimidate
+Nature: Adamant
+- Fake Out
+- Close Combat
+- Rapid Spin
+- Sucker Punch
+
+Breloom @ Loaded Dice
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Technician
+Nature: Jolly
+- Spore
+- Bullet Seed
+- Mach Punch
+- Rock Tomb
+
+Scrafty @ Sitrus Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Ability: Intimidate
+Nature: Careful
+- Bulk Up
+- Drain Punch
+- Knock Off
+- Parting Shot
+
+Machamp @ Assault Vest
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: No Guard
+Nature: Adamant
+- Dynamic Punch
+- Knock Off
+- Stone Edge
+- Bullet Punch
+
+Annihilape @ Leftovers
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Ability: Defiant
+Nature: Careful
+- Bulk Up
+- Rage Fist
+- Drain Punch
+- Taunt
+
+Medicham @ Life Orb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Huge Power
+Nature: Jolly
+- Close Combat
+- Zen Headbutt
+- Ice Punch
+- Bullet Punch
+
+
+=== TRAINER_ACE_R6_LUCIEN_HNS ===
+Name: LUCIEN
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Kangaskhan @ Silk Scarf
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Scrappy
+Nature: Jolly
+- Fake Out
+- Double Edge
+- Drain Punch
+- Sucker Punch
+
+Dudunsparce @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
+Ability: Serene Grace
+Nature: Impish
+- Stealth Rock
+- Glare
+- Headbutt
+- Roost
+
+Exploud @ Choice Specs
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Punk Rock
+Nature: Modest
+- Boomburst
+- Fire Blast
+- Focus Blast
+- Ice Beam
+
+Bewear @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Fluffy
+Nature: Adamant
+- Swords Dance
+- Double Edge
+- Close Combat
+- Darkest Lariat
+
+Zangoose @ Toxic Orb
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Toxic Boost
+Nature: Jolly
+- Facade
+- Close Combat
+- Knock Off
+- Quick Attack
+
+Maushold @ Wide Lens
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Technician
+Nature: Jolly
+- Tidy Up
+- Population Bomb
+- Bite
+- Low Kick
+
+
+=== TRAINER_ACE_R7_MARIGOLD_HNS ===
+Name: MARIGOLD
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Ninetales @ Heat Rock
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Drought
+Nature: Timid
+- Fire Blast
+- Solar Beam
+- Will O Wisp
+- Healing Wish
+
+Venusaur @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Chlorophyll
+Nature: Modest
+- Growth
+- Solar Beam
+- Sludge Bomb
+- Weather Ball
+
+Walking Wake @ Choice Specs
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Protosynthesis
+Nature: Timid
+- Hydro Steam
+- Draco Meteor
+- Flamethrower
+- Flip Turn
+
+Lilligant @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Chlorophyll
+Nature: Timid
+- Quiver Dance
+- Sleep Powder
+- Energy Ball
+- Alluring Voice
+
+Victreebel @ Choice Band
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Chlorophyll
+Nature: Adamant
+- Power Whip
+- Knock Off
+- Sucker Punch
+- Poison Jab
+
+Typhlosion @ Choice Scarf
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Flash Fire
+Nature: Timid
+- Eruption
+- Fire Blast
+- Focus Blast
+- Extrasensory
+
+
+=== TRAINER_ACE_R8_MORDECAI_HNS ===
+Name: MORDECAI
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Wobbuffet @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Shadow Tag
+Nature: Bold
+- Encore
+- Counter
+- Mirror Coat
+- Destiny Bond
+
+Spiritomb @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Intimidate
+Nature: Calm
+- Will O Wisp
+- Hex
+- Foul Play
+- Pain Split
+
+Dhelmise @ Assault Vest
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Steely Spirit
+Nature: Adamant
+- Anchor Shot
+- Poltergeist
+- Power Whip
+- Rapid Spin
+
+Decidueye @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Tinted Lens
+Nature: Adamant
+- Swords Dance
+- Spirit Shackle
+- Leaf Blade
+- Knock Off
+
+Heatran @ Air Balloon
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Flash Fire
+Nature: Modest
+- Magma Storm
+- Earth Power
+- Flash Cannon
+- Taunt
+
+Gothitelle @ Chesto Berry
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Shadow Tag
+Nature: Bold
+- Calm Mind
+- Psychic
+- Focus Blast
+- Rest
+
+
+=== TRAINER_ACE_R9_ROSALIND_HNS ===
+Name: ROSALIND
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Forretress @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Sturdy
+Nature: Relaxed
+- Spikes
+- Toxic Spikes
+- Rapid Spin
+- Volt Switch
+
+Ting Lu @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Ability: Vessel Of Ruin
+Nature: Careful
+- Stealth Rock
+- Whirlwind
+- Ruination
+- Earthquake
+
+Xatu @ Heavy Duty Boots
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Magic Bounce
+Nature: Bold
+- Night Shade
+- Thunder Wave
+- Roost
+- U Turn
+
+Gengar @ Choice Specs
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Sludge Wave
+- Focus Blast
+- Trick
+
+Dugtrio @ Choice Band
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Arena Trap
+Nature: Jolly
+- Earthquake
+- Stone Edge
+- Sucker Punch
+- Throat Chop
+
+Samurott Hisui @ Life Orb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sharpness
+Nature: Jolly
+- Swords Dance
+- Ceaseless Edge
+- Razor Shell
+- Sucker Punch
+
+
+=== TRAINER_ACE_R10_EDISON_HNS ===
+Name: EDISON
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Pincurchin @ Terrain Extender
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Electric Surge
+Nature: Modest
+- Spikes
+- Rising Voltage
+- Sucker Punch
+- Recover
+
+Electrode @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Galvanize
+Nature: Jolly
+- Taunt
+- Thunder Wave
+- Volt Switch
+- Explosion
+
+Rotom Wash @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Levitate
+Nature: Bold
+- Volt Switch
+- Hydro Pump
+- Will O Wisp
+- Electric Terrain
+
+Magnezone @ Assault Vest
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Magnet Pull
+Nature: Modest
+- Rising Voltage
+- Flash Cannon
+- Volt Switch
+- Body Press
+
+Hawlucha @ Electric Seed
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Unburden
+Nature: Jolly
+- Swords Dance
+- Acrobatics
+- Close Combat
+- Throat Chop
+
+Zapdos @ Heavy Duty Boots
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Static
+Nature: Timid
+- Thunderbolt
+- Hurricane
+- Heat Wave
+- Roost
+
+
+=== TRAINER_ACE_R10_SABLE_HNS ===
+Name: SABLE
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Liepard @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Spe
+Ability: Prankster
+Nature: Jolly
+- Fake Out
+- Encore
+- Thunder Wave
+- Knock Off
+
+Mabosstiff @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Stakeout
+Nature: Adamant
+- Crunch
+- Psychic Fangs
+- Play Rough
+- Fire Fang
+
+Houndoom @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Flash Fire
+Nature: Timid
+- Nasty Plot
+- Dark Pulse
+- Fire Blast
+- Sludge Bomb
+
+Drapion @ Black Sludge
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Sniper
+Nature: Adamant
+- Knock Off
+- Poison Jab
+- Earthquake
+- Toxic Spikes
+
+Honchkrow @ Scope Lens
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Super Luck
+Nature: Adamant
+- Night Slash
+- Brave Bird
+- Sucker Punch
+- Superpower
+
+Absol @ Lum Berry
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Justified
+Nature: Adamant
+- Swords Dance
+- Knock Off
+- Sucker Punch
+- Play Rough
+
+
+=== TRAINER_ACE_R11_WESLEY_HNS ===
+Name: WESLEY
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Lokix @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Tinted Lens
+Nature: Jolly
+- First Impression
+- U Turn
+- Sucker Punch
+- Knock Off
+
+Weavile @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Pressure
+Nature: Jolly
+- Swords Dance
+- Knock Off
+- Triple Axel
+- Ice Shard
+
+Lucario @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Justified
+Nature: Adamant
+- Swords Dance
+- Extreme Speed
+- Close Combat
+- Meteor Mash
+
+Talonflame @ Heavy Duty Boots
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Gale Wings
+Nature: Adamant
+- Swords Dance
+- Brave Bird
+- Flare Blitz
+- Roost
+
+Diggersby @ Assault Vest
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Huge Power
+Nature: Adamant
+- Body Slam
+- Earthquake
+- Quick Attack
+- U Turn
+
+Ceruledge @ Lum Berry
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sharpness
+Nature: Adamant
+- Swords Dance
+- Bitter Blade
+- Shadow Sneak
+- Close Combat
+
+
+=== TRAINER_ACE_R12_CORALIE_HNS ===
+Name: CORALIE
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Froslass @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 Spe
+Ability: Ice Body
+Nature: Timid
+- Spikes
+- Will O Wisp
+- Taunt
+- Destiny Bond
+
+Poliwrath @ Sitrus Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Water Absorb
+Nature: Jolly
+- Belly Drum
+- Liquidation
+- Drain Punch
+- Ice Punch
+
+Hariyama @ Sitrus Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Thick Fat
+Nature: Adamant
+- Belly Drum
+- Bullet Punch
+- Close Combat
+- Knock Off
+
+Eiscue @ Lum Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Ice Face
+Nature: Jolly
+- Belly Drum
+- Icicle Crash
+- Liquidation
+- Iron Head
+
+Marowak Alola @ Thick Club
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Rock Head
+Nature: Adamant
+- Belly Drum
+- Flare Blitz
+- Shadow Bone
+- Earthquake
+
+Linoone @ Salac Berry
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Gluttony
+Nature: Jolly
+- Belly Drum
+- Extreme Speed
+- Shadow Claw
+- Seed Bomb
+
+
+=== TRAINER_ACE_R12_OSWALD_HNS ===
+Name: OSWALD
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Landorus Therian @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Intimidate
+Nature: Impish
+- Stealth Rock
+- Earthquake
+- U Turn
+- Knock Off
+
+Toxapex @ Black Sludge
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Regenerator
+Nature: Bold
+- Scald
+- Toxic
+- Haze
+- Recover
+
+Blissey @ Heavy Duty Boots
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Natural Cure
+Nature: Bold
+- Seismic Toss
+- Soft Boiled
+- Thunder Wave
+- Heal Bell
+
+Tangrowth @ Assault Vest
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Ability: Regenerator
+Nature: Sassy
+- Giga Drain
+- Knock Off
+- Earthquake
+- Sludge Bomb
+
+Slowbro @ Leftovers
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Regenerator
+Nature: Bold
+- Scald
+- Psyshock
+- Slack Off
+- Teleport
+
+Snorlax @ Chesto Berry
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Ability: Thick Fat
+Nature: Careful
+- Curse
+- Body Slam
+- Heavy Slam
+- Rest
+
+
+=== TRAINER_ACE_R22_SERAPHINA_HNS ===
+Name: SERAPHINA
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Tapu Fini @ Terrain Extender
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Misty Surge
+Nature: Calm
+- Moonblast
+- Surf
+- Taunt
+- Defog
+
+Granbull @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Intimidate
+Nature: Adamant
+- Play Rough
+- Close Combat
+- Earthquake
+- Roar
+
+Gardevoir @ Choice Scarf
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Trace
+Nature: Timid
+- Moonblast
+- Psychic
+- Mystical Fire
+- Trick
+
+Rapidash Galar @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Flash Fire
+Nature: Jolly
+- Swords Dance
+- Play Rough
+- High Horsepower
+- Psycho Cut
+
+Comfey @ Leftovers
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Triage
+Nature: Calm
+- Calm Mind
+- Draining Kiss
+- Giga Drain
+- Synthesis
+
+Cloyster @ White Herb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Skill Link
+Nature: Adamant
+- Shell Smash
+- Icicle Spear
+- Rock Blast
+- Liquidation
+
+
+=== TRAINER_ACE_R24_MAGNUS_HNS ===
+Name: MAGNUS
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Ambipom @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Technician
+Nature: Jolly
+- Fake Out
+- Double Hit
+- Knock Off
+- U Turn
+
+Staraptor @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Reckless
+Nature: Jolly
+- Brave Bird
+- Double Edge
+- Close Combat
+- U Turn
+
+Inteleon @ Choice Specs
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Sniper
+Nature: Timid
+- Hydro Pump
+- Ice Beam
+- Dark Pulse
+- U Turn
+
+Darmanitan Galar @ Choice Scarf
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Gorilla Tactics
+Nature: Jolly
+- Icicle Crash
+- Flare Blitz
+- U Turn
+- Earthquake
+
+Chi Yu @ Choice Scarf
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Beads Of Ruin
+Nature: Timid
+- Fire Blast
+- Flamethrower
+- Dark Pulse
+- Psychic
+
+Cinderace @ Choice Band
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Libero
+Nature: Jolly
+- Pyro Ball
+- Hi Jump Kick
+- U Turn
+- Sucker Punch
+
+
+=== TRAINER_ACE_R25_MISTRAL_HNS ===
+Name: MISTRAL
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Bombirdier @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Spe
+Ability: Rocky Payload
+Nature: Jolly
+- Brave Bird
+- Knock Off
+- Stone Edge
+- Parting Shot
+
+Mantine @ Heavy Duty Boots
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Water Absorb
+Nature: Bold
+- Defog
+- Scald
+- Roost
+- Hurricane
+
+Toucannon @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Skill Link
+Nature: Adamant
+- Bullet Seed
+- Rock Blast
+- Brave Bird
+- Knock Off
+
+Braviary @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Defiant
+Nature: Adamant
+- Bulk Up
+- Brave Bird
+- Close Combat
+- Roost
+
+Oricorio Pom Pom @ Leftovers
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Dancer
+Nature: Timid
+- Quiver Dance
+- Revelation Dance
+- Hurricane
+- Roost
+
+Moltres @ Heavy Duty Boots
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Flame Body
+Nature: Timid
+- Fire Blast
+- Hurricane
+- Scorching Sands
+- Roost
+
+
+=== TRAINER_ACE_R25_EVANGELINE_HNS ===
+Name: EVANGELINE
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Jolteon @ Choice Specs
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Volt Absorb
+Nature: Timid
+- Thunderbolt
+- Volt Switch
+- Shadow Ball
+- Alluring Voice
+
+Umbreon @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Synchronize
+Nature: Careful
+- Wish
+- Protect
+- Foul Play
+- Yawn
+
+Vaporeon @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Water Absorb
+Nature: Bold
+- Wish
+- Protect
+- Scald
+- Flip Turn
+
+Flareon @ Toxic Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Toxic Boost
+Nature: Adamant
+- Flare Blitz
+- Facade
+- Superpower
+- Quick Attack
+
+Leafeon @ Lum Berry
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sap Sipper
+Nature: Jolly
+- Swords Dance
+- Leaf Blade
+- Knock Off
+- X Scissor
+
+Espeon @ Life Orb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Magic Bounce
+Nature: Timid
+- Calm Mind
+- Psychic
+- Dazzling Gleam
+- Shadow Ball
+
+
+=== TRAINER_ACE_R13_LENORE_HNS ===
+Name: LENORE
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Mr Mime @ Light Clay
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 Spe
+Ability: Misty Surge
+Nature: Timid
+- Reflect
+- Light Screen
+- Psychic
+- Healing Wish
+
+Azumarill @ Sitrus Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Huge Power
+Nature: Adamant
+- Belly Drum
+- Aqua Jet
+- Play Rough
+- Knock Off
+
+Gallade @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sharpness
+Nature: Jolly
+- Swords Dance
+- Sacred Sword
+- Psycho Cut
+- Leaf Blade
+
+Zoroark Hisui @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Illusion
+Nature: Timid
+- Nasty Plot
+- Shadow Ball
+- Hyper Voice
+- Flamethrower
+
+Torterra @ White Herb
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Rock Head
+Nature: Adamant
+- Shell Smash
+- Wood Hammer
+- Headlong Rush
+- Stone Edge
+
+Volcarona @ Heavy Duty Boots
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Flame Body
+Nature: Timid
+- Quiver Dance
+- Fiery Dance
+- Bug Buzz
+- Giga Drain
+
+
+=== TRAINER_ACE_R13_MARLOW_HNS ===
+Name: MARLOW
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Pelipper @ Damp Rock
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Drizzle
+Nature: Bold
+- Hurricane
+- Scald
+- U Turn
+- Roost
+
+Seismitoad @ Choice Specs
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Swift Swim
+Nature: Modest
+- Hydro Pump
+- Earth Power
+- Sludge Bomb
+- Grass Knot
+
+Ludicolo @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Swift Swim
+Nature: Modest
+- Hydro Pump
+- Giga Drain
+- Ice Beam
+- Focus Blast
+
+Carracosta @ White Herb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Swift Swim
+Nature: Adamant
+- Shell Smash
+- Liquidation
+- Stone Edge
+- Earthquake
+
+Overqwil @ Lum Berry
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Swift Swim
+Nature: Adamant
+- Swords Dance
+- Crunch
+- Gunk Shot
+- Liquidation
+
+Ampharos @ Assault Vest
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Static
+Nature: Modest
+- Thunderbolt
+- Dragon Pulse
+- Focus Blast
+- Power Gem
+
+
+=== TRAINER_ACE_R14_BEATRIX_HNS ===
+Name: BEATRIX
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Relicanth @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Rock Head
+Nature: Adamant
+- Stealth Rock
+- Head Smash
+- Liquidation
+- Earthquake
+
+Marowak @ Thick Club
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Rock Head
+Nature: Adamant
+- Earthquake
+- Double Edge
+- Stone Edge
+- Knock Off
+
+Emboar @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Reckless
+Nature: Adamant
+- Flare Blitz
+- Head Smash
+- Wild Charge
+- Close Combat
+
+Bouffalant @ Assault Vest
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Reckless
+Nature: Adamant
+- Head Charge
+- Close Combat
+- Megahorn
+- Earthquake
+
+Dodrio @ Choice Scarf
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Rock Head
+Nature: Jolly
+- Brave Bird
+- Double Edge
+- Drill Run
+- Knock Off
+
+Aggron @ Weakness Policy
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Rock Head
+Nature: Adamant
+- Rock Polish
+- Head Smash
+- Iron Head
+- Earthquake
+
+
+=== TRAINER_ACE_R15_HAYATE_HNS ===
+Name: HAYATE
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Garbodor @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 Atk
+Ability: Aftermath
+Nature: Impish
+- Spikes
+- Toxic Spikes
+- Gunk Shot
+- Drain Punch
+
+Weezing @ Black Sludge
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Levitate
+Nature: Bold
+- Will O Wisp
+- Sludge Bomb
+- Fire Blast
+- Pain Split
+
+Crobat @ Heavy Duty Boots
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Brave Bird
+- U Turn
+- Taunt
+- Roost
+
+Nidoqueen @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Sheer Force
+Nature: Modest
+- Earth Power
+- Sludge Wave
+- Ice Beam
+- Fire Blast
+
+Muk Alola @ Assault Vest
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Poison Touch
+Nature: Adamant
+- Knock Off
+- Poison Jab
+- Drain Punch
+- Shadow Sneak
+
+Sneasler @ White Herb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Unburden
+Nature: Jolly
+- Swords Dance
+- Dire Claw
+- Close Combat
+- Acrobatics
+
+
+=== TRAINER_ACE_R15_BRIGID_HNS ===
+Name: BRIGID
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Infernape @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Blaze
+Nature: Jolly
+- Stealth Rock
+- Close Combat
+- Flare Blitz
+- U Turn
+
+Arcanine Hisui @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Rock Head
+Nature: Jolly
+- Head Smash
+- Flare Blitz
+- Extreme Speed
+- Close Combat
+
+Magmortar @ Expert Belt
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Flame Body
+Nature: Timid
+- Fire Blast
+- Thunderbolt
+- Focus Blast
+- Psychic
+
+Hitmonlee @ White Herb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Unburden
+Nature: Jolly
+- Close Combat
+- Knock Off
+- Poison Jab
+- Mach Punch
+
+Pangoro @ Leftovers
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Ability: Fur Coat
+Nature: Careful
+- Drain Punch
+- Knock Off
+- Parting Shot
+- Ice Punch
+
+Toxicroak @ Life Orb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Dry Skin
+Nature: Jolly
+- Swords Dance
+- Gunk Shot
+- Drain Punch
+- Sucker Punch
+
+
+=== TRAINER_ACE_R16_HAZEL_HNS ===
+Name: HAZEL
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Tapu Bulu @ Terrain Extender
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Grassy Surge
+Nature: Adamant
+- Wood Hammer
+- Horn Leech
+- Close Combat
+- Stone Edge
+
+Sceptile @ Grassy Seed
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Unburden
+Nature: Jolly
+- Swords Dance
+- Grassy Glide
+- Acrobatics
+- Drain Punch
+
+Arboliva @ Big Root
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Seed Sower
+Nature: Modest
+- Hyper Voice
+- Giga Drain
+- Earth Power
+- Strength Sap
+
+Coalossal @ Heavy Duty Boots
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Flash Fire
+Nature: Bold
+- Rapid Spin
+- Will O Wisp
+- Flamethrower
+- Stealth Rock
+
+Lanturn @ Assault Vest
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Volt Absorb
+Nature: Modest
+- Scald
+- Discharge
+- Ice Beam
+- Volt Switch
+
+Decidueye Hisui @ Life Orb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Scrappy
+Nature: Adamant
+- Swords Dance
+- Leaf Blade
+- Triple Arrows
+- Shadow Sneak
+
+
+=== TRAINER_ACE_R17_RYKER_HNS ===
+Name: RYKER
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Accelgor @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Unburden
+Nature: Timid
+- Spikes
+- Encore
+- Bug Buzz
+- Focus Blast
+
+Sharpedo @ Life Orb
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Speed Boost
+Nature: Adamant
+- Protect
+- Crunch
+- Liquidation
+- Close Combat
+
+Cinccino @ Kings Rock
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Skill Link
+Nature: Jolly
+- Tidy Up
+- Tail Slap
+- Bullet Seed
+- Rock Blast
+
+Manectric @ Expert Belt
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Lightning Rod
+Nature: Timid
+- Volt Switch
+- Thunderbolt
+- Overheat
+- Signal Beam
+
+Drifblim @ Sitrus Berry
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Unburden
+Nature: Timid
+- Calm Mind
+- Shadow Ball
+- Air Slash
+- Strength Sap
+
+Espathra @ Leftovers
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Speed Boost
+Nature: Timid
+- Protect
+- Calm Mind
+- Stored Power
+- Dazzling Gleam
+
+
+=== TRAINER_ACE_R17_MATILDA_HNS ===
+Name: MATILDA
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Miltank @ Sitrus Berry
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Thick Fat
+Nature: Impish
+- Stealth Rock
+- Body Slam
+- Milk Drink
+- Heal Bell
+
+Quagsire @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Unaware
+Nature: Impish
+- Scald
+- Earthquake
+- Recover
+- Toxic
+
+Goodra Hisui @ Assault Vest
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Ability: Sap Sipper
+Nature: Sassy
+- Draco Meteor
+- Heavy Slam
+- Fire Blast
+- Dragon Tail
+
+Lickilicky @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
+Ability: Unaware
+Nature: Careful
+- Body Slam
+- Knock Off
+- Rest
+- Sleep Talk
+
+Musharna @ Colbur Berry
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Unaware
+Nature: Bold
+- Calm Mind
+- Psyshock
+- Moonblast
+- Moonlight
+
+Dondozo @ Chesto Berry
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 Atk
+Ability: Unaware
+Nature: Impish
+- Curse
+- Liquidation
+- Body Press
+- Rest
+
+
+=== TRAINER_ACE_R18_DUNCAN_HNS ===
+Name: DUNCAN
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Tyranitar @ Smooth Rock
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sand Stream
+Nature: Adamant
+- Dragon Dance
+- Stone Edge
+- Knock Off
+- Fire Punch
+
+Steelix @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Sturdy
+Nature: Impish
+- Stealth Rock
+- Heavy Slam
+- Earthquake
+- Roar
+
+Cacturne @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Water Absorb
+Nature: Jolly
+- Spikes
+- Seed Bomb
+- Sucker Punch
+- Knock Off
+
+Dracozolt @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sand Rush
+Nature: Adamant
+- Bolt Beak
+- Dragon Claw
+- Earthquake
+- Fire Fang
+
+Sandslash @ Life Orb
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sand Rush
+Nature: Adamant
+- Swords Dance
+- Earthquake
+- Knock Off
+- Rapid Spin
+
+Houndstone @ Spell Tag
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sand Rush
+Nature: Adamant
+- Last Respects
+- Shadow Sneak
+- Body Press
+- Play Rough
+
+
+=== TRAINER_ACE_R19_MAREN_HNS ===
+Name: MAREN
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Klawf @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 Atk
+Ability: Regenerator
+Nature: Impish
+- Stealth Rock
+- Stone Edge
+- Knock Off
+- High Horsepower
+
+Tentacruel @ Black Sludge
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Clear Body
+Nature: Impish
+- Rapid Spin
+- Toxic Spikes
+- Knock Off
+- Flip Turn
+
+Palafin @ Choice Band
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Zero To Hero
+Nature: Jolly
+- Flip Turn
+- Jet Punch
+- Wave Crash
+- Close Combat
+
+Raichu @ Choice Specs
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Lightning Rod
+Nature: Timid
+- Volt Switch
+- Thunderbolt
+- Grass Knot
+- Focus Blast
+
+Toedscruel @ Leftovers
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Clear Body
+Nature: Timid
+- Spore
+- Earth Power
+- Giga Drain
+- Knock Off
+
+Swellow @ Life Orb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpA / 252 Spe
+Ability: Aerilate
+Nature: Naive
+- Double Edge
+- Quick Attack
+- Steel Wing
+- Heat Wave
+
+
+=== TRAINER_ACE_R20_BJORN_HNS ===
+Name: BJORN
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Aurorus @ Light Clay
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Snow Warning
+Nature: Timid
+- Aurora Veil
+- Blizzard
+- Earth Power
+- Stealth Rock
+
+Articuno @ Heavy Duty Boots
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Pressure
+Nature: Timid
+- Freeze Dry
+- Hurricane
+- Roost
+- U Turn
+
+Avalugg @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Sturdy
+Nature: Impish
+- Body Press
+- Avalanche
+- Rapid Spin
+- Recover
+
+Lapras @ Assault Vest
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Water Absorb
+Nature: Modest
+- Freeze Dry
+- Surf
+- Thunderbolt
+- Psychic
+
+Skeledirge @ Rocky Helmet
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Unaware
+Nature: Bold
+- Torch Song
+- Hex
+- Will O Wisp
+- Slack Off
+
+Mamoswine @ Life Orb
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Thick Fat
+Nature: Adamant
+- Icicle Crash
+- Earthquake
+- Ice Shard
+- Knock Off
+
+
+=== TRAINER_ACE_R23_LEANDER_HNS ===
+Name: LEANDER
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Bronzong @ Leftovers
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Levitate
+Nature: Relaxed
+- Stealth Rock
+- Gyro Ball
+- Body Press
+- Toxic
+
+Altaria @ Heavy Duty Boots
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Natural Cure
+Nature: Bold
+- Hurricane
+- Moonblast
+- Will O Wisp
+- Roost
+
+Empoleon @ Assault Vest
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Competitive
+Nature: Modest
+- Surf
+- Flash Cannon
+- Ice Beam
+- Flip Turn
+
+Hydreigon @ Life Orb
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Nasty Plot
+- Draco Meteor
+- Dark Pulse
+- Flash Cannon
+
+Kingdra @ Lum Berry
+Level: 52
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Sniper
+Nature: Adamant
+- Dragon Dance
+- Wave Crash
+- Scale Shot
+- Iron Head
+
+Garchomp @ Loaded Dice
+Level: 53
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Rough Skin
+Nature: Jolly
+- Swords Dance
+- Scale Shot
+- Earthquake
+- Fire Fang
+
+
+=== TRAINER_ACE_R23_OPHELIA_HNS ===
+Name: OPHELIA
+Class: Cooltrainer Hns
+Pic: Cooltrainer F
+Gender: Female
+Music: Hg Girl 1
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Hypno @ Terrain Extender
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Psychic Surge
+Nature: Calm
+- Expanding Force
+- Thunder Wave
+- Knock Off
+- Taunt
+
+Mr Rime @ Life Orb
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Screen Cleaner
+Nature: Timid
+- Nasty Plot
+- Expanding Force
+- Freeze Dry
+- Focus Blast
+
+Delphox @ Choice Scarf
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Magic Guard
+Nature: Timid
+- Expanding Force
+- Fire Blast
+- Grass Knot
+- Focus Blast
+
+Bruxish @ Choice Band
+Level: 51
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Strong Jaw
+Nature: Jolly
+- Psychic Fangs
+- Wave Crash
+- Ice Fang
+- Crunch
+
+Slowking Galar @ Heavy Duty Boots
+Level: 52
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Regenerator
+Nature: Sassy
+- Future Sight
+- Sludge Bomb
+- Fire Blast
+- Slack Off
+
+Primarina @ Leftovers
+Level: 53
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Torrent
+Nature: Modest
+- Calm Mind
+- Moonblast
+- Sparkling Aria
+- Psychic Noise
+
+
+=== TRAINER_ACE_R28_ROLAND_HNS ===
+Name: ROLAND
+Class: Cooltrainer Hns
+Pic: Cooltrainer M
+Gender: Male
+Music: Hg Suspicious 2
+Double Battle: No
+AI: Smart Trainer / Ace Pokemon / HP Aware
+
+Donphan @ Leftovers
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Technician
+Nature: Adamant
+- Stealth Rock
+- Rapid Spin
+- Earthquake
+- Ice Shard
+
+Meganium @ Rocky Helmet
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpA
+Ability: Triage
+Nature: Bold
+- Giga Drain
+- Synthesis
+- Leech Seed
+- Dragon Tail
+
+Porygon Z @ Choice Scarf
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Adaptability
+Nature: Timid
+- Tri Attack
+- Shadow Ball
+- Ice Beam
+- Thunderbolt
+
+Mismagius @ Focus Sash
+Level: 60
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Nasty Plot
+- Shadow Ball
+- Dazzling Gleam
+- Thunderbolt
+
+Blaziken @ Life Orb
+Level: 61
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Blaze
+Nature: Adamant
+- Swords Dance
+- Flare Blitz
+- Close Combat
+- Knock Off
+
+Urshifu Rapid Strike @ Choice Band
+Level: 62
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Unseen Fist
+Nature: Jolly
+- Surging Strikes
+- Close Combat
+- Aqua Jet
+- Ice Punch
+

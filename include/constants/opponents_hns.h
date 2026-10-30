@@ -731,9 +731,42 @@
 #define TRAINER_ACE_R26_ELIAS_HNS             702
 #define TRAINER_ACE_R27_IMOGEN_HNS            703
 #define TRAINER_ACE_R27_MAXIM_HNS             704
+#define TRAINER_ACE_R1_MERRICK_HNS            705
+#define TRAINER_ACE_R2_SYLVIE_HNS             706
+#define TRAINER_ACE_R3_GIDEON_HNS             707
+#define TRAINER_ACE_R4_ESTELLE_HNS            708
+#define TRAINER_ACE_R4_TOBIAS_HNS             709
+#define TRAINER_ACE_R5_VERA_HNS               710
+#define TRAINER_ACE_R6_LUCIEN_HNS             711
+#define TRAINER_ACE_R7_MARIGOLD_HNS           712
+#define TRAINER_ACE_R8_MORDECAI_HNS           713
+#define TRAINER_ACE_R9_ROSALIND_HNS           714
+#define TRAINER_ACE_R10_EDISON_HNS            715
+#define TRAINER_ACE_R10_SABLE_HNS             716
+#define TRAINER_ACE_R11_WESLEY_HNS            717
+#define TRAINER_ACE_R12_CORALIE_HNS           718
+#define TRAINER_ACE_R12_OSWALD_HNS            719
+#define TRAINER_ACE_R22_SERAPHINA_HNS         720
+#define TRAINER_ACE_R24_MAGNUS_HNS            721
+#define TRAINER_ACE_R25_MISTRAL_HNS           722
+#define TRAINER_ACE_R25_EVANGELINE_HNS        723
+#define TRAINER_ACE_R13_LENORE_HNS            724
+#define TRAINER_ACE_R13_MARLOW_HNS            725
+#define TRAINER_ACE_R14_BEATRIX_HNS           726
+#define TRAINER_ACE_R15_HAYATE_HNS            727
+#define TRAINER_ACE_R15_BRIGID_HNS            728
+#define TRAINER_ACE_R16_HAZEL_HNS             729
+#define TRAINER_ACE_R17_RYKER_HNS             730
+#define TRAINER_ACE_R17_MATILDA_HNS           731
+#define TRAINER_ACE_R18_DUNCAN_HNS            732
+#define TRAINER_ACE_R19_MAREN_HNS             733
+#define TRAINER_ACE_R20_BJORN_HNS             734
+#define TRAINER_ACE_R23_LEANDER_HNS           735
+#define TRAINER_ACE_R23_OPHELIA_HNS           736
+#define TRAINER_ACE_R28_ROLAND_HNS            737
 // End of the Ace Trainers
 
-#define TRAINERS_COUNT_HNS                       705
+#define TRAINERS_COUNT_HNS                       738
 #define MAX_TRAINERS_COUNT_HNS                   864
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_HNS_H
