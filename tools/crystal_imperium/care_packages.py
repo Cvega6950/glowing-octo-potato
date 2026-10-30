@@ -33,6 +33,11 @@ TMs are reusable (INFINITE TMS), isn't given twice. A save that received package
 gets their TMs in one go on a step outside (CARE_PACKAGE_TMS; VAR_CARE_PACKAGE_TMS counts the tiers
 that have arrived).
 
+The starting package brings 999 PP Max (DECISIONS.md D54), a full stack, so no later package has
+any: they fill the Bag up to 999 rather than adding to what it has (src/care_packages.c). A save
+whose starting package came before 0.15.2 gets the rest up to 999 once, on a step outside
+(CARE_PACKAGE_PP_MAX; FLAG_CARE_PACKAGE_PP_MAX is set once the Bag has had them).
+
 Saves from before 0.12.0 received smaller milestone packages (a few of each item; before 0.7.0
 only Poke Balls, healing and evolution items). VAR_CARE_PACKAGE_IMPERIUM counts the packages whose
 0.12.0 contents have arrived: while it is behind VAR_CARE_PACKAGES, the next step brings the next of
@@ -78,9 +83,10 @@ def each(n, *items):
 PACKAGES = [
     # 0: the start (after the first Pokemon): RR's Route 2 and Viridian Forest packages; EI adds the
     #    Shiny Charm, and swaps RR's Pixie Plate for the Fairy Feather (all 18 type boosters here, with
-    #    all 18 type-resist Berries and the staple held items)
+    #    all 18 type-resist Berries and the staple held items); 999 PP Max, all there are (D54)
     [("SHINY_CHARM", 1), ("QUICK_BALL", 153), ("POKE_BALL", 20)] +
-    each(10, "GREAT_BALL", "POTION", "SUPER_POTION", "REVIVE", "PP_MAX", *TYPE_BOOSTERS, "LEFTOVERS", "FOCUS_SASH",
+    each(10, "GREAT_BALL", "POTION", "SUPER_POTION", "REVIVE") + [("PP_MAX", 999)] +
+    each(10, *TYPE_BOOSTERS, "LEFTOVERS", "FOCUS_SASH",
          "EVIOLITE", "EXPERT_BELT", "MUSCLE_BAND", "WISE_GLASSES", "SCOPE_LENS", "ABSORB_BULB", "LIGHT_BALL",
          "MENTAL_HERB", "SHELL_BELL", "CLEANSE_TAG", "DEEP_SEA_SCALE", "DEEP_SEA_TOOTH", "PSYCHIC_SEED", *RESIST_BERRIES,
          "ORAN_BERRY", "PECHA_BERRY", "ASPEAR_BERRY", "RAWST_BERRY", "PERSIM_BERRY", "SITRUS_BERRY", "LUM_BERRY",
@@ -88,29 +94,29 @@ PACKAGES = [
     # 1: Zephyr Badge: RR's Pewter City, Route 3 and Route 4 packages (50 Heal Balls)
     [("HEAL_BALL", 50), ("POKE_BALL", 30), ("GREAT_BALL", 20), ("SUPER_POTION", 20), ("CARBOS", 20),
      ("SWIFT_FEATHER", 20)] +
-    each(10, "ETHER", "BERRY_JUICE", "PP_UP", "PP_MAX", "PROTEIN", "CALCIUM", "MUSCLE_FEATHER", "GENIUS_FEATHER",
+    each(10, "ETHER", "BERRY_JUICE", "PP_UP", "PROTEIN", "CALCIUM", "MUSCLE_FEATHER", "GENIUS_FEATHER",
          "THROAT_SPRAY", "LUCKY_EGG", "IRON_BALL", "WIDE_LENS", "CHERI_BERRY", "CHESTO_BERRY", "LEPPA_BERRY",
          "SITRUS_BERRY", "LUM_BERRY", "STARDUST", "STAR_PIECE", "MOON_STONE", "LINKING_CORD"),
     # 2: Hive Badge: RR's Nugget Bridge and Cerulean City packages (RR's 306 Ability Pills: 153 Ability
     #    Capsules and 153 Ability Patches)
     [("ABILITY_CAPSULE", 153), ("ABILITY_PATCH", 153), ("CLEVER_FEATHER", 50), ("RESIST_FEATHER", 50),
      ("GREAT_BALL", 30)] +
-    each(10, "ULTRA_BALL", "REVIVE", "PP_MAX", "HP_UP", "IRON", "ZINC", "HEALTH_FEATHER", "LIFE_ORB",
+    each(10, "ULTRA_BALL", "REVIVE", "HP_UP", "IRON", "ZINC", "HEALTH_FEATHER", "LIFE_ORB",
          "TERRAIN_EXTENDER", "LEEK", "PEARL", "BIG_PEARL", "LEAF_STONE"),
     # 3: Plain Badge: RR's Vermilion City and Lt. Surge packages (50 Dream Balls), the Choice items
     [("DREAM_BALL", 50), ("ULTRA_BALL", 20), ("HYPER_POTION", 20)] +
-    each(10, "GREAT_BALL", "PP_MAX", "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "ROCKY_HELMET", "SHUCA_BERRY",
+    each(10, "GREAT_BALL", "CHOICE_BAND", "CHOICE_SPECS", "CHOICE_SCARF", "ROCKY_HELMET", "SHUCA_BERRY",
          "ROSELI_BERRY", "YELLOW_SHARD", "PRISM_SCALE", "FIRE_STONE", "WATER_STONE", "THUNDER_STONE", "SUN_STONE"),
     # 4: Fog Badge: RR's Route 9 and Lavender Town packages
     [("ULTRA_BALL", 20)] +
-    each(10, "DIVE_BALL", "DUSK_BALL", "MOOMOO_MILK", "PP_MAX", "SMOKE_BALL", "THICK_CLUB", "EVERSTONE",
+    each(10, "DIVE_BALL", "DUSK_BALL", "MOOMOO_MILK", "SMOKE_BALL", "THICK_CLUB", "EVERSTONE",
          "MISTY_SEED", "KASIB_BERRY", "BABIRI_BERRY", "BIG_NUGGET", "DUSK_STONE", "SHINY_STONE", "STRAWBERRY_SWEET",
          "BERRY_SWEET", "LOVE_SWEET", "STAR_SWEET", "CLOVER_SWEET", "FLOWER_SWEET", "RIBBON_SWEET"),
     # 5: 5th badge: RR's Celadon Gym package
     [("ULTRA_BALL", 20), ("FULL_HEAL", 20)] +
-    each(10, "MAX_REVIVE", "PP_MAX", "ELECTRIC_SEED", "SITRUS_BERRY", "LUM_BERRY", "DAWN_STONE", "ICE_STONE"),
-    # 6: 6th badge: RR's big Fuchsia City package (153 PP Max)
-    [("PP_MAX", 153), ("ULTRA_BALL", 20)] +
+    each(10, "MAX_REVIVE", "ELECTRIC_SEED", "SITRUS_BERRY", "LUM_BERRY", "DAWN_STONE", "ICE_STONE"),
+    # 6: 6th badge: RR's big Fuchsia City package (its 153 PP Max come with the starting package's 999)
+    [("ULTRA_BALL", 20)] +
     each(10, "MAX_ELIXIR", "LEFTOVERS", "EXPERT_BELT", "X_ATTACK", "X_DEFENSE", "X_SP_ATK", "X_SP_DEF", "X_SPEED",
          "GRASSY_SEED", "KINGS_ROCK", "LUCKY_PUNCH", "METAL_POWDER", "RAZOR_CLAW", "QUICK_CLAW", "LIECHI_BERRY",
          "SALAC_BERRY", "PETAYA_BERRY", "HEART_SCALE", "RED_NECTAR", "YELLOW_NECTAR", "PINK_NECTAR", "PURPLE_NECTAR"),
@@ -135,14 +141,14 @@ PACKAGES = [
     [("QUICK_BALL", 50), ("FULL_RESTORE", 20)] +
     each(10, "MAX_ETHER", "ELIXIR", "FOCUS_SASH", "LAGGING_TAIL", "STICKY_BARB", "RING_TARGET", "FIGY_BERRY",
          "WIKI_BERRY", "MAGO_BERRY", "AGUAV_BERRY", "IAPAPA_BERRY"),
-    each(30, "DUSK_BALL", "TIMER_BALL") + each(20, "FULL_RESTORE", "PP_MAX") +
+    each(30, "DUSK_BALL", "TIMER_BALL") + [("FULL_RESTORE", 20)] +
     each(10, "MAX_REVIVE", "AIR_BALLOON", "ASSAULT_VEST", "SITRUS_BERRY", "LUM_BERRY", "AMULET_COIN", "SOOTHE_BELL"),
     each(30, "NET_BALL", "NEST_BALL", "REPEAT_BALL") + each(20, "FULL_RESTORE", "MAX_ELIXIR"),
     [("ULTRA_BALL", 50)] + each(30, "LUXURY_BALL", "PREMIER_BALL") + each(20, "MAX_REVIVE", "FULL_RESTORE"),
     each(20, "LEVEL_BALL", "LURE_BALL", "MOON_BALL", "FRIEND_BALL", "LOVE_BALL", "FAST_BALL", "HEAVY_BALL",
          "MAX_ELIXIR") + [("FULL_RESTORE", 30)],
-    [("MASTER_BALL", 1), ("QUICK_BALL", 50)] + each(30, "FULL_RESTORE", "PP_MAX") + [("MAX_REVIVE", 20)],
-    [("MASTER_BALL", 1)] + each(50, "DREAM_BALL", "BEAST_BALL", "FULL_RESTORE", "PP_MAX") +
+    [("MASTER_BALL", 1), ("QUICK_BALL", 50), ("FULL_RESTORE", 30), ("MAX_REVIVE", 20)],
+    [("MASTER_BALL", 1)] + each(50, "DREAM_BALL", "BEAST_BALL", "FULL_RESTORE") +
     each(30, "MAX_REVIVE", "MAX_ELIXIR") + each(20, "SITRUS_BERRY", "LUM_BERRY"),
 ]
 
@@ -168,10 +174,13 @@ PLACES = [
     ("MAP_LAKE_OF_RAGE_HNS", "the LAKE OF RAGE", 7,
      each(10, "ELECTRIC_SEED", "GRASSY_SEED", "MISTY_SEED", "PSYCHIC_SEED", "TERRAIN_EXTENDER")),
     ("MAP_ICE_PATH_1F_HNS", "the ICE PATH", 8,
-     each(20, "PP_MAX", "MAX_ELIXIR", "FULL_RESTORE", "MAX_REVIVE")),
+     each(20, "MAX_ELIXIR", "FULL_RESTORE", "MAX_REVIVE")),
     ("MAP_VICTORY_ROAD_KANTO_1F_HNS", "VICTORY ROAD", 9,
      each(20, "FULL_RESTORE", "MAX_REVIVE", "MAX_ELIXIR") + [("ABILITY_PATCH", 10)]),
 ]
+
+# The PP Max the Bag is filled up to (D54): the starting package's, the only one with any
+PP_MAX_STOCK = dict(PACKAGES[0])["PP_MAX"]
 
 # What each package's first message says: the starting package, the milestone packages, and the
 # location packages ({PLACE} is the place's name)
@@ -194,6 +203,7 @@ MESSAGES = {
                              "{STR_VAR_1} TMs went into your", "TM CASE!"],
     "CarePackage_Text_TMsHad": ["PROF. ELM sent the TMs that go", "with your earlier care packages,",
                                 "but you had them all already!"],
+    "CarePackage_Text_PPMax": ["PROF. ELM sent {STR_VAR_1} PP MAX,", f"so now you have {PP_MAX_STOCK}!"],
 }
 
 SCRIPT = """\
@@ -202,13 +212,15 @@ SCRIPT = """\
 @ EventScript_CarePackage on a step, with VAR_0x8004 = the package (0: the start, 1-17: the
 @ milestones, then the location packages) and VAR_0x8006 = CARE_PACKAGE_NEW, _UPDATE (a save from
 @ before 0.12.0 gets an earlier package's new contents), _RESUME (the rest of a package that
-@ stopped because the BAG and PC were full) or _TMS (the TMs of the packages a save from before
-@ 0.15.1 had received, D48). The contents and their messages are in src/data/care_packages.h.
+@ stopped because the BAG and PC were full), _TMS (the TMs of the packages a save from before
+@ 0.15.1 had received, D48) or _PP_MAX (PP Max up to 999 for a save whose starting package came
+@ before 0.15.2, D54). The contents and their messages are in src/data/care_packages.h.
 EventScript_CarePackage::
 	lockall
 	playse SE_EXP_MAX
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_RESUME, CarePackage_Resume
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_TMS, CarePackage_TMs
+	goto_if_eq VAR_0x8006, CARE_PACKAGE_PP_MAX, CarePackage_PPMax
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_UPDATE, CarePackage_Update
 	callnative CarePackage_LoadIntroText
 	callstd MSGBOX_DEFAULT
@@ -249,6 +261,20 @@ CarePackage_TMs:
 
 CarePackage_TMsHad:
 	msgbox CarePackage_Text_TMsHad, MSGBOX_DEFAULT
+	goto CarePackage_End
+
+CarePackage_PPMax:
+	callnative CarePackage_TopUpPPMax
+	goto_if_eq VAR_RESULT, FALSE, CarePackage_PPMaxFull
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackage_Text_PPMax, MSGBOX_DEFAULT
+	waitfanfare
+	goto_if_eq VAR_0x8005, 0, CarePackage_End
+	msgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT
+	goto CarePackage_End
+
+CarePackage_PPMaxFull:
+	msgbox CarePackage_Text_Full, MSGBOX_DEFAULT
 	goto CarePackage_End
 """
 
@@ -431,6 +457,9 @@ def check(data):
     for place, name, past, items in PLACES:
         if not 1 <= past <= 17:
             sys.exit(f"{place}: past at {past} milestones")
+    # src/care_packages.c fills the Bag's PP Max up to the starting package's (D54): no other has any
+    if [k for k, items in enumerate(all_packages()) if "PP_MAX" in dict(items)] != [0]:
+        sys.exit("PP Max only in the starting package")
     tiers = tm_tiers()
     # src/care_packages.c: CARE_PACKAGE_TM_TIERS, the starting package and the first eight milestones
     if len(tiers) != 9 or sum(len(t) for t in tiers) != len(tm_list.TMS) or not all(tiers):
@@ -455,7 +484,9 @@ def render_header(data, widths):
     names = {k: v[0] for k, v in data.items()}
     out = ["// Generated by tools/crystal_imperium/care_packages.py from its table: edit that, not this file.",
            "// Crystal Imperium care packages (DECISIONS.md D16): package 0 at the start, 1-17 for the",
-           f"// milestones, {len(PACKAGES)}-{len(all_packages()) - 1} the location packages (sCarePackagePlaces).", ""]
+           f"// milestones, {len(PACKAGES)}-{len(all_packages()) - 1} the location packages (sCarePackagePlaces).", "",
+           "// The PP Max the Bag is filled up to (D54): the starting package's",
+           f"#define CARE_PACKAGE_PP_MAX_STOCK {PP_MAX_STOCK}", ""]
     out += c_text("sCarePackageIntroStart", intro_lines("start", widths))
     out += c_text("sCarePackageIntroMilestone", intro_lines("milestone", widths))
     for k, (_, name, _, _) in enumerate(PLACES):

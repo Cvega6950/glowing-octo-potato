@@ -1005,7 +1005,7 @@
 #define FLAG_SIDE_REWARD_ARCHIE                    (HNS_EXTENDED_CONTENT_START + 120) // Crystal Imperium: ARCHIE's side battle reward (D41)
 #define FLAG_SIDE_REWARD_WALLY                     (HNS_EXTENDED_CONTENT_START + 121) // Crystal Imperium: WALLY's side battle reward (D41)
 #define FLAG_CODE_SHINY_ALL                        (HNS_EXTENDED_CONTENT_START + 122) // Crystal Imperium: the SHINYA code (every wild and gift Pokemon shiny, P_FLAG_FORCE_SHINY)
-#define FLAG_EXTENDED_CONTENT_123                   (HNS_EXTENDED_CONTENT_START + 123)
+#define FLAG_CARE_PACKAGE_PP_MAX                   (HNS_EXTENDED_CONTENT_START + 123) // Crystal Imperium: the Bag's PP Max filled up to 999 (D54: the starting package, or once for a save from before 0.15.2)
 #define FLAG_EXTENDED_CONTENT_124                   (HNS_EXTENDED_CONTENT_START + 124)
 #define FLAG_EXTENDED_CONTENT_125                   (HNS_EXTENDED_CONTENT_START + 125)
 #define FLAG_EXTENDED_CONTENT_126                   (HNS_EXTENDED_CONTENT_START + 126)

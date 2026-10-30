@@ -2,6 +2,9 @@
 // Crystal Imperium care packages (DECISIONS.md D16): package 0 at the start, 1-17 for the
 // milestones, 18-26 the location packages (sCarePackagePlaces).
 
+// The PP Max the Bag is filled up to (D54): the starting package's
+#define CARE_PACKAGE_PP_MAX_STOCK 999
+
 static const u8 sCarePackageIntroStart[] = _(
     "PROF. ELM sent a care package\n"
     "to start your journey!");
@@ -55,7 +58,7 @@ static const struct CarePackageItem sCarePackage0[] =
     {ITEM_POTION, 10},
     {ITEM_SUPER_POTION, 10},
     {ITEM_REVIVE, 10},
-    {ITEM_PP_MAX, 10},
+    {ITEM_PP_MAX, 999},
     {ITEM_SILK_SCARF, 10},
     {ITEM_CHARCOAL, 10},
     {ITEM_MYSTIC_WATER, 10},
@@ -125,17 +128,18 @@ static const struct CarePackageItem sCarePackage0[] =
 static const u8 sCarePackageText0[] = _(
     "Inside: SHINY CHARM, QUICK BALL ×153,\n"
     "POKé BALL ×20; ×10 each: GREAT BALL,\p"
-    "POTION, SUPER POTION, REVIVE, PP MAX,\n"
-    "every type-boosting item, LEFTOVERS,\p"
-    "FOCUS SASH, EVIOLITE, EXPERT BELT,\n"
-    "MUSCLE BAND, WISE GLASSES,\p"
-    "SCOPE LENS, ABSORB BULB, LIGHT BALL,\n"
-    "MENTAL HERB, SHELL BELL, CLEANSE TAG,\p"
-    "DEEP SEA SCALE, DEEP SEA TOOTH,\n"
-    "PSYCHIC SEED, every type-resist\p"
-    "BERRY, ORAN, PECHA, ASPEAR, RAWST,\n"
-    "PERSIM, SITRUS and LUM BERRIES,\p"
-    "NUGGET, BIG and TINY MUSHROOMS, RED,\n"
+    "POTION, SUPER POTION, REVIVE;\n"
+    "PP MAX ×999; ×10 each: every\p"
+    "type-boosting item, LEFTOVERS,\n"
+    "FOCUS SASH, EVIOLITE, EXPERT BELT,\p"
+    "MUSCLE BAND, WISE GLASSES,\n"
+    "SCOPE LENS, ABSORB BULB, LIGHT BALL,\p"
+    "MENTAL HERB, SHELL BELL, CLEANSE TAG,\n"
+    "DEEP SEA SCALE, DEEP SEA TOOTH,\p"
+    "PSYCHIC SEED, every type-resist\n"
+    "BERRY, ORAN, PECHA, ASPEAR, RAWST,\p"
+    "PERSIM, SITRUS and LUM BERRIES,\n"
+    "NUGGET, BIG and TINY MUSHROOMS, RED,\p"
     "BLUE and GREEN SHARDS; and 71 TMs.");
 
 static const struct CarePackageItem sCarePackage1[] =
@@ -149,7 +153,6 @@ static const struct CarePackageItem sCarePackage1[] =
     {ITEM_ETHER, 10},
     {ITEM_BERRY_JUICE, 10},
     {ITEM_PP_UP, 10},
-    {ITEM_PP_MAX, 10},
     {ITEM_PROTEIN, 10},
     {ITEM_CALCIUM, 10},
     {ITEM_MUSCLE_FEATHER, 10},
@@ -173,13 +176,13 @@ static const u8 sCarePackageText1[] = _(
     "Inside: HEAL BALL ×50, POKé BALL ×30;\n"
     "×20 each: GREAT BALL, SUPER POTION,\p"
     "CARBOS, SWIFT FEATHER; ×10 each:\n"
-    "ETHER, BERRY JUICE, PP UP, PP MAX,\p"
-    "PROTEIN, CALCIUM, MUSCLE and\n"
-    "GENIUS FEATHERS, THROAT SPRAY,\p"
-    "LUCKY EGG, IRON BALL, WIDE LENS,\n"
-    "CHERI, CHESTO, LEPPA, SITRUS and\p"
-    "LUM BERRIES, STARDUST, STAR PIECE,\n"
-    "MOON STONE, LINKING CORD; and 44 TMs.");
+    "ETHER, BERRY JUICE, PP UP, PROTEIN,\p"
+    "CALCIUM, MUSCLE and GENIUS FEATHERS,\n"
+    "THROAT SPRAY, LUCKY EGG, IRON BALL,\p"
+    "WIDE LENS, CHERI, CHESTO, LEPPA,\n"
+    "SITRUS and LUM BERRIES, STARDUST,\p"
+    "STAR PIECE, MOON STONE, LINKING CORD;\n"
+    "and 44 TMs.");
 
 static const struct CarePackageItem sCarePackage2[] =
 {
@@ -190,7 +193,6 @@ static const struct CarePackageItem sCarePackage2[] =
     {ITEM_GREAT_BALL, 30},
     {ITEM_ULTRA_BALL, 10},
     {ITEM_REVIVE, 10},
-    {ITEM_PP_MAX, 10},
     {ITEM_HP_UP, 10},
     {ITEM_IRON, 10},
     {ITEM_ZINC, 10},
@@ -208,11 +210,10 @@ static const u8 sCarePackageText2[] = _(
     "ABILITY PATCH ×153,\p"
     "CLEVER FEATHER ×50,\n"
     "RESIST FEATHER ×50, GREAT BALL ×30;\p"
-    "×10 each: ULTRA BALL, REVIVE, PP MAX,\n"
-    "HP UP, IRON, ZINC, HEALTH FEATHER,\p"
-    "LIFE ORB, TERRAIN EXTENDER, LEEK,\n"
-    "PEARL, BIG PEARL, LEAF STONE; and 40\p"
-    "TMs.");
+    "×10 each: ULTRA BALL, REVIVE, HP UP,\n"
+    "IRON, ZINC, HEALTH FEATHER, LIFE ORB,\p"
+    "TERRAIN EXTENDER, LEEK, PEARL,\n"
+    "BIG PEARL, LEAF STONE; and 40 TMs.");
 
 static const struct CarePackageItem sCarePackage3[] =
 {
@@ -220,7 +221,6 @@ static const struct CarePackageItem sCarePackage3[] =
     {ITEM_ULTRA_BALL, 20},
     {ITEM_HYPER_POTION, 20},
     {ITEM_GREAT_BALL, 10},
-    {ITEM_PP_MAX, 10},
     {ITEM_CHOICE_BAND, 10},
     {ITEM_CHOICE_SPECS, 10},
     {ITEM_CHOICE_SCARF, 10},
@@ -238,10 +238,10 @@ static const struct CarePackageItem sCarePackage3[] =
 static const u8 sCarePackageText3[] = _(
     "Inside: DREAM BALL ×50,\n"
     "ULTRA BALL ×20, HYPER POTION ×20;\p"
-    "×10 each: GREAT BALL, PP MAX,\n"
-    "CHOICE BAND, CHOICE SPECS,\p"
-    "CHOICE SCARF, ROCKY HELMET, SHUCA\n"
-    "and ROSELI BERRIES, YELLOW SHARD,\p"
+    "×10 each: GREAT BALL, CHOICE BAND,\n"
+    "CHOICE SPECS, CHOICE SCARF,\p"
+    "ROCKY HELMET, SHUCA and\n"
+    "ROSELI BERRIES, YELLOW SHARD,\p"
     "PRISM SCALE, FIRE, WATER, THUNDER and\n"
     "SUN STONES; and 18 TMs.");
 
@@ -251,7 +251,6 @@ static const struct CarePackageItem sCarePackage4[] =
     {ITEM_DIVE_BALL, 10},
     {ITEM_DUSK_BALL, 10},
     {ITEM_MOOMOO_MILK, 10},
-    {ITEM_PP_MAX, 10},
     {ITEM_SMOKE_BALL, 10},
     {ITEM_THICK_CLUB, 10},
     {ITEM_EVERSTONE, 10},
@@ -273,8 +272,8 @@ static const struct CarePackageItem sCarePackage4[] =
 static const u8 sCarePackageText4[] = _(
     "Inside: ULTRA BALL ×20; ×10 each:\n"
     "DIVE and DUSK BALLS, MOOMOO MILK,\p"
-    "PP MAX, SMOKE BALL, THICK CLUB,\n"
-    "EVERSTONE, MISTY SEED, KASIB and\p"
+    "SMOKE BALL, THICK CLUB, EVERSTONE,\n"
+    "MISTY SEED, KASIB and\p"
     "BABIRI BERRIES, BIG NUGGET, DUSK and\n"
     "SHINY STONES, STRAWBERRY, BERRY,\p"
     "LOVE, STAR, CLOVER, FLOWER and\n"
@@ -285,7 +284,6 @@ static const struct CarePackageItem sCarePackage5[] =
     {ITEM_ULTRA_BALL, 20},
     {ITEM_FULL_HEAL, 20},
     {ITEM_MAX_REVIVE, 10},
-    {ITEM_PP_MAX, 10},
     {ITEM_ELECTRIC_SEED, 10},
     {ITEM_SITRUS_BERRY, 10},
     {ITEM_LUM_BERRY, 10},
@@ -296,13 +294,12 @@ static const struct CarePackageItem sCarePackage5[] =
 static const u8 sCarePackageText5[] = _(
     "Inside: ULTRA BALL ×20,\n"
     "FULL HEAL ×20; ×10 each: MAX REVIVE,\p"
-    "PP MAX, ELECTRIC SEED, SITRUS and\n"
+    "ELECTRIC SEED, SITRUS and\n"
     "LUM BERRIES, DAWN and ICE STONES; and\p"
     "3 TMs.");
 
 static const struct CarePackageItem sCarePackage6[] =
 {
-    {ITEM_PP_MAX, 153},
     {ITEM_ULTRA_BALL, 20},
     {ITEM_MAX_ELIXIR, 10},
     {ITEM_LEFTOVERS, 10},
@@ -329,16 +326,15 @@ static const struct CarePackageItem sCarePackage6[] =
 };
 
 static const u8 sCarePackageText6[] = _(
-    "Inside: PP MAX ×153, ULTRA BALL ×20;\n"
-    "×10 each: MAX ELIXIR, LEFTOVERS,\p"
-    "EXPERT BELT, X ATTACK, X DEFENSE,\n"
-    "X SP. ATK, X SP. DEF, X SPEED,\p"
-    "GRASSY SEED, KING'S ROCK,\n"
-    "LUCKY PUNCH, METAL POWDER, RAZOR and\p"
-    "QUICK CLAWS, LIECHI, SALAC and\n"
-    "PETAYA BERRIES, HEART SCALE, RED,\p"
-    "YELLOW, PINK and PURPLE NECTARS; and\n"
-    "10 TMs.");
+    "Inside: ULTRA BALL ×20; ×10 each:\n"
+    "MAX ELIXIR, LEFTOVERS, EXPERT BELT,\p"
+    "X ATTACK, X DEFENSE, X SP. ATK,\n"
+    "X SP. DEF, X SPEED, GRASSY SEED,\p"
+    "KING'S ROCK, LUCKY PUNCH,\n"
+    "METAL POWDER, RAZOR and QUICK CLAWS,\p"
+    "LIECHI, SALAC and PETAYA BERRIES,\n"
+    "HEART SCALE, RED, YELLOW, PINK and\p"
+    "PURPLE NECTARS; and 10 TMs.");
 
 static const struct CarePackageItem sCarePackage7[] =
 {
@@ -464,7 +460,6 @@ static const struct CarePackageItem sCarePackage12[] =
     {ITEM_DUSK_BALL, 30},
     {ITEM_TIMER_BALL, 30},
     {ITEM_FULL_RESTORE, 20},
-    {ITEM_PP_MAX, 20},
     {ITEM_MAX_REVIVE, 10},
     {ITEM_AIR_BALLOON, 10},
     {ITEM_ASSAULT_VEST, 10},
@@ -476,10 +471,10 @@ static const struct CarePackageItem sCarePackage12[] =
 
 static const u8 sCarePackageText12[] = _(
     "Inside: DUSK BALL ×30,\n"
-    "TIMER BALL ×30, FULL RESTORE ×20,\p"
-    "PP MAX ×20; ×10 each: MAX REVIVE,\n"
-    "AIR BALLOON, ASSAULT VEST, SITRUS\p"
-    "and LUM BERRIES, AMULET COIN,\n"
+    "TIMER BALL ×30, FULL RESTORE ×20;\p"
+    "×10 each: MAX REVIVE, AIR BALLOON,\n"
+    "ASSAULT VEST, SITRUS and\p"
+    "LUM BERRIES, AMULET COIN,\n"
     "SOOTHE BELL.");
 
 static const struct CarePackageItem sCarePackage13[] =
@@ -533,14 +528,12 @@ static const struct CarePackageItem sCarePackage16[] =
     {ITEM_MASTER_BALL, 1},
     {ITEM_QUICK_BALL, 50},
     {ITEM_FULL_RESTORE, 30},
-    {ITEM_PP_MAX, 30},
     {ITEM_MAX_REVIVE, 20},
 };
 
 static const u8 sCarePackageText16[] = _(
     "Inside: MASTER BALL, QUICK BALL ×50,\n"
-    "FULL RESTORE ×30, PP MAX ×30,\p"
-    "MAX REVIVE ×20.");
+    "FULL RESTORE ×30, MAX REVIVE ×20.");
 
 static const struct CarePackageItem sCarePackage17[] =
 {
@@ -548,7 +541,6 @@ static const struct CarePackageItem sCarePackage17[] =
     {ITEM_DREAM_BALL, 50},
     {ITEM_BEAST_BALL, 50},
     {ITEM_FULL_RESTORE, 50},
-    {ITEM_PP_MAX, 50},
     {ITEM_MAX_REVIVE, 30},
     {ITEM_MAX_ELIXIR, 30},
     {ITEM_SITRUS_BERRY, 20},
@@ -557,10 +549,9 @@ static const struct CarePackageItem sCarePackage17[] =
 
 static const u8 sCarePackageText17[] = _(
     "Inside: MASTER BALL; ×50 each: DREAM\n"
-    "and BEAST BALLS, FULL RESTORE,\p"
-    "PP MAX; MAX REVIVE ×30,\n"
-    "MAX ELIXIR ×30, SITRUS BERRY ×20,\p"
-    "LUM BERRY ×20.");
+    "and BEAST BALLS, FULL RESTORE;\p"
+    "MAX REVIVE ×30, MAX ELIXIR ×30,\n"
+    "SITRUS BERRY ×20, LUM BERRY ×20.");
 
 static const struct CarePackageItem sCarePackage18[] =
 {
@@ -673,14 +664,13 @@ static const u8 sCarePackageText24[] = _(
 
 static const struct CarePackageItem sCarePackage25[] =
 {
-    {ITEM_PP_MAX, 20},
     {ITEM_MAX_ELIXIR, 20},
     {ITEM_FULL_RESTORE, 20},
     {ITEM_MAX_REVIVE, 20},
 };
 
 static const u8 sCarePackageText25[] = _(
-    "Inside: ×20 each: PP MAX, MAX ELIXIR,\n"
+    "Inside: ×20 each: MAX ELIXIR,\n"
     "FULL RESTORE, MAX REVIVE.");
 
 static const struct CarePackageItem sCarePackage26[] =

@@ -1,5 +1,12 @@
 # Crystal Imperium changelog
 
+## 0.15.2-experimental (2026-10-30)
+
+### 999 PP Max (DECISIONS.md D54)
+- The starting care package brings 999 PP Max, a full stack, instead of 10. The later packages,
+  which brought 323 more over the game, bring none now.
+- A save from an earlier version gets the rest up to 999, once, on its next step outside.
+
 ## 0.15.1-experimental (2026-10-30)
 
 ### The TMs come in the care packages (DECISIONS.md D48)

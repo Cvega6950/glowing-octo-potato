@@ -3,13 +3,15 @@
 @ EventScript_CarePackage on a step, with VAR_0x8004 = the package (0: the start, 1-17: the
 @ milestones, then the location packages) and VAR_0x8006 = CARE_PACKAGE_NEW, _UPDATE (a save from
 @ before 0.12.0 gets an earlier package's new contents), _RESUME (the rest of a package that
-@ stopped because the BAG and PC were full) or _TMS (the TMs of the packages a save from before
-@ 0.15.1 had received, D48). The contents and their messages are in src/data/care_packages.h.
+@ stopped because the BAG and PC were full), _TMS (the TMs of the packages a save from before
+@ 0.15.1 had received, D48) or _PP_MAX (PP Max up to 999 for a save whose starting package came
+@ before 0.15.2, D54). The contents and their messages are in src/data/care_packages.h.
 EventScript_CarePackage::
 	lockall
 	playse SE_EXP_MAX
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_RESUME, CarePackage_Resume
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_TMS, CarePackage_TMs
+	goto_if_eq VAR_0x8006, CARE_PACKAGE_PP_MAX, CarePackage_PPMax
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_UPDATE, CarePackage_Update
 	callnative CarePackage_LoadIntroText
 	callstd MSGBOX_DEFAULT
@@ -52,6 +54,20 @@ CarePackage_TMsHad:
 	msgbox CarePackage_Text_TMsHad, MSGBOX_DEFAULT
 	goto CarePackage_End
 
+CarePackage_PPMax:
+	callnative CarePackage_TopUpPPMax
+	goto_if_eq VAR_RESULT, FALSE, CarePackage_PPMaxFull
+	playfanfare MUS_OBTAIN_ITEM
+	msgbox CarePackage_Text_PPMax, MSGBOX_DEFAULT
+	waitfanfare
+	goto_if_eq VAR_0x8005, 0, CarePackage_End
+	msgbox CarePackage_Text_SentToPC, MSGBOX_DEFAULT
+	goto CarePackage_End
+
+CarePackage_PPMaxFull:
+	msgbox CarePackage_Text_Full, MSGBOX_DEFAULT
+	goto CarePackage_End
+
 CarePackage_Text_Champion:
 	.string "PROF. ELM: Congratulations,\n"
 	.string "CHAMPION!\p"
@@ -85,3 +101,7 @@ CarePackage_Text_TMsHad:
 	.string "PROF. ELM sent the TMs that go\n"
 	.string "with your earlier care packages,\p"
 	.string "but you had them all already!$"
+
+CarePackage_Text_PPMax:
+	.string "PROF. ELM sent {STR_VAR_1} PP MAX,\n"
+	.string "so now you have 999!$"

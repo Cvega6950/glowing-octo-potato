@@ -17,5 +17,6 @@ void CarePackage_LoadIntroText(struct ScriptContext *ctx);
 void CarePackage_LoadContentsText(struct ScriptContext *ctx);
 void CarePackage_GiveItems(struct ScriptContext *ctx);
 void CarePackage_GiveTMs(struct ScriptContext *ctx);
+void CarePackage_TopUpPPMax(struct ScriptContext *ctx);
 
 #endif // GUARD_CARE_PACKAGES_H

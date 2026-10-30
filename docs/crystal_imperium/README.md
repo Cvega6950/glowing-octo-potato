@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.15.1-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.15.2-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI and fights at your level, every boss from the rival to Red, rematches and
 > postgame included, has an Imperium-style team with all of its Pokémon at the level cap, Ace
@@ -117,15 +117,15 @@ From the first step of a new game:
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
 - **A starting care package** from Prof. Elm as soon as you have a Pokémon, as in Emerald
-  Imperium: the Shiny Charm, 153 Quick Balls, 10 of every type-boosting item and every type-resist
-  Berry, Leftovers, Focus Sashes, Eviolites and more. **Nine location packages** wait along the
+  Imperium: the Shiny Charm, 153 Quick Balls, 999 PP Max, 10 of every type-boosting item and every
+  type-resist Berry, Leftovers, Focus Sashes, Eviolites and more. **Nine location packages** wait along the
   story, each with a theme (the weather Rocks in Union Cave, the Choice items in the National
   Park, the Terrain Seeds at the Lake of Rage, ...).
 - **Care packages** from Prof. Elm after every badge and after becoming Champion, Emerald
   Imperium's (that is, Radical Red's): 10 of nearly every held item, Berry, booster and evolution
   item, and big stacks (50 Heal Balls after the first badge, 153 Ability Capsules and 153
-  Ability Patches after the second, 50 Dream Balls and the Choice items after the third, 153 PP
-  Max after the sixth, 100 Beast Balls for the Champion), and the TMs (above). Each package
+  Ability Patches after the second, 50 Dream Balls and the Choice items after the third, 100
+  Beast Balls for the Champion), and the TMs (above). Each package
   lists what's inside; if a Bag pocket is full, the rest goes to your PC, and if the PC is full
   too, the package waits.
 - **Mega Evolution** (47 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F, or

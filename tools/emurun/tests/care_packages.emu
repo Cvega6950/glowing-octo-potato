@@ -1,12 +1,13 @@
 # Crystal Imperium play test: care packages from PROF. ELM (DECISIONS.md D16), Emerald Imperium's
 # (that is, Radical Red's): ten of nearly every held item, Berry, booster and evolution item, and big
-# stacks (153 Quick Balls, 153 PP Max, 153 Ability Capsules and Patches...). Package 0 arrives on
+# stacks (153 Quick Balls, 153 Ability Capsules and Patches...). Package 0 arrives on
 # the first step out on a route or in a town once the player has a Pokemon, with Imperium's Shiny
 # Charm; then one after each milestone: every Gym Badge and becoming Champion (VAR_CARE_PACKAGES
 # counts those). The badges and the Champion flag are set with the debug menu here; the delivery is
 # the real game code. Contents: tools/crystal_imperium/care_packages.py. The location packages are
 # tested by care_packages_start. Since 0.15.1 the starting package and the first eight milestone
 # packages bring the TMs too (D48): the ones the TM shops sell from the start, then from k badges on.
+# Since 0.15.2 the starting package brings 999 PP Max, a full stack, and no other package any (D54).
 !new_game(place_packages=True)
 # The debug menu's Give Pokemon sets FLAG_SYS_POKEMON_GET, like receiving the starter
 !give_mon(155, 5)
@@ -33,6 +34,8 @@ mash A 2400
 !expect_bag_quantity("items", "ITEM_FAIRY_FEATHER", 10, "ten_fairy_feathers")
 !expect_bag_quantity("berries", "ITEM_OCCA_BERRY", 10, "ten_occa_berries")
 !expect_bag_quantity("medicine", "ITEM_REVIVE", 10, "ten_revives")
+!expect_bag_quantity("medicine", "ITEM_PP_MAX", 999, "starting_package_999_pp_max")
+!expect_flag("FLAG_CARE_PACKAGE_PP_MAX", 1, "pp_max_flag_with_the_package")
 # The TMs the shops sell from the start (Flip Turn), not the 1st badge's (Giga Drain)
 !expect_bag_has("TMsHMs", "ITEM_TM_FLIP_TURN", "starting_package_tm")
 !expect_bag_lacks("TMsHMs", "ITEM_TM_GIGA_DRAIN", "no_first_badge_tm_yet")
@@ -64,7 +67,8 @@ shot 03_after_badge_packages.png
 !expect_bag_quantity("pokeBalls", "ITEM_DREAM_BALL", 50, "fifty_dream_balls")
 !expect_bag_quantity("items", "ITEM_ABILITY_CAPSULE", 153, "ability_capsules")
 !expect_bag_quantity("items", "ITEM_ABILITY_PATCH", 153, "ability_patches")
-!expect_bag_quantity("medicine", "ITEM_PP_MAX", care_package_total("PP_MAX", range(9)), "pp_max_with_the_153")
+# Still the 999 PP Max: no milestone package brings more (D54)
+!expect_bag_quantity("medicine", "ITEM_PP_MAX", 999, "still_999_pp_max")
 # Ten of each held item; Leftovers and Life Orbs come twice, like Radical Red's
 !expect_bag_quantity("items", "ITEM_LEFTOVERS", 20)
 !expect_bag_quantity("items", "ITEM_LIFE_ORB", 20)
@@ -200,6 +204,7 @@ mash A 2400
 # outside brings their TMs in one go (tiers 0-3: Flip Turn to Thunderbolt), none of the 4th badge's
 loadstate route29.ss
 !set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE")
+!give_item("ITEM_PP_MAX", 40)
 !set_flag("FLAG_BADGE01_GET")
 !set_flag("FLAG_BADGE02_GET")
 !set_flag("FLAG_BADGE03_GET")
@@ -221,3 +226,13 @@ mash A 600
 !expect_bag_lacks("TMsHMs", "ITEM_TM_EARTHQUAKE", "earlier_save_not_tier_4")
 !walkto(34, 11)
 !expect_var("VAR_CARE_PACKAGE_TMS", 4, "earlier_save_tms_once")
+# Then the PP Max up to 999 (D54): the step above brought the 959 its 40 were short of, once
+wait 150
+shot 09_pp_max_up_to_999.png
+mash A 600
+!expect_bag_quantity("medicine", "ITEM_PP_MAX", 999, "earlier_save_pp_max_up_to_999")
+!expect_flag("FLAG_CARE_PACKAGE_PP_MAX", 1, "earlier_save_pp_max_flag")
+!walkto(33, 11)
+!walkto(34, 11)
+!expect_bag_quantity("medicine", "ITEM_PP_MAX", 999, "earlier_save_pp_max_once")
+!expect_var("VAR_CARE_PACKAGES", 3, "earlier_save_still_no_new_package")

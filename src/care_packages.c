@@ -153,6 +153,15 @@ static u32 GiveCarePackageTMs(u32 tier, const u32 *owned)
     return given;
 }
 
+// The starting package's PP Max fill the Bag up to CARE_PACKAGE_PP_MAX_STOCK (999, D54) rather than
+// adding to what it has, so a save that had some gets the rest: how many that is
+static u32 PPMaxShortOfStock(void)
+{
+    u32 have = CountTotalItemQuantityInBag(ITEM_PP_MAX);
+
+    return have < CARE_PACKAGE_PP_MAX_STOCK ? CARE_PACKAGE_PP_MAX_STOCK - have : 0;
+}
+
 static bool32 StartCarePackage(u32 package, u32 kind)
 {
     gSpecialVar_0x8004 = package;
@@ -165,8 +174,8 @@ static bool32 StartCarePackage(u32 package, u32 kind)
 // on a route or in a town (like Mom's gift calls): first the rest of one that stopped, then the
 // starting package once the player has a Pokemon, then each location package the player is past,
 // then, for a save from before 0.12.0, each milestone package it received again with its 0.12.0
-// contents, then, for a save from before 0.15.1, the TMs of the packages it received (D48), then one
-// per milestone reached. (VAR_CARE_PACKAGE_GEAR and VAR_CARE_PACKAGE_BULK, the
+// contents, then, for a save from before 0.15.1, the TMs of the packages it received (D48), then, for
+// a save from before 0.15.2, PP Max up to 999 (D54), then one per milestone reached. (VAR_CARE_PACKAGE_GEAR and VAR_CARE_PACKAGE_BULK, the
 // catch-ups of earlier releases, are kept level with VAR_CARE_PACKAGES but no longer read: the
 // 0.12.0 contents hold everything those brought.)
 bool32 TryStartCarePackageScript(void)
@@ -204,6 +213,13 @@ bool32 TryStartCarePackageScript(void)
         return StartCarePackage(updated + 1, CARE_PACKAGE_UPDATE);
     if (VarGet(VAR_CARE_PACKAGE_TMS) < CarePackageTMTiersDue())
         return StartCarePackage(0, CARE_PACKAGE_TMS);
+    if (FlagGet(FLAG_RECEIVED_STARTING_CARE_PACKAGE) && !FlagGet(FLAG_CARE_PACKAGE_PP_MAX))
+    {
+        if (PPMaxShortOfStock() == 0)
+            FlagSet(FLAG_CARE_PACKAGE_PP_MAX);
+        else if (sStoppedOnMap != CurrentMap() + 1)
+            return StartCarePackage(0, CARE_PACKAGE_PP_MAX);
+    }
     if (received < CARE_PACKAGE_COUNT && received < milestones)
         return StartCarePackage(received + 1, CARE_PACKAGE_NEW);
     return FALSE;
@@ -224,7 +240,7 @@ void CarePackage_LoadContentsText(struct ScriptContext *ctx)
 // callnative: adds package VAR_0x8004 (VAR_0x8006 says how it started) to the Bag, or to the PC
 // (AddItemToBagOrPC; VAR_0x8005 counts those). VAR_RESULT is TRUE once all of it is in; if neither
 // has room for an item, VAR_RESULT is FALSE and VAR_CARE_PACKAGE_RESUME keeps the rest for later.
-// A key item the player already has isn't added again.
+// A key item the player already has isn't added again, and the PP Max fill the Bag up to 999 (D54).
 void CarePackage_GiveItems(struct ScriptContext *ctx)
 {
     u32 package = gSpecialVar_0x8004;
@@ -246,6 +262,10 @@ void CarePackage_GiveItems(struct ScriptContext *ctx)
         u16 quantity = contents->items[i].quantity;
 
         if (GetItemPocket(itemId) == POCKET_KEY_ITEMS && CheckBagHasItem(itemId, 1))
+            continue;
+        if (itemId == ITEM_PP_MAX)
+            quantity = PPMaxShortOfStock();
+        if (quantity == 0)
             continue;
         switch (AddItemToBagOrPC(itemId, quantity))
         {
@@ -278,6 +298,7 @@ void CarePackage_GiveItems(struct ScriptContext *ctx)
     if (package == 0)
     {
         FlagSet(FLAG_RECEIVED_STARTING_CARE_PACKAGE);
+        FlagSet(FLAG_CARE_PACKAGE_PP_MAX);
         VarSet(VAR_CARE_PACKAGE_PLACES, VarGet(VAR_CARE_PACKAGE_PLACES) | PLACES_STARTING_BIT);
     }
     else if (package >= FIRST_PLACE_PACKAGE)
@@ -312,4 +333,21 @@ void CarePackage_GiveTMs(struct ScriptContext *ctx)
         VarSet(VAR_CARE_PACKAGE_TMS, due);
     ConvertIntToDecimalStringN(gStringVar1, given, STR_CONV_MODE_LEFT_ALIGN, 3);
     gSpecialVar_Result = given;
+}
+
+// callnative: PP Max up to 999 in the Bag (D54), once, for a save whose starting package came before
+// 0.15.2. STR_VAR_1: how many it gave; VAR_0x8005: 1 if they went to the PC. VAR_RESULT is FALSE if
+// neither the Bag nor the PC had room: they come on another map.
+void CarePackage_TopUpPPMax(struct ScriptContext *ctx)
+{
+    u32 given = PPMaxShortOfStock();
+    enum ItemDestination to = given ? AddItemToBagOrPC(ITEM_PP_MAX, given) : ITEM_TO_BAG;
+
+    if (to == ITEM_NOWHERE)
+        sStoppedOnMap = CurrentMap() + 1;
+    else
+        FlagSet(FLAG_CARE_PACKAGE_PP_MAX);
+    ConvertIntToDecimalStringN(gStringVar1, given, STR_CONV_MODE_LEFT_ALIGN, 3);
+    gSpecialVar_0x8005 = (to == ITEM_TO_PC);
+    gSpecialVar_Result = (to != ITEM_NOWHERE);
 }

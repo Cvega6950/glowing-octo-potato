@@ -2016,3 +2016,24 @@ follows is the first build's; D45 lists what changed.)
   `tools/emurun`'s `expectfind` finds an array element by a field (the follower object by its
   local ID) and checks another.
 
+## D54. 999 PP Max from the start
+
+- The user: "And I want 999 ppmax".
+- The starting care package brings 999 PP Max, a full Bag slot (`MAX_BAG_ITEM_CAPACITY`), instead
+  of 10. The other packages brought 323 more over the game (Radical Red's 153 with the 6th badge,
+  10 with each of the first five, 20 to 50 with three Kanto badges and 20 at the Ice Path); they
+  bring none now, so the PP Max are one stack instead of spilling into a second slot.
+- PP Max fill the Bag up to 999 instead of adding to it: a save that has some gets the rest
+  (`src/care_packages.c` `PPMaxShortOfStock`; `CARE_PACKAGE_PP_MAX_STOCK` is generated from the
+  starting package's line, and `care_packages.py --check` refuses PP Max in any other package).
+  The PP Max picked up on the maps (Whirl Islands, Dragon's Den) still add to it.
+- **Saves whose starting package came before 0.15.2.** On a step outside, after the TM catch-up
+  (D48), PROF. ELM sends the rest up to 999 once: "PROF. ELM sent 959 PP MAX, so now you have
+  999!" (`CARE_PACKAGE_PP_MAX`). `FLAG_CARE_PACKAGE_PP_MAX` (Heart & Soul's unused extended-content
+  flag 123) marks it done; a new starting package sets it too. With neither the Bag nor the PC
+  able to take them, they wait for another map, as a package that stopped does. A save that has
+  999 or more already only gets the flag.
+- Evidence: `care_packages_start` (999 with the starting package, the flag), `care_packages` (999
+  with the starting package, still 999 after the eight badge packages; a 0.12.0–0.15.0 save with
+  40 PP Max gets its TMs on the first step and 959 PP Max on the next, then nothing more).
+

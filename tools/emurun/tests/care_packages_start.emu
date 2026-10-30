@@ -1,7 +1,7 @@
 # Crystal Imperium play test: the Emerald Imperium-style starting and location care packages
 # (0.12.0). PROF. ELM's starting package arrives on the first step on a route or in a town once the
 # player has a Pokemon: the Shiny Charm, 153 Quick Balls, 10 of every type-boosting item and every
-# type-resist Berry, and the staple held items. A location package waits in each of nine places
+# type-resist Berry, the staple held items, and 999 PP Max (D54). A location package waits in each of nine places
 # along the story (Union Cave first) and arrives on the first step there; a save already past a
 # place gets its package on the next step outside. VAR_CARE_PACKAGE_PLACES has a bit for each, and
 # bit 15 for the starting package. A save from 0.12.0-experimental, whose starting package was
@@ -22,9 +22,10 @@ mash A 2400
 !expect_bag_quantity("items", "ITEM_LEFTOVERS", 10)
 !expect_bag_quantity("berries", "ITEM_OCCA_BERRY", 10)
 !expect_bag_quantity("berries", "ITEM_ROSELI_BERRY", 10)
-!expect_bag_quantity("medicine", "ITEM_PP_MAX", 10)
+!expect_bag_quantity("medicine", "ITEM_PP_MAX", 999, "pp_max_999")
 !expect_bag_quantity("pokeBalls", "ITEM_QUICK_BALL", 153)
 !expect_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE", 1, "starting_package_flag")
+!expect_flag("FLAG_CARE_PACKAGE_PP_MAX", 1, "pp_max_flag")
 # Only once
 !walkto(34, 11)
 !walkto(33, 11)

@@ -7,6 +7,7 @@
 #define CARE_PACKAGE_UPDATE  1 // an earlier package's 0.12.0 contents, for a save from before 0.12.0
 #define CARE_PACKAGE_RESUME  2 // the rest of a package that stopped because the BAG and PC were full
 #define CARE_PACKAGE_TMS     3 // the TMs of the packages a save from before 0.15.1 had already received
+#define CARE_PACKAGE_PP_MAX  4 // PP Max up to 999, once, for a save whose starting package came before 0.15.2
 
 // Milestone packages: one per Gym Badge and one for becoming Champion; package 0 comes at the start
 #define CARE_PACKAGE_COUNT   17

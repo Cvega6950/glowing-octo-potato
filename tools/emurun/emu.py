@@ -40,8 +40,8 @@ def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, 
     sets LEVEL CAP (fourth row of the Difficulty tab; NORMAL, or HARD with the HARD preset);
     minimal_grinding=False turns MIN. GRINDING (second row of the Difficulty tab) off. PROF. ELM's
     starting and location care packages are marked as received (the starting package with its TMs,
-    D48, as a new game gets them), so they don't arrive on the first steps once the test has a
-    Pokemon (the debug menu's Give Pokemon sets FLAG_SYS_POKEMON_GET); place_packages=True leaves
+    D48, and its PP Max, D54, as a new game gets them), so they don't arrive on the first steps once
+    the test has a Pokemon (the debug menu's Give Pokemon sets FLAG_SYS_POKEMON_GET); place_packages=True leaves
     them to arrive."""
     out = ["wait 1300", "press START", "wait 60", "press A", "wait 500", "mash A 900", "mash A 900", "mash A 700"]
     # Tabs: MODE, FEATURES, RANDOMIZER, NUZLOCKE, DIFFICULTY, CHALLENGES (confirm)
@@ -79,7 +79,7 @@ def new_game(difficulty=None, easy_catch=True, variety=None, random_wild=False, 
     out += ["mash A 1500", "mash A 1200", "wait 300"]
     if not place_packages:
         out += (set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE") + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
-                + set_var("VAR_CARE_PACKAGE_TMS", 1))
+                + set_var("VAR_CARE_PACKAGE_TMS", 1) + set_flag("FLAG_CARE_PACKAGE_PP_MAX"))
     return out
 
 
@@ -540,12 +540,12 @@ def set_var(var, value):
 
 def no_care_packages():
     """Mark every care package as received (the starting one, the location ones and the 17
-    milestone packages, with the catch-up counters of earlier releases and the TMs' nine tiers, D48),
-    so none arrives during the test."""
+    milestone packages, with the catch-up counters of earlier releases, the TMs' nine tiers, D48, and
+    the PP Max, D54), so none arrives during the test."""
     return (set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE") + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
             + set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_IMPERIUM", 17)
             + set_var("VAR_CARE_PACKAGE_GEAR", 17) + set_var("VAR_CARE_PACKAGE_BULK", 17)
-            + set_var("VAR_CARE_PACKAGE_TMS", 9))
+            + set_var("VAR_CARE_PACKAGE_TMS", 9) + set_flag("FLAG_CARE_PACKAGE_PP_MAX"))
 
 
 def care_package_total(item, packages):
