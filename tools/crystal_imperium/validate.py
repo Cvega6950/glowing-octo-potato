@@ -30,6 +30,7 @@ import glob
 import json
 import os
 import re
+import subprocess
 import sys
 from collections import defaultdict
 
@@ -145,12 +146,68 @@ def macro_arguments(text, field, macro):
     return result
 
 
+# The build's preprocessor and flags for Heart & Soul (Makefile: CPP, CPPFLAGS with GAME_VERSION POKEMON_HNS)
+CPP = ["arm-none-eabi-cpp", "-P", "-iquote", "include", "-Wno-trigraphs", "-DMODERN=1", "-DTESTING=0",
+       "-DPOKEMON_HNS", "-std=gnu17", "-"]
+DIRECTIVE = re.compile(r"^\s*#\s*(if|ifdef|ifndef|elif|else|endif)\b(.*)$")
+
+
+def directive_condition(kind, rest):
+    rest = re.sub(r"//.*|/\*.*?\*/", "", rest).strip()
+    return {"ifdef": f"defined({rest})", "ifndef": f"!defined({rest})"}.get(kind, rest)
+
+
+def evaluate_conditions(conditions):
+    """{condition: bool} for #if conditions, as the build's preprocessor evaluates them (the configs
+    through global.h: P_UPDATED_ABILITIES, P_FAMILY_*, P_*_FORMS...)."""
+    conditions = sorted(set(conditions))
+    src = ['#include "global.h"']
+    for i, c in enumerate(conditions):
+        src += [f"#if {c}", f"CRYSTAL_CONDITION {i} 1", "#else", f"CRYSTAL_CONDITION {i} 0", "#endif"]
+    out = subprocess.run(CPP, input="\n".join(src) + "\n", capture_output=True, text=True, cwd=ROOT, check=True).stdout
+    values = dict(re.findall(r"(?m)^CRYSTAL_CONDITION (\d+) ([01])$", out))
+    return {c: values[str(i)] == "1" for i, c in enumerate(conditions)}
+
+
+def compiled_text(text, values):
+    """text without the #if branches the build leaves out (values: evaluate_conditions())."""
+    out, stack, active = [], [], True  # stack: [active before the #if, a branch taken]
+    for line in text.split("\n"):
+        m = DIRECTIVE.match(line)
+        if not m:
+            if active:
+                out.append(line)
+            continue
+        kind, rest = m.groups()
+        if kind in ("if", "ifdef", "ifndef"):
+            taken = active and values[directive_condition(kind, rest)]
+            stack.append([active, taken])
+            active = taken
+        elif kind == "elif":
+            parent, taken = stack[-1]
+            active = parent and not taken and values[directive_condition(kind, rest)]
+            stack[-1][1] = taken or active
+        elif kind == "else":
+            parent, taken = stack[-1]
+            active = parent and not taken
+            stack[-1][1] = True
+        else:
+            active = stack.pop()[0]
+    return "\n".join(out)
+
+
 def parse_species():
-    """SPECIES_X -> {abilities:set, evolutions:[SPECIES_Y], name}"""
+    """SPECIES_X -> {abilities:set, evolutions:[SPECIES_Y], name}, as the game is built: only the #if
+    branches the build compiles (P_UPDATED_ABILITIES picks one ability list, P_FAMILY_* the families)."""
     species = {}
-    for path in sorted(glob.glob(os.path.join(ROOT, "src/data/pokemon/species_info/*.h"))):
-        text = open(path, encoding="utf-8").read()
-        # Abilities given by a macro (e.g. GENGAR_ABILITIES), with every #if branch's list
+    paths = sorted(glob.glob(os.path.join(ROOT, "src/data/pokemon/species_info/*.h")))
+    texts = [open(path, encoding="utf-8").read() for path in paths]
+    values = evaluate_conditions(directive_condition(m.group(1), m.group(2))
+                                 for text in texts for m in map(DIRECTIVE.match, text.split("\n"))
+                                 if m and m.group(1) not in ("else", "endif"))
+    for text in texts:
+        text = compiled_text(text, values)
+        # Abilities given by a macro (e.g. GENGAR_ABILITIES)
         ability_macros = defaultdict(list)
         for macro, abl in re.findall(r"#define\s+(\w+_ABILITIES)\s*\{([^}]*)\}", text):
             ability_macros[macro].append(abl)
@@ -178,13 +235,22 @@ def parse_species():
     return species
 
 
+SPECIES_ALIASES = {}  # SPECIES_MEOWSTIC -> SPECIES_MEOWSTIC_M: include/constants/species.h's names for a default form
+
+
 def species_constant(name, species):
-    """Party species name -> SPECIES constant, falling back to the default form (e.g. _TWO_SEGMENT)."""
+    """Party species name -> SPECIES constant, as trainerproc and the compiler resolve it: the name's
+    constant, or the form its #define names (Meowstic is Meowstic-M, Lycanroc Midday, Urshifu Single
+    Strike, Aegislash Shield)."""
+    if not SPECIES_ALIASES:
+        SPECIES_ALIASES.update(re.findall(r"(?m)^#define\s+(SPECIES_\w+)\s+(SPECIES_\w+)\s*$",
+                                          read("include/constants/species.h")))
     sp = "SPECIES_" + constify(name)
-    if sp in species:
-        return sp
-    forms = sorted(s for s in species if s.startswith(sp + "_"))
-    return forms[0] if forms else sp
+    seen = set()
+    while sp not in species and sp in SPECIES_ALIASES and sp not in seen:
+        seen.add(sp)
+        sp = SPECIES_ALIASES[sp]
+    return sp
 
 
 def national_species():
