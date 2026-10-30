@@ -11,9 +11,22 @@
   its next step outside.
 - The TM clerks stay, for anything missing (and, with INFINITE TMS off, more copies).
 
+### Emerald Imperium's base stats (D50)
+- 294 Pokémon have Imperium's base stats, from its official dex, most of them buffs to Pokémon
+  that are weak in the official games: Farfetch'd (75 HP, 70 Defense), Sunflora (135 Sp. Atk),
+  Parasect, Ledian (90 Attack), Raichu, Fearow (115 Speed), Tauros, Octillery, Ariados, Granbull,
+  Qwilfish, Corsola and many more. Trainers' Pokémon change with them.
+
+### A code for shiny Pokémon (D49)
+- **SHINYA** (or SHA, or ALLSHINY) at the NES in your room: every wild Pokémon, gift Pokémon and
+  Egg is shiny until you enter it again.
+
 ### Tools
 - `tools/crystal_imperium/care_packages.py` takes the TM tiers from `tm_list.py`; `tools/emurun`'s
   `no_care_packages()` marks the TMs as received too.
+- `tools/crystal_imperium/imperium_species.py` writes the base stats
+  (`species_info/imperium_stats.h`); `tools/emurun`: `expect_base_stat`, new play tests
+  `imperium_stats` and `cheat_shiny_all`.
 
 ## 0.15.0-experimental (2026-10-30)
 

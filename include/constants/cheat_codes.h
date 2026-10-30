@@ -12,6 +12,7 @@
 #define CHEAT_CODE_MAXMONEY   6
 #define CHEAT_CODE_MONO       7
 #define CHEAT_CODE_SHINYR     8
+#define CHEAT_CODE_SHINYA     9 // Crystal Imperium's own: every wild and gift Pokemon shiny (D49)
 
 // The MONO code's types, in the order of its menu (after OFF)
 #define MONO_STARTER_TYPE_COUNT 15

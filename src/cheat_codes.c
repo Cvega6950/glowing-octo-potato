@@ -43,6 +43,10 @@ static const struct
     { COMPOUND_STRING("MONO"),      CHEAT_CODE_MONO },
     { COMPOUND_STRING("SHINYR"),    CHEAT_CODE_SHINYR },
     { COMPOUND_STRING("SHR"),       CHEAT_CODE_SHINYR },
+    // Not one of Imperium's: every wild and gift Pokemon shiny (D49)
+    { COMPOUND_STRING("SHINYA"),    CHEAT_CODE_SHINYA },
+    { COMPOUND_STRING("SHA"),       CHEAT_CODE_SHINYA },
+    { COMPOUND_STRING("ALLSHINY"),  CHEAT_CODE_SHINYA },
 };
 
 // The MONO code's types, in its menu's order, and PROF. ELM's three Pokemon for each (Emerald
@@ -160,6 +164,14 @@ void CheatCode_MakeRoamersShiny(struct ScriptContext *ctx)
 {
     FlagSet(FLAG_CODE_SHINY_ROAMERS);
     SetRoamersShiny();
+}
+
+// callnative, SHINYA: switches every wild and gift Pokemon shiny (eggs and the starters too: the
+// expansion's P_FLAG_FORCE_SHINY, include/config/pokemon.h); VAR_RESULT = TRUE if now on
+void CheatCode_ToggleShinyAll(struct ScriptContext *ctx)
+{
+    FlagToggle(FLAG_CODE_SHINY_ALL);
+    gSpecialVar_Result = FlagGet(FLAG_CODE_SHINY_ALL);
 }
 
 // callnative, MONO: VAR_MONO_STARTER_TYPE from the menu's choice in VAR_RESULT (0: off, then the types)

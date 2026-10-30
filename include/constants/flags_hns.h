@@ -1004,7 +1004,7 @@
 #define FLAG_SIDE_REWARD_MAXIE                     (HNS_EXTENDED_CONTENT_START + 119) // Crystal Imperium: MAXIE's side battle reward (D41)
 #define FLAG_SIDE_REWARD_ARCHIE                    (HNS_EXTENDED_CONTENT_START + 120) // Crystal Imperium: ARCHIE's side battle reward (D41)
 #define FLAG_SIDE_REWARD_WALLY                     (HNS_EXTENDED_CONTENT_START + 121) // Crystal Imperium: WALLY's side battle reward (D41)
-#define FLAG_EXTENDED_CONTENT_122                   (HNS_EXTENDED_CONTENT_START + 122)
+#define FLAG_CODE_SHINY_ALL                        (HNS_EXTENDED_CONTENT_START + 122) // Crystal Imperium: the SHINYA code (every wild and gift Pokemon shiny, P_FLAG_FORCE_SHINY)
 #define FLAG_EXTENDED_CONTENT_123                   (HNS_EXTENDED_CONTENT_START + 123)
 #define FLAG_EXTENDED_CONTENT_124                   (HNS_EXTENDED_CONTENT_START + 124)
 #define FLAG_EXTENDED_CONTENT_125                   (HNS_EXTENDED_CONTENT_START + 125)

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
-"""Crystal Imperium: Emerald Imperium's abilities, level-up moves, Egg Moves (DECISIONS.md D35) and
-TM and tutor compatibility (D39), from the official Emerald Imperium dex (D45).
+"""Crystal Imperium: Emerald Imperium's abilities, level-up moves, Egg Moves (DECISIONS.md D35), TM
+and tutor compatibility (D39) and, since 0.15.1, base stats (D50), from the official Emerald Imperium
+dex (D45).
 
 Until 0.15.0 these came from the Radical Red dex, which Imperium's documentation pointed to; since
 then from Imperium's own dex (ei_dex.py, EI_DEX_URL), which has its documented differences from
@@ -11,6 +12,8 @@ Radical Red already. This script reads that dex and writes, for every species it
   src/data/pokemon/egg_moves_imperium.h            Egg Moves (egg_moves.h for the rest)
   src/data/pokemon/species_info/imperium_abilities.h   the abilities that differ, as overrides of
                                                    the species table (src/data/pokemon/species_info.h)
+  src/data/pokemon/species_info/imperium_stats.h   the base stats that differ (Imperium's buffs), as
+                                                   overrides of the species table too
   src/data/pokemon/imperium_teachables.json        the moves Imperium teaches by TM or tutor, and
                                                    which of them each species learns, for
                                                    tools/learnset_helpers/make_teachables.py
@@ -46,6 +49,10 @@ LEVEL_UP_OUT = "src/data/pokemon/level_up_learnsets/imperium.h"
 EGG_BASE = "src/data/pokemon/egg_moves.h"
 EGG_OUT = "src/data/pokemon/egg_moves_imperium.h"
 ABILITIES_OUT = "src/data/pokemon/species_info/imperium_abilities.h"
+STATS_OUT = "src/data/pokemon/species_info/imperium_stats.h"
+# The six base stats in the dex's order (the engine's: HP, Attack, Defense, Speed, Sp. Atk, Sp. Def)
+STAT_FIELDS = ["baseHP", "baseAttack", "baseDefense", "baseSpeed", "baseSpAttack", "baseSpDefense"]
+STAT_NAMES = ["HP", "Atk", "Def", "Spe", "SpA", "SpD"]
 TEACHABLES_OUT = "src/data/pokemon/imperium_teachables.json"
 
 MAX_LEVEL_UP_MOVES = 40     # include/constants/pokemon.h
@@ -132,8 +139,69 @@ def matching_brace(text, start):
     raise ValueError("unbalanced braces")
 
 
+def c_int(expr):
+    """The value of a C integer expression as the preprocessor leaves it in the species table: numbers,
+    parentheses, ?:, ||, &&, comparisons, + - * / and unary ! and - (P_UPDATED_STATS >= GEN_6 ? 90 : 80)."""
+    toks = re.findall(r"\d+|\|\||&&|==|!=|<=|>=|[()?:<>+\-*/!]", expr)
+    if "".join(toks) != re.sub(r"\s+", "", expr):
+        raise ValueError(f"not a constant expression: {expr}")
+    pos = [0]
+    ops = {"*": lambda a, b: a * b, "/": lambda a, b: a // b, "+": lambda a, b: a + b, "-": lambda a, b: a - b,
+           "<": lambda a, b: int(a < b), "<=": lambda a, b: int(a <= b), ">": lambda a, b: int(a > b),
+           ">=": lambda a, b: int(a >= b), "==": lambda a, b: int(a == b), "!=": lambda a, b: int(a != b),
+           "&&": lambda a, b: int(bool(a) and bool(b)), "||": lambda a, b: int(bool(a) or bool(b))}
+
+    def peek():
+        return toks[pos[0]] if pos[0] < len(toks) else None
+
+    def take():
+        pos[0] += 1
+        return toks[pos[0] - 1]
+
+    def primary():
+        t = take()
+        if t == "(":
+            v = ternary()
+            if take() != ")":
+                raise ValueError(expr)
+            return v
+        if t == "!":
+            return int(not primary())
+        if t == "-":
+            return -primary()
+        return int(t)
+
+    def level(names, sub):
+        def parse():
+            v = sub()
+            while peek() in names:
+                op = take()
+                v = ops[op](v, sub())
+            return v
+        return parse
+
+    lor = level({"||"}, level({"&&"}, level({"==", "!="}, level({"<", "<=", ">", ">="},
+                                                               level({"+", "-"}, level({"*", "/"}, primary))))))
+
+    def ternary():
+        c = lor()
+        if peek() != "?":
+            return c
+        take()
+        a = ternary()
+        if take() != ":":
+            raise ValueError(expr)
+        b = ternary()
+        return a if c else b
+
+    v = ternary()
+    if pos[0] != len(toks):
+        raise ValueError(expr)
+    return v
+
+
 def species_table(pre):
-    """number -> {abilities: [3 names], levelUp: symbol, egg: symbol, forms: symbol} from the species
+    """number -> {abilities: [3 names], levelUp: symbol, egg: symbol, forms: symbol, stats: [6]} from the species
     table as compiled (only its [N] = {...} entries: the overrides this script writes are skipped)."""
     m = re.search(r"gSpeciesInfo\[\]\s*=\s*\{", pre)
     body_start = m.end() - 1
@@ -160,6 +228,9 @@ def species_table(pre):
             f = re.search(rf"\.{field}\s*=\s*(\w+)", block)
             if f:
                 info[key] = f.group(1)
+        stats = [re.search(rf"\.{field}\s*=\s*([^,\n]+),", block) for field in STAT_FIELDS]
+        if all(stats):
+            info["stats"] = [c_int(x.group(1)) for x in stats]
         table[num] = info
         pos = end
     return table
@@ -275,7 +346,7 @@ def imperium_ability_rules(data):
 
 def build(ei):
     mp = Mapper(ei)
-    data = {}       # SPECIES_X -> {abilities: [1st, 2nd, hidden], levelUp, egg, teach}
+    data = {}       # SPECIES_X -> {abilities: [1st, 2nd, hidden], levelUp, egg, teach, stats: [6]}
     unmatched = []
     for sid, s in sorted(ei["species"].items()):
         const = mp.species(s)
@@ -297,7 +368,8 @@ def build(ei):
         teach = {mp.move(m) for m in s.get("tmMoves") or []}
         teach.discard(None)
         first, second, hidden = (mp.ability(a) for a in s["abilities"])
-        data[const] = {"abilities": [first, second, hidden], "levelUp": level_up, "egg": egg, "teach": teach}
+        data[const] = {"abilities": [first, second, hidden], "levelUp": level_up, "egg": egg, "teach": teach,
+                       "stats": [int(x) for x in s["stats"]]}
     imperium_ability_rules(data)
     for d in data.values():
         d["levelUp"].sort(key=lambda e: e[0])  # stable: same-level moves keep the dex's order
@@ -493,18 +565,40 @@ def generate(ei, report=False):
             notes.append(f"{other}: shares {src}'s TM and tutor list; Imperium also teaches it {extra}")
     teachables_out = render_teachables(universe, teach)
 
-    stats = {"level": len(level_src), "egg": len(egg_src), "abilities": len(new_abilities), "teach": len(teach)}
+    # Base stats (D50): a species whose own name the dex has gets its six base stats; a form the dex
+    # doesn't list keeps its own
+    new_stats = {}
+    for num, info in sorted(table.items()):
+        if num == 0 or "stats" not in info:
+            continue
+        src = next((n for n in sorted(names_of[num], key=len) if n in data), None)
+        if src and data[src]["stats"] != info["stats"]:
+            new_stats[num] = (src, data[src]["stats"], info["stats"])
+    lines = ["// Generated by tools/crystal_imperium/imperium_species.py: Emerald Imperium's base stats (its",
+             "// dex, DECISIONS.md D50) where they differ from Heart & Soul's: its buffs. Included at the end",
+             "// of gSpeciesInfo (src/data/pokemon/species_info.h), after imperium_abilities.h: each line",
+             "// replaces the changed base stats of one species. Edit the script, not this file.", ""]
+    for num, (name, new, old) in new_stats.items():
+        fields = ", ".join(f"[{name}].{STAT_FIELDS[i]} = {new[i]}" for i in range(6) if new[i] != old[i])
+        was = ", ".join(f"{STAT_NAMES[i]} {old[i]}" for i in range(6) if new[i] != old[i])
+        lines.append(f"    {fields}, // was {was}; BST {sum(old)} -> {sum(new)}")
+    stats_out = "\n".join(lines) + "\n"
+
+    stats = {"level": len(level_src), "egg": len(egg_src), "abilities": len(new_abilities), "teach": len(teach),
+             "stats": len(new_stats)}
     if report:
         print(f"dex species matched: {len(data)}; not in this game: {len(unmatched)}")
         print("  " + ", ".join(unmatched))
         print(f"learnsets from the dex: {stats['level']} level-up, {stats['egg']} Egg Move lists, "
-              f"{stats['teach']} TM and tutor lists; {stats['abilities']} species with new abilities")
+              f"{stats['teach']} TM and tutor lists; {stats['abilities']} species with new abilities, "
+              f"{stats['stats']} with new base stats")
         print("moves left out (not in this engine): " + ", ".join(f"{k} ({v})" for k, v in mp.missing_moves.most_common()))
         print("abilities kept as Heart & Soul's (Imperium's own, not in this engine): "
               + ", ".join(f"{k} ({v})" for k, v in mp.missing_abilities.most_common()))
         for n in notes:
             print(n)
-    return {LEVEL_UP_OUT: level_out, EGG_OUT: egg_out, ABILITIES_OUT: abilities_out, TEACHABLES_OUT: teachables_out}, stats
+    return {LEVEL_UP_OUT: level_out, EGG_OUT: egg_out, ABILITIES_OUT: abilities_out, STATS_OUT: stats_out,
+            TEACHABLES_OUT: teachables_out}, stats
 
 
 def main():
@@ -527,7 +621,8 @@ def main():
             f.write(files[p])
         print(f"wrote {p}")
     print(f"{stats['level']} level-up learnsets, {stats['egg']} Egg Move lists and {stats['teach']} TM and tutor "
-          f"lists from the Emerald Imperium dex; {stats['abilities']} species with new abilities")
+          f"lists from the Emerald Imperium dex; {stats['abilities']} species with new abilities, "
+          f"{stats['stats']} with new base stats")
     return 0
 
 

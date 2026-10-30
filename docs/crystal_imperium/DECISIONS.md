@@ -29,7 +29,8 @@ Short records of decisions that shape the project. Newest last.
   since 0.11.0, at the user's request, which abilities and moves each species has (D35), taken
   from the public Radical Red dex that Imperium's own documentation follows; since 0.13.0 also
   which TM and tutor moves they learn, and Radical Red's six moves of its own, written anew from
-  the dex's numbers and the effects its change lists give (D39). Base stats, sprites and
+  the dex's numbers and the effects its change lists give (D39). Since 0.15.1, also at the
+  user's request, the base stats, from Imperium's official dex like the rest (D50). Sprites and
   Imperium's own Megas, moves and abilities stay out, except the trainer battle sprites iriv24
   released himself for use with credit on Team Aqua's Asset Repo (0.14.0, D41).
 
@@ -1927,3 +1928,42 @@ follows is the first build's; D45 lists what changed.)
   after the bigger packages; a 0.12.0–0.15.0 save with three badges gets 173 TMs in one message,
   none of the fourth badge's, and only once), `tm_clerks`, `tm_shop`, `tm_shop_owned`, `tm_clerk`,
   `tm_case`, `tm_reusable`, `relearner_training_kit`, `story_opening` and the whole suite.
+
+## D49. A cheat code for shiny Pokémon everywhere
+
+- The user: "And add a cheat that makes all Pokemon shiny".
+- **SHINYA** (aliases SHA and ALLSHINY), typed at the NES like Imperium's codes (D37), switches
+  every wild and gift Pokémon shiny, and entering it again switches it back. It isn't one of
+  Imperium's codes (its SHINYS and SHINYR do the starters and the roaming Pokémon, D37), so it is
+  named like them.
+- **How.** The code sets `FLAG_CODE_SHINY_ALL` (extended content flag 122, unreferenced before),
+  which is the expansion's `P_FLAG_FORCE_SHINY` (`include/config/pokemon.h`): `CreateBoxMon` makes
+  every Pokémon whose original trainer is the player shiny (wild ones, the DexNav's, static and
+  gift Pokémon, the starters), the Day-Care's Eggs hatch shiny, and a script's `givemon` gives
+  shiny ones. Trainers' Pokémon aren't the player's and stay as they are.
+- Evidence: `cheat_shiny_all` (SHINYA on, SHA off, ALLSHINY on again; a level-50 gift Cyndaquil
+  and the first wild Pokémon on Route 29, a Pidgey, are shiny: the shiny bit of their data and the
+  battle's screenshot).
+
+## D50. Emerald Imperium's base stats
+
+- The user: "emerald imperium even makes some Pokemon stronger like it buffs their original stats
+  so they're more fun to use like Pokemon that are normally weak are now strong".
+- **What.** `imperium_species.py` (D45) now also takes each species' six base stats from
+  Imperium's official dex and writes the ones that differ into
+  `src/data/pokemon/species_info/imperium_stats.h`, overrides at the end of the species table like
+  `imperium_abilities.h`: 294 species. Most are buffs to Pokémon that are weak in the official
+  games: Farfetch'd 377 → 435 (75 HP), Sunflora 425 → 500 (135 Sp. Atk), Parasect 405 → 460,
+  Ledian 390 → 415 (90 Attack), Raichu 485 → 515, Fearow 442 → 467 (115 Speed), Tauros, Octillery,
+  Ariados, Granbull, Qwilfish, Corsola... Some only move points between stats (Flareon keeps 525
+  with 95 Speed; Articuno keeps 580). Each line names the old values.
+- A species is matched by its own name in the dex, as for abilities; a form the dex doesn't list
+  keeps its stats. Imperium's own Megas and forms don't exist here and are skipped (D2). The dex's
+  types aren't taken: only stats were asked for.
+- **Both sides.** The trainers' Pokémon use the same species data, so a route trainer's
+  Farfetch'd or a boss's Parasect is stronger too, as in Imperium.
+- Evidence: `imperium_stats` (Farfetch'd's 75 HP and 70 Defense, Raichu's 100 Attack and Sp.
+  Atk, Sunflora's 135 Sp. Atk, Flareon's 95 Speed and 65 Sp. Atk, Pikachu's own 90 Speed in the
+  ROM's species table; a level-50 Farfetch'd with 150 HP, 127 before), `imperium_species.py
+  --check`, and the whole suite (battles against bosses and trainers whose Pokémon changed).
+

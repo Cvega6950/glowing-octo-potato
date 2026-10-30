@@ -89,7 +89,9 @@ From the first step of a new game:
   Guard, Golbat Infiltrator and Typhlosion Flash Fire, Typhlosion learns Aura Sphere and Mystical
   Fire, Pikachu Zippy Zap at 55 and Primeape Shadow Punch at 35. Imperium's postgame TMs Draco
   Barrage and Dark Hole are in, as tutor moves after the Hall of Fame. Imperium's own abilities
-  (Striker, Bone Zone...) aren't in this engine.
+  (Striker, Bone Zone...) aren't in this engine. **Imperium's base stats** too: 294 Pokémon get
+  its buffs (Farfetch'd, Sunflora, Parasect, Ledian, Raichu, Fearow, Octillery...), so Pokémon
+  that are weak in the official games are worth using.
 - **A Gen 5 look:** Black/White-style battles (healthboxes, text box, FIGHT / BAG / POKÉMON /
   RUN buttons, a move box with types, PP and effectiveness) and a Black/White-style summary
   screen (A on the skills page shows IVs and EVs).
@@ -138,6 +140,7 @@ From the first step of a new game:
   | SHINYS | SHS | PROF. ELM's Pokémon shiny (before you choose one) |
   | MONO | | pick a type for PROF. ELM's three Pokémon (before you choose one) |
   | SHINYR | SHR | the roaming Pokémon shiny |
+  | SHINYA | SHA, ALLSHINY | every wild Pokémon, gift Pokémon and Egg shiny; enter it again to stop (not one of Imperium's) |
   | DEXALL | DXA | the DexNav already shows every Pokémon |
 - Legendary and Mythical Pokémon are on the DexNav list from the start. Once you are
   Champion, about a quarter of the areas' Wild Variety sets include one.

@@ -97,8 +97,8 @@
 #define NO_FLIP 1
 
 #if P_IMPERIUM_SPECIES_DATA || P_IMPERIUM_EVOLUTIONS
-// Crystal Imperium: species_info/imperium_abilities.h and imperium_evolutions.h, at the end, replace
-// some species' abilities and evolutions
+// Crystal Imperium: species_info/imperium_abilities.h, imperium_stats.h and imperium_evolutions.h, at
+// the end, replace some species' abilities, base stats and evolutions
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Woverride-init"
 #endif
@@ -258,6 +258,7 @@ const struct SpeciesInfo gSpeciesInfo[] =
 
 #if P_IMPERIUM_SPECIES_DATA
     #include "species_info/imperium_abilities.h"
+    #include "species_info/imperium_stats.h"
 #endif
 #if P_IMPERIUM_EVOLUTIONS
     #include "species_info/imperium_evolutions.h"

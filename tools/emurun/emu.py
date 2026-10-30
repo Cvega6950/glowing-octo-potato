@@ -778,6 +778,15 @@ def expect_battler(battler, field, const, label=None, negate=False, bits=16):
     return [f"expect{'ne' if negate else ''}{bits} {{gBattleMons+{off}}} {v[const]} {label or field + '_is_' + const.lower()}"]
 
 
+def expect_base_stat(species, field, want, label=None):
+    """Check a base stat of a species in the species table (gSpeciesInfo, in ROM): field is
+    baseHP, baseAttack, baseDefense, baseSpeed, baseSpAttack or baseSpDefense."""
+    v = probe.resolve({"off": f"offsetof(struct SpeciesInfo, {field})", "size": "sizeof(struct SpeciesInfo)",
+                       species: species})
+    return [f"expect8 {{gSpeciesInfo+{v['off'] + v['size'] * v[species]}}} {want} "
+            f"{label or species.lower() + '_' + field.lower() + '_' + str(want)}"]
+
+
 def expect_party_species(party, slot, species, label):
     """Check the species of a Pokemon of gPlayerParty or gEnemyParty (party, a symbol) at slot 0-5,
     which is in the encrypted part of struct Pokemon (the runner decrypts it: expectpartyspecies)."""

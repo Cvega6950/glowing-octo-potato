@@ -1,6 +1,7 @@
 @ Crystal Imperium: Emerald Imperium's cheat codes (DECISIONS.md D37), typed at the NES in the
 @ player's room: src/cheat_codes.c has the codes and their aliases (DEXALL or DXA, CAUGHTALL or
-@ CAL, EZCATCH or EZC, MEGA, SHINYS or SHS, MAXMONEY or MMY, MONO, SHINYR or SHR).
+@ CAL, EZCATCH or EZC, MEGA, SHINYS or SHS, MAXMONEY or MMY, MONO, SHINYR or SHR), and one of this
+@ game's own, SHINYA (SHA, ALLSHINY: D49).
 EventScript_CheatCodeConsole::
 	msgbox CheatCode_Text_EnterACode, MSGBOX_YESNO
 	goto_if_eq VAR_RESULT, NO, CheatCode_TimeToGo
@@ -17,6 +18,7 @@ EventScript_CheatCodeConsole::
 	case CHEAT_CODE_MAXMONEY, CheatCode_MaxMoney
 	case CHEAT_CODE_MONO, CheatCode_Mono
 	case CHEAT_CODE_SHINYR, CheatCode_ShinyRoamers
+	case CHEAT_CODE_SHINYA, CheatCode_ShinyAll
 	msgbox CheatCode_Text_NothingHappened, MSGBOX_DEFAULT
 	goto CheatCode_End
 
@@ -43,6 +45,17 @@ CheatCode_EZCatch:
 
 CheatCode_EZCatchOff:
 	msgbox CheatCode_Text_EZCatchOff, MSGBOX_DEFAULT
+	goto CheatCode_End
+
+CheatCode_ShinyAll:
+	callnative CheatCode_ToggleShinyAll
+	playse SE_SUCCESS
+	goto_if_eq VAR_RESULT, FALSE, CheatCode_ShinyAllOff
+	msgbox CheatCode_Text_ShinyAllOn, MSGBOX_DEFAULT
+	goto CheatCode_End
+
+CheatCode_ShinyAllOff:
+	msgbox CheatCode_Text_ShinyAllOff, MSGBOX_DEFAULT
 	goto CheatCode_End
 
 CheatCode_Mega:
@@ -142,6 +155,13 @@ CheatCode_Text_EZCatchOn:
 
 CheatCode_Text_EZCatchOff:
 	.string "EASY CATCH is off.$"
+
+CheatCode_Text_ShinyAllOn:
+	.string "Every wild POKéMON, EGG and gift\n"
+	.string "POKéMON will be shiny!$"
+
+CheatCode_Text_ShinyAllOff:
+	.string "Shiny POKéMON are rare again.$"
 
 CheatCode_Text_MegaRing:
 	.string "{PLAYER} got the MEGA RING!$"

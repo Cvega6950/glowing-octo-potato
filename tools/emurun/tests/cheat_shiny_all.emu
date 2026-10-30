@@ -1,0 +1,31 @@
+# Crystal Imperium play test: the SHINYA code (aliases SHA and ALLSHINY, DECISIONS.md D49), typed at
+# the NES in the bedroom: every wild and gift Pokemon is shiny (the expansion's P_FLAG_FORCE_SHINY,
+# FLAG_CODE_SHINY_ALL), until the code is entered again. Trainers' Pokemon stay as they are.
+# A Pokemon's shininess is its personality and OT ID, or the shinyModifier bit (bit 14 of the
+# halfword at +30 of struct BoxPokemon, unencrypted) that the code sets.
+!new_game()
+!battle_style_set()
+!nes_code("SHINYA")
+shot 01_shinya_on.png
+mash B 300
+!expect_flag("FLAG_CODE_SHINY_ALL", 1, "shiny_all_on")
+# Again (SHA) turns it off, and ALLSHINY on once more
+!nes_code("SHA")
+shot 02_sha_off.png
+mash B 300
+!expect_flag("FLAG_CODE_SHINY_ALL", 0, "sha_turns_it_off")
+!nes_code("ALLSHINY")
+mash B 300
+!expect_flag("FLAG_CODE_SHINY_ALL", 1, "allshiny_turns_it_on")
+# A gift Pokemon (the debug menu gives it like a script's givemon)
+!give_mon(155, 50)
+expectbits32 {gPlayerParty+28} 0x40000000 0x40000000 gift_is_shiny
+!no_care_packages()
+# A wild Pokemon on Route 29: the walk stops at the first battle
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!walkto(24, 14)
+!pace(21, 25, 14, 10, soft=True)
+waituntil32 {gMain+4} {BattleMainCB2+1} 1200 B wild_battle
+shot 03_shiny_wild.png
+expectbits32 {gEnemyParty+28} 0x40000000 0x40000000 wild_is_shiny
