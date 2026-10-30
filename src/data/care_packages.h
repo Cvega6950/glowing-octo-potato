@@ -136,7 +136,7 @@ static const u8 sCarePackageText0[] = _(
     "BERRY, ORAN, PECHA, ASPEAR, RAWST,\n"
     "PERSIM, SITRUS and LUM BERRIES,\p"
     "NUGGET, BIG and TINY MUSHROOMS, RED,\n"
-    "BLUE and GREEN SHARDS.");
+    "BLUE and GREEN SHARDS; and 71 TMs.");
 
 static const struct CarePackageItem sCarePackage1[] =
 {
@@ -179,7 +179,7 @@ static const u8 sCarePackageText1[] = _(
     "LUCKY EGG, IRON BALL, WIDE LENS,\n"
     "CHERI, CHESTO, LEPPA, SITRUS and\p"
     "LUM BERRIES, STARDUST, STAR PIECE,\n"
-    "MOON STONE, LINKING CORD.");
+    "MOON STONE, LINKING CORD; and 44 TMs.");
 
 static const struct CarePackageItem sCarePackage2[] =
 {
@@ -211,7 +211,8 @@ static const u8 sCarePackageText2[] = _(
     "×10 each: ULTRA BALL, REVIVE, PP MAX,\n"
     "HP UP, IRON, ZINC, HEALTH FEATHER,\p"
     "LIFE ORB, TERRAIN EXTENDER, LEEK,\n"
-    "PEARL, BIG PEARL, LEAF STONE.");
+    "PEARL, BIG PEARL, LEAF STONE; and 40\p"
+    "TMs.");
 
 static const struct CarePackageItem sCarePackage3[] =
 {
@@ -242,7 +243,7 @@ static const u8 sCarePackageText3[] = _(
     "CHOICE SCARF, ROCKY HELMET, SHUCA\n"
     "and ROSELI BERRIES, YELLOW SHARD,\p"
     "PRISM SCALE, FIRE, WATER, THUNDER and\n"
-    "SUN STONES.");
+    "SUN STONES; and 18 TMs.");
 
 static const struct CarePackageItem sCarePackage4[] =
 {
@@ -277,7 +278,7 @@ static const u8 sCarePackageText4[] = _(
     "BABIRI BERRIES, BIG NUGGET, DUSK and\n"
     "SHINY STONES, STRAWBERRY, BERRY,\p"
     "LOVE, STAR, CLOVER, FLOWER and\n"
-    "RIBBON SWEETS.");
+    "RIBBON SWEETS; and 5 TMs.");
 
 static const struct CarePackageItem sCarePackage5[] =
 {
@@ -296,7 +297,8 @@ static const u8 sCarePackageText5[] = _(
     "Inside: ULTRA BALL ×20,\n"
     "FULL HEAL ×20; ×10 each: MAX REVIVE,\p"
     "PP MAX, ELECTRIC SEED, SITRUS and\n"
-    "LUM BERRIES, DAWN and ICE STONES.");
+    "LUM BERRIES, DAWN and ICE STONES; and\p"
+    "3 TMs.");
 
 static const struct CarePackageItem sCarePackage6[] =
 {
@@ -335,7 +337,8 @@ static const u8 sCarePackageText6[] = _(
     "LUCKY PUNCH, METAL POWDER, RAZOR and\p"
     "QUICK CLAWS, LIECHI, SALAC and\n"
     "PETAYA BERRIES, HEART SCALE, RED,\p"
-    "YELLOW, PINK and PURPLE NECTARS.");
+    "YELLOW, PINK and PURPLE NECTARS; and\n"
+    "10 TMs.");
 
 static const struct CarePackageItem sCarePackage7[] =
 {
@@ -358,7 +361,8 @@ static const u8 sCarePackageText7[] = _(
     "ULTRA BALL ×20; ×10 each: MAX REVIVE,\p"
     "LIFE ORB, POWER HERB, X ACCURACY,\n"
     "DIRE HIT, GUARD SPEC., BINDING BAND,\p"
-    "GRIP CLAW, RAZOR FANG, METAL ALLOY.");
+    "GRIP CLAW, RAZOR FANG, METAL ALLOY;\n"
+    "and 5 TMs.");
 
 static const struct CarePackageItem sCarePackage8[] =
 {
@@ -371,7 +375,7 @@ static const struct CarePackageItem sCarePackage8[] =
 static const u8 sCarePackageText8[] = _(
     "Inside: FULL RESTORE ×20,\n"
     "ULTRA BALL ×20, MAX REVIVE ×10,\p"
-    "MAX ELIXIR ×10.");
+    "MAX ELIXIR ×10, and 2 TMs.");
 
 static const struct CarePackageItem sCarePackage9[] =
 {
@@ -721,6 +725,255 @@ static const struct CarePackage sCarePackages[] =
     {sCarePackage24, ARRAY_COUNT(sCarePackage24), sCarePackageIntroPlace6, sCarePackageText24},
     {sCarePackage25, ARRAY_COUNT(sCarePackage25), sCarePackageIntroPlace7, sCarePackageText25},
     {sCarePackage26, ARRAY_COUNT(sCarePackage26), sCarePackageIntroPlace8, sCarePackageText26},
+};
+
+// The TMs of the starting package (tier 0) and of the first eight milestones' (D48): the ones the
+// TM shops sell from that badge count on (tools/crystal_imperium/tm_list.py)
+static const u16 sCarePackageTMs0[] =
+{
+    ITEM_TM_FLIP_TURN,
+    ITEM_TM_ROAR,
+    ITEM_TM_TOXIC,
+    ITEM_TM_SNOWSCAPE,
+    ITEM_TM_HIDDEN_POWER,
+    ITEM_TM_SUNNY_DAY,
+    ITEM_TM_TAUNT,
+    ITEM_TM_BLIZZARD,
+    ITEM_TM_ELECTROWEB,
+    ITEM_TM_LIGHT_SCREEN,
+    ITEM_TM_PROTECT,
+    ITEM_TM_RAIN_DANCE,
+    ITEM_TM_ICY_WIND,
+    ITEM_TM_SOLAR_BEAM,
+    ITEM_TM_THUNDER,
+    ITEM_TM_REFLECT,
+    ITEM_TM_TELEPORT,
+    ITEM_TM_SANDSTORM,
+    ITEM_TM_FIRE_BLAST,
+    ITEM_TM_ROCK_TOMB,
+    ITEM_TM_AERIAL_ACE,
+    ITEM_TM_REST,
+    ITEM_TM_DRAINING_KISS,
+    ITEM_TM_THIEF,
+    ITEM_TM_LEECH_LIFE,
+    ITEM_TM_FOCUS_BLAST,
+    ITEM_TM_GRASSY_GLIDE,
+    ITEM_TM_POWER_UP_PUNCH,
+    ITEM_TM_CHARGE_BEAM,
+    ITEM_TM_WILL_O_WISP,
+    ITEM_TM_SILVER_WIND,
+    ITEM_TM_THUNDER_WAVE,
+    ITEM_TM_FLAME_CHARGE,
+    ITEM_TM_LOW_SWEEP,
+    ITEM_TM_SLEEP_TALK,
+    ITEM_TM_PLUCK,
+    ITEM_TM_DRAGON_TAIL,
+    ITEM_TM_TRAILBLAZE,
+    ITEM_TM_ACROBATICS,
+    ITEM_TM_BULLDOZE,
+    ITEM_TM_SNARL,
+    ITEM_TM_WORK_UP,
+    ITEM_TM_SMACK_DOWN,
+    ITEM_TM_BUG_BITE,
+    ITEM_TM_FIRE_FANG,
+    ITEM_TM_ICE_FANG,
+    ITEM_TM_THUNDER_FANG,
+    ITEM_TM_POISON_FANG,
+    ITEM_TM_KNOCK_OFF,
+    ITEM_TM_WATER_PULSE,
+    ITEM_TM_VACUUM_WAVE,
+    ITEM_TM_HAIL,
+    ITEM_TM_HYPER_BEAM,
+    ITEM_TM_SAFEGUARD,
+    ITEM_TM_DOUBLE_TEAM,
+    ITEM_TM_SHOCK_WAVE,
+    ITEM_TM_TORMENT,
+    ITEM_TM_ATTRACT,
+    ITEM_TM_SKILL_SWAP,
+    ITEM_TM_SNATCH,
+    ITEM_TM_FALSE_SWIPE,
+    ITEM_TM_BRINE,
+    ITEM_TM_ENDURE,
+    ITEM_TM_EMBARGO,
+    ITEM_TM_PAYBACK,
+    ITEM_TM_RECYCLE,
+    ITEM_TM_AVALANCHE,
+    ITEM_TM_PSYCH_UP,
+    ITEM_TM_CAPTIVATE,
+    ITEM_TM_NATURAL_GIFT,
+    ITEM_TM_SWAGGER,
+};
+
+static const u16 sCarePackageTMs1[] =
+{
+    ITEM_TM_BULLET_SEED,
+    ITEM_TM_GIGA_DRAIN,
+    ITEM_TM_RETURN,
+    ITEM_TM_BRICK_BREAK,
+    ITEM_TM_FACADE,
+    ITEM_TM_STEEL_WING,
+    ITEM_TM_RISING_VOLTAGE,
+    ITEM_TM_DRAIN_PUNCH,
+    ITEM_TM_VENOSHOCK,
+    ITEM_TM_SHADOW_CLAW,
+    ITEM_TM_DUAL_CHOP,
+    ITEM_TM_TRIPLE_AXEL,
+    ITEM_TM_GYRO_BALL,
+    ITEM_TM_ROCK_SLIDE,
+    ITEM_TM_GRASS_KNOT,
+    ITEM_TM_LOW_KICK,
+    ITEM_TM_U_TURN,
+    ITEM_TM_VOLT_SWITCH,
+    ITEM_TM_DUAL_WINGBEAT,
+    ITEM_TM_SCORCHING_SANDS,
+    ITEM_TM_HEAT_CRASH,
+    ITEM_TM_BODY_PRESS,
+    ITEM_TM_STOMPING_TANTRUM,
+    ITEM_TM_FIRE_PUNCH,
+    ITEM_TM_ICE_PUNCH,
+    ITEM_TM_THUNDER_PUNCH,
+    ITEM_TM_WEATHER_BALL,
+    ITEM_TM_AIR_SLASH,
+    ITEM_TM_HEX,
+    ITEM_TM_MYSTICAL_FIRE,
+    ITEM_TM_ROCK_BLAST,
+    ITEM_TM_PIN_MISSILE,
+    ITEM_TM_ICICLE_SPEAR,
+    ITEM_TM_TAIL_SLAP,
+    ITEM_TM_ARM_THRUST,
+    ITEM_TM_FOUL_PLAY,
+    ITEM_TM_STORED_POWER,
+    ITEM_TM_TEMPER_FLARE,
+    ITEM_TM_SCALE_SHOT,
+    ITEM_TM_PSYCHIC_NOISE,
+    ITEM_TM_HEAVY_SLAM,
+    ITEM_TM_FRUSTRATION,
+    ITEM_TM_SECRET_POWER,
+    ITEM_TM_FLING,
+};
+
+static const u16 sCarePackageTMs2[] =
+{
+    ITEM_TM_DRAGON_CLAW,
+    ITEM_TM_CALM_MIND,
+    ITEM_TM_BULK_UP,
+    ITEM_TM_DIG,
+    ITEM_TM_SHADOW_BALL,
+    ITEM_TM_DRAGON_DANCE,
+    ITEM_TM_DEFOG,
+    ITEM_TM_ROOST,
+    ITEM_TM_EXPANDING_FORCE,
+    ITEM_TM_DRAGON_PULSE,
+    ITEM_TM_DAZZLING_GLEAM,
+    ITEM_TM_ROCK_POLISH,
+    ITEM_TM_PSYSHOCK,
+    ITEM_TM_SWORDS_DANCE,
+    ITEM_TM_STEALTH_ROCK,
+    ITEM_TM_DARK_PULSE,
+    ITEM_TM_X_SCISSOR,
+    ITEM_TM_SCALD,
+    ITEM_TM_POISON_JAB,
+    ITEM_TM_SUBSTITUTE,
+    ITEM_TM_FLASH_CANNON,
+    ITEM_TM_TRICK_ROOM,
+    ITEM_TM_ICE_SPINNER,
+    ITEM_TM_PSYCHIC_FANGS,
+    ITEM_TM_IRON_HEAD,
+    ITEM_TM_LIQUIDATION,
+    ITEM_TM_DRILL_RUN,
+    ITEM_TM_BLAZE_KICK,
+    ITEM_TM_PAIN_SPLIT,
+    ITEM_TM_ZEN_HEADBUTT,
+    ITEM_TM_SEED_BOMB,
+    ITEM_TM_POWER_GEM,
+    ITEM_TM_IRON_DEFENSE,
+    ITEM_TM_NASTY_PLOT,
+    ITEM_TM_AURA_SPHERE,
+    ITEM_TM_TAILWIND,
+    ITEM_TM_BODY_SLAM,
+    ITEM_TM_ALLURING_VOICE,
+    ITEM_TM_SPIKES,
+    ITEM_TM_GRAVITY,
+};
+
+static const u16 sCarePackageTMs3[] =
+{
+    ITEM_TM_ICE_BEAM,
+    ITEM_TM_HYPER_VOICE,
+    ITEM_TM_THUNDERBOLT,
+    ITEM_TM_PSYCHIC,
+    ITEM_TM_FLAMETHROWER,
+    ITEM_TM_SLUDGE_BOMB,
+    ITEM_TM_ENERGY_BALL,
+    ITEM_TM_WILD_CHARGE,
+    ITEM_TM_LEAF_BLADE,
+    ITEM_TM_EARTH_POWER,
+    ITEM_TM_HEAT_WAVE,
+    ITEM_TM_HIGH_HORSEPOWER,
+    ITEM_TM_BUG_BUZZ,
+    ITEM_TM_PHANTOM_FORCE,
+    ITEM_TM_MOONBLAST,
+    ITEM_TM_PLAY_ROUGH,
+    ITEM_TM_SLUDGE_WAVE,
+    ITEM_TM_ROCK_CLIMB,
+};
+
+static const u16 sCarePackageTMs4[] =
+{
+    ITEM_TM_IRON_TAIL,
+    ITEM_TM_EARTHQUAKE,
+    ITEM_TM_STONE_EDGE,
+    ITEM_TM_SUPERCELL_SLAM,
+    ITEM_TM_DREAM_EATER,
+};
+
+static const u16 sCarePackageTMs5[] =
+{
+    ITEM_TM_POLTERGEIST,
+    ITEM_TM_HYDRO_PUMP,
+    ITEM_TM_HURRICANE,
+};
+
+static const u16 sCarePackageTMs6[] =
+{
+    ITEM_TM_SOLAR_BLADE,
+    ITEM_TM_METEOR_BEAM,
+    ITEM_TM_FUTURE_SIGHT,
+    ITEM_TM_SUPERPOWER,
+    ITEM_TM_BRAVE_BIRD,
+    ITEM_TM_POWER_WHIP,
+    ITEM_TM_FLARE_BLITZ,
+    ITEM_TM_GUNK_SHOT,
+    ITEM_TM_MEGAHORN,
+    ITEM_TM_CLOSE_COMBAT,
+};
+
+static const u16 sCarePackageTMs7[] =
+{
+    ITEM_TM_FOCUS_PUNCH,
+    ITEM_TM_OVERHEAT,
+    ITEM_TM_DRACO_METEOR,
+    ITEM_TM_STEEL_BEAM,
+    ITEM_TM_GIGA_IMPACT,
+};
+
+static const u16 sCarePackageTMs8[] =
+{
+    ITEM_TM_EXPLOSION,
+    ITEM_TM_MISTY_EXPLOSION,
+};
+
+static const struct CarePackageTMs sCarePackageTMs[] =
+{
+    {sCarePackageTMs0, ARRAY_COUNT(sCarePackageTMs0)},
+    {sCarePackageTMs1, ARRAY_COUNT(sCarePackageTMs1)},
+    {sCarePackageTMs2, ARRAY_COUNT(sCarePackageTMs2)},
+    {sCarePackageTMs3, ARRAY_COUNT(sCarePackageTMs3)},
+    {sCarePackageTMs4, ARRAY_COUNT(sCarePackageTMs4)},
+    {sCarePackageTMs5, ARRAY_COUNT(sCarePackageTMs5)},
+    {sCarePackageTMs6, ARRAY_COUNT(sCarePackageTMs6)},
+    {sCarePackageTMs7, ARRAY_COUNT(sCarePackageTMs7)},
+    {sCarePackageTMs8, ARRAY_COUNT(sCarePackageTMs8)},
 };
 
 // Where each location package waits, and the milestones by which the player is past it

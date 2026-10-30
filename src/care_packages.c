@@ -8,6 +8,7 @@
 #include "fieldmap.h"
 #include "item.h"
 #include "script.h"
+#include "string_util.h"
 #include "constants/care_packages.h"
 #include "constants/flags.h"
 #include "constants/item.h"
@@ -35,11 +36,18 @@ struct CarePackagePlace
     u8 pastAtMilestones;
 };
 
+struct CarePackageTMs
+{
+    const u16 *tms;
+    u16 count;
+};
+
 #include "data/care_packages.h"
 
 // Package 0 is the starting one, 1-CARE_PACKAGE_COUNT the milestone ones, then the location ones
 #define FIRST_PLACE_PACKAGE (CARE_PACKAGE_COUNT + 1)
 STATIC_ASSERT(ARRAY_COUNT(sCarePackages) == FIRST_PLACE_PACKAGE + ARRAY_COUNT(sCarePackagePlaces), CarePackageCount);
+STATIC_ASSERT(ARRAY_COUNT(sCarePackageTMs) == CARE_PACKAGE_TM_TIERS && CARE_PACKAGE_TM_TIERS <= CARE_PACKAGE_COUNT + 1, CarePackageTMTiers);
 
 // VAR_CARE_PACKAGE_PLACES: a bit for each location package in sCarePackagePlaces' order, and one
 // for the starting package (set since 0.12.0-experimental, whose starting package was smaller)
@@ -93,6 +101,58 @@ enum ItemDestination AddItemToBagOrPC(u16 itemId, u16 quantity)
     return ITEM_NOWHERE;
 }
 
+// The TM tiers due (D48): tier 0 with the starting package, tier k with the k-th milestone package
+static u32 CarePackageTMTiersDue(void)
+{
+    u32 due;
+
+    if (!FlagGet(FLAG_RECEIVED_STARTING_CARE_PACKAGE))
+        return 0;
+    due = VarGet(VAR_CARE_PACKAGES) + 1;
+    return due < CARE_PACKAGE_TM_TIERS ? due : CARE_PACKAGE_TM_TIERS;
+}
+
+// The machines in the TM case and the items in the PC, a bit each, from one pass over each (as the
+// TM shops find the TMs the player has, src/shop.c)
+static void FindOwnedTMs(u32 *owned)
+{
+    u32 i;
+
+    memset(owned, 0, sizeof(u32) * ((ITEMS_COUNT + 31) / 32));
+    for (i = 0; i < gBagPockets[POCKET_TM_HM].capacity; i++)
+    {
+        struct ItemSlot slot = GetBagItemIdAndQuantity(POCKET_TM_HM, i);
+
+        if (slot.itemId != ITEM_NONE && slot.itemId < ITEMS_COUNT && slot.quantity != 0)
+            owned[slot.itemId / 32] |= 1u << (slot.itemId % 32);
+    }
+    for (i = 0; i < PC_ITEMS_COUNT; i++)
+    {
+        u16 itemId = gSaveBlock1Ptr->pcItems[i].itemId;
+
+        if (itemId != ITEM_NONE && itemId < ITEMS_COUNT && gSaveBlock1Ptr->pcItems[i].quantity != 0)
+            owned[itemId / 32] |= 1u << (itemId % 32);
+    }
+}
+
+// Gives a tier's TMs and returns how many: a TM the player has already isn't given again while TMs
+// are reusable (INFINITE TMS: GetItemImportance); with INFINITE TMS off, a TM is used up by teaching
+static u32 GiveCarePackageTMs(u32 tier, const u32 *owned)
+{
+    u32 i, given = 0;
+
+    for (i = 0; i < sCarePackageTMs[tier].count; i++)
+    {
+        u16 tm = sCarePackageTMs[tier].tms[i];
+
+        if (GetItemImportance(tm) && (owned[tm / 32] & (1u << (tm % 32))))
+            continue;
+        if (AddItemToBagOrPC(tm, 1) != ITEM_NOWHERE)
+            given++;
+    }
+    return given;
+}
+
 static bool32 StartCarePackage(u32 package, u32 kind)
 {
     gSpecialVar_0x8004 = package;
@@ -105,7 +165,8 @@ static bool32 StartCarePackage(u32 package, u32 kind)
 // on a route or in a town (like Mom's gift calls): first the rest of one that stopped, then the
 // starting package once the player has a Pokemon, then each location package the player is past,
 // then, for a save from before 0.12.0, each milestone package it received again with its 0.12.0
-// contents, then one per milestone reached. (VAR_CARE_PACKAGE_GEAR and VAR_CARE_PACKAGE_BULK, the
+// contents, then, for a save from before 0.15.1, the TMs of the packages it received (D48), then one
+// per milestone reached. (VAR_CARE_PACKAGE_GEAR and VAR_CARE_PACKAGE_BULK, the
 // catch-ups of earlier releases, are kept level with VAR_CARE_PACKAGES but no longer read: the
 // 0.12.0 contents hold everything those brought.)
 bool32 TryStartCarePackageScript(void)
@@ -141,6 +202,8 @@ bool32 TryStartCarePackageScript(void)
         return FALSE;
     if (updated < received && updated < CARE_PACKAGE_COUNT)
         return StartCarePackage(updated + 1, CARE_PACKAGE_UPDATE);
+    if (VarGet(VAR_CARE_PACKAGE_TMS) < CarePackageTMTiersDue())
+        return StartCarePackage(0, CARE_PACKAGE_TMS);
     if (received < CARE_PACKAGE_COUNT && received < milestones)
         return StartCarePackage(received + 1, CARE_PACKAGE_NEW);
     return FALSE;
@@ -202,6 +265,16 @@ void CarePackage_GiveItems(struct ScriptContext *ctx)
 
     VarSet(VAR_CARE_PACKAGE_RESUME, 0);
     sStoppedOnMap = 0;
+    // A new starting or milestone package brings its TMs (D48) once the earlier tiers are in (a save
+    // from before 0.15.1 gets those first, CARE_PACKAGE_TMS); an update or a location package brings none
+    if (!update && package < CARE_PACKAGE_TM_TIERS && VarGet(VAR_CARE_PACKAGE_TMS) == package)
+    {
+        u32 owned[(ITEMS_COUNT + 31) / 32];
+
+        FindOwnedTMs(owned);
+        GiveCarePackageTMs(package, owned);
+        VarSet(VAR_CARE_PACKAGE_TMS, package + 1);
+    }
     if (package == 0)
     {
         FlagSet(FLAG_RECEIVED_STARTING_CARE_PACKAGE);
@@ -223,4 +296,20 @@ void CarePackage_GiveItems(struct ScriptContext *ctx)
         VarSet(VAR_CARE_PACKAGE_BULK, package);
     }
     gSpecialVar_Result = TRUE;
+}
+
+// callnative: the TMs of the packages a save from before 0.15.1 had received (D48), every tier due at
+// once. VAR_RESULT and STR_VAR_1: how many TMs it gave (0 when the player had them all).
+void CarePackage_GiveTMs(struct ScriptContext *ctx)
+{
+    u32 owned[(ITEMS_COUNT + 31) / 32];
+    u32 tier, due = CarePackageTMTiersDue(), given = 0;
+
+    FindOwnedTMs(owned);
+    for (tier = VarGet(VAR_CARE_PACKAGE_TMS); tier < due; tier++)
+        given += GiveCarePackageTMs(tier, owned);
+    if (VarGet(VAR_CARE_PACKAGE_TMS) < due)
+        VarSet(VAR_CARE_PACKAGE_TMS, due);
+    ConvertIntToDecimalStringN(gStringVar1, given, STR_CONV_MODE_LEFT_ALIGN, 3);
+    gSpecialVar_Result = given;
 }

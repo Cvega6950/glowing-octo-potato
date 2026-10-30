@@ -126,7 +126,7 @@
 // --- include/config/save.h currently has FREE_MYSTERY_GIFT TRUE, so nothing
 // --- writes these. Turning Mystery Gift back on zeroes all 8 on gift clear.
 #define VAR_UNUSED_HNS_0x40DD                           0x40DD // Emerald VAR_GIFT_PICHU_SLOT - also used by data/scripts/gift_pichu.inc (wonder card script, not reachable)
-#define VAR_UNUSED_HNS_0x40DE                           0x40DE // Emerald VAR_GIFT_UNUSED_1
+#define VAR_CARE_PACKAGE_TMS                            0x40DE // Crystal Imperium: the TM tiers the care packages have brought, 0-9 (was Emerald VAR_GIFT_UNUSED_1: only ClearMysteryGiftVars writes it, and that is compiled out)
 #define VAR_UNUSED_HNS_0x40DF                           0x40DF // Emerald VAR_GIFT_UNUSED_2
 #define VAR_UNUSED_HNS_0x40E0                           0x40E0 // Emerald VAR_GIFT_UNUSED_3
 #define VAR_UNUSED_HNS_0x40E1                           0x40E1 // Emerald VAR_GIFT_UNUSED_4

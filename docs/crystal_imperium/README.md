@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.15.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.15.1-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI and fights at your level, every boss from the rival to Red, rematches and
 > postgame included, has an Imperium-style team with all of its Pokémon at the level cap, Ace
@@ -94,12 +94,13 @@ From the first step of a new game:
   RUN buttons, a move box with types, PP and effectiveness) and a Black/White-style summary
   screen (A on the skills page shows IVs and EVs).
 - **Emerald Imperium's TMs:** 198 reusable TMs. TM01–TM172 are Imperium's list in its order
-  (without its two custom moves), TM173–TM198 the Heart & Soul TMs Imperium doesn't have. Every
-  TM costs ¥100, Imperium's price. **Every Poké Mart has a TM clerk** next to its clerk, and
-  their stock grows with every badge: 71 TMs with none, 115 with one, 155 with two, 173 with
-  three (Ice Beam, Thunderbolt, Flamethrower), up to all 198 with eight. The Goldenrod Dept.
-  Store 5F sells the same. With the first badge, the Violet City Mart's clerk also gives four TMs
-  for free, once. The lists leave out the TMs you already have, so only new ones are there.
+  (without its two custom moves), TM173–TM198 the Heart & Soul TMs Imperium doesn't have.
+  **The care packages bring them, free:** the starting package the 71 with status moves and
+  moves under 70 power, then each Johto badge's package the next ones (44 with the first, 40
+  with the second, 18 with the third: Ice Beam, Thunderbolt, Flamethrower...), all 198 by the
+  eighth. Every Poké Mart still has a TM clerk (¥100 a TM, Imperium's price) whose stock grows
+  with every badge in the same steps, for anything you're missing or, with INFINITE TMS off,
+  for more copies; its list leaves out the TMs you already have.
 - **Emerald Imperium's evolutions**, from its official dex: trade evolutions also take a Linking
   Cord, regional forms come by time of day or an item anywhere (a Shiny Stone makes Alolan Raichu,
   Quilava at 36 at night becomes Hisuian Typhlosion), friendship and special methods became
@@ -120,8 +121,9 @@ From the first step of a new game:
   Imperium's (that is, Radical Red's): 10 of nearly every held item, Berry, booster and evolution
   item, and big stacks (50 Heal Balls after the first badge, 153 Ability Capsules and 153
   Ability Patches after the second, 50 Dream Balls and the Choice items after the third, 153 PP
-  Max after the sixth, 100 Beast Balls for the Champion). Each package lists what's inside; if a
-  Bag pocket is full, the rest goes to your PC, and if the PC is full too, the package waits.
+  Max after the sixth, 100 Beast Balls for the Champion), and the TMs (above). Each package
+  lists what's inside; if a Bag pocket is full, the rest goes to your PC, and if the PC is full
+  too, the package waits.
 - **Mega Evolution** (47 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F, or
   all at once with the MEGA code).
 - **Emerald Imperium's cheat codes** at the NES in your room: turn it on, answer YES to "Enter a

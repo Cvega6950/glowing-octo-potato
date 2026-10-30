@@ -26,6 +26,13 @@ font widths (runs of three or more items with the same quantity read "×10 each:
 src/care_packages.c adds the items. One whose Bag pocket is full goes to the PC; if the PC is full
 too, the package stops there and the rest arrives on another map (VAR_CARE_PACKAGE_RESUME).
 
+The TMs come in the packages too (DECISIONS.md D48): the starting package brings every TM the TM
+shops sell from the start, and the milestone package of the k-th badge (k = 1-8) the ones they sell
+from k badges on (tm_list.py's tiers), so there is nothing to buy. A TM the player has already, while
+TMs are reusable (INFINITE TMS), isn't given twice. A save that received packages before 0.15.1
+gets their TMs in one go on a step outside (CARE_PACKAGE_TMS; VAR_CARE_PACKAGE_TMS counts the tiers
+that have arrived).
+
 Saves from before 0.12.0 received smaller milestone packages (a few of each item; before 0.7.0
 only Poke Balls, healing and evolution items). VAR_CARE_PACKAGE_IMPERIUM counts the packages whose
 0.12.0 contents have arrived: while it is behind VAR_CARE_PACKAGES, the next step brings the next of
@@ -37,6 +44,9 @@ import argparse
 import os
 import re
 import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import tm_list  # noqa: E402  (the TMs and the badge count the shops sell each from)
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 HEADER_FILE = os.path.join(ROOT, "src", "data", "care_packages.h")
@@ -180,6 +190,10 @@ MESSAGES = {
     "CarePackage_Text_SentToPC": ["Your BAG was full, so some of it", "was sent to your PC."],
     "CarePackage_Text_Full": ["Your BAG and PC are full!", "PROF. ELM will send the rest",
                               "once you make room."],
+    "CarePackage_Text_TMs": ["PROF. ELM sent the TMs that go", "with your earlier care packages:",
+                             "{STR_VAR_1} TMs went into your", "TM CASE!"],
+    "CarePackage_Text_TMsHad": ["PROF. ELM sent the TMs that go", "with your earlier care packages,",
+                                "but you had them all already!"],
 }
 
 SCRIPT = """\
@@ -187,13 +201,14 @@ SCRIPT = """\
 @ Crystal Imperium: care packages from PROF. ELM (DECISIONS.md D16). src/care_packages.c starts
 @ EventScript_CarePackage on a step, with VAR_0x8004 = the package (0: the start, 1-17: the
 @ milestones, then the location packages) and VAR_0x8006 = CARE_PACKAGE_NEW, _UPDATE (a save from
-@ before 0.12.0 gets an earlier package's new contents) or _RESUME (the rest of a package that
-@ stopped because the BAG and PC were full). The contents and their messages are in
-@ src/data/care_packages.h.
+@ before 0.12.0 gets an earlier package's new contents), _RESUME (the rest of a package that
+@ stopped because the BAG and PC were full) or _TMS (the TMs of the packages a save from before
+@ 0.15.1 had received, D48). The contents and their messages are in src/data/care_packages.h.
 EventScript_CarePackage::
 	lockall
 	playse SE_EXP_MAX
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_RESUME, CarePackage_Resume
+	goto_if_eq VAR_0x8006, CARE_PACKAGE_TMS, CarePackage_TMs
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_UPDATE, CarePackage_Update
 	callnative CarePackage_LoadIntroText
 	callstd MSGBOX_DEFAULT
@@ -223,7 +238,29 @@ CarePackage_CheckFull:
 CarePackage_End:
 	releaseall
 	end
+
+CarePackage_TMs:
+	callnative CarePackage_GiveTMs
+	goto_if_eq VAR_RESULT, 0, CarePackage_TMsHad
+	playfanfare MUS_OBTAIN_TMHM
+	msgbox CarePackage_Text_TMs, MSGBOX_DEFAULT
+	waitfanfare
+	goto CarePackage_End
+
+CarePackage_TMsHad:
+	msgbox CarePackage_Text_TMsHad, MSGBOX_DEFAULT
+	goto CarePackage_End
 """
+
+
+def tm_tiers():
+    """The TMs each package brings (D48): tier 0 with the starting package, tier k with the k-th
+    milestone's, the ones the TM shops sell from k badges on (tm_list.badges_needed)."""
+    moves_info = tm_list.read("src/data/moves_info.h")
+    tiers = [[] for _ in range(tm_list.MAX_BADGES + 1)]
+    for move in tm_list.TMS:
+        tiers[tm_list.badges_needed(moves_info, move)].append(move)
+    return tiers
 
 
 def all_packages():
@@ -307,9 +344,10 @@ def list_phrases(run, names):
     return phrases
 
 
-def contents_words(items, names):
+def contents_words(items, names, tms=0):
     """The package's contents as one sentence, in words to wrap: a run of three or more items with the
-    same quantity reads "×10 each: A, B, C"; other items "A ×10" (or just "A" when there is one)."""
+    same quantity reads "×10 each: A, B, C"; other items "A ×10" (or just "A" when there is one); the
+    package's TMs, if any, come last ("and 71 TMs")."""
     runs = []
     for item, n in items:
         if runs and runs[-1][0] == n:
@@ -322,6 +360,8 @@ def contents_words(items, names):
             parts.append((f"×{n} each:", list_phrases(run, names)))
         else:
             parts += [(None, [[names["ITEM_" + item] + (f" ×{n}" if n > 1 else "")]]) for item in run]
+    if tms:
+        parts.append((None, [["and", str(tms), "TMs"]]))
     words = ["Inside:"]
     for i, (lead, phrases) in enumerate(parts):
         last = i == len(parts) - 1
@@ -362,7 +402,7 @@ def c_string(lines):
 def message_lines(lines, widths):
     out = []
     for i, line in enumerate(lines):
-        if text_width(line.replace("{PKMN}", "PK"), widths) > LINE_WIDTH:
+        if text_width(line.replace("{PKMN}", "PK").replace("{STR_VAR_1}", "000"), widths) > LINE_WIDTH:
             sys.exit(f"message line too wide: {line}")
         end = "$" if i == len(lines) - 1 else ("\\n" if i % 2 == 0 else "\\p")
         out.append(f'\t.string "{line}{end}"')
@@ -391,6 +431,10 @@ def check(data):
     for place, name, past, items in PLACES:
         if not 1 <= past <= 17:
             sys.exit(f"{place}: past at {past} milestones")
+    tiers = tm_tiers()
+    # src/care_packages.c: CARE_PACKAGE_TM_TIERS, the starting package and the first eight milestones
+    if len(tiers) != 9 or sum(len(t) for t in tiers) != len(tm_list.TMS) or not all(tiers):
+        sys.exit("the TMs need nine tiers, every TM in one")
 
 
 def c_text(name, lines):
@@ -418,16 +462,29 @@ def render_header(data, widths):
         out += c_text(f"sCarePackageIntroPlace{k}", intro_lines("place", widths, name))
     intros = (["sCarePackageIntroStart"] + ["sCarePackageIntroMilestone"] * (len(PACKAGES) - 1) +
               [f"sCarePackageIntroPlace{k}" for k in range(len(PLACES))])
+    tiers = tm_tiers()
     for k, items in enumerate(all_packages()):
         out.append(f"static const struct CarePackageItem sCarePackage{k}[] =")
         out.append("{")
         out += [f"    {{ITEM_{item}, {n}}}," for item, n in items]
         out += ["};", ""]
-        out += c_text(f"sCarePackageText{k}", wrap(contents_words(items, names), widths))
+        tms = len(tiers[k]) if k < len(tiers) else 0
+        out += c_text(f"sCarePackageText{k}", wrap(contents_words(items, names, tms), widths))
     out.append("static const struct CarePackage sCarePackages[] =")
     out.append("{")
     out += [f"    {{sCarePackage{k}, ARRAY_COUNT(sCarePackage{k}), {intros[k]}, sCarePackageText{k}}},"
             for k in range(len(all_packages()))]
+    out += ["};", ""]
+    out.append("// The TMs of the starting package (tier 0) and of the first eight milestones' (D48): the ones the")
+    out.append("// TM shops sell from that badge count on (tools/crystal_imperium/tm_list.py)")
+    for k, tier in enumerate(tiers):
+        out.append(f"static const u16 sCarePackageTMs{k}[] =")
+        out.append("{")
+        out += [f"    ITEM_TM_{move}," for move in tier]
+        out += ["};", ""]
+    out.append("static const struct CarePackageTMs sCarePackageTMs[] =")
+    out.append("{")
+    out += [f"    {{sCarePackageTMs{k}, ARRAY_COUNT(sCarePackageTMs{k})}}," for k in range(len(tiers))]
     out += ["};", ""]
     out.append("// Where each location package waits, and the milestones by which the player is past it")
     out.append("static const struct CarePackagePlace sCarePackagePlaces[] =")

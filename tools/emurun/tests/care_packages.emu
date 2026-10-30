@@ -5,7 +5,8 @@
 # Charm; then one after each milestone: every Gym Badge and becoming Champion (VAR_CARE_PACKAGES
 # counts those). The badges and the Champion flag are set with the debug menu here; the delivery is
 # the real game code. Contents: tools/crystal_imperium/care_packages.py. The location packages are
-# tested by care_packages_start.
+# tested by care_packages_start. Since 0.15.1 the starting package and the first eight milestone
+# packages bring the TMs too (D48): the ones the TM shops sell from the start, then from k badges on.
 !new_game(place_packages=True)
 # The debug menu's Give Pokemon sets FLAG_SYS_POKEMON_GET, like receiving the starter
 !give_mon(155, 5)
@@ -32,6 +33,10 @@ mash A 2400
 !expect_bag_quantity("items", "ITEM_FAIRY_FEATHER", 10, "ten_fairy_feathers")
 !expect_bag_quantity("berries", "ITEM_OCCA_BERRY", 10, "ten_occa_berries")
 !expect_bag_quantity("medicine", "ITEM_REVIVE", 10, "ten_revives")
+# The TMs the shops sell from the start (Flip Turn), not the 1st badge's (Giga Drain)
+!expect_bag_has("TMsHMs", "ITEM_TM_FLIP_TURN", "starting_package_tm")
+!expect_bag_lacks("TMsHMs", "ITEM_TM_GIGA_DRAIN", "no_first_badge_tm_yet")
+!expect_var("VAR_CARE_PACKAGE_TMS", 1, "tm_tier_0_arrived")
 # No milestone, no more (and the player ends on (34, 11), so care_package_steps' first step moves)
 !walkto(34, 11)
 !expect_var("VAR_CARE_PACKAGES", 0, "no_package_without_milestones")
@@ -43,6 +48,17 @@ savestate started.ss
 shot 03_after_badge_packages.png
 !expect_var("VAR_CARE_PACKAGES", 8, "eight_badge_packages")
 !expect_var("VAR_CARE_PACKAGE_IMPERIUM", 8, "new_game_contents_keep_up")
+# Every TM by the 8th badge: Giga Drain (1st), Calm Mind (2nd), Ice Beam (3rd), Earthquake (4th),
+# Hydro Pump (5th), Solar Blade (6th), Focus Punch (7th), Explosion (8th)
+!expect_var("VAR_CARE_PACKAGE_TMS", 9, "all_tm_tiers")
+!expect_bag_has("TMsHMs", "ITEM_TM_GIGA_DRAIN", "tm_badge_1")
+!expect_bag_has("TMsHMs", "ITEM_TM_CALM_MIND", "tm_badge_2")
+!expect_bag_has("TMsHMs", "ITEM_TM_ICE_BEAM", "tm_badge_3")
+!expect_bag_has("TMsHMs", "ITEM_TM_EARTHQUAKE", "tm_badge_4")
+!expect_bag_has("TMsHMs", "ITEM_TM_HYDRO_PUMP", "tm_badge_5")
+!expect_bag_has("TMsHMs", "ITEM_TM_SOLAR_BLADE", "tm_badge_6")
+!expect_bag_has("TMsHMs", "ITEM_TM_FOCUS_PUNCH", "tm_badge_7")
+!expect_bag_has("TMsHMs", "ITEM_TM_EXPLOSION", "tm_badge_8")
 # Radical Red's big stacks
 !expect_bag_quantity("pokeBalls", "ITEM_HEAL_BALL", 50, "fifty_heal_balls")
 !expect_bag_quantity("pokeBalls", "ITEM_DREAM_BALL", 50, "fifty_dream_balls")
@@ -166,6 +182,11 @@ mash A 2400
 !expect_var("VAR_CARE_PACKAGE_IMPERIUM", 3, "old_save_all_three_updated")
 !expect_bag_quantity("items", "ITEM_ABILITY_CAPSULE", 153, "old_save_ability_capsules")
 !expect_bag_quantity("pokeBalls", "ITEM_DREAM_BALL", 50, "old_save_dream_balls")
+# Then the TMs of the three badge packages it had (D48), all at once
+!expect_var("VAR_CARE_PACKAGE_TMS", 1, "old_save_starting_tms_only")
+!care_package_steps(1)
+!expect_var("VAR_CARE_PACKAGE_TMS", 4, "old_save_badge_tms")
+!expect_bag_has("TMsHMs", "ITEM_TM_ICE_BEAM", "old_save_third_badge_tm")
 !walkto(33, 11)
 !walkto(34, 11)
 !expect_var("VAR_CARE_PACKAGES", 3, "old_save_nothing_more")
@@ -174,3 +195,29 @@ mash A 2400
 !expect_var("VAR_CARE_PACKAGES", 4, "old_save_fourth_badge_package")
 !expect_var("VAR_CARE_PACKAGE_IMPERIUM", 4, "old_save_fourth_badge_package_counted")
 !expect_bag_quantity("items", "ITEM_SMOKE_BALL", 10, "old_save_fourth_package_contents")
+
+# A save from 0.12.0 to 0.15.0 with the starting package and three badge packages: its next step
+# outside brings their TMs in one go (tiers 0-3: Flip Turn to Thunderbolt), none of the 4th badge's
+loadstate route29.ss
+!set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE")
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_var("VAR_CARE_PACKAGES", 3)
+!set_var("VAR_CARE_PACKAGE_IMPERIUM", 3)
+!expect_var("VAR_CARE_PACKAGE_TMS", 0, "earlier_save_no_tm_tiers")
+!walkto(33, 11, soft=True)
+wait 150
+press A
+wait 120
+shot 08_tm_catch_up.png
+mash A 600
+!expect_var("VAR_CARE_PACKAGE_TMS", 4, "earlier_save_tm_tiers_0_to_3")
+!expect_var("VAR_CARE_PACKAGES", 3, "earlier_save_no_new_package")
+!expect_bag_has("TMsHMs", "ITEM_TM_FLIP_TURN", "earlier_save_tier_0")
+!expect_bag_has("TMsHMs", "ITEM_TM_GIGA_DRAIN", "earlier_save_tier_1")
+!expect_bag_has("TMsHMs", "ITEM_TM_CALM_MIND", "earlier_save_tier_2")
+!expect_bag_has("TMsHMs", "ITEM_TM_THUNDERBOLT", "earlier_save_tier_3")
+!expect_bag_lacks("TMsHMs", "ITEM_TM_EARTHQUAKE", "earlier_save_not_tier_4")
+!walkto(34, 11)
+!expect_var("VAR_CARE_PACKAGE_TMS", 4, "earlier_save_tms_once")

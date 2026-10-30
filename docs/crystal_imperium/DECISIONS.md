@@ -1892,3 +1892,38 @@ follows is the first build's; D45 lists what changed.)
   and a result), `ace_sight` (Kaito sees the player at the end of Route 29, walks up,
   battles, and stays beaten), `ace_sight_town` (the first step out of Cherrygrove onto Route 29
   is in his line), `trainer_levels` (Grunt 15's Raticate battles with 255), `validate.py`.
+
+## D48. The TMs come in the care packages
+
+- The user: "I also want to buy the tms just give them to me at milestones along with the care
+  packages" (read as: not to buy them, but to get them at the milestones with the care packages).
+- **What.** The packages carry the TMs the TM shops sell (D36), in the same steps: the starting
+  package the 71 sold from the start (status moves, moves under 70 power and Heart & Soul's own
+  5F stock), then the package of the k-th milestone the TMs the shops add at k badges: 44 with the
+  first (multi-hit, variable-power and 70–79 power), 40 with the second (strong setup and
+  hazards, 80–89), 18 with the third (90–99: Ice Beam, Thunderbolt, Flamethrower), 5, 3, 10 and 5
+  with the fourth to seventh, and Explosion and Misty Explosion with the eighth. All 198 by the
+  eighth badge; the Champion's and the Kanto packages bring none. Each package's message ends
+  "and 71 TMs". The tiers are `tm_list.py`'s (`badges_needed`), so the packages and the shops can't
+  disagree.
+- A TM the player has already (bought, found or given by a Gym Leader) isn't given again while TMs
+  are reusable (INFINITE TMS, on by default). With INFINITE TMS off, where teaching uses a TM up,
+  the package gives one of each regardless. The TM clerks stay: they list only the TMs the player
+  doesn't have (D43), so with the packages their lists are empty or short, and with INFINITE TMS
+  off they sell more copies.
+- **Saves from before 0.15.1.** `VAR_CARE_PACKAGE_TMS` (0x40DE, Emerald's `VAR_GIFT_UNUSED_1`: its
+  only writer, `ClearMysteryGiftVars`, is compiled out with `FREE_MYSTERY_GIFT`) counts the tiers
+  that have arrived. A save that received packages earlier gets all their TMs at once on its next
+  step on a route or in a town ("PROF. ELM sent the TMs that go with your earlier care packages:
+  173 TMs went into your TM CASE!" for a save with three badges), after any catch-up of the
+  pre-0.12.0 contents and before the next new package. A package's TMs come at its end, so a
+  package that stopped with the Bag and PC full brings them when its rest arrives.
+- **How.** `tools/crystal_imperium/care_packages.py` writes the tiers into
+  `src/data/care_packages.h` (`sCarePackageTMs`) and the catch-up's messages into
+  `data/scripts/care_packages.inc` (`CARE_PACKAGE_TMS`); `src/care_packages.c` gives them, finding
+  the TMs the player has with one pass over the TM case and the PC, as the shops do.
+- Evidence: `care_packages` (Flip Turn and no Giga Drain after the starting package; every tier's
+  TM, Giga Drain to Explosion, after eight badges; a pre-0.12.0 save gets its three badges' TMs
+  after the bigger packages; a 0.12.0–0.15.0 save with three badges gets 173 TMs in one message,
+  none of the fourth badge's, and only once), `tm_clerks`, `tm_shop`, `tm_shop_owned`, `tm_clerk`,
+  `tm_case`, `tm_reusable`, `relearner_training_kit`, `story_opening` and the whole suite.

@@ -1,5 +1,20 @@
 # Crystal Imperium changelog
 
+## 0.15.1-experimental (2026-10-30)
+
+### The TMs come in the care packages (DECISIONS.md D48)
+- No more buying TMs: the starting care package brings the 71 TMs the shops sell from the start,
+  and each Johto badge's package the ones the shops add with it (44 with the first, 40 with the
+  second, 18 with the third: Ice Beam, Thunderbolt, Flamethrower...), all 198 by the eighth. A TM
+  you have already isn't given twice.
+- A save from an earlier version gets the TMs of the packages it already received, all at once, on
+  its next step outside.
+- The TM clerks stay, for anything missing (and, with INFINITE TMS off, more copies).
+
+### Tools
+- `tools/crystal_imperium/care_packages.py` takes the TM tiers from `tm_list.py`; `tools/emurun`'s
+  `no_care_packages()` marks the TMs as received too.
+
 ## 0.15.0-experimental (2026-10-30)
 
 ### Emerald Imperium's evolutions (DECISIONS.md D44, D45)

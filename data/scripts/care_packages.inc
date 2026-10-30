@@ -2,13 +2,14 @@
 @ Crystal Imperium: care packages from PROF. ELM (DECISIONS.md D16). src/care_packages.c starts
 @ EventScript_CarePackage on a step, with VAR_0x8004 = the package (0: the start, 1-17: the
 @ milestones, then the location packages) and VAR_0x8006 = CARE_PACKAGE_NEW, _UPDATE (a save from
-@ before 0.12.0 gets an earlier package's new contents) or _RESUME (the rest of a package that
-@ stopped because the BAG and PC were full). The contents and their messages are in
-@ src/data/care_packages.h.
+@ before 0.12.0 gets an earlier package's new contents), _RESUME (the rest of a package that
+@ stopped because the BAG and PC were full) or _TMS (the TMs of the packages a save from before
+@ 0.15.1 had received, D48). The contents and their messages are in src/data/care_packages.h.
 EventScript_CarePackage::
 	lockall
 	playse SE_EXP_MAX
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_RESUME, CarePackage_Resume
+	goto_if_eq VAR_0x8006, CARE_PACKAGE_TMS, CarePackage_TMs
 	goto_if_eq VAR_0x8006, CARE_PACKAGE_UPDATE, CarePackage_Update
 	callnative CarePackage_LoadIntroText
 	callstd MSGBOX_DEFAULT
@@ -39,6 +40,18 @@ CarePackage_End:
 	releaseall
 	end
 
+CarePackage_TMs:
+	callnative CarePackage_GiveTMs
+	goto_if_eq VAR_RESULT, 0, CarePackage_TMsHad
+	playfanfare MUS_OBTAIN_TMHM
+	msgbox CarePackage_Text_TMs, MSGBOX_DEFAULT
+	waitfanfare
+	goto CarePackage_End
+
+CarePackage_TMsHad:
+	msgbox CarePackage_Text_TMsHad, MSGBOX_DEFAULT
+	goto CarePackage_End
+
 CarePackage_Text_Champion:
 	.string "PROF. ELM: Congratulations,\n"
 	.string "CHAMPION!\p"
@@ -61,3 +74,14 @@ CarePackage_Text_Full:
 	.string "Your BAG and PC are full!\n"
 	.string "PROF. ELM will send the rest\p"
 	.string "once you make room.$"
+
+CarePackage_Text_TMs:
+	.string "PROF. ELM sent the TMs that go\n"
+	.string "with your earlier care packages:\p"
+	.string "{STR_VAR_1} TMs went into your\n"
+	.string "TM CASE!$"
+
+CarePackage_Text_TMsHad:
+	.string "PROF. ELM sent the TMs that go\n"
+	.string "with your earlier care packages,\p"
+	.string "but you had them all already!$"

@@ -538,11 +538,12 @@ def set_var(var, value):
 
 def no_care_packages():
     """Mark every care package as received (the starting one, the location ones and the 17
-    milestone packages, with the catch-up counters of earlier releases), so none arrives during the
-    test."""
+    milestone packages, with the catch-up counters of earlier releases and the TMs' nine tiers, D48),
+    so none arrives during the test."""
     return (set_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE") + set_var("VAR_CARE_PACKAGE_PLACES", 0xFFFF)
             + set_var("VAR_CARE_PACKAGES", 17) + set_var("VAR_CARE_PACKAGE_IMPERIUM", 17)
-            + set_var("VAR_CARE_PACKAGE_GEAR", 17) + set_var("VAR_CARE_PACKAGE_BULK", 17))
+            + set_var("VAR_CARE_PACKAGE_GEAR", 17) + set_var("VAR_CARE_PACKAGE_BULK", 17)
+            + set_var("VAR_CARE_PACKAGE_TMS", 9))
 
 
 def care_package_total(item, packages):
