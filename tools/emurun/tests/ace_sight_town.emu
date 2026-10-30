@@ -1,0 +1,18 @@
+# Crystal Imperium play test: Route 29's Ace Trainer Kaito (DECISIONS.md D47) stands on the route's
+# last column of tiles, at Cherrygrove City's edge, facing down the three tiles that lead into
+# town. Walking out of Cherrygrove onto Route 29 puts the player in his line of sight at once,
+# and he battles.
+!new_game()
+!no_care_packages()
+!battle_style_set()
+# the Guide Gent's tour and the rival's battle in Cherrygrove are done (4)
+!set_var("VAR_CHERRYGROVE_CITY_STATE", 4)
+!give_mon_complex("SPECIES_MEWTWO", 15, "NATURE_MODEST", 0, ["MOVE_PSYSTRIKE", "MOVE_AURA_SPHERE", "MOVE_ICE_BEAM", "MOVE_FLAMETHROWER"])
+# Cherrygrove City, at the Pokemon Center's door (47,7); its east edge (64,10) meets Route 29's (0,16)
+!warp(0, 1, 1)
+!walkto(64, 10, path=True)
+!expect_flag("TRAINER_FLAGS_START + TRAINER_ACE_R29_KAITO_HNS", 0, "not_yet_defeated")
+!walk("RIGHT", 1)
+waituntil32 {gMain+4} {BattleMainCB2+1} 1200 A ace_battle_started
+shot 01_battle.png
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_ACE_R29_KAITO_HNS", "opponent_is_kaito")

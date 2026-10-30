@@ -1,20 +1,20 @@
 @ Crystal Imperium Ace Trainers (DECISIONS.md D47): written by tools/crystal_imperium/ace_trainers.py
 
-AceTrainer_R29Kenji_EventScript::
-	trainerbattle_single TRAINER_ACE_R29_KENJI_HNS, AceTrainer_Text_R29Kenji_Intro, AceTrainer_Text_R29Kenji_Defeat
-	msgbox AceTrainer_Text_R29Kenji_After, MSGBOX_AUTOCLOSE
+AceTrainer_R29Kaito_EventScript::
+	trainerbattle_single TRAINER_ACE_R29_KAITO_HNS, AceTrainer_Text_R29Kaito_Intro, AceTrainer_Text_R29Kaito_Defeat
+	msgbox AceTrainer_Text_R29Kaito_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R29Kenji_Intro:
+AceTrainer_Text_R29Kaito_Intro:
 	.string "New on this road, huh? I can always\n"
 	.string "tell. New shoes, new partner.\p"
 	.string "I'm an Ace Trainer, and my team never\n"
 	.string "stops moving. Think you can keep up?$"
 
-AceTrainer_Text_R29Kenji_Defeat:
+AceTrainer_Text_R29Kaito_Defeat:
 	.string "Huh. You kept the pace.$"
 
-AceTrainer_Text_R29Kenji_After:
+AceTrainer_Text_R29Kaito_After:
 	.string "Switching out isn't running away. A\n"
 	.string "good pivot keeps your ace safe.$"
 
@@ -144,8 +144,9 @@ AceTrainer_Text_R34Sunniva_Defeat:
 	.string "Clouded over, just like that...$"
 
 AceTrainer_Text_R34Sunniva_After:
-	.string "Water and Rock types shrug off a\n"
-	.string "sunny day team. Bring one along.$"
+	.string "Fire and Dragon types resist both Fire\n"
+	.string "and Grass moves. Or bring a rain of\l"
+	.string "your own.$"
 
 AceTrainer_R34Calder_EventScript::
 	trainerbattle_single TRAINER_ACE_R34_CALDER_HNS, AceTrainer_Text_R34Calder_Intro, AceTrainer_Text_R34Calder_Defeat
@@ -182,8 +183,9 @@ AceTrainer_Text_R35Adeline_Defeat:
 	.string "My walls came tumbling down...$"
 
 AceTrainer_Text_R35Adeline_After:
-	.string "Screens only last five turns. Wait\n"
-	.string "them out, or strike before they go up.$"
+	.string "Light Clay keeps my screens up for\n"
+	.string "eight turns. Brick Break shatters\l"
+	.string "them sooner.$"
 
 AceTrainer_R36Theo_EventScript::
 	trainerbattle_single TRAINER_ACE_R36_THEO_HNS, AceTrainer_Text_R36Theo_Intro, AceTrainer_Text_R36Theo_Defeat
@@ -288,15 +290,16 @@ AceTrainer_Text_R42Soren_Intro:
 	.string "The climbers on Mt. Mortar taught me\n"
 	.string "one thing: secure your footing first,\l"
 	.string "and only then charge.\p"
-	.string "First the screens, then the boosts,\n"
-	.string "and then you're done for!$"
+	.string "First I slow you down, then my team\n"
+	.string "boosts, and then you're done for!$"
 
 AceTrainer_Text_R42Soren_Defeat:
 	.string "My footing gave way. Nice battle.$"
 
 AceTrainer_Text_R42Soren_After:
-	.string "Brick Break shatters screens. Haze or\n"
-	.string "Roar stops a boosted sweeper.$"
+	.string "Electric and Ground types shrug off\n"
+	.string "Thunder Wave. Haze or Roar stops a\l"
+	.string "boosted sweeper.$"
 
 AceTrainer_R47Astrid_EventScript::
 	trainerbattle_single TRAINER_ACE_R47_ASTRID_HNS, AceTrainer_Text_R47Astrid_Intro, AceTrainer_Text_R47Astrid_Defeat
@@ -304,8 +307,8 @@ AceTrainer_R47Astrid_EventScript::
 	end
 
 AceTrainer_Text_R47Astrid_Intro:
-	.string "The wind off the Cianwood cliffs\n"
-	.string "never warms up, and I like it that way.\p"
+	.string "Out on the cliff edge the cold never\n"
+	.string "lets up, and I like it that way.\p"
 	.string "Snow on the rocks, a veil over my team.\n"
 	.string "How long can you last in the cold?$"
 
@@ -350,7 +353,7 @@ AceTrainer_Text_R48Solana_Defeat:
 
 AceTrainer_Text_R48Solana_After:
 	.string "Harsh sun weakens Water moves, so\n"
-	.string "bring rain or Rock types of your own.$"
+	.string "bring a rain team of your own.$"
 
 AceTrainer_R43Viktor_EventScript::
 	trainerbattle_single TRAINER_ACE_R43_VIKTOR_HNS, AceTrainer_Text_R43Viktor_Intro, AceTrainer_Text_R43Viktor_Defeat
@@ -367,8 +370,9 @@ AceTrainer_Text_R43Viktor_Defeat:
 	.string "All my hazards, and you still won!$"
 
 AceTrainer_Text_R43Viktor_After:
-	.string "Rapid Spin or Defog clears hazards.\n"
-	.string "Without them, every switch hurts.$"
+	.string "Clodsire's Unaware ignores your\n"
+	.string "boosts. Hit it hard instead of setting\l"
+	.string "up.$"
 
 AceTrainer_R44Celeste_EventScript::
 	trainerbattle_single TRAINER_ACE_R44_CELESTE_HNS, AceTrainer_Text_R44Celeste_Intro, AceTrainer_Text_R44Celeste_Defeat
@@ -667,16 +671,16 @@ AceTrainer_Text_R9Rosalind_Intro:
 	.string "Rock Tunnel taught me patience. Out\n"
 	.string "here, every switch you make costs you\l"
 	.string "something.\p"
-	.string "Rocks, spikes and poison are waiting\n"
-	.string "for each of your Pokemon. Let us see\l"
+	.string "Hazards on your side, and nowhere to\n"
+	.string "run once Dugtrio arrives. Let us see\l"
 	.string "how long you last!$"
 
 AceTrainer_Text_R9Rosalind_Defeat:
 	.string "You cleared a path through all of it!$"
 
 AceTrainer_Text_R9Rosalind_After:
-	.string "Rapid Spin and Defog clear hazards.\n"
-	.string "Heavy Duty Boots ignore them.$"
+	.string "Arena Trap keeps grounded Pokemon\n"
+	.string "from fleeing. Flying types slip away.$"
 
 AceTrainer_R10Edison_EventScript::
 	trainerbattle_single TRAINER_ACE_R10_EDISON_HNS, AceTrainer_Text_R10Edison_Intro, AceTrainer_Text_R10Edison_Defeat
@@ -945,8 +949,9 @@ AceTrainer_Text_R15Brigid_Defeat:
 	.string "I'm all burned out!$"
 
 AceTrainer_Text_R15Brigid_After:
-	.string "Water beats Fire and Fighting, unless\n"
-	.string "Toxicroak drinks it up!$"
+	.string "Water and Psychic moves cover Fire\n"
+	.string "and Fighting, but Defiant punishes\l"
+	.string "Intimidate!$"
 
 AceTrainer_R16Hazel_EventScript::
 	trainerbattle_single TRAINER_ACE_R16_HAZEL_HNS, AceTrainer_Text_R16Hazel_Intro, AceTrainer_Text_R16Hazel_Defeat
@@ -1014,8 +1019,7 @@ AceTrainer_R18Duncan_EventScript::
 	end
 
 AceTrainer_Text_R18Duncan_Intro:
-	.string "The wind on this beach never stops.\n"
-	.string "Sand in my shoes, sand in my hair... and\l"
+	.string "Sand in my shoes, sand in my hair... and\n"
 	.string "soon, sand in your eyes!\p"
 	.string "In a sandstorm, my Pokemon run twice\n"
 	.string "as fast. Don't blink!$"
@@ -1094,32 +1098,33 @@ AceTrainer_Text_R23Ophelia_Intro:
 	.string "I can see how this battle ends before\n"
 	.string "it even begins. Will taught me that\l"
 	.string "much.\p"
-	.string "Inside my Psychic Terrain, priority\n"
-	.string "moves can't touch us, and our minds\l"
-	.string "strike harder. Shall we?$"
+	.string "Every Calm Mind sharpens my team, and\n"
+	.string "my Future Sight is already on its way.\l"
+	.string "Shall we?$"
 
 AceTrainer_Text_R23Ophelia_Defeat:
 	.string "I didn't see that coming at all.$"
 
 AceTrainer_Text_R23Ophelia_After:
-	.string "The terrain fades in time, and Dark\n"
-	.string "types ignore Psychic moves.$"
+	.string "Dark types shrug off Psychic moves,\n"
+	.string "and Taunt stops a Calm Mind before it\l"
+	.string "starts.$"
 
-AceTrainer_R28Roland_EventScript::
-	trainerbattle_single TRAINER_ACE_R28_ROLAND_HNS, AceTrainer_Text_R28Roland_Intro, AceTrainer_Text_R28Roland_Defeat
-	msgbox AceTrainer_Text_R28Roland_After, MSGBOX_AUTOCLOSE
+AceTrainer_R28Rowan_EventScript::
+	trainerbattle_single TRAINER_ACE_R28_ROWAN_HNS, AceTrainer_Text_R28Rowan_Intro, AceTrainer_Text_R28Rowan_Defeat
+	msgbox AceTrainer_Text_R28Rowan_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R28Roland_Intro:
+AceTrainer_Text_R28Rowan_Intro:
 	.string "Mt. Silver is just ahead. They say\n"
 	.string "someone waits at the top who has\l"
 	.string "never lost a battle.\p"
 	.string "I'm going to be the one who beats him.\n"
 	.string "Show me if you're even close!$"
 
-AceTrainer_Text_R28Roland_Defeat:
+AceTrainer_Text_R28Rowan_Defeat:
 	.string "...Then you go first. You're ready.$"
 
-AceTrainer_Text_R28Roland_After:
+AceTrainer_Text_R28Rowan_After:
 	.string "It's a long climb. Heal up at the\n"
 	.string "Pokemon Center before the summit.$"

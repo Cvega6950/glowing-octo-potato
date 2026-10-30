@@ -705,7 +705,7 @@
 // End of the side battles
 
 // Crystal Imperium Ace Trainers (DECISIONS.md D47): written by tools/crystal_imperium/ace_trainers.py
-#define TRAINER_ACE_R29_KENJI_HNS             679
+#define TRAINER_ACE_R29_KAITO_HNS             679
 #define TRAINER_ACE_R30_SELENE_HNS            680
 #define TRAINER_ACE_R31_BRANT_HNS             681
 #define TRAINER_ACE_R46_TAMSIN_HNS            682
@@ -763,7 +763,7 @@
 #define TRAINER_ACE_R20_BJORN_HNS             734
 #define TRAINER_ACE_R23_LEANDER_HNS           735
 #define TRAINER_ACE_R23_OPHELIA_HNS           736
-#define TRAINER_ACE_R28_ROLAND_HNS            737
+#define TRAINER_ACE_R28_ROWAN_HNS             737
 // End of the Ace Trainers
 
 #define TRAINERS_COUNT_HNS                       738
