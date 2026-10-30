@@ -2323,6 +2323,22 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             }
             SetMonData(&party[i], MON_DATA_ABILITY_NUM, &abilityNum);
             SetMonData(&party[i], MON_DATA_FRIENDSHIP, &(partyData[monIndex].friendship));
+            // Crystal Imperium (D47): a trainer's Pokemon has no friendship unless its party data gives
+            // it some, so one that learned Return (or Pika Papow, Veevee Volley) by level, as a Grunt's
+            // Raticate does, would hit with power 1; it gets full friendship, as the party files give it
+            if (partyData[monIndex].friendship == 0)
+            {
+                u32 slot;
+                for (slot = 0; slot < MAX_MON_MOVES; slot++)
+                {
+                    if (GetMoveEffect(GetMonData(&party[i], MON_DATA_MOVE1 + slot)) == EFFECT_RETURN)
+                    {
+                        u8 friendship = MAX_FRIENDSHIP;
+                        SetMonData(&party[i], MON_DATA_FRIENDSHIP, &friendship);
+                        break;
+                    }
+                }
+            }
             if (partyData[monIndex].ball < POKEBALL_COUNT)
             {
                 ball = partyData[monIndex].ball;

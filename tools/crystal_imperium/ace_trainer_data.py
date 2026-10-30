@@ -144,7 +144,7 @@ ACES = [
          mon("Slurpuff", "Sitrus Berry", "Unburden", "Adamant", ["Belly Drum", "Play Rough", "Drain Punch", "Return"]),
      ]},
     # Route38_hns: Desmond
-    {"key": "R38_DESMOND", "name": "DESMOND", "gender": "Male", "map": "Route38_hns", "x": 41, "y": 19, "facing": "up", "sight": 4, "stage": 4,
+    {"key": "R38_DESMOND", "name": "DESMOND", "gender": "Male", "map": "Route38_hns", "x": 41, "y": 19, "facing": "up", "sight": 4, "stage": 3,
      "intro": ["The wind off the Ecruteak hills carries a fine grit. Most trainers squint and turn back.", "My team was raised in that storm. Now let me show you how the sand bites!"],
      "defeat": ["You weathered the storm. Well done."],
      "after": ["Sandstorm wears down all but Rock, Ground and Steel types. Plan for it."],
@@ -156,7 +156,7 @@ ACES = [
          mon("Excadrill", "Focus Sash", "Sand Rush", "Adamant", ["Swords Dance", "Earthquake", "Iron Head", "Rock Slide"]),
      ]},
     # Route39_hns: Miriam
-    {"key": "R39_MIRIAM", "name": "MIRIAM", "gender": "Female", "map": "Route39_hns", "x": 27, "y": 51, "facing": "left", "sight": 3, "stage": 4,
+    {"key": "R39_MIRIAM", "name": "MIRIAM", "gender": "Female", "map": "Route39_hns", "x": 27, "y": 51, "facing": "left", "sight": 3, "stage": 3,
      "intro": ["Out by the farm the Miltank take their sweet time, and so do I.", "Under Trick Room the slowest Pokemon strike first. Ready to feel how heavy patience can be?"],
      "defeat": ["Time bent the wrong way for me."],
      "after": ["Trick Room ends after five turns. Stall it out, or hit the setter first."],
@@ -168,7 +168,7 @@ ACES = [
          mon("Conkeldurr", "Flame Orb", "Guts", "Brave", ["Drain Punch", "Mach Punch", "Knock Off", "Ice Punch"]),
      ]},
     # Route40_hns: Kaia
-    {"key": "R40_KAIA", "name": "KAIA", "gender": "Female", "map": "Route40_hns", "x": 29, "y": 23, "facing": "right", "sight": 4, "stage": 4,
+    {"key": "R40_KAIA", "name": "KAIA", "gender": "Female", "map": "Route40_hns", "x": 29, "y": 23, "facing": "right", "sight": 4, "stage": 3,
      "intro": ["This beach is my training ground. Strike, switch and strike again, as steady as the tide.", "You'll never pin my team down. Ready or not, here we come!"],
      "defeat": ["You read the tide better than me."],
      "after": ["Pivots win by switching. Hit hard on the turn they come back in."],
@@ -180,7 +180,7 @@ ACES = [
          mon("Meowscarada", "Life Orb", "Protean", "Jolly", ["Flower Trick", "Knock Off", "U Turn", "Triple Axel"]),
      ]},
     # Route42_hns: Soren
-    {"key": "R42_SOREN", "name": "SOREN", "gender": "Male", "map": "Route42_hns", "x": 20, "y": 11, "facing": "down", "sight": 3, "stage": 4,
+    {"key": "R42_SOREN", "name": "SOREN", "gender": "Male", "map": "Route42_hns", "x": 20, "y": 11, "facing": "down", "sight": 3, "stage": 3,
      "intro": ["The climbers on Mt. Mortar taught me one thing: secure your footing first, and only then charge.", "First I slow you down, then my team boosts, and then you're done for!"],
      "defeat": ["My footing gave way. Nice battle."],
      "after": ["Electric and Ground types shrug off Thunder Wave. Haze or Roar stops a boosted sweeper."],
@@ -192,7 +192,7 @@ ACES = [
          mon("Haxorus", "Lum Berry", "Mold Breaker", "Jolly", ["Dragon Dance", "Outrage", "Earthquake", "Iron Head"]),
      ]},
     # Route47_hns: Astrid
-    {"key": "R47_ASTRID", "name": "ASTRID", "gender": "Female", "map": "Route47_hns", "x": 97, "y": 43, "facing": "right", "sight": 4, "stage": 5,
+    {"key": "R47_ASTRID", "name": "ASTRID", "gender": "Female", "map": "Route47_hns", "x": 97, "y": 43, "facing": "right", "sight": 4, "stage": 4,
      "intro": ["Out on the cliff edge the cold never lets up, and I like it that way.", "Snow on the rocks, a veil over my team. How long can you last in the cold?"],
      "defeat": ["Thawed out... You really are good."],
      "after": ["Aurora Veil halves your damage. Break it fast or wait it out."],
@@ -206,7 +206,7 @@ ACES = [
              "252 HP / 252 Atk / 4 SpD"),
      ]},
     # Route47_hns: Nolan
-    {"key": "R47_NOLAN", "name": "NOLAN", "gender": "Male", "map": "Route47_hns", "x": 52, "y": 38, "facing": "left", "sight": 4, "stage": 5,
+    {"key": "R47_NOLAN", "name": "NOLAN", "gender": "Male", "map": "Route47_hns", "x": 52, "y": 38, "facing": "left", "sight": 4, "stage": 4,
      "intro": ["Up on these cliffs the rain rolls in off the sea every single afternoon.", "When the clouds open, my team gets twice as fast. Think you can keep up?"],
      "defeat": ["The storm passed, and so did you."],
      "after": ["Rain lasts five turns, eight with a Damp Rock. Your own weather resets it."],
@@ -220,7 +220,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route48_hns: Solana
-    {"key": "R48_SOLANA", "name": "SOLANA", "gender": "Female", "map": "Route48_hns", "x": 21, "y": 11, "facing": "right", "sight": 3, "stage": 5,
+    {"key": "R48_SOLANA", "name": "SOLANA", "gender": "Female", "map": "Route48_hns", "x": 21, "y": 11, "facing": "right", "sight": 3, "stage": 4,
      "intro": ["Nothing grows out on Route 48 but stubborn grass and sunburn.", "Good thing my team loves the heat! Step into the light, if you dare."],
      "defeat": ["Clouded over... What a battle!"],
      "after": ["Harsh sun weakens Water moves, so bring a rain team of your own."],
@@ -234,7 +234,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route43_hns: Viktor
-    {"key": "R43_VIKTOR", "name": "VIKTOR", "gender": "Male", "map": "Route43_hns", "x": 14, "y": 49, "facing": "left", "sight": 4, "stage": 5,
+    {"key": "R43_VIKTOR", "name": "VIKTOR", "gender": "Male", "map": "Route43_hns", "x": 14, "y": 49, "facing": "left", "sight": 4, "stage": 4,
      "intro": ["Everyone rushes up to the Lake of Rage to see the red Gyarados.", "Me? I'd rather watch you wear down, one hazard at a time. Get comfortable."],
      "defeat": ["All my hazards, and you still won!"],
      "after": ["Clodsire's Unaware ignores your boosts. Hit it hard instead of setting up."],
@@ -837,7 +837,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route17_hns: Ryker
-    {"key": "R17_RYKER", "name": "RYKER", "gender": "Male", "map": "Route17_hns", "x": 12, "y": 60, "facing": "right", "sight": 3, "stage": 9,
+    {"key": "R17_RYKER", "name": "RYKER", "gender": "Male", "map": "Route17_hns", "x": 12, "y": 70, "facing": "right", "sight": 3, "stage": 9,
      "intro": ["Slow down? On Cycling Road? No way! My team only has one gear, and that's top speed!", "Speed Boost, Unburden, Tidy Up... we get faster every turn. Can you keep up?"],
      "defeat": ["Whoa, I wiped out hard!"],
      "after": ["All the speed in the world can't outrun a priority move. Remember that!"],
@@ -856,7 +856,7 @@ ACES = [
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
     # Route17_hns: Matilda
-    {"key": "R17_MATILDA", "name": "MATILDA", "gender": "Female", "map": "Route17_hns", "x": 24, "y": 70, "facing": "left", "sight": 3, "stage": 9,
+    {"key": "R17_MATILDA", "name": "MATILDA", "gender": "Female", "map": "Route17_hns", "x": 24, "y": 62, "facing": "left", "sight": 3, "stage": 9,
      "intro": ["Everyone races down this road. I like to take it slow... and make the battle slow, too.", "Boost all you like. My team won't even notice. We'll wear you down, one turn at a time."],
      "defeat": ["Well. You outlasted me."],
      "after": ["Unaware ignores your boosts. Taunt and hard hits work better."],

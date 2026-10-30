@@ -137,6 +137,42 @@ expect8 {gEnemyParty+484} 41 ace_r37_cassia_last_at_41
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r37_cassia_resolved
 
+loadstate stage3.ss
+!battle("TRAINER_ACE_R38_DESMOND_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r38_desmond_action_menu
+expect8 {gEnemyPartyCount} 5 ace_r38_desmond_has_5
+expect8 {gEnemyParty+84} 39 ace_r38_desmond_lead_at_39
+expect8 {gEnemyParty+484} 41 ace_r38_desmond_last_at_41
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 ace_r38_desmond_resolved
+
+loadstate stage3.ss
+!battle("TRAINER_ACE_R39_MIRIAM_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r39_miriam_action_menu
+expect8 {gEnemyPartyCount} 5 ace_r39_miriam_has_5
+expect8 {gEnemyParty+84} 39 ace_r39_miriam_lead_at_39
+expect8 {gEnemyParty+484} 41 ace_r39_miriam_last_at_41
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 ace_r39_miriam_resolved
+
+loadstate stage3.ss
+!battle("TRAINER_ACE_R40_KAIA_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r40_kaia_action_menu
+expect8 {gEnemyPartyCount} 5 ace_r40_kaia_has_5
+expect8 {gEnemyParty+84} 39 ace_r40_kaia_lead_at_39
+expect8 {gEnemyParty+484} 41 ace_r40_kaia_last_at_41
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 ace_r40_kaia_resolved
+
+loadstate stage3.ss
+!battle("TRAINER_ACE_R42_SOREN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r42_soren_action_menu
+expect8 {gEnemyPartyCount} 5 ace_r42_soren_has_5
+expect8 {gEnemyParty+84} 39 ace_r42_soren_lead_at_39
+expect8 {gEnemyParty+484} 41 ace_r42_soren_last_at_41
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 ace_r42_soren_resolved
+
 # Stage 4: cap 50
 loadstate base.ss
 !set_flag("FLAG_BADGE01_GET")
@@ -146,83 +182,38 @@ loadstate base.ss
 !prepared_team(50, items=True)
 savestate stage4.ss
 loadstate stage4.ss
-!battle("TRAINER_ACE_R38_DESMOND_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r38_desmond_action_menu
-expect8 {gEnemyPartyCount} 5 ace_r38_desmond_has_5
-expect8 {gEnemyParty+84} 47 ace_r38_desmond_lead_at_47
-expect8 {gEnemyParty+484} 49 ace_r38_desmond_last_at_49
-!autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r38_desmond_resolved
-
-loadstate stage4.ss
-!battle("TRAINER_ACE_R39_MIRIAM_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r39_miriam_action_menu
-expect8 {gEnemyPartyCount} 5 ace_r39_miriam_has_5
-expect8 {gEnemyParty+84} 47 ace_r39_miriam_lead_at_47
-expect8 {gEnemyParty+484} 49 ace_r39_miriam_last_at_49
-!autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r39_miriam_resolved
-
-loadstate stage4.ss
-!battle("TRAINER_ACE_R40_KAIA_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r40_kaia_action_menu
-expect8 {gEnemyPartyCount} 5 ace_r40_kaia_has_5
-expect8 {gEnemyParty+84} 47 ace_r40_kaia_lead_at_47
-expect8 {gEnemyParty+484} 49 ace_r40_kaia_last_at_49
-!autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r40_kaia_resolved
-
-loadstate stage4.ss
-!battle("TRAINER_ACE_R42_SOREN_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r42_soren_action_menu
-expect8 {gEnemyPartyCount} 5 ace_r42_soren_has_5
-expect8 {gEnemyParty+84} 47 ace_r42_soren_lead_at_47
-expect8 {gEnemyParty+484} 49 ace_r42_soren_last_at_49
-!autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r42_soren_resolved
-
-# Stage 5: cap 58
-loadstate base.ss
-!set_flag("FLAG_BADGE01_GET")
-!set_flag("FLAG_BADGE02_GET")
-!set_flag("FLAG_BADGE03_GET")
-!set_flag("FLAG_BADGE04_GET")
-!set_flag("FLAG_BADGE05_GET")
-!prepared_team(58, items=True)
-savestate stage5.ss
-loadstate stage5.ss
 !battle("TRAINER_ACE_R47_ASTRID_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r47_astrid_action_menu
 expect8 {gEnemyPartyCount} 6 ace_r47_astrid_has_6
-expect8 {gEnemyParty+84} 55 ace_r47_astrid_lead_at_55
-expect8 {gEnemyParty+584} 57 ace_r47_astrid_last_at_57
+expect8 {gEnemyParty+84} 47 ace_r47_astrid_lead_at_47
+expect8 {gEnemyParty+584} 49 ace_r47_astrid_last_at_49
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r47_astrid_resolved
 
-loadstate stage5.ss
+loadstate stage4.ss
 !battle("TRAINER_ACE_R47_NOLAN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r47_nolan_action_menu
 expect8 {gEnemyPartyCount} 6 ace_r47_nolan_has_6
-expect8 {gEnemyParty+84} 55 ace_r47_nolan_lead_at_55
-expect8 {gEnemyParty+584} 57 ace_r47_nolan_last_at_57
+expect8 {gEnemyParty+84} 47 ace_r47_nolan_lead_at_47
+expect8 {gEnemyParty+584} 49 ace_r47_nolan_last_at_49
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r47_nolan_resolved
 
-loadstate stage5.ss
+loadstate stage4.ss
 !battle("TRAINER_ACE_R48_SOLANA_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r48_solana_action_menu
 expect8 {gEnemyPartyCount} 6 ace_r48_solana_has_6
-expect8 {gEnemyParty+84} 55 ace_r48_solana_lead_at_55
-expect8 {gEnemyParty+584} 57 ace_r48_solana_last_at_57
+expect8 {gEnemyParty+84} 47 ace_r48_solana_lead_at_47
+expect8 {gEnemyParty+584} 49 ace_r48_solana_last_at_49
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r48_solana_resolved
 
-loadstate stage5.ss
+loadstate stage4.ss
 !battle("TRAINER_ACE_R43_VIKTOR_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r43_viktor_action_menu
 expect8 {gEnemyPartyCount} 6 ace_r43_viktor_has_6
-expect8 {gEnemyParty+84} 55 ace_r43_viktor_lead_at_55
-expect8 {gEnemyParty+584} 57 ace_r43_viktor_last_at_57
+expect8 {gEnemyParty+84} 47 ace_r43_viktor_lead_at_47
+expect8 {gEnemyParty+584} 49 ace_r43_viktor_last_at_49
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r43_viktor_resolved
 
