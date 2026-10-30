@@ -932,7 +932,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_GEN_2_CROSS_EVOS
 
-#if !P_GBA_STYLE_SPECIES_GFX
+#if !P_GBA_STYLE_PIKACHU_GFX // Crystal Imperium (D51): Pikachu's newest sprites, whatever P_GBA_STYLE_SPECIES_GFX says
     const u32 gMonFrontPic_Pikachu[] = INCBIN_U32("graphics/pokemon/pikachu/anim_front.4bpp.smol");
     const u16 gMonPalette_Pikachu[] = INCBIN_U16("graphics/pokemon/pikachu/normal.gbapal");
     const u32 gMonBackPic_Pikachu[] = INCBIN_U32("graphics/pokemon/pikachu/back.4bpp.smol");
@@ -942,7 +942,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u16 gMonPalette_Pikachu[] = INCBIN_U16("graphics/pokemon/pikachu/normal_gba.gbapal");
     const u32 gMonBackPic_Pikachu[] = INCBIN_U32("graphics/pokemon/pikachu/back_gba.4bpp.smol");
     const u16 gMonShinyPalette_Pikachu[] = INCBIN_U16("graphics/pokemon/pikachu/shiny_gba.gbapal");
-#endif //P_GBA_STYLE_SPECIES_GFX
+#endif //P_GBA_STYLE_PIKACHU_GFX
 #if !P_GBA_STYLE_SPECIES_ICONS
     const u8 gMonIcon_Pikachu[] = INCBIN_U8("graphics/pokemon/pikachu/icon.4bpp");
 #else

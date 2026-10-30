@@ -2,7 +2,7 @@
 # where they differ from Heart & Soul's: 294 species, most of them buffed. Farfetch'd has 75 HP (52),
 # so a level-50 one has 150 HP with Minimal Grinding's 31 IVs (127 before); Raichu's Attack and
 # Sp. Atk are 100 (90 each); Sunflora's Sp. Atk is 135 (105); Flareon's total stays 525 with its
-# Speed 95 (65); a species Imperium doesn't change keeps its own (Pikachu's Speed, 90).
+# Speed 95 (65); a species Imperium doesn't change keeps its own (Bulbasaur's Speed, 45).
 !new_game()
 !expect_base_stat("SPECIES_FARFETCHD", "baseHP", 75)
 !expect_base_stat("SPECIES_FARFETCHD", "baseDefense", 70)
@@ -11,7 +11,7 @@
 !expect_base_stat("SPECIES_SUNFLORA", "baseSpAttack", 135)
 !expect_base_stat("SPECIES_FLAREON", "baseSpeed", 95)
 !expect_base_stat("SPECIES_FLAREON", "baseSpAttack", 65)
-!expect_base_stat("SPECIES_PIKACHU", "baseSpeed", 90)
+!expect_base_stat("SPECIES_BULBASAUR", "baseSpeed", 45)
 # A level-50 Farfetch'd's HP, from its new base stat (struct Pokemon's maxHP, +88)
 !give_mon(83, 50)
 expect16 {gPlayerParty+88} 150 farfetchd_level_50_has_150_hp

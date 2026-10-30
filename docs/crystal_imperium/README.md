@@ -91,7 +91,8 @@ From the first step of a new game:
   Barrage and Dark Hole are in, as tutor moves after the Hall of Fame. Imperium's own abilities
   (Striker, Bone Zone...) aren't in this engine. **Imperium's base stats** too: 294 Pokémon get
   its buffs (Farfetch'd, Sunflora, Parasect, Ledian, Raichu, Fearow, Octillery...), so Pokémon
-  that are weak in the official games are worth using.
+  that are weak in the official games are worth using. **Pikachu** is strong without evolving
+  (60/90/60/120/90/70, 490 in all) and shows its newest sprites.
 - **A Gen 5 look:** Black/White-style battles (healthboxes, text box, FIGHT / BAG / POKÉMON /
   RUN buttons, a move box with types, PP and effectiveness) and a Black/White-style summary
   screen (A on the skills page shows IVs and EVs).

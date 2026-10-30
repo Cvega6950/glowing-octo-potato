@@ -1967,3 +1967,25 @@ follows is the first build's; D45 lists what changed.)
   ROM's species table; a level-50 Farfetch'd with 150 HP, 127 before), `imperium_species.py
   --check`, and the whole suite (battles against bosses and trainers whose Pokémon changed).
 
+## D51. Pikachu, strong without evolving, with its newest sprite
+
+- The user: "One Pokemon in specific I want competitive and make it the most recent sprite is
+  pikachu, I don't want to evolve it to be good make its stats better so I can use it full time".
+- **Stats.** Pikachu's base stats are 60 HP, 90 Attack, 60 Defense, 120 Speed, 90 Sp. Atk and 70
+  Sp. Def: 490 in all, from the official 35/55/40/90/50/50 (320), which Emerald Imperium keeps.
+  Fast and solid on its own, a step above Let's Go's Partner Pikachu (430); Imperium's Raichu
+  (515, D50) is still stronger without an item, and a Light Ball (care packages) makes Pikachu hit
+  harder than it. The cosplay, cap, Partner and World Pikachu are the same Pikachu and get the
+  same stats; the Let's Go starter form keeps its own. Trainers' Pikachu change too: Red's lead
+  (level 100, Hasty, 252 Speed EVs) now has 372 Speed where D27 says 306.
+- They are this game's own, in `src/data/pokemon/species_info/crystal_imperium_stats.h`, after
+  Imperium's `imperium_stats.h` at the end of the species table.
+- **Sprite.** This build shows the GBA-style sprites (`P_GBA_STYLE_SPECIES_GFX`), and for
+  Pikachu that is Emerald's. The newest Pikachu sprites the engine has are its Gen 4/5-style ones
+  (`anim_front.png`, `back.png` and the female's heart tail), which `P_GBA_STYLE_PIKACHU_GFX`
+  (FALSE) now gives Pikachu alone, with their sizes and offsets; every other Pokémon keeps its
+  GBA-style sprite.
+- Evidence: `pikachu` (the six base stats and a cap Pikachu's in the ROM, Raichu's untouched; a
+  level-50 Pikachu with 135 HP, 110 before; the Gen 4/5 sprite sizes for Pikachu and the GBA ones
+  for Raichu; screenshots of its summary and of its back in a battle), `red` (Pikachu's 372 Speed).
+

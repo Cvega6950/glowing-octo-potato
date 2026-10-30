@@ -787,6 +787,14 @@ def expect_base_stat(species, field, want, label=None):
             f"{label or species.lower() + '_' + field.lower() + '_' + str(want)}"]
 
 
+def expect_species_field(species, field, want, label, bits=8):
+    """Check a field of a species' entry in the species table (gSpeciesInfo, in ROM) against a C
+    expression, e.g. expect_species_field("SPECIES_PIKACHU", "frontPicSize", "MON_COORDS_SIZE(48, 48)", ...)."""
+    v = probe.resolve({"off": f"offsetof(struct SpeciesInfo, {field})", "size": "sizeof(struct SpeciesInfo)",
+                       species: species, "want": want})
+    return [f"expect{bits} {{gSpeciesInfo+{v['off'] + v['size'] * v[species]}}} {v['want']} {label}"]
+
+
 def expect_party_species(party, slot, species, label):
     """Check the species of a Pokemon of gPlayerParty or gEnemyParty (party, a symbol) at slot 0-5,
     which is in the encrypted part of struct Pokemon (the runner decrypts it: expectpartyspecies)."""

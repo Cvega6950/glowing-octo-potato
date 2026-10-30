@@ -17,6 +17,13 @@
   Parasect, Ledian (90 Attack), Raichu, Fearow (115 Speed), Tauros, Octillery, Ariados, Granbull,
   Qwilfish, Corsola and many more. Trainers' Pokémon change with them.
 
+### Pikachu, strong without evolving (D51)
+- Pikachu has 60 HP, 90 Attack, 60 Defense, 120 Speed, 90 Sp. Atk and 70 Sp. Def (490 in all,
+  320 before), so you can use it all game without a Thunder Stone; with a Light Ball it hits
+  harder than Raichu. Its cosplay and cap forms too.
+- Pikachu shows its newest sprites (the Gen 4/5-style ones), front and back; the other Pokémon keep
+  theirs.
+
 ### A code for shiny Pokémon (D49)
 - **SHINYA** (or SHA, or ALLSHINY) at the NES in your room: every wild Pokémon, gift Pokémon and
   Egg is shiny until you enter it again.
@@ -26,7 +33,7 @@
   `no_care_packages()` marks the TMs as received too.
 - `tools/crystal_imperium/imperium_species.py` writes the base stats
   (`species_info/imperium_stats.h`); `tools/emurun`: `expect_base_stat`, new play tests
-  `imperium_stats` and `cheat_shiny_all`.
+  `imperium_stats`, `cheat_shiny_all` and `pikachu`; `expect_species_field`.
 
 ## 0.15.0-experimental (2026-10-30)
 

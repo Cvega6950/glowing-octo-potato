@@ -1,0 +1,40 @@
+# Crystal Imperium play test: Pikachu, strong without evolving and with its newest sprite (DECISIONS.md
+# D51). Base stats 60/90/60/120/90/70 (HP, Attack, Defense, Speed, Sp. Atk, Sp. Def; 35/55/40/90/50/50
+# in the official games), and its cap Pikachu the same; Raichu keeps Emerald Imperium's (D50). The
+# battle sprites are the Gen 4/5-style ones (front 48x48, back 64x56 at 4 pixels down; the GBA-style
+# ones are 48x56 and 56x56 at 7) while the other Pokemon keep their GBA-style ones (Raichu's front
+# is 48x56, 64x64 Gen 4/5-style).
+!new_game()
+!expect_base_stat("SPECIES_PIKACHU", "baseHP", 60)
+!expect_base_stat("SPECIES_PIKACHU", "baseAttack", 90)
+!expect_base_stat("SPECIES_PIKACHU", "baseDefense", 60)
+!expect_base_stat("SPECIES_PIKACHU", "baseSpeed", 120)
+!expect_base_stat("SPECIES_PIKACHU", "baseSpAttack", 90)
+!expect_base_stat("SPECIES_PIKACHU", "baseSpDefense", 70)
+!expect_base_stat("SPECIES_PIKACHU_ORIGINAL", "baseSpeed", 120)
+!expect_base_stat("SPECIES_RAICHU", "baseHP", 70)
+# A level-50 Pikachu: 135 HP with Minimal Grinding's 31 IVs (110 before)
+!give_mon(25, 50)
+expect16 {gPlayerParty+88} 135 pikachu_level_50_has_135_hp
+# The sprites: Pikachu's newest, Raichu's GBA-style
+!expect_species_field("SPECIES_PIKACHU", "frontPicSize", "MON_COORDS_SIZE(48, 48)", "pikachu_front_gen4_size")
+!expect_species_field("SPECIES_PIKACHU", "backPicSize", "MON_COORDS_SIZE(64, 56)", "pikachu_back_gen4_size")
+!expect_species_field("SPECIES_PIKACHU", "backPicYOffset", "4", "pikachu_back_gen4_offset")
+!expect_species_field("SPECIES_RAICHU", "frontPicSize", "MON_COORDS_SIZE(48, 56)", "raichu_front_still_gba_style")
+# Its summary (the front sprite) and a wild battle on Route 29 (the back sprite)
+!start_menu("POKEMON")
+press A
+wait 30
+press A
+# after its front animation (it flashes yellow)
+wait 360
+shot 01_summary.png
+mash B 300
+wait 60
+!no_care_packages()
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!walkto(24, 14)
+!pace(21, 25, 14, 10, soft=True)
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 3000 B wild_battle_action_menu
+shot 02_battle.png

@@ -2,7 +2,7 @@
 # - Red battles only the Kanto Champion: before the Kanto League he doesn't battle, after it his
 #   summit battle is TRAINER_RED_HNS, and after the Sinjoh story his rematch, TRAINER_RED_POSTOBC_HNS.
 # - His Pokemon keep their EVs under Minimal Grinding (on by default; everyone else's are 0): his
-#   lead Pikachu (level 100, Hasty, 252 Speed EVs) has 306 Speed, not 237.
+#   lead Pikachu (level 100, Hasty, 252 Speed EVs; base Speed 120 since 0.15.1, D51) has 372 Speed, not 303.
 # - A level-100 six with held items and a Mega, played with a game plan (autobattle in emu.py:
 #   counters for each of Red's Pokemon, switched in when the one out has no move for him), beats
 #   him at least once in 24 tries; it won 4 of 12 when the plan was worked out, and 5 and 2 of 12
@@ -42,7 +42,7 @@ expect32 {gMain+4} {BattleMainCB2+1} kanto_champion_battles_red
 ![f"expect16 {{gTrainerBattleParameter+{probe.resolve({'o': 'offsetof(TrainerBattleParameter, params.opponentA)'})['o']}}} {probe.resolve({'t': 'TRAINER_RED_HNS'})['t']} summit_battle_is_trainer_red_hns"]
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B red_action_menu
 !expect_battler(1, "species", "SPECIES_PIKACHU", "red_leads_with_pikachu")
-!expect_battler(1, "speed", "306", "pikachu_keeps_252_speed_evs")
+!expect_battler(1, "speed", "372", "pikachu_keeps_252_speed_evs")
 
 # After the Sinjoh story: the rematch
 loadstate summit.ss
