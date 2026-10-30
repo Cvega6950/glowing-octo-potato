@@ -94,3 +94,9 @@ shot 05_after_draco_barrage.png
 expect16 {gEnemyParty+86} 0 clefairy_knocked_out_by_draco_barrage
 # Recoil: a third of the 99 HP CLEFAIRY lost, rounded down
 !expect_battler(0, "hp", "134", "dragonite_took_32_recoil")
+
+# Egg Moves (D45): a species Heart & Soul had no Egg Move list for gets the dex's (Impidimp: Parting
+# Shot), and a dex species with none has none (White-Striped Basculin had Endeavor and Last Respects):
+# the first entry of each one's list in gSpeciesInfo
+![f"expect16 *{{gSpeciesInfo+{v['o'] + v['n'] * v['s']}}}+0 {v['m']} impidimp_egg_move_parting_shot" for v in [probe.resolve({'o': 'offsetof(struct SpeciesInfo, eggMoveLearnset)', 's': 'sizeof(struct SpeciesInfo)', 'n': 'SPECIES_IMPIDIMP', 'm': 'MOVE_PARTING_SHOT'})]]
+![f"expect16 *{{gSpeciesInfo+{v['o'] + v['n'] * v['s']}}}+0 {v['m']} white_striped_basculin_no_egg_moves" for v in [probe.resolve({'o': 'offsetof(struct SpeciesInfo, eggMoveLearnset)', 's': 'sizeof(struct SpeciesInfo)', 'n': 'SPECIES_BASCULIN_WHITE_STRIPED', 'm': 'MOVE_UNAVAILABLE'})]]

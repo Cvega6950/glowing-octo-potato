@@ -2271,11 +2271,13 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
             {
-                // Crystal Imperium (D46): Heart & Soul's ordinary trainers have 0 in every IV, Emerald
-                // Imperium's 31 (its Boss Battles document): an opponent's all-0 IVs are 31s. Other
-                // spreads (a special attacker's 0 Attack) stay as the party data has them.
+                // Crystal Imperium (D46): Heart & Soul's ordinary trainers have the same IV in every stat,
+                // 0 (20 for the Violet, Azalea and Goldenrod Gym trainers), Emerald Imperium's 31 (its
+                // Boss Battles document): an opponent's even spread below 31 is 31s. Other spreads (a
+                // special attacker's 0 Attack) stay as the party data has them.
                 u32 ivs = partyData[monIndex].iv;
-                if (ivs == 0 && sTrainerLevelCap)
+                u32 iv = ivs & MAX_PER_STAT_IVS;
+                if (sTrainerLevelCap && iv < MAX_PER_STAT_IVS && ivs == TRAINER_PARTY_IVS(iv, iv, iv, iv, iv, iv))
                     ivs = TRAINER_PARTY_IVS(MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS);
                 SetMonData(&party[i], MON_DATA_IVS, &ivs);
             }

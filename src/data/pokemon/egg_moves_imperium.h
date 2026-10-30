@@ -4295,8 +4295,6 @@ static const u16 sBasculinEggMoveLearnset[] = {
 };
 #if P_HISUIAN_FORMS
 static const u16 sBasculinWhiteStripedEggMoveLearnset[] = {
-    MOVE_ENDEAVOR,
-    MOVE_LAST_RESPECTS,
     MOVE_UNAVAILABLE,
 };
 #endif //P_HISUIAN_FORMS
@@ -5005,9 +5003,6 @@ static const u16 sFletchlingEggMoveLearnset[] = {
 
 #if P_FAMILY_SCATTERBUG
 static const u16 sScatterbugEggMoveLearnset[] = {
-    MOVE_STUN_SPORE,
-    MOVE_POISON_POWDER,
-    MOVE_RAGE_POWDER,
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_SCATTERBUG
@@ -6356,3 +6351,21 @@ static const u16 sFrigibaxEggMoveLearnset[] = {
     MOVE_UNAVAILABLE,
 };
 #endif //P_FAMILY_FRIGIBAX
+
+static const u16 sVoltorbEggMoveLearnset[] = {
+    MOVE_METAL_SOUND,
+    MOVE_RECYCLE,
+    MOVE_UNAVAILABLE,
+};
+
+static const u16 sImpidimpEggMoveLearnset[] = {
+    MOVE_PARTING_SHOT,
+    MOVE_UNAVAILABLE,
+};
+
+static const u16 sVoltorbHisuiEggMoveLearnset[] = {
+    MOVE_LEECH_SEED,
+    MOVE_RECYCLE,
+    MOVE_WORRY_SEED,
+    MOVE_UNAVAILABLE,
+};

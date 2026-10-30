@@ -6,6 +6,8 @@
 # - Dragon Tamer Paul (Heart & Soul: Dratini 34, three Dragonair 40) against a level-72 TYPHLOSION
 #   with eight badges (cap 85): the Dratini three levels below, 69, the Dragonair one below, 71,
 #   and all four Dragonite (Dratini at 30, Dragonair at 55), with 31 IVs.
+# - Bird Keeper Abe in the Violet Gym: Heart & Soul's 20 in every IV (its Gym trainers' even spread)
+#   is 31s too.
 # - Pokemaniac Ben, a route boss raised to the cap: his Eviolite Lickitung stays a Lickitung (it
 #   would evolve at 35).
 # - A boss at its team's own level keeps its team as designed: Whitney's Silk Scarf Aipom (a
@@ -44,6 +46,9 @@ expect8 {gEnemyParty+284} 71 second_dragonair_one_below_72
 expect8 {gEnemyParty+384} 71 third_dragonair_one_below_72
 !expect_battler(1, "species", "SPECIES_DRAGONITE", "dratini_at_69_is_a_dragonite")
 !expect_party_species("gEnemyParty", 0, "SPECIES_DRAGONITE", "party_data_dragonite_too")
+!expect_party_species("gEnemyParty", 1, "SPECIES_DRAGONITE", "dragonair_1_is_a_dragonite")
+!expect_party_species("gEnemyParty", 2, "SPECIES_DRAGONITE", "dragonair_2_is_a_dragonite")
+!expect_party_species("gEnemyParty", 3, "SPECIES_DRAGONITE", "dragonair_3_is_a_dragonite")
 !expect_party_species("gPlayerParty", 0, "SPECIES_TYPHLOSION", "players_typhlosion")
 !expect_battler_ivs(1, 0x3FFFFFFF, "paul_ivs_31")
 !expect_battler(1, "friendship", "0", "paul_dratini_no_happiness", bits=8)
@@ -98,3 +103,10 @@ waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller
 expect8 {gEnemyParty+184} 85 whitney_aipom_raised_to_85
 !expect_party_species("gEnemyParty", 1, "SPECIES_AMBIPOM", "whitney_aipom_evolves_when_raised")
 !expect_party_species("gEnemyParty", 3, "SPECIES_WYRDEER", "whitney_stantler_evolves_when_raised")
+
+# Bird Keeper Abe (Violet Gym): his party data's 20s battle as 31s
+loadstate start.ss
+!give_mon(157, 15)
+!battle("TRAINER_ABE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B abe_action_menu
+!expect_battler_ivs(1, 0x3FFFFFFF, "abe_ivs_20s_are_31")
