@@ -4,12 +4,13 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.13.0-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.15.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
-> uses the smart AI, every story boss from the rival to Red has an Imperium-style team with all
-> of its Pokémon at the level cap, the Pokémon have Emerald Imperium's abilities and move pools,
-> the TM list is Emerald Imperium's, and HMs work without being taught. Nobody has played the whole story through yet, and the postgame rematches still have
-> Heart & Soul's teams (at the level cap too).
+> uses the smart AI and fights at your level, every boss from the rival to Red, rematches and
+> postgame included, has an Imperium-style team with all of its Pokémon at the level cap, Ace
+> Trainers wait on the routes, the Pokémon have Emerald Imperium's abilities, move pools and
+> evolutions (from its official dex), the TM list is Emerald Imperium's, and HMs work without
+> being taught. Nobody has played the whole story through yet.
 
 ## What you get
 
@@ -66,10 +67,17 @@ From the first step of a new game:
   (START > OPTION > AUTORUN, or the L menu), and a **move relearner** in the party menu.
 - **Emerald Imperium-style level caps:** 15 before the first Gym, then 24, 33, 42, 50, 58, 66,
   75 and **85 for the Elite Four**, 90 in Kanto, and no cap after the Kanto League (HARD caps: a
-  few levels lower until the Elite Four). Other trainers follow the same curve.
+  few levels lower until the Elite Four).
+- **Every trainer fights at your level**, as in Emerald Imperium: an ordinary trainer's Pokémon
+  are one to three levels below your strongest (never below their old place on the cap curve,
+  never above the cap), evolved as far as their level allows (no level-72 Dragonair), with 31 IVs.
 - **Six Pokémon for every Gym Leader** and the big story bosses, and **28 route mini-bosses**:
   strong trainers on the routes with competitive teams at your level cap, as in Emerald
   Imperium.
+- **Ace Trainers on the routes:** 59 of them, as in Emerald Imperium, where they see you on the
+  routes' main paths (26 in Johto, 33 in Kanto), with teams built around a plan (sand, rain,
+  sun, snow, Trick Room, hazards, screens): three Pokémon on the first routes, six with
+  competitive EVs in Kanto. Heart & Soul's own Cooltrainers have competitive teams too.
 - **The level cap is the level of every boss, and nothing is above it:** bosses are at your cap
   (NORMAL or HARD caps, on every difficulty), and no trainer's, wild, DexNav, legendary or gift
   Pokémon is above it.
@@ -77,11 +85,11 @@ From the first step of a new game:
   you switch Pokémon?" after a knockout) and no Bag in trainer battles, on top of +10% trainer
   levels and HARD level caps.
 - **Emerald Imperium's abilities and move pools:** every Pokémon has Imperium's abilities,
-  level-up moves, Egg Moves, and TM and tutor moves (Radical Red's, which Imperium follows, with
-  Imperium's own changes), so Pidgey has No Guard, Golbat Infiltrator and Typhlosion Flash Fire,
-  and Typhlosion learns Aura Sphere and Mystical Fire. Radical Red's own moves are in too: Aqua
-  Fang, Dark Hole, Soul Robbery, Sonic Slash, Draco Barrage and Forbidden Spell. A few abilities
-  Radical Red made itself aren't in this engine.
+  level-up moves, Egg Moves, and TM and tutor moves, from its official dex, so Pidgey has No
+  Guard, Golbat Infiltrator and Typhlosion Flash Fire, Typhlosion learns Aura Sphere and Mystical
+  Fire, Pikachu Zippy Zap at 55 and Primeape Shadow Punch at 35. Imperium's postgame TMs Draco
+  Barrage and Dark Hole are in, as tutor moves after the Hall of Fame. Imperium's own abilities
+  (Striker, Bone Zone...) aren't in this engine.
 - **A Gen 5 look:** Black/White-style battles (healthboxes, text box, FIGHT / BAG / POKÉMON /
   RUN buttons, a move box with types, PP and effectiveness) and a Black/White-style summary
   screen (A on the skills page shows IVs and EVs).
@@ -92,13 +100,15 @@ From the first step of a new game:
   three (Ice Beam, Thunderbolt, Flamethrower), up to all 198 with eight. The Goldenrod Dept.
   Store 5F sells the same. With the first badge, the Violet City Mart's clerk also gives four TMs
   for free, once. The lists leave out the TMs you already have, so only new ones are there.
-- **Emerald Imperium's evolutions** (that is, Radical Red's): trade evolutions use a Linking Cord
-  (Radical Red's Link Cable), regional forms come by time of day or an item anywhere (a Shiny
-  Stone makes Alolan Raichu, Quilava at 36 at night becomes Hisuian Typhlosion), friendship and
-  special methods became levels or stones (Munchlax at 30, Kingambit at 50, Gliscor with a Dusk
-  Stone), and many Pokémon evolve earlier (starters at 16 and 36, Pidgey and Rattata at 16).
-  The Goldenrod Dept. Store 2F sells Imperium's fifteen evolution items for ¥500 each: every
-  stone, the Linking Cord, Prism Scale, King's Rock, Metal Coat and Up-Grade.
+- **Emerald Imperium's evolutions**, from its official dex: trade evolutions also take a Linking
+  Cord, regional forms come by time of day or an item anywhere (a Shiny Stone makes Alolan Raichu,
+  Quilava at 36 at night becomes Hisuian Typhlosion), friendship and special methods became
+  levels or stones (Munchlax at 30, Kingambit at 50, Gliscor with a Dusk Stone, Annihilape from a
+  Primeape that knows Shadow Punch), and many Pokémon evolve earlier (starters at 16 and 36,
+  Pidgey and Rattata at 16). [EVOLUTIONS.md](EVOLUTIONS.md) lists how every Pokémon evolves.
+  The Goldenrod Dept. Store 2F sells Imperium's fifteen evolution items for ¥500 each (every
+  stone, the Linking Cord, Prism Scale, King's Rock, Metal Coat and Up-Grade) and the Berries that
+  raise friendship.
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
 - **A starting care package** from Prof. Elm as soon as you have a Pokémon, as in Emerald
@@ -134,10 +144,12 @@ From the first step of a new game:
   with care: it can also change story flags.
 - **Smart AI for every trainer** on NORMAL and HARD: it knows your team, picks the best move,
   switches smartly and plays around HP (EASY keeps Heart & Soul's AI). Sleep Clause.
-- **Imperium-style bosses for the whole story:** every Johto Gym Leader (Chuck, Jasmine and
-  Pryce in three versions, for whichever order you take them), the rival from Azalea to
-  Victory Road, Team Rocket's executives, the Kimono Girls, the Elite Four and Lance, the eight
-  Kanto leaders, Blue and Red. **Every boss Pokémon is at your level cap** (not just the ace;
+- **Imperium-style bosses for the whole story and the postgame:** every Johto Gym Leader
+  (Chuck, Jasmine and Pryce in three versions, for whichever order you take them), the rival
+  from Azalea to the Indigo Plateau, Team Rocket's executives, the Kimono Girls, the Elite Four
+  and Lance, the eight Kanto leaders, Blue and Red, and every rematch: the Johto leaders in the
+  Fighting Dojo, the Elite Four again after the Johto League, and all of them after the Kanto
+  League, with legendaries and Paradox Pokémon. **Every boss Pokémon is at your level cap** (not just the ace;
   with HARD level caps, the HARD cap), with held items, natures, abilities, competitive moves,
   and Mega Evolutions from the 5th Gym on. A boss you fight later than usual (the Rocket Hideout
   with six badges, a rematch after the Kanto League) is raised to your cap then; rematches after
@@ -176,12 +188,12 @@ packages (in stacks since 0.11.0), Emerald Imperium's L menu (with a start menu 
 the screen again), Emerald Imperium's abilities and move pools, and a TM clerk in every Poké Mart.
 
 **Not done yet:** a full story playthrough; a test on a real iPhone; Imperium-style teams for
-the postgame rematches (they have Heart & Soul's teams with the smart AI); Emerald Imperium's
-custom Megas (no permission to use Imperium's own content, DECISIONS.md D2); the 11 abilities
-Radical Red made itself, which the engine doesn't have (D35). Imperium's two TMs of Radical Red
-moves, Dark Hole and Draco Barrage, are postgame tutor moves instead (D39).
+Heart & Soul's other ordinary trainers (they keep their own teams, at your level, evolved, with
+31 IVs); Emerald Imperium's custom Megas (no permission to use Imperium's own content, DECISIONS.md D2); the abilities
+Imperium and Radical Red made themselves, which the engine doesn't have (D35, D45). Imperium's
+two TMs of Radical Red moves, Dark Hole and Draco Barrage, are postgame tutor moves instead (D39).
 
-Details: [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [TESTING.md](TESTING.md) ·
+Details: [EVOLUTIONS.md](EVOLUTIONS.md) · [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [TESTING.md](TESTING.md) ·
 [DECISIONS.md](DECISIONS.md) · [BALANCE.md](BALANCE.md) · [KNOWN_ISSUES.md](KNOWN_ISSUES.md) ·
 [CHANGELOG.md](CHANGELOG.md)
 

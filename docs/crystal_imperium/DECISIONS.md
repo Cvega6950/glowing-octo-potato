@@ -1795,3 +1795,100 @@ follows is the first build's; D45 lists what changed.)
   below the player), `difficulty` (Albert's Pokémon one below the player, then 90% and 110%),
   `whitney` (2 wins in 24 for its team), the boss and Gym tests. The tests read a party member's
   species, which is encrypted, with the runner's `expectpartyspecies` (`expect_party_species`).
+
+## D47. Competitive rematch bosses and Ace Trainers
+
+- Same request as D46: "more ace trainers, more put together competitive teams for boss and
+  leaders, I really want it more like emerald imperium honestly".
+- **Bosses.** 41 bosses still had Heart & Soul's own teams, only levelled to the cap: the Johto
+  Gym Leaders' rematches in the Fighting Dojo and the Elite Four's and Lance's after the Johto
+  League (`_2`, 13), every postgame rematch after the Kanto League (`_POSTOBC`: the sixteen Gym
+  Leaders, Blue, the Elite Four and Lance, 21), the rival's last two battles for each starter (6)
+  and Elder Li. They had no chosen natures or abilities, filler (Clair's Dragonair and Shelgon,
+  Whitney's Rage and Defense Curl) and items like Quick Claw and Scope Lens. Each now has an
+  Emerald Imperium-style team: six Pokémon (Li three), each with a job, an item, a nature, an
+  ability and four moves, the trainer's type with one or two Pokémon for its weaknesses, a lead
+  with a plan (hazards, Sticky Web, weather, terrain, screens, Fake Out, Tailwind), and one Mega
+  Evolution. The rematches at 90 have EV spreads (they apply with Minimal Grinding off, D30); the
+  postgame teams at 100 have none, as D41's level-100 trainers, so Red stays the only one with
+  EVs. Sub-legendaries, Ultra Beasts and Paradox Pokémon: at most three a team, as Imperium's
+  postgame uses them, and no restricted legendary (Blue's postgame ace is Heart & Soul's Thick
+  Club Alolan Marowak, not Mewtwo). Bag items: two Full Restores in the rematches, three in the
+  postgame (Red keeps the most, four: D27). Li's three are Eviolite Pokémon at the first cap
+  (Bronzor, Phantump, Weepinbell): Stealth Rock, burns and Strength Sap.
+- The late main-story bosses Crystal Imperium designed earlier (the Kanto Gym Leaders, Blue, the
+  Elite Four, Lance, Clair, the Rocket executives, the rival's 4th and 5th battles) keep their
+  teams in this release.
+- **How.** Five designers, one group of bosses each, wrote the teams with a kit built on
+  `validate.py`'s data (legal abilities, moves and Mega Stones here) and its checker; a critic
+  then read all 41 as a competitive player. Its 35 changes: Lance's postgame Rayquaza knew Dragon
+  Ascent, a second Mega Evolution with no stone (Noivern instead, Mega Garchomp last); the
+  postgame EVs and legendaries above; repeated Megas and sets (Koga gets his own Mega Beedrill in
+  place of Janine's Gengar core, Chuck his Mega Heracross, Sabrina Mega Alakazam, Morty's two
+  Megas swap, Bugsy's postgame Mega Pinsir, Bruno's rematch Mega Lucario); a dud ace (the
+  Chikorita rival's walling Meganium attacks now); Booster Energy for two Paradox Pokémon whose
+  ability never started. `boss_teams.py` holds the teams and `validate.py` checks them as every
+  reworked boss: four moves, each learnable, abilities the species has in this build, every
+  Pokémon at its stage's cap.
+- **The checker had two holes**, found while designing: it merged every `#if` branch of the
+  species files (Defiant counted for Empoleon, Lightning Rod for Zapdos, though this build has
+  Gen 9's abilities), and a name without its own constant took the alphabetically first form
+  (Meowstic-F, Lycanroc Dusk) where trainerproc's constant is the default form (Meowstic-M,
+  Midday). Either would have let a team pass that trips the illegal-ability assert in battle.
+  `validate.py` now evaluates the conditions with the build's own preprocessor and resolves
+  names through `species.h`'s defines. One design (Falkner's rematch Zapdos) needed the fix.
+- **Ace Trainers.** 59 new Ace Trainers (the Cooltrainer class) stand on 46 routes, 26 in
+  Johto and 33 in Kanto (`ace_trainer_data.py`, trainer IDs 679 to 737): one on each route the
+  player walks, two on the long ones, where their line of sight crosses the route's main path.
+  `ace_trainers.py` writes their parties, scripts and map objects and checks every spot
+  (reachable, not by a door, a line of sight over walkable tiles, nothing cut off: Route 20's
+  first spot would have cut off a tile). They are ordinary trainers under D46 (one to three
+  below the player's strongest, evolved, 31 IVs) with Imperium-style teams for the route's stage
+  (the badges the player has when the route can first be reached): three Pokémon on the first
+  routes, four after the first badge, five to the fourth, six from the fifth and on the routes
+  past Cianwood and Mahogany (43, 47, 48), EVs from the sixth and in Kanto; every Pokémon with
+  an item, a nature, an ability and four moves; every team with a plan (sand, rain, sun, snow,
+  Trick Room, hazards, screens, Tailwind, terrain, pivots); no Mega Stones; sub-legendaries in
+  Kanto only, one at most. Each has a name and texts of its own. The two on Route 23 are stage
+  8: the player reaches it with eight badges, before the Johto League. Heart & Soul's own
+  Cooltrainers (20, 26 teams with their phone rematches) get competitive teams that keep their
+  themes (Gwen's Eeveelutions, the Blackthorn Gym's and Dragon's Den's Dragons, Irene's and
+  Jenn's Water types).
+- **A critic read the Aces too**, all 59 and the 26 Cooltrainer teams, as a competitive player.
+  It found copies: Astrid had three of Grusha's sets, Hayate was Janine's and Koga's team one
+  route from Fuchsia, Vera Bruno's and Chuck's, Sable Karen's, Evangeline the Kimono Girls'
+  Eeveelutions, the Blackthorn Gym's Fran Lance's team (stronger than Clair's) and Cooltrainer
+  Nick Red's. 25 teams changed: those sets went to Pokémon no boss uses (Sawk, Sirfetch'd,
+  Falinks, Zoroark, Crawdaunt, Glaceon, Sylveon, Grafaiai, Greninja, Dragalge, Flapple, Haxorus),
+  Articuno and Zapdos left the Aces at their own catch spots (Seafoam, the Power Plant), Suicune
+  left an S.S. Aqua Cooltrainer, Emma's team is off rain and Nolan has no Wake's Barraskewda
+  (Johto had three rain teams), a second Psychic Terrain team and a second screens team got other
+  plans. Smaller fixes: a Focus Sash Cacturne in its own sandstorm, a Choice Scarf on a Tailwind
+  team, filler moves, and four battle tips that were wrong. Two names Heart & Soul's own trainers
+  have (Kenji, Roland) became Kaito and Rowan. Every changed set passed the same checks.
+- **Route 29's Ace** first stood in the grass where the DexNav, Infinite Repel and level-cap play
+  tests walk; a player hunting there would have walked into him too. Kaito stands at the route's
+  west end, the one way into Cherrygrove City, facing the path.
+- **The code review** (after the critic) found three more things. Eight Aces had the stage of
+  the usual order, not of the earliest: Desmond, Miriam, Kaia and Soren can be reached from
+  Ecruteak with three badges, Astrid, Nolan, Solana and Viktor with four (Surf takes the player
+  to Cianwood and Mahogany). Met that early, their floors on the cap curve were above the cap,
+  so the whole team battled at the cap; their stages are now 3 and 4, and they fight one to
+  three below the player like the others. Route 17's Ryker and Matilda stood where a Biker
+  walking the lane could see the same tile: two trainers who see the player at once battle
+  together with three Pokémon each, so half of the Ace's team would have stayed out. They moved
+  ((12,70), (24,62)); a check of every Ace against every trainer that turns or walks found one
+  more, unlikely case (Route 3's wandering Hiker Burt and Gideon, KNOWN_ISSUES 76).
+  `ace_trainers.py`'s own check only looks at a trainer's first tile and last facing. And a
+  trainer's Pokémon with no moves in its party data learns its last four level-up moves, which
+  can be Return (a Rocket Grunt's Raticate learns it at 28): with no friendship it hit with
+  power 1. The battle code now gives 255 to a trainer's Pokémon that knows Return, Pika Papow or
+  Veevee Volley and has no friendship of its own.
+- Not changed: three Cooltrainers' rematches (Gaven, Beth, Reena) have their first battle's
+  teams, as the critic noted; they fight at the player's level anyway.
+- Evidence: `boss_rematches` (every new boss loads with its whole team at its stage's cap and
+  plays to a result against the prepared six), `ace_trainers_johto`, `ace_trainers_kanto`,
+  `cooltrainers` (each Ace Trainer's team size and levels, one to three below the prepared six,
+  and a result), `ace_sight` (Kaito sees the player at the end of Route 29, walks up,
+  battles, and stays beaten), `ace_sight_town` (the first step out of Cherrygrove onto Route 29
+  is in his line), `trainer_levels` (Grunt 15's Raticate battles with 255), `validate.py`.

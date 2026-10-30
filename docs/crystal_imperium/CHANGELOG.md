@@ -1,69 +1,135 @@
 # Crystal Imperium changelog
 
-## 0.15.0-experimental (2026-10-28)
+## 0.15.0-experimental (2026-10-30)
 
-### Emerald Imperium's evolutions (DECISIONS.md D44)
-Pokémon evolve the way they do in Emerald Imperium, whose evolutions are Radical Red's: 231
-species change. The ways Heart & Soul added on top are gone, except where nothing else gives a
-form.
-- **Trade evolutions take a Linking Cord** (Radical Red's Link Cable), with or without the item
-  the trade needed: Kadabra, Machoke, Graveler, Haunter, Rhydon, Electabuzz, Magmar, Porygon,
-  Dusclops, Boldore, Gurdurr, Karrablast, Shelmet, Phantump and Pumpkaboo. They no longer evolve
-  by level (Kadabra did at 42). Others take another item: a Metal Coat for Onix and Scyther, a
-  King's Rock for Slowpoke, Poliwhirl and Scyther's Kleavor, a Prism Scale for Seadra and Feebas,
-  a Water or Sun Stone for Clamperl (Huntail, Gorebyss), a Dusk Stone for Porygon2, a Shiny Stone
-  for Spritzee and Swirlix. Porygon still evolves with an Up-Grade too.
-- **Regional forms, anywhere**, by time of day or by an item: a Shiny Stone makes Alolan Raichu,
-  a Sun Stone Alolan Exeggutor, an Ice Stone Galarian Mr. Mime and Hisuian Avalugg, a Leaf Stone
+### Emerald Imperium's evolutions (DECISIONS.md D44, D45)
+Pokémon evolve the way they do in Emerald Imperium, from its official dex: 219 species change.
+`docs/crystal_imperium/EVOLUTIONS.md` lists how every Pokémon evolves, generated from the game's data.
+- **Trade evolutions take a Linking Cord too** (trading still works): Kadabra, Machoke,
+  Graveler, Haunter, Rhydon, Electabuzz, Magmar, Porygon, Dusclops, Boldore, Gurdurr,
+  Karrablast, Shelmet, Phantump and Pumpkaboo. They no longer evolve by level (Kadabra did at
+  42). Others take Imperium's item: a Metal Coat for Onix and Scyther, a King's Rock for
+  Slowpoke, Poliwhirl and Scyther's Kleavor, a Prism Scale for Seadra and Feebas, a Water or Sun
+  Stone for Clamperl (Huntail, Gorebyss), a Dusk Stone for Porygon2, a Shiny Stone for Spritzee
+  and Swirlix.
+- **Regional forms, anywhere**, by time of day or an item: a Shiny Stone makes Alolan Raichu, a
+  Sun Stone Alolan Exeggutor, an Ice Stone Galarian Mr. Mime and Hisuian Avalugg, a Leaf Stone
   Hisuian Lilligant, a Metal Coat Hisuian Sliggoo. At night Cubone becomes Alolan Marowak (28),
   Koffing Galarian Weezing (35), Quilava, Dewott and Rufflet their Hisuian forms (36); by day
   Dartrix becomes Hisuian Decidueye. Galarian Slowpoke becomes Galarian Slowbro at 37 and
   Galarian Slowking with a King's Rock. "Day" is any time but night (6:00 to 18:59).
-- **Friendship, places and special methods** became levels or items: Munchlax at 30, Riolu at 30
-  by day, Alolan Meowth at 28, Crabrawler at 30; Magnezone and Vikavolt by Thunder Stone,
-  Probopass by Metal Coat, Leafeon and Glaceon by their stones only; Gliscor, Weavile and
-  Porygon-Z with a Dusk Stone, Chansey from Happiny with a Shiny Stone. Kingambit at 50,
-  Archaludon at 50, Sneasler at 47, Gholdengo at 45 (both Gimmighoul), Wyrdeer at 44, Hydrapple
-  at 44, Overqwil at 36, Runerigus at 35, Pawmot at 32, Sirfetch'd at 30, Dipplin at 30,
-  Brambleghast at 27, Rabsca at 16. Annihilape at 45 or knowing Shadow Punch. Urshifu: a Dusk
-  Stone (Single Strike) or a Water Stone (Rapid Strike); Armarouge and Ceruledge: a Sun or Moon
-  Stone; Polteageist: a Moon Stone. Basculegion from any Basculin at 44, its form by gender.
-  Meltan becomes Melmetal with a Metal Coat.
-- Pokémon that evolve knowing a move also evolve at a level: Lickilicky 35, Mr. Mime 35, Ambipom
-  and Sudowoodo 34, Grapploct 36, Tangrowth, Yanmega, Mamoswine, Farigiraf, Tsareena and
-  Dudunsparce 45. Mantine at 30 too, and Ursaluna at 48. Sylveon: friendship with a Fairy-type
-  move (a Shiny Stone no longer).
-- **Levels:** starters at 16 and 36 (Bayleef at 32), most early two-stage Pokémon at 16 (Pidgey,
-  Rattata, Hoothoot, Ledyba, Spinarak, Hoppip, Zigzagoon...), and many earlier than before
-  (Ponyta 28, Mienfoo 28, Pawniard 36, Deino 44 and Zweilous 59, Noibat 36). A few later: Grimer
-  40, Ivysaur, Croconaw, Grotle and the Gen 7 and 8 starters 36, Cosmoem 64.
+- **Friendship, places and special methods** became levels or items: Munchlax and Riolu at 30,
+  Alolan Meowth at 28, Crabrawler at 30; Magnezone and Vikavolt by Thunder Stone (or on Route
+  10 and in the Power Plant), Probopass by Metal Coat, Leafeon and Glaceon by their stones only;
+  Gliscor, Weavile and Porygon-Z with a Dusk Stone, Chansey from Happiny with a Shiny Stone.
+  Kingambit and Archaludon at 50 (Archaludon also with a Metal Alloy), Sneasler at 47, Gholdengo
+  at 45, Wyrdeer and Hydrapple at 44, Overqwil at 36, Runerigus at 35, Pawmot at 32, Sirfetch'd
+  and Dipplin at 30, Brambleghast at 27, Rabsca at 16. Urshifu: a Dusk Stone (Single Strike) or a
+  Water Stone (Rapid Strike); Armarouge and Ceruledge: a Sun or a Moon Stone; Polteageist: a Moon
+  Stone. Basculegion from any Basculin at 44, its form by gender. Meltan becomes Melmetal with a
+  Metal Coat. Ursaring becomes Ursaluna at 48 by day and Bloodmoon Ursaluna at 48 at night.
+- **Moves:** Primeape evolves when it levels up knowing Shadow Punch, which it learns at 35;
+  Tangela, Aipom, Yanma, Bonsly, Steenee and Mime Jr. evolve by their move too (no level).
+  Lickilicky also at 35, Mamoswine at 45, Grapploct at 36. Sylveon: friendship with a Fairy-type
+  move. Dunsparce: Two-Segment Dudunsparce by Hyper Drill, Three-Segment at 45.
+- **Levels:** the starters at 16 and 36, most early two-stage Pokémon at 16 (Pidgey, Rattata,
+  Hoothoot, Ledyba, Spinarak, Hoppip, Zigzagoon...), many earlier than before (Ponyta and Mienfoo
+  28, Pawniard 36, Deino 44 and Zweilous 59, Noibat 36), a few later (Grimer 40, Ivysaur,
+  Croconaw, Grotle and the Gen 7 and 8 starters 36, Cosmoem 64). Nincada becomes Ninjask at 20
+  and no longer gives a Shedinja (as in Imperium; the DexNav finds Shedinja). Mantyke evolves at
+  30, with no Remoraid needed.
 - **Kept from Heart & Soul**, for the forms nothing else reaches: the Alcremie flavours (stones
-  and spins holding a Sweet; Vanilla Cream also with a Shiny Stone), Bloodmoon Ursaluna (a Peat
-  Block at night in the Mt. Moon area or in Sinjoh), Three-Segment Dudunsparce and the Family of
-  Three (1 in 100), and Own Tempo Rockruff's Dusk Lycanroc. Goodra also evolves in fog.
+  and spins holding a Sweet; Imperium's Shiny Stone gives Vanilla Cream).
+- **Wild Variety:** Shedinja joins the Pokémon an area can have (it no longer comes from Nincada),
+  Melmetal leaves the postgame legends (it comes from Meltan). Most areas have other Wild Variety
+  Pokémon than in 0.14; each still keeps its own all day.
 
-### Imperium's evolution shop
+### Emerald Imperium's movesets (D45)
+- Abilities, level-up moves, Egg Moves and TM and tutor moves come from Imperium's official dex
+  (they came from the Radical Red dex, which it agrees with nearly everywhere): Empoleon learns
+  Iron Head at 42, the Hoenn starters their first attack at 6, Heavy Slam, Gravity and Water Pulse
+  are TM moves for many more Pokémon, Abomasnow has Slush Rush, Medicham Huge Power, Garbodor
+  Stench, Emboar Blaze and Reckless. Radical Red's tutor moves Imperium doesn't have (Uproar, Hone
+  Claws, Toxic Spikes, Frost Breath, Cosmic Power) and its moves Soul Robbery, Sonic Slash and
+  Forbidden Spell leave the learnsets; Draco Barrage and Dark Hole stay as postgame TMs.
+- Pikachu learns Zippy Zap at 55 and Raichu at 62, in Imperium as here.
+
+### Evolution items and friendship Berries in Goldenrod
 - The Goldenrod Dept. Store 2F clerk sells Emerald Imperium's fifteen evolution items for ¥500
   each, after the balls: the Fire, Thunder, Leaf, Water, Sun, Moon, Ice, Dusk, Dawn and Shiny
   Stones, the Prism Scale, the Linking Cord, the King's Rock, the Metal Coat and the Up-Grade.
-  They cost ¥500 in every shop.
-- Items no evolution uses any more leave the care packages and the Mahogany shop (the Dragon
-  Scale, Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Oval Stone, Sachet,
-  Whipped Dream, the apples, pots, teacups and armours, Metal Alloy, the Galarica items, Black
-  Augurite, the Gimmighoul Coins, the Scrolls). Side battles that gave one give the trainer's
-  Pokémon's new item: Fantina and Volkner a Linking Cord, Roark a King's Rock, Katy a Leaf Stone
-  and a Sun Stone.
+  They cost ¥500 in every shop. After them come the six Berries that raise friendship (Pomeg,
+  Kelpsy, Qualot, Hondew, Grepa, Tamato; ¥20).
+- The Mahogany shop sells no evolution items any more (Rage Candy Bars, Never-Melt Ice and the
+  Razor Fang and Claw). Items no evolution uses leave the care packages (the Dragon Scale,
+  Protector, Electirizer, Magmarizer, Dubious Disc, Reaper Cloth, Oval Stone, Sachet, Whipped
+  Dream, the apples, pots, teacups and armours, the Galarica items, Black Augurite, Peat Block,
+  the Gimmighoul Coins, the Scrolls); the Metal Alloy stays. Side battles that gave one give the
+  trainer's Pokémon's new item: Fantina and Volkner a Linking Cord, Roark a King's Rock, Katy a
+  Leaf Stone and a Sun Stone. Two people who said the trade evolutions happen by level name the
+  Linking Cord now.
+
+### Harder trainers, as Emerald Imperium's (D46)
+- **Ordinary trainers fight at your level:** their Pokémon are one to three levels below your
+  strongest (Imperium's "Highest Lv -1 to -3"), never under their old level on the cap curve,
+  never above the cap. A route's trainers stay a fight when you come back stronger.
+- **Trainers' Pokémon are evolved** as far as their level allows: the Dragonair of Dragon's Den
+  and the Blackthorn Gym are Dragonite now. A boss's team stays as designed at its own level; a
+  boss you fight later, raised to a later cap, is evolved too, except its Eviolite Pokémon.
+- **31 IVs:** Heart & Soul's ordinary trainers had 0 in every IV; Imperium's have 31, and so do
+  these now.
+
+### Competitive rematch and postgame bosses, and Ace Trainers (D47)
+- **41 bosses get Emerald Imperium-style teams** in place of Heart & Soul's: the Johto Gym
+  Leaders' rematches in the Fighting Dojo, the Elite Four's and Lance's rematches after the Johto
+  League, every postgame rematch after the Kanto League (the sixteen Gym Leaders, Blue, the Elite
+  Four and Lance), the rival's last two battles (Mt. Moon and the Indigo Plateau) and Elder Li.
+  Each Pokémon has a job, an item, a nature, an ability and four moves; each team has a plan
+  (hazards, weather, terrain, screens, Tailwind, pivots, setup) and one Mega Evolution. The
+  postgame teams use up to three legendaries, Ultra Beasts or Paradox Pokémon each, none
+  restricted, and no EVs, so Red is still the hardest battle. No more Dragonair and Shelgon in
+  Clair's rematch.
+- **59 Ace Trainers on the routes**, as in Emerald Imperium: 26 in Johto and 33 in Kanto, one on
+  every route you walk (two on the long ones), standing where they see you on the main path.
+  Three Pokémon on the first routes, up to six with competitive EVs in Kanto, each team built
+  around a plan (sand, rain, sun, snow, Trick Room, hazards, screens, Tailwind, terrain). They
+  fight at your level, like every trainer. The first, Kaito, waits at the end of Route 29, just
+  before Cherrygrove City.
+- **No Ace Trainer copies a boss.** A critic played through all 59 teams and the 26 Cooltrainer
+  teams as a competitive player and 25 changed: Astrid had Grusha's sets, Hayate Janine's and
+  Koga's, Vera Bruno's and Chuck's, Sable Karen's, Evangeline the Kimono Girls' Eeveelutions;
+  the Blackthorn Gym's Fran had Lance's team and Cooltrainer Nick Red's; the Articuno and Zapdos
+  that stood at their own catch spots are gone; Johto has fewer rain teams; wrong battle tips
+  (screens with a Light Clay last eight turns, not five) are right now.
+- **Heart & Soul's own Cooltrainers** have competitive teams too, keeping their themes (Gwen's
+  Eeveelutions, the Blackthorn Gym's Dragons, Irene's and Jenn's Water types).
 
 ### Fixes
 - Milcery never evolved after a short clockwise spin (the engine read it as no spin at all), so
   a Sweet gave no Vanilla or Matcha Cream that way. A spin that evolves nothing now starts the
   next one from zero, and a very long one no longer counts from zero again after 34 seconds.
+- Five boss Pokémon had abilities their species no longer has (Medicham's Pure Power, now Huge
+  Power; a Scrappy Bloodmoon Ursaluna, now Mind's Eye; a Poison Touch Overqwil, now Intimidate).
+- A trainer's Return hit with power 1 (Cooltrainer Kelly's Lopunny): trainers' Pokémon have no
+  friendship unless their team gives them some. Every trainer Pokémon that knows Return, Pika
+  Papow or Veevee Volley now has full friendship, and the validator checks it. A Pokémon whose
+  trainer gives it no moves and that learned Return by level (a Rocket Grunt's Raticate learns it
+  at 28) gets full friendship in battle too.
+- The trainer checker could pass an ability a Pokémon doesn't have in this game (Defiant
+  Empoleon, Lightning Rod Zapdos: older games' abilities), or check the wrong form (Meowstic-F for
+  a Meowstic, which is Meowstic-M here), or read an ability from a species macro shared by
+  several forms for the wrong Pokémon; any of these would stop a battle with an error screen. It
+  now reads the species data as the game is built.
 
 ### Tools
-- `tools/crystal_imperium/imperium_evolutions.py` writes the evolutions from the Radical Red dex
-  data (`--report` lists every change, `--check` that the header is up to date); `validate.py`
-  reads them.
-- `tools/emurun`: `party_cursor`, `expect_bag_lacks`; new play test `imperium_evolutions`.
+- `tools/crystal_imperium/ei_dex.py` reads the official Emerald Imperium dex's data (a saved copy
+  of its page script, `--ei-dex`); `imperium_species.py` and `imperium_evolutions.py` write from
+  it, and `imperium_evolutions.py` also writes `EVOLUTIONS.md`.
+- `tools/crystal_imperium/ace_trainers.py` places Ace Trainers on the routes (`ace_trainer_data.py`).
+- `tools/emurun`: `party_cursor`, `expect_bag_lacks`, `expect_battler(..., bits=8)` for a
+  battler's one-byte fields, `expect_party_species` (the runner's `expectpartyspecies` decrypts a
+  party member's species); new play tests `imperium_evolutions`, `trainer_levels`,
+  `boss_rematches`, `ace_trainers_johto`, `ace_trainers_kanto`, `cooltrainers`, `ace_sight`.
 
 ## 0.14.3-experimental (2026-10-28)
 
