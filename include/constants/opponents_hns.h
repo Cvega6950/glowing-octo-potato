@@ -705,9 +705,35 @@
 // End of the side battles
 
 // Crystal Imperium Ace Trainers (DECISIONS.md D47): written by tools/crystal_imperium/ace_trainers.py
+#define TRAINER_ACE_R29_KENJI_HNS             679
+#define TRAINER_ACE_R30_SELENE_HNS            680
+#define TRAINER_ACE_R31_BRANT_HNS             681
+#define TRAINER_ACE_R46_TAMSIN_HNS            682
+#define TRAINER_ACE_R32_NAIA_HNS              683
+#define TRAINER_ACE_R32_BRODIE_HNS            684
+#define TRAINER_ACE_R33_SILAS_HNS             685
+#define TRAINER_ACE_R34_SUNNIVA_HNS           686
+#define TRAINER_ACE_R34_CALDER_HNS            687
+#define TRAINER_ACE_R35_ADELINE_HNS           688
+#define TRAINER_ACE_R36_THEO_HNS              689
+#define TRAINER_ACE_R37_CASSIA_HNS            690
+#define TRAINER_ACE_R38_DESMOND_HNS           691
+#define TRAINER_ACE_R39_MIRIAM_HNS            692
+#define TRAINER_ACE_R40_KAIA_HNS              693
+#define TRAINER_ACE_R42_SOREN_HNS             694
+#define TRAINER_ACE_R47_ASTRID_HNS            695
+#define TRAINER_ACE_R47_NOLAN_HNS             696
+#define TRAINER_ACE_R48_SOLANA_HNS            697
+#define TRAINER_ACE_R43_VIKTOR_HNS            698
+#define TRAINER_ACE_R44_CELESTE_HNS           699
+#define TRAINER_ACE_R45_ZEPHYR_HNS            700
+#define TRAINER_ACE_R45_RHEA_HNS              701
+#define TRAINER_ACE_R26_ELIAS_HNS             702
+#define TRAINER_ACE_R27_IMOGEN_HNS            703
+#define TRAINER_ACE_R27_MAXIM_HNS             704
 // End of the Ace Trainers
 
-#define TRAINERS_COUNT_HNS                       679
+#define TRAINERS_COUNT_HNS                       705
 #define MAX_TRAINERS_COUNT_HNS                   864
 
 #endif  // GUARD_CONSTANTS_OPPONENTS_HNS_H

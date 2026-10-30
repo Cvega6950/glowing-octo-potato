@@ -1,0 +1,21 @@
+# Crystal Imperium play test: an Ace Trainer on its route (DECISIONS.md D47). Kenji, on Route29_hns
+# at (21,14) facing down (sight 3), sees the player walk into the line in
+# front of them, walks up and battles; the defeat flag is set once the battle is won.
+!new_game()
+!no_care_packages()
+!battle_style_set()
+!give_mon_complex("SPECIES_MEWTWO", 15, "NATURE_MODEST", 0, ["MOVE_PSYSTRIKE", "MOVE_AURA_SPHERE", "MOVE_ICE_BEAM", "MOVE_FLAMETHROWER"])
+!warp(0, 11, 0)
+wait 60
+shot 00_route.png
+!expect_flag("TRAINER_FLAGS_START + TRAINER_ACE_R29_KENJI_HNS", 0, "not_yet_defeated")
+!walkto(21, 17, path=True, soft=True)
+waituntil32 {gMain+4} {BattleMainCB2+1} 1200 A ace_battle_started
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_ACE_R29_KENJI_HNS", "opponent_is_ace_r29_kenji")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_action_menu
+shot 01_battle.png
+expect8 {gEnemyPartyCount} 3 ace_has_3
+!autobattle("0,0,0,0,0,0")
+expect8 {gBattleOutcome} 1 ace_beaten
+waituntil32 {gMain+4} {CB2_Overworld+1} 4000 A back_on_the_route
+!expect_flag("TRAINER_FLAGS_START + TRAINER_ACE_R29_KENJI_HNS", 1, "ace_defeated_flag")

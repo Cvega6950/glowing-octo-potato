@@ -1,0 +1,410 @@
+# Crystal Imperium play test: the rematch and postgame bosses (DECISIONS.md D47)
+# Every boss whose team was Heart & Soul's own until 0.15.0 (the Johto leaders' and the Elite
+# Four's rematches, every postgame rematch, the rival's last two battles, Elder Li) loads
+# with its whole team at the cap of its stage and plays to a result against the prepared six
+# with care-package items at that cap (naive play: the wins aren't counted).
+# gEnemyParty: 100 bytes a Pokemon, level at +84; gEnemyPartyCount is the team size.
+!new_game()
+!battle_style_set()
+!no_care_packages()
+savestate base.ss
+
+# Stage 0: cap 15
+loadstate base.ss
+!prepared_team(15, items=True)
+savestate cap15.ss
+loadstate cap15.ss
+!battle("TRAINER_LI_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B li_action_menu
+expect8 {gEnemyPartyCount} 3 li_has_3
+expect8 {gEnemyParty+84} 15 li_lead_at_15
+expect8 {gEnemyParty+284} 15 li_last_at_15
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 li_resolved
+
+# Stage Johto Champion: cap 90
+loadstate base.ss
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_flag("FLAG_BADGE04_GET")
+!set_flag("FLAG_BADGE05_GET")
+!set_flag("FLAG_BADGE06_GET")
+!set_flag("FLAG_BADGE07_GET")
+!set_flag("FLAG_BADGE08_GET")
+!set_flag("FLAG_IS_CHAMPION")
+!prepared_team(90, items=True)
+savestate cap90.ss
+loadstate cap90.ss
+!battle("TRAINER_FALKNER_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B falkner_2_action_menu
+expect8 {gEnemyPartyCount} 6 falkner_2_has_6
+expect8 {gEnemyParty+84} 90 falkner_2_lead_at_90
+expect8 {gEnemyParty+584} 90 falkner_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 falkner_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_BUGSY_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B bugsy_2_action_menu
+expect8 {gEnemyPartyCount} 6 bugsy_2_has_6
+expect8 {gEnemyParty+84} 90 bugsy_2_lead_at_90
+expect8 {gEnemyParty+584} 90 bugsy_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 bugsy_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_WHITNEY_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B whitney_2_action_menu
+expect8 {gEnemyPartyCount} 6 whitney_2_has_6
+expect8 {gEnemyParty+84} 90 whitney_2_lead_at_90
+expect8 {gEnemyParty+584} 90 whitney_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 whitney_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_MORTY_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B morty_2_action_menu
+expect8 {gEnemyPartyCount} 6 morty_2_has_6
+expect8 {gEnemyParty+84} 90 morty_2_lead_at_90
+expect8 {gEnemyParty+584} 90 morty_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 morty_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_CHUCK_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B chuck_2_action_menu
+expect8 {gEnemyPartyCount} 6 chuck_2_has_6
+expect8 {gEnemyParty+84} 90 chuck_2_lead_at_90
+expect8 {gEnemyParty+584} 90 chuck_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 chuck_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_JASMINE_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B jasmine_2_action_menu
+expect8 {gEnemyPartyCount} 6 jasmine_2_has_6
+expect8 {gEnemyParty+84} 90 jasmine_2_lead_at_90
+expect8 {gEnemyParty+584} 90 jasmine_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 jasmine_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_PRYCE_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B pryce_2_action_menu
+expect8 {gEnemyPartyCount} 6 pryce_2_has_6
+expect8 {gEnemyParty+84} 90 pryce_2_lead_at_90
+expect8 {gEnemyParty+584} 90 pryce_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 pryce_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_CLAIR_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B clair_2_action_menu
+expect8 {gEnemyPartyCount} 6 clair_2_has_6
+expect8 {gEnemyParty+84} 90 clair_2_lead_at_90
+expect8 {gEnemyParty+584} 90 clair_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 clair_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_WILL_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B will_2_action_menu
+expect8 {gEnemyPartyCount} 6 will_2_has_6
+expect8 {gEnemyParty+84} 90 will_2_lead_at_90
+expect8 {gEnemyParty+584} 90 will_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 will_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_KOGA_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B koga_2_action_menu
+expect8 {gEnemyPartyCount} 6 koga_2_has_6
+expect8 {gEnemyParty+84} 90 koga_2_lead_at_90
+expect8 {gEnemyParty+584} 90 koga_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 koga_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_BRUNO_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B bruno_2_action_menu
+expect8 {gEnemyPartyCount} 6 bruno_2_has_6
+expect8 {gEnemyParty+84} 90 bruno_2_lead_at_90
+expect8 {gEnemyParty+584} 90 bruno_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 bruno_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_KAREN_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B karen_2_action_menu
+expect8 {gEnemyPartyCount} 6 karen_2_has_6
+expect8 {gEnemyParty+84} 90 karen_2_lead_at_90
+expect8 {gEnemyParty+584} 90 karen_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 karen_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_LANCE_2_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B lance_2_action_menu
+expect8 {gEnemyPartyCount} 6 lance_2_has_6
+expect8 {gEnemyParty+84} 90 lance_2_lead_at_90
+expect8 {gEnemyParty+584} 90 lance_2_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 lance_2_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_RIVAL_CYNDAQUIL_6_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B rival_cyndaquil_6_action_menu
+expect8 {gEnemyPartyCount} 6 rival_cyndaquil_6_has_6
+expect8 {gEnemyParty+84} 90 rival_cyndaquil_6_lead_at_90
+expect8 {gEnemyParty+584} 90 rival_cyndaquil_6_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 rival_cyndaquil_6_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_RIVAL_TOTODILE_6_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B rival_totodile_6_action_menu
+expect8 {gEnemyPartyCount} 6 rival_totodile_6_has_6
+expect8 {gEnemyParty+84} 90 rival_totodile_6_lead_at_90
+expect8 {gEnemyParty+584} 90 rival_totodile_6_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 rival_totodile_6_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_RIVAL_CHIKORITA_6_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B rival_chikorita_6_action_menu
+expect8 {gEnemyPartyCount} 6 rival_chikorita_6_has_6
+expect8 {gEnemyParty+84} 90 rival_chikorita_6_lead_at_90
+expect8 {gEnemyParty+584} 90 rival_chikorita_6_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 rival_chikorita_6_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_RIVAL_CYNDAQUIL_7_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B rival_cyndaquil_7_action_menu
+expect8 {gEnemyPartyCount} 6 rival_cyndaquil_7_has_6
+expect8 {gEnemyParty+84} 90 rival_cyndaquil_7_lead_at_90
+expect8 {gEnemyParty+584} 90 rival_cyndaquil_7_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 rival_cyndaquil_7_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_RIVAL_TOTODILE_7_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B rival_totodile_7_action_menu
+expect8 {gEnemyPartyCount} 6 rival_totodile_7_has_6
+expect8 {gEnemyParty+84} 90 rival_totodile_7_lead_at_90
+expect8 {gEnemyParty+584} 90 rival_totodile_7_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 rival_totodile_7_resolved
+
+loadstate cap90.ss
+!battle("TRAINER_RIVAL_CHIKORITA_7_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B rival_chikorita_7_action_menu
+expect8 {gEnemyPartyCount} 6 rival_chikorita_7_has_6
+expect8 {gEnemyParty+84} 90 rival_chikorita_7_lead_at_90
+expect8 {gEnemyParty+584} 90 rival_chikorita_7_last_at_90
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 rival_chikorita_7_resolved
+
+# Stage Kanto Champion: cap 100
+loadstate base.ss
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_flag("FLAG_BADGE04_GET")
+!set_flag("FLAG_BADGE05_GET")
+!set_flag("FLAG_BADGE06_GET")
+!set_flag("FLAG_BADGE07_GET")
+!set_flag("FLAG_BADGE08_GET")
+!set_flag("FLAG_IS_CHAMPION")
+!set_flag("FLAG_IS_KANTO_CHAMPION")
+!prepared_team(100, items=True)
+savestate cap100.ss
+loadstate cap100.ss
+!battle("TRAINER_FALKNER_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B falkner_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 falkner_postobc_has_6
+expect8 {gEnemyParty+84} 100 falkner_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 falkner_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 falkner_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_BUGSY_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B bugsy_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 bugsy_postobc_has_6
+expect8 {gEnemyParty+84} 100 bugsy_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 bugsy_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 bugsy_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_WHITNEY_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B whitney_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 whitney_postobc_has_6
+expect8 {gEnemyParty+84} 100 whitney_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 whitney_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 whitney_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_MORTY_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B morty_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 morty_postobc_has_6
+expect8 {gEnemyParty+84} 100 morty_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 morty_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 morty_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_CHUCK_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B chuck_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 chuck_postobc_has_6
+expect8 {gEnemyParty+84} 100 chuck_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 chuck_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 chuck_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_JASMINE_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B jasmine_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 jasmine_postobc_has_6
+expect8 {gEnemyParty+84} 100 jasmine_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 jasmine_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 jasmine_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_PRYCE_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B pryce_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 pryce_postobc_has_6
+expect8 {gEnemyParty+84} 100 pryce_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 pryce_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 pryce_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_CLAIR_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B clair_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 clair_postobc_has_6
+expect8 {gEnemyParty+84} 100 clair_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 clair_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 clair_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_BROCK_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B brock_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 brock_postobc_has_6
+expect8 {gEnemyParty+84} 100 brock_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 brock_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 brock_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_MISTY_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B misty_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 misty_postobc_has_6
+expect8 {gEnemyParty+84} 100 misty_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 misty_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 misty_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_LTSURGE_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ltsurge_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 ltsurge_postobc_has_6
+expect8 {gEnemyParty+84} 100 ltsurge_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 ltsurge_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 ltsurge_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_ERIKA_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B erika_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 erika_postobc_has_6
+expect8 {gEnemyParty+84} 100 erika_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 erika_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 erika_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_JANINE_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B janine_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 janine_postobc_has_6
+expect8 {gEnemyParty+84} 100 janine_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 janine_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 janine_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_SABRINA_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B sabrina_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 sabrina_postobc_has_6
+expect8 {gEnemyParty+84} 100 sabrina_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 sabrina_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 sabrina_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_BLAINE_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B blaine_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 blaine_postobc_has_6
+expect8 {gEnemyParty+84} 100 blaine_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 blaine_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 blaine_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_BLUE_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B blue_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 blue_postobc_has_6
+expect8 {gEnemyParty+84} 100 blue_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 blue_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 blue_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_WILL_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B will_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 will_postobc_has_6
+expect8 {gEnemyParty+84} 100 will_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 will_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 will_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_KOGA_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B koga_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 koga_postobc_has_6
+expect8 {gEnemyParty+84} 100 koga_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 koga_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 koga_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_BRUNO_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B bruno_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 bruno_postobc_has_6
+expect8 {gEnemyParty+84} 100 bruno_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 bruno_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 bruno_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_KAREN_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B karen_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 karen_postobc_has_6
+expect8 {gEnemyParty+84} 100 karen_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 karen_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 karen_postobc_resolved
+
+loadstate cap100.ss
+!battle("TRAINER_LANCE_POSTOBC_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B lance_postobc_action_menu
+expect8 {gEnemyPartyCount} 6 lance_postobc_has_6
+expect8 {gEnemyParty+84} 100 lance_postobc_lead_at_100
+expect8 {gEnemyParty+584} 100 lance_postobc_last_at_100
+!autobattle("0,0,0,0,0,0")
+expectne8 {gBattleOutcome} 0 lance_postobc_resolved
