@@ -587,7 +587,6 @@
    "mons": [
     {
      "ability": "Drought",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Heat Rock",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -602,7 +601,6 @@
     },
     {
      "ability": "Flash Fire",
-     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Air Balloon",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -617,7 +615,6 @@
     },
     {
      "ability": "Beads Of Ruin",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Choice Specs",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -632,7 +629,6 @@
     },
     {
      "ability": "Protosynthesis",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
      "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -647,7 +643,6 @@
     },
     {
      "ability": "Gale Wings",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
      "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -662,7 +657,6 @@
     },
     {
      "ability": "Blaze",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
      "item": "Blazikenite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -875,7 +869,6 @@
    "mons": [
     {
      "ability": "No Guard",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Pidgeotite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -890,7 +883,6 @@
     },
     {
      "ability": "Solid Rock",
-     "evs": "252 HP / 252 Atk / 4 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -905,7 +897,6 @@
     },
     {
      "ability": "Intimidate",
-     "evs": "252 HP / 252 Atk / 4 SpD",
      "item": "Rocky Helmet",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -920,7 +911,6 @@
     },
     {
      "ability": "Moxie",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
      "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -935,7 +925,6 @@
     },
     {
      "ability": "Technician",
-     "evs": "252 HP / 252 Atk / 4 SpD",
      "item": "Choice Band",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -949,19 +938,18 @@
      "species": "Scizor"
     },
     {
-     "ability": "Unnerve",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
-     "item": "Life Orb",
+     "ability": "Rock Head",
+     "item": "Thick Club",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Nasty Plot",
-      "Psystrike",
-      "Aura Sphere",
-      "Ice Beam"
+      "Shadow Bone",
+      "Flare Blitz",
+      "Earthquake",
+      "Swords Dance"
      ],
-     "nature": "Timid",
-     "species": "Mewtwo"
+     "nature": "Adamant",
+     "species": "Marowak Alola"
     }
    ],
    "mugshot": "Blue",
@@ -1077,7 +1065,6 @@
    "mons": [
     {
      "ability": "Sand Stream",
-     "evs": "252 HP / 4 Atk / 252 SpD",
      "item": "Smooth Rock",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1092,7 +1079,6 @@
     },
     {
      "ability": "Sand Rush",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1107,7 +1093,6 @@
     },
     {
      "ability": "Beast Boost",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Choice Specs",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1121,23 +1106,21 @@
      "species": "Nihilego"
     },
     {
-     "ability": "Sharpness",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
-     "item": "Choice Scarf",
+     "ability": "Quark Drive",
+     "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Sacred Sword",
+      "Dragon Dance",
+      "Wild Charge",
       "Stone Edge",
-      "Earthquake",
-      "X Scissor"
+      "Earthquake"
      ],
      "nature": "Jolly",
-     "species": "Terrakion"
+     "species": "Iron Thorns"
     },
     {
      "ability": "Storm Drain",
-     "evs": "252 HP / 4 Atk / 252 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1152,7 +1135,6 @@
     },
     {
      "ability": "Unnerve",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
      "item": "Aerodactylite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1353,19 +1335,19 @@
      "species": "Urshifu Single Strike"
     },
     {
-     "ability": "Guts",
+     "ability": "Inner Focus",
      "evs": "4 HP / 252 Atk / 252 Spe",
-     "item": "Heracronite",
+     "item": "Lucarionite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
       "Swords Dance",
       "Close Combat",
-      "Pin Missile",
-      "Rock Blast"
+      "Meteor Mash",
+      "Extreme Speed"
      ],
-     "nature": "Adamant",
-     "species": "Heracross"
+     "nature": "Jolly",
+     "species": "Lucario"
     }
    ],
    "mugshot": "Orange",
@@ -1383,7 +1365,6 @@
    "mons": [
     {
      "ability": "Protosynthesis",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1398,7 +1379,6 @@
     },
     {
      "ability": "Beast Boost",
-     "evs": "252 HP / 4 Atk / 252 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1413,7 +1393,6 @@
     },
     {
      "ability": "No Guard",
-     "evs": "252 HP / 252 Atk / 4 SpD",
      "item": "Choice Band",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1428,12 +1407,11 @@
     },
     {
      "ability": "Inner Focus",
-     "evs": "4 HP / 252 SpA / 252 Spe",
-     "item": "Life Orb",
+     "item": "Choice Specs",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Nasty Plot",
+      "Dark Pulse",
       "Aura Sphere",
       "Flash Cannon",
       "Vacuum Wave"
@@ -1442,23 +1420,21 @@
      "species": "Lucario"
     },
     {
-     "ability": "Defiant",
-     "evs": "4 HP / 252 Atk / 252 Spe",
+     "ability": "Scrappy",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Thunderous Kick",
       "Brave Bird",
-      "Knock Off",
-      "U Turn"
+      "Close Combat",
+      "U Turn",
+      "Roost"
      ],
      "nature": "Jolly",
-     "species": "Zapdos Galar"
+     "species": "Flamigo"
     },
     {
      "ability": "Huge Power",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Medichamite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1689,7 +1665,6 @@
    "mons": [
     {
      "ability": "Sturdy",
-     "evs": "252 HP / 4 Atk / 252 Def",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1704,7 +1679,6 @@
     },
     {
      "ability": "Speed Boost",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1719,7 +1693,6 @@
     },
     {
      "ability": "Quark Drive",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1734,7 +1707,6 @@
     },
     {
      "ability": "Speed Boost",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1749,7 +1721,6 @@
     },
     {
      "ability": "Emergency Exit",
-     "evs": "252 HP / 252 Atk / 4 SpD",
      "item": "Assault Vest",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -1763,19 +1734,18 @@
      "species": "Golisopod"
     },
     {
-     "ability": "Guts",
-     "evs": "4 HP / 252 Atk / 252 Spe",
-     "item": "Heracronite",
+     "ability": "Moxie",
+     "item": "Pinsirite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Pin Missile",
+      "Swords Dance",
+      "Double Edge",
       "Close Combat",
-      "Rock Blast",
-      "Swords Dance"
+      "Quick Attack"
      ],
-     "nature": "Adamant",
-     "species": "Heracross"
+     "nature": "Jolly",
+     "species": "Pinsir"
     }
    ],
    "mugshot": "Green",
@@ -2191,7 +2161,6 @@
    "mons": [
     {
      "ability": "Sharpness",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2206,7 +2175,6 @@
     },
     {
      "ability": "Unseen Fist",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Choice Band",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2221,7 +2189,6 @@
     },
     {
      "ability": "Quark Drive",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2235,23 +2202,21 @@
      "species": "Iron Valiant"
     },
     {
-     "ability": "Toxic Chain",
-     "evs": "252 HP / 252 Atk / 4 SpD",
+     "ability": "Thick Fat",
      "item": "Assault Vest",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Drain Punch",
-      "Gunk Shot",
+      "Fake Out",
+      "Close Combat",
       "Knock Off",
-      "Ice Punch"
+      "Heavy Slam"
      ],
      "nature": "Adamant",
-     "species": "Okidogi"
+     "species": "Hariyama"
     },
     {
      "ability": "Moxie",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2265,19 +2230,18 @@
      "species": "Quaquaval"
     },
     {
-     "ability": "Blaze",
-     "evs": "4 HP / 252 Atk / 252 Spe",
-     "item": "Blazikenite",
+     "ability": "Guts",
+     "item": "Heracronite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Swords Dance",
-      "Flare Blitz",
+      "Pin Missile",
       "Close Combat",
+      "Rock Blast",
       "Knock Off"
      ],
-     "nature": "Adamant",
-     "species": "Blaziken"
+     "nature": "Jolly",
+     "species": "Heracross"
     }
    ],
    "mugshot": "Orange",
@@ -2422,19 +2386,19 @@
      "species": "Kingdra"
     },
     {
-     "ability": "Multiscale",
+     "ability": "Rock Head",
      "evs": "4 HP / 252 Atk / 252 Spe",
-     "item": "Heavy Duty Boots",
+     "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
       "Dragon Dance",
-      "Extreme Speed",
-      "Earthquake",
-      "Outrage"
+      "Head Smash",
+      "Outrage",
+      "Earthquake"
      ],
-     "nature": "Adamant",
-     "species": "Dragonite"
+     "nature": "Jolly",
+     "species": "Tyrantrum"
     },
     {
      "ability": "Stamina",
@@ -2543,7 +2507,6 @@
    "mons": [
     {
      "ability": "Infiltrator",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2558,7 +2521,6 @@
     },
     {
      "ability": "Protosynthesis",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2573,8 +2535,7 @@
     },
     {
      "ability": "Protosynthesis",
-     "evs": "252 HP / 252 SpA / 4 SpD",
-     "item": "Leftovers",
+     "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
@@ -2588,7 +2549,6 @@
     },
     {
      "ability": "Beast Boost",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Choice Specs",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2603,7 +2563,6 @@
     },
     {
      "ability": "Sap Sipper",
-     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Assault Vest",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2618,7 +2577,6 @@
     },
     {
      "ability": "Blaze",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Charizardite X",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2745,7 +2703,6 @@
    "mons": [
     {
      "ability": "Prankster",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2760,7 +2717,6 @@
     },
     {
      "ability": "Grassy Surge",
-     "evs": "252 HP / 252 Atk / 4 SpD",
      "item": "Assault Vest",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2774,23 +2730,21 @@
      "species": "Rillaboom"
     },
     {
-     "ability": "Beast Boost",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
-     "item": "Life Orb",
+     "ability": "Queenly Majesty",
+     "item": "Choice Band",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Swords Dance",
-      "Leaf Blade",
-      "Sacred Sword",
-      "Smart Strike"
+      "High Jump Kick",
+      "Power Whip",
+      "Knock Off",
+      "U Turn"
      ],
      "nature": "Jolly",
-     "species": "Kartana"
+     "species": "Tsareena"
     },
     {
      "ability": "Contrary",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2805,7 +2759,6 @@
     },
     {
      "ability": "Levitate",
-     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Sitrus Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -2820,7 +2773,6 @@
     },
     {
      "ability": "Chlorophyll",
-     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Venusaurite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3148,12 +3100,11 @@
    "mons": [
     {
      "ability": "Prankster",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Thunder Wave",
+      "U Turn",
       "Taunt",
       "Thunderbolt",
       "Grass Knot"
@@ -3163,7 +3114,6 @@
     },
     {
      "ability": "Serene Grace",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3178,7 +3128,6 @@
     },
     {
      "ability": "Flame Body",
-     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3193,7 +3142,6 @@
     },
     {
      "ability": "Defiant",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Choice Scarf",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3208,7 +3156,6 @@
     },
     {
      "ability": "Poison Heal",
-     "evs": "252 HP / 4 Atk / 252 Def",
      "item": "Toxic Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3223,7 +3170,6 @@
     },
     {
      "ability": "Intimidate",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Salamencite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3350,7 +3296,6 @@
    "mons": [
     {
      "ability": "Toxic Debris",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3365,7 +3310,6 @@
     },
     {
      "ability": "Levitate",
-     "evs": "252 HP / 252 Def / 4 SpD",
      "item": "Black Sludge",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3380,7 +3324,6 @@
     },
     {
      "ability": "Unburden",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
      "item": "White Herb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3395,7 +3338,6 @@
     },
     {
      "ability": "Beast Boost",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3410,7 +3352,6 @@
     },
     {
      "ability": "Toxic Chain",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Assault Vest",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3425,7 +3366,6 @@
     },
     {
      "ability": "Levitate",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Gengarite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3852,7 +3792,6 @@
    "mons": [
     {
      "ability": "Mold Breaker",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3867,7 +3806,6 @@
     },
     {
      "ability": "Sharpness",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Choice Specs",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3882,7 +3820,6 @@
     },
     {
      "ability": "Beast Boost",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Choice Scarf",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3897,7 +3834,6 @@
     },
     {
      "ability": "Competitive",
-     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3912,7 +3848,6 @@
     },
     {
      "ability": "Supreme Overlord",
-     "evs": "252 HP / 252 Atk / 4 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -3927,7 +3862,6 @@
     },
     {
      "ability": "Clear Body",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Metagrossite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4070,14 +4004,14 @@
     {
      "ability": "Infiltrator",
      "evs": "4 HP / 252 Atk / 252 Spe",
-     "item": "Life Orb",
+     "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
+      "Swords Dance",
       "Knock Off",
       "Triple Axel",
-      "Ice Shard",
-      "Low Kick"
+      "Ice Shard"
      ],
      "nature": "Jolly",
      "species": "Weavile"
@@ -4098,19 +4032,19 @@
      "species": "Iron Jugulis"
     },
     {
-     "ability": "Protosynthesis",
+     "ability": "Moxie",
      "evs": "4 HP / 252 Atk / 252 Spe",
-     "item": "Booster Energy",
+     "item": "Choice Scarf",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
-      "Dragon Dance",
+      "Earthquake",
       "Knock Off",
-      "Acrobatics",
-      "Earthquake"
+      "Close Combat",
+      "Stone Edge"
      ],
      "nature": "Jolly",
-     "species": "Roaring Moon"
+     "species": "Krookodile"
     },
     {
      "ability": "Flash Fire",
@@ -4158,7 +4092,6 @@
    "mons": [
     {
      "ability": "Vessel Of Ruin",
-     "evs": "252 HP / 4 Atk / 252 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4173,7 +4106,6 @@
     },
     {
      "ability": "Sword Of Ruin",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4188,7 +4120,6 @@
     },
     {
      "ability": "Protean",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Choice Band",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4203,7 +4134,6 @@
     },
     {
      "ability": "Intimidate",
-     "evs": "252 HP / 4 Atk / 252 SpD",
      "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4218,7 +4148,6 @@
     },
     {
      "ability": "Berserk",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4233,7 +4162,6 @@
     },
     {
      "ability": "Sand Stream",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Tyranitarite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4359,19 +4287,19 @@
    "items": "Full Restore / Full Restore",
    "mons": [
     {
-     "ability": "Toxic Debris",
-     "evs": "4 HP / 252 SpA / 252 Spe",
-     "item": "Focus Sash",
+     "ability": "Clear Body",
+     "evs": "252 HP / 4 SpA / 252 Spe",
+     "item": "Black Sludge",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
-      "Stealth Rock",
       "Toxic Spikes",
-      "Power Gem",
-      "Earth Power"
+      "Knock Off",
+      "Rapid Spin",
+      "Sludge Bomb"
      ],
      "nature": "Timid",
-     "species": "Glimmora"
+     "species": "Tentacruel"
     },
     {
      "ability": "Corrosion",
@@ -4419,34 +4347,34 @@
      "species": "Overqwil"
     },
     {
-     "ability": "Beast Boost",
+     "ability": "Sheer Force",
      "evs": "4 HP / 252 SpA / 252 Spe",
-     "item": "Choice Specs",
+     "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
-      "Draco Meteor",
+      "Earth Power",
       "Sludge Wave",
-      "Fire Blast",
-      "U Turn"
+      "Ice Beam",
+      "Flamethrower"
      ],
      "nature": "Timid",
-     "species": "Naganadel"
+     "species": "Nidoking"
     },
     {
-     "ability": "Levitate",
-     "evs": "4 HP / 252 SpA / 252 Spe",
-     "item": "Gengarite",
+     "ability": "Sniper",
+     "evs": "252 Atk / 4 SpD / 252 Spe",
+     "item": "Beedrillite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
-      "Shadow Ball",
-      "Sludge Wave",
-      "Focus Blast",
-      "Nasty Plot"
+      "Poison Jab",
+      "U Turn",
+      "Drill Run",
+      "Knock Off"
      ],
-     "nature": "Timid",
-     "species": "Gengar"
+     "nature": "Jolly",
+     "species": "Beedrill"
     }
    ],
    "mugshot": "Purple",
@@ -4464,7 +4392,6 @@
    "mons": [
     {
      "ability": "Beast Boost",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4479,7 +4406,6 @@
     },
     {
      "ability": "Infiltrator",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4494,7 +4420,6 @@
     },
     {
      "ability": "Toxic Chain",
-     "evs": "252 HP / 4 Atk / 252 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4509,7 +4434,6 @@
     },
     {
      "ability": "Sniper",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Scope Lens",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4523,34 +4447,32 @@
      "species": "Drapion"
     },
     {
-     "ability": "Quark Drive",
-     "evs": "4 HP / 252 SpA / 252 Spe",
-     "item": "Booster Energy",
+     "ability": "Toxic Chain",
+     "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Fiery Dance",
-      "Sludge Wave",
-      "Energy Ball",
-      "Dazzling Gleam"
+      "Play Rough",
+      "Gunk Shot",
+      "U Turn",
+      "Roost"
      ],
-     "nature": "Timid",
-     "species": "Iron Moth"
+     "nature": "Careful",
+     "species": "Fezandipiti"
     },
     {
-     "ability": "Chlorophyll",
-     "evs": "252 HP / 252 SpA / 4 SpD",
-     "item": "Venusaurite",
+     "ability": "Sniper",
+     "item": "Beedrillite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Giga Drain",
-      "Sludge Bomb",
-      "Earth Power",
-      "Synthesis"
+      "Swords Dance",
+      "Poison Jab",
+      "Drill Run",
+      "Knock Off"
      ],
-     "nature": "Modest",
-     "species": "Venusaur"
+     "nature": "Jolly",
+     "species": "Beedrill"
     }
    ],
    "mugshot": "Purple",
@@ -4697,7 +4619,7 @@
     {
      "ability": "Protosynthesis",
      "evs": "252 HP / 252 Atk / 4 SpD",
-     "item": "Heavy Duty Boots",
+     "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
@@ -4817,7 +4739,6 @@
    "mons": [
     {
      "ability": "Sturdy",
-     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Custap Berry",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4832,7 +4753,6 @@
     },
     {
      "ability": "Thermal Exchange",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Choice Band",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4847,7 +4767,6 @@
     },
     {
      "ability": "Protosynthesis",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4862,7 +4781,6 @@
     },
     {
      "ability": "Multiscale",
-     "evs": "252 HP / 252 Atk / 4 Def",
      "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4876,8 +4794,21 @@
      "species": "Dragonite"
     },
     {
+     "ability": "Infiltrator",
+     "item": "Choice Specs",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 100,
+     "moves": [
+      "Draco Meteor",
+      "Hurricane",
+      "Flamethrower",
+      "U Turn"
+     ],
+     "nature": "Timid",
+     "species": "Noivern"
+    },
+    {
      "ability": "Rough Skin",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Garchompite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -4889,21 +4820,6 @@
      ],
      "nature": "Jolly",
      "species": "Garchomp"
-    },
-    {
-     "ability": "Air Lock",
-     "evs": "4 HP / 252 Atk / 252 Spe",
-     "item": "Life Orb",
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 100,
-     "moves": [
-      "Dragon Dance",
-      "Dragon Ascent",
-      "Extreme Speed",
-      "Earthquake"
-     ],
-     "nature": "Jolly",
-     "species": "Rayquaza"
     }
    ],
    "mugshot": "Blue",
@@ -5077,7 +4993,6 @@
    "mons": [
     {
      "ability": "Electric Surge",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Light Clay",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5092,7 +5007,6 @@
     },
     {
      "ability": "Protosynthesis",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Booster Energy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5106,38 +5020,35 @@
      "species": "Sandy Shocks"
     },
     {
-     "ability": "Quark Drive",
-     "evs": "252 HP / 252 Atk / 4 SpD",
-     "item": "Assault Vest",
+     "ability": "Motor Drive",
+     "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Fake Out",
-      "Drain Punch",
       "Wild Charge",
-      "Ice Punch"
+      "Ice Punch",
+      "Earthquake",
+      "Cross Chop"
      ],
      "nature": "Adamant",
-     "species": "Iron Hands"
+     "species": "Electivire"
     },
     {
-     "ability": "Static",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
-     "item": "Heavy Duty Boots",
+     "ability": "Levitate",
+     "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Thunderbolt",
-      "Hurricane",
-      "Heat Wave",
-      "Roost"
+      "Hydro Pump",
+      "Volt Switch",
+      "Will O Wisp",
+      "Pain Split"
      ],
-     "nature": "Timid",
-     "species": "Zapdos"
+     "nature": "Bold",
+     "species": "Rotom Wash"
     },
     {
      "ability": "Beast Boost",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5152,7 +5063,6 @@
     },
     {
      "ability": "Static",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Ampharosite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5279,7 +5189,6 @@
    "mons": [
     {
      "ability": "Drizzle",
-     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Damp Rock",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5294,7 +5203,6 @@
     },
     {
      "ability": "Swift Swim",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Choice Specs",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5309,7 +5217,6 @@
     },
     {
      "ability": "Unseen Fist",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5324,7 +5231,6 @@
     },
     {
      "ability": "Torrent",
-     "evs": "252 HP / 4 Atk / 252 Def",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5339,7 +5245,6 @@
     },
     {
      "ability": "Misty Surge",
-     "evs": "252 HP / 252 Def / 4 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5354,7 +5259,6 @@
     },
     {
      "ability": "Torrent",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Blastoisinite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5555,19 +5459,19 @@
      "species": "Typhlosion Hisui"
     },
     {
-     "ability": "Levitate",
-     "evs": "4 HP / 252 SpA / 252 Spe",
-     "item": "Gengarite",
+     "ability": "Frisk",
+     "evs": "252 HP / 252 Atk / 4 Def",
+     "item": "Banettite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
-      "Shadow Ball",
-      "Sludge Wave",
-      "Focus Blast",
-      "Nasty Plot"
+      "Poltergeist",
+      "Gunk Shot",
+      "Shadow Sneak",
+      "Will O Wisp"
      ],
-     "nature": "Timid",
-     "species": "Gengar"
+     "nature": "Adamant",
+     "species": "Banette"
     }
    ],
    "mugshot": "Purple",
@@ -5585,7 +5489,6 @@
    "mons": [
     {
      "ability": "Iron Fist",
-     "evs": "252 HP / 252 Atk / 4 Def",
      "item": "Focus Sash",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5600,7 +5503,6 @@
     },
     {
      "ability": "Grim Neigh",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5615,7 +5517,6 @@
     },
     {
      "ability": "Defiant",
-     "evs": "252 HP / 4 Atk / 252 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5630,7 +5531,6 @@
     },
     {
      "ability": "Good As Gold",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Choice Scarf",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -5645,33 +5545,31 @@
     },
     {
      "ability": "Beast Boost",
-     "evs": "4 HP / 252 SpA / 252 Spe",
-     "item": "Choice Specs",
+     "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
       "Shadow Ball",
       "Fire Blast",
       "Psyshock",
-      "Trick"
+      "Calm Mind"
      ],
      "nature": "Timid",
      "species": "Blacephalon"
     },
     {
-     "ability": "Frisk",
-     "evs": "252 HP / 252 Atk / 4 Def",
-     "item": "Banettite",
+     "ability": "Levitate",
+     "item": "Gengarite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Poltergeist",
-      "Gunk Shot",
-      "Shadow Sneak",
-      "Will O Wisp"
+      "Shadow Ball",
+      "Sludge Wave",
+      "Focus Blast",
+      "Nasty Plot"
      ],
-     "nature": "Adamant",
-     "species": "Banette"
+     "nature": "Timid",
+     "species": "Gengar"
     }
    ],
    "mugshot": "Purple",
@@ -6479,7 +6377,6 @@
    "mons": [
     {
      "ability": "Snow Warning",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Icy Rock",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -6494,7 +6391,6 @@
     },
     {
      "ability": "Slush Rush",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -6509,7 +6405,6 @@
     },
     {
      "ability": "Thermal Exchange",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Loaded Dice",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -6524,7 +6419,6 @@
     },
     {
      "ability": "Chilling Neigh",
-     "evs": "252 HP / 252 Atk / 4 SpD",
      "item": "Assault Vest",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -6539,7 +6433,6 @@
     },
     {
      "ability": "Gorilla Tactics",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Choice Scarf",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -6554,7 +6447,6 @@
     },
     {
      "ability": "Snow Warning",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Abomasite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -7275,17 +7167,17 @@
     },
     {
      "ability": "Triage",
-     "evs": "252 HP / 252 Def / 4 SpD",
+     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
       "Giga Drain",
       "Leech Seed",
-      "Dragon Tail",
+      "Earth Power",
       "Synthesis"
      ],
-     "nature": "Bold",
+     "nature": "Calm",
      "species": "Meganium"
     }
    ],
@@ -8744,7 +8636,6 @@
    "mons": [
     {
      "ability": "Psychic Surge",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
      "item": "Light Clay",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -8759,7 +8650,6 @@
     },
     {
      "ability": "Tough Claws",
-     "evs": "252 HP / 252 Atk / 4 SpD",
      "item": "Weakness Policy",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -8773,23 +8663,7 @@
      "species": "Metagross"
     },
     {
-     "ability": "Magic Guard",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
-     "item": "Life Orb",
-     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
-     "level": 100,
-     "moves": [
-      "Nasty Plot",
-      "Expanding Force",
-      "Shadow Ball",
-      "Focus Blast"
-     ],
-     "nature": "Timid",
-     "species": "Alakazam"
-    },
-    {
      "ability": "Sharpness",
-     "evs": "252 Atk / 4 SpD / 252 Spe",
      "item": "Choice Scarf",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -8804,7 +8678,6 @@
     },
     {
      "ability": "Levitate",
-     "evs": "252 HP / 252 Def / 4 SpD",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -8818,19 +8691,32 @@
      "species": "Cresselia"
     },
     {
-     "ability": "Levitate",
-     "evs": "252 SpA / 4 SpD / 252 Spe",
-     "item": "Latiosite",
+     "ability": "Mega Launcher",
+     "item": "Choice Specs",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Draco Meteor",
-      "Psyshock",
+      "Armor Cannon",
+      "Expanding Force",
       "Aura Sphere",
-      "Recover"
+      "Dark Pulse"
      ],
      "nature": "Timid",
-     "species": "Latios"
+     "species": "Armarouge"
+    },
+    {
+     "ability": "Magic Guard",
+     "item": "Alakazite",
+     "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
+     "level": 100,
+     "moves": [
+      "Nasty Plot",
+      "Expanding Force",
+      "Shadow Ball",
+      "Focus Blast"
+     ],
+     "nature": "Timid",
+     "species": "Alakazam"
     }
    ],
    "mugshot": "Pink",
@@ -11597,7 +11483,6 @@
    "mons": [
     {
      "ability": "Natural Cure",
-     "evs": "252 HP / 252 Def / 4 SpD",
      "item": "Eviolite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11612,7 +11497,6 @@
     },
     {
      "ability": "Regenerator",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Heavy Duty Boots",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11627,7 +11511,6 @@
     },
     {
      "ability": "Parental Bond",
-     "evs": "252 HP / 252 SpA / 4 SpD",
      "item": "Throat Spray",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11642,7 +11525,6 @@
     },
     {
      "ability": "Guts",
-     "evs": "252 HP / 252 Atk / 4 Def",
      "item": "Flame Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11657,7 +11539,6 @@
     },
     {
      "ability": "Skill Link",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11672,7 +11553,6 @@
     },
     {
      "ability": "Scrappy",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Kangaskhanite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11843,34 +11723,34 @@
      "species": "Slowking Galar"
     },
     {
-     "ability": "Levitate",
+     "ability": "Magic Bounce",
      "evs": "252 HP / 252 Def / 4 SpD",
-     "item": "Leftovers",
+     "item": "Rocky Helmet",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
-      "Moonblast",
-      "Ice Beam",
-      "Moonlight",
-      "Thunder Wave"
+      "Psychic",
+      "Thunder Wave",
+      "U Turn",
+      "Roost"
      ],
      "nature": "Bold",
-     "species": "Cresselia"
+     "species": "Xatu"
     },
     {
-     "ability": "Quark Drive",
+     "ability": "Sharpness",
      "evs": "4 HP / 252 Atk / 252 Spe",
-     "item": "Booster Energy",
+     "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 90,
      "moves": [
       "Swords Dance",
-      "Mighty Cleave",
+      "Sacred Sword",
       "Psycho Cut",
-      "Close Combat"
+      "Leaf Blade"
      ],
      "nature": "Jolly",
-     "species": "Iron Boulder"
+     "species": "Gallade"
     },
     {
      "ability": "Trace",
@@ -11903,7 +11783,6 @@
    "mons": [
     {
      "ability": "Levitate",
-     "evs": "252 HP / 252 Def / 4 SpD",
      "item": "Light Clay",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11918,7 +11797,6 @@
     },
     {
      "ability": "Speed Boost",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Leftovers",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11932,23 +11810,21 @@
      "species": "Espathra"
     },
     {
-     "ability": "Sharpness",
-     "evs": "252 HP / 252 SpA / 4 SpD",
-     "item": "Assault Vest",
+     "ability": "Magic Guard",
+     "item": "Life Orb",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
      "moves": [
-      "Tachyon Cutter",
       "Psyshock",
       "Focus Blast",
-      "Volt Switch"
+      "Shadow Ball",
+      "Recover"
      ],
      "nature": "Modest",
-     "species": "Iron Crown"
+     "species": "Reuniclus"
     },
     {
      "ability": "Levitate",
-     "evs": "4 HP / 252 SpA / 252 Spe",
      "item": "Choice Specs",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11963,7 +11839,6 @@
     },
     {
      "ability": "Sharpness",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Choice Band",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -11978,7 +11853,6 @@
     },
     {
      "ability": "Sharpness",
-     "evs": "4 HP / 252 Atk / 252 Spe",
      "item": "Galladite",
      "ivs": "31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe",
      "level": 100,
@@ -12053,6 +11927,7 @@
   85
  ],
  "reworked": [
+  "TRAINER_AARON_HNS",
   "TRAINER_ACE_R26_ELIAS_HNS",
   "TRAINER_ACE_R27_IMOGEN_HNS",
   "TRAINER_ACE_R27_MAXIM_HNS",
@@ -12079,11 +11954,15 @@
   "TRAINER_ACE_R47_ASTRID_HNS",
   "TRAINER_ACE_R47_NOLAN_HNS",
   "TRAINER_ACE_R48_SOLANA_HNS",
+  "TRAINER_ALLEN_HNS",
   "TRAINER_ARCHER_HNS",
   "TRAINER_ARIANA_1_HNS",
   "TRAINER_ARIANA_2_HNS",
   "TRAINER_BENJAMIN_HNS",
   "TRAINER_BEN_HNS",
+  "TRAINER_BETH_2_HNS",
+  "TRAINER_BETH_3_HNS",
+  "TRAINER_BETH_HNS",
   "TRAINER_BLAINE_HNS",
   "TRAINER_BLAINE_POSTOBC_HNS",
   "TRAINER_BLAKE_HNS",
@@ -12091,6 +11970,7 @@
   "TRAINER_BLUE_POSTOBC_HNS",
   "TRAINER_BORIS_HNS",
   "TRAINER_BRET_HNS",
+  "TRAINER_BRIAN_HNS",
   "TRAINER_BROCK_HNS",
   "TRAINER_BROCK_POSTOBC_HNS",
   "TRAINER_BRUNO_1_HNS",
@@ -12100,6 +11980,8 @@
   "TRAINER_BUGSY_1_HNS",
   "TRAINER_BUGSY_2_HNS",
   "TRAINER_BUGSY_POSTOBC_HNS",
+  "TRAINER_CARA_HNS",
+  "TRAINER_CAROL_HNS",
   "TRAINER_CHUCK_1_2_HNS",
   "TRAINER_CHUCK_1_3_HNS",
   "TRAINER_CHUCK_1_HNS",
@@ -12112,6 +11994,7 @@
   "TRAINER_CYBIL_HNS",
   "TRAINER_DEVIN_HNS",
   "TRAINER_DWAYNE_HNS",
+  "TRAINER_EMMA_HNS",
   "TRAINER_ERIKA_HNS",
   "TRAINER_ERIKA_POSTOBC_HNS",
   "TRAINER_EUGENE_HNS",
@@ -12119,9 +12002,15 @@
   "TRAINER_FALKNER_1_HNS",
   "TRAINER_FALKNER_2_HNS",
   "TRAINER_FALKNER_POSTOBC_HNS",
+  "TRAINER_FRAN_HNS",
+  "TRAINER_GAVEN_2_HNS",
+  "TRAINER_GAVEN_3_HNS",
+  "TRAINER_GAVEN_HNS",
   "TRAINER_GEORGE_HNS",
   "TRAINER_GREG_HNS",
+  "TRAINER_GWEN_HNS",
   "TRAINER_HERMAN_HNS",
+  "TRAINER_IRENE_HNS",
   "TRAINER_JAKE_HNS",
   "TRAINER_JANINE_HNS",
   "TRAINER_JANINE_POSTOBC_HNS",
@@ -12130,6 +12019,8 @@
   "TRAINER_JASMINE_1_HNS",
   "TRAINER_JASMINE_2_HNS",
   "TRAINER_JASMINE_POSTOBC_HNS",
+  "TRAINER_JENN_HNS",
+  "TRAINER_JOYCE_HNS",
   "TRAINER_KAREN_1_HNS",
   "TRAINER_KAREN_2_HNS",
   "TRAINER_KAREN_POSTOBC_HNS",
@@ -12144,9 +12035,12 @@
   "TRAINER_LANCE_2_HNS",
   "TRAINER_LANCE_POSTOBC_HNS",
   "TRAINER_LI_HNS",
+  "TRAINER_LOIS_HNS",
+  "TRAINER_LOLA_HNS",
   "TRAINER_LORI_HNS",
   "TRAINER_LTSURGE_HNS",
   "TRAINER_LTSURGE_POSTOBC_HNS",
+  "TRAINER_MEGAN_HNS",
   "TRAINER_MIKEY_HNS",
   "TRAINER_MIKI_HNS",
   "TRAINER_MISTY_HNS",
@@ -12155,6 +12049,7 @@
   "TRAINER_MORTY_2_HNS",
   "TRAINER_MORTY_POSTOBC_HNS",
   "TRAINER_NAOKO_HNS",
+  "TRAINER_NICK_HNS",
   "TRAINER_OTIS_HNS",
   "TRAINER_PETREL_1_HNS",
   "TRAINER_PETREL_2_HNS",
@@ -12168,6 +12063,9 @@
   "TRAINER_QUINN_HNS",
   "TRAINER_RED_HNS",
   "TRAINER_RED_POSTOBC_HNS",
+  "TRAINER_REENA_2_HNS",
+  "TRAINER_REENA_3_HNS",
+  "TRAINER_REENA_HNS",
   "TRAINER_RIVAL_CHIKORITA_2_HNS",
   "TRAINER_RIVAL_CHIKORITA_3_HNS",
   "TRAINER_RIVAL_CHIKORITA_4_HNS",
@@ -12188,9 +12086,11 @@
   "TRAINER_RIVAL_TOTODILE_7_HNS",
   "TRAINER_ROBERT_HNS",
   "TRAINER_ROLAND_HNS",
+  "TRAINER_RYAN_HNS",
   "TRAINER_SABRINA_HNS",
   "TRAINER_SABRINA_POSTOBC_HNS",
   "TRAINER_SAYO_HNS",
+  "TRAINER_SEAN_HNS",
   "TRAINER_SIDE_ARCHIE_HNS",
   "TRAINER_SIDE_BRASSIUS_HNS",
   "TRAINER_SIDE_BYRON_HNS",
