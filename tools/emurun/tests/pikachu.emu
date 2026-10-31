@@ -34,7 +34,8 @@ wait 60
 !no_care_packages()
 !warp(0, 11, 0)
 !walkto(34, 14, "yx")
-!walkto(24, 14)
+# into the grass: a wild battle may start on the way (soft)
+!walkto(24, 14, soft=True)
 !pace(21, 25, 14, 10, soft=True)
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 3000 B wild_battle_action_menu
 shot 02_battle.png

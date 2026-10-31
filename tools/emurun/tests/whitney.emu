@@ -4,7 +4,9 @@
 # holding the first care package's Eviolite), never switching voluntarily, each with a move a
 # player at 33 would keep (the default movesets at 33 drop Quilava's Fire moves and give Kadabra
 # the physical Psycho Cut). 24 battles with different RNG must include at least one win and at
-# least two losses.
+# least two losses. Since 0.15.1 the others hold their types' boosters, as the starting care
+# package gives ten of each (it has since 0.12.0): with Emerald Imperium's base stats (D50: Furret
+# Attack 86, Miltank 85) the six without them lost all 24 battles; with them they win 3 on mGBA.
 !new_game()
 !battle_style_set()
 !give_mon_complex("SPECIES_PIDGEOTTO", 33, "NATURE_HARDY", 0, ['MOVE_WING_ATTACK', 'MOVE_TWISTER', 'MOVE_QUICK_ATTACK', 'MOVE_AGILITY'])
@@ -13,6 +15,11 @@
 !give_mon(123, 33)
 !give_mon(57, 33)
 !give_mon_complex("SPECIES_MACHOKE", 33, "NATURE_HARDY", 0, ['MOVE_LOW_SWEEP', 'MOVE_VITAL_THROW', 'MOVE_KNOCK_OFF', 'MOVE_BULK_UP'])
+!hold_item("ITEM_SHARP_BEAK", 0)
+!hold_item("ITEM_CHARCOAL", 1)
+!hold_item("ITEM_TWISTED_SPOON", 2)
+!hold_item("ITEM_SILVER_POWDER", 3)
+!hold_item("ITEM_BLACK_BELT", 4)
 !hold_item("ITEM_EVIOLITE", 5)
 savestate team.ss
 !battle_trainer(406)

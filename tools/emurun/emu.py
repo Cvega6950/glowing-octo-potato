@@ -1001,6 +1001,16 @@ def turn(*moves, shots=None, decline_switch=False):
     return out
 
 
+def weaken_opponents(count, hp=1):
+    """In a trainer battle at the player's action menu: the opponent's `count` Pokemon at `hp` HP,
+    in battle and in its party, so the battle is won whatever its luck (for tests of what comes
+    after a win)."""
+    v = probe.resolve({"size": "sizeof(struct BattlePokemon)", "hp": "offsetof(struct BattlePokemon, hp)",
+                       "php": "offsetof(struct Pokemon, hp)", "psize": "sizeof(struct Pokemon)"})
+    out = [f"poke16 {{gBattleMons+{v['size'] + v['hp']}}} {hp}"]
+    return out + [f"poke16 {{gEnemyParty+{i * v['psize'] + v['php']}}} {hp}" for i in range(count)]
+
+
 def autobattle(moves, max_frames=60000, plan=None):
     """Play the current battle to the end. moves: per party slot, the move slot (0-3) to use,
     e.g. "2,3,1,2"; add 'm' to Mega Evolve first ("2m"). Forced switches pick the first healthy

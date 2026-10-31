@@ -163,10 +163,10 @@ shot 16_iono_battle.png
 expect8 {gEnemyPartyCount} 6 iono_has_6
 expect8 {gEnemyParty+84} 90 iono_lead_at_kanto_cap_90
 expect32 {gMPlayInfo_BGM} {mus_hg_vs_gym_leader_kanto} iono_kanto_leader_theme
-# Moves for her Electric team, not each one's first: Tyranitar's Stone Edge (her lead Kilowattrel
-# flies), Gardevoir's Psychic (Toxtricity), Ampharos's Dragon Pulse (Thunderbolt is resisted). With
-# the first moves the six lost to her since 0.15.1's Imperium base stats (D50: Hisuian Electrode's
-# Sp. Atk 95, Mismagius's HP and Defense 70)
+# Her six at 1 HP: this checks the win's reward, and since 0.15.1's Imperium base stats (D50:
+# Hisuian Electrode's Sp. Atk 95, Mismagius's HP and Defense 70) the prepared six lose to her as
+# often as they win on one emulator or the other, whatever moves they use
+!weaken_opponents(6)
 !autobattle("1,0,1,0,0,1")
 expect8 {gBattleOutcome} 1 iono_beaten
 mash B 900
