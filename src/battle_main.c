@@ -2058,20 +2058,19 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
     }
 }
 
-// Crystal Imperium: every boss's Pokemon are at the player's level cap, on every difficulty
-// (DECISIONS.md D21): the cap of the boss's stage or of the player's progress, whichever is later,
-// from the player's cap table (HARD caps on HARD). Other trainers' Heart & Soul levels are mapped
-// onto the player's cap curve (D29) and raised to the player's own level as in Emerald Imperium
-// (D46), then scaled by the difficulty, and are never above the player's cap. While a party is
-// created, sBossLevel is the boss's level (0 for other trainers), sTrainerLevelCap the player's
-// cap (0: no party being created), sPlayerHighestLevel the player's highest level and
-// sTrainerTopLevel the highest level in the trainer's party data.
+// Crystal Imperium: every trainer's Pokemon are at the player's level cap, on every difficulty
+// (DECISIONS.md D56): the cap of the player's progress in the player's cap table (HARD caps on HARD;
+// the NORMAL ones with the cap off, so trainers keep their levels then). A boss's (sLevelCapBosses:
+// the bosses, the route mini-bosses, the side battles) are at the cap of its stage or of the player's
+// progress, whichever is later (D21): its stage is the earliest point its battle can happen, so in
+// play that is the player's cap too. While an opponent's party is created, sTrainerLevel is every
+// Pokemon's level (0: no opponent's party being created) and sTeamMadeForStage says the team is a
+// boss's or another made for a stage (sTeamsMadeForStage: the Ace Trainers and Heart & Soul's
+// Cooltrainers with competitive teams), which keeps its Pokemon as made up to its party data's levels.
 #include "data/level_cap_bosses.h"
 
-static u8 sBossLevel;
-static u8 sTrainerLevelCap;
-static u8 sPlayerHighestLevel;
-static u8 sTrainerTopLevel;
+static u8 sTrainerLevel;
+static bool8 sTeamMadeForStage;
 
 static u32 GetLevelCapBossLevel(u16 trainerNum)
 {
@@ -2083,63 +2082,39 @@ static u32 GetLevelCapBossLevel(u16 trainerNum)
     return 0;
 }
 
-// Crystal Imperium difficulty selection: trainers that have no dedicated Easy/Hard party in the
-// .party data use their Normal party, scaled to 90% (EASY) or 110% (HARD) of its levels.
-static bool8 sScaleTrainerLevels;
-
-static u8 GetDifficultyScaledTrainerLevel(u8 level)
+static bool32 IsTeamMadeForStage(u16 trainerNum)
 {
-    switch (GetCurrentDifficultyLevel())
+    for (u32 i = 0; i < ARRAY_COUNT(sTeamsMadeForStage); i++)
     {
-    case DIFFICULTY_EASY:
-        level = (level * 9) / 10;
-        return level < 1 ? 1 : level;
-    case DIFFICULTY_HARD:
-        level = (level * 11 + 5) / 10;
-        return level > MAX_LEVEL ? MAX_LEVEL : level;
-    default:
-        return level;
+        if (sTeamsMadeForStage[i] == trainerNum)
+            return TRUE;
     }
+    return FALSE;
 }
 
-// Crystal Imperium (DECISIONS.md D46): an ordinary trainer's Pokemon are at the player's highest
-// level minus 1 to 3, as Emerald Imperium's ("Highest Lv -2" in its Boss Battles document): the
-// trainer's strongest one level below, each other one more level below for each level it was below
-// it in Heart & Soul, at most three. Never below the cap curve's level.
-static u32 GetLevelBelowPlayer(u32 level)
+// The level of every Pokemon of a trainer in battle (D56): the boss's level for a boss, the player's
+// cap for any other. Also what its prize money is counted from (src/battle_script_commands.c).
+u32 GetTrainerBattleLevel(u16 trainerNum)
 {
-    u32 below = 1 + (sTrainerTopLevel > level ? sTrainerTopLevel - level : 0);
+    u32 level = GetLevelCapBossLevel(trainerNum);
 
-    if (below > 3)
-        below = 3;
-    return sPlayerHighestLevel > below ? sPlayerHighestLevel - below : 1;
+    return level ? level : GetLevelCapAtStage(GetLevelCapStage());
 }
 
-static u8 GetDifficultyAdjustedTrainerLevel(u8 level)
+static u8 GetTrainerMonLevel(u8 level)
 {
-    u32 original = level;
-
-    if (sBossLevel)
-        return sBossLevel;
-    if (sTrainerLevelCap)
-        level = GetLevelOnCapCurve(level);
-    if (sPlayerHighestLevel && GetLevelBelowPlayer(original) > level)
-        level = GetLevelBelowPlayer(original);
-    if (sScaleTrainerLevels)
-        level = GetDifficultyScaledTrainerLevel(level);
-    if (sTrainerLevelCap && level > sTrainerLevelCap)
-        level = sTrainerLevelCap;
-    return level;
+    return sTrainerLevel ? sTrainerLevel : level;
 }
 
 // Crystal Imperium (DECISIONS.md D46): a trainer's Pokemon is as evolved as its level allows, as
 // in Emerald Imperium, where no trainer uses one far above its evolution level: by a level evolution
 // at its level, by any other (an item, a trade, friendship, a move) from TRAINER_OTHER_EVOLUTION_LEVEL.
-// The first route that applies is taken. A boss's team is made for its stage's cap, the level in its
-// party data: there it stays as it is, and fought later (raised to a later cap) it evolves, except a
-// Pokemon that holds an Eviolite or Everstone, or an item that works only for its own species (Light
-// Ball, Lucky Punch, the Deep Sea items, Metal and Quick Powder). An ordinary trainer's level follows
-// the player's, so its Pokemon evolve whatever they hold.
+// The first route that applies is taken. A boss's team, or another made for a stage, is made for its
+// stage's cap, the level in its party data: there it stays as it is, and raised to a later cap it
+// evolves, except a Pokemon that holds an Eviolite or Everstone, or an item that works only for its
+// own species (Light Ball, Lucky Punch, the Deep Sea items, Metal and Quick Powder). Any other
+// trainer's team is Heart & Soul's, made for its levels there, so its Pokemon evolve at the
+// player's cap whatever they hold.
 #define TRAINER_OTHER_EVOLUTION_LEVEL 32
 
 static u32 GetTrainerEvolutionLevel(const struct Evolution *evolution)
@@ -2161,9 +2136,9 @@ static u16 GetTrainerMonEvolvedSpecies(u16 species, u32 level, u32 teamLevel, u1
 {
     u32 stage, i;
 
-    if (sBossLevel && level <= teamLevel)
+    if (sTeamMadeForStage && level <= teamLevel)
         return species;
-    switch (sBossLevel ? GetItemHoldEffect(heldItem) : HOLD_EFFECT_NONE)
+    switch (sTeamMadeForStage ? GetItemHoldEffect(heldItem) : HOLD_EFFECT_NONE)
     {
     case HOLD_EFFECT_EVIOLITE:
     case HOLD_EFFECT_PREVENT_EVOLVE:
@@ -2259,11 +2234,11 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
             }
             {
                 u16 species = partyData[monIndex].species;
-                u8 level = GetDifficultyAdjustedTrainerLevel(partyData[monIndex].lvl);
+                u8 level = GetTrainerMonLevel(partyData[monIndex].lvl);
                 #if RANDOMIZER_AVAILABLE == TRUE
                 species = RandomizeTrainerMon(trainer->trainerClass, i, monsCount, species);
                 #endif
-                if (sTrainerLevelCap) // an opponent's party, not a partner's or a party for the player
+                if (sTrainerLevel) // an opponent's party, not a partner's or a party for the player
                     species = GetTrainerMonEvolvedSpecies(species, level, partyData[monIndex].lvl, partyData[monIndex].heldItem);
                 CreateMon(&party[i], species, level, personalityValue, otId);
             }
@@ -2277,7 +2252,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 // special attacker's 0 Attack) stay as the party data has them.
                 u32 ivs = partyData[monIndex].iv;
                 u32 iv = ivs & MAX_PER_STAT_IVS;
-                if (sTrainerLevelCap && iv < MAX_PER_STAT_IVS && ivs == TRAINER_PARTY_IVS(iv, iv, iv, iv, iv, iv))
+                if (sTrainerLevel && iv < MAX_PER_STAT_IVS && ivs == TRAINER_PARTY_IVS(iv, iv, iv, iv, iv, iv))
                     ivs = TRAINER_PARTY_IVS(MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS, MAX_PER_STAT_IVS);
                 SetMonData(&party[i], MON_DATA_IVS, &ivs);
             }
@@ -2414,34 +2389,13 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
     return trainer->partySize;
 }
 
-// Crystal Imperium (D46): the highest level in a trainer's party data (all of its pool, for a party
-// pool; its original's, for a trainer that overrides another's party), for GetLevelBelowPlayer
-static u8 GetTrainerTopLevel(const struct Trainer *trainer)
-{
-    const struct Trainer *source = trainer->overrideTrainer ? GetTrainerStructFromId(trainer->overrideTrainer) : trainer;
-    u32 i, count = source->poolSize ? source->poolSize : (trainer->partySize ? trainer->partySize : source->partySize);
-    u8 top = 0;
-
-    for (i = 0; i < count; i++)
-    {
-        if (source->party[i].lvl > top)
-            top = source->party[i].lvl;
-    }
-    return top;
-}
-
 static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 firstTrainer)
 {
     u8 retVal;
     if (trainerNum == TRAINER_SECRET_BASE)
         return 0;
-    sScaleTrainerLevels = (!gIsDebugBattle
-                           && GetCurrentDifficultyLevel() != DIFFICULTY_NORMAL
-                           && GetTrainerDifficultyLevel(trainerNum) == DIFFICULTY_NORMAL);
-    sBossLevel = GetLevelCapBossLevel(trainerNum);
-    sTrainerLevelCap = GetCurrentLevelCap();
-    sPlayerHighestLevel = GetHighestLevelInPlayerParty();
-    sTrainerTopLevel = GetTrainerTopLevel(GetTrainerStructFromId(trainerNum));
+    sTrainerLevel = GetTrainerBattleLevel(trainerNum);
+    sTeamMadeForStage = (GetLevelCapBossLevel(trainerNum) != 0 || IsTeamMadeForStage(trainerNum));
     if (GetTrainerStructFromId(trainerNum)->overrideTrainer)
     {
         struct Trainer tempTrainer;
@@ -2460,11 +2414,8 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     {
         retVal = CreateNPCTrainerPartyFromTrainer(party, GetTrainerStructFromId(trainerNum), firstTrainer, gBattleTypeFlags);
     }
-    sScaleTrainerLevels = FALSE;
-    sBossLevel = 0;
-    sTrainerLevelCap = 0;
-    sPlayerHighestLevel = 0;
-    sTrainerTopLevel = 0;
+    sTrainerLevel = 0;
+    sTeamMadeForStage = FALSE;
     return retVal;
 }
 

@@ -6,9 +6,9 @@
 #   reached with); with six badges all four of his Pokemon are 66.
 # - Brock's Gym team, which is also his Fighting Dojo rematch: 90 after the Johto League, 100 after
 #   the Kanto League (no cap left).
-# - A Rocket Grunt isn't a boss: his level-20 Koffing (Heart & Soul's level) is one below the
-#   player's level-40 TYPHLOSION with six badges, 39 (D46; the cap curve has it at 31, D29), and is
-#   held at the cap (15) with none.
+# - A Rocket Grunt isn't a boss, and is at the player's cap too since 0.15.2 (D56): his level-20
+#   Koffing (Heart & Soul's level) is at 15 with no badges and 66 with six, whatever the player's
+#   own level (a level-40 TYPHLOSION here).
 # - HARD level caps: Falkner at 12, Petrel at 47 and, with six badges, 63; the Grunt's Koffing at 12.
 # gEnemyParty: 100 bytes a Pokemon, level at +84.
 !new_game()
@@ -22,7 +22,7 @@ waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller
 expect8 {gEnemyParty+84} 50 petrel_lead_at_50
 expect8 {gEnemyParty+384} 50 petrel_ace_at_50
 
-# Not a boss: with no badges the Grunt's Koffing is held at the cap, 15
+# Not a boss: with no badges the Grunt's Koffing is at the cap, 15
 loadstate base.ss
 !battle("TRAINER_GRUNT_33_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B grunt_no_badges_action_menu
@@ -45,12 +45,12 @@ expect8 {gEnemyParty+184} 66 six_badges_petrel_2_at_66
 expect8 {gEnemyParty+284} 66 six_badges_petrel_3_at_66
 expect8 {gEnemyParty+384} 66 six_badges_petrel_4_at_66
 
-# Not a boss: with six badges the Grunt's Koffing is one below the player's level-40 TYPHLOSION,
-# 39 (D46), above its place on the cap curve, 31
+# Not a boss: with six badges the Grunt's Koffing is at the cap too, 66 (D56), not one below the
+# player's level-40 TYPHLOSION as before 0.15.2
 loadstate six_badges.ss
 !battle("TRAINER_GRUNT_33_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B grunt_action_menu
-expect8 {gEnemyParty+84} 39 grunt_koffing_one_below_the_player
+expect8 {gEnemyParty+84} 66 grunt_koffing_at_the_cap_66
 
 # Johto Champion: Brock at 90
 loadstate base.ss

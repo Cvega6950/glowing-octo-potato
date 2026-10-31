@@ -1,12 +1,26 @@
 """Crystal Imperium Ace Trainers (DECISIONS.md D47): the tables tools/crystal_imperium/ace_trainers.py
-writes from. ACES are new trainers on the routes; UPGRADES give Heart & Soul's own Ace Trainers
-(Cooltrainers) competitive teams. A team is a list of Pokemon as boss_teams.py's mon() makes them;
-a stage is the badge count when the route is reached (9: after the Johto League), which sets the
-party data's levels (ace_trainers.party_levels)."""
+writes from. ACES are new trainers on the routes; UPGRADES give Heart & Soul's own Ace
+Trainers (Cooltrainers) competitive teams. A team is a list of Pokemon as boss_teams.py's mon()
+makes them; a stage is the badge count when the route is reached (9: after the Johto League): every
+Pokemon is at that stage's cap in the party data, and the team is made for it (D56: in battle
+they are at the player's cap, and evolve only when that is a later stage's)."""
 
 
 def mon(species, item, ability, nature, moves, evs=None):
     return {"species": species, "item": item, "ability": ability, "nature": nature, "moves": moves, "evs": evs}
+
+
+# The stage of each Heart & Soul Cooltrainer with a competitive team: the one its Heart & Soul levels
+# were made for (as 0.15.0 found them; their party data is at that stage's cap since 0.15.2, D56)
+UPGRADE_STAGES = {
+    "TRAINER_IRENE_HNS": 3, "TRAINER_JENN_HNS": 4, "TRAINER_NICK_HNS": 4, "TRAINER_AARON_HNS": 4,
+    "TRAINER_GWEN_HNS": 4, "TRAINER_LOIS_HNS": 4, "TRAINER_EMMA_HNS": 4, "TRAINER_RYAN_HNS": 6,
+    "TRAINER_ALLEN_HNS": 6, "TRAINER_BRIAN_HNS": 7, "TRAINER_FRAN_HNS": 7, "TRAINER_LOLA_HNS": 7,
+    "TRAINER_CARA_HNS": 7, "TRAINER_MEGAN_HNS": 7, "TRAINER_BETH_HNS": 7, "TRAINER_BETH_2_HNS": 8,
+    "TRAINER_BETH_3_HNS": 8, "TRAINER_REENA_HNS": 7, "TRAINER_REENA_2_HNS": 8, "TRAINER_REENA_3_HNS": 9,
+    "TRAINER_GAVEN_HNS": 8, "TRAINER_GAVEN_2_HNS": 8, "TRAINER_GAVEN_3_HNS": 8, "TRAINER_JOYCE_HNS": 8,
+    "TRAINER_CAROL_HNS": 9, "TRAINER_SEAN_HNS": 9,
+}
 
 
 ACES = [

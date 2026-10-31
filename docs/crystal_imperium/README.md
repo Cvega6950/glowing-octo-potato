@@ -6,7 +6,7 @@ competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Po
 
 > **Status: in development (0.15.2-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
-> uses the smart AI and fights at your level, every boss from the rival to Red, rematches and
+> uses the smart AI and fights at your level cap, every boss from the rival to Red, rematches and
 > postgame included, has an Imperium-style team with all of its Pokémon at the level cap, Ace
 > Trainers wait on the routes, the Pokémon have Emerald Imperium's abilities, move pools and
 > evolutions (from its official dex), the TM list is Emerald Imperium's, and HMs work without
@@ -17,7 +17,7 @@ competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Po
 From the first step of a new game:
 
 - **Key items:** Rare Candy Box (unlimited Rare Candies up to the level cap), Infinite Repel (an
-  on/off switch), Pokémon Box Link (the PC anywhere), Training Kit (change nature, ability, IVs
+  on/off switch: no wild Pokémon jump out while it's on), Pokémon Box Link (the PC anywhere), Training Kit (change nature, ability, IVs
   and EVs any time), PokéVial (full heal outside battle, never runs out).
 - **The L menu**, as in Emerald Imperium: press **L** in the field for the PokéVial, a PC (all
   of a Pokémon Center's), the DexNav, **TIME** (make it morning, day, evening or night: the
@@ -69,9 +69,10 @@ From the first step of a new game:
 - **Emerald Imperium-style level caps:** 15 before the first Gym, then 24, 33, 42, 50, 58, 66,
   75 and **85 for the Elite Four**, 90 in Kanto, and no cap after the Kanto League (HARD caps: a
   few levels lower until the Elite Four).
-- **Every trainer fights at your level**, as in Emerald Imperium: an ordinary trainer's Pokémon
-  are one to three levels below your strongest (never below their old place on the cap curve,
-  never above the cap), evolved as far as their level allows (no level-72 Dragonair), with 31 IVs.
+- **Every trainer fights at your level cap:** every Pokémon of every trainer you battle is at
+  your current cap, whatever your own level, on every difficulty, evolved as far as that level
+  allows (no level-72 Dragonair), with 31 IVs. Teams made for a part of the game (the bosses',
+  the Ace Trainers') keep their Pokémon as designed there.
 - **Six Pokémon for every Gym Leader** and the big story bosses, and **28 route mini-bosses**:
   strong trainers on the routes with competitive teams at your level cap, as in Emerald
   Imperium.

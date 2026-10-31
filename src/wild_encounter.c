@@ -935,6 +935,11 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
     }
     else
     {
+        // Crystal Imperium (DECISIONS.md D57): the Infinite Repel keeps every wild Pokemon away on
+        // land and water, as Emerald Imperium's does (until 0.15.2 only the ones below the lead's
+        // level, as a Repel). Rock Smash, Headbutt, fishing, Sweet Scent and DexNav still find them.
+        if (FlagGet(FLAG_INFINITE_REPEL_ON))
+            return FALSE;
         if (MetatileBehavior_IsLandWildEncounter(curMetatileBehavior) == TRUE)
         {
             timeOfDay = GetTimeOfDayForEncounters(headerId, WILD_AREA_LAND);

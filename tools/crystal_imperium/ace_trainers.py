@@ -14,12 +14,14 @@ teams, as Emerald Imperium has. From the tables in ace_trainer_data.py this writ
   python3 tools/crystal_imperium/ace_trainers.py           # rewrite the files
   python3 tools/crystal_imperium/ace_trainers.py --check   # exit 1 if any is out of date
 
-Run it after side_battles.py and before boss_teams.py. They are ordinary trainers, not bosses: their
-levels follow the player's highest level, one to three below (src/battle_main.c, D46), never below
-the cap curve's level for their party data's levels, which the script sets three below the cap of
-the route's stage (party_levels). A spot is checked as a side battle's is (side_battles.MapData): on foot, not water,
-not a ledge, nothing else on the tile, no door next to it, and it cuts no one off; its line of sight
-is ground the trainer can walk and meets no other trainer's.
+Run it after side_battles.py and before boss_teams.py (which lists the teams for the battle code).
+A team is made for its stage, as a boss's is: every Pokemon at the stage's cap in the party data. In
+battle every trainer's Pokemon are at the player's cap (src/battle_main.c, D56), and these evolve
+only when that is a later stage's (an Eviolite or Everstone holder never).
+
+A spot is checked as a side battle's is (side_battles.MapData): on foot, not water, not a ledge,
+nothing else on the tile, no door next to it, and it cuts no one off; its line of sight is ground
+the trainer can walk and meets no other trainer's.
 """
 import argparse
 import json
@@ -45,7 +47,6 @@ AI = "Smart Trainer / Ace Pokemon / HP Aware"
 LEDGES = {"MB_JUMP_SOUTH", "MB_JUMP_NORTH", "MB_JUMP_EAST", "MB_JUMP_WEST", "MB_JUMP_SOUTHEAST",
           "MB_JUMP_SOUTHWEST", "MB_JUMP_NORTHEAST", "MB_JUMP_NORTHWEST"}
 DIRS = {"down": (0, 1), "up": (0, -1), "left": (-1, 0), "right": (1, 0)}
-HNS_CAPS = [11, 16, 21, 25, 31, 36, 38, 45, 56, 70, 100]  # src/caps.c sHnsLevelCaps
 
 
 def trainer_const(ace):
@@ -61,28 +62,9 @@ def stage_cap(stage):
     return boss_teams.cap(boss_teams.JOHTO_CHAMPION if stage >= 9 else stage)
 
 
-def curve(level):
-    """src/caps.c GetLevelOnCapCurve with the NORMAL caps: a Heart & Soul level on this game's curve."""
-    if level <= 1:
-        return level
-    hns_from, cap_from = 1, 1
-    for stage, hns_to in enumerate(HNS_CAPS):
-        cap_to = stage_cap(stage) if stage < 10 else 100
-        if level <= hns_to:
-            return cap_from + ((level - hns_from) * (cap_to - cap_from) + (hns_to - hns_from) // 2) // (hns_to - hns_from)
-        hns_from, cap_from = hns_to, cap_to
-    return 100
-
-
 def party_levels(stage, size):
-    """The party data's levels: the strongest at the highest Heart & Soul level the cap curve puts at
-    least three below the cap of the route's stage (its floor), the next one a level less, the others
-    two less; the
-    battle code then puts them one, two and three below the player's highest level
-    (GetLevelBelowPlayer), never below their floors."""
-    target = stage_cap(stage) - 3
-    top = max(level for level in range(1, 101) if curve(level) <= target)
-    return [top - min(2, i) for i in range(size)][::-1]
+    """The party data's levels: every Pokemon at the cap of the stage the team is made for (D56)."""
+    return [stage_cap(stage)] * size
 
 
 def render_mons(mons, levels):
@@ -142,8 +124,7 @@ def render_party(text):
             sys.exit(f"{t}: no such trainer in the party file")
         header = m.group(0).split("\n\n")[0]
         # The trainer keeps its place in the game: the stage of its Heart & Soul levels
-        levels = [int(v) for v in re.findall(r"(?m)^Level: (\d+)", m.group(0))]
-        stage = next(i for i, c in enumerate(HNS_CAPS) if max(levels) <= c or i == len(HNS_CAPS) - 1)
+        stage = data.UPGRADE_STAGES[t]
         header = re.sub(r"(?m)^AI: .*$", "AI: " + AI, header)
         new = header + "\n" + render_mons(mons, party_levels(stage, len(mons))).rstrip("\n")
         rest = text[m.end():].lstrip("\n")
@@ -260,6 +241,8 @@ def main():
     keys = [a["key"] for a in data.ACES]
     if len(set(keys)) != len(keys):
         sys.exit("two Ace Trainers share a key")
+    if set(data.UPGRADES) != set(data.UPGRADE_STAGES):
+        sys.exit("UPGRADES and UPGRADE_STAGES must list the same trainers")
     for a in data.ACES:
         if len(a["name"]) > sb.MAX_NAME:
             sys.exit(f"{a['key']}: name {a['name']} is longer than {sb.MAX_NAME}")

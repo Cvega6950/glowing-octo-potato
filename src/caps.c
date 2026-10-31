@@ -55,10 +55,6 @@ static const u8 sLevelCapTable_Hard[] =
 // HnS), and only beating the Kanto league removes it entirely.
 #define KANTO_MAX_LEVEL 90
 
-// Heart & Soul's NORMAL caps by stage (the badge count, then the Johto League and the Kanto League
-// won), which its trainers' levels were made for
-static const u8 sHnsLevelCaps[LEVEL_CAP_STAGE_KANTO_CHAMPION + 1] = {11, 16, 21, 25, 31, 36, 38, 45, 56, 70, MAX_LEVEL};
-
 // Crystal Imperium: the stage of the game the level caps go by: the badge count (0-8), then the
 // Johto League won and the Kanto League won (include/caps.h)
 u32 GetLevelCapStage(void)
@@ -98,28 +94,6 @@ u32 GetBossLevel(u32 bossStage)
     u32 stage = GetLevelCapStage();
 
     return GetLevelCapAtStage(stage > bossStage ? stage : bossStage);
-}
-
-// Crystal Imperium: a level from Heart & Soul's level curve on the player's (DECISIONS.md D29). A
-// trainer made a few levels below HnS's cap for its part of the game is as far below the cap there
-// now, in proportion: the level is mapped linearly between the caps of the stages around it.
-u32 GetLevelOnCapCurve(u32 level)
-{
-    u32 stage, hnsFrom = 1, capFrom = 1;
-
-    if (level <= 1)
-        return level;
-    for (stage = 0; stage <= LEVEL_CAP_STAGE_KANTO_CHAMPION; stage++)
-    {
-        u32 hnsTo = sHnsLevelCaps[stage];
-        u32 capTo = GetLevelCapAtStage(stage);
-
-        if (level <= hnsTo)
-            return capFrom + ((level - hnsFrom) * (capTo - capFrom) + (hnsTo - hnsFrom) / 2) / (hnsTo - hnsFrom);
-        hnsFrom = hnsTo;
-        capFrom = capTo;
-    }
-    return MAX_LEVEL;
 }
 
 // Crystal Imperium: with a level cap on, no Pokemon the player meets or is given is above it

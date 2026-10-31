@@ -2,8 +2,9 @@
 """Crystal Imperium boss teams (Emerald Imperium-style): writes the parties below into
 src/data/trainers_hns.party, keeping each trainer's header (name, class, picture, music, mugshot)
 and replacing its AI, bag items and Pokemon. Heart & Soul's own teams for the other bosses
-(LEVEL_ONLY) keep their Pokemon and only get their levels set. The list of every boss goes to
-src/data/level_cap_bosses.h for the battle code.
+(LEVEL_ONLY) keep their Pokemon and only get their levels set. The list of every boss, and of the
+other teams made for a stage (the Ace Trainers and Heart & Soul's Cooltrainers with competitive
+teams, ace_trainer_data.py: D56), goes to src/data/level_cap_bosses.h for the battle code.
 
   python3 tools/crystal_imperium/boss_teams.py          # rewrite the parties and the boss list
   python3 tools/crystal_imperium/boss_teams.py --check  # exit 1 if either file is out of date
@@ -27,6 +28,8 @@ import re
 import sys
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import ace_trainer_data  # noqa: E402  (the Ace Trainers and the Cooltrainers' teams, and their stages)
 PARTY = os.path.join(ROOT, "src", "data", "trainers_hns.party")
 BOSS_LIST = os.path.join(ROOT, "src", "data", "level_cap_bosses.h")
 
@@ -1634,6 +1637,15 @@ LEVEL_ONLY.update({f"TRAINER_RIVAL_{s}_1_HNS": 0 for s in STARTERS})
 STAGES = {tid: entry[0] for tid, entry in TEAMS.items()}
 STAGES.update(LEVEL_ONLY)
 
+# The other teams made for a stage (D56): the Ace Trainers (tools/crystal_imperium/ace_trainers.py
+# writes their parties) and Heart & Soul's Cooltrainers with competitive teams. Like the bosses, they
+# keep their Pokemon as made until the player's cap is above their stage's; unlike a boss, a team is
+# never above the player's cap, even met before its stage.
+# (Their stage 9 is the Johto League won.)
+TEAM_STAGES = {f"TRAINER_ACE_{a['key']}_HNS": a["stage"] for a in ace_trainer_data.ACES}
+TEAM_STAGES.update(ace_trainer_data.UPGRADE_STAGES)
+TEAM_STAGES = {tid: JOHTO_CHAMPION if stage >= 9 else stage for tid, stage in TEAM_STAGES.items()}
+
 
 def render(tid, header, stage, items, mons, ai=BOSS_AI):
     lines = []
@@ -1711,6 +1723,13 @@ def boss_list():
            "// GetBossLevel(stage), the player's level cap (DECISIONS.md D21).\n"
            "static const struct LevelCapBoss\n{\n    u16 trainerId;\n    u8 stage;\n} sLevelCapBosses[] =\n{\n")
     out += "".join(f"    {{{tid}, {stage_constant(STAGES[tid])}}},\n" for tid in sorted(STAGES))
+    out += "};\n\n"
+    out += ("// The other teams made for a stage of the game (D56): the Ace Trainers and Heart & Soul's\n"
+            "// Cooltrainers with competitive teams, every Pokemon at its stage's cap in the party data. Like any\n"
+            "// trainer's, they are at the player's level cap; like a boss's, they keep their Pokemon as made\n"
+            "// unless that cap is above their party data's levels.\n"
+            "static const u16 sTeamsMadeForStage[] =\n{\n")
+    out += "".join(f"    {tid},\n" for tid in sorted(TEAM_STAGES))
     return out + "};\n"
 
 
@@ -1733,7 +1752,7 @@ def main():
         print(f"updated {len(TEAMS)} boss parties and the levels of {len(LEVEL_ONLY)} more")
     if new_list != old_list:
         open(BOSS_LIST, "w", encoding="utf-8").write(new_list)
-        print(f"wrote {os.path.relpath(BOSS_LIST, ROOT)} ({len(STAGES)} bosses)")
+        print(f"wrote {os.path.relpath(BOSS_LIST, ROOT)} ({len(STAGES)} bosses, {len(TEAM_STAGES)} other teams made for a stage)")
     return 0
 
 if __name__ == "__main__":

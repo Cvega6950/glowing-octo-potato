@@ -1,11 +1,13 @@
-# Crystal Imperium play test: ordinary trainers like Emerald Imperium's (DECISIONS.md D46). Their
-# Pokemon are at the player's highest level minus 1 to 3 (the trainer's strongest one below, the
-# others one more for each level they were below it in Heart & Soul, at most three), never below
-# the cap curve (D29) and never above the cap. A trainer's Pokemon is as evolved as its level
-# allows, unless it holds an Eviolite; Heart & Soul's all-0 IVs are 31s.
-# - Dragon Tamer Paul (Heart & Soul: Dratini 34, three Dragonair 40) against a level-72 TYPHLOSION
-#   with eight badges (cap 85): the Dratini three levels below, 69, the Dragonair one below, 71,
-#   and all four Dragonite (Dratini at 30, Dragonair at 55), with 31 IVs.
+# Crystal Imperium play test: every trainer's Pokemon are at the player's level cap (DECISIONS.md
+# D56, since 0.15.2), whatever the player's own level, as the bosses' are (D21); before, ordinary
+# trainers were one to three below the player's highest level (D46). A trainer's Pokemon is as
+# evolved as its level allows (D46); Heart & Soul's all-0 IVs are 31s. A team made for a stage of
+# the game (a boss, a route mini-boss, a side battle, an Ace Trainer, a Cooltrainer with a
+# competitive team) keeps its Pokemon as made at its stage's cap, and evolves when raised to a later
+# one, except a Pokemon holding an Eviolite or Everstone.
+# - Dragon Tamer Paul (Heart & Soul: Dratini 34, three Dragonair 40) with eight badges (cap 85): all
+#   four at 85 against a level-72 TYPHLOSION, and against a level-90 one, all Dragonite (Dratini
+#   at 30, Dragonair at 55), with 31 IVs.
 # - Bird Keeper Abe in the Violet Gym: Heart & Soul's 20 in every IV (its Gym trainers' even spread)
 #   is 31s too.
 # - Pokemaniac Ben, a route boss raised to the cap: his Eviolite Lickitung stays a Lickitung (it
@@ -13,9 +15,13 @@
 # - A boss at its team's own level keeps its team as designed: Whitney's Silk Scarf Aipom (a
 #   trainer's evolves knowing Double Hit from 32) at her 33 with no badges; raised to 85 with eight
 #   badges, it is an Ambipom and her Stantler a Wyrdeer (44).
-# - A level-10 TYPHLOSION with six badges: a Rocket Grunt's Koffing (Heart & Soul: 20) stays on
-#   the cap curve, 31, a Koffing (Weezing at 35).
-# - A level-90 TYPHLOSION with eight badges: Paul's four at the cap, 85.
+# - A level-10 TYPHLOSION with six badges: a Rocket Grunt's Koffing (Heart & Soul: 20) is at the
+#   cap, 66, and so a Weezing (at 35).
+# - Ace Trainer Kaito on Route 29 (D47), made for no badges: at 15 with none, his Shinx, Cutiefly
+#   and Riolu as made (a Shinx evolves at 15); with eight badges at 85: Luxray and Lucario, and his
+#   Eviolite Cutiefly stays a Cutiefly.
+# - Prize money from the level a trainer's Pokemon battle at (D56): Youngster Albert (4 a level for
+#   a Youngster; Heart & Soul's 7 in his party data) at 15 pays 4 x 15 x 4 = 240, not 112.
 # - Friendship: a trainer's Pokemon has its party entry's Happiness, 0 without one, so every
 #   trainer Pokemon that knows Return has one of 250 or more (validate.py). Hiker Frank's lead
 #   Kangaskhan (Return) battles with his 254, Paul's Dratini with 0. A Pokemon whose party entry
@@ -37,15 +43,15 @@ savestate eight_badges.ss
 !give_mon(157, 72)
 savestate level72.ss
 
-# Paul: one to three below the player's 72, Dragonite all, 31 IVs
+# Paul: all four at the cap, 85, against the player's 72; Dragonite all, 31 IVs
 !battle("TRAINER_PAUL_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B paul_action_menu
 shot 01_paul.png
-expect8 {gEnemyParty+84} 69 dratini_three_below_72
-expect8 {gEnemyParty+184} 71 dragonair_one_below_72
-expect8 {gEnemyParty+284} 71 second_dragonair_one_below_72
-expect8 {gEnemyParty+384} 71 third_dragonair_one_below_72
-!expect_battler(1, "species", "SPECIES_DRAGONITE", "dratini_at_69_is_a_dragonite")
+expect8 {gEnemyParty+84} 85 dratini_at_the_cap
+expect8 {gEnemyParty+184} 85 dragonair_at_the_cap
+expect8 {gEnemyParty+284} 85 second_dragonair_at_the_cap
+expect8 {gEnemyParty+384} 85 third_dragonair_at_the_cap
+!expect_battler(1, "species", "SPECIES_DRAGONITE", "dratini_at_85_is_a_dragonite")
 !expect_party_species("gEnemyParty", 0, "SPECIES_DRAGONITE", "party_data_dragonite_too")
 !expect_party_species("gEnemyParty", 1, "SPECIES_DRAGONITE", "dragonair_1_is_a_dragonite")
 !expect_party_species("gEnemyParty", 2, "SPECIES_DRAGONITE", "dragonair_2_is_a_dragonite")
@@ -62,22 +68,44 @@ shot 02_ben.png
 expect8 {gEnemyParty+84} 85 ben_at_the_cap
 !expect_battler(1, "species", "SPECIES_LICKITUNG", "eviolite_lickitung_stays")
 
-# A level-10 player with six badges: the Grunt's Koffing stays on the cap curve
+# A level-10 player with six badges: the Grunt's Koffing is at the cap, 66, a Weezing
 loadstate six_badges.ss
 !give_mon(157, 10)
 !battle("TRAINER_GRUNT_33_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B grunt_action_menu
 shot 03_grunt.png
-expect8 {gEnemyParty+84} 31 koffing_on_the_cap_curve
-!expect_battler(1, "species", "SPECIES_KOFFING", "koffing_below_35_stays")
+expect8 {gEnemyParty+84} 66 koffing_at_the_cap_66
+!expect_battler(1, "species", "SPECIES_WEEZING", "koffing_at_66_is_a_weezing")
 
-# A level-90 player with eight badges: Paul's four held at the cap, 85
+# A level-90 player with eight badges: Paul's four at the cap, 85, all the same
 loadstate eight_badges.ss
 !give_mon(157, 90)
 !battle("TRAINER_PAUL_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B paul_capped_action_menu
-expect8 {gEnemyParty+84} 85 dratini_held_at_cap
-expect8 {gEnemyParty+384} 85 dragonair_held_at_cap
+expect8 {gEnemyParty+84} 85 dratini_at_cap_against_90
+expect8 {gEnemyParty+384} 85 dragonair_at_cap_against_90
+
+# Kaito, an Ace Trainer made for no badges: at 15 with none, his team as made
+loadstate start.ss
+!give_mon(157, 15)
+!battle("TRAINER_ACE_R29_KAITO_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kaito_action_menu
+shot 04_kaito.png
+expect8 {gEnemyParty+84} 15 kaito_shinx_at_15
+expect8 {gEnemyParty+284} 15 kaito_riolu_at_15
+!expect_party_species("gEnemyParty", 0, "SPECIES_SHINX", "kaito_shinx_as_made")
+!expect_party_species("gEnemyParty", 1, "SPECIES_CUTIEFLY", "kaito_cutiefly_as_made")
+!expect_party_species("gEnemyParty", 2, "SPECIES_RIOLU", "kaito_riolu_as_made")
+
+# Kaito with eight badges: raised to 85, Luxray and Lucario; the Eviolite Cutiefly stays
+loadstate eight_badges.ss
+!give_mon(157, 72)
+!battle("TRAINER_ACE_R29_KAITO_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kaito_raised_action_menu
+expect8 {gEnemyParty+84} 85 kaito_raised_to_85
+!expect_party_species("gEnemyParty", 0, "SPECIES_LUXRAY", "kaito_shinx_evolves_when_raised")
+!expect_party_species("gEnemyParty", 1, "SPECIES_CUTIEFLY", "kaito_eviolite_cutiefly_stays")
+!expect_party_species("gEnemyParty", 2, "SPECIES_LUCARIO", "kaito_riolu_evolves_when_raised")
 
 # Hiker Frank's Kangaskhan knows Return: his party's Happiness, 254
 loadstate eight_badges.ss
@@ -87,8 +115,8 @@ waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller
 !expect_battler(1, "species", "SPECIES_KANGASKHAN", "frank_lead_kangaskhan")
 !expect_battler(1, "friendship", "254", "frank_kangaskhan_happiness_254", bits=8)
 
-# The Rocket Hideout's Grunt 15 has no moves in his party data: his lead Raticate, at the player's
-# level less one to three, has Return (learned at 28) among its last four level-up moves; only a
+# The Rocket Hideout's Grunt 15 has no moves in his party data: his lead Raticate, at the cap (85),
+# has Return (learned at 28) among its last four level-up moves; only a
 # Pokemon that knows Return, Pika Papow or Veevee Volley gets full friendship, 255
 loadstate eight_badges.ss
 !give_mon(157, 50)
@@ -121,3 +149,15 @@ loadstate start.ss
 !battle("TRAINER_ABE_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B abe_action_menu
 !expect_battler_ivs(1, 0x3FFFFFFF, "abe_ivs_20s_are_31")
+
+# Albert's prize money from his Pokemon's level in battle, the cap (15): 4 x 15 x 4 = 240
+loadstate start.ss
+!give_mon_complex("SPECIES_MEWTWO", 15, "NATURE_MODEST", 0, ["MOVE_PSYSTRIKE", "MOVE_AURA_SPHERE", "MOVE_ICE_BEAM", "MOVE_FLAMETHROWER"])
+!expect_money(3000, "money_at_the_start")
+!battle("TRAINER_ALBERT_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B albert_action_menu
+expect8 {gEnemyParty+84} 15 albert_sentret_at_15
+!autobattle("0,0,0,0,0,0")
+expect8 {gBattleOutcome} 1 albert_beaten
+waituntil32 {gMain+4} {CB2_Overworld+1} 4000 A back_on_the_map
+!expect_money(3240, "albert_pays_240")

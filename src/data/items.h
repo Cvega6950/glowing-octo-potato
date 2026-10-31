@@ -16139,9 +16139,9 @@ const struct ItemInfo gItemsInfo[] =
         .name = ITEM_NAME("INFIN. REPEL"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "Toggle: repels weak\n"
-            "wild Pokémon for\n"
-            "as long as it's on."),
+            "Toggle: keeps wild\n"
+            "Pokémon away for as\n"
+            "long as it's on."),
         .importance = 1,
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,

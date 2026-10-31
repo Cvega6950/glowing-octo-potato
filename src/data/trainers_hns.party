@@ -1126,7 +1126,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Raichu @ Magnet
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Lightning Rod
 Nature: Timid
@@ -1136,7 +1136,7 @@ Nature: Timid
 - Grass Knot
 
 Blastoise @ Sitrus Berry
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Torrent
 Nature: Bold
@@ -1146,7 +1146,7 @@ Nature: Bold
 - Ice Beam
 
 Venusaur @ Black Sludge
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Overgrow
 Nature: Bold
@@ -1156,7 +1156,7 @@ Nature: Bold
 - Sludge Bomb
 
 Lapras @ Leftovers
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
 Nature: Modest
@@ -1166,7 +1166,7 @@ Nature: Modest
 - Ice Shard
 
 Charizard @ Charcoal
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Blaze
 Nature: Jolly
@@ -1186,7 +1186,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Mr Mime @ Light Clay
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Misty Surge
 Nature: Timid
@@ -1196,7 +1196,7 @@ Nature: Timid
 - Encore
 
 Venusaur @ Miracle Seed
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Overgrow
 Nature: Modest
@@ -1206,7 +1206,7 @@ Nature: Modest
 - Earth Power
 
 Dragonair @ Eviolite
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Marvel Scale
 Nature: Adamant
@@ -1216,7 +1216,7 @@ Nature: Adamant
 - Iron Tail
 
 Blastoise @ Sitrus Berry
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Torrent
 Nature: Bold
@@ -1226,7 +1226,7 @@ Nature: Bold
 - Ice Beam
 
 Charizard @ Charcoal
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Blaze
 Nature: Timid
@@ -1317,7 +1317,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Donphan @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
@@ -1328,7 +1328,7 @@ Nature: Adamant
 - Knock Off
 
 Kingler @ Life Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sheer Force
@@ -1339,7 +1339,7 @@ Nature: Adamant
 - Superpower
 
 Victreebel @ Black Sludge
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Chlorophyll
@@ -1350,7 +1350,7 @@ Nature: Modest
 - Sludge Bomb
 
 Flareon @ Choice Band
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Flash Fire
@@ -1361,7 +1361,7 @@ Nature: Adamant
 - Quick Attack
 
 Porygon Z @ Choice Specs
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Adaptability
@@ -1372,7 +1372,7 @@ Nature: Timid
 - Thunderbolt
 
 Dragonite @ Loaded Dice
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Multiscale
@@ -1393,7 +1393,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Pidgeot @ Heavy Duty Boots
-Level: 35
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: No Guard
@@ -1404,7 +1404,7 @@ Nature: Timid
 - U Turn
 
 Kabutops @ Focus Sash
-Level: 35
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sharpness
@@ -1415,7 +1415,7 @@ Nature: Adamant
 - Aqua Jet
 
 Torterra @ Leftovers
-Level: 35
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Rock Head
@@ -1426,7 +1426,7 @@ Nature: Adamant
 - Synthesis
 
 Magmortar @ Assault Vest
-Level: 35
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Flame Body
@@ -1437,7 +1437,7 @@ Nature: Modest
 - Scorching Sands
 
 Electivire @ Life Orb
-Level: 36
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Iron Fist
@@ -1448,7 +1448,7 @@ Nature: Jolly
 - Earthquake
 
 Lucario @ Life Orb
-Level: 37
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Justified
@@ -1607,7 +1607,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Sandslash @ Rocky Helmet
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 Def
 Ability: Sand Veil
@@ -1618,7 +1618,7 @@ Nature: Impish
 - Earthquake
 
 Scizor @ Leftovers
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Technician
@@ -1629,7 +1629,7 @@ Nature: Adamant
 - Roost
 
 Weavile @ Life Orb
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Pressure
@@ -1640,7 +1640,7 @@ Nature: Jolly
 - Ice Shard
 
 Sneasler @ White Herb
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Unburden
@@ -1651,7 +1651,7 @@ Nature: Jolly
 - Fake Out
 
 Zangoose @ Choice Band
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Tough Claws
@@ -1662,7 +1662,7 @@ Nature: Jolly
 - Quick Attack
 
 Ursaluna @ Flame Orb
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Guts
@@ -1746,7 +1746,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Forretress @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Sturdy
@@ -1757,7 +1757,7 @@ Nature: Relaxed
 - Volt Switch
 
 Tauros @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Intimidate
@@ -1768,7 +1768,7 @@ Nature: Jolly
 - Rock Slide
 
 Tangrowth @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 Def
 Ability: Regenerator
@@ -1779,7 +1779,7 @@ Nature: Impish
 - Synthesis
 
 Flareon @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Flash Fire
@@ -1790,7 +1790,7 @@ Nature: Adamant
 - Quick Attack
 
 Tyranitar @ Lum Berry
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Unnerve
@@ -1801,7 +1801,7 @@ Nature: Jolly
 - Earthquake
 
 Gastrodon @ Leftovers
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Storm Drain
@@ -1912,7 +1912,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Mamoswine @ Focus Sash
-Level: 35
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Thick Fat
@@ -1923,7 +1923,7 @@ Nature: Jolly
 - Ice Shard
 
 Luxray @ Assault Vest
-Level: 35
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
@@ -1934,7 +1934,7 @@ Nature: Adamant
 - Ice Fang
 
 Absol @ Scope Lens
-Level: 35
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Super Luck
@@ -1945,7 +1945,7 @@ Nature: Jolly
 - Sucker Punch
 
 Pangoro @ Black Belt
-Level: 35
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Scrappy
@@ -1956,7 +1956,7 @@ Nature: Adamant
 - Parting Shot
 
 Honchkrow @ Life Orb
-Level: 36
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Moxie
@@ -1967,7 +1967,7 @@ Nature: Adamant
 - Superpower
 
 Charizard @ Sitrus Berry
-Level: 37
+Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Blaze
@@ -2013,7 +2013,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Jolteon @ Magnet
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Volt Absorb
 Nature: Timid
@@ -2023,7 +2023,7 @@ Nature: Timid
 - Alluring Voice
 
 Vaporeon @ Sitrus Berry
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
 Nature: Bold
@@ -2033,7 +2033,7 @@ Nature: Bold
 - Ice Beam
 
 Flareon @ Toxic Orb
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Toxic Boost
 Nature: Adamant
@@ -2043,7 +2043,7 @@ Nature: Adamant
 - Superpower
 
 Espeon @ Twisted Spoon
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Bounce
 Nature: Timid
@@ -2053,7 +2053,7 @@ Nature: Timid
 - Morning Sun
 
 Sylveon @ Pixie Plate
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pixilate
 Nature: Modest
@@ -2073,7 +2073,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Butterfree @ Sitrus Berry
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Compound Eyes
 Nature: Timid
@@ -2083,7 +2083,7 @@ Nature: Timid
 - U Turn
 
 Hitmontop @ Sitrus Berry
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -2093,7 +2093,7 @@ Nature: Adamant
 - Sucker Punch
 
 Jumpluff @ Sharp Beak
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Aerilate
 Nature: Jolly
@@ -2103,7 +2103,7 @@ Nature: Jolly
 - Strength Sap
 
 Gyarados @ Mystic Water
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Moxie
 Nature: Jolly
@@ -2113,7 +2113,7 @@ Nature: Jolly
 - Ice Fang
 
 Ninetales @ Charcoal
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flash Fire
 Nature: Timid
@@ -2133,7 +2133,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Garchomp @ Rocky Helmet
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rough Skin
@@ -2144,7 +2144,7 @@ Nature: Jolly
 - Fire Fang
 
 Gyarados @ Leftovers
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 Spe
 Ability: Intimidate
@@ -2155,7 +2155,7 @@ Nature: Jolly
 - Taunt
 
 Kingdra @ Scope Lens
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Sniper
@@ -2166,7 +2166,7 @@ Nature: Modest
 - Ice Beam
 
 Flapple @ Choice Band
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Hustle
@@ -2177,7 +2177,7 @@ Nature: Jolly
 - Sucker Punch
 
 Haxorus @ Loaded Dice
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Mold Breaker
@@ -2188,7 +2188,7 @@ Nature: Jolly
 - Earthquake
 
 Dragonite @ Choice Band
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Multiscale
@@ -2209,7 +2209,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Mantine @ Heavy Duty Boots
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Water Absorb
@@ -2220,7 +2220,7 @@ Nature: Calm
 - Haze
 
 Lanturn @ Leftovers
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Volt Absorb
@@ -2231,7 +2231,7 @@ Nature: Calm
 - Heal Bell
 
 Goodra @ Assault Vest
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Sap Sipper
@@ -2242,7 +2242,7 @@ Nature: Modest
 - Thunderbolt
 
 Appletun @ Sitrus Berry
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Ripen
@@ -2253,7 +2253,7 @@ Nature: Bold
 - Dragon Pulse
 
 Drampa @ Throat Spray
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Berserk
@@ -2264,7 +2264,7 @@ Nature: Modest
 - Roost
 
 Dragonite @ Heavy Duty Boots
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Multiscale
@@ -2334,7 +2334,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Palossand @ Sitrus Berry
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Compaction
 Nature: Bold
@@ -2344,7 +2344,7 @@ Nature: Bold
 - Earth Power
 
 Toxapex @ Black Sludge
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
 Nature: Bold
@@ -2354,7 +2354,7 @@ Nature: Bold
 - Haze
 
 Huntail @ White Herb
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -2364,7 +2364,7 @@ Nature: Adamant
 - Ice Fang
 
 Seaking @ Sitrus Berry
-Level: 22
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Lightning Rod
 Nature: Adamant
@@ -2374,7 +2374,7 @@ Nature: Adamant
 - Drill Run
 
 Sharpedo @ Mystic Water
-Level: 23
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Speed Boost
 Nature: Adamant
@@ -2464,7 +2464,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Rhyperior @ Weakness Policy
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Solid Rock
@@ -2475,7 +2475,7 @@ Nature: Adamant
 - Megahorn
 
 Jumpluff @ Heavy Duty Boots
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 SpD / 252 Spe
 Ability: Aerilate
@@ -2486,7 +2486,7 @@ Nature: Jolly
 - Double Edge
 
 Tauros @ Life Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sheer Force
@@ -2497,7 +2497,7 @@ Nature: Jolly
 - Zen Headbutt
 
 Raichu @ Life Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Lightning Rod
@@ -2508,7 +2508,7 @@ Nature: Timid
 - Grass Knot
 
 Blastoise @ White Herb
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Torrent
@@ -2519,7 +2519,7 @@ Nature: Modest
 - Aura Sphere
 
 Typhlosion @ Choice Scarf
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flash Fire
@@ -2540,7 +2540,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Miltank @ Leftovers
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Thick Fat
@@ -2551,7 +2551,7 @@ Nature: Impish
 - Heal Bell
 
 Lanturn @ Leftovers
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Volt Absorb
@@ -2562,7 +2562,7 @@ Nature: Calm
 - Thunder Wave
 
 Ampharos @ Expert Belt
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Static
@@ -2573,7 +2573,7 @@ Nature: Modest
 - Focus Blast
 
 Rapidash @ Heavy Duty Boots
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Reckless
@@ -2584,7 +2584,7 @@ Nature: Jolly
 - High Horsepower
 
 Gengar @ Life Orb
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
@@ -2605,7 +2605,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Electrode @ Focus Sash
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Static
@@ -2616,7 +2616,7 @@ Nature: Timid
 - Foul Play
 
 Nidoqueen @ Black Sludge
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Sheer Force
@@ -2627,7 +2627,7 @@ Nature: Calm
 - Sludge Bomb
 
 Vileplume @ Black Sludge
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Effect Spore
@@ -2638,7 +2638,7 @@ Nature: Bold
 - Sludge Bomb
 
 Arbok @ Leftovers
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
@@ -2649,7 +2649,7 @@ Nature: Adamant
 - Earthquake
 
 Starmie @ Power Herb
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Analytic
@@ -2670,7 +2670,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Exeggutor @ Sitrus Berry
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpA
 Ability: Harvest
@@ -2681,7 +2681,7 @@ Nature: Quiet
 - Sleep Powder
 
 Tangrowth @ Assault Vest
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Regenerator
@@ -2692,7 +2692,7 @@ Nature: Brave
 - Rock Slide
 
 Bellossom @ Leftovers
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Chlorophyll
@@ -2703,7 +2703,7 @@ Nature: Quiet
 - Sludge Bomb
 
 Victreebel @ Life Orb
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Chlorophyll
@@ -2714,7 +2714,7 @@ Nature: Brave
 - Sucker Punch
 
 Venusaur @ Black Sludge
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Overgrow
@@ -2725,7 +2725,7 @@ Nature: Quiet
 - Leech Seed
 
 Exeggutor Alola @ Expert Belt
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Harvest
@@ -2746,7 +2746,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Electrode @ Light Clay
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 SpA / 252 Spe
 Ability: Soundproof
@@ -2757,7 +2757,7 @@ Nature: Timid
 - Volt Switch
 
 Crobat @ Black Sludge
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 Spe
 Ability: Infiltrator
@@ -2768,7 +2768,7 @@ Nature: Jolly
 - Roost
 
 Sceptile @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Unburden
@@ -2779,7 +2779,7 @@ Nature: Timid
 - Dragon Pulse
 
 Alakazam @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Magic Guard
@@ -2790,7 +2790,7 @@ Nature: Timid
 - Shadow Ball
 
 Starmie @ Choice Specs
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Analytic
@@ -2801,7 +2801,7 @@ Nature: Timid
 - Thunderbolt
 
 Ninetales @ Heavy Duty Boots
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flash Fire
@@ -2891,7 +2891,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Politoed @ Leftovers
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
 Nature: Calm
@@ -2901,7 +2901,7 @@ Nature: Calm
 - Hypnosis
 
 Octillery @ Scope Lens
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sniper
 Nature: Modest
@@ -2911,7 +2911,7 @@ Nature: Modest
 - Energy Ball
 
 Azumarill @ Sitrus Berry
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Huge Power
 Nature: Adamant
@@ -2921,7 +2921,7 @@ Nature: Adamant
 - Knock Off
 
 Linoone @ Salac Berry
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Gluttony
 Nature: Adamant
@@ -2931,7 +2931,7 @@ Nature: Adamant
 - Stomping Tantrum
 
 Poliwrath @ Assault Vest
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
 Nature: Adamant
@@ -3010,7 +3010,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Empoleon @ Sitrus Berry
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Competitive
 Nature: Calm
@@ -3020,7 +3020,7 @@ Nature: Calm
 - Roar
 
 Clawitzer @ Wise Glasses
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Mega Launcher
 Nature: Modest
@@ -3030,7 +3030,7 @@ Nature: Modest
 - Dragon Pulse
 
 Primarina @ Mystic Water
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Liquid Voice
 Nature: Modest
@@ -3040,7 +3040,7 @@ Nature: Modest
 - Energy Ball
 
 Gorebyss @ White Herb
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Dazzling
 Nature: Modest
@@ -3050,7 +3050,7 @@ Nature: Modest
 - Psychic
 
 Starmie @ Expert Belt
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Analytic
 Nature: Timid
@@ -3070,7 +3070,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Tyrantrum @ Focus Sash
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rock Head
@@ -3081,7 +3081,7 @@ Nature: Jolly
 - Earthquake
 
 Tatsugiri @ Life Orb
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Storm Drain
@@ -3092,7 +3092,7 @@ Nature: Timid
 - Rapid Spin
 
 Milotic @ Leftovers
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Competitive
@@ -3103,7 +3103,7 @@ Nature: Bold
 - Dragon Tail
 
 Goodra Hisui @ Leftovers
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Sap Sipper
@@ -3114,7 +3114,7 @@ Nature: Bold
 - Fire Blast
 
 Gyarados @ Heavy Duty Boots
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Moxie
@@ -3125,7 +3125,7 @@ Nature: Jolly
 - Crunch
 
 Kingdra @ Lum Berry
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sniper
@@ -16342,7 +16342,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Donphan @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
@@ -16353,7 +16353,7 @@ Nature: Adamant
 - Knock Off
 
 Kingler @ Life Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sheer Force
@@ -16364,7 +16364,7 @@ Nature: Adamant
 - Superpower
 
 Victreebel @ Black Sludge
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Chlorophyll
@@ -16375,7 +16375,7 @@ Nature: Modest
 - Sludge Bomb
 
 Flareon @ Choice Band
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Flash Fire
@@ -16386,7 +16386,7 @@ Nature: Adamant
 - Quick Attack
 
 Porygon Z @ Choice Specs
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Adaptability
@@ -16397,7 +16397,7 @@ Nature: Timid
 - Thunderbolt
 
 Dragonite @ Loaded Dice
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Multiscale
@@ -16418,7 +16418,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Donphan @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
@@ -16429,7 +16429,7 @@ Nature: Adamant
 - Knock Off
 
 Kingler @ Life Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sheer Force
@@ -16440,7 +16440,7 @@ Nature: Adamant
 - Superpower
 
 Victreebel @ Black Sludge
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Chlorophyll
@@ -16451,7 +16451,7 @@ Nature: Modest
 - Sludge Bomb
 
 Flareon @ Choice Band
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Flash Fire
@@ -16462,7 +16462,7 @@ Nature: Adamant
 - Quick Attack
 
 Porygon Z @ Choice Specs
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Adaptability
@@ -16473,7 +16473,7 @@ Nature: Timid
 - Thunderbolt
 
 Dragonite @ Loaded Dice
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Multiscale
@@ -16494,7 +16494,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Miltank @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Thick Fat
@@ -16505,7 +16505,7 @@ Nature: Impish
 - Heal Bell
 
 Lanturn @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Volt Absorb
@@ -16516,7 +16516,7 @@ Nature: Calm
 - Thunder Wave
 
 Meganium @ Big Root
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Triage
@@ -16527,7 +16527,7 @@ Nature: Bold
 - Dragon Tail
 
 Ampharos @ Expert Belt
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Static
@@ -16538,7 +16538,7 @@ Nature: Modest
 - Focus Blast
 
 Rapidash @ Heavy Duty Boots
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Reckless
@@ -16549,7 +16549,7 @@ Nature: Jolly
 - High Horsepower
 
 Gengar @ Life Orb
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
@@ -16570,7 +16570,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Miltank @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Thick Fat
@@ -16581,7 +16581,7 @@ Nature: Impish
 - Heal Bell
 
 Lanturn @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Volt Absorb
@@ -16592,7 +16592,7 @@ Nature: Calm
 - Thunder Wave
 
 Meganium @ Big Root
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Triage
@@ -16603,7 +16603,7 @@ Nature: Bold
 - Dragon Tail
 
 Ampharos @ Expert Belt
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Static
@@ -16614,7 +16614,7 @@ Nature: Modest
 - Focus Blast
 
 Rapidash @ Heavy Duty Boots
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Reckless
@@ -16625,7 +16625,7 @@ Nature: Jolly
 - High Horsepower
 
 Gengar @ Life Orb
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
@@ -16691,7 +16691,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Electrode @ Focus Sash
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Static
@@ -16702,7 +16702,7 @@ Nature: Timid
 - Foul Play
 
 Nidoqueen @ Black Sludge
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Sheer Force
@@ -16713,7 +16713,7 @@ Nature: Calm
 - Sludge Bomb
 
 Vileplume @ Black Sludge
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Effect Spore
@@ -16724,7 +16724,7 @@ Nature: Bold
 - Sludge Bomb
 
 Arbok @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
@@ -16735,7 +16735,7 @@ Nature: Adamant
 - Earthquake
 
 Dodrio @ Life Orb
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rock Head
@@ -16746,7 +16746,7 @@ Nature: Jolly
 - Drill Run
 
 Starmie @ Power Herb
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Analytic
@@ -16767,7 +16767,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Electrode @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Static
@@ -16778,7 +16778,7 @@ Nature: Timid
 - Foul Play
 
 Nidoqueen @ Black Sludge
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Sheer Force
@@ -16789,7 +16789,7 @@ Nature: Calm
 - Sludge Bomb
 
 Vileplume @ Black Sludge
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Effect Spore
@@ -16800,7 +16800,7 @@ Nature: Bold
 - Sludge Bomb
 
 Arbok @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
@@ -16811,7 +16811,7 @@ Nature: Adamant
 - Earthquake
 
 Dodrio @ Life Orb
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rock Head
@@ -16822,7 +16822,7 @@ Nature: Jolly
 - Drill Run
 
 Starmie @ Power Herb
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Analytic
@@ -21979,7 +21979,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Shroomish @ Oran Berry
-Level: 7
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Effect Spore
 Nature: Relaxed
@@ -21989,7 +21989,7 @@ Nature: Relaxed
 - Stun Spore
 
 Houndour @ Charcoal
-Level: 8
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flash Fire
 Nature: Timid
@@ -21999,7 +21999,7 @@ Nature: Timid
 - Roar
 
 Marill @ Sitrus Berry
-Level: 9
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Huge Power
 Nature: Adamant
@@ -22019,7 +22019,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Rolycoly @ Oran Berry
-Level: 7
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Steam Engine
 Nature: Impish
@@ -22029,7 +22029,7 @@ Nature: Impish
 - Will O Wisp
 
 Magnemite @ Eviolite
-Level: 8
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Modest
@@ -22039,7 +22039,7 @@ Nature: Modest
 - Light Screen
 
 Tyrunt @ Sitrus Berry
-Level: 9
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Strong Jaw
 Nature: Adamant
@@ -22059,7 +22059,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Noibat @ Oran Berry
-Level: 7
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Timid
@@ -22069,7 +22069,7 @@ Nature: Timid
 - Super Fang
 
 Goomy @ Eviolite
-Level: 8
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Gooey
 Nature: Calm
@@ -22079,7 +22079,7 @@ Nature: Calm
 - Life Dew
 
 Axew @ Dragon Fang
-Level: 9
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Mold Breaker
 Nature: Adamant
@@ -22099,7 +22099,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Wingull @ Damp Rock
-Level: 12
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Hydration
 Nature: Timid
@@ -22109,7 +22109,7 @@ Nature: Timid
 - U Turn
 
 Chinchou @ Eviolite
-Level: 12
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Volt Absorb
 Nature: Modest
@@ -22119,7 +22119,7 @@ Nature: Modest
 - Volt Switch
 
 Lombre @ Eviolite
-Level: 13
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Swift Swim
 Nature: Modest
@@ -22129,7 +22129,7 @@ Nature: Modest
 - Icy Wind
 
 Brionne @ Mystic Water
-Level: 14
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Liquid Voice
 Nature: Modest
@@ -22149,7 +22149,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Scraggy @ Eviolite
-Level: 12
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Careful
@@ -22159,7 +22159,7 @@ Nature: Careful
 - Taunt
 
 Mienfoo @ Sitrus Berry
-Level: 12
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
 Nature: Jolly
@@ -22169,7 +22169,7 @@ Nature: Jolly
 - Poison Jab
 
 Timburr @ Eviolite
-Level: 13
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Iron Fist
 Nature: Adamant
@@ -22179,7 +22179,7 @@ Nature: Adamant
 - Bulk Up
 
 Machop @ Black Belt
-Level: 14
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: No Guard
 Nature: Adamant
@@ -22199,7 +22199,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Impidimp @ Eviolite
-Level: 12
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Prankster
 Nature: Careful
@@ -22209,7 +22209,7 @@ Nature: Careful
 - Foul Play
 
 Litwick @ Spell Tag
-Level: 12
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flash Fire
 Nature: Modest
@@ -22219,7 +22219,7 @@ Nature: Modest
 - Pain Split
 
 Zorua @ Black Glasses
-Level: 13
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Illusion
 Nature: Timid
@@ -22229,7 +22229,7 @@ Nature: Timid
 - Sludge Bomb
 
 Pawniard @ Eviolite
-Level: 14
+Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Defiant
 Nature: Adamant
@@ -22249,7 +22249,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Vulpix @ Heat Rock
-Level: 17
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Drought
 Nature: Timid
@@ -22259,7 +22259,7 @@ Nature: Timid
 - Encore
 
 Gloom @ Eviolite
-Level: 17
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Modest
@@ -22269,7 +22269,7 @@ Nature: Modest
 - Sleep Powder
 
 Krokorok @ Eviolite
-Level: 17
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -22279,7 +22279,7 @@ Nature: Adamant
 - Rock Slide
 
 Jumpluff @ Yache Berry
-Level: 18
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Jolly
@@ -22289,7 +22289,7 @@ Nature: Jolly
 - Seed Bomb
 
 Charmeleon @ Charcoal
-Level: 19
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Solar Power
 Nature: Timid
@@ -22309,7 +22309,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Naclstack @ Eviolite
-Level: 17
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Purifying Salt
 Nature: Impish
@@ -22319,7 +22319,7 @@ Nature: Impish
 - Earthquake
 
 Ferroseed @ Occa Berry
-Level: 17
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Iron Barbs
 Nature: Relaxed
@@ -22329,7 +22329,7 @@ Nature: Relaxed
 - Knock Off
 
 Qwilfish @ Black Sludge
-Level: 17
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Jolly
@@ -22339,7 +22339,7 @@ Nature: Jolly
 - Taunt
 
 Mudsdale @ Sitrus Berry
-Level: 18
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Stamina
 Nature: Adamant
@@ -22349,7 +22349,7 @@ Nature: Adamant
 - Rock Slide
 
 Lokix @ Silver Powder
-Level: 19
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Tinted Lens
 Nature: Jolly
@@ -22369,7 +22369,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Meowstic M @ Light Clay
-Level: 17
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Prankster
 Nature: Bold
@@ -22379,7 +22379,7 @@ Nature: Bold
 - Psychic
 
 Mawile @ Sitrus Berry
-Level: 17
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sheer Force
 Nature: Adamant
@@ -22389,7 +22389,7 @@ Nature: Adamant
 - Swords Dance
 
 Monferno @ Eviolite
-Level: 17
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Iron Fist
 Nature: Jolly
@@ -22399,7 +22399,7 @@ Nature: Jolly
 - Thunder Punch
 
 Gabite @ Dragon Fang
-Level: 18
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Rough Skin
 Nature: Jolly
@@ -22409,7 +22409,7 @@ Nature: Jolly
 - Rock Slide
 
 Gyarados @ Wacan Berry
-Level: 19
+Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Moxie
 Nature: Jolly
@@ -22429,7 +22429,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Dedenne @ Terrain Extender
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Electric Surge
 Nature: Timid
@@ -22439,7 +22439,7 @@ Nature: Timid
 - Nuzzle
 
 Galvantula @ Silver Powder
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Compound Eyes
 Nature: Timid
@@ -22449,7 +22449,7 @@ Nature: Timid
 - Energy Ball
 
 Electivire @ Shuca Berry
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Iron Fist
 Nature: Adamant
@@ -22459,7 +22459,7 @@ Nature: Adamant
 - Earthquake
 
 Eelektross @ Sitrus Berry
-Level: 22
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Adamant
@@ -22469,7 +22469,7 @@ Nature: Adamant
 - U Turn
 
 Raichu Alola @ Magnet
-Level: 23
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Surge Surfer
 Nature: Timid
@@ -22489,7 +22489,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Klefki @ Occa Berry
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Prankster
 Nature: Bold
@@ -22499,7 +22499,7 @@ Nature: Bold
 - Foul Play
 
 Weezing Galar @ Black Sludge
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Bold
@@ -22509,7 +22509,7 @@ Nature: Bold
 - Toxic Spikes
 
 Florges Red @ Sitrus Berry
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Natural Cure
 Nature: Calm
@@ -22519,7 +22519,7 @@ Nature: Calm
 - Psychic
 
 Sylveon @ Fairy Feather
-Level: 22
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pixilate
 Nature: Modest
@@ -22529,7 +22529,7 @@ Nature: Modest
 - Wish
 
 Slurpuff @ Sitrus Berry
-Level: 23
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Unburden
 Nature: Adamant
@@ -22550,7 +22550,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Hippowdon @ Smooth Rock
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sand Stream
 Nature: Impish
@@ -22560,7 +22560,7 @@ Nature: Impish
 - Whirlwind
 
 Skarmory @ Rocky Helmet
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Impish
@@ -22570,7 +22570,7 @@ Nature: Impish
 - Roost
 
 Lycanroc Midday @ Life Orb
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sand Rush
 Nature: Jolly
@@ -22580,7 +22580,7 @@ Nature: Jolly
 - Drill Run
 
 Archaludon @ Assault Vest
-Level: 22
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Stamina
 Nature: Modest
@@ -22590,7 +22590,7 @@ Nature: Modest
 - Body Press
 
 Excadrill @ Focus Sash
-Level: 23
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sand Rush
 Nature: Adamant
@@ -22610,7 +22610,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Cofagrigus @ Mental Herb
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Mummy
 Nature: Quiet
@@ -22620,7 +22620,7 @@ Nature: Quiet
 - Pain Split
 
 Escavalier @ Choice Band
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Shell Armor
 Nature: Brave
@@ -22630,7 +22630,7 @@ Nature: Brave
 - Drill Run
 
 Reuniclus @ Life Orb
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Guard
 Nature: Quiet
@@ -22640,7 +22640,7 @@ Nature: Quiet
 - Shadow Ball
 
 Ursaluna @ Expert Belt
-Level: 22
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Bulletproof
 Nature: Brave
@@ -22650,7 +22650,7 @@ Nature: Brave
 - Crunch
 
 Conkeldurr @ Flame Orb
-Level: 23
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Guts
 Nature: Brave
@@ -22670,7 +22670,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Incineroar @ Sitrus Berry
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Careful
@@ -22680,7 +22680,7 @@ Nature: Careful
 - Flare Blitz
 
 Pawmot @ Focus Sash
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Iron Fist
 Nature: Jolly
@@ -22690,7 +22690,7 @@ Nature: Jolly
 - Mach Punch
 
 Golisopod @ Assault Vest
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Emergency Exit
 Nature: Adamant
@@ -22700,7 +22700,7 @@ Nature: Adamant
 - Aqua Jet
 
 Corviknight @ Leftovers
-Level: 22
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Pressure
 Nature: Impish
@@ -22710,7 +22710,7 @@ Nature: Impish
 - Roost
 
 Meowscarada @ Life Orb
-Level: 23
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Protean
 Nature: Jolly
@@ -22730,7 +22730,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Illumise @ Mental Herb
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Prankster
 Nature: Bold
@@ -22740,7 +22740,7 @@ Nature: Bold
 - Roost
 
 Polteageist Phony @ White Herb
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Weak Armor
 Nature: Modest
@@ -22750,7 +22750,7 @@ Nature: Modest
 - Stored Power
 
 Lilligant Hisui @ Wide Lens
-Level: 21
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Hustle
 Nature: Jolly
@@ -22760,7 +22760,7 @@ Nature: Jolly
 - Ice Spinner
 
 Scolipede @ Black Sludge
-Level: 22
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Speed Boost
 Nature: Adamant
@@ -22770,7 +22770,7 @@ Nature: Adamant
 - Earthquake
 
 Haxorus @ Lum Berry
-Level: 23
+Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Mold Breaker
 Nature: Jolly
@@ -22790,7 +22790,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Vanilluxe @ Light Clay
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Snow Warning
 Nature: Timid
@@ -22800,7 +22800,7 @@ Nature: Timid
 - Flash Cannon
 
 Swampert @ Leftovers
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Torrent
 Nature: Relaxed
@@ -22810,7 +22810,7 @@ Nature: Relaxed
 - Flip Turn
 
 Sandslash Alola @ Life Orb
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Slush Rush
 Nature: Jolly
@@ -22820,7 +22820,7 @@ Nature: Jolly
 - Earthquake
 
 Arctozolt @ Choice Band
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Slush Rush
 Nature: Adamant
@@ -22830,7 +22830,7 @@ Nature: Adamant
 - Stone Edge
 
 Arctovish @ Life Orb
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Slush Rush
 Nature: Jolly
@@ -22840,7 +22840,7 @@ Nature: Jolly
 - Crunch
 
 Walrein @ Sitrus Berry
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Fur Coat
@@ -22861,7 +22861,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Politoed @ Damp Rock
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Drizzle
 Nature: Calm
@@ -22871,7 +22871,7 @@ Nature: Calm
 - Haze
 
 Ferrothorn @ Leftovers
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Iron Barbs
 Nature: Relaxed
@@ -22881,7 +22881,7 @@ Nature: Relaxed
 - Gyro Ball
 
 Kilowattrel @ Life Orb
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Volt Absorb
 Nature: Timid
@@ -22891,7 +22891,7 @@ Nature: Timid
 - Roost
 
 Goodra @ Assault Vest
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sap Sipper
 Nature: Modest
@@ -22901,7 +22901,7 @@ Nature: Modest
 - Sludge Bomb
 
 Drednaw @ White Herb
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Swift Swim
 Nature: Adamant
@@ -22911,7 +22911,7 @@ Nature: Adamant
 - Earthquake
 
 Basculegion @ Choice Band
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Swift Swim
@@ -22932,7 +22932,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Torkoal @ Heat Rock
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Drought
 Nature: Bold
@@ -22942,7 +22942,7 @@ Nature: Bold
 - Yawn
 
 Chesnaught @ Leftovers
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Bulletproof
 Nature: Impish
@@ -22952,7 +22952,7 @@ Nature: Impish
 - Synthesis
 
 Heliolisk @ Choice Specs
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Solar Power
 Nature: Timid
@@ -22962,7 +22962,7 @@ Nature: Timid
 - Volt Switch
 
 Shiftry @ Focus Sash
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Adamant
@@ -22972,7 +22972,7 @@ Nature: Adamant
 - Low Kick
 
 Flygon @ Life Orb
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Jolly
@@ -22982,7 +22982,7 @@ Nature: Jolly
 - Fire Punch
 
 Darmanitan Standard @ Choice Scarf
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sheer Force
@@ -23003,7 +23003,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Orthworm @ Leftovers
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Earth Eater
 Nature: Impish
@@ -23013,7 +23013,7 @@ Nature: Impish
 - Iron Head
 
 Amoonguss @ Black Sludge
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
 Nature: Bold
@@ -23023,7 +23023,7 @@ Nature: Bold
 - Sludge Bomb
 
 Mandibuzz @ Rocky Helmet
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Overcoat
 Nature: Impish
@@ -23033,7 +23033,7 @@ Nature: Impish
 - Toxic
 
 Clodsire @ Leftovers
-Level: 27
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Unaware
 Nature: Careful
@@ -23043,7 +23043,7 @@ Nature: Careful
 - Haze
 
 Jellicent @ Sitrus Berry
-Level: 28
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
 Nature: Bold
@@ -23053,7 +23053,7 @@ Nature: Bold
 - Hex
 
 Gliscor @ Toxic Orb
-Level: 29
+Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Poison Heal
@@ -23074,7 +23074,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Indeedee M @ Terrain Extender
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Psychic Surge
@@ -23085,7 +23085,7 @@ Nature: Timid
 - Calm Mind
 
 Tinkaton @ Air Balloon
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Mold Breaker
@@ -23096,7 +23096,7 @@ Nature: Jolly
 - Knock Off
 
 Malamar @ Leftovers
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Contrary
@@ -23107,7 +23107,7 @@ Nature: Adamant
 - Rock Slide
 
 Greninja @ Expert Belt
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Protean
@@ -23118,7 +23118,7 @@ Nature: Timid
 - Grass Knot
 
 Noivern @ Choice Specs
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Infiltrator
@@ -23129,7 +23129,7 @@ Nature: Timid
 - U Turn
 
 Armarouge @ Life Orb
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flash Fire
@@ -23150,7 +23150,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Whimsicott @ Focus Sash
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 SpA / 252 Spe
 Ability: Prankster
@@ -23161,7 +23161,7 @@ Nature: Timid
 - U Turn
 
 Copperajah @ Life Orb
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Heavy Metal
@@ -23172,7 +23172,7 @@ Nature: Adamant
 - High Horsepower
 
 Vikavolt @ Choice Specs
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Levitate
@@ -23183,7 +23183,7 @@ Nature: Modest
 - Volt Switch
 
 Krookodile @ Choice Band
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Moxie
@@ -23194,7 +23194,7 @@ Nature: Jolly
 - Close Combat
 
 Hydrapple @ Assault Vest
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Regenerator
@@ -23205,7 +23205,7 @@ Nature: Modest
 - Hydro Pump
 
 Typhlosion Hisui @ Choice Specs
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flash Fire
@@ -23226,7 +23226,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Cyclizar @ Heavy Duty Boots
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 Spe
 Ability: Regenerator
@@ -23237,7 +23237,7 @@ Nature: Jolly
 - U Turn
 
 Revavroom @ Air Balloon
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Filter
@@ -23248,7 +23248,7 @@ Nature: Jolly
 - High Horsepower
 
 Metagross @ Weakness Policy
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Clear Body
@@ -23259,7 +23259,7 @@ Nature: Jolly
 - Earthquake
 
 Feraligatr @ Life Orb
-Level: 41
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sheer Force
@@ -23270,7 +23270,7 @@ Nature: Adamant
 - Crunch
 
 Baxcalibur @ Loaded Dice
-Level: 42
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Thermal Exchange
@@ -23281,7 +23281,7 @@ Nature: Jolly
 - Earthquake
 
 Dragapult @ Focus Sash
-Level: 43
+Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Infiltrator
@@ -23302,7 +23302,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Mienshao @ Life Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Regenerator
@@ -23313,7 +23313,7 @@ Nature: Jolly
 - Knock Off
 
 Slowking @ Heavy Duty Boots
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 SpA / 252 SpD
 Ability: Regenerator
@@ -23324,7 +23324,7 @@ Nature: Calm
 - Slack Off
 
 Obstagoon @ Flame Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Guts
@@ -23335,7 +23335,7 @@ Nature: Adamant
 - Parting Shot
 
 Rotom Heat @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Levitate
@@ -23346,7 +23346,7 @@ Nature: Bold
 - Pain Split
 
 Alomomola @ Rocky Helmet
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Regenerator
@@ -23357,7 +23357,7 @@ Nature: Relaxed
 - Flip Turn
 
 Gholdengo @ Choice Specs
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Good As Gold
@@ -23378,7 +23378,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Ribombee @ Focus Sash
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Shield Dust
@@ -23389,7 +23389,7 @@ Nature: Timid
 - U Turn
 
 Crustle @ White Herb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sturdy
@@ -23400,7 +23400,7 @@ Nature: Jolly
 - Earthquake
 
 Turtonator @ Life Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Dauntless Shield
@@ -23411,7 +23411,7 @@ Nature: Modest
 - Scorching Sands
 
 Kommo O @ Throat Spray
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Soundproof
@@ -23422,7 +23422,7 @@ Nature: Timid
 - Flamethrower
 
 Quaquaval @ Lum Berry
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Moxie
@@ -23433,7 +23433,7 @@ Nature: Jolly
 - Knock Off
 
 Kingambit @ Chople Berry
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Supreme Overlord
@@ -23454,7 +23454,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Rillaboom @ Terrain Extender
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Grassy Surge
@@ -23465,7 +23465,7 @@ Nature: Adamant
 - U Turn
 
 Garganacl @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Purifying Salt
@@ -23476,7 +23476,7 @@ Nature: Careful
 - Body Press
 
 Salazzle @ Focus Sash
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Corrosion
@@ -23487,7 +23487,7 @@ Nature: Timid
 - Sludge Wave
 
 Toxtricity Amped @ Throat Spray
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Punk Rock
@@ -23498,7 +23498,7 @@ Nature: Modest
 - Volt Switch
 
 Tsareena @ Choice Band
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Queenly Majesty
@@ -23509,7 +23509,7 @@ Nature: Jolly
 - U Turn
 
 Serperior @ Life Orb
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Contrary
@@ -23530,7 +23530,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Golem @ Custap Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
@@ -23541,7 +23541,7 @@ Nature: Adamant
 - Explosion
 
 Starmie @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Natural Cure
@@ -23552,7 +23552,7 @@ Nature: Timid
 - Rapid Spin
 
 Arcanine @ Heavy Duty Boots
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Intimidate
@@ -23563,7 +23563,7 @@ Nature: Adamant
 - Morning Sun
 
 Exeggutor @ Sitrus Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Harvest
@@ -23574,7 +23574,7 @@ Nature: Modest
 - Psychic
 
 Tauros @ Choice Band
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Intimidate
@@ -23585,7 +23585,7 @@ Nature: Jolly
 - Throat Chop
 
 Gyarados @ Lum Berry
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Moxie
@@ -23606,7 +23606,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Araquanid @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Water Bubble
@@ -23617,7 +23617,7 @@ Nature: Adamant
 - Mirror Coat
 
 Kleavor @ Choice Scarf
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sharpness
@@ -23628,7 +23628,7 @@ Nature: Jolly
 - U Turn
 
 Scizor @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Technician
@@ -23639,7 +23639,7 @@ Nature: Adamant
 - Close Combat
 
 Heracross @ Flame Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Guts
@@ -23650,7 +23650,7 @@ Nature: Jolly
 - Facade
 
 Butterfree @ Heavy Duty Boots
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Compound Eyes
@@ -23661,7 +23661,7 @@ Nature: Timid
 - Hurricane
 
 Yanmega @ Heavy Duty Boots
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Speed Boost
@@ -23682,7 +23682,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Armaldo @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 Def
 Ability: Battle Armor
@@ -23693,7 +23693,7 @@ Nature: Impish
 - X Scissor
 
 Cradily @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Storm Drain
@@ -23704,7 +23704,7 @@ Nature: Calm
 - Recover
 
 Bastiodon @ Chesto Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Dauntless Shield
@@ -23715,7 +23715,7 @@ Nature: Impish
 - Rest
 
 Dracovish @ Choice Scarf
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Strong Jaw
@@ -23726,7 +23726,7 @@ Nature: Jolly
 - Ice Fang
 
 Kabutops @ Life Orb
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sharpness
@@ -23737,7 +23737,7 @@ Nature: Adamant
 - Aqua Jet
 
 Tyrantrum @ Lum Berry
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rock Head
@@ -23758,7 +23758,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Glimmora @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Toxic Debris
@@ -23769,7 +23769,7 @@ Nature: Timid
 - Earth Power
 
 Clefable @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Magic Guard
@@ -23780,7 +23780,7 @@ Nature: Bold
 - Thunder Wave
 
 Nidoking @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Sheer Force
@@ -23791,7 +23791,7 @@ Nature: Timid
 - Flamethrower
 
 Lycanroc Midnight @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: No Guard
@@ -23802,7 +23802,7 @@ Nature: Jolly
 - Psychic Fangs
 
 Ursaluna Bloodmoon @ Assault Vest
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Minds Eye
@@ -23813,7 +23813,7 @@ Nature: Modest
 - Vacuum Wave
 
 Cresselia @ Leftovers
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Levitate
@@ -23834,7 +23834,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Gigalith @ Custap Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
@@ -23845,7 +23845,7 @@ Nature: Adamant
 - Explosion
 
 Sigilyph @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Magic Guard
@@ -23856,7 +23856,7 @@ Nature: Timid
 - Air Slash
 
 Golurk @ Assault Vest
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: No Guard
@@ -23867,7 +23867,7 @@ Nature: Adamant
 - Ice Punch
 
 Glaceon @ Choice Specs
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Ice Body
@@ -23878,7 +23878,7 @@ Nature: Modest
 - Water Pulse
 
 Rampardos @ Choice Scarf
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Mold Breaker
@@ -23889,7 +23889,7 @@ Nature: Jolly
 - Fire Punch
 
 Xurkitree @ Life Orb
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Beast Boost
@@ -23910,7 +23910,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Sawk @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Contrary
@@ -23921,7 +23921,7 @@ Nature: Adamant
 - Stone Edge
 
 Sirfetchd @ Leek
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Scrappy
@@ -23932,7 +23932,7 @@ Nature: Adamant
 - Swords Dance
 
 Scrafty @ Sitrus Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Intimidate
@@ -23943,7 +23943,7 @@ Nature: Careful
 - Parting Shot
 
 Machamp @ Assault Vest
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: No Guard
@@ -23954,7 +23954,7 @@ Nature: Adamant
 - Bullet Punch
 
 Falinks @ Sitrus Berry
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Defiant
@@ -23965,7 +23965,7 @@ Nature: Jolly
 - Throat Chop
 
 Medicham @ Life Orb
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Huge Power
@@ -23986,7 +23986,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Kangaskhan @ Silk Scarf
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Scrappy
@@ -23997,7 +23997,7 @@ Nature: Jolly
 - Sucker Punch
 
 Dudunsparce @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 Def
 Ability: Serene Grace
@@ -24008,7 +24008,7 @@ Nature: Impish
 - Roost
 
 Exploud @ Choice Specs
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Punk Rock
@@ -24019,7 +24019,7 @@ Nature: Modest
 - Ice Beam
 
 Bewear @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Fluffy
@@ -24030,7 +24030,7 @@ Nature: Adamant
 - Darkest Lariat
 
 Zangoose @ Toxic Orb
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Toxic Boost
@@ -24041,7 +24041,7 @@ Nature: Jolly
 - Quick Attack
 
 Maushold @ Wide Lens
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Technician
@@ -24062,7 +24062,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Ninetales @ Heat Rock
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Drought
@@ -24073,7 +24073,7 @@ Nature: Timid
 - Healing Wish
 
 Venusaur @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Chlorophyll
@@ -24084,7 +24084,7 @@ Nature: Modest
 - Weather Ball
 
 Walking Wake @ Choice Specs
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Protosynthesis
@@ -24095,7 +24095,7 @@ Nature: Timid
 - Flip Turn
 
 Lilligant @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Chlorophyll
@@ -24106,7 +24106,7 @@ Nature: Timid
 - Alluring Voice
 
 Victreebel @ Choice Band
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Chlorophyll
@@ -24117,7 +24117,7 @@ Nature: Adamant
 - Poison Jab
 
 Typhlosion @ Choice Scarf
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flash Fire
@@ -24138,7 +24138,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Wobbuffet @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Shadow Tag
@@ -24149,7 +24149,7 @@ Nature: Bold
 - Destiny Bond
 
 Spiritomb @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Intimidate
@@ -24160,7 +24160,7 @@ Nature: Calm
 - Pain Split
 
 Dhelmise @ Assault Vest
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Steely Spirit
@@ -24171,7 +24171,7 @@ Nature: Adamant
 - Rapid Spin
 
 Decidueye @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Tinted Lens
@@ -24182,7 +24182,7 @@ Nature: Adamant
 - Knock Off
 
 Heatran @ Air Balloon
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Flash Fire
@@ -24193,7 +24193,7 @@ Nature: Modest
 - Taunt
 
 Gothitelle @ Chesto Berry
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Shadow Tag
@@ -24214,7 +24214,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Forretress @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Sturdy
@@ -24225,7 +24225,7 @@ Nature: Relaxed
 - Volt Switch
 
 Ting Lu @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Vessel Of Ruin
@@ -24236,7 +24236,7 @@ Nature: Careful
 - Earthquake
 
 Xatu @ Heavy Duty Boots
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Magic Bounce
@@ -24247,7 +24247,7 @@ Nature: Bold
 - U Turn
 
 Gengar @ Choice Specs
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
@@ -24258,7 +24258,7 @@ Nature: Timid
 - Trick
 
 Dugtrio @ Choice Band
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Arena Trap
@@ -24269,7 +24269,7 @@ Nature: Jolly
 - Throat Chop
 
 Samurott Hisui @ Life Orb
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sharpness
@@ -24290,7 +24290,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Pincurchin @ Terrain Extender
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Electric Surge
@@ -24301,7 +24301,7 @@ Nature: Modest
 - Recover
 
 Electrode @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Galvanize
@@ -24312,7 +24312,7 @@ Nature: Jolly
 - Explosion
 
 Rotom Wash @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Levitate
@@ -24323,7 +24323,7 @@ Nature: Bold
 - Electric Terrain
 
 Magnezone @ Assault Vest
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Magnet Pull
@@ -24334,7 +24334,7 @@ Nature: Modest
 - Body Press
 
 Hawlucha @ Electric Seed
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Unburden
@@ -24345,7 +24345,7 @@ Nature: Jolly
 - Throat Chop
 
 Bellibolt @ Leftovers
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Electromorphosis
@@ -24366,7 +24366,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Liepard @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 Spe
 Ability: Prankster
@@ -24377,7 +24377,7 @@ Nature: Jolly
 - Knock Off
 
 Mabosstiff @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Stakeout
@@ -24388,7 +24388,7 @@ Nature: Adamant
 - Fire Fang
 
 Zoroark @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Illusion
@@ -24399,7 +24399,7 @@ Nature: Timid
 - Sludge Bomb
 
 Drapion @ Black Sludge
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sniper
@@ -24410,7 +24410,7 @@ Nature: Adamant
 - Toxic Spikes
 
 Honchkrow @ Scope Lens
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Super Luck
@@ -24421,7 +24421,7 @@ Nature: Adamant
 - Superpower
 
 Crawdaunt @ Scope Lens
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Adaptability
@@ -24442,7 +24442,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Lokix @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Tinted Lens
@@ -24453,7 +24453,7 @@ Nature: Jolly
 - Knock Off
 
 Weavile @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Pressure
@@ -24464,7 +24464,7 @@ Nature: Jolly
 - Ice Shard
 
 Lucario @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Justified
@@ -24475,7 +24475,7 @@ Nature: Adamant
 - Meteor Mash
 
 Talonflame @ Heavy Duty Boots
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Gale Wings
@@ -24486,7 +24486,7 @@ Nature: Adamant
 - Roost
 
 Diggersby @ Assault Vest
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Huge Power
@@ -24497,7 +24497,7 @@ Nature: Adamant
 - U Turn
 
 Ceruledge @ Lum Berry
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sharpness
@@ -24518,7 +24518,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Froslass @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 Spe
 Ability: Ice Body
@@ -24529,7 +24529,7 @@ Nature: Timid
 - Destiny Bond
 
 Poliwrath @ Sitrus Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Water Absorb
@@ -24540,7 +24540,7 @@ Nature: Jolly
 - Ice Punch
 
 Hariyama @ Sitrus Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Thick Fat
@@ -24551,7 +24551,7 @@ Nature: Adamant
 - Knock Off
 
 Eiscue @ Lum Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Ice Face
@@ -24562,7 +24562,7 @@ Nature: Jolly
 - Iron Head
 
 Marowak Alola @ Thick Club
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Rock Head
@@ -24573,7 +24573,7 @@ Nature: Adamant
 - Earthquake
 
 Linoone @ Salac Berry
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Gluttony
@@ -24594,7 +24594,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Landorus Therian @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Intimidate
@@ -24605,7 +24605,7 @@ Nature: Impish
 - Knock Off
 
 Toxapex @ Black Sludge
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Regenerator
@@ -24616,7 +24616,7 @@ Nature: Bold
 - Recover
 
 Blissey @ Heavy Duty Boots
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Natural Cure
@@ -24627,7 +24627,7 @@ Nature: Bold
 - Heal Bell
 
 Tangrowth @ Assault Vest
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Regenerator
@@ -24638,7 +24638,7 @@ Nature: Sassy
 - Sludge Bomb
 
 Slowbro @ Leftovers
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Regenerator
@@ -24649,7 +24649,7 @@ Nature: Bold
 - Teleport
 
 Snorlax @ Chesto Berry
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Thick Fat
@@ -24670,7 +24670,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Tapu Fini @ Terrain Extender
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Misty Surge
@@ -24681,7 +24681,7 @@ Nature: Calm
 - Defog
 
 Granbull @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
@@ -24692,7 +24692,7 @@ Nature: Adamant
 - Roar
 
 Gardevoir @ Choice Scarf
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Trace
@@ -24703,7 +24703,7 @@ Nature: Timid
 - Trick
 
 Rapidash Galar @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Flash Fire
@@ -24714,7 +24714,7 @@ Nature: Jolly
 - Psycho Cut
 
 Comfey @ Leftovers
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Triage
@@ -24725,7 +24725,7 @@ Nature: Calm
 - Synthesis
 
 Cloyster @ White Herb
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Skill Link
@@ -24746,7 +24746,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Ambipom @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Technician
@@ -24757,7 +24757,7 @@ Nature: Jolly
 - U Turn
 
 Staraptor @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Reckless
@@ -24768,7 +24768,7 @@ Nature: Jolly
 - U Turn
 
 Inteleon @ Choice Specs
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Sniper
@@ -24779,7 +24779,7 @@ Nature: Timid
 - U Turn
 
 Darmanitan Galar @ Choice Scarf
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Gorilla Tactics
@@ -24790,7 +24790,7 @@ Nature: Jolly
 - Earthquake
 
 Chi Yu @ Choice Scarf
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Beads Of Ruin
@@ -24801,7 +24801,7 @@ Nature: Timid
 - Psychic
 
 Cinderace @ Choice Band
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Libero
@@ -24822,7 +24822,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Bombirdier @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rocky Payload
@@ -24833,7 +24833,7 @@ Nature: Jolly
 - Parting Shot
 
 Mantine @ Heavy Duty Boots
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Water Absorb
@@ -24844,7 +24844,7 @@ Nature: Bold
 - Hurricane
 
 Toucannon @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Skill Link
@@ -24855,7 +24855,7 @@ Nature: Adamant
 - Knock Off
 
 Braviary @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Defiant
@@ -24866,7 +24866,7 @@ Nature: Adamant
 - Roost
 
 Oricorio Pom Pom @ Leftovers
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Dancer
@@ -24877,7 +24877,7 @@ Nature: Timid
 - Roost
 
 Togekiss @ Heavy Duty Boots
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Serene Grace
@@ -24898,7 +24898,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Jolteon @ Choice Specs
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Volt Absorb
@@ -24909,7 +24909,7 @@ Nature: Timid
 - Alluring Voice
 
 Umbreon @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Synchronize
@@ -24920,7 +24920,7 @@ Nature: Careful
 - Yawn
 
 Vaporeon @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Water Absorb
@@ -24931,7 +24931,7 @@ Nature: Bold
 - Flip Turn
 
 Glaceon @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Ice Body
@@ -24942,7 +24942,7 @@ Nature: Calm
 - Protect
 
 Leafeon @ Lum Berry
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sap Sipper
@@ -24953,7 +24953,7 @@ Nature: Jolly
 - X Scissor
 
 Sylveon @ Choice Specs
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Pixilate
@@ -24974,7 +24974,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Mr Mime @ Light Clay
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 Spe
 Ability: Misty Surge
@@ -24985,7 +24985,7 @@ Nature: Timid
 - Healing Wish
 
 Azumarill @ Sitrus Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Huge Power
@@ -24996,7 +24996,7 @@ Nature: Adamant
 - Knock Off
 
 Gallade @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sharpness
@@ -25007,7 +25007,7 @@ Nature: Jolly
 - Leaf Blade
 
 Zoroark Hisui @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Illusion
@@ -25018,7 +25018,7 @@ Nature: Timid
 - Flamethrower
 
 Torterra @ White Herb
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rock Head
@@ -25029,7 +25029,7 @@ Nature: Adamant
 - Stone Edge
 
 Volcarona @ Heavy Duty Boots
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flame Body
@@ -25050,7 +25050,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Pelipper @ Damp Rock
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Drizzle
@@ -25061,7 +25061,7 @@ Nature: Bold
 - Roost
 
 Seismitoad @ Choice Specs
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Swift Swim
@@ -25072,7 +25072,7 @@ Nature: Modest
 - Grass Knot
 
 Ludicolo @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Swift Swim
@@ -25083,7 +25083,7 @@ Nature: Modest
 - Focus Blast
 
 Carracosta @ White Herb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Swift Swim
@@ -25094,7 +25094,7 @@ Nature: Adamant
 - Earthquake
 
 Overqwil @ Lum Berry
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Swift Swim
@@ -25105,7 +25105,7 @@ Nature: Adamant
 - Liquidation
 
 Ampharos @ Assault Vest
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Static
@@ -25126,7 +25126,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Relicanth @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Rock Head
@@ -25137,7 +25137,7 @@ Nature: Adamant
 - Earthquake
 
 Marowak @ Thick Club
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Rock Head
@@ -25148,7 +25148,7 @@ Nature: Adamant
 - Knock Off
 
 Emboar @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Reckless
@@ -25159,7 +25159,7 @@ Nature: Adamant
 - Close Combat
 
 Bouffalant @ Assault Vest
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Reckless
@@ -25170,7 +25170,7 @@ Nature: Adamant
 - Earthquake
 
 Dodrio @ Choice Scarf
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rock Head
@@ -25181,7 +25181,7 @@ Nature: Jolly
 - Knock Off
 
 Aggron @ Weakness Policy
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rock Head
@@ -25202,7 +25202,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Garbodor @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 Atk
 Ability: Aftermath
@@ -25213,7 +25213,7 @@ Nature: Impish
 - Drain Punch
 
 Grafaiai @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 Spe
 Ability: Prankster
@@ -25224,7 +25224,7 @@ Nature: Jolly
 - U Turn
 
 Greninja @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Protean
@@ -25235,7 +25235,7 @@ Nature: Timid
 - U Turn
 
 Dragalge @ Choice Specs
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Adaptability
@@ -25246,7 +25246,7 @@ Nature: Modest
 - Flip Turn
 
 Muk Alola @ Assault Vest
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Poison Touch
@@ -25257,7 +25257,7 @@ Nature: Adamant
 - Shadow Sneak
 
 Sneasler @ Life Orb
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Poison Touch
@@ -25278,7 +25278,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Infernape @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Blaze
@@ -25289,7 +25289,7 @@ Nature: Jolly
 - U Turn
 
 Arcanine Hisui @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rock Head
@@ -25300,7 +25300,7 @@ Nature: Jolly
 - Close Combat
 
 Magmortar @ Expert Belt
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flame Body
@@ -25311,7 +25311,7 @@ Nature: Timid
 - Psychic
 
 Hitmonlee @ White Herb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Unburden
@@ -25322,7 +25322,7 @@ Nature: Jolly
 - Mach Punch
 
 Pangoro @ Leftovers
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Iron Fist
@@ -25333,7 +25333,7 @@ Nature: Careful
 - Ice Punch
 
 Passimian @ Choice Band
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Defiant
@@ -25354,7 +25354,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Tapu Bulu @ Terrain Extender
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Grassy Surge
@@ -25365,7 +25365,7 @@ Nature: Adamant
 - Stone Edge
 
 Sceptile @ Grassy Seed
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Unburden
@@ -25376,7 +25376,7 @@ Nature: Jolly
 - Drain Punch
 
 Arboliva @ Big Root
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Seed Sower
@@ -25387,7 +25387,7 @@ Nature: Modest
 - Strength Sap
 
 Coalossal @ Heavy Duty Boots
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Flash Fire
@@ -25398,7 +25398,7 @@ Nature: Bold
 - Stealth Rock
 
 Lanturn @ Assault Vest
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Volt Absorb
@@ -25409,7 +25409,7 @@ Nature: Modest
 - Volt Switch
 
 Decidueye Hisui @ Life Orb
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Scrappy
@@ -25430,7 +25430,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Accelgor @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Unburden
@@ -25441,7 +25441,7 @@ Nature: Timid
 - Focus Blast
 
 Sharpedo @ Life Orb
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Speed Boost
@@ -25452,7 +25452,7 @@ Nature: Adamant
 - Close Combat
 
 Cinccino @ Kings Rock
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Skill Link
@@ -25463,7 +25463,7 @@ Nature: Jolly
 - Rock Blast
 
 Manectric @ Expert Belt
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Lightning Rod
@@ -25474,7 +25474,7 @@ Nature: Timid
 - Signal Beam
 
 Drifblim @ Sitrus Berry
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Unburden
@@ -25485,7 +25485,7 @@ Nature: Timid
 - Strength Sap
 
 Espathra @ Leftovers
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Speed Boost
@@ -25506,7 +25506,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Miltank @ Sitrus Berry
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Thick Fat
@@ -25517,7 +25517,7 @@ Nature: Impish
 - Heal Bell
 
 Quagsire @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Unaware
@@ -25528,7 +25528,7 @@ Nature: Impish
 - Toxic
 
 Goodra Hisui @ Assault Vest
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Sap Sipper
@@ -25539,7 +25539,7 @@ Nature: Sassy
 - Dragon Tail
 
 Lickilicky @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Unaware
@@ -25550,7 +25550,7 @@ Nature: Careful
 - Sleep Talk
 
 Musharna @ Colbur Berry
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Unaware
@@ -25561,7 +25561,7 @@ Nature: Bold
 - Moonlight
 
 Dondozo @ Chesto Berry
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 Atk
 Ability: Unaware
@@ -25582,7 +25582,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Tyranitar @ Smooth Rock
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sand Stream
@@ -25593,7 +25593,7 @@ Nature: Adamant
 - Fire Punch
 
 Steelix @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Sturdy
@@ -25604,7 +25604,7 @@ Nature: Impish
 - Roar
 
 Cacturne @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sand Rush
@@ -25615,7 +25615,7 @@ Nature: Jolly
 - Knock Off
 
 Dracozolt @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sand Rush
@@ -25626,7 +25626,7 @@ Nature: Adamant
 - Fire Fang
 
 Sandslash @ Life Orb
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sand Rush
@@ -25637,7 +25637,7 @@ Nature: Adamant
 - Rapid Spin
 
 Houndstone @ Spell Tag
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sand Rush
@@ -25658,7 +25658,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Klawf @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 Atk
 Ability: Regenerator
@@ -25669,7 +25669,7 @@ Nature: Impish
 - High Horsepower
 
 Tentacruel @ Black Sludge
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Clear Body
@@ -25680,7 +25680,7 @@ Nature: Impish
 - Flip Turn
 
 Palafin @ Choice Band
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Zero To Hero
@@ -25691,7 +25691,7 @@ Nature: Jolly
 - Close Combat
 
 Raichu @ Choice Specs
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Lightning Rod
@@ -25702,7 +25702,7 @@ Nature: Timid
 - Focus Blast
 
 Toedscruel @ Leftovers
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Clear Body
@@ -25713,7 +25713,7 @@ Nature: Timid
 - Knock Off
 
 Swellow @ Life Orb
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpA / 252 Spe
 Ability: Aerilate
@@ -25734,7 +25734,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Aurorus @ Light Clay
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Snow Warning
@@ -25745,7 +25745,7 @@ Nature: Timid
 - Stealth Rock
 
 Rotom Frost @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Levitate
@@ -25756,7 +25756,7 @@ Nature: Modest
 - Pain Split
 
 Avalugg @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Sturdy
@@ -25767,7 +25767,7 @@ Nature: Impish
 - Recover
 
 Lapras @ Assault Vest
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Water Absorb
@@ -25778,7 +25778,7 @@ Nature: Modest
 - Psychic
 
 Skeledirge @ Rocky Helmet
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Unaware
@@ -25789,7 +25789,7 @@ Nature: Bold
 - Slack Off
 
 Mamoswine @ Life Orb
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Thick Fat
@@ -25810,7 +25810,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Bronzong @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Levitate
@@ -25821,7 +25821,7 @@ Nature: Relaxed
 - Toxic
 
 Altaria @ Heavy Duty Boots
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Natural Cure
@@ -25832,7 +25832,7 @@ Nature: Bold
 - Roost
 
 Empoleon @ Assault Vest
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Competitive
@@ -25843,7 +25843,7 @@ Nature: Modest
 - Flip Turn
 
 Hydreigon @ Life Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
@@ -25854,7 +25854,7 @@ Nature: Timid
 - Flash Cannon
 
 Kingdra @ Lum Berry
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Sniper
@@ -25865,7 +25865,7 @@ Nature: Adamant
 - Iron Head
 
 Garchomp @ Loaded Dice
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rough Skin
@@ -25886,7 +25886,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Swoobat @ Leftovers
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Simple
@@ -25897,7 +25897,7 @@ Nature: Timid
 - Roost
 
 Mr Rime @ Life Orb
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Screen Cleaner
@@ -25908,7 +25908,7 @@ Nature: Timid
 - Focus Blast
 
 Delphox @ Choice Scarf
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Magic Guard
@@ -25919,7 +25919,7 @@ Nature: Timid
 - Focus Blast
 
 Bruxish @ Choice Band
-Level: 51
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Strong Jaw
@@ -25930,7 +25930,7 @@ Nature: Jolly
 - Crunch
 
 Slowking Galar @ Heavy Duty Boots
-Level: 52
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Regenerator
@@ -25941,7 +25941,7 @@ Nature: Sassy
 - Slack Off
 
 Primarina @ Leftovers
-Level: 53
+Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Torrent
@@ -25962,7 +25962,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Shinx @ Oran Berry
-Level: 7
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
@@ -25972,7 +25972,7 @@ Nature: Adamant
 - Ice Fang
 
 Cutiefly @ Eviolite
-Level: 8
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Shield Dust
 Nature: Timid
@@ -25982,7 +25982,7 @@ Nature: Timid
 - U Turn
 
 Riolu @ Black Belt
-Level: 9
+Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Adamant
@@ -26002,7 +26002,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Donphan @ Leftovers
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Technician
@@ -26013,7 +26013,7 @@ Nature: Adamant
 - Ice Shard
 
 Meganium @ Rocky Helmet
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Triage
@@ -26024,7 +26024,7 @@ Nature: Bold
 - Dragon Tail
 
 Porygon Z @ Choice Scarf
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Adaptability
@@ -26035,7 +26035,7 @@ Nature: Timid
 - Thunderbolt
 
 Mismagius @ Focus Sash
-Level: 60
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
@@ -26046,7 +26046,7 @@ Nature: Timid
 - Thunderbolt
 
 Blaziken @ Life Orb
-Level: 61
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Blaze
@@ -26057,7 +26057,7 @@ Nature: Adamant
 - Knock Off
 
 Urshifu Rapid Strike @ Choice Band
-Level: 62
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Unseen Fist

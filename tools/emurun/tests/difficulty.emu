@@ -1,11 +1,11 @@
 # Crystal Imperium play test: the DIFFICULTY option (challenge menu > Difficulty tab).
-# Bosses are at the player's level cap on every difficulty (DECISIONS.md D21): Falkner's
-# Pidgey / Rookidee / Noctowl are 15 on EASY (NORMAL level caps) and 12 on HARD (the HARD preset
-# picks the HARD level caps too). Other trainers' Heart & Soul levels are put on the cap curve
-# (D29) and raised to one to three below the player's highest level (D46), then scaled, EASY to 90%
-# and HARD to 110% rounded, and are never above the level cap: Youngster Albert's level-7 Sentret
-# and Zubat are one below the player's level-11 CYNDAQUIL, 10 (above the curve's 9 on NORMAL, 8 on
-# HARD), so 9 on EASY and 11 on HARD; Grunt 33's level-20 Koffing is held at the HARD cap, 12.
+# Every trainer's Pokemon are at the player's level cap on every difficulty (DECISIONS.md D21 for the
+# bosses, D56 for the others since 0.15.2): Falkner's Pidgey / Rookidee / Noctowl and Youngster
+# Albert's Sentret and Zubat (Heart & Soul's 7s) are 15 on EASY (NORMAL level caps) and 12 on HARD
+# (the HARD preset picks the HARD level caps too), whatever the player's own level (a level-11
+# CYNDAQUIL); Grunt 33's level-20 Koffing is 12 on HARD. With the LEVEL CAP off, the trainers keep
+# the NORMAL caps' levels: Albert's two are 15, not 100. (Before 0.15.2 ordinary trainers were one
+# to three below the player's highest level, then scaled to 90% on EASY and 110% on HARD.)
 # Each new game is picked in the menu, then each party is read once the battle's action menu is up.
 # BattlePokemon: species +0, level +44; the opponent is battler 1 (+136). gEnemyParty: 100 bytes
 # a Pokemon, level at +84.
@@ -26,8 +26,8 @@ expect8 {gEnemyParty+284} 15 easy_noctowl_at_cap_15
 loadstate easy.ss
 !battle("TRAINER_ALBERT_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B easy_albert_action_menu
-expect8 {gEnemyParty+84} 9 easy_albert_sentret_at_9
-expect8 {gEnemyParty+184} 9 easy_albert_zubat_at_9
+expect8 {gEnemyParty+84} 15 easy_albert_sentret_at_cap_15
+expect8 {gEnemyParty+184} 15 easy_albert_zubat_at_cap_15
 
 # HARD
 reset
@@ -45,11 +45,21 @@ expect8 {gEnemyParty+284} 12 hard_noctowl_at_cap_12
 loadstate hard.ss
 !battle("TRAINER_ALBERT_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B hard_albert_action_menu
-expect8 {gEnemyParty+84} 11 hard_albert_sentret_at_11
-expect8 {gEnemyParty+184} 11 hard_albert_zubat_at_11
+expect8 {gEnemyParty+84} 12 hard_albert_sentret_at_cap_12
+expect8 {gEnemyParty+184} 12 hard_albert_zubat_at_cap_12
 
 loadstate hard.ss
 !battle("TRAINER_GRUNT_33_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B hard_grunt_action_menu
 shot 04_hard_grunt.png
 expect8 {gEnemyParty+84} 12 hard_grunt_koffing_held_at_cap_12
+
+# LEVEL CAP OFF (NORMAL difficulty): Albert's two at the NORMAL cap, 15, not the 100 of no cap
+reset
+!new_game(level_cap="OFF")
+!give_mon(155, 11)
+!battle("TRAINER_ALBERT_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B nocap_albert_action_menu
+shot 05_cap_off_albert.png
+expect8 {gEnemyParty+84} 15 nocap_albert_sentret_at_15
+expect8 {gEnemyParty+184} 15 nocap_albert_zubat_at_15

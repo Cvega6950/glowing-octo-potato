@@ -128,7 +128,8 @@ Imperium-style (D29).
 - `GetCurrentDifficultyLevel()` returns it, so the engine's per-difficulty trainer parties are
   used where they exist. Trainers without one keep their NORMAL party at 90% (EASY) or 110%
   (HARD) of its levels, never above the player's level cap (D28). EASY also turns trainer
-  items off; HARD selects HARD level caps.
+  items off; HARD selects HARD level caps. (Since 0.15.2 no trainer's level is scaled: every
+  trainer is at the player's level cap on every difficulty, D56.)
 - Since 0.7.1 bosses aren't scaled: they are at the player's level cap on every difficulty
   (D21). On HARD that is the HARD cap; before, HARD's 10% was added on top of the NORMAL cap
   and put Falkner at 12 against a cap of 8.
@@ -431,6 +432,7 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
     - Other trainers' Heart & Soul levels are mapped onto the cap curve (D29) and scaled by EASY
       and HARD, and are never above the player's cap (D28): `boss_levels` checks a Grunt's
       level-20 Koffing, at 31 with six badges and at the cap (15, or 12 on HARD caps) with none.
+      (Since 0.15.2 every trainer is at the player's cap, D56: the Koffing is at 66 with six.)
   - Heart & Soul's own teams for the other bosses keep their Pokémon and only get the levels
     (`LEVEL_ONLY` in `boss_teams.py`): Li and the first rival battle; the rival on Mt. Moon and
     at the Indigo Plateau, the Fighting Dojo rematches and the Kanto League (90); and every
@@ -1766,7 +1768,8 @@ follows is the first build's; D45 lists what changed.)
 - **Why a level-44 trainer at 72.** The cap curve (D29) puts each trainer's Heart & Soul level at
   the same place under this game's caps, once: a route's trainers stayed at the curve's level for
   that part of the game when the player came back much stronger.
-- **Levels** (`GetDifficultyAdjustedTrainerLevel`, `src/battle_main.c`). An ordinary trainer's
+- **Levels** (`GetDifficultyAdjustedTrainerLevel`, `src/battle_main.c`; since 0.15.2 every trainer
+  is at the player's level cap instead, D56). An ordinary trainer's
   Pokémon are now at the player's highest level (`GetHighestLevelInPlayerParty`, Eggs aside) minus
   1 to 3: the trainer's strongest one level below, each other one more level below for each level
   it was below the strongest in Heart & Soul, at most three. Never below its place on the cap
@@ -2037,3 +2040,65 @@ follows is the first build's; D45 lists what changed.)
   with the starting package, still 999 after the eight badge packages; a 0.12.0–0.15.0 save with
   40 PP Max gets its TMs on the first step and 959 PP Max on the next, then nothing more).
 
+## D56. Every trainer at the player's level cap
+
+- The user: "Keep everything consistent I want to fight teams with the same level cap as me".
+- **Before.** The bosses were at the player's level cap (D21): the Gym Leaders, the Elite Four, the
+  rival, the Rocket executives, the route mini-bosses and the side battles. Every other trainer
+  was one to three levels below the player's strongest Pokémon (D46), at least at its Heart &
+  Soul level's place on the cap curve (D29), then scaled to 90% on EASY and 110% on HARD, and
+  never above the cap. A route's trainers were a few levels under its boss, and moved with the
+  player's own level rather than the cap.
+- **Now every opponent's Pokémon are at the player's level cap,** on every difficulty, whatever
+  the player's own level: a level-10 player with six badges meets a level-66 Rocket Grunt. It is
+  the cap of the player's progress (badges, then the Johto and Kanto Leagues) in the player's cap
+  table: the HARD caps with LEVEL CAP on HARD, the NORMAL ones otherwise, also with LEVEL CAP off
+  (as the bosses: not 100). After the Kanto League there is no cap left, so trainers are at 100,
+  as the postgame bosses already were. The bosses are as before: the cap of their stage or the
+  player's, whichever is later, and their stage is the earliest point the battle can happen, so in
+  play that is the player's cap too.
+- **Teams made for a stage keep their Pokémon as made.** Besides the bosses' (D46), the Ace
+  Trainers' (D47, D55) and Heart & Soul's Cooltrainers' with competitive teams: their party data
+  has every Pokémon at their stage's NORMAL cap (`ace_trainers.py` `party_levels`; the
+  Cooltrainers' stages are in `ace_trainer_data.UPGRADE_STAGES`, as 0.15.0 had them), and
+  `src/data/level_cap_bosses.h` lists them (`sTeamsMadeForStage`, written by `boss_teams.py`). At
+  or below that level they keep their species; raised to a later cap they evolve, except a Pokémon
+  holding an Eviolite, an Everstone or an item for its own species. Before, they evolved as any
+  ordinary trainer's, whatever they held (an Eviolite Gloom at 32 became a Vileplume). Unlike a
+  boss, such a team is never above the player's cap, even met before its stage.
+- Heart & Soul's own trainers' Pokémon evolve as their level allows, as before (D46). At the cap
+  more of them are evolved: the Grunt's Koffing is a Weezing at 66.
+- EASY no longer lowers trainers' levels (it keeps the default AI instead of Imperium's, D20), and
+  HARD no longer raises them (its caps, the SET style and no Bag in trainer battles stay, D25).
+- **Prize money** comes from the level the trainer's Pokémon battle at (`GetTrainerBattleLevel`),
+  not their party data's (KNOWN_ISSUES #39, open since 0.8.0): trainers pay in proportion to the
+  cap now, e.g. a Youngster ¥240 at the first cap instead of ¥112.
+- Removed: `GetLevelOnCapCurve` and its table of Heart & Soul's caps (`src/caps.c`), the "below
+  the player" rule and the EASY and HARD level scaling (`src/battle_main.c`), `ace_trainers.py`'s
+  `curve`. Wild Pokémon are unchanged (D28, D29).
+- Evidence: `trainer_levels` (rewritten: Dragon Tamer Paul's four at 85 against a level-72 and a
+  level-90 TYPHLOSION, all Dragonite; the Grunt's Koffing at 66, a Weezing, against a level-10
+  one with six badges; Ace Trainer Kaito at 15 with his Shinx, Cutiefly and Riolu as made, raised
+  to 85 with Luxray, Lucario and his Eviolite Cutiefly; Albert's ¥240; Ben, Whitney, Abe, Frank
+  and Grunt 15 as before), `difficulty` (Albert's Pokémon at the cap on EASY, 15, and on HARD,
+  12; 15 with LEVEL CAP off), `boss_levels` (the Grunt's Koffing at 66 with six badges), the Ace
+  Trainer and Cooltrainer tests (every Pokémon at its stage's cap).
+
+## D57. The Infinite Repel keeps every wild Pokémon away
+
+- The user: "Also when you restart the Infinite repel isn't working".
+- The switch itself survives a restart: `FLAG_INFINITE_REPEL_ON` is a saved flag that nothing
+  clears or shares, and a test that saves with it on, resets and continues finds it on and no
+  wild battle in 80 grass steps. But the Infinite Repel worked like a Repel that never wears off
+  (D10): it kept away only wild Pokémon below the lead's level (KNOWN_ISSUES #47). With a weaker
+  lead, or where the wild Pokémon are stronger than the lead (New Bark Town's water, 25 to 29),
+  they still appeared, as if the Infinite Repel had stopped working.
+- Now, as Emerald Imperium's does, it keeps every wild Pokémon away while it's on: no random
+  encounter on land or water, roamers and outbreaks included (`StandardWildEncounter`,
+  `src/wild_encounter.c`). What the player starts still works: Rock Smash and Headbutt (they keep
+  the Repel rule, weaker ones stay away), fishing, Sweet Scent, DexNav. The Battle Frontier's wild
+  Pokémon facilities are unchanged. Its message and description say so ("Wild {PKMN} will stay
+  away.").
+- Evidence: `infinite_repel` (also: a level-2 lead, no stronger than Route 29's Pokémon, meets
+  none in 80 grass steps; saved with the repel on, reset and continued, it is still on and no
+  battle starts).

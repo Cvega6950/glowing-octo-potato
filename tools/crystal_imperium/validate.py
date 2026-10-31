@@ -13,7 +13,9 @@ trainerproc and the C compiler; this script adds the semantic checks:
   * trainer abilities must be one of the species' abilities (the engine
     silently falls back to slot 0 otherwise)
   * every boss's Pokemon are all at the NORMAL level cap (src/caps.c) of the earliest point the
-    battle can happen (its stage in tools/crystal_imperium/boss_teams.py), every version of a
+    battle can happen (its stage in tools/crystal_imperium/boss_teams.py), and so are those of
+    the other teams made for a stage (the Ace Trainers and Heart & Soul's Cooltrainers with
+    competitive teams: boss_teams.TEAM_STAGES, D56), every version of a
     Gym Leader has the stage of the badges the player can have, and every trainer of a boss
     pattern is in boss_teams.py's list unless it is listed below as never fought
   * boss trainers must define four moves for every Pokemon
@@ -470,7 +472,9 @@ def main():
     for tid in sorted(trainers):
         if any(re.fullmatch(p, tid) for p in BOSS_PATTERNS) and tid not in boss_teams.STAGES and tid not in NEVER_FOUGHT:
             errors.append(f"{tid}: a boss missing from boss_teams.py's STAGES")
-    for tid, stage in sorted(boss_teams.STAGES.items()):
+    # ... and every other team made for a stage (the Ace Trainers and Heart & Soul's Cooltrainers with
+    # competitive teams, D56) at its stage's
+    for tid, stage in sorted({**boss_teams.STAGES, **boss_teams.TEAM_STAGES}.items(), key=lambda kv: kv[0]):
         if tid not in trainers:
             errors.append(f"missing boss trainer {tid}")
             continue

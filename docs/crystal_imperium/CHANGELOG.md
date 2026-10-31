@@ -2,6 +2,20 @@
 
 ## 0.15.2-experimental (2026-10-30)
 
+### The Infinite Repel keeps every wild Pokémon away (DECISIONS.md D57)
+- While it's on, no wild Pokémon jumps out at you on land or water, whatever your lead's level
+  (before, only Pokémon weaker than your lead stayed away, so stronger ones still appeared, as
+  if it had stopped working). Fishing, Rock Smash, Headbutt, Sweet Scent and DexNav still work.
+
+### Every trainer at your level cap (DECISIONS.md D56)
+- Every trainer you battle has its whole team at your level cap, on every difficulty, as the
+  bosses always did: route trainers, Rocket Grunts, Ace Trainers, everyone. Before, ordinary
+  trainers were one to three levels below your strongest Pokémon, and EASY and HARD scaled them.
+  Your own level doesn't change theirs: the cap does.
+- The Ace Trainers and Heart & Soul's Cooltrainers keep their teams as designed at their part of
+  the game (an Eviolite Pokémon stays unevolved); fought later, at a higher cap, they evolve.
+- Prize money follows the level trainers battle at, so they pay more.
+
 ### 999 PP Max (DECISIONS.md D54)
 - The starting care package brings 999 PP Max, a full stack, instead of 10. The later packages,
   which brought 323 more over the game, bring none now.

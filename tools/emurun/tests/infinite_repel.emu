@@ -1,5 +1,7 @@
-# Crystal Imperium play test: the Infinite Repel key item really keeps weaker wild Pokemon away,
-# and turning it off brings them back. Route 29 wild Pokemon are far below a Lv 50 lead.
+# Crystal Imperium play test: the Infinite Repel key item really keeps wild Pokemon away, and
+# turning it off brings them back. Route 29 wild Pokemon are far below a Lv 50 lead. Since 0.15.2
+# (D57) it keeps every wild Pokemon away, not only weaker ones: a level-2 lead, no stronger than
+# Route 29's (2 to 4), meets none either. It stays on through a save, a hard reset and CONTINUE.
 !new_game()
 !battle_style_set()
 !give_mon(157, 50)
@@ -25,3 +27,36 @@ shot 04_repel_off.png
 !pace(21, 25, 14, 10, soft=True)
 shot 05_walked_without_repel.png
 expect32 {gMain+4} {BattleMainCB2+1} wild_battle_once_repel_off
+
+# A level-2 lead with the repel on: still no wild Pokemon in 80 grass steps (D57)
+reset
+!new_game()
+!battle_style_set()
+!give_mon(157, 2)
+!warp(0, 11, 0)
+!walkto(34, 14, "yx")
+!use_key_item(1)
+!expect_flag("FLAG_INFINITE_REPEL_ON", 1, "repel_on_with_a_weak_lead")
+!walkto(24, 14, soft=True)
+!pace(21, 25, 14, 10, soft=True)
+shot 06_weak_lead_with_repel.png
+expectne32 {gMain+4} {BattleMainCB2+1} no_battle_even_for_a_weak_lead
+
+# Saved with the repel on, then a hard reset and CONTINUE: it is still on, and still no battle
+!start_menu("SAVE")
+press A
+wait 400
+mash A 300
+reset
+wait 1300
+press START
+wait 320
+press A
+wait 100
+press A
+wait 900
+shot 07_continued.png
+!expect_flag("FLAG_INFINITE_REPEL_ON", 1, "repel_still_on_after_restart")
+!pace(21, 25, 14, 10, soft=True)
+shot 08_walked_after_restart.png
+expectne32 {gMain+4} {BattleMainCB2+1} no_battle_after_restart

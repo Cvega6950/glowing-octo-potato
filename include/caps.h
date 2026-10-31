@@ -27,7 +27,6 @@ u32 GetCurrentLevelCap(void);
 u32 GetLevelCapStage(void);
 u32 GetLevelCapAtStage(u32 stage);
 u32 GetBossLevel(u32 bossStage);
-u32 GetLevelOnCapCurve(u32 level);
 u32 GetLevelWithinCap(u32 level);
 u32 GetSoftLevelCapExpValue(u32 level, u32 expValue);
 u32 GetCurrentEVCap(void);
