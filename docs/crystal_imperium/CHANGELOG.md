@@ -1,6 +1,6 @@
 # Crystal Imperium changelog
 
-## 0.15.2-experimental (2026-10-30)
+## 0.15.2-experimental (2026-10-31)
 
 ### The Infinite Repel keeps every wild Pokémon away (DECISIONS.md D57)
 - While it's on, no wild Pokémon jumps out at you on land or water, whatever your lead's level
