@@ -2,6 +2,7 @@
 #include "main.h"
 #include "battle.h"
 #include "battle_partner.h"
+#include "battle_main.h"
 #include "battle_frontier.h"
 #include "data.h"
 #include "frontier_util.h"
@@ -72,7 +73,9 @@ void FillPartnerParty(u16 trainerId)
             else if (partyData[i].gender == TRAINER_MON_FEMALE)
                 personality = (personality & 0xFFFFFF00) | GeneratePersonalityForGender(MON_FEMALE, partyData[i].species);
             ModifyPersonalityForNature(&personality, partyData[i].nature);
-            CreateMon(&gPlayerParty[i + 3], partyData[i].species, partyData[i].lvl, personality, OTID_STRUCT_PRESET(otID));
+            // Crystal Imperium (DECISIONS.md D56): a partner's Pokemon are at the player's level cap,
+            // as their opponents' are (Lance's in the Rocket Hideout were at 35 to 42 against 50)
+            CreateMon(&gPlayerParty[i + 3], partyData[i].species, GetTrainerBattleLevel(trainerId), personality, OTID_STRUCT_PRESET(otID));
             j = partyData[i].isShiny;
             SetMonData(&gPlayerParty[i + 3], MON_DATA_IS_SHINY, &j);
             SetMonData(&gPlayerParty[i + 3], MON_DATA_HELD_ITEM, &partyData[i].heldItem);

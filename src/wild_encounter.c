@@ -18,6 +18,7 @@
 #include "random.h"
 #include "roamer.h"
 #include "safari_zone.h"
+#include "bug_contest.h"
 #include "script.h"
 #include "tv.h"
 #include "wild_encounter.h"
@@ -937,8 +938,10 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
     {
         // Crystal Imperium (DECISIONS.md D57): the Infinite Repel keeps every wild Pokemon away on
         // land and water, as Emerald Imperium's does (until 0.15.2 only the ones below the lead's
-        // level, as a Repel). Rock Smash, Headbutt, fishing, Sweet Scent and DexNav still find them.
-        if (FlagGet(FLAG_INFINITE_REPEL_ON))
+        // level, as a Repel). Rock Smash, Headbutt, fishing, Sweet Scent and DexNav still find them,
+        // and the Bug-Catching Contest and the Safari Zone keep theirs: they are what the player is
+        // there for, and the repel can't be switched off in them.
+        if (FlagGet(FLAG_INFINITE_REPEL_ON) && !GetBugContestFlag() && !GetSafariZoneFlag())
             return FALSE;
         if (MetatileBehavior_IsLandWildEncounter(curMetatileBehavior) == TRUE)
         {
@@ -1299,8 +1302,9 @@ static bool8 IsWildLevelAllowedByRepel(u8 wildLevel)
 {
     u8 i;
 
-    // The Infinite Repel acts like a repel that never wears off
-    if (!REPEL_STEP_COUNT && !FlagGet(FLAG_INFINITE_REPEL_ON))
+    // Only a Repel's steps (D57: the Infinite Repel keeps the random encounters away before they
+    // get here, and Rock Smash and Headbutt, which the player starts, find any Pokemon with it on)
+    if (!REPEL_STEP_COUNT)
         return TRUE;
 
     for (i = 0; i < PARTY_SIZE; i++)

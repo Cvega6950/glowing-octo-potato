@@ -1012,9 +1012,9 @@ static const u8 *const sChoices_DifficultyPreset[] = {
     COMPOUND_STRING("HARD"),
 };
 static const u8 *const sDesc_DifficultyPreset[] = {
-    COMPOUND_STRING("-10% levels (not bosses), trainers\ncan't use items."),
+    COMPOUND_STRING("Heart & Soul's AI; trainers can't\nuse items."),
     COMPOUND_STRING("Crystal Imperium as designed:\ncompetitive teams at fair levels."),
-    COMPOUND_STRING("+10% levels (not bosses), HARD caps,\nSET style, no Bag in trainer battles."),
+    COMPOUND_STRING("HARD caps, SET style, no Bag in\ntrainer battles."),
 };
 
 // The menu lists EASY / NORMAL / HARD; the save stores NORMAL as 0 so older saves stay NORMAL.
@@ -1031,9 +1031,9 @@ static const u8 *const sDesc_PartyLimit[] = {
     sText_Desc_PartyLimit, sText_Desc_PartyLimit, sText_Desc_PartyLimit,
 };
 static const u8 *const sDesc_LevelCap[] = {
-    COMPOUND_STRING("No level cap. Overleveling possible.\nBosses use the NORMAL caps."),
-    COMPOUND_STRING("Max level 15, 24, 33, 42, 50, 58, 66,\n75, 85, 90. Bosses are at the cap."),
-    COMPOUND_STRING("Max level 12, 21, 30, 39, 47, 55, 63,\n72, 85, 90. Bosses are at the cap."),
+    COMPOUND_STRING("No level cap. Overleveling possible.\nTrainers are at the NORMAL caps."),
+    COMPOUND_STRING("Max level 15, 24, 33, 42, 50, 58, 66,\n75, 85, 90. Trainers are at the cap."),
+    COMPOUND_STRING("Max level 12, 21, 30, 39, 47, 55, 63,\n72, 85, 90. Trainers are at the cap."),
 };
 static const u8 *const sDesc_ExpMult[] = {
     COMPOUND_STRING("{PKMN} gain normal EXP. Points.\nStacks with HARD MODE EXP."),

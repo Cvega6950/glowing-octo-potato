@@ -2111,10 +2111,11 @@ static u8 GetTrainerMonLevel(u8 level)
 // at its level, by any other (an item, a trade, friendship, a move) from TRAINER_OTHER_EVOLUTION_LEVEL.
 // The first route that applies is taken. A boss's team, or another made for a stage, is made for its
 // stage's cap, the level in its party data: there it stays as it is, and raised to a later cap it
-// evolves, except a Pokemon that holds an Eviolite or Everstone, or an item that works only for its
-// own species (Light Ball, Lucky Punch, the Deep Sea items, Metal and Quick Powder). Any other
-// trainer's team is Heart & Soul's, made for its levels there, so its Pokemon evolve at the
-// player's cap whatever they hold.
+// evolves. Any other trainer's team is Heart & Soul's, made for its levels there, so its Pokemon
+// evolve at the player's cap. A Pokemon that holds an Eviolite or Everstone, or an item that works
+// only for its own species (Light Ball, Lucky Punch, the Deep Sea items, Metal and Quick Powder),
+// never does, whoever's it is (until 0.15.2 only a team made for a stage's: a Lass's Eviolite
+// Happiny battled as a Blissey and a Light Ball Pikachu as a Raichu).
 #define TRAINER_OTHER_EVOLUTION_LEVEL 32
 
 static u32 GetTrainerEvolutionLevel(const struct Evolution *evolution)
@@ -2138,7 +2139,7 @@ static u16 GetTrainerMonEvolvedSpecies(u16 species, u32 level, u32 teamLevel, u1
 
     if (sTeamMadeForStage && level <= teamLevel)
         return species;
-    switch (sTeamMadeForStage ? GetItemHoldEffect(heldItem) : HOLD_EFFECT_NONE)
+    switch (GetItemHoldEffect(heldItem))
     {
     case HOLD_EFFECT_EVIOLITE:
     case HOLD_EFFECT_PREVENT_EVOLVE:
