@@ -340,8 +340,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_COOLTRAINER_F_HNS",
-      "x": 31,
-      "y": 21,
+      "x": 29,
+      "y": 22,
       "elevation": 0,
       "movement_type": "MOVEMENT_TYPE_FACE_RIGHT",
       "movement_range_x": 0,

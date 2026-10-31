@@ -2040,6 +2040,53 @@ follows is the first build's; D45 lists what changed.)
   with the starting package, still 999 after the eight badge packages; a 0.12.0–0.15.0 save with
   40 PP Max gets its TMs on the first step and 959 PP Max on the next, then nothing more).
 
+## D55. One Ace Trainer a map, at a spot chosen for it
+
+- The user: "Why so many ace trainers in the same route in random spots, can you just make them more
+  intentional and not so obvious".
+- **Before.** D47 put the 59 new Ace Trainers on 46 routes, one on each route the player walks and
+  two on the long ones, wherever their line of sight crossed the route's main path. Measured
+  against the rules below: 13 routes had two, 11 stood on 7 routes that already have Heart & Soul's
+  own Ace Trainers (Route 27 had six Ace Trainers in all), 29 stood on the main path itself, 5 in
+  tall grass and 4 within three tiles of the edge where the next map joins.
+- **Now every map has one new Ace Trainer at most,** and none has one where Heart & Soul has its
+  own (a trainer with the Cooltrainer sprite). 21 moved off the crowded routes to caves, forests and
+  other places at the same point of the story: Union Cave, Ilex Forest, the National Park, the Cliff
+  Edge Gate, the Whirl Islands, the Ice Path (two floors), Dark Cave, Tohjo Falls, Victory Road
+  (three floors), Viridian Forest, Mt. Moon and the square above it, Rock Tunnel (two floors),
+  Diglett's Cave, the Power Plant, the Seafoam Islands and the Fighting Dojo. Their keys name the new
+  place (`UNIONCAVE_BRODIE`), and their texts were rewritten for it. 37 of the 38 left on their
+  routes stand somewhere new; Route 48's Solana kept her bridge. Route 21 has none: the only land
+  there is a one-tile beach.
+- **Each spot was chosen as Heart & Soul's own trainers stand:** just off the walking path at a
+  landmark (a bridge, a fork, a narrow pass, a cave mouth, a clearing below a ledge), with trees,
+  rock, a fence or water at its back, facing the way the player comes, so the player walks into
+  its line of sight without it standing in the road. `ace_trainers.py` now refuses a map with a
+  second new Ace Trainer or with Heart & Soul's own, a spot in tall grass or on ice, a line of sight
+  over ice, a spot within three tiles of an edge where another map joins, within three of another
+  trainer or within five of a route mini-boss or a side battle (D41).
+- Every Ace Trainer keeps its trainer ID, team and stage (D47, D56): one beaten in an earlier save
+  stays beaten at its new spot.
+- **Checks.** Six designers placed them with a map tool (main paths, reach, the rules above). An
+  in-game tour then took a screenshot of every spot by day (the harness's new `teleport` puts the
+  player on a tile no walk from a warp reaches), and six critics went over each screenshot and
+  the map as a player would. They moved seven: Selene and Wesley a tile out from under a tree's
+  crown that hid them; Naia off Route 32's fishing pier, where she made a fourth trainer with
+  Heart & Soul's three fishermen, to the square in front of its Pokémon Center; Estelle out of a
+  sunken yard on Route 4 nobody has to walk into, to the foot of the cliff by Mt. Moon's door;
+  Edison from a line of sight over tall grass to the Power Plant's front door; Magnus out of a
+  cluster with the sightseeing couple and the Rocket on Nugget Bridge, to its south half; and
+  Bjorn off the only tile from which the Cinnabar Gym sign can be read.
+- Fixed in `ace_trainers.py`: an Ace Trainer that moved to another map left its old object behind
+  when its key stayed the same, and one moved along its own map counted its old object as a wall in
+  its new line of sight.
+- Evidence: `ace_sight` (Kaito, now in the plaza below Route 29's climb to the Route 46 gate, sees
+  the player step into his line and battles; the defeat flag is set), `ace_sight_moved` (the first
+  Ace Trainer to move, Brodie in Union Cave, the same), `ace_trainers_johto`, `ace_trainers_kanto`
+  (every team as before), `ace_trainers.py --check`. `ace_sight_town` is gone: Kaito no longer
+  stands by Cherrygrove. The sight tests start next to the line (`teleport`) and win the battle
+  with the Ace's Pokémon at 1 HP (what they check is the line of sight and the flag).
+
 ## D56. Every trainer at the player's level cap
 
 - The user: "Keep everything consistent I want to fight teams with the same level cap as me".
@@ -2067,9 +2114,16 @@ follows is the first build's; D45 lists what changed.)
   ordinary trainer's, whatever they held (an Eviolite Gloom at 32 became a Vileplume). Unlike a
   boss, such a team is never above the player's cap, even met before its stage.
 - Heart & Soul's own trainers' Pokémon evolve as their level allows, as before (D46). At the cap
-  more of them are evolved: the Grunt's Koffing is a Weezing at 66.
+  more of them are evolved: the Grunt's Koffing is a Weezing at 66. But no trainer's Pokémon
+  holding an Eviolite, an Everstone or an item for its own species evolves now, whoever's team it
+  is: the review found five of Heart & Soul's own trainers whose Pokémon evolved past their item
+  (a Lass's Eviolite Happiny battled as a Blissey, Derek's Light Ball Pikachu as a Raichu).
+- **A partner's Pokémon are at the player's cap too** (`src/battle_partner.c`): Lance's in the
+  Rocket Hideout's tag battle were at Heart & Soul's 35 to 42 against two Rockets at the cap.
 - EASY no longer lowers trainers' levels (it keeps the default AI instead of Imperium's, D20), and
   HARD no longer raises them (its caps, the SET style and no Bag in trainer battles stay, D25).
+  The challenge menu says so: its DIFFICULTY descriptions promised -10% and +10% levels and its
+  LEVEL CAP ones that only bosses follow the caps (`src/challenge_menu.c`).
 - **Prize money** comes from the level the trainer's Pokémon battle at (`GetTrainerBattleLevel`),
   not their party data's (KNOWN_ISSUES #39, open since 0.8.0): trainers pay in proportion to the
   cap now, e.g. a Youngster ¥240 at the first cap instead of ¥112.
@@ -2082,7 +2136,9 @@ follows is the first build's; D45 lists what changed.)
   to 85 with Luxray, Lucario and his Eviolite Cutiefly; Albert's ¥240; Ben, Whitney, Abe, Frank
   and Grunt 15 as before), `difficulty` (Albert's Pokémon at the cap on EASY, 15, and on HARD,
   12; 15 with LEVEL CAP off), `boss_levels` (the Grunt's Koffing at 66 with six badges), the Ace
-  Trainer and Cooltrainer tests (every Pokémon at its stage's cap).
+  Trainer and Cooltrainer tests (`ace_trainers_johto`, `ace_trainers_kanto`, `cooltrainers`:
+  every Pokémon at its stage's cap; the review found them still expecting D46's levels, and they
+  were regenerated).
 
 ## D57. The Infinite Repel keeps every wild Pokémon away
 
@@ -2095,10 +2151,13 @@ follows is the first build's; D45 lists what changed.)
   they still appeared, as if the Infinite Repel had stopped working.
 - Now, as Emerald Imperium's does, it keeps every wild Pokémon away while it's on: no random
   encounter on land or water, roamers and outbreaks included (`StandardWildEncounter`,
-  `src/wild_encounter.c`). What the player starts still works: Rock Smash and Headbutt (they keep
-  the Repel rule, weaker ones stay away), fishing, Sweet Scent, DexNav. The Battle Frontier's wild
+  `src/wild_encounter.c`). What the player starts still works: Rock Smash, Headbutt, fishing,
+  Sweet Scent, DexNav. Rock Smash and Headbutt find any Pokémon with it on; only a Repel's steps
+  keep the weaker ones away (at first they kept the Repel rule, so with a lead at the cap they
+  found nothing). The Bug-Catching Contest and the Safari Zone keep their Pokémon: they are what
+  the player is there for, and the repel can't be switched off in them. The Battle Frontier's wild
   Pokémon facilities are unchanged. Its message and description say so ("Wild {PKMN} will stay
   away.").
 - Evidence: `infinite_repel` (also: a level-2 lead, no stronger than Route 29's Pokémon, meets
   none in 80 grass steps; saved with the repel on, reset and continued, it is still on and no
-  battle starts).
+  battle starts), `bug_contest` (with the repel on, the contest's Pokémon still appear).

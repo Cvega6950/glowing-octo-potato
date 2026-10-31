@@ -1,0 +1,27 @@
+# Crystal Imperium play test: an Ace Trainer moved off a crowded route in 0.15.2 (D55). Brodie, on UnionCave_1F_hns
+# at (32,15) facing left (sight 4), in a cave or forest:
+# sees the player walk into the line in front of them, walks up and battles; the defeat flag is
+# set once the battle is won.
+!new_game()
+!no_care_packages()
+!battle_style_set()
+# the Infinite Repel keeps wild Pokemon away on the walk
+!set_flag("FLAG_INFINITE_REPEL_ON")
+!set_flag("FLAG_BADGE01_GET")
+!give_mon_complex("SPECIES_MEWTWO", 24, "NATURE_MODEST", 0, ["MOVE_PSYSTRIKE", "MOVE_AURA_SPHERE", "MOVE_ICE_BEAM", "MOVE_FLAMETHROWER"])
+!teleport(24, 8, 27, 15)
+wait 60
+shot 00_map.png
+!expect_flag("TRAINER_FLAGS_START + TRAINER_ACE_UNIONCAVE_BRODIE_HNS", 0, "not_yet_defeated")
+!walkto(28, 15, soft=True)
+waituntil32 {gMain+4} {BattleMainCB2+1} 1200 A ace_battle_started
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_ACE_UNIONCAVE_BRODIE_HNS", "opponent_is_ace_unioncave_brodie")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_action_menu
+shot 01_battle.png
+expect8 {gEnemyPartyCount} 4 ace_has_4
+# the battle isn't what this checks: its Pokemon at 1 HP, Ice Beam (no type is immune to Ice)
+!weaken_opponents(4)
+!autobattle("2,0,0,0,0,0")
+expect8 {gBattleOutcome} 1 ace_beaten
+waituntil32 {gMain+4} {CB2_Overworld+1} 4000 A back_on_the_map
+!expect_flag("TRAINER_FLAGS_START + TRAINER_ACE_UNIONCAVE_BRODIE_HNS", 1, "ace_defeated_flag")

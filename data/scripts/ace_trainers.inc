@@ -91,23 +91,24 @@ AceTrainer_Text_R32Naia_After:
 	.string "Grass and Electric moves cut right\n"
 	.string "through a rain team. Keep one handy.$"
 
-AceTrainer_R32Brodie_EventScript::
-	trainerbattle_single TRAINER_ACE_R32_BRODIE_HNS, AceTrainer_Text_R32Brodie_Intro, AceTrainer_Text_R32Brodie_Defeat
-	msgbox AceTrainer_Text_R32Brodie_After, MSGBOX_AUTOCLOSE
+AceTrainer_UnioncaveBrodie_EventScript::
+	trainerbattle_single TRAINER_ACE_UNIONCAVE_BRODIE_HNS, AceTrainer_Text_UnioncaveBrodie_Intro, AceTrainer_Text_UnioncaveBrodie_Defeat
+	msgbox AceTrainer_Text_UnioncaveBrodie_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R32Brodie_Intro:
-	.string "I've trained every morning since I\n"
-	.string "could walk, and so have my Pokemon.\p"
-	.string "We hit hard and we hit first. No tricks,\n"
-	.string "just fists!$"
+AceTrainer_Text_UnioncaveBrodie_Intro:
+	.string "I train down here every morning.\n"
+	.string "Nothing builds a punch like solid rock!\p"
+	.string "My Pokemon and I hit hard and we hit\n"
+	.string "first. No tricks, just fists!$"
 
-AceTrainer_Text_R32Brodie_Defeat:
-	.string "Ugh. Back to training, I guess.$"
+AceTrainer_Text_UnioncaveBrodie_Defeat:
+	.string "Ugh. Back to punching rocks, I guess.$"
 
-AceTrainer_Text_R32Brodie_After:
+AceTrainer_Text_UnioncaveBrodie_After:
 	.string "Flying and Psychic types give a\n"
-	.string "Fighting team real trouble.$"
+	.string "Fighting team real trouble. Even the\l"
+	.string "Zubat in here make me sweat!$"
 
 AceTrainer_R33Silas_EventScript::
 	trainerbattle_single TRAINER_ACE_R33_SILAS_HNS, AceTrainer_Text_R33Silas_Intro, AceTrainer_Text_R33Silas_Defeat
@@ -128,44 +129,46 @@ AceTrainer_Text_R33Silas_After:
 	.string "A Pokemon may not be what it looks\n"
 	.string "like. Trust its moves, not its face.$"
 
-AceTrainer_R34Sunniva_EventScript::
-	trainerbattle_single TRAINER_ACE_R34_SUNNIVA_HNS, AceTrainer_Text_R34Sunniva_Intro, AceTrainer_Text_R34Sunniva_Defeat
-	msgbox AceTrainer_Text_R34Sunniva_After, MSGBOX_AUTOCLOSE
+AceTrainer_NatparkSunniva_EventScript::
+	trainerbattle_single TRAINER_ACE_NATPARK_SUNNIVA_HNS, AceTrainer_Text_NatparkSunniva_Intro, AceTrainer_Text_NatparkSunniva_Defeat
+	msgbox AceTrainer_Text_NatparkSunniva_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R34Sunniva_Intro:
-	.string "Isn't it a lovely day? I made sure of\n"
-	.string "it myself.\p"
+AceTrainer_Text_NatparkSunniva_Intro:
+	.string "Isn't it a lovely day in the park? I\n"
+	.string "made sure of it myself.\p"
 	.string "Under my sun, my Grass types run\n"
 	.string "faster and my Fire types burn hotter.\l"
 	.string "Let's turn up the heat!$"
 
-AceTrainer_Text_R34Sunniva_Defeat:
-	.string "Clouded over, just like that...$"
+AceTrainer_Text_NatparkSunniva_Defeat:
+	.string "Oh... clouds over the whole park.$"
 
-AceTrainer_Text_R34Sunniva_After:
+AceTrainer_Text_NatparkSunniva_After:
 	.string "Fire and Dragon types resist both Fire\n"
 	.string "and Grass moves. Or bring a rain of\l"
-	.string "your own.$"
+	.string "your own to wash out my sun.$"
 
-AceTrainer_R34Calder_EventScript::
-	trainerbattle_single TRAINER_ACE_R34_CALDER_HNS, AceTrainer_Text_R34Calder_Intro, AceTrainer_Text_R34Calder_Defeat
-	msgbox AceTrainer_Text_R34Calder_After, MSGBOX_AUTOCLOSE
+AceTrainer_IlexCalder_EventScript::
+	trainerbattle_single TRAINER_ACE_ILEX_CALDER_HNS, AceTrainer_Text_IlexCalder_Intro, AceTrainer_Text_IlexCalder_Defeat
+	msgbox AceTrainer_Text_IlexCalder_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R34Calder_Intro:
-	.string "Every time you switch Pokemon, it's\n"
-	.string "going to cost you.\p"
+AceTrainer_Text_IlexCalder_Intro:
+	.string "It's so dark under these trees, you\n"
+	.string "can't see what's at your feet. Neither\l"
+	.string "will your Pokemon.\p"
 	.string "Rocks, spikes and poison on your side\n"
-	.string "of the field. Let's see how long your\l"
-	.string "team lasts!$"
+	.string "of the field. Every switch you make\l"
+	.string "will cost you!$"
 
-AceTrainer_Text_R34Calder_Defeat:
-	.string "You played around my traps...$"
+AceTrainer_Text_IlexCalder_Defeat:
+	.string "You found a path around my traps...$"
 
-AceTrainer_Text_R34Calder_After:
-	.string "Rapid Spin and Defog clear hazards\n"
-	.string "away. Don't let them pile up on you.$"
+AceTrainer_Text_IlexCalder_After:
+	.string "Rapid Spin and Defog sweep hazards\n"
+	.string "away. Don't let them pile up like\l"
+	.string "leaves in this forest.$"
 
 AceTrainer_R35Adeline_EventScript::
 	trainerbattle_single TRAINER_ACE_R35_ADELINE_HNS, AceTrainer_Text_R35Adeline_Intro, AceTrainer_Text_R35Adeline_Defeat
@@ -301,41 +304,46 @@ AceTrainer_Text_R42Soren_After:
 	.string "Thunder Wave. Haze or Roar stops a\l"
 	.string "boosted sweeper.$"
 
-AceTrainer_R47Astrid_EventScript::
-	trainerbattle_single TRAINER_ACE_R47_ASTRID_HNS, AceTrainer_Text_R47Astrid_Intro, AceTrainer_Text_R47Astrid_Defeat
-	msgbox AceTrainer_Text_R47Astrid_After, MSGBOX_AUTOCLOSE
+AceTrainer_CliffgateAstrid_EventScript::
+	trainerbattle_single TRAINER_ACE_CLIFFGATE_ASTRID_HNS, AceTrainer_Text_CliffgateAstrid_Intro, AceTrainer_Text_CliffgateAstrid_Defeat
+	msgbox AceTrainer_Text_CliffgateAstrid_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R47Astrid_Intro:
-	.string "Out on the cliff edge the cold never\n"
-	.string "lets up, and I like it that way.\p"
+AceTrainer_Text_CliffgateAstrid_Intro:
+	.string "The sea wind whistles through this\n"
+	.string "gate all day, and the pond never warms\l"
+	.string "up. Just how I like it.\p"
 	.string "Snow on the rocks, a veil over my team.\n"
 	.string "How long can you last in the cold?$"
 
-AceTrainer_Text_R47Astrid_Defeat:
-	.string "Thawed out... You really are good.$"
+AceTrainer_Text_CliffgateAstrid_Defeat:
+	.string "Thawed out, in here of all places... You\n"
+	.string "really are good.$"
 
-AceTrainer_Text_R47Astrid_After:
-	.string "Aurora Veil halves your damage. Break\n"
-	.string "it fast or wait it out.$"
+AceTrainer_Text_CliffgateAstrid_After:
+	.string "Aurora Veil halves your damage for\n"
+	.string "five turns, eight with Light Clay.\l"
+	.string "Brick Break or Defog tears it down.$"
 
-AceTrainer_R47Nolan_EventScript::
-	trainerbattle_single TRAINER_ACE_R47_NOLAN_HNS, AceTrainer_Text_R47Nolan_Intro, AceTrainer_Text_R47Nolan_Defeat
-	msgbox AceTrainer_Text_R47Nolan_After, MSGBOX_AUTOCLOSE
+AceTrainer_WhirlNolan_EventScript::
+	trainerbattle_single TRAINER_ACE_WHIRL_NOLAN_HNS, AceTrainer_Text_WhirlNolan_Intro, AceTrainer_Text_WhirlNolan_Defeat
+	msgbox AceTrainer_Text_WhirlNolan_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R47Nolan_Intro:
-	.string "Up on these cliffs the rain rolls in\n"
-	.string "off the sea every single afternoon.\p"
+AceTrainer_Text_WhirlNolan_Intro:
+	.string "Rain pours in through every crack in\n"
+	.string "these islands, and the whirlpools roar\l"
+	.string "outside. Perfect weather.\p"
 	.string "When the clouds open, my team gets\n"
 	.string "twice as fast. Think you can keep up?$"
 
-AceTrainer_Text_R47Nolan_Defeat:
+AceTrainer_Text_WhirlNolan_Defeat:
 	.string "The storm passed, and so did you.$"
 
-AceTrainer_Text_R47Nolan_After:
-	.string "Rain lasts five turns, eight with a\n"
-	.string "Damp Rock. Your own weather resets it.$"
+AceTrainer_Text_WhirlNolan_After:
+	.string "Rain in here can last the whole battle.\n"
+	.string "Set your own weather to wash it out,\l"
+	.string "and my team slows right down.$"
 
 AceTrainer_R48Solana_EventScript::
 	trainerbattle_single TRAINER_ACE_R48_SOLANA_HNS, AceTrainer_Text_R48Solana_Intro, AceTrainer_Text_R48Solana_Defeat
@@ -374,138 +382,144 @@ AceTrainer_Text_R43Viktor_After:
 	.string "boosts. Hit it hard instead of setting\l"
 	.string "up.$"
 
-AceTrainer_R44Celeste_EventScript::
-	trainerbattle_single TRAINER_ACE_R44_CELESTE_HNS, AceTrainer_Text_R44Celeste_Intro, AceTrainer_Text_R44Celeste_Defeat
-	msgbox AceTrainer_Text_R44Celeste_After, MSGBOX_AUTOCLOSE
+AceTrainer_IcepathCeleste_EventScript::
+	trainerbattle_single TRAINER_ACE_ICEPATH_CELESTE_HNS, AceTrainer_Text_IcepathCeleste_Intro, AceTrainer_Text_IcepathCeleste_Defeat
+	msgbox AceTrainer_Text_IcepathCeleste_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R44Celeste_Intro:
-	.string "Past this point the air goes still and\n"
-	.string "cold, all the way to the Ice Path.\p"
+AceTrainer_Text_IcepathCeleste_Intro:
+	.string "Step into the Ice Path and the air\n"
+	.string "goes still and cold. You can almost\l"
+	.string "hear the ice creak.\p"
 	.string "Feel that hum? It's my Psychic\n"
 	.string "Terrain, where no quick trick can\l"
 	.string "touch my team.$"
 
-AceTrainer_Text_R44Celeste_Defeat:
+AceTrainer_Text_IcepathCeleste_Defeat:
 	.string "My mind was clear, and still you won.$"
 
-AceTrainer_Text_R44Celeste_After:
+AceTrainer_Text_IcepathCeleste_After:
 	.string "Psychic Terrain blocks priority moves.\n"
 	.string "Flying and Levitate dodge it.$"
 
-AceTrainer_R45Zephyr_EventScript::
-	trainerbattle_single TRAINER_ACE_R45_ZEPHYR_HNS, AceTrainer_Text_R45Zephyr_Intro, AceTrainer_Text_R45Zephyr_Defeat
-	msgbox AceTrainer_Text_R45Zephyr_After, MSGBOX_AUTOCLOSE
+AceTrainer_DarkcaveZephyr_EventScript::
+	trainerbattle_single TRAINER_ACE_DARKCAVE_ZEPHYR_HNS, AceTrainer_Text_DarkcaveZephyr_Intro, AceTrainer_Text_DarkcaveZephyr_Defeat
+	msgbox AceTrainer_Text_DarkcaveZephyr_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R45Zephyr_Intro:
-	.string "The wind up here comes straight down\n"
-	.string "off the peaks around Blackthorn.\p"
+AceTrainer_Text_DarkcaveZephyr_Intro:
+	.string "Hear the wind howling at the cave\n"
+	.string "mouth? It comes straight down off\l"
+	.string "the peaks around Blackthorn.\p"
 	.string "My team rides it. Once the tailwind\n"
 	.string "blows, you won't get to move first!$"
 
-AceTrainer_Text_R45Zephyr_Defeat:
+AceTrainer_Text_DarkcaveZephyr_Defeat:
 	.string "The wind died down. You earned this.$"
 
-AceTrainer_Text_R45Zephyr_After:
+AceTrainer_Text_DarkcaveZephyr_After:
 	.string "Tailwind lasts four turns. Protect or\n"
 	.string "a bulky switch wastes it.$"
 
-AceTrainer_R45Rhea_EventScript::
-	trainerbattle_single TRAINER_ACE_R45_RHEA_HNS, AceTrainer_Text_R45Rhea_Intro, AceTrainer_Text_R45Rhea_Defeat
-	msgbox AceTrainer_Text_R45Rhea_After, MSGBOX_AUTOCLOSE
+AceTrainer_IcepathB1FRhea_EventScript::
+	trainerbattle_single TRAINER_ACE_ICEPATH_B1F_RHEA_HNS, AceTrainer_Text_IcepathB1FRhea_Intro, AceTrainer_Text_IcepathB1FRhea_Defeat
+	msgbox AceTrainer_Text_IcepathB1FRhea_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R45Rhea_Intro:
+AceTrainer_Text_IcepathB1FRhea_Intro:
 	.string "They say Blackthorn's tamers hide\n"
-	.string "their best dragons. Mine fly out in\l"
-	.string "front for all to see.\p"
+	.string "their best dragons. Mine train right\l"
+	.string "out here on the ice for all to see.\p"
 	.string "Give my team a single free turn and\n"
 	.string "this battle is already over.$"
 
-AceTrainer_Text_R45Rhea_Defeat:
+AceTrainer_Text_IcepathB1FRhea_Defeat:
 	.string "One turn short... You're strong.$"
 
-AceTrainer_Text_R45Rhea_After:
+AceTrainer_Text_IcepathB1FRhea_After:
 	.string "Setup sweepers fear status and Haze.\n"
 	.string "Never let them boost twice.$"
 
-AceTrainer_R26Elias_EventScript::
-	trainerbattle_single TRAINER_ACE_R26_ELIAS_HNS, AceTrainer_Text_R26Elias_Intro, AceTrainer_Text_R26Elias_Defeat
-	msgbox AceTrainer_Text_R26Elias_After, MSGBOX_AUTOCLOSE
+AceTrainer_Vrb2FElias_EventScript::
+	trainerbattle_single TRAINER_ACE_VRB2F_ELIAS_HNS, AceTrainer_Text_Vrb2FElias_Intro, AceTrainer_Text_Vrb2FElias_Defeat
+	msgbox AceTrainer_Text_Vrb2FElias_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R26Elias_Intro:
-	.string "Most trainers this close to Victory\n"
-	.string "Road just try to overpower you.\p"
+AceTrainer_Text_Vrb2FElias_Intro:
+	.string "Most trainers who reach Victory Road\n"
+	.string "charge up these stairs and try to\l"
+	.string "overpower everything.\p"
 	.string "Not me. I'll switch, heal, and wait for\n"
 	.string "you to run out of steam.$"
 
-AceTrainer_Text_R26Elias_Defeat:
+AceTrainer_Text_Vrb2FElias_Defeat:
 	.string "Out-switched at my own game!$"
 
-AceTrainer_Text_R26Elias_After:
+AceTrainer_Text_Vrb2FElias_After:
 	.string "Regenerator heals a third on every\n"
 	.string "switch out. Trap it or KO it at once.$"
 
-AceTrainer_R27Imogen_EventScript::
-	trainerbattle_single TRAINER_ACE_R27_IMOGEN_HNS, AceTrainer_Text_R27Imogen_Intro, AceTrainer_Text_R27Imogen_Defeat
-	msgbox AceTrainer_Text_R27Imogen_After, MSGBOX_AUTOCLOSE
+AceTrainer_TohjoImogen_EventScript::
+	trainerbattle_single TRAINER_ACE_TOHJO_IMOGEN_HNS, AceTrainer_Text_TohjoImogen_Intro, AceTrainer_Text_TohjoImogen_Defeat
+	msgbox AceTrainer_Text_TohjoImogen_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R27Imogen_Intro:
-	.string "Through Tohjo Falls, Johto ends and\n"
+AceTrainer_Text_TohjoImogen_Intro:
+	.string "Past these falls, Johto ends and\n"
 	.string "Kanto begins. Only the strongest make\l"
-	.string "it past here.\p"
+	.string "it through.\p"
 	.string "One setup turn is all my team needs.\n"
 	.string "Can you stop every single one?$"
 
-AceTrainer_Text_R27Imogen_Defeat:
+AceTrainer_Text_TohjoImogen_Defeat:
 	.string "You saw every boost coming!$"
 
-AceTrainer_Text_R27Imogen_After:
+AceTrainer_Text_TohjoImogen_After:
 	.string "Sticky Web slows grounded Pokemon.\n"
 	.string "Flying types skip right over it.$"
 
-AceTrainer_R27Maxim_EventScript::
-	trainerbattle_single TRAINER_ACE_R27_MAXIM_HNS, AceTrainer_Text_R27Maxim_Intro, AceTrainer_Text_R27Maxim_Defeat
-	msgbox AceTrainer_Text_R27Maxim_After, MSGBOX_AUTOCLOSE
+AceTrainer_Vrb1FMaxim_EventScript::
+	trainerbattle_single TRAINER_ACE_VRB1F_MAXIM_HNS, AceTrainer_Text_Vrb1FMaxim_Intro, AceTrainer_Text_Vrb1FMaxim_Defeat
+	msgbox AceTrainer_Text_Vrb1FMaxim_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R27Maxim_Intro:
-	.string "The grass along this shore grows back\n"
-	.string "overnight, no matter how hard the sea\l"
-	.string "storms hit it.\p"
+AceTrainer_Text_Vrb1FMaxim_Intro:
+	.string "No sun ever reaches this lake, and\n"
+	.string "still the moss on its shore grows back\l"
+	.string "every time it's trampled.\p"
 	.string "My team grows right along with it.\n"
 	.string "Let's see you trample through!$"
 
-AceTrainer_Text_R27Maxim_Defeat:
+AceTrainer_Text_Vrb1FMaxim_Defeat:
 	.string "Cut down to the roots. Well fought.$"
 
-AceTrainer_Text_R27Maxim_After:
+AceTrainer_Text_Vrb1FMaxim_After:
 	.string "Grassy Terrain heals grounded\n"
 	.string "Pokemon. Fly or float above it.$"
 
-AceTrainer_R1Merrick_EventScript::
-	trainerbattle_single TRAINER_ACE_R1_MERRICK_HNS, AceTrainer_Text_R1Merrick_Intro, AceTrainer_Text_R1Merrick_Defeat
-	msgbox AceTrainer_Text_R1Merrick_After, MSGBOX_AUTOCLOSE
+AceTrainer_VforestMerrick_EventScript::
+	trainerbattle_single TRAINER_ACE_VFOREST_MERRICK_HNS, AceTrainer_Text_VforestMerrick_Intro, AceTrainer_Text_VforestMerrick_Defeat
+	msgbox AceTrainer_Text_VforestMerrick_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R1Merrick_Intro:
-	.string "Route 1 is where every great Kanto\n"
-	.string "trainer took a first step. Most of\l"
-	.string "them forget the Pokemon that got\l"
-	.string "them there.\p"
+AceTrainer_Text_VforestMerrick_Intro:
+	.string "Viridian Forest is where so many Kanto\n"
+	.string "trainers caught their very first\l"
+	.string "Pokemon. Most of them forget the ones\l"
+	.string "that got them started.\p"
 	.string "Not me. My team is pure old Kanto,\n"
 	.string "trained the modern way. Show me what\l"
 	.string "Johto taught you!$"
 
-AceTrainer_Text_R1Merrick_Defeat:
-	.string "The old guard falls... this time.$"
+AceTrainer_Text_VforestMerrick_Defeat:
+	.string "The old guard falls... this time. Even\n"
+	.string "the classics have off days.$"
 
-AceTrainer_Text_R1Merrick_After:
+AceTrainer_Text_VforestMerrick_After:
 	.string "Old Pokemon with modern moves still\n"
-	.string "hit as hard as anything new.$"
+	.string "hit as hard as anything new. Never\l"
+	.string "write off the ones you catch in a\l"
+	.string "forest like this!$"
 
 AceTrainer_R2Sylvie_EventScript::
 	trainerbattle_single TRAINER_ACE_R2_SYLVIE_HNS, AceTrainer_Text_R2Sylvie_Intro, AceTrainer_Text_R2Sylvie_Defeat
@@ -564,25 +578,29 @@ AceTrainer_Text_R4Estelle_After:
 	.string "Clefairy dance on Mt. Moon at night. I\n"
 	.string "swear the moon answers them.$"
 
-AceTrainer_R4Tobias_EventScript::
-	trainerbattle_single TRAINER_ACE_R4_TOBIAS_HNS, AceTrainer_Text_R4Tobias_Intro, AceTrainer_Text_R4Tobias_Defeat
-	msgbox AceTrainer_Text_R4Tobias_After, MSGBOX_AUTOCLOSE
+AceTrainer_MtmoonTobias_EventScript::
+	trainerbattle_single TRAINER_ACE_MTMOON_TOBIAS_HNS, AceTrainer_Text_MtmoonTobias_Intro, AceTrainer_Text_MtmoonTobias_Defeat
+	msgbox AceTrainer_Text_MtmoonTobias_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R4Tobias_Intro:
-	.string "Ever wonder why the meteorite in Mt.\n"
-	.string "Moon never rolls away? It pulls on\l"
+AceTrainer_Text_MtmoonTobias_Intro:
+	.string "They say the white rock up in Mt. Moon\n"
+	.string "Square fell from space. Ever wonder\l"
+	.string "why it never rolls away? It pulls on\l"
 	.string "everything near it.\p"
 	.string "My team learned to use that pull. Once\n"
 	.string "gravity takes hold, nothing flies and\l"
 	.string "nothing misses!$"
 
-AceTrainer_Text_R4Tobias_Defeat:
-	.string "I fell for it... literally.$"
+AceTrainer_Text_MtmoonTobias_Defeat:
+	.string "I fell for it... literally. Must be that\n"
+	.string "rock's pull.$"
 
-AceTrainer_Text_R4Tobias_After:
-	.string "Gravity makes moves land and lets\n"
-	.string "Ground moves hit flying Pokemon.$"
+AceTrainer_Text_MtmoonTobias_After:
+	.string "Gravity makes every move land and\n"
+	.string "lets Ground moves hit flying Pokemon.\l"
+	.string "It only lasts five turns, so stall it\l"
+	.string "out!$"
 
 AceTrainer_R5Vera_EventScript::
 	trainerbattle_single TRAINER_ACE_R5_VERA_HNS, AceTrainer_Text_R5Vera_Intro, AceTrainer_Text_R5Vera_Defeat
@@ -702,24 +720,26 @@ AceTrainer_Text_R10Edison_After:
 	.string "Electric Terrain powers up Electric\n"
 	.string "moves. Ground types ignore them.$"
 
-AceTrainer_R10Sable_EventScript::
-	trainerbattle_single TRAINER_ACE_R10_SABLE_HNS, AceTrainer_Text_R10Sable_Intro, AceTrainer_Text_R10Sable_Defeat
-	msgbox AceTrainer_Text_R10Sable_After, MSGBOX_AUTOCLOSE
+AceTrainer_Rocktun1FSable_EventScript::
+	trainerbattle_single TRAINER_ACE_ROCKTUN_1F_SABLE_HNS, AceTrainer_Text_Rocktun1FSable_Intro, AceTrainer_Text_Rocktun1FSable_Defeat
+	msgbox AceTrainer_Text_Rocktun1FSable_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R10Sable_Intro:
-	.string "Rock Tunnel has no light at all. My\n"
-	.string "Pokemon were raised in that darkness,\l"
-	.string "and they see everything.\p"
+AceTrainer_Text_Rocktun1FSable_Intro:
+	.string "No light reaches this deep into Rock\n"
+	.string "Tunnel. My Pokemon were raised in this\l"
+	.string "darkness, and they see everything.\p"
 	.string "Tricks, ambushes and critical hits.\n"
 	.string "You will not see any of it coming!$"
 
-AceTrainer_Text_R10Sable_Defeat:
-	.string "The lights came on too soon...$"
+AceTrainer_Text_Rocktun1FSable_Defeat:
+	.string "The lights came on too soon... I never\n"
+	.string "saw you coming.$"
 
-AceTrainer_Text_R10Sable_After:
+AceTrainer_Text_Rocktun1FSable_After:
 	.string "Prankster status moves fail against\n"
-	.string "Dark types. Keep one on your team!$"
+	.string "Dark types. Keep one on your team, and\l"
+	.string "light this place up with Flash!$"
 
 AceTrainer_R11Wesley_EventScript::
 	trainerbattle_single TRAINER_ACE_R11_WESLEY_HNS, AceTrainer_Text_R11Wesley_Intro, AceTrainer_Text_R11Wesley_Defeat
@@ -759,25 +779,27 @@ AceTrainer_Text_R12Coralie_After:
 	.string "Belly Drum costs half of a Pokemon's\n"
 	.string "HP. Priority moves and burns stop it.$"
 
-AceTrainer_R12Oswald_EventScript::
-	trainerbattle_single TRAINER_ACE_R12_OSWALD_HNS, AceTrainer_Text_R12Oswald_Intro, AceTrainer_Text_R12Oswald_Defeat
-	msgbox AceTrainer_Text_R12Oswald_After, MSGBOX_AUTOCLOSE
+AceTrainer_DiglettOswald_EventScript::
+	trainerbattle_single TRAINER_ACE_DIGLETT_OSWALD_HNS, AceTrainer_Text_DiglettOswald_Intro, AceTrainer_Text_DiglettOswald_Defeat
+	msgbox AceTrainer_Text_DiglettOswald_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R12Oswald_Intro:
-	.string "A Snorlax once slept right across this\n"
-	.string "bridge. I learned patience watching\l"
-	.string "it.\p"
+AceTrainer_Text_DiglettOswald_Intro:
+	.string "I once spent a whole day watching a\n"
+	.string "Snorlax nap outside this cave. That's\l"
+	.string "how I learned patience.\p"
 	.string "My team never rushes. We wall you, wear\n"
 	.string "you down, then finish it. Ready for a\l"
 	.string "long battle?$"
 
-AceTrainer_Text_R12Oswald_Defeat:
-	.string "Well, that was a nice long nap.$"
+AceTrainer_Text_DiglettOswald_Defeat:
+	.string "Well, that was a nice long nap. Now I\n"
+	.string "know how that Snorlax felt.$"
 
-AceTrainer_Text_R12Oswald_After:
+AceTrainer_Text_DiglettOswald_After:
 	.string "Against a wall that heals, Taunt it or\n"
-	.string "hit it hard before it recovers.$"
+	.string "hit it hard before it recovers. Waiting\l"
+	.string "it out never works!$"
 
 AceTrainer_R22Seraphina_EventScript::
 	trainerbattle_single TRAINER_ACE_R22_SERAPHINA_HNS, AceTrainer_Text_R22Seraphina_Intro, AceTrainer_Text_R22Seraphina_Defeat
@@ -819,62 +841,72 @@ AceTrainer_Text_R24Magnus_After:
 	.string "A Choice item locks in one move. Switch\n"
 	.string "to a Pokemon that resists it.$"
 
-AceTrainer_R25Mistral_EventScript::
-	trainerbattle_single TRAINER_ACE_R25_MISTRAL_HNS, AceTrainer_Text_R25Mistral_Intro, AceTrainer_Text_R25Mistral_Defeat
-	msgbox AceTrainer_Text_R25Mistral_After, MSGBOX_AUTOCLOSE
+AceTrainer_MtmoonsqMistral_EventScript::
+	trainerbattle_single TRAINER_ACE_MTMOONSQ_MISTRAL_HNS, AceTrainer_Text_MtmoonsqMistral_Intro, AceTrainer_Text_MtmoonsqMistral_Defeat
+	msgbox AceTrainer_Text_MtmoonsqMistral_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R25Mistral_Intro:
-	.string "So you took the shore path? The sea\n"
-	.string "wind up here never stops, and my birds\l"
-	.string "ride it.\p"
-	.string "Rocks, waves or storms, my flock flies\n"
+AceTrainer_Text_MtmoonsqMistral_Intro:
+	.string "Out of the cave at last? Up here on\n"
+	.string "Mt. Moon the wind never stops, and my\l"
+	.string "birds ride it.\p"
+	.string "Rocks, cliffs or storms, my flock flies\n"
 	.string "over all of it. Try to keep up!$"
 
-AceTrainer_Text_R25Mistral_Defeat:
-	.string "My whole flock is grounded...$"
+AceTrainer_Text_MtmoonsqMistral_Defeat:
+	.string "My whole flock is grounded... on a\n"
+	.string "mountaintop, too!$"
 
-AceTrainer_Text_R25Mistral_After:
+AceTrainer_Text_MtmoonsqMistral_After:
 	.string "Rock, Electric and Ice moves bring\n"
-	.string "Flying types down hard.$"
+	.string "Flying types down hard. Stealth Rock\l"
+	.string "hurts my flock, too!$"
 
-AceTrainer_R25Evangeline_EventScript::
-	trainerbattle_single TRAINER_ACE_R25_EVANGELINE_HNS, AceTrainer_Text_R25Evangeline_Intro, AceTrainer_Text_R25Evangeline_Defeat
-	msgbox AceTrainer_Text_R25Evangeline_After, MSGBOX_AUTOCLOSE
+AceTrainer_PplantEvangeline_EventScript::
+	trainerbattle_single TRAINER_ACE_PPLANT_EVANGELINE_HNS, AceTrainer_Text_PplantEvangeline_Intro, AceTrainer_Text_PplantEvangeline_Defeat
+	msgbox AceTrainer_Text_PplantEvangeline_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R25Evangeline_Intro:
+AceTrainer_Text_PplantEvangeline_Intro:
 	.string "Bill is my hero! He studies Eevee, and\n"
-	.string "so do I.\p"
+	.string "so do I. My Jolteon begged me to bring\l"
+	.string "it here to see the generators!\p"
 	.string "I raised Eevee into every form I could\n"
 	.string "manage. Let me show you what my whole\l"
 	.string "family can do!$"
 
-AceTrainer_Text_R25Evangeline_Defeat:
-	.string "Every one of them, beaten...$"
+AceTrainer_Text_PplantEvangeline_Defeat:
+	.string "Every one of them, beaten... Even my\n"
+	.string "Jolteon ran out of power.$"
 
-AceTrainer_Text_R25Evangeline_After:
-	.string "Eevee evolves in eight ways. Bill\n"
-	.string "thinks there might be even more!$"
+AceTrainer_Text_PplantEvangeline_After:
+	.string "Eevee evolves in eight ways, so my\n"
+	.string "team covers a lot. My Umbreon and\l"
+	.string "Vaporeon pass Wishes around, so hit\l"
+	.string "them hard!$"
 
-AceTrainer_R13Lenore_EventScript::
-	trainerbattle_single TRAINER_ACE_R13_LENORE_HNS, AceTrainer_Text_R13Lenore_Intro, AceTrainer_Text_R13Lenore_Defeat
-	msgbox AceTrainer_Text_R13Lenore_After, MSGBOX_AUTOCLOSE
+AceTrainer_SeafoamLenore_EventScript::
+	trainerbattle_single TRAINER_ACE_SEAFOAM_LENORE_HNS, AceTrainer_Text_SeafoamLenore_Intro, AceTrainer_Text_SeafoamLenore_Defeat
+	msgbox AceTrainer_Text_SeafoamLenore_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R13Lenore_Intro:
-	.string "My Mr. Mime builds the walls, and\n"
-	.string "everyone behind them grows stronger.\l"
-	.string "That's teamwork!\p"
-	.string "By the time my screens come down, it\n"
-	.string "will already be too late for you.$"
+AceTrainer_Text_SeafoamLenore_Intro:
+	.string "Everyone comes through here fired up\n"
+	.string "to face Blaine. My Mr. Mime's walls cool\l"
+	.string "them right off!\p"
+	.string "Behind my screens, my whole team\n"
+	.string "grows stronger. By the time they come\l"
+	.string "down, it will already be too late for\l"
+	.string "you.$"
 
-AceTrainer_Text_R13Lenore_Defeat:
-	.string "You broke through every wall!$"
+AceTrainer_Text_SeafoamLenore_Defeat:
+	.string "You broke through every wall! Blaine\n"
+	.string "had better watch out.$"
 
-AceTrainer_Text_R13Lenore_After:
+AceTrainer_Text_SeafoamLenore_After:
 	.string "Brick Break shatters screens, and\n"
-	.string "Taunt stops them going up.$"
+	.string "Taunt stops them going up. Keep one\l"
+	.string "of them handy!$"
 
 AceTrainer_R13Marlow_EventScript::
 	trainerbattle_single TRAINER_ACE_R13_MARLOW_HNS, AceTrainer_Text_R13Marlow_Intro, AceTrainer_Text_R13Marlow_Defeat
@@ -933,25 +965,26 @@ AceTrainer_Text_R15Hayate_After:
 	.string "A grounded Poison type soaks up Toxic\n"
 	.string "Spikes when it switches in.$"
 
-AceTrainer_R15Brigid_EventScript::
-	trainerbattle_single TRAINER_ACE_R15_BRIGID_HNS, AceTrainer_Text_R15Brigid_Intro, AceTrainer_Text_R15Brigid_Defeat
-	msgbox AceTrainer_Text_R15Brigid_After, MSGBOX_AUTOCLOSE
+AceTrainer_DojoBrigid_EventScript::
+	trainerbattle_single TRAINER_ACE_DOJO_BRIGID_HNS, AceTrainer_Text_DojoBrigid_Intro, AceTrainer_Text_DojoBrigid_Defeat
+	msgbox AceTrainer_Text_DojoBrigid_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R15Brigid_Intro:
+AceTrainer_Text_DojoBrigid_Intro:
 	.string "My fists burn and my Pokemon burn\n"
-	.string "even hotter! We've been sparring out\l"
-	.string "here since dawn.\p"
+	.string "even hotter! We've been sparring in\l"
+	.string "this dojo since dawn.\p"
 	.string "Fire and Fighting, side by side. Let's\n"
 	.string "see if your team can stand the heat!$"
 
-AceTrainer_Text_R15Brigid_Defeat:
-	.string "I'm all burned out!$"
+AceTrainer_Text_DojoBrigid_Defeat:
+	.string "I'm all burned out! Looks like I need\n"
+	.string "more training.$"
 
-AceTrainer_Text_R15Brigid_After:
+AceTrainer_Text_DojoBrigid_After:
 	.string "Water and Psychic moves cover Fire\n"
-	.string "and Fighting, but Defiant punishes\l"
-	.string "Intimidate!$"
+	.string "and Fighting, but watch out: Defiant\l"
+	.string "punishes Intimidate!$"
 
 AceTrainer_R16Hazel_EventScript::
 	trainerbattle_single TRAINER_ACE_R16_HAZEL_HNS, AceTrainer_Text_R16Hazel_Intro, AceTrainer_Text_R16Hazel_Defeat
@@ -993,25 +1026,28 @@ AceTrainer_Text_R17Ryker_After:
 	.string "All the speed in the world can't outrun\n"
 	.string "a priority move. Remember that!$"
 
-AceTrainer_R17Matilda_EventScript::
-	trainerbattle_single TRAINER_ACE_R17_MATILDA_HNS, AceTrainer_Text_R17Matilda_Intro, AceTrainer_Text_R17Matilda_Defeat
-	msgbox AceTrainer_Text_R17Matilda_After, MSGBOX_AUTOCLOSE
+AceTrainer_RocktunB1FMatilda_EventScript::
+	trainerbattle_single TRAINER_ACE_ROCKTUN_B1F_MATILDA_HNS, AceTrainer_Text_RocktunB1FMatilda_Intro, AceTrainer_Text_RocktunB1FMatilda_Defeat
+	msgbox AceTrainer_Text_RocktunB1FMatilda_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R17Matilda_Intro:
-	.string "Everyone races down this road. I like\n"
-	.string "to take it slow... and make the battle\l"
-	.string "slow, too.\p"
+AceTrainer_Text_RocktunB1FMatilda_Intro:
+	.string "Everyone hurries through Rock Tunnel\n"
+	.string "to get out of the dark. I like to take\l"
+	.string "it slow... and make the battle slow,\l"
+	.string "too.\p"
 	.string "Boost all you like. My team won't even\n"
 	.string "notice. We'll wear you down, one turn\l"
 	.string "at a time.$"
 
-AceTrainer_Text_R17Matilda_Defeat:
-	.string "Well. You outlasted me.$"
+AceTrainer_Text_RocktunB1FMatilda_Defeat:
+	.string "Well. You outlasted me. Not many\n"
+	.string "people have the patience.$"
 
-AceTrainer_Text_R17Matilda_After:
-	.string "Unaware ignores your boosts. Taunt\n"
-	.string "and hard hits work better.$"
+AceTrainer_Text_RocktunB1FMatilda_After:
+	.string "Unaware ignores your boosts, so Taunt\n"
+	.string "and hard hits work better. The way out\l"
+	.string "is just to the west!$"
 
 AceTrainer_R18Duncan_EventScript::
 	trainerbattle_single TRAINER_ACE_R18_DUNCAN_HNS, AceTrainer_Text_R18Duncan_Intro, AceTrainer_Text_R18Duncan_Defeat
@@ -1089,23 +1125,23 @@ AceTrainer_Text_R23Leander_After:
 	.string "Dragons fear Ice and Fairy moves, so\n"
 	.string "mine travel with Steel friends.$"
 
-AceTrainer_R23Ophelia_EventScript::
-	trainerbattle_single TRAINER_ACE_R23_OPHELIA_HNS, AceTrainer_Text_R23Ophelia_Intro, AceTrainer_Text_R23Ophelia_Defeat
-	msgbox AceTrainer_Text_R23Ophelia_After, MSGBOX_AUTOCLOSE
+AceTrainer_Vr1FOphelia_EventScript::
+	trainerbattle_single TRAINER_ACE_VR1F_OPHELIA_HNS, AceTrainer_Text_Vr1FOphelia_Intro, AceTrainer_Text_Vr1FOphelia_Defeat
+	msgbox AceTrainer_Text_Vr1FOphelia_After, MSGBOX_AUTOCLOSE
 	end
 
-AceTrainer_Text_R23Ophelia_Intro:
-	.string "I can see how this battle ends before\n"
-	.string "it even begins. Will taught me that\l"
-	.string "much.\p"
+AceTrainer_Text_Vr1FOphelia_Intro:
+	.string "The Indigo Plateau is close now. Will\n"
+	.string "of the Elite Four taught me to see how\l"
+	.string "a battle ends before it begins.\p"
 	.string "Every Calm Mind sharpens my team, and\n"
 	.string "my Future Sight is already on its way.\l"
 	.string "Shall we?$"
 
-AceTrainer_Text_R23Ophelia_Defeat:
+AceTrainer_Text_Vr1FOphelia_Defeat:
 	.string "I didn't see that coming at all.$"
 
-AceTrainer_Text_R23Ophelia_After:
+AceTrainer_Text_Vr1FOphelia_After:
 	.string "Dark types shrug off Psychic moves,\n"
 	.string "and Taunt stops a Calm Mind before it\l"
 	.string "starts.$"

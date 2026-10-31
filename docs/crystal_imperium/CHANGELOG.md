@@ -5,7 +5,8 @@
 ### The Infinite Repel keeps every wild Pokémon away (DECISIONS.md D57)
 - While it's on, no wild Pokémon jumps out at you on land or water, whatever your lead's level
   (before, only Pokémon weaker than your lead stayed away, so stronger ones still appeared, as
-  if it had stopped working). Fishing, Rock Smash, Headbutt, Sweet Scent and DexNav still work.
+  if it had stopped working). Fishing, Rock Smash, Headbutt, Sweet Scent and DexNav still work,
+  and the Bug-Catching Contest and the Safari Zone keep their Pokémon.
 
 ### Every trainer at your level cap (DECISIONS.md D56)
 - Every trainer you battle has its whole team at your level cap, on every difficulty, as the
@@ -15,6 +16,20 @@
 - The Ace Trainers and Heart & Soul's Cooltrainers keep their teams as designed at their part of
   the game (an Eviolite Pokémon stays unevolved); fought later, at a higher cap, they evolve.
 - Prize money follows the level trainers battle at, so they pay more.
+- Your partner in a tag battle (Lance in the Rocket Hideout) is at your cap too.
+- No trainer's Pokémon evolves past an Eviolite, an Everstone or its own item (a Light Ball
+  Pikachu stays a Pikachu).
+- The challenge menu's DIFFICULTY and LEVEL CAP descriptions say what they do now.
+
+### Ace Trainers at spots of their own (DECISIONS.md D55)
+- One new Ace Trainer per route, cave or forest at most, and none where Heart & Soul already has
+  its own Ace Trainers: 13 routes had two, and Route 27 had six Ace Trainers in all.
+- 21 moved off the crowded routes to caves, forests and other places at the same point of the
+  story (Union Cave, Ilex Forest, the Ice Path, Victory Road, Mt. Moon, Rock Tunnel, the Seafoam
+  Islands, the Fighting Dojo...), with their lines rewritten for the new place.
+- Every one stands just off the path at a landmark, with trees, rock or water at its back,
+  facing the way you come: none in the middle of the road, in tall grass or at the edge of the
+  screen where the next map starts. Their teams are the same, and one you've beaten stays beaten.
 
 ### 999 PP Max (DECISIONS.md D54)
 - The starting care package brings 999 PP Max, a full stack, instead of 10. The later packages,

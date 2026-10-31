@@ -76,16 +76,17 @@ From the first step of a new game:
 - **Six Pokémon for every Gym Leader** and the big story bosses, and **28 route mini-bosses**:
   strong trainers on the routes with competitive teams at your level cap, as in Emerald
   Imperium.
-- **Ace Trainers on the routes:** 59 of them, as in Emerald Imperium, where they see you on the
-  routes' main paths (26 in Johto, 33 in Kanto), with teams built around a plan (sand, rain,
-  sun, snow, Trick Room, hazards, screens): three Pokémon on the first routes, six with
-  competitive EVs in Kanto. Heart & Soul's own Cooltrainers have competitive teams too.
-- **The level cap is the level of every boss, and nothing is above it:** bosses are at your cap
-  (NORMAL or HARD caps, on every difficulty), and no trainer's, wild, DexNav, legendary or gift
+- **Ace Trainers along the way:** 59 of them, as in Emerald Imperium, one per route, cave or
+  forest at most (26 in Johto, 33 in Kanto), each at a spot of its own just off the path, with
+  teams built around a plan (sand, rain, sun, snow, Trick Room, hazards, screens): three
+  Pokémon on the first routes, six with competitive EVs in Kanto. Heart & Soul's own
+  Cooltrainers have competitive teams too.
+- **The level cap is the level of every trainer, and nothing is above it:** trainers are at
+  your cap (NORMAL or HARD caps, on every difficulty), and no wild, DexNav, legendary or gift
   Pokémon is above it.
 - **HARD plays by Emerald Imperium's and Radical Red's rules:** the SET battle style (no "Will
-  you switch Pokémon?" after a knockout) and no Bag in trainer battles, on top of +10% trainer
-  levels and HARD level caps.
+  you switch Pokémon?" after a knockout) and no Bag in trainer battles, with the HARD level
+  caps (trainers are at your cap on every difficulty, so HARD doesn't raise their levels).
 - **Emerald Imperium's abilities and move pools:** every Pokémon has Imperium's abilities,
   level-up moves, Egg Moves, and TM and tutor moves, from its official dex, so Pidgey has No
   Guard, Golbat Infiltrator and Typhlosion Flash Fire, Typhlosion learns Aura Sphere and Mystical
@@ -196,8 +197,8 @@ packages (in stacks since 0.11.0), Emerald Imperium's L menu (with a start menu 
 the screen again), Emerald Imperium's abilities and move pools, and a TM clerk in every Poké Mart.
 
 **Not done yet:** a full story playthrough; a test on a real iPhone; Imperium-style teams for
-Heart & Soul's other ordinary trainers (they keep their own teams, at your level, evolved, with
-31 IVs); Emerald Imperium's custom Megas (no permission to use Imperium's own content, DECISIONS.md D2); the abilities
+Heart & Soul's other ordinary trainers (they keep their own teams, at your level cap, evolved,
+with 31 IVs); Emerald Imperium's custom Megas (no permission to use Imperium's own content, DECISIONS.md D2); the abilities
 Imperium and Radical Red made themselves, which the engine doesn't have (D35, D45). Imperium's
 two TMs of Radical Red moves, Dark Hole and Draco Barrage, are postgame tutor moves instead (D39).
 

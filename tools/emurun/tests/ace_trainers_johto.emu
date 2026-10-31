@@ -1,6 +1,6 @@
 # Crystal Imperium play test: the Ace Trainers on Johto's routes (DECISIONS.md D47)
-# Each loads with its team, one to three levels below the player's highest (the prepared
-# six at the cap of its route's stage), and plays to a result (naive play).
+# Each loads with its whole team at the player's level cap, its stage's (D56), against the
+# prepared six at that cap, and plays to a result (naive play).
 # gEnemyParty: 100 bytes a Pokemon, level at +84; gEnemyPartyCount is the team size.
 !new_game()
 !battle_style_set()
@@ -15,8 +15,8 @@ loadstate stage0.ss
 !battle("TRAINER_ACE_R29_KAITO_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r29_kaito_action_menu
 expect8 {gEnemyPartyCount} 3 ace_r29_kaito_has_3
-expect8 {gEnemyParty+84} 12 ace_r29_kaito_lead_at_12
-expect8 {gEnemyParty+284} 14 ace_r29_kaito_last_at_14
+expect8 {gEnemyParty+84} 15 ace_r29_kaito_lead_at_15
+expect8 {gEnemyParty+284} 15 ace_r29_kaito_last_at_15
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r29_kaito_resolved
 
@@ -24,8 +24,8 @@ loadstate stage0.ss
 !battle("TRAINER_ACE_R30_SELENE_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r30_selene_action_menu
 expect8 {gEnemyPartyCount} 3 ace_r30_selene_has_3
-expect8 {gEnemyParty+84} 12 ace_r30_selene_lead_at_12
-expect8 {gEnemyParty+284} 14 ace_r30_selene_last_at_14
+expect8 {gEnemyParty+84} 15 ace_r30_selene_lead_at_15
+expect8 {gEnemyParty+284} 15 ace_r30_selene_last_at_15
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r30_selene_resolved
 
@@ -33,8 +33,8 @@ loadstate stage0.ss
 !battle("TRAINER_ACE_R31_BRANT_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r31_brant_action_menu
 expect8 {gEnemyPartyCount} 3 ace_r31_brant_has_3
-expect8 {gEnemyParty+84} 12 ace_r31_brant_lead_at_12
-expect8 {gEnemyParty+284} 14 ace_r31_brant_last_at_14
+expect8 {gEnemyParty+84} 15 ace_r31_brant_lead_at_15
+expect8 {gEnemyParty+284} 15 ace_r31_brant_last_at_15
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r31_brant_resolved
 
@@ -42,8 +42,8 @@ loadstate stage0.ss
 !battle("TRAINER_ACE_R46_TAMSIN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r46_tamsin_action_menu
 expect8 {gEnemyPartyCount} 3 ace_r46_tamsin_has_3
-expect8 {gEnemyParty+84} 12 ace_r46_tamsin_lead_at_12
-expect8 {gEnemyParty+284} 14 ace_r46_tamsin_last_at_14
+expect8 {gEnemyParty+84} 15 ace_r46_tamsin_lead_at_15
+expect8 {gEnemyParty+284} 15 ace_r46_tamsin_last_at_15
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r46_tamsin_resolved
 
@@ -56,26 +56,26 @@ loadstate stage1.ss
 !battle("TRAINER_ACE_R32_NAIA_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r32_naia_action_menu
 expect8 {gEnemyPartyCount} 4 ace_r32_naia_has_4
-expect8 {gEnemyParty+84} 21 ace_r32_naia_lead_at_21
-expect8 {gEnemyParty+384} 23 ace_r32_naia_last_at_23
+expect8 {gEnemyParty+84} 24 ace_r32_naia_lead_at_24
+expect8 {gEnemyParty+384} 24 ace_r32_naia_last_at_24
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r32_naia_resolved
 
 loadstate stage1.ss
-!battle("TRAINER_ACE_R32_BRODIE_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r32_brodie_action_menu
-expect8 {gEnemyPartyCount} 4 ace_r32_brodie_has_4
-expect8 {gEnemyParty+84} 21 ace_r32_brodie_lead_at_21
-expect8 {gEnemyParty+384} 23 ace_r32_brodie_last_at_23
+!battle("TRAINER_ACE_UNIONCAVE_BRODIE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_unioncave_brodie_action_menu
+expect8 {gEnemyPartyCount} 4 ace_unioncave_brodie_has_4
+expect8 {gEnemyParty+84} 24 ace_unioncave_brodie_lead_at_24
+expect8 {gEnemyParty+384} 24 ace_unioncave_brodie_last_at_24
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r32_brodie_resolved
+expectne8 {gBattleOutcome} 0 ace_unioncave_brodie_resolved
 
 loadstate stage1.ss
 !battle("TRAINER_ACE_R33_SILAS_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r33_silas_action_menu
 expect8 {gEnemyPartyCount} 4 ace_r33_silas_has_4
-expect8 {gEnemyParty+84} 21 ace_r33_silas_lead_at_21
-expect8 {gEnemyParty+384} 23 ace_r33_silas_last_at_23
+expect8 {gEnemyParty+84} 24 ace_r33_silas_lead_at_24
+expect8 {gEnemyParty+384} 24 ace_r33_silas_last_at_24
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r33_silas_resolved
 
@@ -86,29 +86,29 @@ loadstate base.ss
 !prepared_team(33, items=True)
 savestate stage2.ss
 loadstate stage2.ss
-!battle("TRAINER_ACE_R34_SUNNIVA_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r34_sunniva_action_menu
-expect8 {gEnemyPartyCount} 5 ace_r34_sunniva_has_5
-expect8 {gEnemyParty+84} 30 ace_r34_sunniva_lead_at_30
-expect8 {gEnemyParty+484} 32 ace_r34_sunniva_last_at_32
+!battle("TRAINER_ACE_NATPARK_SUNNIVA_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_natpark_sunniva_action_menu
+expect8 {gEnemyPartyCount} 5 ace_natpark_sunniva_has_5
+expect8 {gEnemyParty+84} 33 ace_natpark_sunniva_lead_at_33
+expect8 {gEnemyParty+484} 33 ace_natpark_sunniva_last_at_33
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r34_sunniva_resolved
+expectne8 {gBattleOutcome} 0 ace_natpark_sunniva_resolved
 
 loadstate stage2.ss
-!battle("TRAINER_ACE_R34_CALDER_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r34_calder_action_menu
-expect8 {gEnemyPartyCount} 5 ace_r34_calder_has_5
-expect8 {gEnemyParty+84} 30 ace_r34_calder_lead_at_30
-expect8 {gEnemyParty+484} 32 ace_r34_calder_last_at_32
+!battle("TRAINER_ACE_ILEX_CALDER_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_ilex_calder_action_menu
+expect8 {gEnemyPartyCount} 5 ace_ilex_calder_has_5
+expect8 {gEnemyParty+84} 33 ace_ilex_calder_lead_at_33
+expect8 {gEnemyParty+484} 33 ace_ilex_calder_last_at_33
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r34_calder_resolved
+expectne8 {gBattleOutcome} 0 ace_ilex_calder_resolved
 
 loadstate stage2.ss
 !battle("TRAINER_ACE_R35_ADELINE_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r35_adeline_action_menu
 expect8 {gEnemyPartyCount} 5 ace_r35_adeline_has_5
-expect8 {gEnemyParty+84} 30 ace_r35_adeline_lead_at_30
-expect8 {gEnemyParty+484} 32 ace_r35_adeline_last_at_32
+expect8 {gEnemyParty+84} 33 ace_r35_adeline_lead_at_33
+expect8 {gEnemyParty+484} 33 ace_r35_adeline_last_at_33
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r35_adeline_resolved
 
@@ -123,8 +123,8 @@ loadstate stage3.ss
 !battle("TRAINER_ACE_R36_THEO_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r36_theo_action_menu
 expect8 {gEnemyPartyCount} 5 ace_r36_theo_has_5
-expect8 {gEnemyParty+84} 39 ace_r36_theo_lead_at_39
-expect8 {gEnemyParty+484} 41 ace_r36_theo_last_at_41
+expect8 {gEnemyParty+84} 42 ace_r36_theo_lead_at_42
+expect8 {gEnemyParty+484} 42 ace_r36_theo_last_at_42
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r36_theo_resolved
 
@@ -132,8 +132,8 @@ loadstate stage3.ss
 !battle("TRAINER_ACE_R37_CASSIA_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r37_cassia_action_menu
 expect8 {gEnemyPartyCount} 5 ace_r37_cassia_has_5
-expect8 {gEnemyParty+84} 39 ace_r37_cassia_lead_at_39
-expect8 {gEnemyParty+484} 41 ace_r37_cassia_last_at_41
+expect8 {gEnemyParty+84} 42 ace_r37_cassia_lead_at_42
+expect8 {gEnemyParty+484} 42 ace_r37_cassia_last_at_42
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r37_cassia_resolved
 
@@ -141,8 +141,8 @@ loadstate stage3.ss
 !battle("TRAINER_ACE_R38_DESMOND_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r38_desmond_action_menu
 expect8 {gEnemyPartyCount} 5 ace_r38_desmond_has_5
-expect8 {gEnemyParty+84} 39 ace_r38_desmond_lead_at_39
-expect8 {gEnemyParty+484} 41 ace_r38_desmond_last_at_41
+expect8 {gEnemyParty+84} 42 ace_r38_desmond_lead_at_42
+expect8 {gEnemyParty+484} 42 ace_r38_desmond_last_at_42
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r38_desmond_resolved
 
@@ -150,8 +150,8 @@ loadstate stage3.ss
 !battle("TRAINER_ACE_R39_MIRIAM_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r39_miriam_action_menu
 expect8 {gEnemyPartyCount} 5 ace_r39_miriam_has_5
-expect8 {gEnemyParty+84} 39 ace_r39_miriam_lead_at_39
-expect8 {gEnemyParty+484} 41 ace_r39_miriam_last_at_41
+expect8 {gEnemyParty+84} 42 ace_r39_miriam_lead_at_42
+expect8 {gEnemyParty+484} 42 ace_r39_miriam_last_at_42
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r39_miriam_resolved
 
@@ -159,8 +159,8 @@ loadstate stage3.ss
 !battle("TRAINER_ACE_R40_KAIA_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r40_kaia_action_menu
 expect8 {gEnemyPartyCount} 5 ace_r40_kaia_has_5
-expect8 {gEnemyParty+84} 39 ace_r40_kaia_lead_at_39
-expect8 {gEnemyParty+484} 41 ace_r40_kaia_last_at_41
+expect8 {gEnemyParty+84} 42 ace_r40_kaia_lead_at_42
+expect8 {gEnemyParty+484} 42 ace_r40_kaia_last_at_42
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r40_kaia_resolved
 
@@ -168,8 +168,8 @@ loadstate stage3.ss
 !battle("TRAINER_ACE_R42_SOREN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r42_soren_action_menu
 expect8 {gEnemyPartyCount} 5 ace_r42_soren_has_5
-expect8 {gEnemyParty+84} 39 ace_r42_soren_lead_at_39
-expect8 {gEnemyParty+484} 41 ace_r42_soren_last_at_41
+expect8 {gEnemyParty+84} 42 ace_r42_soren_lead_at_42
+expect8 {gEnemyParty+484} 42 ace_r42_soren_last_at_42
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r42_soren_resolved
 
@@ -182,29 +182,29 @@ loadstate base.ss
 !prepared_team(50, items=True)
 savestate stage4.ss
 loadstate stage4.ss
-!battle("TRAINER_ACE_R47_ASTRID_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r47_astrid_action_menu
-expect8 {gEnemyPartyCount} 6 ace_r47_astrid_has_6
-expect8 {gEnemyParty+84} 47 ace_r47_astrid_lead_at_47
-expect8 {gEnemyParty+584} 49 ace_r47_astrid_last_at_49
+!battle("TRAINER_ACE_CLIFFGATE_ASTRID_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_cliffgate_astrid_action_menu
+expect8 {gEnemyPartyCount} 6 ace_cliffgate_astrid_has_6
+expect8 {gEnemyParty+84} 50 ace_cliffgate_astrid_lead_at_50
+expect8 {gEnemyParty+584} 50 ace_cliffgate_astrid_last_at_50
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r47_astrid_resolved
+expectne8 {gBattleOutcome} 0 ace_cliffgate_astrid_resolved
 
 loadstate stage4.ss
-!battle("TRAINER_ACE_R47_NOLAN_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r47_nolan_action_menu
-expect8 {gEnemyPartyCount} 6 ace_r47_nolan_has_6
-expect8 {gEnemyParty+84} 47 ace_r47_nolan_lead_at_47
-expect8 {gEnemyParty+584} 49 ace_r47_nolan_last_at_49
+!battle("TRAINER_ACE_WHIRL_NOLAN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_whirl_nolan_action_menu
+expect8 {gEnemyPartyCount} 6 ace_whirl_nolan_has_6
+expect8 {gEnemyParty+84} 50 ace_whirl_nolan_lead_at_50
+expect8 {gEnemyParty+584} 50 ace_whirl_nolan_last_at_50
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r47_nolan_resolved
+expectne8 {gBattleOutcome} 0 ace_whirl_nolan_resolved
 
 loadstate stage4.ss
 !battle("TRAINER_ACE_R48_SOLANA_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r48_solana_action_menu
 expect8 {gEnemyPartyCount} 6 ace_r48_solana_has_6
-expect8 {gEnemyParty+84} 47 ace_r48_solana_lead_at_47
-expect8 {gEnemyParty+584} 49 ace_r48_solana_last_at_49
+expect8 {gEnemyParty+84} 50 ace_r48_solana_lead_at_50
+expect8 {gEnemyParty+584} 50 ace_r48_solana_last_at_50
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r48_solana_resolved
 
@@ -212,8 +212,8 @@ loadstate stage4.ss
 !battle("TRAINER_ACE_R43_VIKTOR_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r43_viktor_action_menu
 expect8 {gEnemyPartyCount} 6 ace_r43_viktor_has_6
-expect8 {gEnemyParty+84} 47 ace_r43_viktor_lead_at_47
-expect8 {gEnemyParty+584} 49 ace_r43_viktor_last_at_49
+expect8 {gEnemyParty+84} 50 ace_r43_viktor_lead_at_50
+expect8 {gEnemyParty+584} 50 ace_r43_viktor_last_at_50
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r43_viktor_resolved
 
@@ -229,31 +229,31 @@ loadstate base.ss
 !prepared_team(75, items=True)
 savestate stage7.ss
 loadstate stage7.ss
-!battle("TRAINER_ACE_R44_CELESTE_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r44_celeste_action_menu
-expect8 {gEnemyPartyCount} 6 ace_r44_celeste_has_6
-expect8 {gEnemyParty+84} 72 ace_r44_celeste_lead_at_72
-expect8 {gEnemyParty+584} 74 ace_r44_celeste_last_at_74
+!battle("TRAINER_ACE_ICEPATH_CELESTE_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_icepath_celeste_action_menu
+expect8 {gEnemyPartyCount} 6 ace_icepath_celeste_has_6
+expect8 {gEnemyParty+84} 75 ace_icepath_celeste_lead_at_75
+expect8 {gEnemyParty+584} 75 ace_icepath_celeste_last_at_75
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r44_celeste_resolved
+expectne8 {gBattleOutcome} 0 ace_icepath_celeste_resolved
 
 loadstate stage7.ss
-!battle("TRAINER_ACE_R45_ZEPHYR_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r45_zephyr_action_menu
-expect8 {gEnemyPartyCount} 6 ace_r45_zephyr_has_6
-expect8 {gEnemyParty+84} 72 ace_r45_zephyr_lead_at_72
-expect8 {gEnemyParty+584} 74 ace_r45_zephyr_last_at_74
+!battle("TRAINER_ACE_DARKCAVE_ZEPHYR_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_darkcave_zephyr_action_menu
+expect8 {gEnemyPartyCount} 6 ace_darkcave_zephyr_has_6
+expect8 {gEnemyParty+84} 75 ace_darkcave_zephyr_lead_at_75
+expect8 {gEnemyParty+584} 75 ace_darkcave_zephyr_last_at_75
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r45_zephyr_resolved
+expectne8 {gBattleOutcome} 0 ace_darkcave_zephyr_resolved
 
 loadstate stage7.ss
-!battle("TRAINER_ACE_R45_RHEA_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r45_rhea_action_menu
-expect8 {gEnemyPartyCount} 6 ace_r45_rhea_has_6
-expect8 {gEnemyParty+84} 72 ace_r45_rhea_lead_at_72
-expect8 {gEnemyParty+584} 74 ace_r45_rhea_last_at_74
+!battle("TRAINER_ACE_ICEPATH_B1F_RHEA_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_icepath_b1f_rhea_action_menu
+expect8 {gEnemyPartyCount} 6 ace_icepath_b1f_rhea_has_6
+expect8 {gEnemyParty+84} 75 ace_icepath_b1f_rhea_lead_at_75
+expect8 {gEnemyParty+584} 75 ace_icepath_b1f_rhea_last_at_75
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r45_rhea_resolved
+expectne8 {gBattleOutcome} 0 ace_icepath_b1f_rhea_resolved
 
 # Stage 8: cap 85
 loadstate base.ss
@@ -268,46 +268,46 @@ loadstate base.ss
 !prepared_team(85, items=True)
 savestate stage8.ss
 loadstate stage8.ss
-!battle("TRAINER_ACE_R26_ELIAS_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r26_elias_action_menu
-expect8 {gEnemyPartyCount} 6 ace_r26_elias_has_6
-expect8 {gEnemyParty+84} 82 ace_r26_elias_lead_at_82
-expect8 {gEnemyParty+584} 84 ace_r26_elias_last_at_84
+!battle("TRAINER_ACE_VRB2F_ELIAS_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_vrb2f_elias_action_menu
+expect8 {gEnemyPartyCount} 6 ace_vrb2f_elias_has_6
+expect8 {gEnemyParty+84} 85 ace_vrb2f_elias_lead_at_85
+expect8 {gEnemyParty+584} 85 ace_vrb2f_elias_last_at_85
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r26_elias_resolved
+expectne8 {gBattleOutcome} 0 ace_vrb2f_elias_resolved
 
 loadstate stage8.ss
-!battle("TRAINER_ACE_R27_IMOGEN_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r27_imogen_action_menu
-expect8 {gEnemyPartyCount} 6 ace_r27_imogen_has_6
-expect8 {gEnemyParty+84} 82 ace_r27_imogen_lead_at_82
-expect8 {gEnemyParty+584} 84 ace_r27_imogen_last_at_84
+!battle("TRAINER_ACE_TOHJO_IMOGEN_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_tohjo_imogen_action_menu
+expect8 {gEnemyPartyCount} 6 ace_tohjo_imogen_has_6
+expect8 {gEnemyParty+84} 85 ace_tohjo_imogen_lead_at_85
+expect8 {gEnemyParty+584} 85 ace_tohjo_imogen_last_at_85
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r27_imogen_resolved
+expectne8 {gBattleOutcome} 0 ace_tohjo_imogen_resolved
 
 loadstate stage8.ss
-!battle("TRAINER_ACE_R27_MAXIM_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r27_maxim_action_menu
-expect8 {gEnemyPartyCount} 6 ace_r27_maxim_has_6
-expect8 {gEnemyParty+84} 82 ace_r27_maxim_lead_at_82
-expect8 {gEnemyParty+584} 84 ace_r27_maxim_last_at_84
+!battle("TRAINER_ACE_VRB1F_MAXIM_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_vrb1f_maxim_action_menu
+expect8 {gEnemyPartyCount} 6 ace_vrb1f_maxim_has_6
+expect8 {gEnemyParty+84} 85 ace_vrb1f_maxim_lead_at_85
+expect8 {gEnemyParty+584} 85 ace_vrb1f_maxim_last_at_85
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r27_maxim_resolved
+expectne8 {gBattleOutcome} 0 ace_vrb1f_maxim_resolved
 
 loadstate stage8.ss
 !battle("TRAINER_ACE_R23_LEANDER_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r23_leander_action_menu
 expect8 {gEnemyPartyCount} 6 ace_r23_leander_has_6
-expect8 {gEnemyParty+84} 82 ace_r23_leander_lead_at_82
-expect8 {gEnemyParty+584} 84 ace_r23_leander_last_at_84
+expect8 {gEnemyParty+84} 85 ace_r23_leander_lead_at_85
+expect8 {gEnemyParty+584} 85 ace_r23_leander_last_at_85
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ace_r23_leander_resolved
 
 loadstate stage8.ss
-!battle("TRAINER_ACE_R23_OPHELIA_HNS")
-waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_r23_ophelia_action_menu
-expect8 {gEnemyPartyCount} 6 ace_r23_ophelia_has_6
-expect8 {gEnemyParty+84} 82 ace_r23_ophelia_lead_at_82
-expect8 {gEnemyParty+584} 84 ace_r23_ophelia_last_at_84
+!battle("TRAINER_ACE_VR1F_OPHELIA_HNS")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ace_vr1f_ophelia_action_menu
+expect8 {gEnemyPartyCount} 6 ace_vr1f_ophelia_has_6
+expect8 {gEnemyParty+84} 85 ace_vr1f_ophelia_lead_at_85
+expect8 {gEnemyParty+584} 85 ace_vr1f_ophelia_last_at_85
 !autobattle("0,0,0,0,0,0")
-expectne8 {gBattleOutcome} 0 ace_r23_ophelia_resolved
+expectne8 {gBattleOutcome} 0 ace_vr1f_ophelia_resolved

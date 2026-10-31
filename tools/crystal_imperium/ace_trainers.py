@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-"""Crystal Imperium Ace Trainers (DECISIONS.md D47): more Ace Trainers on the routes, with competitive
-teams, as Emerald Imperium has. From the tables in ace_trainer_data.py this writes:
+"""Crystal Imperium Ace Trainers (DECISIONS.md D47, D55): more Ace Trainers along the story, with
+competitive teams, as Emerald Imperium has. From the tables in ace_trainer_data.py this writes:
 
   include/constants/opponents_hns.h    their trainer IDs (after the side battles': an ID indexes the
                                        saved defeat flag, so an ID never changes)
@@ -21,7 +21,10 @@ only when that is a later stage's (an Eviolite or Everstone holder never).
 
 A spot is checked as a side battle's is (side_battles.MapData): on foot, not water, not a ledge,
 nothing else on the tile, no door next to it, and it cuts no one off; its line of sight is ground
-the trainer can walk and meets no other trainer's.
+the trainer can walk and meets no other trainer's. Since 0.15.2 (D55) a map has one new Ace Trainer
+at most, and none where Heart & Soul has its own (a trainer with the Cooltrainer sprite); a spot is
+not in tall grass or on ice, its line of sight crosses no ice, and it keeps 4 tiles from an edge
+where another map joins and from other trainers, 6 from a route mini-boss or a side battle.
 """
 import argparse
 import json
@@ -47,6 +50,10 @@ AI = "Smart Trainer / Ace Pokemon / HP Aware"
 LEDGES = {"MB_JUMP_SOUTH", "MB_JUMP_NORTH", "MB_JUMP_EAST", "MB_JUMP_WEST", "MB_JUMP_SOUTHEAST",
           "MB_JUMP_SOUTHWEST", "MB_JUMP_NORTHEAST", "MB_JUMP_NORTHWEST"}
 DIRS = {"down": (0, 1), "up": (0, -1), "left": (-1, 0), "right": (1, 0)}
+TRAINER_TYPES = ("TRAINER_TYPE_NORMAL", "TRAINER_TYPE_SEE_ALL_DIRECTIONS")
+NO_STAND = {"MB_TALL_GRASS", "MB_LONG_GRASS", "MB_ICE", "MB_THIN_ICE", "MB_CRACKED_ICE"}
+ICE = {"MB_ICE", "MB_THIN_ICE", "MB_CRACKED_ICE"}
+EDGE_ROOM, TRAINER_ROOM, BOSS_ROOM = 4, 4, 6  # D55: tiles (Manhattan) from these to a new Ace Trainer
 
 
 def trainer_const(ace):
@@ -144,6 +151,36 @@ def render_scripts(text):
     return "\n".join(out).rstrip("\n") + "\n"
 
 
+def script_trainers(folder):
+    """A map's script labels that start a trainer battle: label -> TRAINER_ constant."""
+    path = os.path.join(ROOT, "data", "maps", folder, "scripts.inc")
+    text = sb.read(path) if os.path.exists(path) else ""
+    out = {}
+    for name, body in re.findall(r"(?m)^(\w+)::\s*\n(.*?)(?=^\w+::|\Z)", text, re.S):
+        m = re.search(r"trainerbattle_\w+\s+(TRAINER_\w+)", body)
+        if m:
+            out[name] = m.group(1)
+    return out
+
+
+def strong_trainers(m):
+    """The map's Heart & Soul Ace Trainers (the Cooltrainer sprite) and its route mini-bosses and side
+    battles: two lists of (x, y)."""
+    battles = script_trainers(os.path.basename(os.path.dirname(m.path)))
+    aces, bosses = [], []
+    for o in m.json["object_events"]:
+        script = str(o.get("script", ""))
+        if script.startswith("AceTrainer_"):
+            continue
+        tid = battles.get(script)
+        p = (int(o["x"]), int(o["y"]))
+        if script.startswith("SideBattle_") or tid in boss_teams.ROUTE_BOSSES:
+            bosses.append(p)
+        if "COOLTRAINER" in o.get("graphics_id", "") and (tid or o.get("trainer_type") in TRAINER_TYPES):
+            aces.append(p)
+    return aces, bosses
+
+
 def check_spot(a, m, placed):
     """Why the spot can't take this trainer, or None."""
     x, y, facing, sight = a["x"], a["y"], a["facing"], a["sight"]
@@ -162,11 +199,23 @@ def check_spot(a, m, placed):
         return "something else is on the tile"
     if any(abs(int(e["x"]) - x) + abs(int(e["y"]) - y) <= 2 for e in m.json.get("warp_events") or []):
         return "next to a door or warp"
+    if m.behavior(x, y) in NO_STAND:
+        return "in tall grass or on ice"
+    for c in m.json.get("connections") or []:
+        edge = {"up": abs(y), "down": abs(m.h - 1 - y), "left": abs(x), "right": abs(m.w - 1 - x)}.get(c["direction"])
+        if edge is not None and edge < EDGE_ROOM:
+            return f"within {EDGE_ROOM - 1} tiles of the {c['direction']} edge, where another map joins"
     dx, dy = DIRS[facing]
     for i in range(1, sight + 1):
         tx, ty = x + dx * i, y + dy * i
-        if not walkable(tx, ty) or (tx, ty) not in free or m.taken(tx, ty, None) or (tx, ty) in others:
+        if not walkable(tx, ty) or (tx, ty) not in free or m.taken(tx, ty, f"{label(a)}_EventScript") or (tx, ty) in others:
             return f"its line of sight meets ({tx},{ty}), which it can't walk"
+        if m.behavior(tx, ty) in ICE:
+            return f"its line of sight crosses ice at ({tx},{ty})"
+    _, bosses = strong_trainers(m)
+    for bx, by in bosses:
+        if abs(bx - x) + abs(by - y) < BOSS_ROOM:
+            return f"within {BOSS_ROOM - 1} tiles of a route mini-boss or side battle at ({bx},{by})"
     cut = free - m.reachable(others | {(x, y)}) - {(x, y)}
     if cut:
         return f"cuts off {sorted(cut)[:4]}"
@@ -174,7 +223,7 @@ def check_spot(a, m, placed):
         if o.get("trainer_type") not in ("TRAINER_TYPE_NORMAL", "TRAINER_TYPE_SEE_ALL_DIRECTIONS") or o.get("script") == f"{label(a)}_EventScript":
             continue
         ox, oy, osight = int(o["x"]), int(o["y"]), int(o.get("trainer_sight_or_berry_tree_id") or 0)
-        if abs(ox - x) + abs(oy - y) < 3:
+        if abs(ox - x) + abs(oy - y) < TRAINER_ROOM:
             return f"too close to the trainer at ({ox},{oy})"
         for f in ("down", "up", "left", "right"):
             if o.get("movement_type", "").endswith(f.upper()) or o.get("trainer_type") == "TRAINER_TYPE_SEE_ALL_DIRECTIONS":
@@ -190,8 +239,8 @@ def place_objects(check_only):
     stale, by_map = [], {}
     for a in data.ACES:
         by_map.setdefault(a["map"], []).append(a)
-    # Maps with an Ace Trainer the table no longer has: its object goes
-    scripts = {f"{label(a)}_EventScript" for a in data.ACES}
+    # Maps with an Ace Trainer that isn't theirs now (it left, or the table no longer has it): its
+    # object goes
     for folder in sorted(os.listdir(os.path.join(ROOT, "data", "maps"))):
         path = os.path.join(ROOT, "data", "maps", folder, "map.json")
         if folder in by_map or not os.path.exists(path) or "AceTrainer_" not in sb.read(path):
@@ -199,9 +248,14 @@ def place_objects(check_only):
         by_map[folder] = []
     for folder, aces in sorted(by_map.items()):
         m = sb.MapData(folder)
+        if len(aces) > 1:
+            sys.exit(f"{folder} has {len(aces)} new Ace Trainers: one a map (D55)")
+        if aces and strong_trainers(m)[0]:
+            sys.exit(f"{aces[0]['key']}: {folder} has Heart & Soul's own Ace Trainers (D55)")
         placed = set()
         changed = False
         old = m.json["object_events"]
+        scripts = {f"{label(a)}_EventScript" for a in aces}
         m.json["object_events"] = [o for o in old if not str(o.get("script", "")).startswith("AceTrainer_")
                                    or o["script"] in scripts]
         changed = len(m.json["object_events"]) != len(old)

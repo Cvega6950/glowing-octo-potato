@@ -1,7 +1,7 @@
 """Crystal Imperium Ace Trainers (DECISIONS.md D47): the tables tools/crystal_imperium/ace_trainers.py
-writes from. ACES are new trainers on the routes; UPGRADES give Heart & Soul's own Ace
+writes from. ACES are new trainers, one a map at most (D55); UPGRADES give Heart & Soul's own Ace
 Trainers (Cooltrainers) competitive teams. A team is a list of Pokemon as boss_teams.py's mon()
-makes them; a stage is the badge count when the route is reached (9: after the Johto League): every
+makes them; a stage is the badge count when the map is reached (9: after the Johto League): every
 Pokemon is at that stage's cap in the party data, and the team is made for it (D56: in battle
 they are at the player's cap, and evolve only when that is a later stage's)."""
 
@@ -25,7 +25,7 @@ UPGRADE_STAGES = {
 
 ACES = [
     # Route29_hns: Kaito
-    {"key": "R29_KAITO", "name": "KAITO", "gender": "Male", "map": "Route29_hns", "x": 0, "y": 14, "facing": "down", "sight": 3, "stage": 0,
+    {"key": "R29_KAITO", "name": "KAITO", "gender": "Male", "map": "Route29_hns", "x": 46, "y": 22, "facing": "left", "sight": 3, "stage": 0,
      "intro": ["New on this road, huh? I can always tell. New shoes, new partner.", "I'm an Ace Trainer, and my team never stops moving. Think you can keep up?"],
      "defeat": ["Huh. You kept the pace."],
      "after": ["Switching out isn't running away. A good pivot keeps your ace safe."],
@@ -35,7 +35,7 @@ ACES = [
          mon("Riolu", "Black Belt", "Inner Focus", "Adamant", ["Force Palm", "Bullet Punch", "Rock Tomb", "Bite"]),
      ]},
     # Route30_hns: Selene
-    {"key": "R30_SELENE", "name": "SELENE", "gender": "Female", "map": "Route30_hns", "x": 31, "y": 21, "facing": "right", "sight": 4, "stage": 0,
+    {"key": "R30_SELENE", "name": "SELENE", "gender": "Female", "map": "Route30_hns", "x": 29, "y": 22, "facing": "right", "sight": 4, "stage": 0,
      "intro": ["Fire, Water and Grass. Every great team starts with that triangle.", "Each of mine covers the others' weak spots. Can your team say the same?"],
      "defeat": ["Oh! My triangle had a hole in it."],
      "after": ["If one Pokemon can't handle a threat, make sure another one can."],
@@ -45,7 +45,7 @@ ACES = [
          mon("Marill", "Sitrus Berry", "Huge Power", "Adamant", ["Aqua Jet", "Ice Punch", "Brick Break", "Charm"]),
      ]},
     # Route31_hns: Brant
-    {"key": "R31_BRANT", "name": "BRANT", "gender": "Male", "map": "Route31_hns", "x": 9, "y": 11, "facing": "down", "sight": 3, "stage": 0,
+    {"key": "R31_BRANT", "name": "BRANT", "gender": "Male", "map": "Route31_hns", "x": 12, "y": 11, "facing": "left", "sight": 4, "stage": 0,
      "intro": ["Heading for Violet City? Then you're heading for Falkner and his birds.", "Let's see if your team is rock solid first. Mine certainly is!"],
      "defeat": ["Huh. You cracked my wall."],
      "after": ["Rock and Electric moves bring birds down to earth. Falkner's waiting."],
@@ -55,7 +55,7 @@ ACES = [
          mon("Tyrunt", "Sitrus Berry", "Strong Jaw", "Adamant", ["Bite", "Ice Fang", "Thunder Fang", "Rock Tomb"]),
      ]},
     # Route46_hns: Tamsin
-    {"key": "R46_TAMSIN", "name": "TAMSIN", "gender": "Female", "map": "Route46_hns", "x": 13, "y": 38, "facing": "left", "sight": 3, "stage": 0,
+    {"key": "R46_TAMSIN", "name": "TAMSIN", "gender": "Female", "map": "Route46_hns", "x": 6, "y": 35, "facing": "right", "sight": 4, "stage": 0,
      "intro": ["Dragons start out small, but they never stay that way.", "Mine ride the wind. Once it's at their backs, you won't catch a single one!"],
      "defeat": ["Not bad, for someone without wings."],
      "after": ["Tailwind fades after a few turns. Hold on, then hit back hard."],
@@ -65,7 +65,7 @@ ACES = [
          mon("Axew", "Dragon Fang", "Mold Breaker", "Adamant", ["Swords Dance", "Dual Chop", "Rock Tomb", "Bite"]),
      ]},
     # Route32_hns: Naia
-    {"key": "R32_NAIA", "name": "NAIA", "gender": "Female", "map": "Route32_hns", "x": 24, "y": 18, "facing": "right", "sight": 3, "stage": 1,
+    {"key": "R32_NAIA", "name": "NAIA", "gender": "Female", "map": "Route32_hns", "x": 27, "y": 86, "facing": "left", "sight": 4, "stage": 1,
      "intro": ["Clouds are rolling in from the sea. That's my cue to battle!", "When the rain falls, my team swims rings around yours. Hope you brought an umbrella!"],
      "defeat": ["The rain stopped too soon!"],
      "after": ["Grass and Electric moves cut right through a rain team. Keep one handy."],
@@ -75,11 +75,11 @@ ACES = [
          mon("Lombre", "Eviolite", "Swift Swim", "Modest", ["Fake Out", "Scald", "Giga Drain", "Icy Wind"]),
          mon("Brionne", "Mystic Water", "Liquid Voice", "Modest", ["Rain Dance", "Hyper Voice", "Moonblast", "Encore"]),
      ]},
-    # Route32_hns: Brodie
-    {"key": "R32_BRODIE", "name": "BRODIE", "gender": "Male", "map": "Route32_hns", "x": 17, "y": 70, "facing": "left", "sight": 3, "stage": 1,
-     "intro": ["I've trained every morning since I could walk, and so have my Pokemon.", "We hit hard and we hit first. No tricks, just fists!"],
-     "defeat": ["Ugh. Back to training, I guess."],
-     "after": ["Flying and Psychic types give a Fighting team real trouble."],
+    # UnionCave_1F_hns: Brodie
+    {"key": "UNIONCAVE_BRODIE", "name": "BRODIE", "gender": "Male", "map": "UnionCave_1F_hns", "x": 32, "y": 15, "facing": "left", "sight": 4, "stage": 1,
+     "intro": ["I train down here every morning. Nothing builds a punch like solid rock!", "My Pokemon and I hit hard and we hit first. No tricks, just fists!"],
+     "defeat": ["Ugh. Back to punching rocks, I guess."],
+     "after": ["Flying and Psychic types give a Fighting team real trouble. Even the Zubat in here make me sweat!"],
      "team": [
          mon("Scraggy", "Eviolite", "Intimidate", "Careful", ["Fake Out", "Drain Punch", "Knock Off", "Taunt"]),
          mon("Mienfoo", "Sitrus Berry", "Regenerator", "Jolly", ["U Turn", "Brick Break", "Rock Tomb", "Poison Jab"]),
@@ -87,7 +87,7 @@ ACES = [
          mon("Machop", "Black Belt", "No Guard", "Adamant", ["Dynamic Punch", "Rock Slide", "Bullet Punch", "Fire Punch"]),
      ]},
     # Route33_hns: Silas
-    {"key": "R33_SILAS", "name": "SILAS", "gender": "Male", "map": "Route33_hns", "x": 29, "y": 18, "facing": "left", "sight": 3, "stage": 1,
+    {"key": "R33_SILAS", "name": "SILAS", "gender": "Male", "map": "Route33_hns", "x": 21, "y": 18, "facing": "down", "sight": 4, "stage": 1,
      "intro": ["Did that cave feel dark to you? You haven't seen anything yet.", "My Pokemon fight from the shadows. Burns, paralysis, illusions... nothing is what it seems."],
      "defeat": ["Hmph. You saw right through it."],
      "after": ["A Pokemon may not be what it looks like. Trust its moves, not its face."],
@@ -97,11 +97,11 @@ ACES = [
          mon("Zorua", "Black Glasses", "Illusion", "Timid", ["Nasty Plot", "Night Daze", "Shadow Ball", "Sludge Bomb"]),
          mon("Pawniard", "Eviolite", "Defiant", "Adamant", ["Sucker Punch", "Iron Head", "Night Slash", "Swords Dance"]),
      ]},
-    # Route34_hns: Sunniva
-    {"key": "R34_SUNNIVA", "name": "SUNNIVA", "gender": "Female", "map": "Route34_hns", "x": 31, "y": 62, "facing": "left", "sight": 3, "stage": 2,
-     "intro": ["Isn't it a lovely day? I made sure of it myself.", "Under my sun, my Grass types run faster and my Fire types burn hotter. Let's turn up the heat!"],
-     "defeat": ["Clouded over, just like that..."],
-     "after": ["Fire and Dragon types resist both Fire and Grass moves. Or bring a rain of your own."],
+    # NationalPark_Normal_hns: Sunniva
+    {"key": "NATPARK_SUNNIVA", "name": "SUNNIVA", "gender": "Female", "map": "NationalPark_Normal_hns", "x": 18, "y": 24, "facing": "down", "sight": 4, "stage": 2,
+     "intro": ["Isn't it a lovely day in the park? I made sure of it myself.", "Under my sun, my Grass types run faster and my Fire types burn hotter. Let's turn up the heat!"],
+     "defeat": ["Oh... clouds over the whole park."],
+     "after": ["Fire and Dragon types resist both Fire and Grass moves. Or bring a rain of your own to wash out my sun."],
      "team": [
          mon("Vulpix", "Heat Rock", "Drought", "Timid", ["Flamethrower", "Energy Ball", "Will O Wisp", "Encore"]),
          mon("Gloom", "Eviolite", "Chlorophyll", "Modest", ["Growth", "Giga Drain", "Sludge Bomb", "Sleep Powder"]),
@@ -109,11 +109,11 @@ ACES = [
          mon("Jumpluff", "Yache Berry", "Chlorophyll", "Jolly", ["Leech Seed", "U Turn", "Strength Sap", "Seed Bomb"]),
          mon("Charmeleon", "Charcoal", "Solar Power", "Timid", ["Sunny Day", "Flamethrower", "Dragon Pulse", "Focus Blast"]),
      ]},
-    # Route34_hns: Calder
-    {"key": "R34_CALDER", "name": "CALDER", "gender": "Male", "map": "Route34_hns", "x": 24, "y": 10, "facing": "right", "sight": 3, "stage": 2,
-     "intro": ["Every time you switch Pokemon, it's going to cost you.", "Rocks, spikes and poison on your side of the field. Let's see how long your team lasts!"],
-     "defeat": ["You played around my traps..."],
-     "after": ["Rapid Spin and Defog clear hazards away. Don't let them pile up on you."],
+    # IlexForest_hns: Calder
+    {"key": "ILEX_CALDER", "name": "CALDER", "gender": "Male", "map": "IlexForest_hns", "x": 25, "y": 29, "facing": "left", "sight": 4, "stage": 2,
+     "intro": ["It's so dark under these trees, you can't see what's at your feet. Neither will your Pokemon.", "Rocks, spikes and poison on your side of the field. Every switch you make will cost you!"],
+     "defeat": ["You found a path around my traps..."],
+     "after": ["Rapid Spin and Defog sweep hazards away. Don't let them pile up like leaves in this forest."],
      "team": [
          mon("Naclstack", "Eviolite", "Purifying Salt", "Impish", ["Stealth Rock", "Salt Cure", "Recover", "Earthquake"]),
          mon("Ferroseed", "Occa Berry", "Iron Barbs", "Relaxed", ["Spikes", "Leech Seed", "Gyro Ball", "Knock Off"]),
@@ -122,7 +122,7 @@ ACES = [
          mon("Lokix", "Silver Powder", "Tinted Lens", "Jolly", ["First Impression", "U Turn", "Sucker Punch", "Knock Off"]),
      ]},
     # Route35_hns: Adeline
-    {"key": "R35_ADELINE", "name": "ADELINE", "gender": "Female", "map": "Route35_hns", "x": 25, "y": 30, "facing": "right", "sight": 3, "stage": 2,
+    {"key": "R35_ADELINE", "name": "ADELINE", "gender": "Female", "map": "Route35_hns", "x": 29, "y": 30, "facing": "left", "sight": 4, "stage": 2,
      "intro": ["Walls first, then power. That's how a real Ace Trainer fights.", "Once my screens are up, my team keeps getting stronger until nothing can stop it!"],
      "defeat": ["My walls came tumbling down..."],
      "after": ["Light Clay keeps my screens up for eight turns. Brick Break shatters them sooner."],
@@ -134,7 +134,7 @@ ACES = [
          mon("Gyarados", "Wacan Berry", "Moxie", "Jolly", ["Dragon Dance", "Waterfall", "Ice Fang", "Earthquake"]),
      ]},
     # Route36_hns: Theo
-    {"key": "R36_THEO", "name": "THEO", "gender": "Male", "map": "Route36_hns", "x": 36, "y": 12, "facing": "right", "sight": 3, "stage": 3,
+    {"key": "R36_THEO", "name": "THEO", "gender": "Male", "map": "Route36_hns", "x": 39, "y": 14, "facing": "left", "sight": 3, "stage": 3,
      "intro": ["Feel that static in the air? That's my team warming up.", "On Electric Terrain my Pokemon hit harder, and my Raichu runs twice as fast!"],
      "defeat": ["Zapped out..."],
      "after": ["Ground types shrug off Electric moves. Watch for the ones that float."],
@@ -146,7 +146,7 @@ ACES = [
          mon("Raichu Alola", "Magnet", "Surge Surfer", "Timid", ["Nasty Plot", "Rising Voltage", "Psyshock", "Grass Knot"]),
      ]},
     # Route37_hns: Cassia
-    {"key": "R37_CASSIA", "name": "CASSIA", "gender": "Female", "map": "Route37_hns", "x": 15, "y": 15, "facing": "right", "sight": 3, "stage": 3,
+    {"key": "R37_CASSIA", "name": "CASSIA", "gender": "Female", "map": "Route37_hns", "x": 21, "y": 14, "facing": "left", "sight": 4, "stage": 3,
      "intro": ["Fairies look sweet, don't they? That's what makes them so dangerous.", "Dragons, fighters, dark types... my court fears none of them. Ready?"],
      "defeat": ["My lovely court, scattered..."],
      "after": ["Poison and Steel moves break a fairy's charm. Keep one handy."],
@@ -158,7 +158,7 @@ ACES = [
          mon("Slurpuff", "Sitrus Berry", "Unburden", "Adamant", ["Belly Drum", "Play Rough", "Drain Punch", "Return"]),
      ]},
     # Route38_hns: Desmond
-    {"key": "R38_DESMOND", "name": "DESMOND", "gender": "Male", "map": "Route38_hns", "x": 41, "y": 19, "facing": "up", "sight": 4, "stage": 3,
+    {"key": "R38_DESMOND", "name": "DESMOND", "gender": "Male", "map": "Route38_hns", "x": 41, "y": 20, "facing": "left", "sight": 3, "stage": 3,
      "intro": ["The wind off the Ecruteak hills carries a fine grit. Most trainers squint and turn back.", "My team was raised in that storm. Now let me show you how the sand bites!"],
      "defeat": ["You weathered the storm. Well done."],
      "after": ["Sandstorm wears down all but Rock, Ground and Steel types. Plan for it."],
@@ -170,7 +170,7 @@ ACES = [
          mon("Excadrill", "Focus Sash", "Sand Rush", "Adamant", ["Swords Dance", "Earthquake", "Iron Head", "Rock Slide"]),
      ]},
     # Route39_hns: Miriam
-    {"key": "R39_MIRIAM", "name": "MIRIAM", "gender": "Female", "map": "Route39_hns", "x": 27, "y": 51, "facing": "left", "sight": 3, "stage": 3,
+    {"key": "R39_MIRIAM", "name": "MIRIAM", "gender": "Female", "map": "Route39_hns", "x": 28, "y": 24, "facing": "right", "sight": 4, "stage": 3,
      "intro": ["Out by the farm the Miltank take their sweet time, and so do I.", "Under Trick Room the slowest Pokemon strike first. Ready to feel how heavy patience can be?"],
      "defeat": ["Time bent the wrong way for me."],
      "after": ["Trick Room ends after five turns. Stall it out, or hit the setter first."],
@@ -182,7 +182,7 @@ ACES = [
          mon("Conkeldurr", "Flame Orb", "Guts", "Brave", ["Drain Punch", "Mach Punch", "Knock Off", "Ice Punch"]),
      ]},
     # Route40_hns: Kaia
-    {"key": "R40_KAIA", "name": "KAIA", "gender": "Female", "map": "Route40_hns", "x": 29, "y": 23, "facing": "right", "sight": 4, "stage": 3,
+    {"key": "R40_KAIA", "name": "KAIA", "gender": "Female", "map": "Route40_hns", "x": 27, "y": 13, "facing": "down", "sight": 4, "stage": 3,
      "intro": ["This beach is my training ground. Strike, switch and strike again, as steady as the tide.", "You'll never pin my team down. Ready or not, here we come!"],
      "defeat": ["You read the tide better than me."],
      "after": ["Pivots win by switching. Hit hard on the turn they come back in."],
@@ -194,7 +194,7 @@ ACES = [
          mon("Meowscarada", "Life Orb", "Protean", "Jolly", ["Flower Trick", "Knock Off", "U Turn", "Triple Axel"]),
      ]},
     # Route42_hns: Soren
-    {"key": "R42_SOREN", "name": "SOREN", "gender": "Male", "map": "Route42_hns", "x": 20, "y": 11, "facing": "down", "sight": 3, "stage": 3,
+    {"key": "R42_SOREN", "name": "SOREN", "gender": "Male", "map": "Route42_hns", "x": 19, "y": 11, "facing": "down", "sight": 4, "stage": 3,
      "intro": ["The climbers on Mt. Mortar taught me one thing: secure your footing first, and only then charge.", "First I slow you down, then my team boosts, and then you're done for!"],
      "defeat": ["My footing gave way. Nice battle."],
      "after": ["Electric and Ground types shrug off Thunder Wave. Haze or Roar stops a boosted sweeper."],
@@ -205,11 +205,11 @@ ACES = [
          mon("Scolipede", "Black Sludge", "Speed Boost", "Adamant", ["Swords Dance", "Megahorn", "Poison Jab", "Earthquake"]),
          mon("Haxorus", "Lum Berry", "Mold Breaker", "Jolly", ["Dragon Dance", "Outrage", "Earthquake", "Iron Head"]),
      ]},
-    # Route47_hns: Astrid
-    {"key": "R47_ASTRID", "name": "ASTRID", "gender": "Female", "map": "Route47_hns", "x": 97, "y": 43, "facing": "right", "sight": 4, "stage": 4,
-     "intro": ["Out on the cliff edge the cold never lets up, and I like it that way.", "Snow on the rocks, a veil over my team. How long can you last in the cold?"],
-     "defeat": ["Thawed out... You really are good."],
-     "after": ["Aurora Veil halves your damage. Break it fast or wait it out."],
+    # CliffEdgeGate_hns: Astrid
+    {"key": "CLIFFGATE_ASTRID", "name": "ASTRID", "gender": "Female", "map": "CliffEdgeGate_hns", "x": 24, "y": 15, "facing": "up", "sight": 3, "stage": 4,
+     "intro": ["The sea wind whistles through this gate all day, and the pond never warms up. Just how I like it.", "Snow on the rocks, a veil over my team. How long can you last in the cold?"],
+     "defeat": ["Thawed out, in here of all places... You really are good."],
+     "after": ["Aurora Veil halves your damage for five turns, eight with Light Clay. Brick Break or Defog tears it down."],
      "team": [
          mon("Vanilluxe", "Light Clay", "Snow Warning", "Timid", ["Aurora Veil", "Blizzard", "Freeze Dry", "Flash Cannon"]),
          mon("Swampert", "Leftovers", "Torrent", "Relaxed", ["Stealth Rock", "Earthquake", "Scald", "Flip Turn"]),
@@ -219,11 +219,11 @@ ACES = [
          mon("Walrein", "Sitrus Berry", "Fur Coat", "Adamant", ["Belly Drum", "Icicle Spear", "Liquidation", "Earthquake"],
              "252 HP / 252 Atk / 4 SpD"),
      ]},
-    # Route47_hns: Nolan
-    {"key": "R47_NOLAN", "name": "NOLAN", "gender": "Male", "map": "Route47_hns", "x": 52, "y": 38, "facing": "left", "sight": 4, "stage": 4,
-     "intro": ["Up on these cliffs the rain rolls in off the sea every single afternoon.", "When the clouds open, my team gets twice as fast. Think you can keep up?"],
+    # WhirlIslands_B1F_hns: Nolan
+    {"key": "WHIRL_NOLAN", "name": "NOLAN", "gender": "Male", "map": "WhirlIslands_B1F_hns", "x": 23, "y": 11, "facing": "down", "sight": 4, "stage": 4,
+     "intro": ["Rain pours in through every crack in these islands, and the whirlpools roar outside. Perfect weather.", "When the clouds open, my team gets twice as fast. Think you can keep up?"],
      "defeat": ["The storm passed, and so did you."],
-     "after": ["Rain lasts five turns, eight with a Damp Rock. Your own weather resets it."],
+     "after": ["Rain in here can last the whole battle. Set your own weather to wash it out, and my team slows right down."],
      "team": [
          mon("Politoed", "Damp Rock", "Drizzle", "Calm", ["Scald", "Ice Beam", "Encore", "Haze"]),
          mon("Ferrothorn", "Leftovers", "Iron Barbs", "Relaxed", ["Spikes", "Leech Seed", "Power Whip", "Gyro Ball"]),
@@ -248,7 +248,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route43_hns: Viktor
-    {"key": "R43_VIKTOR", "name": "VIKTOR", "gender": "Male", "map": "Route43_hns", "x": 14, "y": 49, "facing": "left", "sight": 4, "stage": 4,
+    {"key": "R43_VIKTOR", "name": "VIKTOR", "gender": "Male", "map": "Route43_hns", "x": 25, "y": 37, "facing": "left", "sight": 4, "stage": 4,
      "intro": ["Everyone rushes up to the Lake of Rage to see the red Gyarados.", "Me? I'd rather watch you wear down, one hazard at a time. Get comfortable."],
      "defeat": ["All my hazards, and you still won!"],
      "after": ["Clodsire's Unaware ignores your boosts. Hit it hard instead of setting up."],
@@ -261,9 +261,9 @@ ACES = [
          mon("Gliscor", "Toxic Orb", "Poison Heal", "Jolly", ["Swords Dance", "Earthquake", "Facade", "Knock Off"],
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
-    # Route44_hns: Celeste
-    {"key": "R44_CELESTE", "name": "CELESTE", "gender": "Female", "map": "Route44_hns", "x": 57, "y": 25, "facing": "up", "sight": 4, "stage": 7,
-     "intro": ["Past this point the air goes still and cold, all the way to the Ice Path.", "Feel that hum? It's my Psychic Terrain, where no quick trick can touch my team."],
+    # IcePath_1F_hns: Celeste
+    {"key": "ICEPATH_CELESTE", "name": "CELESTE", "gender": "Female", "map": "IcePath_1F_hns", "x": 21, "y": 20, "facing": "down", "sight": 2, "stage": 7,
+     "intro": ["Step into the Ice Path and the air goes still and cold. You can almost hear the ice creak.", "Feel that hum? It's my Psychic Terrain, where no quick trick can touch my team."],
      "defeat": ["My mind was clear, and still you won."],
      "after": ["Psychic Terrain blocks priority moves. Flying and Levitate dodge it."],
      "team": [
@@ -280,9 +280,9 @@ ACES = [
          mon("Armarouge", "Life Orb", "Flash Fire", "Timid", ["Calm Mind", "Armor Cannon", "Expanding Force", "Aura Sphere"],
              "4 HP / 252 SpA / 252 Spe"),
      ]},
-    # Route45_hns: Zephyr
-    {"key": "R45_ZEPHYR", "name": "ZEPHYR", "gender": "Male", "map": "Route45_hns", "x": 10, "y": 38, "facing": "right", "sight": 4, "stage": 7,
-     "intro": ["The wind up here comes straight down off the peaks around Blackthorn.", "My team rides it. Once the tailwind blows, you won't get to move first!"],
+    # DarkCave_NorthSide_hns: Zephyr
+    {"key": "DARKCAVE_ZEPHYR", "name": "ZEPHYR", "gender": "Male", "map": "DarkCave_NorthSide_hns", "x": 41, "y": 6, "facing": "down", "sight": 3, "stage": 7,
+     "intro": ["Hear the wind howling at the cave mouth? It comes straight down off the peaks around Blackthorn.", "My team rides it. Once the tailwind blows, you won't get to move first!"],
      "defeat": ["The wind died down. You earned this."],
      "after": ["Tailwind lasts four turns. Protect or a bulky switch wastes it."],
      "team": [
@@ -299,9 +299,9 @@ ACES = [
          mon("Typhlosion Hisui", "Choice Specs", "Flash Fire", "Timid", ["Eruption", "Fire Blast", "Shadow Ball", "Focus Blast"],
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
-    # Route45_hns: Rhea
-    {"key": "R45_RHEA", "name": "RHEA", "gender": "Female", "map": "Route45_hns", "x": 6, "y": 85, "facing": "down", "sight": 3, "stage": 7,
-     "intro": ["They say Blackthorn's tamers hide their best dragons. Mine fly out in front for all to see.", "Give my team a single free turn and this battle is already over."],
+    # IcePath_B1F_hns: Rhea
+    {"key": "ICEPATH_B1F_RHEA", "name": "RHEA", "gender": "Female", "map": "IcePath_B1F_hns", "x": 21, "y": 31, "facing": "down", "sight": 2, "stage": 7,
+     "intro": ["They say Blackthorn's tamers hide their best dragons. Mine train right out here on the ice for all to see.", "Give my team a single free turn and this battle is already over."],
      "defeat": ["One turn short... You're strong."],
      "after": ["Setup sweepers fear status and Haze. Never let them boost twice."],
      "team": [
@@ -318,9 +318,9 @@ ACES = [
          mon("Dragapult", "Focus Sash", "Infiltrator", "Jolly", ["Dragon Dance", "Dragon Darts", "Phantom Force", "Sucker Punch"],
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
-    # Route26_hns: Elias
-    {"key": "R26_ELIAS", "name": "ELIAS", "gender": "Male", "map": "Route26_hns", "x": 28, "y": 31, "facing": "left", "sight": 4, "stage": 8,
-     "intro": ["Most trainers this close to Victory Road just try to overpower you.", "Not me. I'll switch, heal, and wait for you to run out of steam."],
+    # VictoryRoadKanto_B2F_hns: Elias
+    {"key": "VRB2F_ELIAS", "name": "ELIAS", "gender": "Male", "map": "VictoryRoadKanto_B2F_hns", "x": 21, "y": 36, "facing": "left", "sight": 3, "stage": 8,
+     "intro": ["Most trainers who reach Victory Road charge up these stairs and try to overpower everything.", "Not me. I'll switch, heal, and wait for you to run out of steam."],
      "defeat": ["Out-switched at my own game!"],
      "after": ["Regenerator heals a third on every switch out. Trap it or KO it at once."],
      "team": [
@@ -337,9 +337,9 @@ ACES = [
          mon("Gholdengo", "Choice Specs", "Good As Gold", "Timid", ["Make It Rain", "Shadow Ball", "Focus Blast", "Thunderbolt"],
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
-    # Route27_hns: Imogen
-    {"key": "R27_IMOGEN", "name": "IMOGEN", "gender": "Female", "map": "Route27_hns", "x": 31, "y": 23, "facing": "up", "sight": 3, "stage": 8,
-     "intro": ["Through Tohjo Falls, Johto ends and Kanto begins. Only the strongest make it past here.", "One setup turn is all my team needs. Can you stop every single one?"],
+    # TohjoFalls_Cavern_hns: Imogen
+    {"key": "TOHJO_IMOGEN", "name": "IMOGEN", "gender": "Female", "map": "TohjoFalls_Cavern_hns", "x": 33, "y": 23, "facing": "right", "sight": 3, "stage": 8,
+     "intro": ["Past these falls, Johto ends and Kanto begins. Only the strongest make it through.", "One setup turn is all my team needs. Can you stop every single one?"],
      "defeat": ["You saw every boost coming!"],
      "after": ["Sticky Web slows grounded Pokemon. Flying types skip right over it."],
      "team": [
@@ -356,9 +356,9 @@ ACES = [
          mon("Kingambit", "Chople Berry", "Supreme Overlord", "Adamant", ["Swords Dance", "Kowtow Cleave", "Iron Head", "Sucker Punch"],
              "252 HP / 252 Atk / 4 SpD"),
      ]},
-    # Route27_hns: Maxim
-    {"key": "R27_MAXIM", "name": "MAXIM", "gender": "Male", "map": "Route27_hns", "x": 131, "y": 22, "facing": "down", "sight": 4, "stage": 8,
-     "intro": ["The grass along this shore grows back overnight, no matter how hard the sea storms hit it.", "My team grows right along with it. Let's see you trample through!"],
+    # VictoryRoadKanto_B1F_hns: Maxim
+    {"key": "VRB1F_MAXIM", "name": "MAXIM", "gender": "Male", "map": "VictoryRoadKanto_B1F_hns", "x": 14, "y": 22, "facing": "up", "sight": 2, "stage": 8,
+     "intro": ["No sun ever reaches this lake, and still the moss on its shore grows back every time it's trampled.", "My team grows right along with it. Let's see you trample through!"],
      "defeat": ["Cut down to the roots. Well fought."],
      "after": ["Grassy Terrain heals grounded Pokemon. Fly or float above it."],
      "team": [
@@ -375,11 +375,11 @@ ACES = [
          mon("Serperior", "Life Orb", "Contrary", "Timid", ["Leaf Storm", "Dragon Pulse", "Glare", "Synthesis"],
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
-    # Route1_hns: Merrick
-    {"key": "R1_MERRICK", "name": "MERRICK", "gender": "Male", "map": "Route1_hns", "x": 26, "y": 35, "facing": "left", "sight": 4, "stage": 9,
-     "intro": ["Route 1 is where every great Kanto trainer took a first step. Most of them forget the Pokemon that got them there.", "Not me. My team is pure old Kanto, trained the modern way. Show me what Johto taught you!"],
-     "defeat": ["The old guard falls... this time."],
-     "after": ["Old Pokemon with modern moves still hit as hard as anything new."],
+    # ViridianForest_hns: Merrick
+    {"key": "VFOREST_MERRICK", "name": "MERRICK", "gender": "Male", "map": "ViridianForest_hns", "x": 40, "y": 14, "facing": "down", "sight": 4, "stage": 9,
+     "intro": ["Viridian Forest is where so many Kanto trainers caught their very first Pokemon. Most of them forget the ones that got them started.", "Not me. My team is pure old Kanto, trained the modern way. Show me what Johto taught you!"],
+     "defeat": ["The old guard falls... this time. Even the classics have off days."],
+     "after": ["Old Pokemon with modern moves still hit as hard as anything new. Never write off the ones you catch in a forest like this!"],
      "team": [
          mon("Golem", "Custap Berry", "Sturdy", "Adamant", ["Stealth Rock", "Earthquake", "Stone Edge", "Explosion"],
              "252 HP / 252 Atk / 4 SpD"),
@@ -395,7 +395,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route2_hns: Sylvie
-    {"key": "R2_SYLVIE", "name": "SYLVIE", "gender": "Female", "map": "Route2_hns", "x": 8, "y": 69, "facing": "right", "sight": 4, "stage": 9,
+    {"key": "R2_SYLVIE", "name": "SYLVIE", "gender": "Female", "map": "Route2_hns", "x": 13, "y": 54, "facing": "left", "sight": 4, "stage": 9,
      "intro": ["Viridian Forest raised me. Every web and every stinger in there taught me something.", "Step into my web and you will find out how fast bugs can really be!"],
      "defeat": ["You tore right through my web!"],
      "after": ["Flying types and Heavy Duty Boots ignore Sticky Web."],
@@ -414,7 +414,7 @@ ACES = [
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
     # Route3_hns: Gideon
-    {"key": "R3_GIDEON", "name": "GIDEON", "gender": "Male", "map": "Route3_hns", "x": 68, "y": 4, "facing": "right", "sight": 4, "stage": 9,
+    {"key": "R3_GIDEON", "name": "GIDEON", "gender": "Male", "map": "Route3_hns", "x": 21, "y": 12, "facing": "up", "sight": 4, "stage": 9,
      "intro": ["The Pewter Museum taught me one thing. The past is never really gone.", "Every Pokemon on my team came back from a fossil. Let me show you how hard ancient power hits!"],
      "defeat": ["Back into the rock layers I go..."],
      "after": ["Fishious Rend doubles in power if Dracovish moves first."],
@@ -433,7 +433,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route4_hns: Estelle
-    {"key": "R4_ESTELLE", "name": "ESTELLE", "gender": "Female", "map": "Route4_hns", "x": 11, "y": 15, "facing": "right", "sight": 4, "stage": 9,
+    {"key": "R4_ESTELLE", "name": "ESTELLE", "gender": "Female", "map": "Route4_hns", "x": 17, "y": 12, "facing": "up", "sight": 2, "stage": 9,
      "intro": ["The meteorite that fell on Mt. Moon still glows on clear nights. My team draws its power from it.", "Let the moonlight decide which of us is stronger!"],
      "defeat": ["Even the moon has a dark side..."],
      "after": ["Clefairy dance on Mt. Moon at night. I swear the moon answers them."],
@@ -451,11 +451,11 @@ ACES = [
          mon("Cresselia", "Leftovers", "Levitate", "Bold", ["Calm Mind", "Moonblast", "Psyshock", "Moonlight"],
              "252 HP / 252 Def / 4 SpD"),
      ]},
-    # Route4_hns: Tobias
-    {"key": "R4_TOBIAS", "name": "TOBIAS", "gender": "Male", "map": "Route4_hns", "x": 98, "y": 10, "facing": "down", "sight": 3, "stage": 9,
-     "intro": ["Ever wonder why the meteorite in Mt. Moon never rolls away? It pulls on everything near it.", "My team learned to use that pull. Once gravity takes hold, nothing flies and nothing misses!"],
-     "defeat": ["I fell for it... literally."],
-     "after": ["Gravity makes moves land and lets Ground moves hit flying Pokemon."],
+    # MtMoon_Cave_hns: Tobias
+    {"key": "MTMOON_TOBIAS", "name": "TOBIAS", "gender": "Male", "map": "MtMoon_Cave_hns", "x": 34, "y": 17, "facing": "up", "sight": 4, "stage": 9,
+     "intro": ["They say the white rock up in Mt. Moon Square fell from space. Ever wonder why it never rolls away? It pulls on everything near it.", "My team learned to use that pull. Once gravity takes hold, nothing flies and nothing misses!"],
+     "defeat": ["I fell for it... literally. Must be that rock's pull."],
+     "after": ["Gravity makes every move land and lets Ground moves hit flying Pokemon. It only lasts five turns, so stall it out!"],
      "team": [
          mon("Gigalith", "Custap Berry", "Sturdy", "Adamant", ["Stealth Rock", "Gravity", "Stone Edge", "Explosion"],
              "252 HP / 252 Atk / 4 SpD"),
@@ -471,7 +471,7 @@ ACES = [
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
     # Route5_hns: Vera
-    {"key": "R5_VERA", "name": "VERA", "gender": "Female", "map": "Route5_hns", "x": 23, "y": 32, "facing": "right", "sight": 4, "stage": 9,
+    {"key": "R5_VERA", "name": "VERA", "gender": "Female", "map": "Route5_hns", "x": 27, "y": 31, "facing": "left", "sight": 4, "stage": 9,
      "intro": ["I trained at the Saffron dojo until not one black belt there could beat me.", "My Pokemon hit hard and they hit first. Brace yourself!"],
      "defeat": ["My form... you broke it!"],
      "after": ["Flying, Psychic and Fairy moves stop Fighting types cold."],
@@ -490,7 +490,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route6_hns: Lucien
-    {"key": "R6_LUCIEN", "name": "LUCIEN", "gender": "Male", "map": "Route6_hns", "x": 42, "y": 7, "facing": "left", "sight": 4, "stage": 9,
+    {"key": "R6_LUCIEN", "name": "LUCIEN", "gender": "Male", "map": "Route6_hns", "x": 49, "y": 22, "facing": "left", "sight": 4, "stage": 9,
      "intro": ["Saffron is the biggest city in Kanto, and Normal Pokemon are everywhere. Nobody gives them a second look.", "That is their mistake. Plain Pokemon, trained to their limit, hit harder than anything!"],
      "defeat": ["Plain and simple, I lost."],
      "after": ["Rock, Steel and Ghost types shrug off Normal moves. Scrappy ignores Ghosts."],
@@ -509,7 +509,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route7_hns: Marigold
-    {"key": "R7_MARIGOLD", "name": "MARIGOLD", "gender": "Female", "map": "Route7_hns", "x": 2, "y": 8, "facing": "up", "sight": 4, "stage": 9,
+    {"key": "R7_MARIGOLD", "name": "MARIGOLD", "gender": "Female", "map": "Route7_hns", "x": 9, "y": 9, "facing": "left", "sight": 4, "stage": 9,
      "intro": ["The gardens of Celadon grow best under a hot sun, and so does my team.", "Once the sunshine comes out, my flowers bloom twice as fast. Ready to wilt?"],
      "defeat": ["The sun is setting on me..."],
      "after": ["Sun powers up Fire moves and weakens Water. Chlorophyll doubles Speed in it."],
@@ -528,7 +528,7 @@ ACES = [
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
     # Route8_hns: Mordecai
-    {"key": "R8_MORDECAI", "name": "MORDECAI", "gender": "Male", "map": "Route8_hns", "x": 62, "y": 19, "facing": "down", "sight": 2, "stage": 9,
+    {"key": "R8_MORDECAI", "name": "MORDECAI", "gender": "Male", "map": "Route8_hns", "x": 61, "y": 18, "facing": "down", "sight": 3, "stage": 9,
      "intro": ["The spirits of Lavender never let go of what they catch. Neither do my Pokemon.", "Once one of mine grabs hold, there is no running and no switching. You stay until one of us falls!"],
      "defeat": ["You slipped out of my grip..."],
      "after": ["Ghost types can always switch out of a trap. Keep one handy!"],
@@ -547,7 +547,7 @@ ACES = [
              "252 HP / 252 Def / 4 SpD"),
      ]},
     # Route9_hns: Rosalind
-    {"key": "R9_ROSALIND", "name": "ROSALIND", "gender": "Female", "map": "Route9_hns", "x": 7, "y": 42, "facing": "down", "sight": 4, "stage": 9,
+    {"key": "R9_ROSALIND", "name": "ROSALIND", "gender": "Female", "map": "Route9_hns", "x": 60, "y": 48, "facing": "up", "sight": 4, "stage": 9,
      "intro": ["Rock Tunnel taught me patience. Out here, every switch you make costs you something.", "Hazards on your side, and nowhere to run once Dugtrio arrives. Let us see how long you last!"],
      "defeat": ["You cleared a path through all of it!"],
      "after": ["Arena Trap keeps grounded Pokemon from fleeing. Flying types slip away."],
@@ -566,7 +566,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route10_hns: Edison
-    {"key": "R10_EDISON", "name": "EDISON", "gender": "Male", "map": "Route10_hns", "x": 12, "y": 18, "facing": "down", "sight": 3, "stage": 9,
+    {"key": "R10_EDISON", "name": "EDISON", "gender": "Male", "map": "Route10_hns", "x": 11, "y": 54, "facing": "right", "sight": 4, "stage": 9,
      "intro": ["I keep the generators at the Power Plant running. My Pokemon ARE the generators.", "Once the ground is electrified, every shock hits twice as hard. Let us see if you can take the current!"],
      "defeat": ["Blown fuse! Total blackout!"],
      "after": ["Electric Terrain powers up Electric moves. Ground types ignore them."],
@@ -584,11 +584,11 @@ ACES = [
          mon("Bellibolt", "Leftovers", "Electromorphosis", "Bold", ["Volt Switch", "Muddy Water", "Slack Off", "Thunderbolt"],
              "252 HP / 252 Def / 4 SpA"),
      ]},
-    # Route10_hns: Sable
-    {"key": "R10_SABLE", "name": "SABLE", "gender": "Female", "map": "Route10_hns", "x": 16, "y": 87, "facing": "right", "sight": 4, "stage": 9,
-     "intro": ["Rock Tunnel has no light at all. My Pokemon were raised in that darkness, and they see everything.", "Tricks, ambushes and critical hits. You will not see any of it coming!"],
-     "defeat": ["The lights came on too soon..."],
-     "after": ["Prankster status moves fail against Dark types. Keep one on your team!"],
+    # RockTunnel_1F_hns: Sable
+    {"key": "ROCKTUN_1F_SABLE", "name": "SABLE", "gender": "Female", "map": "RockTunnel_1F_hns", "x": 15, "y": 41, "facing": "right", "sight": 4, "stage": 9,
+     "intro": ["No light reaches this deep into Rock Tunnel. My Pokemon were raised in this darkness, and they see everything.", "Tricks, ambushes and critical hits. You will not see any of it coming!"],
+     "defeat": ["The lights came on too soon... I never saw you coming."],
+     "after": ["Prankster status moves fail against Dark types. Keep one on your team, and light this place up with Flash!"],
      "team": [
          mon("Liepard", "Focus Sash", "Prankster", "Jolly", ["Fake Out", "Encore", "Thunder Wave", "Knock Off"],
              "252 HP / 4 Atk / 252 Spe"),
@@ -604,7 +604,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route11_hns: Wesley
-    {"key": "R11_WESLEY", "name": "WESLEY", "gender": "Male", "map": "Route11_hns", "x": 62, "y": 17, "facing": "down", "sight": 2, "stage": 9,
+    {"key": "R11_WESLEY", "name": "WESLEY", "gender": "Male", "map": "Route11_hns", "x": 35, "y": 26, "facing": "up", "sight": 4, "stage": 9,
      "intro": ["Speed stats mean nothing to me. My Pokemon always strike first.", "Extreme Speed, Ice Shard, Gale Wings. You will be down before you get to move!"],
      "defeat": ["Too slow... me? Impossible."],
      "after": ["Psychic Terrain and Armor Tail stop priority moves cold."],
@@ -623,7 +623,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route12_hns: Coralie
-    {"key": "R12_CORALIE", "name": "CORALIE", "gender": "Female", "map": "Route12_hns", "x": 12, "y": 30, "facing": "right", "sight": 2, "stage": 9,
+    {"key": "R12_CORALIE", "name": "CORALIE", "gender": "Female", "map": "Route12_hns", "x": 16, "y": 27, "facing": "left", "sight": 4, "stage": 9,
      "intro": ["Out on the Silence Bridge, I have all the time in the world to prepare.", "One beat of the drum is all my Pokemon need. After that, nothing on this bridge can stop them!"],
      "defeat": ["My drums fell silent..."],
      "after": ["Belly Drum costs half of a Pokemon's HP. Priority moves and burns stop it."],
@@ -641,11 +641,11 @@ ACES = [
          mon("Linoone", "Salac Berry", "Gluttony", "Jolly", ["Belly Drum", "Extreme Speed", "Shadow Claw", "Seed Bomb"],
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
-    # Route12_hns: Oswald
-    {"key": "R12_OSWALD", "name": "OSWALD", "gender": "Male", "map": "Route12_hns", "x": 16, "y": 76, "facing": "right", "sight": 2, "stage": 9,
-     "intro": ["A Snorlax once slept right across this bridge. I learned patience watching it.", "My team never rushes. We wall you, wear you down, then finish it. Ready for a long battle?"],
-     "defeat": ["Well, that was a nice long nap."],
-     "after": ["Against a wall that heals, Taunt it or hit it hard before it recovers."],
+    # DiglettsCave_Tunnel_hns: Oswald
+    {"key": "DIGLETT_OSWALD", "name": "OSWALD", "gender": "Male", "map": "DiglettsCave_Tunnel_hns", "x": 79, "y": 70, "facing": "left", "sight": 4, "stage": 9,
+     "intro": ["I once spent a whole day watching a Snorlax nap outside this cave. That's how I learned patience.", "My team never rushes. We wall you, wear you down, then finish it. Ready for a long battle?"],
+     "defeat": ["Well, that was a nice long nap. Now I know how that Snorlax felt."],
+     "after": ["Against a wall that heals, Taunt it or hit it hard before it recovers. Waiting it out never works!"],
      "team": [
          mon("Landorus Therian", "Rocky Helmet", "Intimidate", "Impish", ["Stealth Rock", "Earthquake", "U Turn", "Knock Off"],
              "252 HP / 252 Def / 4 SpD"),
@@ -661,7 +661,7 @@ ACES = [
              "252 HP / 4 Atk / 252 SpD"),
      ]},
     # Route22_hns: Seraphina
-    {"key": "R22_SERAPHINA", "name": "SERAPHINA", "gender": "Female", "map": "Route22_hns", "x": 13, "y": 14, "facing": "right", "sight": 2, "stage": 9,
+    {"key": "R22_SERAPHINA", "name": "SERAPHINA", "gender": "Female", "map": "Route22_hns", "x": 17, "y": 14, "facing": "left", "sight": 3, "stage": 9,
      "intro": ["The road past that gate leads back to the Indigo Plateau. Lance and his dragons still train there.", "My team was raised to break dragons. Fairies stop them cold, and my Cloyster shatters the rest!"],
      "defeat": ["You are worthy. Go on ahead."],
      "after": ["Steel and Poison moves cut right through Fairy types."],
@@ -680,7 +680,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route24_hns: Magnus
-    {"key": "R24_MAGNUS", "name": "MAGNUS", "gender": "Male", "map": "Route24_hns", "x": 19, "y": 16, "facing": "left", "sight": 3, "stage": 9,
+    {"key": "R24_MAGNUS", "name": "MAGNUS", "gender": "Male", "map": "Route24_hns", "x": 16, "y": 16, "facing": "right", "sight": 3, "stage": 9,
      "intro": ["This is the Nugget Bridge! Five trainers used to stand guard here. Now there is only me.", "My team hits with Choice items, and one clean hit is all I need. Care to bet your nugget?"],
      "defeat": ["No nugget for me this time!"],
      "after": ["A Choice item locks in one move. Switch to a Pokemon that resists it."],
@@ -698,11 +698,11 @@ ACES = [
          mon("Cinderace", "Choice Band", "Libero", "Jolly", ["Pyro Ball", "Hi Jump Kick", "U Turn", "Sucker Punch"],
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
-    # Route25_hns: Mistral
-    {"key": "R25_MISTRAL", "name": "MISTRAL", "gender": "Female", "map": "Route25_hns", "x": 26, "y": 28, "facing": "left", "sight": 2, "stage": 9,
-     "intro": ["So you took the shore path? The sea wind up here never stops, and my birds ride it.", "Rocks, waves or storms, my flock flies over all of it. Try to keep up!"],
-     "defeat": ["My whole flock is grounded..."],
-     "after": ["Rock, Electric and Ice moves bring Flying types down hard."],
+    # MtMoon_Outside_hns: Mistral
+    {"key": "MTMOONSQ_MISTRAL", "name": "MISTRAL", "gender": "Female", "map": "MtMoon_Outside_hns", "x": 35, "y": 11, "facing": "left", "sight": 4, "stage": 9,
+     "intro": ["Out of the cave at last? Up here on Mt. Moon the wind never stops, and my birds ride it.", "Rocks, cliffs or storms, my flock flies over all of it. Try to keep up!"],
+     "defeat": ["My whole flock is grounded... on a mountaintop, too!"],
+     "after": ["Rock, Electric and Ice moves bring Flying types down hard. Stealth Rock hurts my flock, too!"],
      "team": [
          mon("Bombirdier", "Focus Sash", "Rocky Payload", "Jolly", ["Brave Bird", "Knock Off", "Stone Edge", "Parting Shot"],
              "252 Atk / 4 SpD / 252 Spe"),
@@ -717,11 +717,11 @@ ACES = [
          mon("Togekiss", "Heavy Duty Boots", "Serene Grace", "Timid", ["Air Slash", "Dazzling Gleam", "Roost", "Nasty Plot"],
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
-    # Route25_hns: Evangeline
-    {"key": "R25_EVANGELINE", "name": "EVANGELINE", "gender": "Female", "map": "Route25_hns", "x": 85, "y": 17, "facing": "up", "sight": 3, "stage": 9,
-     "intro": ["Bill is my hero! He studies Eevee, and so do I.", "I raised Eevee into every form I could manage. Let me show you what my whole family can do!"],
-     "defeat": ["Every one of them, beaten..."],
-     "after": ["Eevee evolves in eight ways. Bill thinks there might be even more!"],
+    # Route10_PowerPlantEntrance_hns: Evangeline
+    {"key": "PPLANT_EVANGELINE", "name": "EVANGELINE", "gender": "Female", "map": "Route10_PowerPlantEntrance_hns", "x": 10, "y": 12, "facing": "left", "sight": 4, "stage": 9,
+     "intro": ["Bill is my hero! He studies Eevee, and so do I. My Jolteon begged me to bring it here to see the generators!", "I raised Eevee into every form I could manage. Let me show you what my whole family can do!"],
+     "defeat": ["Every one of them, beaten... Even my Jolteon ran out of power."],
+     "after": ["Eevee evolves in eight ways, so my team covers a lot. My Umbreon and Vaporeon pass Wishes around, so hit them hard!"],
      "team": [
          mon("Jolteon", "Choice Specs", "Volt Absorb", "Timid", ["Thunderbolt", "Volt Switch", "Shadow Ball", "Alluring Voice"],
              "252 SpA / 4 SpD / 252 Spe"),
@@ -736,11 +736,11 @@ ACES = [
          mon("Sylveon", "Choice Specs", "Pixilate", "Modest", ["Hyper Voice", "Mystical Fire", "Psyshock", "Shadow Ball"],
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
-    # Route13_hns: Lenore
-    {"key": "R13_LENORE", "name": "LENORE", "gender": "Female", "map": "Route13_hns", "x": 88, "y": 11, "facing": "left", "sight": 4, "stage": 9,
-     "intro": ["My Mr. Mime builds the walls, and everyone behind them grows stronger. That's teamwork!", "By the time my screens come down, it will already be too late for you."],
-     "defeat": ["You broke through every wall!"],
-     "after": ["Brick Break shatters screens, and Taunt stops them going up."],
+    # SeafoamIslands_1F_hns: Lenore
+    {"key": "SEAFOAM_LENORE", "name": "LENORE", "gender": "Female", "map": "SeafoamIslands_1F_hns", "x": 63, "y": 40, "facing": "left", "sight": 4, "stage": 9,
+     "intro": ["Everyone comes through here fired up to face Blaine. My Mr. Mime's walls cool them right off!", "Behind my screens, my whole team grows stronger. By the time they come down, it will already be too late for you."],
+     "defeat": ["You broke through every wall! Blaine had better watch out."],
+     "after": ["Brick Break shatters screens, and Taunt stops them going up. Keep one of them handy!"],
      "team": [
          mon("Mr Mime", "Light Clay", "Misty Surge", "Timid", ["Reflect", "Light Screen", "Psychic", "Healing Wish"],
              "252 HP / 4 Def / 252 Spe"),
@@ -756,7 +756,7 @@ ACES = [
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
     # Route13_hns: Marlow
-    {"key": "R13_MARLOW", "name": "MARLOW", "gender": "Male", "map": "Route13_hns", "x": 77, "y": 23, "facing": "down", "sight": 3, "stage": 9,
+    {"key": "R13_MARLOW", "name": "MARLOW", "gender": "Male", "map": "Route13_hns", "x": 71, "y": 25, "facing": "up", "sight": 3, "stage": 9,
      "intro": ["Smell that? Salt and storm clouds. The weather always hits this coast first.", "Once my Pelipper brings the rain, my whole team moves twice as fast. Try to keep up!"],
      "defeat": ["The storm blew itself out."],
      "after": ["Rain doesn't last forever. Stall it out, or bring your own weather."],
@@ -775,7 +775,7 @@ ACES = [
              "252 HP / 252 SpA / 4 SpD"),
      ]},
     # Route14_hns: Beatrix
-    {"key": "R14_BEATRIX", "name": "BEATRIX", "gender": "Female", "map": "Route14_hns", "x": 20, "y": 47, "facing": "left", "sight": 4, "stage": 9,
+    {"key": "R14_BEATRIX", "name": "BEATRIX", "gender": "Female", "map": "Route14_hns", "x": 14, "y": 49, "facing": "right", "sight": 4, "stage": 9,
      "intro": ["Most Pokemon get hurt when they hit this hard. Mine don't feel a thing!", "Rock Head, Reckless... we swing with everything we've got, every single turn!"],
      "defeat": ["We hit hard... you hit harder."],
      "after": ["Recoil moves hurt most Pokemon, but one with Rock Head takes none at all."],
@@ -794,7 +794,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route15_hns: Hayate
-    {"key": "R15_HAYATE", "name": "HAYATE", "gender": "Male", "map": "Route15_hns", "x": 23, "y": 4, "facing": "down", "sight": 4, "stage": 9,
+    {"key": "R15_HAYATE", "name": "HAYATE", "gender": "Male", "map": "Route15_hns", "x": 20, "y": 4, "facing": "down", "sight": 3, "stage": 9,
      "intro": ["I trained with the ninja of Fuchsia. Nobody sees the poison coming until it's too late.", "Spikes underfoot, toxins in the air... watch your step, if you can!"],
      "defeat": ["Hmph. You slipped past every trap."],
      "after": ["A grounded Poison type soaks up Toxic Spikes when it switches in."],
@@ -812,11 +812,11 @@ ACES = [
          mon("Sneasler", "Life Orb", "Poison Touch", "Jolly", ["Dire Claw", "Close Combat", "Throat Chop", "Fake Out"],
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
-    # Route15_hns: Brigid
-    {"key": "R15_BRIGID", "name": "BRIGID", "gender": "Female", "map": "Route15_hns", "x": 92, "y": 4, "facing": "down", "sight": 4, "stage": 9,
-     "intro": ["My fists burn and my Pokemon burn even hotter! We've been sparring out here since dawn.", "Fire and Fighting, side by side. Let's see if your team can stand the heat!"],
-     "defeat": ["I'm all burned out!"],
-     "after": ["Water and Psychic moves cover Fire and Fighting, but Defiant punishes Intimidate!"],
+    # SaffronCity_FightingDojo_hns: Brigid
+    {"key": "DOJO_BRIGID", "name": "BRIGID", "gender": "Female", "map": "SaffronCity_FightingDojo_hns", "x": 18, "y": 11, "facing": "left", "sight": 4, "stage": 9,
+     "intro": ["My fists burn and my Pokemon burn even hotter! We've been sparring in this dojo since dawn.", "Fire and Fighting, side by side. Let's see if your team can stand the heat!"],
+     "defeat": ["I'm all burned out! Looks like I need more training."],
+     "after": ["Water and Psychic moves cover Fire and Fighting, but watch out: Defiant punishes Intimidate!"],
      "team": [
          mon("Infernape", "Focus Sash", "Blaze", "Jolly", ["Stealth Rock", "Close Combat", "Flare Blitz", "U Turn"],
              "252 Atk / 4 SpD / 252 Spe"),
@@ -832,7 +832,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route16_hns: Hazel
-    {"key": "R16_HAZEL", "name": "HAZEL", "gender": "Female", "map": "Route16_hns", "x": 28, "y": 40, "facing": "down", "sight": 3, "stage": 9,
+    {"key": "R16_HAZEL", "name": "HAZEL", "gender": "Female", "map": "Route16_hns", "x": 48, "y": 40, "facing": "down", "sight": 4, "stage": 9,
      "intro": ["Erika taught me a garden is only as strong as its soil. Tapu Bulu makes mine grow wild!", "Grassy Terrain heals my team every turn and speeds up Grassy Glide. Can you weed us out?"],
      "defeat": ["My garden's been trampled!"],
      "after": ["Flying types float over the terrain, so it never heals them."],
@@ -851,7 +851,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route17_hns: Ryker
-    {"key": "R17_RYKER", "name": "RYKER", "gender": "Male", "map": "Route17_hns", "x": 12, "y": 70, "facing": "right", "sight": 3, "stage": 9,
+    {"key": "R17_RYKER", "name": "RYKER", "gender": "Male", "map": "Route17_hns", "x": 24, "y": 126, "facing": "left", "sight": 3, "stage": 9,
      "intro": ["Slow down? On Cycling Road? No way! My team only has one gear, and that's top speed!", "Speed Boost, Unburden, Tidy Up... we get faster every turn. Can you keep up?"],
      "defeat": ["Whoa, I wiped out hard!"],
      "after": ["All the speed in the world can't outrun a priority move. Remember that!"],
@@ -869,11 +869,11 @@ ACES = [
          mon("Espathra", "Leftovers", "Speed Boost", "Timid", ["Protect", "Calm Mind", "Stored Power", "Dazzling Gleam"],
              "252 SpA / 4 SpD / 252 Spe"),
      ]},
-    # Route17_hns: Matilda
-    {"key": "R17_MATILDA", "name": "MATILDA", "gender": "Female", "map": "Route17_hns", "x": 24, "y": 62, "facing": "left", "sight": 3, "stage": 9,
-     "intro": ["Everyone races down this road. I like to take it slow... and make the battle slow, too.", "Boost all you like. My team won't even notice. We'll wear you down, one turn at a time."],
-     "defeat": ["Well. You outlasted me."],
-     "after": ["Unaware ignores your boosts. Taunt and hard hits work better."],
+    # RockTunnel_B1F_hns: Matilda
+    {"key": "ROCKTUN_B1F_MATILDA", "name": "MATILDA", "gender": "Female", "map": "RockTunnel_B1F_hns", "x": 38, "y": 35, "facing": "up", "sight": 3, "stage": 9,
+     "intro": ["Everyone hurries through Rock Tunnel to get out of the dark. I like to take it slow... and make the battle slow, too.", "Boost all you like. My team won't even notice. We'll wear you down, one turn at a time."],
+     "defeat": ["Well. You outlasted me. Not many people have the patience."],
+     "after": ["Unaware ignores your boosts, so Taunt and hard hits work better. The way out is just to the west!"],
      "team": [
          mon("Miltank", "Sitrus Berry", "Thick Fat", "Impish", ["Stealth Rock", "Body Slam", "Milk Drink", "Heal Bell"],
              "252 HP / 252 Def / 4 SpD"),
@@ -889,7 +889,7 @@ ACES = [
              "252 HP / 252 Def / 4 Atk"),
      ]},
     # Route18_hns: Duncan
-    {"key": "R18_DUNCAN", "name": "DUNCAN", "gender": "Male", "map": "Route18_hns", "x": 24, "y": 8, "facing": "down", "sight": 2, "stage": 9,
+    {"key": "R18_DUNCAN", "name": "DUNCAN", "gender": "Male", "map": "Route18_hns", "x": 21, "y": 10, "facing": "up", "sight": 2, "stage": 9,
      "intro": ["Sand in my shoes, sand in my hair... and soon, sand in your eyes!", "In a sandstorm, my Pokemon run twice as fast. Don't blink!"],
      "defeat": ["The sand settled in your favor."],
      "after": ["Sand Rush only works in the storm. Outlast it, or change the weather."],
@@ -908,7 +908,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route19_hns: Maren
-    {"key": "R19_MAREN", "name": "MAREN", "gender": "Female", "map": "Route19_hns", "x": 16, "y": 1, "facing": "left", "sight": 4, "stage": 9,
+    {"key": "R19_MAREN", "name": "MAREN", "gender": "Female", "map": "Route19_hns", "x": 7, "y": 8, "facing": "right", "sight": 4, "stage": 9,
      "intro": ["The currents off Fuchsia never stay still, and neither does my team.", "We hit, we switch, we hit again. By the time you take aim, we're already gone!"],
      "defeat": ["You read the tide perfectly."],
      "after": ["Every switch costs me a little. Spikes would make it cost a lot."],
@@ -927,7 +927,7 @@ ACES = [
              "252 Atk / 4 SpA / 252 Spe"),
      ]},
     # Route20_hns: Bjorn
-    {"key": "R20_BJORN", "name": "BJORN", "gender": "Male", "map": "Route20_hns", "x": 74, "y": 15, "facing": "left", "sight": 3, "stage": 9,
+    {"key": "R20_BJORN", "name": "BJORN", "gender": "Male", "map": "Route20_hns", "x": 74, "y": 15, "facing": "left", "sight": 4, "stage": 9,
      "intro": ["Blaine's fire burns somewhere inside these islands, but out here, the ice rules.", "My team was raised in the frozen caves of Seafoam. Even a volcano can't thaw us!"],
      "defeat": ["Frozen... solid..."],
      "after": ["Fire, Fighting and Steel moves melt my team fastest."],
@@ -946,7 +946,7 @@ ACES = [
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
     # Route23_hns: Leander
-    {"key": "R23_LEANDER", "name": "LEANDER", "gender": "Male", "map": "Route23_hns", "x": 21, "y": 22, "facing": "up", "sight": 4, "stage": 8,
+    {"key": "R23_LEANDER", "name": "LEANDER", "gender": "Male", "map": "Route23_hns", "x": 19, "y": 24, "facing": "up", "sight": 3, "stage": 8,
      "intro": ["You made it through Victory Road. Most trainers stop here to catch their breath.", "Not me. My dragons are ready for Lance himself, and you'll be our last warm-up!"],
      "defeat": ["My dragons need more training."],
      "after": ["Dragons fear Ice and Fairy moves, so mine travel with Steel friends."],
@@ -964,9 +964,9 @@ ACES = [
          mon("Garchomp", "Loaded Dice", "Rough Skin", "Jolly", ["Swords Dance", "Scale Shot", "Earthquake", "Fire Fang"],
              "252 Atk / 4 SpD / 252 Spe"),
      ]},
-    # Route23_hns: Ophelia
-    {"key": "R23_OPHELIA", "name": "OPHELIA", "gender": "Female", "map": "Route23_hns", "x": 13, "y": 2, "facing": "left", "sight": 3, "stage": 8,
-     "intro": ["I can see how this battle ends before it even begins. Will taught me that much.", "Every Calm Mind sharpens my team, and my Future Sight is already on its way. Shall we?"],
+    # VictoryRoadKanto_1F_hns: Ophelia
+    {"key": "VR1F_OPHELIA", "name": "OPHELIA", "gender": "Female", "map": "VictoryRoadKanto_1F_hns", "x": 10, "y": 18, "facing": "right", "sight": 4, "stage": 8,
+     "intro": ["The Indigo Plateau is close now. Will of the Elite Four taught me to see how a battle ends before it begins.", "Every Calm Mind sharpens my team, and my Future Sight is already on its way. Shall we?"],
      "defeat": ["I didn't see that coming at all."],
      "after": ["Dark types shrug off Psychic moves, and Taunt stops a Calm Mind before it starts."],
      "team": [
@@ -984,7 +984,7 @@ ACES = [
              "252 HP / 252 SpA / 4 SpD"),
      ]},
     # Route28_hns: Rowan
-    {"key": "R28_ROWAN", "name": "ROWAN", "gender": "Male", "map": "Route28_hns", "x": 35, "y": 20, "facing": "right", "sight": 4, "stage": 9,
+    {"key": "R28_ROWAN", "name": "ROWAN", "gender": "Male", "map": "Route28_hns", "x": 32, "y": 26, "facing": "up", "sight": 3, "stage": 9,
      "intro": ["Mt. Silver is just ahead. They say someone waits at the top who has never lost a battle.", "I'm going to be the one who beats him. Show me if you're even close!"],
      "defeat": ["...Then you go first. You're ready."],
      "after": ["It's a long climb. Heal up at the Pokemon Center before the summit."],

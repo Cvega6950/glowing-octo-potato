@@ -1,6 +1,6 @@
 # Crystal Imperium play test: Heart & Soul's Ace Trainers with competitive teams (DECISIONS.md D47)
-# Each loads with its team, one to three levels below the player's highest (the prepared
-# six at the cap of its route's stage), and plays to a result (naive play).
+# Each loads with its whole team at the player's level cap, its stage's (D56), against the
+# prepared six at that cap, and plays to a result (naive play).
 # gEnemyParty: 100 bytes a Pokemon, level at +84; gEnemyPartyCount is the team size.
 !new_game()
 !battle_style_set()
@@ -18,8 +18,8 @@ loadstate stage3.ss
 !battle("TRAINER_IRENE_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B irene_action_menu
 expect8 {gEnemyPartyCount} 5 irene_has_5
-expect8 {gEnemyParty+84} 39 irene_lead_at_39
-expect8 {gEnemyParty+484} 41 irene_last_at_41
+expect8 {gEnemyParty+84} 42 irene_lead_at_42
+expect8 {gEnemyParty+484} 42 irene_last_at_42
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 irene_resolved
 
@@ -35,8 +35,8 @@ loadstate stage4.ss
 !battle("TRAINER_JENN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B jenn_action_menu
 expect8 {gEnemyPartyCount} 5 jenn_has_5
-expect8 {gEnemyParty+84} 47 jenn_lead_at_47
-expect8 {gEnemyParty+484} 49 jenn_last_at_49
+expect8 {gEnemyParty+84} 50 jenn_lead_at_50
+expect8 {gEnemyParty+484} 50 jenn_last_at_50
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 jenn_resolved
 
@@ -44,8 +44,8 @@ loadstate stage4.ss
 !battle("TRAINER_NICK_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B nick_action_menu
 expect8 {gEnemyPartyCount} 5 nick_has_5
-expect8 {gEnemyParty+84} 47 nick_lead_at_47
-expect8 {gEnemyParty+484} 49 nick_last_at_49
+expect8 {gEnemyParty+84} 50 nick_lead_at_50
+expect8 {gEnemyParty+484} 50 nick_last_at_50
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 nick_resolved
 
@@ -53,8 +53,8 @@ loadstate stage4.ss
 !battle("TRAINER_AARON_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B aaron_action_menu
 expect8 {gEnemyPartyCount} 5 aaron_has_5
-expect8 {gEnemyParty+84} 47 aaron_lead_at_47
-expect8 {gEnemyParty+484} 49 aaron_last_at_49
+expect8 {gEnemyParty+84} 50 aaron_lead_at_50
+expect8 {gEnemyParty+484} 50 aaron_last_at_50
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 aaron_resolved
 
@@ -62,8 +62,8 @@ loadstate stage4.ss
 !battle("TRAINER_GWEN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B gwen_action_menu
 expect8 {gEnemyPartyCount} 5 gwen_has_5
-expect8 {gEnemyParty+84} 47 gwen_lead_at_47
-expect8 {gEnemyParty+484} 49 gwen_last_at_49
+expect8 {gEnemyParty+84} 50 gwen_lead_at_50
+expect8 {gEnemyParty+484} 50 gwen_last_at_50
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 gwen_resolved
 
@@ -71,8 +71,8 @@ loadstate stage4.ss
 !battle("TRAINER_LOIS_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B lois_action_menu
 expect8 {gEnemyPartyCount} 5 lois_has_5
-expect8 {gEnemyParty+84} 47 lois_lead_at_47
-expect8 {gEnemyParty+484} 49 lois_last_at_49
+expect8 {gEnemyParty+84} 50 lois_lead_at_50
+expect8 {gEnemyParty+484} 50 lois_last_at_50
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 lois_resolved
 
@@ -80,8 +80,8 @@ loadstate stage4.ss
 !battle("TRAINER_EMMA_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B emma_action_menu
 expect8 {gEnemyPartyCount} 5 emma_has_5
-expect8 {gEnemyParty+84} 47 emma_lead_at_47
-expect8 {gEnemyParty+484} 49 emma_last_at_49
+expect8 {gEnemyParty+84} 50 emma_lead_at_50
+expect8 {gEnemyParty+484} 50 emma_last_at_50
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 emma_resolved
 
@@ -99,8 +99,8 @@ loadstate stage6.ss
 !battle("TRAINER_RYAN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ryan_action_menu
 expect8 {gEnemyPartyCount} 6 ryan_has_6
-expect8 {gEnemyParty+84} 63 ryan_lead_at_63
-expect8 {gEnemyParty+584} 65 ryan_last_at_65
+expect8 {gEnemyParty+84} 66 ryan_lead_at_66
+expect8 {gEnemyParty+584} 66 ryan_last_at_66
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 ryan_resolved
 
@@ -108,8 +108,8 @@ loadstate stage6.ss
 !battle("TRAINER_ALLEN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B allen_action_menu
 expect8 {gEnemyPartyCount} 6 allen_has_6
-expect8 {gEnemyParty+84} 63 allen_lead_at_63
-expect8 {gEnemyParty+584} 65 allen_last_at_65
+expect8 {gEnemyParty+84} 66 allen_lead_at_66
+expect8 {gEnemyParty+584} 66 allen_last_at_66
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 allen_resolved
 
@@ -128,8 +128,8 @@ loadstate stage7.ss
 !battle("TRAINER_BRIAN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B brian_action_menu
 expect8 {gEnemyPartyCount} 6 brian_has_6
-expect8 {gEnemyParty+84} 72 brian_lead_at_72
-expect8 {gEnemyParty+584} 74 brian_last_at_74
+expect8 {gEnemyParty+84} 75 brian_lead_at_75
+expect8 {gEnemyParty+584} 75 brian_last_at_75
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 brian_resolved
 
@@ -137,8 +137,8 @@ loadstate stage7.ss
 !battle("TRAINER_FRAN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B fran_action_menu
 expect8 {gEnemyPartyCount} 6 fran_has_6
-expect8 {gEnemyParty+84} 72 fran_lead_at_72
-expect8 {gEnemyParty+584} 74 fran_last_at_74
+expect8 {gEnemyParty+84} 75 fran_lead_at_75
+expect8 {gEnemyParty+584} 75 fran_last_at_75
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 fran_resolved
 
@@ -146,8 +146,8 @@ loadstate stage7.ss
 !battle("TRAINER_LOLA_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B lola_action_menu
 expect8 {gEnemyPartyCount} 6 lola_has_6
-expect8 {gEnemyParty+84} 72 lola_lead_at_72
-expect8 {gEnemyParty+584} 74 lola_last_at_74
+expect8 {gEnemyParty+84} 75 lola_lead_at_75
+expect8 {gEnemyParty+584} 75 lola_last_at_75
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 lola_resolved
 
@@ -155,8 +155,8 @@ loadstate stage7.ss
 !battle("TRAINER_CARA_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B cara_action_menu
 expect8 {gEnemyPartyCount} 6 cara_has_6
-expect8 {gEnemyParty+84} 72 cara_lead_at_72
-expect8 {gEnemyParty+584} 74 cara_last_at_74
+expect8 {gEnemyParty+84} 75 cara_lead_at_75
+expect8 {gEnemyParty+584} 75 cara_last_at_75
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 cara_resolved
 
@@ -164,8 +164,8 @@ loadstate stage7.ss
 !battle("TRAINER_MEGAN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B megan_action_menu
 expect8 {gEnemyPartyCount} 6 megan_has_6
-expect8 {gEnemyParty+84} 72 megan_lead_at_72
-expect8 {gEnemyParty+584} 74 megan_last_at_74
+expect8 {gEnemyParty+84} 75 megan_lead_at_75
+expect8 {gEnemyParty+584} 75 megan_last_at_75
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 megan_resolved
 
@@ -173,8 +173,8 @@ loadstate stage7.ss
 !battle("TRAINER_BETH_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B beth_action_menu
 expect8 {gEnemyPartyCount} 5 beth_has_5
-expect8 {gEnemyParty+84} 72 beth_lead_at_72
-expect8 {gEnemyParty+484} 74 beth_last_at_74
+expect8 {gEnemyParty+84} 75 beth_lead_at_75
+expect8 {gEnemyParty+484} 75 beth_last_at_75
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 beth_resolved
 
@@ -182,8 +182,8 @@ loadstate stage7.ss
 !battle("TRAINER_REENA_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B reena_action_menu
 expect8 {gEnemyPartyCount} 5 reena_has_5
-expect8 {gEnemyParty+84} 72 reena_lead_at_72
-expect8 {gEnemyParty+484} 74 reena_last_at_74
+expect8 {gEnemyParty+84} 75 reena_lead_at_75
+expect8 {gEnemyParty+484} 75 reena_last_at_75
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 reena_resolved
 
@@ -203,8 +203,8 @@ loadstate stage8.ss
 !battle("TRAINER_BETH_2_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B beth_2_action_menu
 expect8 {gEnemyPartyCount} 6 beth_2_has_6
-expect8 {gEnemyParty+84} 82 beth_2_lead_at_82
-expect8 {gEnemyParty+584} 84 beth_2_last_at_84
+expect8 {gEnemyParty+84} 85 beth_2_lead_at_85
+expect8 {gEnemyParty+584} 85 beth_2_last_at_85
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 beth_2_resolved
 
@@ -212,8 +212,8 @@ loadstate stage8.ss
 !battle("TRAINER_BETH_3_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B beth_3_action_menu
 expect8 {gEnemyPartyCount} 6 beth_3_has_6
-expect8 {gEnemyParty+84} 82 beth_3_lead_at_82
-expect8 {gEnemyParty+584} 84 beth_3_last_at_84
+expect8 {gEnemyParty+84} 85 beth_3_lead_at_85
+expect8 {gEnemyParty+584} 85 beth_3_last_at_85
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 beth_3_resolved
 
@@ -221,8 +221,8 @@ loadstate stage8.ss
 !battle("TRAINER_REENA_2_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B reena_2_action_menu
 expect8 {gEnemyPartyCount} 6 reena_2_has_6
-expect8 {gEnemyParty+84} 82 reena_2_lead_at_82
-expect8 {gEnemyParty+584} 84 reena_2_last_at_84
+expect8 {gEnemyParty+84} 85 reena_2_lead_at_85
+expect8 {gEnemyParty+584} 85 reena_2_last_at_85
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 reena_2_resolved
 
@@ -230,8 +230,8 @@ loadstate stage8.ss
 !battle("TRAINER_GAVEN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B gaven_action_menu
 expect8 {gEnemyPartyCount} 6 gaven_has_6
-expect8 {gEnemyParty+84} 82 gaven_lead_at_82
-expect8 {gEnemyParty+584} 84 gaven_last_at_84
+expect8 {gEnemyParty+84} 85 gaven_lead_at_85
+expect8 {gEnemyParty+584} 85 gaven_last_at_85
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 gaven_resolved
 
@@ -239,8 +239,8 @@ loadstate stage8.ss
 !battle("TRAINER_GAVEN_2_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B gaven_2_action_menu
 expect8 {gEnemyPartyCount} 6 gaven_2_has_6
-expect8 {gEnemyParty+84} 82 gaven_2_lead_at_82
-expect8 {gEnemyParty+584} 84 gaven_2_last_at_84
+expect8 {gEnemyParty+84} 85 gaven_2_lead_at_85
+expect8 {gEnemyParty+584} 85 gaven_2_last_at_85
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 gaven_2_resolved
 
@@ -248,8 +248,8 @@ loadstate stage8.ss
 !battle("TRAINER_GAVEN_3_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B gaven_3_action_menu
 expect8 {gEnemyPartyCount} 6 gaven_3_has_6
-expect8 {gEnemyParty+84} 82 gaven_3_lead_at_82
-expect8 {gEnemyParty+584} 84 gaven_3_last_at_84
+expect8 {gEnemyParty+84} 85 gaven_3_lead_at_85
+expect8 {gEnemyParty+584} 85 gaven_3_last_at_85
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 gaven_3_resolved
 
@@ -257,8 +257,8 @@ loadstate stage8.ss
 !battle("TRAINER_JOYCE_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B joyce_action_menu
 expect8 {gEnemyPartyCount} 6 joyce_has_6
-expect8 {gEnemyParty+84} 82 joyce_lead_at_82
-expect8 {gEnemyParty+584} 84 joyce_last_at_84
+expect8 {gEnemyParty+84} 85 joyce_lead_at_85
+expect8 {gEnemyParty+584} 85 joyce_last_at_85
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 joyce_resolved
 
@@ -279,8 +279,8 @@ loadstate stage9.ss
 !battle("TRAINER_REENA_3_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B reena_3_action_menu
 expect8 {gEnemyPartyCount} 6 reena_3_has_6
-expect8 {gEnemyParty+84} 87 reena_3_lead_at_87
-expect8 {gEnemyParty+584} 89 reena_3_last_at_89
+expect8 {gEnemyParty+84} 90 reena_3_lead_at_90
+expect8 {gEnemyParty+584} 90 reena_3_last_at_90
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 reena_3_resolved
 
@@ -288,8 +288,8 @@ loadstate stage9.ss
 !battle("TRAINER_CAROL_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B carol_action_menu
 expect8 {gEnemyPartyCount} 6 carol_has_6
-expect8 {gEnemyParty+84} 87 carol_lead_at_87
-expect8 {gEnemyParty+584} 89 carol_last_at_89
+expect8 {gEnemyParty+84} 90 carol_lead_at_90
+expect8 {gEnemyParty+584} 90 carol_last_at_90
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 carol_resolved
 
@@ -297,7 +297,7 @@ loadstate stage9.ss
 !battle("TRAINER_SEAN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B sean_action_menu
 expect8 {gEnemyPartyCount} 6 sean_has_6
-expect8 {gEnemyParty+84} 87 sean_lead_at_87
-expect8 {gEnemyParty+584} 89 sean_last_at_89
+expect8 {gEnemyParty+84} 90 sean_lead_at_90
+expect8 {gEnemyParty+584} 90 sean_last_at_90
 !autobattle("0,0,0,0,0,0")
 expectne8 {gBattleOutcome} 0 sean_resolved
