@@ -1688,7 +1688,35 @@
 #define SPECIES_TATSUGIRI_STRETCHY_MEGA                 1571
 #define SPECIES_GLIMMORA_MEGA                           1572
 
-#define SPECIES_EGG                                     (SPECIES_GLIMMORA_MEGA + 1)
+// Crystal Imperium (D58): Emerald Imperium's Megas, after every older species so no saved species moves
+#define SPECIES_BUTTERFREE_MEGA                         1573
+#define SPECIES_MACHAMP_MEGA                            1574
+#define SPECIES_KINGLER_MEGA                            1575
+#define SPECIES_LAPRAS_MEGA                             1576
+#define SPECIES_SNORLAX_MEGA                            1577
+#define SPECIES_SLAKING_MEGA                            1578
+#define SPECIES_TORTERRA_MEGA                           1579
+#define SPECIES_INFERNAPE_MEGA                          1580
+#define SPECIES_EMPOLEON_MEGA_O                         1581
+#define SPECIES_EMPOLEON_MEGA_D                         1582
+#define SPECIES_LUXRAY_MEGA                             1583
+#define SPECIES_ROSERADE_MEGA                           1584
+#define SPECIES_DUSKNOIR_MEGA                           1585
+#define SPECIES_GARBODOR_MEGA                           1586
+#define SPECIES_ORBEETLE_MEGA                           1587
+#define SPECIES_DREDNAW_MEGA                            1588
+#define SPECIES_COALOSSAL_MEGA                          1589
+#define SPECIES_FLAPPLE_MEGA                            1590
+#define SPECIES_APPLETUN_MEGA                           1591
+#define SPECIES_SANDACONDA_MEGA                         1592
+#define SPECIES_TOXTRICITY_AMPED_MEGA                   1593
+#define SPECIES_TOXTRICITY_MEGA                         SPECIES_TOXTRICITY_AMPED_MEGA
+#define SPECIES_TOXTRICITY_LOW_KEY_MEGA                 1594
+#define SPECIES_CENTISKORCH_MEGA                        1595
+#define SPECIES_GRIMMSNARL_MEGA                         1596
+#define SPECIES_COPPERAJAH_MEGA                         1597
+
+#define SPECIES_EGG                                     (SPECIES_COPPERAJAH_MEGA + 1)
 
 #define NUM_SPECIES SPECIES_EGG
 

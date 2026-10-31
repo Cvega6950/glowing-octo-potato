@@ -1373,6 +1373,77 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formChangeTable = sOrbeetleFormChangeTable,
     },
 
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_ORBEETLE_MEGA] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 45,
+        .baseDefense   = 125,
+        .baseSpeed     = 100,
+        .baseSpAttack  = 135,
+        .baseSpDefense = 130,
+        .types = MON_TYPES(TYPE_BUG, TYPE_PSYCHIC),
+        .catchRate = 45,
+        .expYield = 303,
+        .evYield_SpDefense = 3,
+        .itemRare = ITEM_PSYCHIC_SEED,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_MAGIC_GUARD, ABILITY_MAGIC_GUARD, ABILITY_MAGIC_GUARD },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("ORBEETLE"),
+        .cryId = CRY_ORBEETLE,
+        .natDexNum = NATIONAL_DEX_ORBEETLE,
+        .categoryName = _("Seven Spot"),
+        .height = 4,
+        .weight = 408,
+        .description = COMPOUND_STRING(
+            "Mega Evolution expands its shell into\n"
+            "a great dome. It hovers on a beam of\n"
+            "psychic light and reads the thoughts\n"
+            "of everything below it."),
+        .pokemonScale = 491,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_OrbeetleGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_OrbeetleGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 6,
+        .palette = gMonPalette_OrbeetleGmax,
+        .shinyPalette = gMonShinyPalette_OrbeetleGmax,
+        .iconSprite = gMonIcon_OrbeetleGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Orbeetle)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Orbeetle,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Orbeetle,
+            gShinyOverworldPalette_Orbeetle
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sOrbeetleLevelUpLearnset,
+        .teachableLearnset = sOrbeetleTeachableLearnset,
+        .formSpeciesIdTable = sOrbeetleFormSpeciesIdTable,
+        .formChangeTable = sOrbeetleFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
+
 #if P_GIGANTAMAX_FORMS
     [SPECIES_ORBEETLE_GMAX] =
     {
@@ -1962,6 +2033,76 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formChangeTable = sDrednawFormChangeTable,
     },
 
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_DREDNAW_MEGA] =
+    {
+        .baseHP        = 90,
+        .baseAttack    = 155,
+        .baseDefense   = 125,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 48,
+        .baseSpDefense = 98,
+        .types = MON_TYPES(TYPE_WATER, TYPE_FIGHTING),
+        .catchRate = 75,
+        .expYield = 220,
+        .evYield_Attack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_WATER_1),
+        .abilities = { ABILITY_STRONG_JAW, ABILITY_STRONG_JAW, ABILITY_STRONG_JAW },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("DREDNAW"),
+        .cryId = CRY_DREDNAW,
+        .natDexNum = NATIONAL_DEX_DREDNAW,
+        .categoryName = _("Bite"),
+        .height = 10,
+        .weight = 1155,
+        .description = COMPOUND_STRING(
+            "Mega Evolution hardens its shell into\n"
+            "jagged crags of rock. Its jaws grow\n"
+            "so strong that it bites boulders\n"
+            "apart and spits out the gravel."),
+        .pokemonScale = 305,
+        .pokemonOffset = 7,
+        .trainerScale = 257,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_DrednawGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_DrednawGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 12,
+        .palette = gMonPalette_DrednawGmax,
+        .shinyPalette = gMonShinyPalette_DrednawGmax,
+        .iconSprite = gMonIcon_DrednawGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(2, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Drednaw)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Drednaw,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Drednaw,
+            gShinyOverworldPalette_Drednaw
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sDrednawLevelUpLearnset,
+        .teachableLearnset = sDrednawTeachableLearnset,
+        .formSpeciesIdTable = sDrednawFormSpeciesIdTable,
+        .formChangeTable = sDrednawFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
+
 #if P_GIGANTAMAX_FORMS
     [SPECIES_DREDNAW_GMAX] =
     {
@@ -2347,6 +2488,76 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formChangeTable = sCoalossalFormChangeTable,
     },
 
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_COALOSSAL_MEGA] =
+    {
+        .baseHP        = 110,
+        .baseAttack    = 80,
+        .baseDefense   = 125,
+        .baseSpeed     = 45,
+        .baseSpAttack  = 125,
+        .baseSpDefense = 105,
+        .types = MON_TYPES(TYPE_STEEL, TYPE_FIRE),
+        .catchRate = 45,
+        .expYield = 305,
+        .evYield_Defense = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_MAGIC_GUARD, ABILITY_MAGIC_GUARD, ABILITY_MAGIC_GUARD },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("COALOSSAL"),
+        .cryId = CRY_COALOSSAL,
+        .natDexNum = NATIONAL_DEX_COALOSSAL,
+        .categoryName = _("Coal"),
+        .height = 28,
+        .weight = 3105,
+        .description = COMPOUND_STRING(
+            "Mega Evolution packs its coal into\n"
+            "armor as hard as steel. Molten fire\n"
+            "glows through the cracks, and the\n"
+            "ground smolders where it walks."),
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_CoalossalGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_CoalossalGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 8,
+        .palette = gMonPalette_CoalossalGmax,
+        .shinyPalette = gMonShinyPalette_CoalossalGmax,
+        .iconSprite = gMonIcon_CoalossalGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(1, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Coalossal)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Coalossal,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Coalossal,
+            gShinyOverworldPalette_Coalossal
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sCoalossalLevelUpLearnset,
+        .teachableLearnset = sCoalossalTeachableLearnset,
+        .formSpeciesIdTable = sCoalossalFormSpeciesIdTable,
+        .formChangeTable = sCoalossalFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
+
 #if P_GIGANTAMAX_FORMS
     [SPECIES_COALOSSAL_GMAX] =
     {
@@ -2548,6 +2759,76 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formChangeTable = sFlappleFormChangeTable,
     },
 
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_FLAPPLE_MEGA] =
+    {
+        .baseHP        = 70,
+        .baseAttack    = 145,
+        .baseDefense   = 90,
+        .baseSpeed     = 105,
+        .baseSpAttack  = 135,
+        .baseSpDefense = 70,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_DRAGON),
+        .catchRate = 45,
+        .expYield = 220,
+        .evYield_Attack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS, EGG_GROUP_DRAGON),
+        .abilities = { ABILITY_DRAGONS_MAW, ABILITY_DRAGONS_MAW, ABILITY_DRAGONS_MAW },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("FLAPPLE"),
+        .cryId = CRY_FLAPPLE,
+        .natDexNum = NATIONAL_DEX_FLAPPLE,
+        .categoryName = _("Apple Wing"),
+        .height = 3,
+        .weight = 10,
+        .description = COMPOUND_STRING(
+            "Mega Evolution wraps it in a giant\n"
+            "apple dripping with nectar. It hides\n"
+            "inside, then bursts out and bites its\n"
+            "foes with dragonlike jaws."),
+        .pokemonScale = 530,
+        .pokemonOffset = 13,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_FlappleGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 3,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_FlappleGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 2,
+        .palette = gMonPalette_FlappleGmax,
+        .shinyPalette = gMonShinyPalette_FlappleGmax,
+        .iconSprite = gMonIcon_FlappleGmax,
+        .iconPalIndex = 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 10, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Flapple)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Flapple,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Flapple,
+            gShinyOverworldPalette_Flapple
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sFlappleLevelUpLearnset,
+        .teachableLearnset = sFlappleTeachableLearnset,
+        .formSpeciesIdTable = sFlappleFormSpeciesIdTable,
+        .formChangeTable = sFlappleFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
+
 #if P_GIGANTAMAX_FORMS
     [SPECIES_FLAPPLE_GMAX] =
     {
@@ -2672,6 +2953,76 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formChangeTable = sAppletunFormChangeTable,
         .randomizerMode = MON_RANDOMIZER_INVALID,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_APPLETUN_MEGA] =
+    {
+        .baseHP        = 110,
+        .baseAttack    = 105,
+        .baseDefense   = 100,
+        .baseSpeed     = 40,
+        .baseSpAttack  = 135,
+        .baseSpDefense = 100,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_DRAGON),
+        .catchRate = 45,
+        .expYield = 220,
+        .evYield_HP = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_ERRATIC,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_GRASS, EGG_GROUP_DRAGON),
+        .abilities = { ABILITY_CONTRARY, ABILITY_CONTRARY, ABILITY_CONTRARY },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("APPLETUN"),
+        .cryId = CRY_APPLETUN,
+        .natDexNum = NATIONAL_DEX_APPLETUN,
+        .categoryName = _("Apple Nectar"),
+        .height = 4,
+        .weight = 130,
+        .description = COMPOUND_STRING(
+            "Mega Evolution swells it into a huge\n"
+            "apple brimming with syrup. The harder\n"
+            "it is hit, the sweeter and stronger\n"
+            "its nectar becomes."),
+        .pokemonScale = 491,
+        .pokemonOffset = 12,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_FlappleGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 3,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_FlappleGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 2,
+        .palette = gMonPalette_FlappleGmax,
+        .shinyPalette = gMonShinyPalette_FlappleGmax,
+        .iconSprite = gMonIcon_FlappleGmax,
+        .iconPalIndex = 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 10, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Appletun)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Appletun,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Appletun,
+            gShinyOverworldPalette_Appletun
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sAppletunLevelUpLearnset,
+        .teachableLearnset = sAppletunTeachableLearnset,
+        .formSpeciesIdTable = sAppletunFormSpeciesIdTable,
+        .formChangeTable = sAppletunFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
     [SPECIES_APPLETUN_GMAX] =
@@ -2992,6 +3343,76 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formSpeciesIdTable = sSandacondaFormSpeciesIdTable,
         .formChangeTable = sSandacondaFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_SANDACONDA_MEGA] =
+    {
+        .baseHP        = 72,
+        .baseAttack    = 140,
+        .baseDefense   = 160,
+        .baseSpeed     = 81,
+        .baseSpAttack  = 85,
+        .baseSpDefense = 90,
+        .types = MON_TYPES(TYPE_GROUND, TYPE_FLYING),
+        .catchRate = 120,
+        .expYield = 229,
+        .evYield_Defense = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_DRAGON),
+        .abilities = { ABILITY_AERILATE, ABILITY_AERILATE, ABILITY_AERILATE },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("SANDACONDA"),
+        .cryId = CRY_SANDACONDA,
+        .natDexNum = NATIONAL_DEX_SANDACONDA,
+        .categoryName = _("Sand Snake"),
+        .height = 38,
+        .weight = 655,
+        .description = COMPOUND_STRING(
+            "Mega Evolution lets it ride a storm\n"
+            "of swirling sand. It floats on the\n"
+            "gusts from its sand pouch and whips\n"
+            "up sandstorms wherever it goes."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 610,
+        .trainerOffset = 17,
+        .frontPic = gMonFrontPic_SandacondaGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 1,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_SandacondaGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 5,
+        .palette = gMonPalette_SandacondaGmax,
+        .shinyPalette = gMonShinyPalette_SandacondaGmax,
+        .iconSprite = gMonIcon_SandacondaGmax,
+        .iconPalIndex = 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 14, SHADOW_SIZE_M)
+        FOOTPRINT(Sandaconda)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Sandaconda,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Sandaconda,
+            gShinyOverworldPalette_Sandaconda
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sSandacondaLevelUpLearnset,
+        .teachableLearnset = sSandacondaTeachableLearnset,
+        .formSpeciesIdTable = sSandacondaFormSpeciesIdTable,
+        .formChangeTable = sSandacondaFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
     [SPECIES_SANDACONDA_GMAX] =
@@ -3500,6 +3921,76 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .randomizerMode = MON_RANDOMIZER_INVALID,
     },
 
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_TOXTRICITY_AMPED_MEGA] =
+    {
+        .baseHP        = 75,
+        .baseAttack    = 120,
+        .baseDefense   = 80,
+        .baseSpeed     = 111,
+        .baseSpAttack  = 155,
+        .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_ELECTRIC, TYPE_POISON),
+        .catchRate = 45,
+        .expYield = 226,
+        .evYield_SpAttack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
+        .abilities = { ABILITY_PUNK_ROCK, ABILITY_PUNK_ROCK, ABILITY_PUNK_ROCK },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("TOXTRICITY"),
+        .cryId = CRY_TOXTRICITY_AMPED,
+        .natDexNum = NATIONAL_DEX_TOXTRICITY,
+        .categoryName = _("Punk"),
+        .height = 16,
+        .weight = 400,
+        .description = COMPOUND_STRING(
+            "Mega Evolution makes the spikes on its\n"
+            "back blaze with electricity. The chords\n"
+            "it strums on its chest grow so loud\n"
+            "that they jolt every foe around it."),
+        .pokemonScale = 259,
+        .pokemonOffset = 1,
+        .trainerScale = 296,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_ToxtricityGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_ToxtricityGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .palette = gMonPalette_ToxtricityGmax,
+        .shinyPalette = gMonShinyPalette_ToxtricityGmax,
+        .iconSprite = gMonIcon_ToxtricityGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(1, 10, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Toxtricity)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_ToxtricityAmped,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_ToxtricityAmped,
+            gShinyOverworldPalette_ToxtricityAmped
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sToxtricityAmpedLevelUpLearnset,
+        .teachableLearnset = sToxtricityAmpedTeachableLearnset,
+        .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,
+        .formChangeTable = sToxtricityAmpedFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
+
 #if P_GIGANTAMAX_FORMS
     [SPECIES_TOXTRICITY_AMPED_GMAX] =
     {
@@ -3620,6 +4111,76 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formChangeTable = sToxtricityLowKeyFormChangeTable, // Crystal Imperium (DECISIONS.md D58): was Amped's, which turned it Amped after every battle
         .randomizerMode = MON_RANDOMIZER_INVALID,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_TOXTRICITY_LOW_KEY_MEGA] =
+    {
+        .baseHP        = 75,
+        .baseAttack    = 120,
+        .baseDefense   = 80,
+        .baseSpeed     = 111,
+        .baseSpAttack  = 155,
+        .baseSpDefense = 80,
+        .types = MON_TYPES(TYPE_ELECTRIC, TYPE_POISON),
+        .catchRate = 45,
+        .expYield = 226,
+        .evYield_SpAttack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_HUMAN_LIKE),
+        .abilities = { ABILITY_PUNK_ROCK, ABILITY_PUNK_ROCK, ABILITY_PUNK_ROCK },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("TOXTRICITY"),
+        .cryId = CRY_TOXTRICITY_LOW_KEY,
+        .natDexNum = NATIONAL_DEX_TOXTRICITY,
+        .categoryName = _("Punk"),
+        .height = 16,
+        .weight = 400,
+        .description = COMPOUND_STRING(
+            "Mega Evolution makes the spikes on its\n"
+            "back blaze with electricity. The chords\n"
+            "it strums on its chest grow so loud\n"
+            "that they jolt every foe around it."),
+        .pokemonScale = 259,
+        .pokemonOffset = 1,
+        .trainerScale = 296,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_ToxtricityGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_ToxtricityGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .palette = gMonPalette_ToxtricityGmax,
+        .shinyPalette = gMonShinyPalette_ToxtricityGmax,
+        .iconSprite = gMonIcon_ToxtricityGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(1, 10, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Toxtricity)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_ToxtricityLowKey,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_ToxtricityLowKey,
+            gShinyOverworldPalette_ToxtricityLowKey
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sToxtricityLowKeyLevelUpLearnset,
+        .teachableLearnset = sToxtricityLowKeyTeachableLearnset,
+        .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,
+        .formChangeTable = sToxtricityLowKeyFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
     [SPECIES_TOXTRICITY_LOW_KEY_GMAX] =
@@ -3815,6 +4376,76 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formSpeciesIdTable = sCentiskorchFormSpeciesIdTable,
         .formChangeTable = sCentiskorchFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_CENTISKORCH_MEGA] =
+    {
+        .baseHP        = 100,
+        .baseAttack    = 150,
+        .baseDefense   = 80,
+        .baseSpeed     = 85,
+        .baseSpAttack  = 90,
+        .baseSpDefense = 110,
+        .types = MON_TYPES(TYPE_FIRE, TYPE_BUG),
+        .catchRate = 75,
+        .expYield = 234,
+        .evYield_Attack = 2,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_BUG),
+        .abilities = { ABILITY_MAGIC_GUARD, ABILITY_MAGIC_GUARD, ABILITY_MAGIC_GUARD },
+        .bodyColor = BODY_COLOR_RED,
+        .speciesName = _("CENTISKORCH"),
+        .cryId = CRY_CENTISKORCH,
+        .natDexNum = NATIONAL_DEX_CENTISKORCH,
+        .categoryName = _("Radiator"),
+        .height = 30,
+        .weight = 1200,
+        .description = COMPOUND_STRING(
+            "Mega Evolution stokes the fire in its\n"
+            "long body until its flames turn\n"
+            "white-hot. It coils around foes and\n"
+            "roasts them in a blazing ring."),
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_CentiskorchGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 5,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_CentiskorchGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 1,
+        .palette = gMonPalette_CentiskorchGmax,
+        .shinyPalette = gMonShinyPalette_CentiskorchGmax,
+        .iconSprite = gMonIcon_CentiskorchGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(6, 9, SHADOW_SIZE_L)
+        FOOTPRINT(Centiskorch)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Centiskorch,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Centiskorch,
+            gShinyOverworldPalette_Centiskorch
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sCentiskorchLevelUpLearnset,
+        .teachableLearnset = sCentiskorchTeachableLearnset,
+        .formSpeciesIdTable = sCentiskorchFormSpeciesIdTable,
+        .formChangeTable = sCentiskorchFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
     [SPECIES_CENTISKORCH_GMAX] =
@@ -4721,6 +5352,76 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formSpeciesIdTable = sGrimmsnarlFormSpeciesIdTable,
         .formChangeTable = sGrimmsnarlFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_GRIMMSNARL_MEGA] =
+    {
+        .baseHP        = 115,
+        .baseAttack    = 100,
+        .baseDefense   = 95,
+        .baseSpeed     = 60,
+        .baseSpAttack  = 145,
+        .baseSpDefense = 95,
+        .types = MON_TYPES(TYPE_DARK, TYPE_FAIRY),
+        .catchRate = 45,
+        .expYield = 305,
+        .evYield_Attack = 3,
+        .genderRatio = MON_MALE,
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_HUMAN_LIKE),
+        .abilities = { ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE },
+        .bodyColor = BODY_COLOR_PURPLE,
+        .speciesName = _("GRIMMSNARL"),
+        .cryId = CRY_GRIMMSNARL,
+        .natDexNum = NATIONAL_DEX_GRIMMSNARL,
+        .categoryName = _("Bulk Up"),
+        .height = 15,
+        .weight = 610,
+        .description = COMPOUND_STRING(
+            "Mega Evolution winds its hair into\n"
+            "thick coils around its body. With\n"
+            "them it hurls itself at foes, and its\n"
+            "strength grows with its mischief."),
+        .pokemonScale = 268,
+        .pokemonOffset = 2,
+        .trainerScale = 271,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_GrimmsnarlGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 1,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_GrimmsnarlGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 10,
+        .palette = gMonPalette_GrimmsnarlGmax,
+        .shinyPalette = gMonShinyPalette_GrimmsnarlGmax,
+        .iconSprite = gMonIcon_GrimmsnarlGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 14, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Grimmsnarl)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Grimmsnarl,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Grimmsnarl,
+            gShinyOverworldPalette_Grimmsnarl
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sGrimmsnarlLevelUpLearnset,
+        .teachableLearnset = sGrimmsnarlTeachableLearnset,
+        .formSpeciesIdTable = sGrimmsnarlFormSpeciesIdTable,
+        .formChangeTable = sGrimmsnarlFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
     [SPECIES_GRIMMSNARL_GMAX] =
@@ -6127,6 +6828,77 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .formSpeciesIdTable = sCopperajahFormSpeciesIdTable,
         .formChangeTable = sCopperajahFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_COPPERAJAH_MEGA] =
+    {
+        .baseHP        = 122,
+        .baseAttack    = 155,
+        .baseDefense   = 94,
+        .baseSpeed     = 20,
+        .baseSpAttack  = 100,
+        .baseSpDefense = 94,
+        .types = MON_TYPES(TYPE_STEEL, TYPE_FIGHTING),
+        .catchRate = 90,
+        .expYield = 225,
+        .evYield_Attack = 2,
+        .itemRare = ITEM_LAGGING_TAIL,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE, ABILITY_SHEER_FORCE },
+        .bodyColor = BODY_COLOR_GREEN,
+        .speciesName = _("COPPERAJAH"),
+        .cryId = CRY_COPPERAJAH,
+        .natDexNum = NATIONAL_DEX_COPPERAJAH,
+        .categoryName = _("Copperderm"),
+        .height = 30,
+        .weight = 6500,
+        .description = COMPOUND_STRING(
+            "Mega Evolution spreads a thick green\n"
+            "patina over its copper body. One\n"
+            "swing of its trunk can topple a\n"
+            "building, and it never tires."),
+        .pokemonScale = 275,
+        .pokemonOffset = 7,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_CopperajahGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_CopperajahGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 7,
+        .palette = gMonPalette_CopperajahGmax,
+        .shinyPalette = gMonShinyPalette_CopperajahGmax,
+        .iconSprite = gMonIcon_CopperajahGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 11, SHADOW_SIZE_L)
+        FOOTPRINT(Copperajah)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Copperajah,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Copperajah,
+            gShinyOverworldPalette_Copperajah
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sCopperajahLevelUpLearnset,
+        .teachableLearnset = sCopperajahTeachableLearnset,
+        .formSpeciesIdTable = sCopperajahFormSpeciesIdTable,
+        .formChangeTable = sCopperajahFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 
 #if P_GIGANTAMAX_FORMS
     [SPECIES_COPPERAJAH_GMAX] =

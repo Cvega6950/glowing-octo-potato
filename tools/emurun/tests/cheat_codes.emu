@@ -11,11 +11,11 @@ shot 02_nothing_happened.png
 mash B 300
 !expect_flag("FLAG_RECEIVED_MEGA_RING", 0, "nothing_from_a_wrong_code")
 
-# MEGA: the Mega Ring and the 48 Mega Stones this game's Megas use
+# MEGA: the Mega Ring and the 70 Mega Stones this game's Megas use
 !nes_code("MEGA")
 shot 03_mega_ring.png
-# 47 stones: Staraptite's Mega (Legends: Z-A) isn't in this game
-expect16 {gSpecialVar_0x8005} 47 forty_seven_mega_stones
+# 70 stones: Staraptite's Mega (Legends: Z-A) isn't in this game; Emerald Imperium's 23 are (D58)
+expect16 {gSpecialVar_0x8005} 70 seventy_mega_stones
 mash B 600
 shot 04_mega_stones.png
 mash B 600
@@ -25,6 +25,8 @@ mash B 600
 !expect_bag_quantity("items", "ITEM_CHARIZARDITE_X", 1)
 !expect_bag_quantity("items", "ITEM_DIANCITE", 1)
 !expect_bag_quantity("items", "ITEM_GARCHOMPITE", 1)
+!expect_bag_quantity("items", "ITEM_LUXRITE", 1)
+!expect_bag_quantity("items", "ITEM_COPPERAJITE", 1)
 # Again: nothing twice
 !nes_code("MEGA")
 shot 05_mega_again.png

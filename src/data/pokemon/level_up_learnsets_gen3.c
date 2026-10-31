@@ -43,6 +43,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_CATERPIE] = sCaterpieLevelUpLearnset,
     [SPECIES_METAPOD] = sMetapodLevelUpLearnset,
     [SPECIES_BUTTERFREE] = sButterfreeLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_BUTTERFREE_MEGA] = sButterfreeLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_BUTTERFREE_GMAX] = sButterfreeLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -209,6 +212,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_MACHOP] = sMachopLevelUpLearnset,
     [SPECIES_MACHOKE] = sMachokeLevelUpLearnset,
     [SPECIES_MACHAMP] = sMachampLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_MACHAMP_MEGA] = sMachampLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_MACHAMP_GMAX] = sMachampLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -303,6 +309,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #if P_FAMILY_KRABBY
     [SPECIES_KRABBY] = sKrabbyLevelUpLearnset,
     [SPECIES_KINGLER] = sKinglerLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_KINGLER_MEGA] = sKinglerLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_KINGLER_GMAX] = sKinglerLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -424,6 +433,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #endif // P_FAMILY_MAGIKARP
 #if P_FAMILY_LAPRAS
     [SPECIES_LAPRAS] = sLaprasLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_LAPRAS_MEGA] = sLaprasLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_LAPRAS_GMAX] = sLaprasLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -468,6 +480,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #if P_FAMILY_SNORLAX
     [SPECIES_MUNCHLAX] = sMunchlaxLevelUpLearnset,
     [SPECIES_SNORLAX] = sSnorlaxLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_SNORLAX_MEGA] = sSnorlaxLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_SNORLAX_GMAX] = sSnorlaxLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -814,6 +829,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_SLAKOTH] = sSlakothLevelUpLearnset,
     [SPECIES_VIGOROTH] = sVigorothLevelUpLearnset,
     [SPECIES_SLAKING] = sSlakingLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_SLAKING_MEGA] = sSlakingLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #endif // P_FAMILY_SLAKOTH
 #if P_FAMILY_NINCADA
     [SPECIES_NINCADA] = sNincadaLevelUpLearnset,
@@ -885,6 +903,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_BUDEW] = sBudewLevelUpLearnset,
     [SPECIES_ROSELIA] = sRoseliaLevelUpLearnset,
     [SPECIES_ROSERADE] = sRoseradeLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_ROSERADE_MEGA] = sRoseradeLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #endif // P_FAMILY_ROSELIA
 #if P_FAMILY_GULPIN
     [SPECIES_GULPIN] = sGulpinLevelUpLearnset,
@@ -990,6 +1011,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_DUSKULL] = sDuskullLevelUpLearnset,
     [SPECIES_DUSCLOPS] = sDusclopsLevelUpLearnset,
     [SPECIES_DUSKNOIR] = sDusknoirLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_DUSKNOIR_MEGA] = sDusknoirLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #endif // P_FAMILY_DUSKULL
 #if P_FAMILY_TROPIUS
     [SPECIES_TROPIUS] = sTropiusLevelUpLearnset,
@@ -1103,16 +1127,26 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_TURTWIG] = sTurtwigLevelUpLearnset,
     [SPECIES_GROTLE] = sGrotleLevelUpLearnset,
     [SPECIES_TORTERRA] = sTorterraLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_TORTERRA_MEGA] = sTorterraLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #endif // P_FAMILY_TURTWIG
 #if P_FAMILY_CHIMCHAR
     [SPECIES_CHIMCHAR] = sChimcharLevelUpLearnset,
     [SPECIES_MONFERNO] = sMonfernoLevelUpLearnset,
     [SPECIES_INFERNAPE] = sInfernapeLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_INFERNAPE_MEGA] = sInfernapeLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #endif // P_FAMILY_CHIMCHAR
 #if P_FAMILY_PIPLUP
     [SPECIES_PIPLUP] = sPiplupLevelUpLearnset,
     [SPECIES_PRINPLUP] = sPrinplupLevelUpLearnset,
     [SPECIES_EMPOLEON] = sEmpoleonLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_EMPOLEON_MEGA_O] = sEmpoleonLevelUpLearnset,
+    [SPECIES_EMPOLEON_MEGA_D] = sEmpoleonLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #endif // P_FAMILY_PIPLUP
 #if P_FAMILY_STARLY
     [SPECIES_STARLY] = sStarlyLevelUpLearnset,
@@ -1134,6 +1168,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_SHINX] = sShinxLevelUpLearnset,
     [SPECIES_LUXIO] = sLuxioLevelUpLearnset,
     [SPECIES_LUXRAY] = sLuxrayLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_LUXRAY_MEGA] = sLuxrayLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #endif // P_FAMILY_SHINX
 #if P_FAMILY_CRANIDOS
     [SPECIES_CRANIDOS] = sCranidosLevelUpLearnset,
@@ -1474,6 +1511,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #if P_FAMILY_TRUBBISH
     [SPECIES_TRUBBISH] = sTrubbishLevelUpLearnset,
     [SPECIES_GARBODOR] = sGarbodorLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_GARBODOR_MEGA] = sGarbodorLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_GARBODOR_GMAX] = sGarbodorLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -2153,6 +2193,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_BLIPBUG] = sBlipbugLevelUpLearnset,
     [SPECIES_DOTTLER] = sDottlerLevelUpLearnset,
     [SPECIES_ORBEETLE] = sOrbeetleLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_ORBEETLE_MEGA] = sOrbeetleLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_ORBEETLE_GMAX] = sOrbeetleLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -2172,6 +2215,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #if P_FAMILY_CHEWTLE
     [SPECIES_CHEWTLE] = sChewtleLevelUpLearnset,
     [SPECIES_DREDNAW] = sDrednawLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_DREDNAW_MEGA] = sDrednawLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_DREDNAW_GMAX] = sDrednawLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -2184,6 +2230,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_ROLYCOLY] = sRolycolyLevelUpLearnset,
     [SPECIES_CARKOL] = sCarkolLevelUpLearnset,
     [SPECIES_COALOSSAL] = sCoalossalLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_COALOSSAL_MEGA] = sCoalossalLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_COALOSSAL_GMAX] = sCoalossalLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -2191,10 +2240,16 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #if P_FAMILY_APPLIN
     [SPECIES_APPLIN] = sApplinLevelUpLearnset,
     [SPECIES_FLAPPLE] = sFlappleLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_FLAPPLE_MEGA] = sFlappleLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_FLAPPLE_GMAX] = sFlappleLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
     [SPECIES_APPLETUN] = sAppletunLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_APPLETUN_MEGA] = sAppletunLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_APPLETUN_GMAX] = sAppletunLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -2204,6 +2259,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #if P_FAMILY_SILICOBRA
     [SPECIES_SILICOBRA] = sSilicobraLevelUpLearnset,
     [SPECIES_SANDACONDA] = sSandacondaLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_SANDACONDA_MEGA] = sSandacondaLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_SANDACONDA_GMAX] = sSandacondaLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -2220,10 +2278,16 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #if P_FAMILY_TOXEL
     [SPECIES_TOXEL] = sToxelLevelUpLearnset,
     [SPECIES_TOXTRICITY_AMPED] = sToxtricityAmpedLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_TOXTRICITY_AMPED_MEGA] = sToxtricityAmpedLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_TOXTRICITY_AMPED_GMAX] = sToxtricityAmpedLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
     [SPECIES_TOXTRICITY_LOW_KEY] = sToxtricityLowKeyLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_TOXTRICITY_LOW_KEY_MEGA] = sToxtricityLowKeyLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_TOXTRICITY_LOW_KEY_GMAX] = sToxtricityLowKeyLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -2231,6 +2295,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #if P_FAMILY_SIZZLIPEDE
     [SPECIES_SIZZLIPEDE] = sSizzlipedeLevelUpLearnset,
     [SPECIES_CENTISKORCH] = sCentiskorchLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_CENTISKORCH_MEGA] = sCentiskorchLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_CENTISKORCH_GMAX] = sCentiskorchLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -2257,6 +2324,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
     [SPECIES_IMPIDIMP] = sImpidimpLevelUpLearnset,
     [SPECIES_MORGREM] = sMorgremLevelUpLearnset,
     [SPECIES_GRIMMSNARL] = sGrimmsnarlLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_GRIMMSNARL_MEGA] = sGrimmsnarlLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_GRIMMSNARL_GMAX] = sGrimmsnarlLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS
@@ -2298,6 +2368,9 @@ const struct LevelUpMove *const gLevelUpLearnsets_Gen3[NUM_SPECIES] = {
 #if P_FAMILY_CUFANT
     [SPECIES_CUFANT] = sCufantLevelUpLearnset,
     [SPECIES_COPPERAJAH] = sCopperajahLevelUpLearnset,
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_COPPERAJAH_MEGA] = sCopperajahLevelUpLearnset,
+#endif // P_IMPERIUM_MEGA_EVOLUTIONS
 #if P_GIGANTAMAX_FORMS
     [SPECIES_COPPERAJAH_GMAX] = sCopperajahLevelUpLearnset,
 #endif // P_GIGANTAMAX_FORMS

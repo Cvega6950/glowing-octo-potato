@@ -3697,7 +3697,80 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         )
         .levelUpLearnset = sSlakingLevelUpLearnset,
         .teachableLearnset = sSlakingTeachableLearnset,
+        .formSpeciesIdTable = sSlakingFormSpeciesIdTable,
+        .formChangeTable = sSlakingFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_SLAKING_MEGA] =
+    {
+        .baseHP        = 150,
+        .baseAttack    = 160,
+        .baseDefense   = 110,
+        .baseSpeed     = 110,
+        .baseSpAttack  = 95,
+        .baseSpDefense = 75,
+        .types = MON_TYPES(TYPE_NORMAL),
+        .catchRate = 45,
+        .expYield = 335,
+        .evYield_HP = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 15,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_COMATOSE, ABILITY_COMATOSE, ABILITY_COMATOSE },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("SLAKING"),
+        .cryId = CRY_SLAKING,
+        .natDexNum = NATIONAL_DEX_SLAKING,
+        .categoryName = _("Lazy"),
+        .height = 20,
+        .weight = 1305,
+        .description = COMPOUND_STRING(
+            "Mega Evolution bristles its pale fur\n"
+            "into jagged spikes. It never truly\n"
+            "wakes up, yet it fights in its sleep\n"
+            "with terrifying strength."),
+        .pokemonScale = 256,
+        .pokemonOffset = 2,
+        .trainerScale = 300,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_SlakingMega,
+        .frontPicSize = MON_COORDS_SIZE(56, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_SlakingMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_H_SHAKE,
+        .palette = gMonPalette_SlakingMega,
+        .shinyPalette = gMonShinyPalette_SlakingMega,
+        .iconSprite = gMonIcon_Slaking,
+        .iconPalIndex = P_GBA_STYLE_SPECIES_ICONS ? 1 : 2,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 6, SHADOW_SIZE_XL_BATTLE_ONLY)
+        FOOTPRINT(Slaking)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Slaking,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Slaking,
+            gShinyOverworldPalette_Slaking
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sSlakingLevelUpLearnset,
+        .teachableLearnset = sSlakingTeachableLearnset,
+        .formSpeciesIdTable = sSlakingFormSpeciesIdTable,
+        .formChangeTable = sSlakingFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SLAKOTH
 
 #if P_FAMILY_NINCADA
@@ -6249,7 +6322,82 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         )
         .levelUpLearnset = sRoseradeLevelUpLearnset,
         .teachableLearnset = sRoseradeTeachableLearnset,
+        .formSpeciesIdTable = sRoseradeFormSpeciesIdTable,
+        .formChangeTable = sRoseradeFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_ROSERADE_MEGA] =
+    {
+        .baseHP        = 60,
+        .baseAttack    = 80,
+        .baseDefense   = 90,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 140,
+        .baseSpDefense = 125,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_POISON),
+        .catchRate = 75,
+        .expYield = 308,
+        .evYield_SpAttack = 3,
+        .itemRare = ITEM_POISON_BARB,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FAIRY, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_TECHNICIAN, ABILITY_TECHNICIAN, ABILITY_TECHNICIAN },
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = TRUE,
+        .speciesName = _("ROSERADE"),
+        .cryId = CRY_ROSERADE,
+        .natDexNum = NATIONAL_DEX_ROSERADE,
+        .categoryName = _("Bouquet"),
+        .height = 9,
+        .weight = 145,
+        .description = COMPOUND_STRING(
+            "Mega Evolution makes its bouquets\n"
+            "bloom in full. Its white cape hides\n"
+            "thorny whips, and the scent of its\n"
+            "roses dazes anyone who comes near."),
+        .pokemonScale = 338,
+        .pokemonOffset = 10,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_RoseradeMega,
+        .frontPicSize = MON_COORDS_SIZE(56, 56),
+        .frontPicYOffset = 5,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_RoseradeMega,
+        .backPicSize = MON_COORDS_SIZE(56, 64),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_RoseradeMega,
+        .shinyPalette = gMonShinyPalette_RoseradeMega,
+        .iconSprite = gMonIcon_Roserade,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 6, SHADOW_SIZE_S)
+        FOOTPRINT(Roserade)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Roserade,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+            gOverworldPalette_Roserade,
+            gShinyOverworldPalette_Roserade
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sRoseradeLevelUpLearnset,
+        .teachableLearnset = sRoseradeTeachableLearnset,
+        .formSpeciesIdTable = sRoseradeFormSpeciesIdTable,
+        .formChangeTable = sRoseradeFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_ROSELIA
 
@@ -10122,7 +10270,83 @@ const struct SpeciesInfo gSpeciesInfoGen3[] =
         )
         .levelUpLearnset = sDusknoirLevelUpLearnset,
         .teachableLearnset = sDusknoirTeachableLearnset,
+        .formSpeciesIdTable = sDusknoirFormSpeciesIdTable,
+        .formChangeTable = sDusknoirFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_DUSKNOIR_MEGA] =
+    {
+        .baseHP        = 105,
+        .baseAttack    = 110,
+        .baseDefense   = 150,
+        .baseSpeed     = 45,
+        .baseSpAttack  = 65,
+        .baseSpDefense = 150,
+        .types = MON_TYPES(TYPE_GHOST, TYPE_DARK),
+        .catchRate = 45,
+        .expYield = 313,
+        .evYield_Defense = 1,
+        .evYield_SpDefense = 2,
+        .itemRare = ITEM_SPELL_TAG,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 25,
+        .friendship = 35,
+        .growthRate = GROWTH_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_AMORPHOUS),
+        .abilities = { ABILITY_PRANKSTER, ABILITY_PRANKSTER, ABILITY_SHADOW_TAG },
+        .bodyColor = BODY_COLOR_BLACK,
+        .speciesName = _("DUSKNOIR"),
+        .cryId = CRY_DUSKNOIR,
+        .natDexNum = NATIONAL_DEX_DUSKNOIR,
+        .categoryName = _("Gripper"),
+        .height = 22,
+        .weight = 1066,
+        .description = COMPOUND_STRING(
+            "Mega Evolution darkens its body and\n"
+            "rings the antenna on its head with a\n"
+            "red halo. Its grip can drag a foe's\n"
+            "spirit off to another world."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 348,
+        .trainerOffset = 6,
+        .frontPic = gMonFrontPic_DusknoirMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .enemyMonElevation = 6,
+        .backPic = gMonBackPic_DusknoirMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 6,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_DusknoirMega,
+        .shinyPalette = gMonShinyPalette_DusknoirMega,
+        .iconSprite = gMonIcon_Dusknoir,
+        .iconPalIndex = 2,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(6, 13, SHADOW_SIZE_M)
+        FOOTPRINT(Dusknoir)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Dusknoir,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Dusknoir,
+            gShinyOverworldPalette_Dusknoir
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sDusknoirLevelUpLearnset,
+        .teachableLearnset = sDusknoirTeachableLearnset,
+        .formSpeciesIdTable = sDusknoirFormSpeciesIdTable,
+        .formChangeTable = sDusknoirFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_DUSKULL
 

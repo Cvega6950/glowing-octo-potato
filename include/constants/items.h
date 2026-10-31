@@ -1170,6 +1170,32 @@ enum __attribute__((packed)) Item
     ITEM_TM197,
     ITEM_TM198,
 
+    // Crystal Imperium (D58): Emerald Imperium's Mega Stones (1001-1023). Like the TMs above they
+    // come after every older item, so item ids in older saves keep their meaning; add new items after them.
+    ITEM_BUTTERFRITE,
+    ITEM_MACHAMPITE,
+    ITEM_KINGLERITE,
+    ITEM_LAPRASITE,
+    ITEM_SNORLAXITE,
+    ITEM_SLAKITE,
+    ITEM_TORTERRITE,
+    ITEM_INFERNAPITE,
+    ITEM_EMPOLEONITE_O,
+    ITEM_EMPOLEONITE_D,
+    ITEM_LUXRITE,
+    ITEM_ROSERADITE,
+    ITEM_DUSKNOIRITE,
+    ITEM_GARBODORITE,
+    ITEM_ORBEETLITE,
+    ITEM_DREDNAWITE,
+    ITEM_COALOSSITE,
+    ITEM_APPLITE,
+    ITEM_SANDACONDITE,
+    ITEM_TOXTRICITITE,
+    ITEM_CENTISKITE,
+    ITEM_GRIMMITE,
+    ITEM_COPPERAJITE,
+
     ITEMS_COUNT,
     ITEM_FIELD_ARROW = ITEMS_COUNT,
 

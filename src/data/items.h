@@ -107,6 +107,11 @@ static const u8 sLucarioniteDesc[]    = _("This stone enables\n"
                                           "Lucario to Mega\n"
                                           "Evolve in battle.");
 
+// Crystal Imperium (D58)
+static const u8 sEmpoleoniteDesc[]    = _("This stone enables\n"
+                                          "Empoleon to Mega\n"
+                                          "Evolve in battle.");
+
 static const u8 sSeaIncenseDesc[]     = _("A hold item that\n"
                                           "slightly boosts\n"
                                           "Water-type moves.");
@@ -7279,6 +7284,415 @@ const struct ItemInfo gItemsInfo[] =
         .flingPower = 80,
         .iconPic = gItemIcon_Glimmoranite,
         .iconPalette = gItemIconPalette_Glimmoranite,
+    },
+
+    // Crystal Imperium (D58): Emerald Imperium's Mega Stones
+    [ITEM_BUTTERFRITE] =
+    {
+        .name = ITEM_NAME("BUTTERFRITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Butterfree to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Butterfrite,
+    },
+
+    [ITEM_MACHAMPITE] =
+    {
+        .name = ITEM_NAME("MACHAMPITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Machamp to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Machampite,
+    },
+
+    [ITEM_KINGLERITE] =
+    {
+        .name = ITEM_NAME("KINGLERITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Kingler to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Kinglerite,
+    },
+
+    [ITEM_LAPRASITE] =
+    {
+        .name = ITEM_NAME("LAPRASITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Lapras to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Laprasite,
+    },
+
+    [ITEM_SNORLAXITE] =
+    {
+        .name = ITEM_NAME("SNORLAXITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Snorlax to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Snorlaxite,
+    },
+
+    [ITEM_SLAKITE] =
+    {
+        .name = ITEM_NAME("SLAKITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Slaking to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Slakite,
+    },
+
+    [ITEM_TORTERRITE] =
+    {
+        .name = ITEM_NAME("TORTERRITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Torterra to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Torterrite,
+    },
+
+    [ITEM_INFERNAPITE] =
+    {
+        .name = ITEM_NAME("INFERNAPITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Infernape to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Infernapite,
+    },
+
+    [ITEM_EMPOLEONITE_O] =
+    {
+        .name = ITEM_NAME("EMPOLEONITE O"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sEmpoleoniteDesc,
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_EmpoleoniteO,
+    },
+
+    [ITEM_EMPOLEONITE_D] =
+    {
+        .name = ITEM_NAME("EMPOLEONITE D"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = sEmpoleoniteDesc,
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_EmpoleoniteD,
+    },
+
+    [ITEM_LUXRITE] =
+    {
+        .name = ITEM_NAME("LUXRITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Luxray to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Luxrite,
+    },
+
+    [ITEM_ROSERADITE] =
+    {
+        .name = ITEM_NAME("ROSERADITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Roserade to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Roseradite,
+    },
+
+    [ITEM_DUSKNOIRITE] =
+    {
+        .name = ITEM_NAME("DUSKNOIRITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Dusknoir to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Dusknoirite,
+    },
+
+    [ITEM_GARBODORITE] =
+    {
+        .name = ITEM_NAME("GARBODORITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Garbodor to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Garbodorite,
+    },
+
+    [ITEM_ORBEETLITE] =
+    {
+        .name = ITEM_NAME("ORBEETLITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Orbeetle to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Orbeetlite,
+    },
+
+    [ITEM_DREDNAWITE] =
+    {
+        .name = ITEM_NAME("DREDNAWITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Drednaw to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Drednawite,
+    },
+
+    [ITEM_COALOSSITE] =
+    {
+        .name = ITEM_NAME("COALOSSITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Coalossal to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Coalossite,
+    },
+
+    [ITEM_APPLITE] =
+    {
+        .name = ITEM_NAME("APPLITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Appletun or Flapple\n"
+            "to Mega Evolve."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Applite,
+    },
+
+    [ITEM_SANDACONDITE] =
+    {
+        .name = ITEM_NAME("SANDACONDITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Sandaconda to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Sandacondite,
+    },
+
+    [ITEM_TOXTRICITITE] =
+    {
+        .name = ITEM_NAME("TOXTRICITITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Toxtricity to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Toxtricitite,
+    },
+
+    [ITEM_CENTISKITE] =
+    {
+        .name = ITEM_NAME("CENTISKITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Centiskorch to\n"
+            "Mega Evolve."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Centiskite,
+    },
+
+    [ITEM_GRIMMITE] =
+    {
+        .name = ITEM_NAME("GRIMMITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Grimmsnarl to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Grimmite,
+    },
+
+    [ITEM_COPPERAJITE] =
+    {
+        .name = ITEM_NAME("COPPERAJITE"),
+        .price = 10000, // Crystal Imperium: sold at the Goldenrod Dept. Store
+        .holdEffect = HOLD_EFFECT_MEGA_STONE,
+        .description = COMPOUND_STRING(
+            "This stone enables\n"
+            "Copperajah to Mega\n"
+            "Evolve in battle."),
+        .pocket = POCKET_ITEMS,
+        .sortType = ITEM_TYPE_MEGA_STONE,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .flingPower = 80,
+        .iconPic = gItemIcon_Kangaskhanite,
+        .iconPalette = gItemIconPalette_Copperajite,
     },
 
 // GB Player

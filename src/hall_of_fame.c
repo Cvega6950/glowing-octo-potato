@@ -477,6 +477,24 @@ static void Task_Hof_InitMonData(u8 taskId)
         gTasks[taskId].func = Task_Hof_InitTeamSaveData;
 }
 
+// Crystal Imperium (D58): SPECIES_EGG was 1573 until Emerald Imperium's Megas were appended after
+// SPECIES_GLIMMORA_MEGA. A record never holds a Mega (they revert before it is saved), so 1573 there
+// is an Egg saved by an older version.
+static void FixOldHallOfFameEggs(void)
+{
+    u32 i, j;
+    struct HallofFameTeam *team = gHoFSaveBuffer;
+
+    for (i = 0; i < HALL_OF_FAME_MAX_TEAMS; i++, team++)
+    {
+        for (j = 0; j < PARTY_SIZE; j++)
+        {
+            if (team->mon[j].species == SPECIES_GLIMMORA_MEGA + 1)
+                team->mon[j].species = SPECIES_EGG;
+        }
+    }
+}
+
 static void Task_Hof_InitTeamSaveData(u8 taskId)
 {
     u16 i;
@@ -490,6 +508,8 @@ static void Task_Hof_InitTeamSaveData(u8 taskId)
     {
         if (LoadGameSave(SAVE_HALL_OF_FAME) != SAVE_STATUS_OK)
             memset(gHoFSaveBuffer, 0, SECTOR_SIZE * NUM_HOF_SECTORS);
+        else
+            FixOldHallOfFameEggs();
     }
 
     for (i = 0; i < HALL_OF_FAME_MAX_TEAMS; i++, lastSavedTeam++)
@@ -869,6 +889,7 @@ static void Task_HofPC_CopySaveData(u8 taskId)
         u16 i;
         struct HallofFameTeam *savedTeams;
 
+        FixOldHallOfFameEggs();
         savedTeams = gHoFSaveBuffer;
         for (i = 0; i < HALL_OF_FAME_MAX_TEAMS; i++, savedTeams++)
         {

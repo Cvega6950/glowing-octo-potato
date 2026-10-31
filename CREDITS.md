@@ -135,6 +135,17 @@ The side battles' trainers (docs/crystal_imperium/DECISIONS.md D41), from their 
 - [Galaxeeh](https://github.com/TeamAquasHideout/Team-Aquas-Asset-Repo/tree/main/Trainer%20Front%20Sprites/Galaxeeh): Cyrus's battle sprite, and the GBA version of his overworld sprite by [PurpleZaffre](https://www.deviantart.com/purplezaffre)
 - Shared through [Team Aqua's Asset Repo](https://github.com/TeamAquasHideout/Team-Aquas-Asset-Repo)
 
+### Crystal Imperium Mega Sprite Credits:
+Emerald Imperium's newly drawn Megas (docs/crystal_imperium/DECISIONS.md D58), released by
+[iriv24](https://github.com/iriv24) on [Team Aqua's Asset Repo](https://github.com/TeamAquasHideout/Team-Aquas-Asset-Repo/tree/main/Pokemon/New%20Megas/iriv24)
+for use with credit to their artists:
+- camioftargon: Mega Luxray, Mega Infernape (and its shiny), Mega Dusknoir, Mega Roserade's back sprite
+- Rachel T: Mega Roserade's front sprite
+- IridescentMirage: Mega Empoleon O and Mega Empoleon D
+- Pokets: Mega Slaking
+- X, iriv24's brother: Mega Torterra
+- The other 16 of Emerald Imperium's Megas use pokeemerald-expansion's Gigantamax sprites.
+
 ## Resources
 - [Sugimori Palettes and Sprites](https://www.pokecommunity.com/showthread.php?t=336945)
 - [DS Style Gen VI Sprites](https://www.pokecommunity.com/showthread.php?t=314422)

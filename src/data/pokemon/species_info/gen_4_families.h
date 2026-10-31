@@ -217,7 +217,83 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         )
         .levelUpLearnset = sTorterraLevelUpLearnset,
         .teachableLearnset = sTorterraTeachableLearnset,
+        .formSpeciesIdTable = sTorterraFormSpeciesIdTable,
+        .formChangeTable = sTorterraFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_TORTERRA_MEGA] =
+    {
+        .dexNotRequired = TRUE,
+        .baseHP        = 115,
+        .baseAttack    = 139,
+        .baseDefense   = 135,
+        .baseSpeed     = 56,
+        .baseSpAttack  = 75,
+        .baseSpDefense = 105,
+        .types = MON_TYPES(TYPE_GRASS, TYPE_GROUND),
+        .catchRate = 45,
+        .expYield = 313,
+        .evYield_Attack = 2,
+        .evYield_Defense = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MONSTER, EGG_GROUP_GRASS),
+        .abilities = { ABILITY_THICK_FAT, ABILITY_THICK_FAT, ABILITY_THICK_FAT },
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = TRUE,
+        .speciesName = _("TORTERRA"),
+        .cryId = CRY_TORTERRA,
+        .natDexNum = NATIONAL_DEX_TORTERRA,
+        .categoryName = _("Continent"),
+        .height = 22,
+        .weight = 3100,
+        .description = COMPOUND_STRING(
+            "Mega Evolution turns the tree on its\n"
+            "back into a whole grove. Vines hang\n"
+            "from the branches, and small Pokémon\n"
+            "make their homes beneath them."),
+        .pokemonScale = 256,
+        .pokemonOffset = 0,
+        .trainerScale = 348,
+        .trainerOffset = 6,
+        .frontPic = gMonFrontPic_TorterraMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_TorterraMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 4,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_GREEN,
+        .palette = gMonPalette_TorterraMega,
+        .shinyPalette = gMonShinyPalette_TorterraMega,
+        .iconSprite = gMonIcon_Torterra,
+        .iconPalIndex = 1,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(1, 10, SHADOW_SIZE_L)
+        FOOTPRINT(Torterra)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Torterra,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+            gOverworldPalette_Torterra,
+            gShinyOverworldPalette_Torterra
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sTorterraLevelUpLearnset,
+        .teachableLearnset = sTorterraTeachableLearnset,
+        .formSpeciesIdTable = sTorterraFormSpeciesIdTable,
+        .formChangeTable = sTorterraFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_TURTWIG
 
 #if P_FAMILY_CHIMCHAR
@@ -442,7 +518,83 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         )
         .levelUpLearnset = sInfernapeLevelUpLearnset,
         .teachableLearnset = sInfernapeTeachableLearnset,
+        .formSpeciesIdTable = sInfernapeFormSpeciesIdTable,
+        .formChangeTable = sInfernapeFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_INFERNAPE_MEGA] =
+    {
+        .dexNotRequired = TRUE,
+        .baseHP        = 76,
+        .baseAttack    = 137,
+        .baseDefense   = 82,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 137,
+        .baseSpDefense = 82,
+        .types = MON_TYPES(TYPE_FIRE, TYPE_FIGHTING),
+        .catchRate = 45,
+        .expYield = 317,
+        .evYield_Attack = 1,
+        .evYield_Speed = 1,
+        .evYield_SpAttack = 1,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD, EGG_GROUP_HUMAN_LIKE),
+        .abilities = { ABILITY_IRON_FIST, ABILITY_IRON_FIST, ABILITY_IRON_FIST },
+        .bodyColor = BODY_COLOR_BROWN,
+        .speciesName = _("INFERNAPE"),
+        .cryId = CRY_INFERNAPE,
+        .natDexNum = NATIONAL_DEX_INFERNAPE,
+        .categoryName = _("Flame"),
+        .height = 12,
+        .weight = 550,
+        .description = COMPOUND_STRING(
+            "Mega Evolution sets its whole body\n"
+            "ablaze. The flame on its head trails\n"
+            "behind it like a mane, and the golden\n"
+            "bands on its arms glow red-hot."),
+        .pokemonScale = 282,
+        .pokemonOffset = 3,
+        .trainerScale = 256,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_InfernapeMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_InfernapeMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_RED,
+        .palette = gMonPalette_InfernapeMega,
+        .shinyPalette = gMonShinyPalette_InfernapeMega,
+        .iconSprite = gMonIcon_Infernape,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(0, 9, SHADOW_SIZE_L)
+        FOOTPRINT(Infernape)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Infernape,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Infernape,
+            gShinyOverworldPalette_Infernape
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sInfernapeLevelUpLearnset,
+        .teachableLearnset = sInfernapeTeachableLearnset,
+        .formSpeciesIdTable = sInfernapeFormSpeciesIdTable,
+        .formChangeTable = sInfernapeFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_CHIMCHAR
 
 #if P_FAMILY_PIPLUP
@@ -675,7 +827,151 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         )
         .levelUpLearnset = sEmpoleonLevelUpLearnset,
         .teachableLearnset = sEmpoleonTeachableLearnset,
+        .formSpeciesIdTable = sEmpoleonFormSpeciesIdTable,
+        .formChangeTable = sEmpoleonFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_EMPOLEON_MEGA_O] =
+    {
+        .dexNotRequired = TRUE,
+        .baseHP        = 84,
+        .baseAttack    = 150,
+        .baseDefense   = 83,
+        .baseSpeed     = 120,
+        .baseSpAttack  = 110,
+        .baseSpDefense = 83,
+        .types = MON_TYPES(TYPE_WATER, TYPE_STEEL),
+        .catchRate = 45,
+        .expYield = 315,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
+        .abilities = { ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY, ABILITY_ADAPTABILITY },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("EMPOLEON"),
+        .cryId = CRY_EMPOLEON,
+        .natDexNum = NATIONAL_DEX_EMPOLEON,
+        .categoryName = _("Emperor"),
+        .height = 17,
+        .weight = 845,
+        .description = COMPOUND_STRING(
+            "Mega Evolution hones its wings into\n"
+            "blades sharper than steel. It cuts\n"
+            "through the water at great speed and\n"
+            "strikes before foes can react."),
+        .pokemonScale = 259,
+        .pokemonOffset = 0,
+        .trainerScale = 290,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_EmpoleonMegaO,
+        .frontPicSize = MON_COORDS_SIZE(48, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_EmpoleonMegaO,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
+        .palette = gMonPalette_EmpoleonMegaO,
+        .shinyPalette = gMonShinyPalette_EmpoleonMegaO,
+        .iconSprite = gMonIcon_Empoleon,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(2, 12, SHADOW_SIZE_M)
+        FOOTPRINT(Empoleon)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Empoleon,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Empoleon,
+            gShinyOverworldPalette_Empoleon
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sEmpoleonLevelUpLearnset,
+        .teachableLearnset = sEmpoleonTeachableLearnset,
+        .formSpeciesIdTable = sEmpoleonFormSpeciesIdTable,
+        .formChangeTable = sEmpoleonFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+
+    [SPECIES_EMPOLEON_MEGA_D] =
+    {
+        .dexNotRequired = TRUE,
+        .baseHP        = 118,
+        .baseAttack    = 86,
+        .baseDefense   = 88,
+        .baseSpeed     = 50,
+        .baseSpAttack  = 131,
+        .baseSpDefense = 157,
+        .types = MON_TYPES(TYPE_WATER, TYPE_STEEL),
+        .catchRate = 45,
+        .expYield = 315,
+        .evYield_SpAttack = 3,
+        .genderRatio = PERCENT_FEMALE(12.5),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_WATER_1, EGG_GROUP_FIELD),
+        .abilities = { ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD, ABILITY_LIGHTNING_ROD },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("EMPOLEON"),
+        .cryId = CRY_EMPOLEON,
+        .natDexNum = NATIONAL_DEX_EMPOLEON,
+        .categoryName = _("Emperor"),
+        .height = 17,
+        .weight = 845,
+        .description = COMPOUND_STRING(
+            "Mega Evolution folds its wings into\n"
+            "a great round shield. Standing\n"
+            "behind it, this Pokémon holds firm\n"
+            "against even the fiercest waves."),
+        .pokemonScale = 259,
+        .pokemonOffset = 0,
+        .trainerScale = 290,
+        .trainerOffset = 1,
+        .frontPic = gMonFrontPic_EmpoleonMegaD,
+        .frontPicSize = MON_COORDS_SIZE(56, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_EmpoleonMegaD,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHAKE_GLOW_BLUE,
+        .palette = gMonPalette_EmpoleonMegaD,
+        .shinyPalette = gMonShinyPalette_EmpoleonMegaD,
+        .iconSprite = gMonIcon_Empoleon,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(2, 12, SHADOW_SIZE_M)
+        FOOTPRINT(Empoleon)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Empoleon,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Empoleon,
+            gShinyOverworldPalette_Empoleon
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sEmpoleonLevelUpLearnset,
+        .teachableLearnset = sEmpoleonTeachableLearnset,
+        .formSpeciesIdTable = sEmpoleonFormSpeciesIdTable,
+        .formChangeTable = sEmpoleonFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_PIPLUP
 
 #if P_FAMILY_STARLY
@@ -1615,7 +1911,80 @@ const struct SpeciesInfo gSpeciesInfoGen4[] =
         )
         .levelUpLearnset = sLuxrayLevelUpLearnset,
         .teachableLearnset = sLuxrayTeachableLearnset,
+        .formSpeciesIdTable = sLuxrayFormSpeciesIdTable,
+        .formChangeTable = sLuxrayFormChangeTable,
     },
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_LUXRAY_MEGA] =
+    {
+        .dexNotRequired = TRUE,
+        .baseHP        = 95,
+        .baseAttack    = 130,
+        .baseDefense   = 79,
+        .baseSpeed     = 130,
+        .baseSpAttack  = 110,
+        .baseSpDefense = 79,
+        .types = MON_TYPES(TYPE_ELECTRIC, TYPE_DARK),
+        .catchRate = 45,
+        .expYield = 312,
+        .evYield_Attack = 3,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_SLOW,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_FIELD),
+        .abilities = { ABILITY_STRONG_JAW, ABILITY_STRONG_JAW, ABILITY_STRONG_JAW },
+        .bodyColor = BODY_COLOR_BLUE,
+        .speciesName = _("LUXRAY"),
+        .cryId = CRY_LUXRAY,
+        .natDexNum = NATIONAL_DEX_LUXRAY,
+        .categoryName = _("Gleam Eyes"),
+        .height = 14,
+        .weight = 420,
+        .description = COMPOUND_STRING(
+            "Mega Evolution lights its mane like a\n"
+            "storm. Its eyes see through any wall, and\n"
+            "its fangs crackle with electricity."),
+        .pokemonScale = 265,
+        .pokemonOffset = 2,
+        .trainerScale = 262,
+        .trainerOffset = 0,
+        .frontPic = gMonFrontPic_LuxrayMega,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 0,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_LuxrayMega,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 0,
+        .backAnimId = BACK_ANIM_SHRINK_GROW_VIBRATE,
+        .palette = gMonPalette_LuxrayMega,
+        .shinyPalette = gMonShinyPalette_LuxrayMega,
+        .iconSprite = gMonIcon_Luxray,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        SHADOW(-1, 10, SHADOW_SIZE_L)
+        FOOTPRINT(Luxray)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Luxray,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following,
+            gOverworldPalette_Luxray,
+            gShinyOverworldPalette_Luxray
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sLuxrayLevelUpLearnset,
+        .teachableLearnset = sLuxrayTeachableLearnset,
+        .formSpeciesIdTable = sLuxrayFormSpeciesIdTable,
+        .formChangeTable = sLuxrayFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SHINX
 
 #if P_FAMILY_CRANIDOS

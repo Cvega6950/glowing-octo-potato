@@ -125,7 +125,7 @@ JOHTO = [
     Battle("FANTINA", 656, "FANTINA", "Leader Hns", "Fantina Hns", "Female", "Hg Girl 1", "Purple",
            "OBJ_EVENT_GFX_FANTINA_HNS", [("EcruteakCity_hns", 41, 41, "down")],
            ("badges", 3),
-           [("GHOST_GEM", 10), ("TM_POLTERGEIST", 1), ("GENGARITE", 1), ("LINKING_CORD", 1)],
+           [("GHOST_GEM", 10), ("TM_POLTERGEIST", 1), ("GENGARITE", 1), ("DUSKNOIRITE", 1), ("LINKING_CORD", 1)],
            {"not_yet": ["Bonjour! I am FANTINA, GYM LEADER of HEARTHOME CITY. I came to see the dances of "
                         "ECRUTEAK!", "Come back with three GYM BADGES. Then we dance a battle, yes?"],
             "challenge": ["Ah, three BADGES! Then you are ready to dance with my GHOST POKéMON! Shall we?"],
@@ -137,7 +137,7 @@ JOHTO = [
     Battle("MAYLENE", 657, "MAYLENE", "Leader Hns", "Maylene Hns", "Female", "Hg Girl 1", "Orange",
            "OBJ_EVENT_GFX_MAYLENE_HNS", [("CianwoodCity_hns", 17, 46, "down")],
            ("badges", 4),
-           [("FIGHTING_GEM", 10), ("TM_CLOSE_COMBAT", 1), ("LUCARIONITE", 1)],
+           [("FIGHTING_GEM", 10), ("TM_CLOSE_COMBAT", 1), ("LUCARIONITE", 1), ("MACHAMPITE", 1)],
            {"not_yet": ["I'm MAYLENE, GYM LEADER of VEILSTONE CITY. I came to train with CHUCK!",
                         "Come back with four GYM BADGES, and I'll battle you with everything I've got!"],
             "challenge": ["Four BADGES! Okay... I'm ready. Let's give this battle everything we have!"],
@@ -149,7 +149,7 @@ JOHTO = [
     Battle("WAKE", 658, "WAKE", "Leader Hns", "Wake Hns", "Male", "Hg Boy 1", "Blue",
            "OBJ_EVENT_GFX_WAKE_HNS", [("LakeOfRage_hns", 49, 30, "left", ["LAYOUT_LAKE_OF_RAGE_LOW_TIDE_HNS"])],
            ("badges", 5),
-           [("WATER_GEM", 10), ("GYARADOSITE", 1), ("KINGS_ROCK", 1)],
+           [("WATER_GEM", 10), ("GYARADOSITE", 1), ("DREDNAWITE", 1), ("LAPRASITE", 1), ("KINGS_ROCK", 1)],
            {"not_yet": ["Wahahah! I'm CRASHER WAKE, PASTORIA CITY's GYM LEADER! I heard this lake makes "
                         "GYARADOS go wild!", "Come back with five GYM BADGES, and I'll crash right into you!"],
             "challenge": ["Five BADGES? Then hold on tight! My WATER POKéMON hit like a tidal wave! Ready?"],
@@ -160,7 +160,7 @@ JOHTO = [
     Battle("BYRON", 659, "BYRON", "Leader Hns", "Byron Hns", "Male", "Hg Boy 1", "Dark Red",
            "OBJ_EVENT_GFX_BYRON_HNS", [("OlivineCity_hns", 41, 51, "left")],
            ("badges", 6),
-           [("STEEL_GEM", 10), ("TM_STEEL_BEAM", 1), ("METAGROSSITE", 1), ("METAL_COAT", 1)],
+           [("STEEL_GEM", 10), ("TM_STEEL_BEAM", 1), ("METAGROSSITE", 1), ("COPPERAJITE", 1), ("METAL_COAT", 1)],
            {"not_yet": ["Bwahahaha! I'm BYRON, GYM LEADER of CANALAVE CITY! I sailed here to see "
                         "JASMINE's STEEL POKéMON!", "Come back with six GYM BADGES, youngster!"],
             "challenge": ["Six BADGES! Bwahahaha! Then let's see if you can dent my STEEL POKéMON!"],

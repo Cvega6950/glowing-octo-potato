@@ -464,7 +464,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_GENDER_DIFFERENCES
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Butterfree's art
     const u32 gMonFrontPic_ButterfreeGmax[] = INCBIN_U32("graphics/pokemon/butterfree/gmax/front.4bpp.smol");
     const u32 gMonBackPic_ButterfreeGmax[] = INCBIN_U32("graphics/pokemon/butterfree/gmax/back.4bpp.smol");
     const u16 gMonPalette_ButterfreeGmax[] = INCBIN_U16("graphics/pokemon/butterfree/gmax/normal.gbapal");
@@ -477,7 +477,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_ButterfreeGmax[] = INCBIN_U16("graphics/pokemon/butterfree/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_CATERPIE
 
 #if P_FAMILY_WEEDLE
@@ -2781,7 +2781,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Machamp's art
     const u32 gMonFrontPic_MachampGmax[] = INCBIN_U32("graphics/pokemon/machamp/gmax/front.4bpp.smol");
     const u32 gMonBackPic_MachampGmax[] = INCBIN_U32("graphics/pokemon/machamp/gmax/back.4bpp.smol");
     const u16 gMonPalette_MachampGmax[] = INCBIN_U16("graphics/pokemon/machamp/gmax/normal.gbapal");
@@ -2794,7 +2794,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_MachampGmax[] = INCBIN_U16("graphics/pokemon/machamp/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_MACHOP
 
 #if P_FAMILY_BELLSPROUT
@@ -4026,7 +4026,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Kingler's art
     const u32 gMonFrontPic_KinglerGmax[] = INCBIN_U32("graphics/pokemon/kingler/gmax/front.4bpp.smol");
     const u32 gMonBackPic_KinglerGmax[] = INCBIN_U32("graphics/pokemon/kingler/gmax/back.4bpp.smol");
     const u16 gMonPalette_KinglerGmax[] = INCBIN_U16("graphics/pokemon/kingler/gmax/normal.gbapal");
@@ -4039,7 +4039,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_KinglerGmax[] = INCBIN_U16("graphics/pokemon/kingler/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_KRABBY
 
 #if P_FAMILY_VOLTORB
@@ -5619,7 +5619,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Lapras's art
     const u32 gMonFrontPic_LaprasGmax[] = INCBIN_U32("graphics/pokemon/lapras/gmax/front.4bpp.smol");
     const u32 gMonBackPic_LaprasGmax[] = INCBIN_U32("graphics/pokemon/lapras/gmax/back.4bpp.smol");
     const u16 gMonPalette_LaprasGmax[] = INCBIN_U16("graphics/pokemon/lapras/gmax/normal.gbapal");
@@ -5632,7 +5632,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_LaprasGmax[] = INCBIN_U16("graphics/pokemon/lapras/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_LAPRAS
 
 #if P_FAMILY_DITTO
@@ -6191,7 +6191,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Snorlax's art
     const u32 gMonFrontPic_SnorlaxGmax[] = INCBIN_U32("graphics/pokemon/snorlax/gmax/front.4bpp.smol");
     const u32 gMonBackPic_SnorlaxGmax[] = INCBIN_U32("graphics/pokemon/snorlax/gmax/back.4bpp.smol");
     const u16 gMonPalette_SnorlaxGmax[] = INCBIN_U16("graphics/pokemon/snorlax/gmax/normal.gbapal");
@@ -6204,7 +6204,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_SnorlaxGmax[] = INCBIN_U16("graphics/pokemon/snorlax/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SNORLAX
 
 #if P_FAMILY_ARTICUNO
@@ -10965,6 +10965,13 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u16 gShinyOverworldPalette_Slaking[] = INCBIN_U16("graphics/pokemon/slaking/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_SlakingMega[] = INCBIN_U32("graphics/pokemon/slaking/mega/front.4bpp.smol");
+    const u16 gMonPalette_SlakingMega[] = INCBIN_U16("graphics/pokemon/slaking/mega/normal.gbapal");
+    const u32 gMonBackPic_SlakingMega[] = INCBIN_U32("graphics/pokemon/slaking/mega/back.4bpp.smol");
+    const u16 gMonShinyPalette_SlakingMega[] = INCBIN_U16("graphics/pokemon/slaking/mega/shiny.gbapal");
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SLAKOTH
 
 #if P_FAMILY_NINCADA
@@ -11832,6 +11839,13 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gObjectEventPic_RoseradeF[] = INCBIN_COMP("graphics/pokemon/roserade/overworldf.4bpp");
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_GENDER_DIFFERENCES
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_RoseradeMega[] = INCBIN_U32("graphics/pokemon/roserade/mega/front.4bpp.smol");
+    const u16 gMonPalette_RoseradeMega[] = INCBIN_U16("graphics/pokemon/roserade/mega/normal.gbapal");
+    const u32 gMonBackPic_RoseradeMega[] = INCBIN_U32("graphics/pokemon/roserade/mega/back.4bpp.smol");
+    const u16 gMonShinyPalette_RoseradeMega[] = INCBIN_U16("graphics/pokemon/roserade/mega/shiny.gbapal");
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_ROSELIA
 
@@ -13156,6 +13170,13 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u16 gShinyOverworldPalette_Dusknoir[] = INCBIN_U16("graphics/pokemon/dusknoir/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_DusknoirMega[] = INCBIN_U32("graphics/pokemon/dusknoir/mega/front.4bpp.smol");
+    const u16 gMonPalette_DusknoirMega[] = INCBIN_U16("graphics/pokemon/dusknoir/mega/normal.gbapal");
+    const u32 gMonBackPic_DusknoirMega[] = INCBIN_U32("graphics/pokemon/dusknoir/mega/back.4bpp.smol");
+    const u16 gMonShinyPalette_DusknoirMega[] = INCBIN_U16("graphics/pokemon/dusknoir/mega/shiny.gbapal");
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_GEN_4_CROSS_EVOS
 #endif //P_FAMILY_DUSKULL
 
@@ -14299,6 +14320,13 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u16 gShinyOverworldPalette_Torterra[] = INCBIN_U16("graphics/pokemon/torterra/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_TorterraMega[] = INCBIN_U32("graphics/pokemon/torterra/mega/front.4bpp.smol");
+    const u16 gMonPalette_TorterraMega[] = INCBIN_U16("graphics/pokemon/torterra/mega/normal.gbapal");
+    const u32 gMonBackPic_TorterraMega[] = INCBIN_U32("graphics/pokemon/torterra/mega/back.4bpp.smol");
+    const u16 gMonShinyPalette_TorterraMega[] = INCBIN_U16("graphics/pokemon/torterra/mega/shiny.gbapal");
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_TURTWIG
 
 #if P_FAMILY_CHIMCHAR
@@ -14349,6 +14377,13 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u16 gShinyOverworldPalette_Infernape[] = INCBIN_U16("graphics/pokemon/infernape/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_InfernapeMega[] = INCBIN_U32("graphics/pokemon/infernape/mega/front.4bpp.smol");
+    const u16 gMonPalette_InfernapeMega[] = INCBIN_U16("graphics/pokemon/infernape/mega/normal.gbapal");
+    const u32 gMonBackPic_InfernapeMega[] = INCBIN_U32("graphics/pokemon/infernape/mega/back.4bpp.smol");
+    const u16 gMonShinyPalette_InfernapeMega[] = INCBIN_U16("graphics/pokemon/infernape/mega/shiny.gbapal");
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_CHIMCHAR
 
 #if P_FAMILY_PIPLUP
@@ -14399,6 +14434,18 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u16 gShinyOverworldPalette_Empoleon[] = INCBIN_U16("graphics/pokemon/empoleon/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_EmpoleonMegaO[] = INCBIN_U32("graphics/pokemon/empoleon/mega_o/front.4bpp.smol");
+    const u16 gMonPalette_EmpoleonMegaO[] = INCBIN_U16("graphics/pokemon/empoleon/mega_o/normal.gbapal");
+    const u32 gMonBackPic_EmpoleonMegaO[] = INCBIN_U32("graphics/pokemon/empoleon/mega_o/back.4bpp.smol");
+    const u16 gMonShinyPalette_EmpoleonMegaO[] = INCBIN_U16("graphics/pokemon/empoleon/mega_o/shiny.gbapal");
+
+    const u32 gMonFrontPic_EmpoleonMegaD[] = INCBIN_U32("graphics/pokemon/empoleon/mega_d/front.4bpp.smol");
+    const u16 gMonPalette_EmpoleonMegaD[] = INCBIN_U16("graphics/pokemon/empoleon/mega_d/normal.gbapal");
+    const u32 gMonBackPic_EmpoleonMegaD[] = INCBIN_U32("graphics/pokemon/empoleon/mega_d/back.4bpp.smol");
+    const u16 gMonShinyPalette_EmpoleonMegaD[] = INCBIN_U16("graphics/pokemon/empoleon/mega_d/shiny.gbapal");
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_PIPLUP
 
 #if P_FAMILY_STARLY
@@ -14660,6 +14707,13 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     const u32 gObjectEventPic_LuxrayF[] = INCBIN_COMP("graphics/pokemon/luxray/overworldf.4bpp");
 #endif //OW_POKEMON_OBJECT_EVENTS
 #endif //P_GENDER_DIFFERENCES
+
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    const u32 gMonFrontPic_LuxrayMega[] = INCBIN_U32("graphics/pokemon/luxray/mega/front.4bpp.smol");
+    const u16 gMonPalette_LuxrayMega[] = INCBIN_U16("graphics/pokemon/luxray/mega/normal.gbapal");
+    const u32 gMonBackPic_LuxrayMega[] = INCBIN_U32("graphics/pokemon/luxray/mega/back.4bpp.smol");
+    const u16 gMonShinyPalette_LuxrayMega[] = INCBIN_U16("graphics/pokemon/luxray/mega/shiny.gbapal");
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SHINX
 
 #if P_FAMILY_CRANIDOS
@@ -17764,7 +17818,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Garbodor's art
     const u32 gMonFrontPic_GarbodorGmax[] = INCBIN_U32("graphics/pokemon/garbodor/gmax/front.4bpp.smol");
     const u32 gMonBackPic_GarbodorGmax[] = INCBIN_U32("graphics/pokemon/garbodor/gmax/back.4bpp.smol");
     const u16 gMonPalette_GarbodorGmax[] = INCBIN_U16("graphics/pokemon/garbodor/gmax/normal.gbapal");
@@ -17777,7 +17831,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_GarbodorGmax[] = INCBIN_U16("graphics/pokemon/garbodor/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_TRUBBISH
 
 #if P_FAMILY_ZORUA
@@ -23613,7 +23667,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Orbeetle's art
     const u32 gMonFrontPic_OrbeetleGmax[] = INCBIN_U32("graphics/pokemon/orbeetle/gmax/front.4bpp.smol");
     const u32 gMonBackPic_OrbeetleGmax[] = INCBIN_U32("graphics/pokemon/orbeetle/gmax/back.4bpp.smol");
     const u16 gMonPalette_OrbeetleGmax[] = INCBIN_U16("graphics/pokemon/orbeetle/gmax/normal.gbapal");
@@ -23626,7 +23680,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_OrbeetleGmax[] = INCBIN_U16("graphics/pokemon/orbeetle/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_BLIPBUG
 
 #if P_FAMILY_NICKIT
@@ -23764,7 +23818,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Drednaw's art
     const u32 gMonFrontPic_DrednawGmax[] = INCBIN_U32("graphics/pokemon/drednaw/gmax/front.4bpp.smol");
     const u32 gMonBackPic_DrednawGmax[] = INCBIN_U32("graphics/pokemon/drednaw/gmax/back.4bpp.smol");
     const u16 gMonPalette_DrednawGmax[] = INCBIN_U16("graphics/pokemon/drednaw/gmax/normal.gbapal");
@@ -23777,7 +23831,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_DrednawGmax[] = INCBIN_U16("graphics/pokemon/drednaw/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_CHEWTLE
 
 #if P_FAMILY_YAMPER
@@ -23863,7 +23917,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Coalossal's art
     const u32 gMonFrontPic_CoalossalGmax[] = INCBIN_U32("graphics/pokemon/coalossal/gmax/front.4bpp.smol");
     const u32 gMonBackPic_CoalossalGmax[] = INCBIN_U32("graphics/pokemon/coalossal/gmax/back.4bpp.smol");
     const u16 gMonPalette_CoalossalGmax[] = INCBIN_U16("graphics/pokemon/coalossal/gmax/normal.gbapal");
@@ -23876,7 +23930,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_CoalossalGmax[] = INCBIN_U16("graphics/pokemon/coalossal/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_ROLYCOLY
 
 #if P_FAMILY_APPLIN
@@ -23912,7 +23966,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Flapple's and Mega Appletun's art
     const u32 gMonFrontPic_FlappleGmax[] = INCBIN_U32("graphics/pokemon/flapple/gmax/front.4bpp.smol");
     const u32 gMonBackPic_FlappleGmax[] = INCBIN_U32("graphics/pokemon/flapple/gmax/back.4bpp.smol");
     const u16 gMonPalette_FlappleGmax[] = INCBIN_U16("graphics/pokemon/flapple/gmax/normal.gbapal");
@@ -23925,7 +23979,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_FlappleGmax[] = INCBIN_U16("graphics/pokemon/flapple/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 
     const u32 gMonFrontPic_Appletun[] = INCBIN_U32("graphics/pokemon/appletun/anim_front.4bpp.smol");
     const u16 gMonPalette_Appletun[] = INCBIN_U16("graphics/pokemon/appletun/normal.gbapal");
@@ -24026,7 +24080,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Sandaconda's art
     const u32 gMonFrontPic_SandacondaGmax[] = INCBIN_U32("graphics/pokemon/sandaconda/gmax/front.4bpp.smol");
     const u32 gMonBackPic_SandacondaGmax[] = INCBIN_U32("graphics/pokemon/sandaconda/gmax/back.4bpp.smol");
     const u16 gMonPalette_SandacondaGmax[] = INCBIN_U16("graphics/pokemon/sandaconda/gmax/normal.gbapal");
@@ -24039,7 +24093,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_SandacondaGmax[] = INCBIN_U16("graphics/pokemon/sandaconda/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SILICOBRA
 
 #if P_FAMILY_CRAMORANT
@@ -24166,7 +24220,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also the art of both Mega Toxtricity
     const u32 gMonFrontPic_ToxtricityGmax[] = INCBIN_U32("graphics/pokemon/toxtricity/gmax/front.4bpp.smol");
     const u32 gMonBackPic_ToxtricityGmax[] = INCBIN_U32("graphics/pokemon/toxtricity/gmax/back.4bpp.smol");
     const u16 gMonPalette_ToxtricityGmax[] = INCBIN_U16("graphics/pokemon/toxtricity/gmax/normal.gbapal");
@@ -24179,7 +24233,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_ToxtricityGmax[] = INCBIN_U16("graphics/pokemon/toxtricity/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_TOXEL
 
 #if P_FAMILY_SIZZLIPEDE
@@ -24215,7 +24269,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Centiskorch's art
     const u32 gMonFrontPic_CentiskorchGmax[] = INCBIN_U32("graphics/pokemon/centiskorch/gmax/front.4bpp.smol");
     const u32 gMonBackPic_CentiskorchGmax[] = INCBIN_U32("graphics/pokemon/centiskorch/gmax/back.4bpp.smol");
     const u16 gMonPalette_CentiskorchGmax[] = INCBIN_U16("graphics/pokemon/centiskorch/gmax/normal.gbapal");
@@ -24228,7 +24282,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_CentiskorchGmax[] = INCBIN_U16("graphics/pokemon/centiskorch/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_SIZZLIPEDE
 
 #if P_FAMILY_CLOBBOPUS
@@ -24413,7 +24467,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Grimmsnarl's art
     const u32 gMonFrontPic_GrimmsnarlGmax[] = INCBIN_U32("graphics/pokemon/grimmsnarl/gmax/front.4bpp.smol");
     const u32 gMonBackPic_GrimmsnarlGmax[] = INCBIN_U32("graphics/pokemon/grimmsnarl/gmax/back.4bpp.smol");
     const u16 gMonPalette_GrimmsnarlGmax[] = INCBIN_U16("graphics/pokemon/grimmsnarl/gmax/normal.gbapal");
@@ -24426,7 +24480,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_GrimmsnarlGmax[] = INCBIN_U16("graphics/pokemon/grimmsnarl/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_IMPIDIMP
 
 #if P_FAMILY_MILCERY
@@ -24807,7 +24861,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 
-#if P_GIGANTAMAX_FORMS
+#if P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS // Crystal Imperium (D58): also Mega Copperajah's art
     const u32 gMonFrontPic_CopperajahGmax[] = INCBIN_U32("graphics/pokemon/copperajah/gmax/front.4bpp.smol");
     const u32 gMonBackPic_CopperajahGmax[] = INCBIN_U32("graphics/pokemon/copperajah/gmax/back.4bpp.smol");
     const u16 gMonPalette_CopperajahGmax[] = INCBIN_U16("graphics/pokemon/copperajah/gmax/normal.gbapal");
@@ -24820,7 +24874,7 @@ const u32 gObjectEventPic_Substitute[] = INCBIN_COMP("graphics/pokemon/question_
     // const u16 gShinyOverworldPalette_CopperajahGmax[] = INCBIN_U16("graphics/pokemon/copperajah/gmax/overworld_shiny.gbapal");
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
-#endif //P_GIGANTAMAX_FORMS
+#endif //P_GIGANTAMAX_FORMS || P_IMPERIUM_MEGA_EVOLUTIONS
 #endif //P_FAMILY_CUFANT
 
 #if P_FAMILY_DRACOZOLT

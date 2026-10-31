@@ -1011,6 +1011,32 @@ const u16 gItemIconPalette_Tatsugirinite[] = INCBIN_U16("graphics/items/icon_pal
 const u32 gItemIcon_Glimmoranite[] = INCBIN_U32("graphics/items/icons/glimmoranite.4bpp.smol");
 const u16 gItemIconPalette_Glimmoranite[] = INCBIN_U16("graphics/items/icon_palettes/glimmoranite.gbapal");
 
+// Crystal Imperium (D58): Emerald Imperium's Mega Stones, in the classic stones' shape
+// (gItemIcon_Kangaskhanite) and each Mega's colours
+const u16 gItemIconPalette_Butterfrite[] = INCBIN_U16("graphics/items/icon_palettes/butterfrite.gbapal");
+const u16 gItemIconPalette_Machampite[] = INCBIN_U16("graphics/items/icon_palettes/machampite.gbapal");
+const u16 gItemIconPalette_Kinglerite[] = INCBIN_U16("graphics/items/icon_palettes/kinglerite.gbapal");
+const u16 gItemIconPalette_Laprasite[] = INCBIN_U16("graphics/items/icon_palettes/laprasite.gbapal");
+const u16 gItemIconPalette_Snorlaxite[] = INCBIN_U16("graphics/items/icon_palettes/snorlaxite.gbapal");
+const u16 gItemIconPalette_Slakite[] = INCBIN_U16("graphics/items/icon_palettes/slakite.gbapal");
+const u16 gItemIconPalette_Torterrite[] = INCBIN_U16("graphics/items/icon_palettes/torterrite.gbapal");
+const u16 gItemIconPalette_Infernapite[] = INCBIN_U16("graphics/items/icon_palettes/infernapite.gbapal");
+const u16 gItemIconPalette_EmpoleoniteO[] = INCBIN_U16("graphics/items/icon_palettes/empoleonite_o.gbapal");
+const u16 gItemIconPalette_EmpoleoniteD[] = INCBIN_U16("graphics/items/icon_palettes/empoleonite_d.gbapal");
+const u16 gItemIconPalette_Luxrite[] = INCBIN_U16("graphics/items/icon_palettes/luxrite.gbapal");
+const u16 gItemIconPalette_Roseradite[] = INCBIN_U16("graphics/items/icon_palettes/roseradite.gbapal");
+const u16 gItemIconPalette_Dusknoirite[] = INCBIN_U16("graphics/items/icon_palettes/dusknoirite.gbapal");
+const u16 gItemIconPalette_Garbodorite[] = INCBIN_U16("graphics/items/icon_palettes/garbodorite.gbapal");
+const u16 gItemIconPalette_Orbeetlite[] = INCBIN_U16("graphics/items/icon_palettes/orbeetlite.gbapal");
+const u16 gItemIconPalette_Drednawite[] = INCBIN_U16("graphics/items/icon_palettes/drednawite.gbapal");
+const u16 gItemIconPalette_Coalossite[] = INCBIN_U16("graphics/items/icon_palettes/coalossite.gbapal");
+const u16 gItemIconPalette_Applite[] = INCBIN_U16("graphics/items/icon_palettes/applite.gbapal");
+const u16 gItemIconPalette_Sandacondite[] = INCBIN_U16("graphics/items/icon_palettes/sandacondite.gbapal");
+const u16 gItemIconPalette_Toxtricitite[] = INCBIN_U16("graphics/items/icon_palettes/toxtricitite.gbapal");
+const u16 gItemIconPalette_Centiskite[] = INCBIN_U16("graphics/items/icon_palettes/centiskite.gbapal");
+const u16 gItemIconPalette_Grimmite[] = INCBIN_U16("graphics/items/icon_palettes/grimmite.gbapal");
+const u16 gItemIconPalette_Copperajite[] = INCBIN_U16("graphics/items/icon_palettes/copperajite.gbapal");
+
 // Gems
 
 const u32 gItemIcon_TypeGem[] = INCBIN_U32("graphics/items/icons/type_gem.4bpp.smol");

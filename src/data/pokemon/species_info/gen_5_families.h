@@ -6748,6 +6748,80 @@ const struct SpeciesInfo gSpeciesInfoGen5[] =
         .formChangeTable = sGarbodorFormChangeTable,
     },
 
+#if P_IMPERIUM_MEGA_EVOLUTIONS
+    [SPECIES_GARBODOR_MEGA] =
+    {
+        .baseHP        = 80,
+        .baseAttack    = 135,
+        .baseDefense   = 105,
+        .baseSpeed     = 75,
+        .baseSpAttack  = 105,
+        .baseSpDefense = 105,
+        .types = MON_TYPES(TYPE_POISON),
+        .catchRate = 60,
+        .expYield = 216,
+        .evYield_Attack = 2,
+        .itemCommon = ITEM_SILK_SCARF,
+        .itemRare = ITEM_BLACK_SLUDGE,
+        .genderRatio = PERCENT_FEMALE(50),
+        .eggCycles = 20,
+        .friendship = STANDARD_FRIENDSHIP,
+        .growthRate = GROWTH_MEDIUM_FAST,
+        .eggGroups = MON_EGG_GROUPS(EGG_GROUP_MINERAL),
+        .abilities = { ABILITY_REGENERATOR, ABILITY_REGENERATOR, ABILITY_REGENERATOR },
+        .bodyColor = BODY_COLOR_GREEN,
+        .noFlip = TRUE,
+        .speciesName = _("GARBODOR"),
+        .cryId = CRY_GARBODOR,
+        .natDexNum = NATIONAL_DEX_GARBODOR,
+        .categoryName = _("Trash Heap"),
+        .height = 19,
+        .weight = 1073,
+        .description = COMPOUND_STRING(
+            "Mega Evolution piles a mountain of\n"
+            "trash up around it. Broken toys stick\n"
+            "out of the heap, and the fumes rising\n"
+            "from it wilt plants nearby."),
+        .pokemonScale = 256,
+        .pokemonOffset = 1,
+        .trainerScale = 326,
+        .trainerOffset = 4,
+        .frontPic = gMonFrontPic_GarbodorGmax,
+        .frontPicSize = MON_COORDS_SIZE(64, 64),
+        .frontPicYOffset = 2,
+        .frontAnimFrames = sAnims_SingleFramePlaceHolder,
+        //.frontAnimId = ANIM_V_SQUISH_AND_BOUNCE,
+        .backPic = gMonBackPic_GarbodorGmax,
+        .backPicSize = MON_COORDS_SIZE(64, 64),
+        .backPicYOffset = 2,
+        .backAnimId = BACK_ANIM_H_STRETCH,
+        .palette = gMonPalette_GarbodorGmax,
+        .shinyPalette = gMonShinyPalette_GarbodorGmax,
+        .iconSprite = gMonIcon_GarbodorGmax,
+        .iconPalIndex = 0,
+        .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
+        NO_SHADOW
+        FOOTPRINT(Garbodor)
+    #if OW_BATTLE_ONLY_FORMS
+        OVERWORLD(
+            sPicTable_Garbodor,
+            SIZE_32x32,
+            SHADOW_SIZE_M,
+            TRACKS_FOOT,
+            sAnimTable_Following_Asym,
+            gOverworldPalette_Garbodor,
+            gShinyOverworldPalette_Garbodor
+        )
+    #endif //OW_BATTLE_ONLY_FORMS
+        .isMegaEvolution = TRUE,
+        .levelUpLearnset = sGarbodorLevelUpLearnset,
+        .teachableLearnset = sGarbodorTeachableLearnset,
+        .formSpeciesIdTable = sGarbodorFormSpeciesIdTable,
+        .formChangeTable = sGarbodorFormChangeTable,
+        .randomizerMode = MON_RANDOMIZER_INVALID,
+    },
+#endif //P_IMPERIUM_MEGA_EVOLUTIONS
+
 #if P_GIGANTAMAX_FORMS
     [SPECIES_GARBODOR_GMAX] =
     {

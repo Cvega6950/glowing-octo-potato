@@ -1178,6 +1178,30 @@ extern const u32 gItemIcon_Tatsugirinite[];
 extern const u16 gItemIconPalette_Tatsugirinite[];
 extern const u32 gItemIcon_Glimmoranite[];
 extern const u16 gItemIconPalette_Glimmoranite[];
+// Crystal Imperium (D58): Emerald Imperium's Mega Stones
+extern const u16 gItemIconPalette_Butterfrite[];
+extern const u16 gItemIconPalette_Machampite[];
+extern const u16 gItemIconPalette_Kinglerite[];
+extern const u16 gItemIconPalette_Laprasite[];
+extern const u16 gItemIconPalette_Snorlaxite[];
+extern const u16 gItemIconPalette_Slakite[];
+extern const u16 gItemIconPalette_Torterrite[];
+extern const u16 gItemIconPalette_Infernapite[];
+extern const u16 gItemIconPalette_EmpoleoniteO[];
+extern const u16 gItemIconPalette_EmpoleoniteD[];
+extern const u16 gItemIconPalette_Luxrite[];
+extern const u16 gItemIconPalette_Roseradite[];
+extern const u16 gItemIconPalette_Dusknoirite[];
+extern const u16 gItemIconPalette_Garbodorite[];
+extern const u16 gItemIconPalette_Orbeetlite[];
+extern const u16 gItemIconPalette_Drednawite[];
+extern const u16 gItemIconPalette_Coalossite[];
+extern const u16 gItemIconPalette_Applite[];
+extern const u16 gItemIconPalette_Sandacondite[];
+extern const u16 gItemIconPalette_Toxtricitite[];
+extern const u16 gItemIconPalette_Centiskite[];
+extern const u16 gItemIconPalette_Grimmite[];
+extern const u16 gItemIconPalette_Copperajite[];
 
 // Gems
 extern const u32 gItemIcon_TypeGem[];

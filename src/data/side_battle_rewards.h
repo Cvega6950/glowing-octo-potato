@@ -31,49 +31,55 @@ static const struct SideBattleRewardItem sSideBattleReward2[] =  // FANTINA
     {ITEM_GHOST_GEM, 10},
     {ITEM_TM_POLTERGEIST, 1},
     {ITEM_GENGARITE, 1},
+    {ITEM_DUSKNOIRITE, 1},
     {ITEM_LINKING_CORD, 1},
 };
 
 static const u8 sSideBattleRewardText2[] = _(
     "{PLAYER} received GHOST GEM ×10,\n"
-    "TM67 POLTERGEIST, GENGARITE and\l"
-    "LINKING CORD!");
+    "TM67 POLTERGEIST, GENGARITE,\l"
+    "DUSKNOIRITE and LINKING CORD!");
 
 static const struct SideBattleRewardItem sSideBattleReward3[] =  // MAYLENE
 {
     {ITEM_FIGHTING_GEM, 10},
     {ITEM_TM_CLOSE_COMBAT, 1},
     {ITEM_LUCARIONITE, 1},
+    {ITEM_MACHAMPITE, 1},
 };
 
 static const u8 sSideBattleRewardText3[] = _(
     "{PLAYER} received FIGHTING GEM\n"
-    "×10, TM156 CLOSE COMBAT and\l"
-    "LUCARIONITE!");
+    "×10, TM156 CLOSE COMBAT, LUCARIONITE\l"
+    "and MACHAMPITE!");
 
 static const struct SideBattleRewardItem sSideBattleReward4[] =  // WAKE
 {
     {ITEM_WATER_GEM, 10},
     {ITEM_GYARADOSITE, 1},
+    {ITEM_DREDNAWITE, 1},
+    {ITEM_LAPRASITE, 1},
     {ITEM_KINGS_ROCK, 1},
 };
 
 static const u8 sSideBattleRewardText4[] = _(
     "{PLAYER} received WATER GEM ×10,\n"
-    "GYARADOSITE and KING'S ROCK!");
+    "GYARADOSITE, DREDNAWITE, LAPRASITE\l"
+    "and KING'S ROCK!");
 
 static const struct SideBattleRewardItem sSideBattleReward5[] =  // BYRON
 {
     {ITEM_STEEL_GEM, 10},
     {ITEM_TM_STEEL_BEAM, 1},
     {ITEM_METAGROSSITE, 1},
+    {ITEM_COPPERAJITE, 1},
     {ITEM_METAL_COAT, 1},
 };
 
 static const u8 sSideBattleRewardText5[] = _(
     "{PLAYER} received STEEL GEM ×10,\n"
-    "TM169 STEEL BEAM, METAGROSSITE and\l"
-    "METAL COAT!");
+    "TM169 STEEL BEAM, METAGROSSITE,\l"
+    "COPPERAJITE and METAL COAT!");
 
 static const struct SideBattleRewardItem sSideBattleReward6[] =  // ROARK
 {
