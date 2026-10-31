@@ -24,6 +24,11 @@ trainerproc and the C compiler; this script adds the semantic checks:
     the move the Rotom Catalog teaches it
   * Red is the hardest battle: no trainer has a higher average level than his parties, which
     have EVs on all six Pokemon, the prediction AI and more Full Restores than anyone else
+  * Mega Evolution's stones agree (DECISIONS.md D9, D37, D58): the stone of every compiled Mega
+    Evolution row (src/data/pokemon/form_change_tables.h) is a Mega Stone item and is in the
+    Goldenrod Mega Specialist's last list, the one the MEGA code gives, and every stone of his
+    lists has such a row (D9's Staraptite was sold for a Mega not in the ROM); each list holds the
+    one before it; every Mega such a row makes is isMegaEvolution and MON_RANDOMIZER_INVALID
   * every evolution family should be obtainable (reported, not fatal: the
     Gen 4-9 roll-out is ongoing work)
 """
@@ -258,9 +263,10 @@ def expand_macros(body, macros, depth=3):
 
 
 def parse_species():
-    """SPECIES_X -> {abilities:set, evolutions:[SPECIES_Y], name}, as the game is built: only the #if
-    branches the build compiles (P_UPDATED_ABILITIES picks one ability list, P_FAMILY_* the families),
-    with the abilities and evolutions of the macros an entry calls (Furfrou's, Vivillon's...)."""
+    """SPECIES_X -> {abilities:set, evolutions:[SPECIES_Y], flags:set}, as the game is built: only the
+    #if branches the build compiles (P_UPDATED_ABILITIES picks one ability list, P_FAMILY_* the
+    families), with the abilities and evolutions of the macros an entry calls (Furfrou's,
+    Vivillon's...). flags has "isMegaEvolution" and "MON_RANDOMIZER_INVALID" if the entry sets them."""
     species = {}
     paths = sorted(glob.glob(os.path.join(ROOT, "src/data/pokemon/species_info/*.h")))
     texts = [open(path, encoding="utf-8").read() for path in paths]
@@ -277,8 +283,10 @@ def parse_species():
                 ability_macros[macro].append(m.group(1))
         parts = re.split(r"(?m)^\s*\[(SPECIES_\w+)\]\s*=", text)
         for name, body in zip(parts[1::2], parts[2::2]):
-            entry = species.setdefault(name, {"abilities": set(), "evolutions": []})
+            entry = species.setdefault(name, {"abilities": set(), "evolutions": [], "flags": set()})
             body = expand_macros(body, macros)
+            entry["flags"].update(re.findall(r"\.(isMegaEvolution)\s*=\s*TRUE\b", body))
+            entry["flags"].update(re.findall(r"\.randomizerMode\s*=\s*(MON_RANDOMIZER_INVALID)\b", body))
             lists = re.findall(r"\.abilities\s*=\s*\{([^}]*)\}", body)
             for macro in re.findall(r"\.abilities\s*=\s*(\w+_ABILITIES)\b", body):
                 lists += ability_macros[macro]
@@ -290,13 +298,13 @@ def parse_species():
     if re.search(r"#define\s+P_IMPERIUM_SPECIES_DATA\s+TRUE", read("include/config/pokemon.h")):
         overrides = read("src/data/pokemon/species_info/imperium_abilities.h")
         for name, abl in re.findall(r"\[(SPECIES_\w+)\]\.abilities\s*=\s*\{([^}]*)\}", overrides):
-            species.setdefault(name, {"abilities": set(), "evolutions": []})["abilities"] = {
+            species.setdefault(name, {"abilities": set(), "evolutions": [], "flags": set()})["abilities"] = {
                 a.strip() for a in abl.split(",") if a.strip() and a.strip() != "ABILITY_NONE"}
     # Emerald Imperium's evolutions (DECISIONS.md D44) replace these species' lists
     if re.search(r"#define\s+P_IMPERIUM_EVOLUTIONS\s+TRUE", read("include/config/pokemon.h")):
         overrides = read("src/data/pokemon/species_info/imperium_evolutions.h")
         for name, evo in re.findall(r"\[(SPECIES_\w+)\]\.evolutions\s*=\s*EVOLUTION\((.*?)\),\n", overrides, re.S):
-            species.setdefault(name, {"abilities": set(), "evolutions": []})["evolutions"] = re.findall(r"SPECIES_\w+", evo)
+            species.setdefault(name, {"abilities": set(), "evolutions": [], "flags": set()})["evolutions"] = re.findall(r"SPECIES_\w+", evo)
     return species
 
 
@@ -422,6 +430,66 @@ def parse_encounters(data=None):
     return found
 
 
+# The Goldenrod Mega Specialist's lists, GoldenrodDeptStore5_MegaStones1-4 (DECISIONS.md D9: 3, 6 and
+# 8 badges, then the Johto Champion); the MEGA code gives the last one (D37)
+MEGA_SHOP = "data/maps/GoldenrodCity_DepartmentStore_5F_hns/scripts.inc"
+# What every Mega's species entry must set (parse_species()'s flags)
+MEGA_FLAGS = {"isMegaEvolution": ".isMegaEvolution = TRUE (or it doesn't revert when it faints, and Wild Variety can pick it)",
+              "MON_RANDOMIZER_INVALID": ".randomizerMode = MON_RANDOMIZER_INVALID (or the randomizer can pick it)"}
+
+
+def mega_stone_errors(species):
+    """Mega Evolution's stones against the shop and the MEGA code (D9, D37, D58), as the game is
+    built: a stone is the item of a compiled {FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM, SPECIES_X,
+    ITEM_Y} row. species: parse_species(). Returns the errors, the number of stones and the length
+    of each of the Mega Specialist's lists."""
+    errors = []
+    texts = [read("src/data/pokemon/form_change_tables.h"), read("src/data/items.h")]
+    values = evaluate_conditions(directive_condition(m.group(1), m.group(2))
+                                 for text in texts for m in map(DIRECTIVE.match, text.split("\n"))
+                                 if m and m.group(1) not in ("else", "endif"))
+    forms, items = (compiled_text(text, values) for text in texts)
+    megas = defaultdict(list)  # stone -> the Megas it makes
+    for sp, item in re.findall(r"\{\s*FORM_CHANGE_BATTLE_MEGA_EVOLUTION_ITEM\s*,\s*(SPECIES_\w+)\s*,\s*(ITEM_\w+)\s*\}", forms):
+        megas[item].append(sp)
+    for item, made in sorted(megas.items()):
+        m = re.search(r"\[" + item + r"\]\s*=\s*\{(.*?)\n    \}", items, re.S)
+        if not m or not re.search(r"\.holdEffect\s*=\s*HOLD_EFFECT_MEGA_STONE\b", m.group(1)):
+            errors.append(f"{item}: {', '.join(made)}'s stone, but not a HOLD_EFFECT_MEGA_STONE item in src/data/items.h")
+        for sp in made:
+            if sp not in species:
+                errors.append(f"{sp}: {item} makes it, but it has no compiled species entry")
+                continue
+            missing = [text for flag, text in MEGA_FLAGS.items() if flag not in species[sp]["flags"]]
+            if missing:
+                errors.append(f"{sp} ({item}): needs {' and '.join(missing)}")
+    # The lists in tier order: each holds the one before, and sells only stones of compiled Megas
+    lists = sorted(re.findall(r"(?ms)^(GoldenrodDeptStore5_MegaStones(\d+))::?\s*$(.*?)^\s*pokemartlistend", read(MEGA_SHOP)),
+                   key=lambda t: int(t[1]))
+    tiers = [(label, re.findall(r"\.2byte\s+(ITEM_\w+)", body)) for label, _, body in lists]
+    if not tiers:
+        return errors + [f"{MEGA_SHOP}: no GoldenrodDeptStore5_MegaStones lists"], len(megas), []
+    for i, (label, stones) in enumerate(tiers):
+        for item in sorted({s for s in stones if stones.count(s) > 1}):
+            errors.append(f"{label}: {item} is listed twice")
+        for item in stones:
+            if item not in megas:
+                errors.append(f"{label}: sells {item}, which no compiled Mega Evolution uses (D9's Staraptite)")
+        if i:
+            for item in tiers[i - 1][1]:
+                if item not in stones:
+                    errors.append(f"{label}: lacks {item}, which {tiers[i - 1][0]} sells (the stock only grows)")
+    last, full = tiers[-1]
+    for item in sorted(set(megas) - set(full)):
+        errors.append(f"{item}: {', '.join(megas[item])}'s stone, but not in {last}: the Mega Specialist never "
+                      "sells it, and MEGA doesn't give it")
+    m = re.search(r"for\s*\(\s*stone\s*=\s*(\w+)\s*;", read("src/cheat_codes.c"))
+    if not m or m.group(1) != last:
+        errors.append(f"src/cheat_codes.c: the MEGA code should give the stones of {last}, the Mega Specialist's "
+                      f"last list (it gives {m.group(1) if m else 'no list'})")
+    return errors, len(megas), [len(stones) for _, stones in tiers]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="validate only, do not rewrite databases")
@@ -509,6 +577,10 @@ def main():
         if full_restores(t) <= top_items:
             errors.append(f"{tid}: {full_restores(t)} Full Restores, no more than {top_items_tid} ({top_items})")
 
+    # Mega Stones: the Mega Evolutions, the Mega Specialist's lists and the MEGA code agree (D58)
+    mega_errors, stones, tiers = mega_stone_errors(species)
+    errors += mega_errors
+
     # Family availability
     fam = families(species)
     obtainable_roots = {fam.get(s, s) for s in encounters}
@@ -516,6 +588,8 @@ def main():
     missing = [r for r in roots if r not in obtainable_roots]
 
     print(f"trainers: {len(trainers)}   species entries: {len(species)}   level caps: {caps}")
+    print(f"Mega Stones of compiled Mega Evolutions: {stones}; the Mega Specialist's lists: "
+          f"{', '.join(map(str, tiers))} (MEGA gives the last)")
     print(f"obtainable evolution families (wild + scripted): {len(obtainable_roots)}; "
           f"families with no source yet: {len(missing)}")
     for n in notes:

@@ -354,15 +354,32 @@ def buy_one_on_time(frames, label):
             "wait 60"]
 
 
-def expect_buy_list(count, items, absent=(), label="buy_list"):
+# Emerald Imperium's 23 Mega Stones (DECISIONS.md D58) in the Goldenrod Mega Specialist's lists:
+# from three badges, from six, from eight (all three for the Johto Champion); MEGA gives them all
+IMPERIUM_MEGA_STONES = (
+    ["ITEM_BUTTERFRITE", "ITEM_LUXRITE", "ITEM_ROSERADITE", "ITEM_GARBODORITE", "ITEM_ORBEETLITE",
+     "ITEM_COALOSSITE", "ITEM_APPLITE", "ITEM_SANDACONDITE", "ITEM_TOXTRICITITE", "ITEM_CENTISKITE"],
+    ["ITEM_MACHAMPITE", "ITEM_KINGLERITE", "ITEM_LAPRASITE", "ITEM_SNORLAXITE", "ITEM_TORTERRITE",
+     "ITEM_INFERNAPITE", "ITEM_EMPOLEONITE_O", "ITEM_EMPOLEONITE_D", "ITEM_DUSKNOIRITE", "ITEM_DREDNAWITE"],
+    ["ITEM_SLAKITE", "ITEM_GRIMMITE", "ITEM_COPPERAJITE"])
+
+
+def item_label(item):
+    """An item constant's name for a check's label: ITEM_TM_FLIP_TURN -> flip_turn, ITEM_LUXRITE -> luxrite."""
+    return (item[8:] if item.startswith(("ITEM_TM_", "ITEM_HM_")) else item[5:]).lower()
+
+
+def expect_buy_list(count, items, absent=(), label="buy_list", present=()):
     """Check a shop's buy list: `count` items, the first ones `items` in order (all of them when
-    len(items) == count), then CANCEL right after the last; and none of `absent`."""
-    v = probe.resolve({i: i for i in list(items) + list(absent)} | {"LIST_CANCEL": "LIST_CANCEL",
+    len(items) == count), then CANCEL right after the last; all of `present`, anywhere in it; and
+    none of `absent`."""
+    v = probe.resolve({i: i for i in list(items) + list(absent) + list(present)} | {"LIST_CANCEL": "LIST_CANCEL",
                       "size": "sizeof(struct ListMenuItem)"})
     out = [f"expect16 {BUY_LIST_COUNT} {count} {label}_count_{count}"]
-    out += [f"expect16 {buy_list_entry(n)} {v[i]} {label}_{n}_{i[8:].lower()}" for n, i in enumerate(items)]
+    out += [f"expect16 {buy_list_entry(n)} {v[i]} {label}_{n}_{item_label(i)}" for n, i in enumerate(items)]
     out.append(f"expect16 {buy_list_entry(count)} {v['LIST_CANCEL'] & 0xFFFF} {label}_cancel_last")
-    out += [f"expectnotfind16 {buy_list_entry(0)} {count} {v['size']} {v[i]} {label}_lacks_{i[8:].lower()}" for i in absent]
+    out += [f"expectfind16 {buy_list_entry(0)} {count} {v['size']} {v[i]} {label}_has_{item_label(i)}" for i in present]
+    out += [f"expectnotfind16 {buy_list_entry(0)} {count} {v['size']} {v[i]} {label}_lacks_{item_label(i)}" for i in absent]
     return out
 
 
@@ -810,6 +827,32 @@ def expect_species_field(species, field, want, label, bits=8):
     v = probe.resolve({"off": f"offsetof(struct SpeciesInfo, {field})", "size": "sizeof(struct SpeciesInfo)",
                        species: species, "want": want})
     return [f"expect{bits} {{gSpeciesInfo+{v['off'] + v['size'] * v[species]}}} {v['want']} {label}"]
+
+
+def expect_species_data(species, stats, types, abilities, mega=None):
+    """Check a species' six base stats (the engine's order: HP, Attack, Defense, Speed, Sp. Atk, Sp.
+    Def), two types (a single type twice) and three ability slots in the species table
+    (gSpeciesInfo, in ROM), e.g. a Mega's against Emerald Imperium's dex (DECISIONS.md D58).
+    mega=True or False also checks the isMegaEvolution bit."""
+    fields = ["baseHP", "baseAttack", "baseDefense", "baseSpeed", "baseSpAttack", "baseSpDefense"]
+    exprs = {"size": "sizeof(struct SpeciesInfo)", "species": species}
+    exprs.update({f: f"offsetof(struct SpeciesInfo, {f})" for f in fields})
+    exprs.update({f"type{i}": f"offsetof(struct SpeciesInfo, types[{i}])" for i in range(2)})
+    exprs.update({f"ability{i}": f"offsetof(struct SpeciesInfo, abilities[{i}])" for i in range(3)})
+    exprs.update({f"type{i}_want": t for i, t in enumerate(types)})
+    exprs.update({f"ability{i}_want": a for i, a in enumerate(abilities)})
+    v = probe.resolve(exprs)
+    entry, name = v["size"] * v["species"], species[len("SPECIES_"):].lower()
+    out = [f"expect8 {{gSpeciesInfo+{entry + v[f]}}} {want} {name}_{f[4:].lower()}_{want}" for f, want in zip(fields, stats)]
+    out += [f"expect8 {{gSpeciesInfo+{entry + v[f'type{i}']}}} {v[f'type{i}_want']} {name}_type{i}_{types[i][5:].lower()}"
+            for i in range(2)]
+    out += [f"expect16 {{gSpeciesInfo+{entry + v[f'ability{i}']}}} {v[f'ability{i}_want']} "
+            f"{name}_ability{i}_{abilities[i][8:].lower()}" for i in range(3)]
+    if mega is not None:
+        byte, mask = probe.bitfield("SpeciesInfo", "isMegaEvolution")
+        out.append(f"expectbits8 {{gSpeciesInfo+{entry + byte}}} {mask} {mask if mega else 0} "
+                   f"{name}_{'is' if mega else 'not'}_mega_evolution")
+    return out
 
 
 def expect_follower_species(species, label):

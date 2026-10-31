@@ -25,8 +25,11 @@ Radical Red already. This script reads that dex and writes, for every species it
 PATH is a saved copy of the dex's page script (ei_dex.EI_DEX_URL; these files came from
 ei_dex.EI_DEX_SHA256). It is not kept in this repository. Imperium has abilities of its own that this
 engine doesn't have (Striker, Feline Prowess, Bone Zone...): a slot whose ability doesn't exist keeps
-one of Heart & Soul's abilities for the species (--report lists them). Its own Megas and Primal forms
-don't exist here and are skipped (D2). Crystal Imperium's TM list is Emerald Imperium's
+one of Heart & Soul's abilities for the species (--report lists them). Imperium's own Megas are in
+this game since 0.16.0 (D58) and are matched by name like any species: their entries have the dex's
+stats, their base form's learnsets, and D58's stand-in in a slot with one of Imperium's own
+abilities, so nothing is written for them. Its Primal forms and a few other forms don't exist here
+and are skipped (--report lists them). Crystal Imperium's TM list is Emerald Imperium's
 (tools/crystal_imperium/tm_list.py); make_teachables.py decides with Imperium's lists which species
 learn the TMs and tutor moves Imperium also has, and makes its other ones tutor moves.
 """

@@ -1,5 +1,8 @@
 # Crystal Imperium play test: the Goldenrod Dept. Store 5F Mega Specialist gives the Mega Ring
-# after the third badge and sells Mega Stones (tier unlocked by eight badges here).
+# after the third badge and sells Mega Stones, more with progress (DECISIONS.md D9): 20 with three
+# badges, 56 with six, 65 with eight and all 70 for the Johto Champion. Emerald Imperium's 23 stones
+# (D58) are in his lists by their tier: ten from three badges, ten more from six, three more from
+# eight (emu.py's IMPERIUM_MEGA_STONES).
 !new_game()
 !cheat_start()
 !max_money()
@@ -17,7 +20,8 @@ mash A 600
 shot 03_ring_given.png
 mash B 200
 wait 60
-# Talk again: straight to the shop
+!expect_bag_has("keyItems", "ITEM_MEGA_RING", "mega_ring_given")
+# Talk again: straight to the shop, with the eight badges of Cheat start
 press RIGHT
 wait 20
 press A
@@ -27,7 +31,62 @@ wait 60
 press A
 wait 60
 shot 04_shop_top.png
+!expect_buy_list(65, ["ITEM_BEEDRILLITE"], present=sum(IMPERIUM_MEGA_STONES, []), absent=["ITEM_DIANCITE"], label="eight_badges")
 press UP
 wait 10
 shot 05_shop_end.png
+mash B 300
+
+# Three badges: 20 stones, Imperium's first ten among them
+!set_flag("FLAG_BADGE04_GET", 0)
+!set_flag("FLAG_BADGE05_GET", 0)
+!set_flag("FLAG_BADGE06_GET", 0)
+!set_flag("FLAG_BADGE07_GET", 0)
+!set_flag("FLAG_BADGE08_GET", 0)
+press RIGHT
+wait 20
+press A
+wait 120
+press A
+wait 60
+press A
+wait 60
+press UP
+wait 10
+shot 06_three_badges_end.png
+!expect_buy_list(20, ["ITEM_BEEDRILLITE"], present=IMPERIUM_MEGA_STONES[0], absent=IMPERIUM_MEGA_STONES[1] + IMPERIUM_MEGA_STONES[2], label="three_badges")
+mash B 300
+
+# Six badges: 56, Imperium's next ten too
+!set_flag("FLAG_BADGE04_GET")
+!set_flag("FLAG_BADGE05_GET")
+!set_flag("FLAG_BADGE06_GET")
+press RIGHT
+wait 20
+press A
+wait 120
+press A
+wait 60
+press A
+wait 60
+press UP
+wait 10
+shot 07_six_badges_end.png
+!expect_buy_list(56, ["ITEM_BEEDRILLITE"], present=IMPERIUM_MEGA_STONES[0] + IMPERIUM_MEGA_STONES[1], absent=IMPERIUM_MEGA_STONES[2], label="six_badges")
+mash B 300
+
+# The Johto Champion: all 70, whatever the badges
+!set_flag("FLAG_IS_CHAMPION")
+press RIGHT
+wait 20
+press A
+wait 120
+press A
+wait 60
+press A
+wait 60
+press UP
+wait 10
+shot 08_champion_end.png
+!expect_buy_list(70, ["ITEM_BEEDRILLITE"], present=sum(IMPERIUM_MEGA_STONES, []) + ["ITEM_DIANCITE"], label="champion")
 mash B 300
