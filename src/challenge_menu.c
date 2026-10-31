@@ -1012,7 +1012,7 @@ static const u8 *const sChoices_DifficultyPreset[] = {
     COMPOUND_STRING("HARD"),
 };
 static const u8 *const sDesc_DifficultyPreset[] = {
-    COMPOUND_STRING("Heart & Soul's AI; trainers can't\nuse items."),
+    COMPOUND_STRING("Simpler AI (not for bosses or Ace\nTrainers); trainers can't use items."),
     COMPOUND_STRING("Crystal Imperium as designed:\ncompetitive teams at fair levels."),
     COMPOUND_STRING("HARD caps, SET style, no Bag in\ntrainer battles."),
 };

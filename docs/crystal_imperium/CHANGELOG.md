@@ -6,7 +6,7 @@
 - While it's on, no wild Pokémon jumps out at you on land or water, whatever your lead's level
   (before, only Pokémon weaker than your lead stayed away, so stronger ones still appeared, as
   if it had stopped working). Fishing, Rock Smash, Headbutt, Sweet Scent and DexNav still work,
-  and the Bug-Catching Contest and the Safari Zone keep their Pokémon.
+  and the Bug-Catching Contest and the Safari Zone keep their Pokémon (it can't be switched there).
 
 ### Every trainer at your level cap (DECISIONS.md D56)
 - Every trainer you battle has its whole team at your level cap, on every difficulty, as the
@@ -22,8 +22,9 @@
 - The challenge menu's DIFFICULTY and LEVEL CAP descriptions say what they do now.
 
 ### Ace Trainers at spots of their own (DECISIONS.md D55)
-- One new Ace Trainer per route, cave or forest at most, and none where Heart & Soul already has
-  its own Ace Trainers: 13 routes had two, and Route 27 had six Ace Trainers in all.
+- One new Ace Trainer per map at most (a route, a cave floor, a forest), and none where Heart &
+  Soul already has its own Ace Trainers: 13 routes had two, and Route 27 had six Ace Trainers in
+  all.
 - 21 moved off the crowded routes to caves, forests and other places at the same point of the
   story (Union Cave, Ilex Forest, the Ice Path, Victory Road, Mt. Moon, Rock Tunnel, the Seafoam
   Islands, the Fighting Dojo...), with their lines rewritten for the new place.

@@ -488,11 +488,13 @@ def teleport(group, num, x, y):
     whose destination becomes no warp at (x, y) during the warp's fade-out (src/overworld.c
     SetPlayerCoordsFromWarp takes the coordinates when the warp ID isn't the map's). For a spot a
     walk from the map's warps can't reach (ledges, Cut trees, boulders). A script the map runs on
-    arrival still runs."""
+    arrival still runs. VBA-M reads the keys only at VBlank, so the debug menu can see the A a frame
+    late and its SetWarpDestinationToMapWarp would overwrite earlier pokes: they wait 2 frames (the
+    fade-out lasts at least 8)."""
     out = open_debug() + ["press A", "wait 30", "press DOWN", "press A", "wait 30"]
     out += number(group, initial=0) + ["press A", "wait 20"]
     out += number(num, initial=0) + ["press A", "wait 20"]
-    return out + ["hold A 1", "poke8 {sWarpDestination+2} 255", f"poke16 {{sWarpDestination+4}} {x}",
+    return out + ["hold A 1", "wait 2", "poke8 {sWarpDestination+2} 255", f"poke16 {{sWarpDestination+4}} {x}",
                   f"poke16 {{sWarpDestination+6}} {y}", "wait 400"]
 
 

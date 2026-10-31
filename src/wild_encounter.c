@@ -940,7 +940,8 @@ bool8 StandardWildEncounter(u16 curMetatileBehavior, u16 prevMetatileBehavior)
         // land and water, as Emerald Imperium's does (until 0.15.2 only the ones below the lead's
         // level, as a Repel). Rock Smash, Headbutt, fishing, Sweet Scent and DexNav still find them,
         // and the Bug-Catching Contest and the Safari Zone keep theirs: they are what the player is
-        // there for, and the repel can't be switched off in them.
+        // there for (the repel can't be switched on or off in them: the Bag and SELECT refuse, and
+        // the L menu is closed).
         if (FlagGet(FLAG_INFINITE_REPEL_ON) && !GetBugContestFlag() && !GetSafariZoneFlag())
             return FALSE;
         if (MetatileBehavior_IsLandWildEncounter(curMetatileBehavior) == TRUE)

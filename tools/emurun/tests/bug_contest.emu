@@ -36,10 +36,28 @@ expecttally variety_outside_contest_not_listed 0 0
 expecttally variety_outside_contest_battles 9 12
 
 # The Infinite Repel doesn't keep the contest's Pokemon away (D57): they are what the player is there
-# for, and the repel can't be switched off during the contest
+# for (it can't be switched on or off during the contest); here it was on before
 loadstate contest.ss
 !set_flag("FLAG_INFINITE_REPEL_ON")
 savestate contest_repel.ss
 !wild_variety_sample("repel_in_contest", 6, state="contest_repel.ss", grass=(20, 14, 26, 29), species=NATIONAL_PARK_SPECIES)
 expecttally repel_in_contest 0 0
 expecttally repel_in_contest_battles 4 6
+
+# The repel can't be switched on or off in the contest (D57: its start menu has no Bag, and SELECT
+# gets ELM's advice); outside the contest SELECT switches it
+loadstate park.ss
+!set_save1("registeredItem", "ITEM_INFINITE_REPEL", 16)
+press SELECT
+wait 120
+mash B 200
+wait 60
+!expect_flag("FLAG_INFINITE_REPEL_ON", 1, "select_switches_repel_outside_contest")
+loadstate contest.ss
+!set_save1("registeredItem", "ITEM_INFINITE_REPEL", 16)
+press SELECT
+wait 120
+shot select_in_contest.png
+mash B 200
+wait 60
+!expect_flag("FLAG_INFINITE_REPEL_ON", 0, "repel_not_switched_in_contest")

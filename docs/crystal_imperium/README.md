@@ -8,7 +8,7 @@ competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Po
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI and fights at your level cap, every boss from the rival to Red, rematches and
 > postgame included, has an Imperium-style team with all of its Pokémon at the level cap, Ace
-> Trainers wait on the routes, the Pokémon have Emerald Imperium's abilities, move pools and
+> Trainers wait along the way, the Pokémon have Emerald Imperium's abilities, move pools and
 > evolutions (from its official dex), the TM list is Emerald Imperium's, and HMs work without
 > being taught. Nobody has played the whole story through yet.
 
@@ -76,8 +76,9 @@ From the first step of a new game:
 - **Six Pokémon for every Gym Leader** and the big story bosses, and **28 route mini-bosses**:
   strong trainers on the routes with competitive teams at your level cap, as in Emerald
   Imperium.
-- **Ace Trainers along the way:** 59 of them, as in Emerald Imperium, one per route, cave or
-  forest at most (26 in Johto, 33 in Kanto), each at a spot of its own just off the path, with
+- **Ace Trainers along the way:** 59 of them, as in Emerald Imperium, one per map at most (a
+  route, a cave floor, a forest; 24 in Johto, 35 in Kanto), each at a spot of its own just off the
+  path, with
   teams built around a plan (sand, rain, sun, snow, Trick Room, hazards, screens): three
   Pokémon on the first routes, six with competitive EVs in Kanto. Heart & Soul's own
   Cooltrainers have competitive teams too.
@@ -152,7 +153,8 @@ From the first step of a new game:
   Pokémon or item, and more; *Flags & Vars… → Pokédex Flags All* fills the Pokédex). Use it
   with care: it can also change story flags.
 - **Smart AI for every trainer** on NORMAL and HARD: it knows your team, picks the best move,
-  switches smartly and plays around HP (EASY keeps Heart & Soul's AI). Sleep Clause.
+  switches smartly and plays around HP (EASY keeps Heart & Soul's AI for ordinary trainers).
+  Sleep Clause.
 - **Imperium-style bosses for the whole story and the postgame:** every Johto Gym Leader
   (Chuck, Jasmine and Pryce in three versions, for whichever order you take them), the rival
   from Azalea to the Indigo Plateau, Team Rocket's executives, the Kimono Girls, the Elite Four

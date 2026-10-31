@@ -111,7 +111,7 @@ ACES = [
      ]},
     # IlexForest_hns: Calder
     {"key": "ILEX_CALDER", "name": "CALDER", "gender": "Male", "map": "IlexForest_hns", "x": 25, "y": 29, "facing": "left", "sight": 4, "stage": 2,
-     "intro": ["It's so dark under these trees, you can't see what's at your feet. Neither will your Pokemon.", "Rocks, spikes and poison on your side of the field. Every switch you make will cost you!"],
+     "intro": ["It's so dark under these trees, you can't see what's at your feet. Neither can your Pokemon.", "Rocks, spikes and poison on your side of the field. Every switch you make will cost you!"],
      "defeat": ["You found a path around my traps..."],
      "after": ["Rapid Spin and Defog sweep hazards away. Don't let them pile up like leaves in this forest."],
      "team": [
@@ -586,9 +586,9 @@ ACES = [
      ]},
     # RockTunnel_1F_hns: Sable
     {"key": "ROCKTUN_1F_SABLE", "name": "SABLE", "gender": "Female", "map": "RockTunnel_1F_hns", "x": 15, "y": 41, "facing": "right", "sight": 4, "stage": 9,
-     "intro": ["No light reaches this deep into Rock Tunnel. My Pokemon were raised in this darkness, and they see everything.", "Tricks, ambushes and critical hits. You will not see any of it coming!"],
-     "defeat": ["The lights came on too soon... I never saw you coming."],
-     "after": ["Prankster status moves fail against Dark types. Keep one on your team, and light this place up with Flash!"],
+     "intro": ["Rock Tunnel's deepest corners are my home. My Pokemon learned to strike from the shadows, and they see everything.", "Tricks, ambushes and critical hits. You will not see any of it coming!"],
+     "defeat": ["You saw right through my tricks... I never saw you coming."],
+     "after": ["Prankster status moves fail against Dark types. Keep one on your team!"],
      "team": [
          mon("Liepard", "Focus Sash", "Prankster", "Jolly", ["Fake Out", "Encore", "Thunder Wave", "Knock Off"],
              "252 HP / 4 Atk / 252 Spe"),
@@ -871,7 +871,7 @@ ACES = [
      ]},
     # RockTunnel_B1F_hns: Matilda
     {"key": "ROCKTUN_B1F_MATILDA", "name": "MATILDA", "gender": "Female", "map": "RockTunnel_B1F_hns", "x": 38, "y": 35, "facing": "up", "sight": 3, "stage": 9,
-     "intro": ["Everyone hurries through Rock Tunnel to get out of the dark. I like to take it slow... and make the battle slow, too.", "Boost all you like. My team won't even notice. We'll wear you down, one turn at a time."],
+     "intro": ["Everyone hurries through Rock Tunnel to get out the other side. I like to take it slow... and make the battle slow, too.", "Boost all you like. My team won't even notice. We'll wear you down, one turn at a time."],
      "defeat": ["Well. You outlasted me. Not many people have the patience."],
      "after": ["Unaware ignores your boosts, so Taunt and hard hits work better. The way out is just to the west!"],
      "team": [

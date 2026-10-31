@@ -42,6 +42,8 @@
 #include "task.h"
 #include "text.h"
 #include "vs_seeker.h"
+#include "bug_contest.h"
+#include "safari_zone.h"
 #include "constants/event_bg.h"
 #include "constants/event_objects.h"
 #include "constants/item_effects.h"
@@ -1590,6 +1592,14 @@ void ItemUseOutOfBattle_InfiniteRareCandies(u8 taskId)
 void ItemUseOutOfBattle_InfiniteRepel(u8 taskId)
 {
     const u8 *message;
+
+    // D57: the Safari Zone and the Bug-Catching Contest keep their Pokemon either way, so it isn't
+    // switched there (the L menu is closed there too)
+    if (GetSafariZoneFlag() || GetBugContestFlag())
+    {
+        DisplayDadsAdviceCannotUseItemMessage(taskId, gTasks[taskId].tUsingRegisteredKeyItem);
+        return;
+    }
 
     FlagToggle(FLAG_INFINITE_REPEL_ON);
     if (FlagGet(FLAG_INFINITE_REPEL_ON))

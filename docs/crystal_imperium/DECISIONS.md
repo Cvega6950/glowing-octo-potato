@@ -392,7 +392,8 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   player's Pokémon, moves, abilities and items, compares damage to pick the best move, goes
   for KOs, switches out of bad match-ups and picks its next Pokémon for the match-up, avoids
   PP stalling, and plays around HP (no setup at low HP, no healing at high HP). Trainers keep
-  their own extra flags (Ace Pokémon and so on). EASY keeps each trainer's Heart & Soul AI.
+  their own extra flags (Ace Pokémon and so on). EASY keeps each ordinary trainer's Heart & Soul
+  AI (the bosses' and, since D47, the Ace Trainers' teams have the smart AI in their party data).
   This replaces D5's "ordinary trainers keep HnS's cheaper AI".
 - `Prediction` is not added. It makes the AI guess, half the time, that the player will
   switch whenever the AI would switch in the player's place, and then aim at the expected
@@ -2047,17 +2048,19 @@ follows is the first build's; D45 lists what changed.)
 - **Before.** D47 put the 59 new Ace Trainers on 46 routes, one on each route the player walks and
   two on the long ones, wherever their line of sight crossed the route's main path. Measured
   against the rules below: 13 routes had two, 11 stood on 7 routes that already have Heart & Soul's
-  own Ace Trainers (Route 27 had six Ace Trainers in all), 29 stood on the main path itself, 5 in
-  tall grass and 4 within three tiles of the edge where the next map joins.
+  own Ace Trainers (Route 27 had six Ace Trainers in all), 29 stood on the main path itself, 6 in
+  tall grass and 8 within three tiles of the edge where the next map joins.
 - **Now every map has one new Ace Trainer at most,** and none has one where Heart & Soul has its
   own (a trainer with the Cooltrainer sprite). 21 moved off the crowded routes to caves, forests and
   other places at the same point of the story: Union Cave, Ilex Forest, the National Park, the Cliff
   Edge Gate, the Whirl Islands, the Ice Path (two floors), Dark Cave, Tohjo Falls, Victory Road
   (three floors), Viridian Forest, Mt. Moon and the square above it, Rock Tunnel (two floors),
   Diglett's Cave, the Power Plant, the Seafoam Islands and the Fighting Dojo. Their keys name the new
-  place (`UNIONCAVE_BRODIE`), and their texts were rewritten for it. 37 of the 38 left on their
-  routes stand somewhere new; Route 48's Solana kept her bridge. Route 21 has none: the only land
-  there is a one-tile beach.
+  place (`UNIONCAVE_BRODIE`), and their texts were rewritten for it. 36 of the 38 left on their
+  routes stand somewhere new; Route 48's Solana kept her bridge, and Route 20's Bjorn is back on
+  his 0.15.1 tile (sight 4 now) after the critics moved him off the Gym sign's. Route 21 has none:
+  it is a Surf route whose only land is the grass patch below Pallet Town and a few sand bars,
+  which nobody has to walk through.
 - **Each spot was chosen as Heart & Soul's own trainers stand:** just off the walking path at a
   landmark (a bridge, a fork, a narrow pass, a cave mouth, a clearing below a ledge), with trees,
   rock, a fence or water at its back, facing the way the player comes, so the player walks into
@@ -2120,10 +2123,14 @@ follows is the first build's; D45 lists what changed.)
   (a Lass's Eviolite Happiny battled as a Blissey, Derek's Light Ball Pikachu as a Raichu).
 - **A partner's Pokémon are at the player's cap too** (`src/battle_partner.c`): Lance's in the
   Rocket Hideout's tag battle were at Heart & Soul's 35 to 42 against two Rockets at the cap.
-- EASY no longer lowers trainers' levels (it keeps the default AI instead of Imperium's, D20), and
+- EASY no longer lowers trainers' levels (ordinary trainers keep Heart & Soul's AI on it, D20; the
+  bosses, Ace Trainers and upgraded Cooltrainers have the smart AI in their party data, so on every
+  difficulty), and
   HARD no longer raises them (its caps, the SET style and no Bag in trainer battles stay, D25).
   The challenge menu says so: its DIFFICULTY descriptions promised -10% and +10% levels and its
-  LEVEL CAP ones that only bosses follow the caps (`src/challenge_menu.c`).
+  LEVEL CAP ones that only bosses follow the caps (`src/challenge_menu.c`). EASY's says "Simpler AI
+  (not for bosses or Ace Trainers); trainers can't use items." (at first "Heart & Soul's AI", which
+  the final review found wrong for those teams).
 - **Prize money** comes from the level the trainer's Pokémon battle at (`GetTrainerBattleLevel`),
   not their party data's (KNOWN_ISSUES #39, open since 0.8.0): trainers pay in proportion to the
   cap now, e.g. a Youngster ¥240 at the first cap instead of ¥112.
@@ -2155,9 +2162,13 @@ follows is the first build's; D45 lists what changed.)
   Sweet Scent, DexNav. Rock Smash and Headbutt find any Pokémon with it on; only a Repel's steps
   keep the weaker ones away (at first they kept the Repel rule, so with a lead at the cap they
   found nothing). The Bug-Catching Contest and the Safari Zone keep their Pokémon: they are what
-  the player is there for, and the repel can't be switched off in them. The Battle Frontier's wild
+  the player is there for. The repel can't be switched on or off in them: the Bag and SELECT give
+  ELM's advice instead (`ItemUseOutOfBattle_InfiniteRepel`), and the L menu is closed there (at
+  first only the encounters were exempt, so the player could switch it on there and be told wild
+  Pokémon would stay away). The Battle Frontier's wild
   Pokémon facilities are unchanged. Its message and description say so ("Wild {PKMN} will stay
   away.").
 - Evidence: `infinite_repel` (also: a level-2 lead, no stronger than Route 29's Pokémon, meets
   none in 80 grass steps; saved with the repel on, reset and continued, it is still on and no
-  battle starts), `bug_contest` (with the repel on, the contest's Pokémon still appear).
+  battle starts), `bug_contest` (with the repel on, the contest's Pokémon still appear; SELECT switches it outside
+  the contest and not in it).

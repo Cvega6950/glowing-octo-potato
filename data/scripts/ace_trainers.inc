@@ -157,7 +157,7 @@ AceTrainer_IlexCalder_EventScript::
 AceTrainer_Text_IlexCalder_Intro:
 	.string "It's so dark under these trees, you\n"
 	.string "can't see what's at your feet. Neither\l"
-	.string "will your Pokemon.\p"
+	.string "can your Pokemon.\p"
 	.string "Rocks, spikes and poison on your side\n"
 	.string "of the field. Every switch you make\l"
 	.string "will cost you!$"
@@ -726,20 +726,20 @@ AceTrainer_Rocktun1FSable_EventScript::
 	end
 
 AceTrainer_Text_Rocktun1FSable_Intro:
-	.string "No light reaches this deep into Rock\n"
-	.string "Tunnel. My Pokemon were raised in this\l"
-	.string "darkness, and they see everything.\p"
+	.string "Rock Tunnel's deepest corners are my\n"
+	.string "home. My Pokemon learned to strike\l"
+	.string "from the shadows, and they see\l"
+	.string "everything.\p"
 	.string "Tricks, ambushes and critical hits.\n"
 	.string "You will not see any of it coming!$"
 
 AceTrainer_Text_Rocktun1FSable_Defeat:
-	.string "The lights came on too soon... I never\n"
-	.string "saw you coming.$"
+	.string "You saw right through my tricks... I\n"
+	.string "never saw you coming.$"
 
 AceTrainer_Text_Rocktun1FSable_After:
 	.string "Prankster status moves fail against\n"
-	.string "Dark types. Keep one on your team, and\l"
-	.string "light this place up with Flash!$"
+	.string "Dark types. Keep one on your team!$"
 
 AceTrainer_R11Wesley_EventScript::
 	trainerbattle_single TRAINER_ACE_R11_WESLEY_HNS, AceTrainer_Text_R11Wesley_Intro, AceTrainer_Text_R11Wesley_Defeat
@@ -1033,9 +1033,9 @@ AceTrainer_RocktunB1FMatilda_EventScript::
 
 AceTrainer_Text_RocktunB1FMatilda_Intro:
 	.string "Everyone hurries through Rock Tunnel\n"
-	.string "to get out of the dark. I like to take\l"
-	.string "it slow... and make the battle slow,\l"
-	.string "too.\p"
+	.string "to get out the other side. I like to\l"
+	.string "take it slow... and make the battle\l"
+	.string "slow, too.\p"
 	.string "Boost all you like. My team won't even\n"
 	.string "notice. We'll wear you down, one turn\l"
 	.string "at a time.$"
