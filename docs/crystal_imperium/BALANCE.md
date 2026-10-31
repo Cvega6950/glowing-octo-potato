@@ -230,16 +230,24 @@ trainers' 18–19 become 28–29 (cap 33).
 
 ## Mega Evolution
 
-| Stage | Stones sold by the Goldenrod Mega Specialist |
+| Stage | Stones sold by the Goldenrod Mega Specialist (each tier keeps the ones before) |
 |---|---|
-| Badge 3 (Mega Ring given) | Beedrill, Pidgeot, Ampharos, Heracross, Pinsir, Audino, Lopunny, Manectric, Sableye, Banette, Staraptor |
-| Badge 6 | Venusaur, Charizard X/Y, Blastoise, Sceptile, Blaziken, Swampert, Gengar, Alakazam, Slowbro, Steelix, Scizor, Houndoom, Absol, Glalie, Abomasnow, Altaria, Camerupt, Sharpedo, Aggron, Medicham, Gardevoir, Gallade, Aerodactyl, Kangaskhan, Mawile |
-| Badge 8 | Gyarados, Lucario, Tyranitar, Salamence, Metagross, Garchomp |
-| Johto Champion | Mewtwo X/Y, Latias, Latios, Diancie |
+| Badge 3 (Mega Ring given) | Beedrill, Pidgeot, Ampharos, Heracross, Pinsir, Audino, Lopunny, Manectric, Sableye, Banette; Emerald Imperium's Butterfree, Luxray, Roserade, Garbodor, Orbeetle, Coalossal, Flapple and Appletun (Applite), Sandaconda, Toxtricity, Centiskorch (20 stones) |
+| Badge 6 | Venusaur, Charizard X/Y, Blastoise, Sceptile, Blaziken, Swampert, Gengar, Alakazam, Slowbro, Steelix, Scizor, Houndoom, Absol, Glalie, Abomasnow, Altaria, Camerupt, Sharpedo, Aggron, Medicham, Gardevoir, Gallade, Aerodactyl, Kangaskhan, Mawile; Imperium's Machamp, Kingler, Lapras, Snorlax, Torterra, Infernape, Empoleon O and D, Dusknoir, Drednaw (56) |
+| Badge 8 | Gyarados, Lucario, Tyranitar, Salamence, Metagross, Garchomp; Imperium's Slaking, Grimmsnarl, Copperajah (65) |
+| Johto Champion | Mewtwo X/Y, Latias, Latios, Diancie (70) |
+| Side battles (D41) | Fantina (3 badges): Gengarite, Dusknoirite; Maylene (4): Lucarionite, Machampite; Crasher Wake (5): Gyaradosite, Drednawite, Laprasite; Byron (6): Metagrossite, Copperajite. Each before the shop sells it |
 
 The first tier is mostly weaker Megas, so having a Mega around Whitney/Morty adds options
 without breaking the level-cap curve. Medicham (Pure Power) and Kangaskhan (Parental Bond)
-are held back to badge 6 on purpose.
+are held back to badge 6 on purpose. Staraptor's stone left the first tier in 0.12.0 (its Mega,
+a Legends: Z-A one, isn't in the game: D9).
+
+Emerald Imperium's 23 stones (D58) go to the tier of the classic stones Imperium gives at the same
+place: the Winstrate family's, Wattson's and the first Trick House puzzles' to badge 3; the Fortree
+creators' starters, Dawn's, the next puzzles' and the four the side battles give first to badge 6;
+Wally's Slakite (Mega Slaking: 700 base stats and Comatose), Juan's Grimmite and Byron's
+Copperajite to badge 8. No boss uses one of these Megas yet.
 
 Boss Megas: Chuck (Heracross), Jasmine (Steelix), Pryce (Abomasnow), Clair (Altaria), Archer
 (Houndoom), the rival on Victory Road (Tyranitar), Will (Alakazam), Koga (Beedrill), Bruno

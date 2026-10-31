@@ -1,5 +1,44 @@
 # Crystal Imperium changelog
 
+## 0.16.0-experimental (2026-10-31)
+
+### Emerald Imperium's Megas (DECISIONS.md D58)
+- 24 new Mega Evolutions from Emerald Imperium, with its stats, types and abilities: Butterfree,
+  Machamp, Kingler, Lapras, Snorlax, Slaking, Torterra, Infernape, Empoleon (two: Mega Empoleon O
+  and Mega Empoleon D, one stone each), Luxray, Roserade, Dusknoir, Garbodor, Orbeetle, Drednaw,
+  Coalossal, Flapple, Appletun, Sandaconda, Toxtricity (Amped or Low Key, each back to its own form
+  after the battle), Centiskorch, Grimmsnarl and Copperajah. As with the other Megas: hold the
+  stone, have the Mega Ring, and press R in the move menu.
+- Eight have their own sprites, drawn for Emerald Imperium by camioftargon, Rachel T,
+  IridescentMirage, Pokets and iriv24's brother and released for anyone to use with credit; the
+  others look like their Gigantamax forms, as in Imperium.
+- Their 23 Mega Stones: the Goldenrod Dept. Store 5F Mega Specialist sells them beside the classic
+  ones, ¥10,000 each: ten from 3 badges (Butterfrite, Luxrite, Roseradite, Garbodorite, Orbeetlite,
+  Coalossite, Applite for Appletun and Flapple, Sandacondite, Toxtricitite, Centiskite), ten more
+  from 6 (Machampite, Kinglerite, Laprasite, Snorlaxite, Torterrite, Infernapite, Empoleonite O and
+  D, Dusknoirite, Drednawite) and the last three from 8 (Slakite, Grimmite, Copperajite). As in
+  Imperium, Fantina, Maylene, Crasher Wake and Byron give Dusknoirite, Machampite, Drednawite and
+  Laprasite, and Copperajite after their side battles, before the shop has them. The MEGA code
+  gives all 70 stones.
+- Six of them have an ability Imperium made itself and get the closest official one: Mega
+  Torterra Thick Fat (Ice Eater), Mega Empoleon O Adaptability (Emperor's Presence), Mega Coalossal
+  and Mega Centiskorch Magic Guard (Mountaineer), Mega Machamp Iron Fist (ORAORAORAORA!), Mega
+  Dusknoir Shadow Tag as its hidden ability (THE GRIPPER), Mega Garbodor Regenerator (Parasitic
+  Waste). Iron Fist and Liquid Voice work as in the official games, without Imperium's boosts.
+- Saves from earlier versions keep working: no saved Pokémon or item changes its number (an Egg
+  in an older Hall of Fame record still shows as an Egg), and Pokémon keep their held items.
+- Fixed: a Low Key Toxtricity in the party turned into an Amped one after every battle, even if it
+  wasn't sent out.
+- The cries of Legends: Z-A's Megas, which aren't in the game, are left out of the ROM, which
+  makes room for these.
+
+### Tools
+- `validate.py` checks the Mega Stones: every Mega Evolution's stone is a Mega Stone in the Mega
+  Specialist's last list, which the MEGA code gives, and his lists only grow and sell nothing else.
+- `tools/emurun`: `expect_species_data` and `expect_buy_list(present=...)`; new play tests
+  `imperium_megas` and `toxtricity_low_key`; `mega_specialist` checks each of the four lists; the
+  old-save test checks two held items, `battle()` can start a double battle.
+
 ## 0.15.2-experimental (2026-10-31)
 
 ### The Infinite Repel keeps every wild Pokémon away (DECISIONS.md D57)

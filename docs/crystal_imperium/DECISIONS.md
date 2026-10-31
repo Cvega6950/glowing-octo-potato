@@ -32,7 +32,10 @@ Short records of decisions that shape the project. Newest last.
   the dex's numbers and the effects its change lists give (D39). Since 0.15.1, also at the
   user's request, the base stats, from Imperium's official dex like the rest (D50). Sprites and
   Imperium's own Megas, moves and abilities stay out, except the trainer battle sprites iriv24
-  released himself for use with credit on Team Aqua's Asset Repo (0.14.0, D41).
+  released himself for use with credit on Team Aqua's Asset Repo (0.14.0, D41). Since 0.16.0, at
+  the user's request, Imperium's 24 Megas are in too (D58): their numbers from its official dex,
+  the sprites of the eight it had drawn from iriv24's release on the same repository with credit
+  to their artists, the other 16 drawn with the engine's Gigantamax sprites.
 
 ## D3. Minimal Grinding Mode is symmetric
 
@@ -101,6 +104,8 @@ Imperium-style (D29).
   level-cap curve: badge 3 (early-route Megas), badge 6 (starters and most Gen 1–3 Megas),
   badge 8 (pseudo-legendaries, Gyarados, Lucario), Johto Champion (Mewtwo X/Y, Latias, Latios,
   Diancie).
+- Since 0.16.0 he sells Emerald Imperium's 23 stones too, by the same tiers (D58): 20 stones
+  with 3 badges, 56 with 6, 65 with 8 and 70 for the Johto Champion.
 - **Trigger button:** HnS uses START for move info, which blocked the Mega trigger. The
   trigger is now on R (`B_GIMMICK_TRIGGER_BUTTON` in `include/config/battle.h`).
 - Bosses: one signature Mega each (the engine allows one Mega per trainer per battle).
@@ -1029,7 +1034,8 @@ DexNav shows and that wild encounters draw from:
   - 6 moves it made (Aqua Fang, Draco Barrage, Soul Robbery, Forbidden Spell, Sonic Slash, Dark
     Hole) are left out of the learnsets. Since 0.13.0 the engine has them (D39).
   - 43 forms it made (its Sevii forms, the Megas of Butterfree, Machamp, Kingler, Lapras, Snorlax
-    and other Gigantamax Pokémon, Primal Dialga, Surfing and Flying Pikachu, Chillet).
+    and other Gigantamax Pokémon, Primal Dialga, Surfing and Flying Pikachu, Chillet). Emerald
+    Imperium's own Megas are in since 0.16.0 (D58).
   - Names cut to its 12 letters are matched to the full ones: Disarm Cry (Disarming Voice),
     Drain Kiss, Crafty Guard, Flower Guard, Prism Laser, Inferno Parade, Neutralize Gas,
     Wandering Soul, WaterCompaction, ThermalExchange, Electromrphosis, SupremeOverlord,
@@ -1106,7 +1112,8 @@ DexNav shows and that wild encounters draw from:
 - **The codes** (`src/cheat_codes.c`):
   - **MEGA**: the Mega Ring if the player hasn't got it (from the third badge, the Goldenrod Mega
     Specialist then goes straight to his shop), and one of each of the 47 Mega Stones whose Megas
-    this game has (D9: the Specialist's full stock), only those not already in the Bag or the PC.
+    this game has (70 since 0.16.0, D58; D9: the Specialist's full stock), only those not already
+    in the Bag or the PC.
     If the Bag and PC are full, it says how many didn't fit, and entering MEGA again brings them.
   - **MAXMONEY** / MMY: money to the maximum (¥9,999,999).
   - **CAUGHTALL** / CAL: every Pokémon seen and caught in the Pokédex, and the National Pokédex
@@ -1131,12 +1138,14 @@ DexNav shows and that wild encounters draw from:
   Candies: the Rare Candy Box, D10), are on from the start here too.
 - **Saves.** `FLAG_CODE_SHINY_STARTERS` and `FLAG_CODE_SHINY_ROAMERS` (extended content flags
   84 and 85) and `VAR_MONO_STARTER_TYPE` (0x40FB), all unreferenced before.
-- **Bag space.** The 47 Mega Stones take 47 of the items pocket's 236 slots, beside the care
-  packages' 172 kinds (D16). Like the packages, MEGA leaves 20 of them free for the story's gifts
-  while the PC (50 slots) has room, and nothing is lost: what fits nowhere comes with the next MEGA.
+- **Bag space.** The 47 Mega Stones take 47 of the items pocket's 236 slots (70 since 0.16.0,
+  D58), beside the care packages' 172 kinds (D16). Like the packages, MEGA leaves 20 of them free
+  for the story's gifts while the PC (50 slots) has room, and nothing is lost: what fits nowhere
+  comes with the next MEGA.
 - Evidence: `cheat_codes` (types each code on the keyboard: a wrong code, MEGA twice (47 stones,
-  then none), MMY, CAL, EZCATCH and EZC, SHINYR, DXA, NO; MONO and SHS refused once the player has a
-  Pokémon; then SHINYS and MONO with Dragon, and PROF. ELM's middle Poké Ball holds a shiny Gible).
+  70 since 0.16.0, then none), MMY, CAL, EZCATCH and EZC, SHINYR, DXA, NO; MONO and SHS refused
+  once the player has a Pokémon; then SHINYS and MONO with Dragon, and PROF. ELM's middle Poké Ball
+  holds a shiny Gible).
 
 ## D38. Faster battles
 
@@ -1476,9 +1485,11 @@ DexNav shows and that wild encounters draw from:
   sell them (D36), Mega Stones before Goldenrod's Mega shop stocks them, an evolution item for
   the trainer's own Pokémon, and items nothing else gives: Volkner's Rotom Catalog, Larry's Exp.
   Charm, Iono's Catching Charm. The postgame gives a Master Ball, Ability Patches and Capsule, the
-  Oval Charm and PP Maxes. `side_battles.py` checks that a TM or Mega Stone isn't on sale at the
-  trainer's stage. Gracidea, the Adamant Crystal and the Lustrous Globe were planned and dropped:
-  Shaymin, Dialga and Palkia can't be caught here.
+  Oval Charm and PP Maxes. Since 0.16.0 Fantina, Maylene, Wake and Byron also give Emerald
+  Imperium's stones of their Pokémon, as in Imperium: Dusknoirite, Machampite, Drednawite and
+  Laprasite, Copperajite (D58). `side_battles.py` checks that a TM or Mega Stone isn't on sale at
+  the trainer's stage. Gracidea, the Adamant Crystal and the Lustrous Globe were planned and
+  dropped: Shaymin, Dialga and Palkia can't be caught here.
 - **Places:** `side_battles.py` checks that the player can walk up to the tile in front of each
   trainer (from the map's warps, doors included, and connections, with the game's elevation
   rule), that neither tile is water, and that the trainer cuts no path off, on every layout of
@@ -1695,8 +1706,9 @@ follows is the first build's; D45 lists what changed.)
   isn't kept in this repository. `imperium_species.py` and `imperium_evolutions.py` read it
   (`--ei-dex`) in place of the Radical Red dex (D35, D39, D44). Like that one, it is design data
   (D2): which moves, abilities and evolutions each species has. Its 1,534 entries map onto this
-  game's species by their names ("Raichu-Alola", "Basculin-Blue-Striped"); Imperium's own Megas
-  and Primal forms and two Pikachu forms aren't in this game, and stay out.
+  game's species by their names ("Raichu-Alola", "Basculin-Blue-Striped"); Imperium's Primal forms
+  and two Pikachu forms aren't in this game, and stay out. Its own Megas stayed out too until
+  0.16.0, when D58 added them; the script matches them by name like any species.
 - **What changes against the Radical Red data.** Mostly nothing: Imperium's list of differences
   is in its dex already, except two that the dex lacks and that are gone since 0.15.0 (they were
   D35's and D39's explicit rules): Galarian Moltres learns no Trick Room by TM, and Alolan
@@ -1962,7 +1974,8 @@ follows is the first build's; D45 lists what changed.)
   Ariados, Granbull, Qwilfish, Corsola... Some only move points between stats (Flareon keeps 525
   with 95 Speed; Articuno keeps 580). Each line names the old values.
 - A species is matched by its own name in the dex, as for abilities; a form the dex doesn't list
-  keeps its stats. Imperium's own Megas and forms don't exist here and are skipped (D2). The dex's
+  keeps its stats. Imperium's own forms don't exist here and are skipped (D2); its own Megas were
+  skipped too until 0.16.0, when D58 added them with the dex's stats and types. The dex's
   types aren't taken: only stats were asked for.
 - **Both sides.** The trainers' Pokémon use the same species data, so a route trainer's
   Farfetch'd or a boss's Parasect is stronger too, as in Imperium.
@@ -2172,3 +2185,95 @@ follows is the first build's; D45 lists what changed.)
   none in 80 grass steps; saved with the repel on, reset and continued, it is still on and no
   battle starts), `bug_contest` (with the repel on, the contest's Pokémon still appear; SELECT switches it outside
   the contest and not in it).
+
+## D58. Emerald Imperium's Megas
+
+- The user: "Emerald imperium also has custom Megas that I really like that would be cool".
+- **What may be used (amends D2).** None of Imperium's code or files, except one release of sprites.
+  Its 24 Megas' numbers (base stats, types, abilities) and their stones' names are facts from its
+  official dex, which D45 and D50 already read: Imperium 1.3's (Mega Empoleon O and D, Infernape,
+  Slaking and Roserade changed in 1.3). The sprites of the eight Megas Imperium had drawn (Luxray,
+  Infernape, Torterra, Roserade, Empoleon's two, Dusknoir, Slaking) are iriv24's own release on Team
+  Aqua's Asset Repo (`Pokemon/New Megas/iriv24/`): "you are free to use them however you want and
+  make edits to them as desired", as long as each sprite's artist is credited (CREDITS.md, README).
+  The other 16 are drawn with the engine's own Gigantamax sprites, as in Imperium.
+- **Species.** 25, numbered 1573-1597 after `SPECIES_GLIMMORA_MEGA`, so no saved species moves.
+  Toxtricity's Amped and Low Key forms each have one, as the engine splits Meowstic's Megas, so each
+  goes back to its own form after a battle; `SPECIES_TOXTRICITY_MEGA`, the dex's name, is the Amped
+  one. `P_IMPERIUM_MEGA_EVOLUTIONS` (`include/config/species_enabled.h`) compiles them, their
+  sprites and their form changes. `SPECIES_EGG` moves from 1573 to 1598. The one saved place that
+  holds it is a Hall of Fame record (an Egg in the party), and a record never holds a Mega (they
+  revert before it is written), so `FixOldHallOfFameEggs` (`src/hall_of_fame.c`) reads 1573 there
+  as an Egg when the records are loaded.
+- **Their data.** Stats, types and abilities are the dex's. Six of the abilities are Imperium's
+  own; those Megas get the official ability that plays closest:
+
+  | Mega | Imperium's ability | Here | What changes |
+  |---|---|---|---|
+  | Torterra | Ice Eater: absorbs Ice moves to heal | Thick Fat | Ice and Fire moves do half: its 4× Ice weakness is 2×, not an immunity |
+  | Empoleon O | Emperor's Presence: its and an ally's Water and Steel moves +30% | Adaptability | its own Water and Steel moves +33%; no ally boost (doubles only) |
+  | Coalossal, Centiskorch | Mountaineer: no damage from Rock moves or Stealth Rock | Magic Guard | no Stealth Rock or other indirect damage; Rock moves hit |
+  | Machamp | ORAORAORAORA!: punches hit a second time for 50% | Iron Fist | punches ×1.2 in one hit |
+  | Dusknoir (hidden slot; Prankster in the others, as in Imperium) | THE GRIPPER: contact moves trap | Shadow Tag | traps every foe but a Ghost from the moment it is in, without a hit |
+  | Garbodor | Parasitic Waste: attacks that poison drain | Regenerator | a third of its HP back when it switches out |
+
+  Iron Fist (Mega Infernape) and Liquid Voice (Mega Lapras) work as everywhere in this game, without
+  Imperium's changes to them (Iron Fist 1.3× instead of 1.2×, Liquid Voice also +20%): D35 and D45
+  took which abilities a species has, not Imperium's changes to abilities. The rest is the base
+  form's: catch rate, EV yield, Egg data, held items, category, height and weight (the Gigantamax
+  entries weigh 0, which Low Kick and Heavy Slam read), learnsets (Mega Lapras's and Mega Snorlax's
+  with their Egg Moves, as the dex lists them), cry and follower sprite. EXP yield is the base's +
+  50, as the classic Megas'. Each has a Pokédex entry of our own, describing its sprite (the dex has
+  none). A Mega with more base HP than its base form gains the difference when it Mega Evolves, as
+  every stat is recalculated: a level-50 Dusknoir's 120 HP become 180.
+- **Sprites.** The 16 show the Gigantamax sprites and icons: their graphics compile with the new flag
+  while `P_GIGANTAMAX_FORMS` stays off, so no Gigantamax species, form change or Dynamax comes back.
+  Mega Appletun shows Flapple's, a byte-identical picture. The eight drawn ones are as released;
+  none came with shiny colours for Mega Torterra, Roserade or Slaking, so theirs were made here: each
+  colour takes the change its base form's official shiny palette makes at the same index (the Mega
+  palettes keep their base's layout). They may differ from Imperium's own: the release's screenshots
+  of those couldn't be opened from here to compare. The eight show their base form's icon (none was
+  released).
+- **Mega Stones.** 23 items after TM198, 1001-1023, so no saved item moves: Applite serves Appletun
+  and Flapple, Toxtricitite both Toxtricity, Empoleonite O and D the two Mega Empoleon. A Pokémon's
+  held item has 11 bits now (`include/pokemon.h`): the last stone, 1023, would just fit in the old
+  10, but no item could ever come after it. The bit was `unused_02`'s, which nothing wrote, so older
+  saves read the same (the old-save test holds Loaded Dice, 762, which sets the old field's top
+  bit). Names: the dex's (`EMPOLEONITE O`, `LUXRITE`, not its location sheet's "Luxite");
+  descriptions in the engine's words ("This stone enables Luxray to Mega Evolve in battle.");
+  icons: the classic stones' shape (Kangaskhanite's) in each Mega's colours. ¥10,000, as D9's.
+- **Where.** The Goldenrod Mega Specialist sells them in D9's tiers, each in the tier of the classic
+  stones Imperium gives at the same place (BALANCE.md): from 3 badges Butterfrite, Luxrite,
+  Roseradite, Garbodorite, Orbeetlite, Coalossite, Applite, Sandacondite, Toxtricitite and
+  Centiskite (20 stones in all); from 6 also Machampite, Kinglerite, Laprasite, Snorlaxite,
+  Torterrite, Infernapite, Empoleonite O and D, Dusknoirite and Drednawite (56); from 8 also
+  Slakite, Grimmite and Copperajite (65; Mega Slaking has 700 base stats and Comatose); the Johto
+  Champion's list has all 70. As in Imperium, four of Sinnoh's leaders give theirs after their side
+  battle (D41), each before the shop sells it: Fantina Dusknoirite, Maylene Machampite, Crasher Wake
+  Drednawite and Laprasite, Byron Copperajite. MEGA gives all 70 stones (D37).
+- **Room.** The Megas take 75,008 bytes of ROM. 39,748 were free: Legends: Z-A's 44 Mega cries
+  (660,552 bytes of samples) were in the ROM though their Megas aren't (`P_GEN_9_MEGA_EVOLUTIONS` is
+  off, D9). They now need that flag too, in the cry IDs (`include/constants/cries.h`), both cry
+  tables (`sound/cry_tables.inc`) and the samples (`sound/direct_sound_data.inc`), which stay in
+  step; cry IDs aren't saved. ROM: 98.13% of 32 MB, 626,356 bytes free. EWRAM: +148 bytes, the
+  randomizer's run-time table of every species (260,028 of 262,144).
+- **Fixed on the way:** a Low Key Toxtricity had Amped Toxtricity's form changes, so it came out of
+  every battle Amped, sent out or not (pokeemerald-expansion's, since 2024). A Toxtricity a save
+  already turned Amped stays Amped.
+- **Not in this change:** no boss or side-battle team uses one of these Megas (their teams and
+  tests would change); Imperium's changes to abilities every species has stay out (above).
+- Evidence: `imperium_megas` (new: every Mega's stats, types, abilities and Mega flag in the ROM;
+  Mega Luxray, Mega Machamp, Mega Empoleon D, the Low Key Mega Toxtricity, Mega Appletun and Mega
+  Dusknoir with its hidden Shadow Tag Mega Evolve by R against Falkner, with their species,
+  ability and stats, and are their base form after the battle, the Low Key Toxtricity and a second
+  one too; MEGA gives the 23 stones), `mega_specialist` (the four lists, 20, 56, 65 and 70 stones,
+  each with its tier's new stones and not the later ones), `toxtricity_low_key` (new: two Low Key
+  Toxtricity stay Low Key; both came out Amped on 0.15.2), `cheat_codes` (70 stones), the old-save
+  test (a Heart & Soul 2.0.6 save's Leftovers and Loaded Dice still held), `dexnav_wild_match` and
+  `dexnav_any` (no Mega in Wild Variety or the DexNav list: their counts are unchanged),
+  `mega_evolution`; `validate.py` (new: every compiled Mega Evolution's stone is a Mega Stone in the
+  Mega Specialist's last list, which MEGA gives, every list holds the one before and sells nothing
+  else, every Mega is `isMegaEvolution` and never randomized), `side_battles.py --check`,
+  `imperium_species.py --check` (the dex's 24 Megas match these entries: nothing to rewrite). All
+  78 play tests and the old-save test pass on mGBA and VBA-M with this ROM (TESTING.md).
+  `FixOldHallOfFameEggs` is checked by reading only.

@@ -4,13 +4,13 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.15.2-experimental).** The full Heart & Soul story is in and
+> **Status: in development (0.16.0-experimental).** The full Heart & Soul story is in and
 > playable. All the systems listed below work and are tested in an emulator. Every trainer
 > uses the smart AI and fights at your level cap, every boss from the rival to Red, rematches and
 > postgame included, has an Imperium-style team with all of its Pokémon at the level cap, Ace
 > Trainers wait along the way, the Pokémon have Emerald Imperium's abilities, move pools and
-> evolutions (from its official dex), the TM list is Emerald Imperium's, and HMs work without
-> being taught. Nobody has played the whole story through yet.
+> evolutions (from its official dex), Emerald Imperium's own Megas are in, the TM list is Emerald
+> Imperium's, and HMs work without being taught. Nobody has played the whole story through yet.
 
 ## What you get
 
@@ -131,14 +131,21 @@ From the first step of a new game:
   Beast Balls for the Champion), and the TMs (above). Each package
   lists what's inside; if a Bag pocket is full, the rest goes to your PC, and if the PC is full
   too, the package waits.
-- **Mega Evolution** (47 classic Megas plus Rayquaza; stones from Goldenrod Dept. Store 5F, or
-  all at once with the MEGA code).
+- **Mega Evolution:** the 47 classic Megas plus Rayquaza, and **Emerald Imperium's 24 Megas**
+  with its stats, types and abilities: Mega Butterfree, Machamp, Kingler, Lapras, Snorlax, Slaking,
+  Torterra, Infernape, Empoleon O and D, Luxray, Roserade, Dusknoir, Garbodor, Orbeetle, Drednaw,
+  Coalossal, Flapple, Appletun, Sandaconda, Toxtricity, Centiskorch, Grimmsnarl and Copperajah
+  (eight with the sprites drawn for Imperium, the others looking like their Gigantamax forms, as in
+  Imperium). Stones from the Mega Specialist on Goldenrod Dept. Store 5F (from 3 badges, more
+  with 6 and 8 and as Champion), a few from the side battles, or all 70 at once with the MEGA code.
+  Six of Imperium's Megas have an ability Imperium made itself; they get the closest official one
+  (DECISIONS.md D58).
 - **Emerald Imperium's cheat codes** at the NES in your room: turn it on, answer YES to "Enter a
   code?" and type one (any case):
 
   | Code | Alias | Does |
   |---|---|---|
-  | MEGA | | the Mega Ring and every Mega Stone (47); enter it again for any that didn't fit |
+  | MEGA | | the Mega Ring and every Mega Stone (70); enter it again for any that didn't fit |
   | MAXMONEY | MMY | money to the maximum |
   | CAUGHTALL | CAL | every Pokémon caught in the National Pokédex |
   | EZCATCH | EZC | switches Easy Catch off or on |
@@ -196,13 +203,15 @@ your house), except Auto Run, which is in the Options menu and the L menu.
 Also asked for and done: DexNav and Rare Candy before the first Gym (both are there from the
 first step), Easy Catch, an unlimited PokéVial given with the Rare Candy Box, milestone care
 packages (in stacks since 0.11.0), Emerald Imperium's L menu (with a start menu that fits on
-the screen again), Emerald Imperium's abilities and move pools, and a TM clerk in every Poké Mart.
+the screen again), Emerald Imperium's abilities and move pools, a TM clerk in every Poké Mart, and
+Emerald Imperium's custom Megas (D58).
 
 **Not done yet:** a full story playthrough; a test on a real iPhone; Imperium-style teams for
 Heart & Soul's other ordinary trainers (they keep their own teams, at your level cap, evolved,
-with 31 IVs); Emerald Imperium's custom Megas (no permission to use Imperium's own content, DECISIONS.md D2); the abilities
-Imperium and Radical Red made themselves, which the engine doesn't have (D35, D45). Imperium's
-two TMs of Radical Red moves, Dark Hole and Draco Barrage, are postgame tutor moves instead (D39).
+with 31 IVs); the abilities Imperium and Radical Red made themselves, which the engine doesn't
+have (D35, D45; six of Imperium's Megas have the closest official one, D58); a boss or side battle
+with one of Imperium's Megas (none has one yet). Imperium's two TMs of Radical Red moves, Dark
+Hole and Draco Barrage, are postgame tutor moves instead (D39).
 
 Details: [EVOLUTIONS.md](EVOLUTIONS.md) · [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [TESTING.md](TESTING.md) ·
 [DECISIONS.md](DECISIONS.md) · [BALANCE.md](BALANCE.md) · [KNOWN_ISSUES.md](KNOWN_ISSUES.md) ·
@@ -274,11 +283,19 @@ Grinding starts OFF for HnS saves and can be turned on from the settings PC.
   pokeemerald decompilation. DexNav is the expansion's (added by ghoulslash).
 - **Pokémon Emerald Imperium** (iriv24 and team): the design inspiration for Minimal Grinding
   Mode, Sleep Clause, the QoL key items, competitive trainer philosophy and the TM list (from
-  its public TM guide). No Imperium code is used; the battle sprites of Sinnoh's Gym Leaders and
-  Cynthia are iriv24's own release on Team Aqua's Asset Repo, used with credit as he asks.
+  its public TM guide), and the source of its 24 Megas' data (its official dex). No Imperium code
+  is used; the battle sprites of Sinnoh's Gym Leaders and Cynthia are iriv24's own release on Team
+  Aqua's Asset Repo, used with credit as he asks, and so are the sprites of the eight Megas drawn
+  for Imperium (below).
 - **Side battle sprites** (the repository's `CREDITS.md`): PurrfectDoodle (Eva), iriv24, RHcks
   (the Paldea Gym Leaders commissioned by darklight177; Geeta, N), Kasen, Galaxeeh and
   PurpleZaffre, from their free releases, used with credit as they ask.
+- **Mega sprites** (the repository's `CREDITS.md`): Emerald Imperium's newly drawn Megas, released
+  by iriv24 on Team Aqua's Asset Repo for use with credit to their artists: camioftargon (Mega
+  Luxray, Mega Infernape and its shiny colours, Mega Dusknoir, Mega Roserade's back sprite), Rachel
+  T (Mega Roserade's front sprite), IridescentMirage (Mega Empoleon O and D), Pokets (Mega Slaking)
+  and X, iriv24's brother (Mega Torterra). Imperium's other 16 Megas use pokeemerald-expansion's
+  Gigantamax sprites.
 - **BW Battle UI** by **mudskip** (mudskipper13), and **BW Summary Screen** by **RavePossum**
   with tiles by Againsts, grade sprites by Sphericalice, auto-format code by Vexx, IV/EV code by
   Buffelsaft, nature colors by DizzyEgg, wrapping by Zeturic, reference code by Greenphx9, the
