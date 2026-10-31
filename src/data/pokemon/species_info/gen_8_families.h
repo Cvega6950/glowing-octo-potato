@@ -3617,7 +3617,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sToxtricityLowKeyLevelUpLearnset,
         .teachableLearnset = sToxtricityLowKeyTeachableLearnset,
         .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,
-        .formChangeTable = sToxtricityAmpedFormChangeTable,
+        .formChangeTable = sToxtricityLowKeyFormChangeTable, // Crystal Imperium (DECISIONS.md D58): was Amped's, which turned it Amped after every battle
         .randomizerMode = MON_RANDOMIZER_INVALID,
     },
 
@@ -3672,7 +3672,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .levelUpLearnset = sToxtricityLowKeyLevelUpLearnset,
         .teachableLearnset = sToxtricityLowKeyTeachableLearnset,
         .formSpeciesIdTable = sToxtricityFormSpeciesIdTable,
-        .formChangeTable = sToxtricityAmpedFormChangeTable,
+        .formChangeTable = sToxtricityLowKeyFormChangeTable, // Crystal Imperium (DECISIONS.md D58): was Amped's, which turned it Amped after every battle
         .randomizerMode = MON_RANDOMIZER_INVALID,
     },
 #endif //P_GIGANTAMAX_FORMS
