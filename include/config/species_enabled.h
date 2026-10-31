@@ -26,7 +26,7 @@
 #define P_GIGANTAMAX_FORMS               FALSE
 #define P_TERA_FORMS                     FALSE
 
-#define P_GEN_9_MEGA_EVOLUTIONS          FALSE // Crystal Imperium: Z-A Megas off to save ROM space. Mega Evolutions introduced in Z-A and its DLC
+#define P_GEN_9_MEGA_EVOLUTIONS          FALSE // Crystal Imperium: Z-A Megas off to save ROM space, their cries too (D58). Mega Evolutions introduced in Z-A and its DLC
 
 // Fusion forms
 #define P_FUSION_FORMS                   FALSE
