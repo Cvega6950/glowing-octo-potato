@@ -932,17 +932,22 @@ def pace(x1, x2, y, laps, soft=False):
     return out
 
 
-def battle_trainer(trainer_id):
-    """Debug menu > Trainers > Trainer 1 = id > Try Battle."""
+def battle_trainer(trainer_id, double=False):
+    """Debug menu > Trainers > Trainer 1 = id > Try Battle. double=True sets Double Battle: TRUE
+    first (FALSE whenever the debug menu opens): the player's battlers 0 and 2 are party slots 0 and 1."""
     out = open_debug() + ["press DOWN"] * 6 + ["press A", "wait 30", "press DOWN", "press A", "wait 30"]
     out += number(trainer_id, initial=0) + ["press A", "wait 30"]
-    out += ["press DOWN"] * 5 + ["press A"]  # the cursor returns to the top after entry
-    return out
+    # the cursor returns to the top after entry; Double Battle is the 5th row, Try Battle the 6th
+    if double:
+        out += ["press DOWN"] * 4 + ["press A", "wait 30", "press DOWN"]
+    else:
+        out += ["press DOWN"] * 5
+    return out + ["press A"]
 
 
-def battle(trainer):
+def battle(trainer, double=False):
     """Start a battle against a trainer given by its constant, e.g. battle("TRAINER_MORTY_1_HNS")."""
-    return battle_trainer(probe.resolve({trainer: trainer})[trainer])
+    return battle_trainer(probe.resolve({trainer: trainer})[trainer], double)
 
 
 def give_mon_complex(species, level, nature, ability_slot, moves):

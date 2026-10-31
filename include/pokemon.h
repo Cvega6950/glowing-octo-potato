@@ -130,8 +130,10 @@ struct PokemonSubstruct0
 {
     u16 species:11; // 2047 species.
     enum Type teraType:5; // 30 types.
-    u16 heldItem:10; // 1023 items.
-    u16 unused_02:6;
+    // Crystal Imperium: 11 bits for Emerald Imperium's Mega Stones (DECISIONS.md D58). The bit was
+    // unused_02's, which nothing writes, so it is 0 in older saves and their items read the same.
+    u16 heldItem:11; // 2047 items.
+    u16 unused_02:5;
     u32 experience:21;
     u32 nickname11:8; // 11th character of nickname.
     u32 unused_04:3;

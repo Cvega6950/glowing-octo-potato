@@ -7,7 +7,7 @@ wait 100
 press A
 wait 900
 shot 03_ci_continue.png
-expect8 {gPlayerPartyCount} 1 party_kept
+expect8 {gPlayerPartyCount} 2 party_kept
 !expect_bag_has("keyItems", "ITEM_INFINITE_RARE_CANDIES")
 !expect_bag_has("keyItems", "ITEM_POKE_VIAL")
 !expect_bag_has("keyItems", "ITEM_TRAINING_KIT")
@@ -52,3 +52,11 @@ shot 05_ci_starting_package.png
 mash A 2400
 !expect_flag("FLAG_RECEIVED_STARTING_CARE_PACKAGE", 1, "old_save_gets_the_starting_package")
 !expect_bag_has("keyItems", "ITEM_SHINY_CHARM", "old_save_shiny_charm")
+# The two Pokemon still hold their items: a Pokemon's held item has 11 bits (D58, for Emerald
+# Imperium's Mega Stones) and the added bit was unused, 0 in every older save. A double battle
+# reads both from the party (the player's battlers 0 and 2).
+!battle("TRAINER_AMY_AND_MAY_HNS", double=True)
+!wait_action_menu("old_save_double_battle")
+shot 06_ci_held_items.png
+!expect_battler(0, "item", "ITEM_LEFTOVERS", "old_save_leftovers_held")
+!expect_battler(2, "item", "ITEM_LOADED_DICE", "old_save_loaded_dice_held")
