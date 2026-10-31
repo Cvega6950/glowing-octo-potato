@@ -29,8 +29,7 @@ cartridge clock starts at a fixed time (2026-10-24 01:30 UTC, night in the game)
 with emulated time on both emulators. Battle results depend on the RNG, which depends on the
 code and on the emulator, so balance checks sample several battles and accept a range.
 
-Results on the 0.16.0-experimental ROM with Emerald Imperium's Megas (D58; not a release yet),
-SHA-1 `15ff0517fc82b610e97e85436b90bb3bdfd43957`, 2026-10-31:
+Results on the 0.16.0 ROM (SHA-1 `15ff0517fc82b610e97e85436b90bb3bdfd43957`), 2026-10-31:
 All 78 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
 that each test requires to be inside its accepted range.
 
