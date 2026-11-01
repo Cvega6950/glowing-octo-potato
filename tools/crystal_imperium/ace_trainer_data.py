@@ -3,15 +3,20 @@ writes from. ACES are new trainers, one a map at most (D55); UPGRADES give Heart
 Trainers (Cooltrainers) competitive teams. A team is a list of Pokemon as boss_teams.py's mon()
 makes them; a stage is the badge count when the map is reached (9: after the Johto League): every
 Pokemon is at that stage's cap in the party data, and the team is made for it (D56: in battle
-they are at the player's cap, and evolve only when that is a later stage's)."""
+they are at the player's cap, and evolve only when that is a later stage's). mon() is team_kit.py's: a
+Pokemon may name ivs (all 31 otherwise), evs and a raised_item, the item it holds once it has evolved in a
+battle fought after its team's stage."""
+import os
+import sys
 
-
-def mon(species, item, ability, nature, moves, evs=None):
-    return {"species": species, "item": item, "ability": ability, "nature": nature, "moves": moves, "evs": evs}
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from team_kit import mon  # noqa: E402
 
 
 # The stage of each Heart & Soul Cooltrainer with a competitive team: the one its Heart & Soul levels
-# were made for (as 0.15.0 found them; their party data is at that stage's cap since 0.15.2, D56)
+# were made for (as 0.15.0 found them; their party data is at that stage's cap since 0.15.2, D56). A
+# rematch tier is offered from its stage on (src/battle_setup.c). 9 is the Johto League won, 10 the Kanto
+# League.
 UPGRADE_STAGES = {
     "TRAINER_IRENE_HNS": 3, "TRAINER_JENN_HNS": 4, "TRAINER_NICK_HNS": 4, "TRAINER_AARON_HNS": 4,
     "TRAINER_GWEN_HNS": 4, "TRAINER_LOIS_HNS": 4, "TRAINER_EMMA_HNS": 4, "TRAINER_RYAN_HNS": 6,

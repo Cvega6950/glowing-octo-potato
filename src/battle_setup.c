@@ -3,6 +3,8 @@
 #include "bug_contest.h"
 #include "load_save.h"
 #include "battle_setup.h"
+#include "battle_main.h"
+#include "caps.h"
 #include "battle_tower.h"
 #include "battle_transition.h"
 #include "main.h"
@@ -2196,7 +2198,8 @@ static bool8 IsTrainerReadyForRematch_(const struct RematchTrainer *table, u16 t
 // previous stage is beaten. Gate the stage the player is offered on badge count: a stage is
 // only offered once its team fits under the level ceiling for the badges earned so far, so
 // rematches stay farmable at a sane level all game. Stage 1 (the first rematch) is always
-// allowed, since that is what the trainer originally offered.
+// allowed, since that is what the trainer originally offered. (Crystal Imperium: a tier made for a
+// stage of the game goes by that stage instead, GetMaxRematchStageForBadges.)
 static const u8 sRematchLevelCeilingByBadges[NUM_BADGES + 1] =
 {
     [0]  = 12, // no badges
@@ -2250,23 +2253,42 @@ static u32 GetTrainerPartyMaxLevel(u16 trainerId)
 }
 
 // Returns the highest rematch stage (index into trainerIds) the player's badge count allows.
+// Crystal Imperium: a tier whose team is made for a stage of the game (sTeamsMadeForStage, the
+// upgraded Cooltrainers' since D47) is offered once the player has reached that stage
+// (GetLevelCapStage), the first rematch too; until then the player meets the tier before, or the
+// first battle's team again, at the player's cap. Its party data is at its stage's cap, far above
+// Heart & Soul's level ceiling, which held Gaven's, Beth's and Reena's third teams back until the
+// sixteenth badge. Heart & Soul's own tiers keep the ceiling, and their first rematch is always
+// offered.
 static s32 GetMaxRematchStageForBadges(const struct RematchTrainer *trainerEntry)
 {
-    u32 i, levelCeiling;
-    s32 maxStage = 1;
+    u32 i, levelCeiling, playerStage;
+    s32 maxStage = 0;
 
     // Once the Kanto league is cleared there is nothing left to scale against.
     if (FlagGet(FLAG_IS_KANTO_CHAMPION))
         return REMATCHES_COUNT - 1;
 
     levelCeiling = sRematchLevelCeilingByBadges[GetRematchBadgeCount()];
+    playerStage = GetLevelCapStage();
 
-    for (i = 2; i < REMATCHES_COUNT; i++)
+    for (i = 1; i < REMATCHES_COUNT; i++)
     {
-        if (trainerEntry->trainerIds[i] == 0)
+        u16 trainerId = trainerEntry->trainerIds[i];
+        s32 teamStage;
+
+        if (trainerId == 0)
             break;
-        if (GetTrainerPartyMaxLevel(trainerEntry->trainerIds[i]) > levelCeiling)
+        teamStage = GetTrainerTeamStage(trainerId);
+        if (teamStage >= 0)
+        {
+            if ((u32)teamStage > playerStage)
+                break;
+        }
+        else if (i >= 2 && GetTrainerPartyMaxLevel(trainerId) > levelCeiling)
+        {
             break;
+        }
         maxStage = i;
     }
 

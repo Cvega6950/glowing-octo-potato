@@ -875,6 +875,264 @@ def expect_party_species(party, slot, species, label):
     return [f"expectpartyspecies {{{party}+{slot * v['mon_size']}}} {v['secure']} {v['substruct']} {v[species]} {label}"]
 
 
+def expect_party_item(party, slot, item, label):
+    """Check the item (an ITEM_ constant, or ITEM_NONE) a Pokemon of gPlayerParty or gEnemyParty holds
+    at slot 0-5, in the same encrypted substruct as its species (expectpartyitem)."""
+    v = probe.resolve({"mon_size": "sizeof(struct Pokemon)", "secure": "offsetof(struct BoxPokemon, secure)",
+                       "substruct": "NUM_SUBSTRUCT_BYTES", item: item})
+    return [f"expectpartyitem {{{party}+{slot * v['mon_size']}}} {v['secure']} {v['substruct']} {v[item]} {label}"]
+
+
+def prefetch(*names):
+    """Resolve many constants at once (one compile instead of one each), for a long test's later lines."""
+    probe.resolve({n: n for n in names})
+    return []
+
+
+def designs():
+    """tools/crystal_imperium/trainer_rules.py: the designed teams (boss_teams.py, ace_trainer_data.py) and its
+    model of how the battle code fields them (GetTrainerMonEvolvedSpecies, the raised items), so a test reads
+    the teams' data instead of copying it."""
+    folder = os.path.join(HERE, "..", "crystal_imperium")
+    if folder not in sys.path:
+        sys.path.insert(0, folder)
+    import trainer_rules
+    return trainer_rules
+
+
+def stage_of(stage):
+    """A stage as a test writes it, 0-8 or "J" (the Johto League won) or "K" (the Kanto League), as the tables do."""
+    tr = designs()
+    return {"J": tr.JOHTO_CHAMPION, "K": tr.KANTO_CHAMPION, 9: tr.JOHTO_CHAMPION, 10: tr.KANTO_CHAMPION}.get(stage, stage)
+
+
+def designed_team(trainer):
+    tr = designs()
+    return next(t for t in tr.designed_teams() if t.tid == trainer)
+
+
+def designed_mon(trainer, slot):
+    tr = designs()
+    return tr.Mon(tr.species_db.load(), designed_team(trainer).mons[slot])
+
+
+def designed_slot(trainer, species):
+    """The party slot of a designed trainer's Pokemon of this species (as its team writes it, "Pupitar")."""
+    names = [m["species"] for m in designed_team(trainer).mons]
+    if species not in names:
+        raise ValueError(f"{trainer} has no {species} now ({', '.join(names)}): update the test")
+    return names.index(species)
+
+
+def designed_species(trainer, slot, stage):
+    """The species a designed Pokemon battles as at a stage's NORMAL cap."""
+    tr = designs()
+    return tr.battle_species(tr.species_db.load(), designed_mon(trainer, slot), designed_team(trainer).stage, stage_of(stage))
+
+
+def designed_item(trainer, slot, stage):
+    """The item (ITEM_ constant) a designed Pokemon holds at a stage's NORMAL cap: its raised_item once it has
+    evolved there, if it has one, else its own."""
+    tr = designs()
+    return tr.battle_item(tr.species_db.load(), designed_mon(trainer, slot), designed_team(trainer).stage,
+                          stage_of(stage)) or "ITEM_NONE"
+
+
+def designed_level(trainer, stage):
+    """The level a designed team battles at with the player at a stage (NORMAL caps): a boss at the later of its
+    stage's cap and the player's, any other team at the player's."""
+    tr = designs()
+    stage, team = stage_of(stage), designed_team(trainer)
+    if team.kind in ("boss", "side", "miniboss") and tr.stage_index(team.stage) > tr.stage_index(stage):
+        return tr.cap(team.stage)
+    return tr.cap(stage)
+
+
+def ordinary_species(trainer, slot, stage):
+    """The species a Heart & Soul trainer's Pokemon battles as at a stage's NORMAL cap (D46, D56: as evolved as
+    the level allows, unless it holds an Eviolite, an Everstone or an item for its own species)."""
+    tr = designs()
+    db = tr.species_db.load()
+    with open(os.path.join(HERE, "..", "..", "src", "data", "trainers_hns.party")) as f:
+        block = re.search(r"(?ms)^=== " + trainer + r" ===\n.*?\n\n(.*?)(?=^=== |\Z)", f.read()).group(1)
+    first = [b.strip().splitlines()[0] for b in re.split(r"\n\s*\n", block.strip()) if b.strip()][slot]
+    species, _, item = first.partition("@")
+    sp = db.canonical(tr.team_kit.species_constant(species.strip()))
+    hold = (db.item(tr.team_kit.constant("ITEM", item.strip())) or {}).get("hold_effect") if item.strip() else None
+    level = tr.cap(stage_of(stage))
+    if hold in tr.BLOCKING:
+        return sp
+    for _ in range(2):
+        nxt = next((e.target for e in db.evolutions(sp) if 0 < e.trainer_level <= level), None)
+        if nxt is None:
+            break
+        sp = nxt
+    return sp
+
+
+def expect_battle_type(flags, label):
+    """The battle's gBattleTypeFlags has all these BATTLE_TYPE_ flags."""
+    v = probe.resolve({"mask": " | ".join(flags)})
+    return [f"expectbits32 {{gBattleTypeFlags}} {v['mask']:#x} {v['mask']:#x} {label}"]
+
+
+def expect_opponent_b(trainer, label):
+    """The second opponent of a two-opponent battle (TRAINER_BATTLE_PARAM.opponentB, at an odd offset of the
+    packed struct: two bytes)."""
+    v = probe.resolve({"off": "offsetof(struct _TrainerBattleParameter, opponentB)", trainer: trainer})
+    return [f"expect8 {{gTrainerBattleParameter+{v['off']}}} {v[trainer] & 0xFF} {label}_low",
+            f"expect8 {{gTrainerBattleParameter+{v['off'] + 1}}} {v[trainer] >> 8} {label}_high"]
+
+
+def expect_designed_party(trainer, stage, label, party="gEnemyParty", first=0, count=None, on_field=(0,)):
+    """In battle against a designed trainer with the player at a stage: every Pokemon (or `count` from `first`)
+    at the level, as the species and holding the item the team's data and the battle code's rules give
+    (designed_species, designed_item). The item of one on the field (party slots `on_field`) isn't checked when it
+    can be used up as it comes in (trainer_rules.SWITCH_IN_ITEMS: a Great Tusk's Booster Energy)."""
+    tr = designs()
+    v = probe.resolve({"size": "sizeof(struct Pokemon)", "level": "offsetof(struct Pokemon, level)"})
+    team = designed_team(trainer)
+    count = len(team.mons) if count is None else count
+    out = []
+    for i in range(count):
+        slot, at = first + i, i
+        species, item = designed_species(trainer, slot, stage), designed_item(trainer, slot, stage)
+        name = f"{label}_{slot + 1}_{species[len('SPECIES_'):].lower()}"
+        out.append(f"expect8 {{{party}+{v['level'] + at * v['size']}}} {designed_level(trainer, stage)} {name}_level")
+        out += expect_party_species(party, at, species, name)
+        hold = (tr.species_db.load().item(item) or {}).get("hold_effect")
+        if not (at in on_field and hold in tr.SWITCH_IN_ITEMS):
+            out += expect_party_item(party, at, item, f"{name}_{item[len('ITEM_'):].lower()}")
+    return out
+
+
+def set_stage(stage):
+    """The flags of a stage of the game: its badges (0 to 8 of Johto's), and the Johto League (J) or the Kanto
+    League (K) won after the eighth."""
+    i = designs().stage_index(stage_of(stage))
+    out = []
+    for badge in range(1, min(i, 8) + 1):
+        out += set_flag(f"FLAG_BADGE0{badge}_GET")
+    if i >= 9:
+        out += set_flag("FLAG_IS_CHAMPION")
+    if i >= 10:
+        out += set_flag("FLAG_IS_KANTO_CHAMPION")
+    return out
+
+
+def rematch_entry(first):
+    """(REMATCH_ constant, [its five trainer IDs, 0 for none]) of a gRematchTable family (src/battle_setup.c)."""
+    with open(os.path.join(HERE, "..", "..", "src", "battle_setup.c")) as f:
+        text = f.read()
+    hns = text[text.index("#if IS_HNS"):text.index("#else", text.index("#if IS_HNS"))]
+    for name, args in re.findall(r"\[(REMATCH_\w+)\]\s*=\s*REMATCH\(([^)]*)\)", hns):
+        ids = [a.strip() for a in args.split(",")][:5]
+        if ids[0] == first:
+            return name, ids
+    raise KeyError(first)
+
+
+def expected_rematch(first, stage, beaten):
+    """The tier GetRematchTrainerIdFromTable (src/battle_setup.c) gives with the player at a stage (its Johto
+    badges) and the family's first `beaten` tiers beaten: a tier made for a stage (boss_teams.TEAM_STAGES) from
+    that stage on; Heart & Soul's own tiers by sRematchLevelCeilingByBadges and their party data's levels, the
+    second always."""
+    tr = designs()
+    _, ids = rematch_entry(first)
+    with open(os.path.join(HERE, "..", "..", "src", "battle_setup.c")) as f:
+        text = f.read()
+    table = re.search(r"sRematchLevelCeilingByBadges\[[^\]]*\]\s*=\s*\{(.*?)\};", text, re.S).group(1)
+    ceilings = [100 if v == "MAX_LEVEL" else int(v) for v in re.findall(r"\]\s*=\s*(\w+)", table)]
+    st = tr.stage_index(stage_of(stage))
+    with open(os.path.join(HERE, "..", "..", "src", "data", "trainers_hns.party")) as f:
+        party = f.read()
+
+    def max_level(tid):
+        block = re.search(r"(?ms)^=== " + tid + r" ===\n(.*?)(?=^=== |\Z)", party).group(1)
+        return max(int(v) for v in re.findall(r"(?m)^Level:\s*(\d+)", block))
+    fought = set(ids[:beaten])
+    if st >= tr.stage_index(tr.KANTO_CHAMPION):
+        top = 4
+    else:
+        top = 0
+        for i in range(1, 5):
+            tid = ids[i]
+            if tid == "0":
+                break
+            team_stage = tr.boss_teams.TEAM_STAGES.get(tid)
+            if team_stage is not None:
+                if tr.stage_index(team_stage) > st:
+                    break
+            elif i >= 2 and max_level(tid) > ceilings[min(st, 8)]:
+                break
+            top = i
+    for i in range(1, top + 1):
+        if ids[i] == "0":
+            return ids[i - 1]
+        if ids[i] not in fought:
+            return ids[i]
+    return ids[top]
+
+
+def want_rematch(first, beaten):
+    """The first `beaten` tiers of a family beaten, and the trainer wanting a rematch: trainerRematches[its
+    entry] set to the next unfought tier, as SetRematchIdForTrainer does when UpdateRandomTrainerRematches picks it."""
+    entry, ids = rematch_entry(first)
+    out = []
+    for tid in dict.fromkeys(ids[:beaten]):
+        out += set_flag(f"TRAINER_FLAGS_START + {tid}")
+    i = 1
+    while i < 5 and ids[i] != "0" and ids[i] in ids[:beaten]:
+        i += 1
+    return out + set_save1(f"trainerRematches[{entry}]", i)
+
+
+def talk_to_trainer(trainer):
+    """Arrive on a free tile next to a trainer's object on its map (the first tile of its line of sight when it
+    faces one way), face it and press A. The object's hide flag is cleared first."""
+    tr = designs()
+    folder = designs().Maps().map_of[trainer]
+    sys.path.insert(0, os.path.join(HERE, "..", "crystal_imperium"))
+    import side_battles
+    m = side_battles.MapData(folder)
+    bodies = _script_bodies(folder)
+    obj = next(o for o in m.json["object_events"]
+               if any(battle[1] == trainer for battle in tr._battles_in(o.get("script", ""), bodies)))
+    x, y = int(obj["x"]), int(obj["y"])
+    dirs = {"DOWN": (0, 1), "UP": (0, -1), "LEFT": (-1, 0), "RIGHT": (1, 0)}
+    facing = next((d for d in dirs if obj["movement_type"].endswith(d)), None)
+    order = ([facing] if facing else []) + [d for d in dirs if d != facing]
+    for d in order:
+        tx, ty = x + dirs[d][0], y + dirs[d][1]
+        if 0 <= tx < m.w and 0 <= ty < m.h and not m.tile(tx, ty)[0] and not m.taken(tx, ty, obj["script"]):
+            break
+    else:
+        raise ValueError(f"{trainer}: no free tile next to its object on {folder}")
+    toward = {"DOWN": "UP", "UP": "DOWN", "LEFT": "RIGHT", "RIGHT": "LEFT"}[d]
+    v = probe.resolve({"group": f"({m.json['id']}) >> 8", "num": f"({m.json['id']}) & 0xFF"})
+    out = set_flag(obj["flag"], 0) if obj.get("flag") not in (None, "0", "") else []
+    return out + teleport(v["group"], v["num"], tx, ty) + [f"press {toward} 2", "wait 20", "press A", "wait 10"]
+
+
+def rematch_battle(first, stage, beaten, label):
+    """From base.ss: the player at a stage with the first `beaten` tiers of a family beaten, the trainer wanting
+    a rematch; talk to them, and the battle is against the tier the gate gives (expected_rematch)."""
+    want = expected_rematch(first, stage, beaten)
+    out = ["loadstate base.ss"] + set_stage(stage) + want_rematch(first, beaten) + talk_to_trainer(first)
+    out += [f"waituntil32 {{gBattlerControllerFuncs}} {{HandleInputChooseAction@battle_controller_player}} 4000 B "
+            f"{label}_action_menu", f"shot {label}.png"]
+    return out + expect_const("{gTrainerBattleParameter+2}", want, f"{label}_is_{want[len('TRAINER_'):-len('_HNS')].lower()}")
+
+
+def _script_bodies(folder):
+    tr = designs()
+    bodies = {}
+    for path in [os.path.join(HERE, "..", "..", "data", "maps", folder, "scripts.inc")]:
+        with open(path) as f:
+            bodies.update(tr._labels(f.read()))
+    return bodies
+
+
 def expect_battler_ivs(battler, want, label):
     """Check a battler's six IVs (gBattleMons: 5-bit fields hpIV..spDefenseIV, lowest bits first,
     in the word before statStages) against `want` (the low 30 bits)."""

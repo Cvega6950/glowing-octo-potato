@@ -7,6 +7,8 @@ docs/crystal_imperium/data/.
 
   python3 tools/crystal_imperium/validate.py            # validate + regenerate
   python3 tools/crystal_imperium/validate.py --check    # validate only (CI)
+  python3 tools/crystal_imperium/validate.py --check --report    # and every designed team's findings
+  python3 tools/crystal_imperium/validate.py --check --report PETREL_1 ACE_R29_KAITO   # these teams' only
 
 Unknown species/move/item/ability names are already rejected at build time by
 trainerproc and the C compiler; this script adds the semantic checks:
@@ -29,6 +31,12 @@ trainerproc and the C compiler; this script adds the semantic checks:
     Goldenrod Mega Specialist's last list, the one the MEGA code gives, and every stone of his
     lists has such a row (D9's Staraptite was sold for a Mega not in the ROM); each list holds the
     one before it; every Mega such a row makes is isMegaEvolution and MON_RANDOMIZER_INVALID
+  * the trainer standard's rules for the designed teams (tools/crystal_imperium/trainer_rules.py,
+    with the build's compiled species, move and item data, species_db.py): evolution by stage as the
+    battle code fields each team at every stage it can be fought at (E1 to E8), team sizes, items,
+    natures, IVs and EVs, abilities, moves, team roles, Trick Room, Megas, legendaries, map
+    weather, two-opponent battles, rematch tiers and repeated sets. A rule the 0.15.2 teams still
+    break warns for those teams (trainer_rules.PENDING) until the redesign fixes them
   * every evolution family should be obtainable (reported, not fatal: the
     Gen 4-9 roll-out is ongoing work)
 """
@@ -74,6 +82,7 @@ NEVER_FOUGHT = {"TRAINER_BLUE_2_HNS", "TRAINER_LANCE_3_HNS", "TRAINER_CLAIR_3_HN
 REWORKED = {"TRAINER_FALKNER_1_HNS", "TRAINER_LI_HNS", "TRAINER_BUGSY_1_HNS", "TRAINER_WHITNEY_1_HNS"}
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import boss_teams  # noqa: E402
+import trainer_rules  # noqa: E402  (the trainer standard's rules for the designed teams)
 REWORKED |= set(boss_teams.TEAMS)
 # The Ace Trainers (DECISIONS.md D47) and Heart & Soul's Ace Trainers given competitive teams
 import ace_trainer_data  # noqa: E402
@@ -493,6 +502,10 @@ def mega_stone_errors(species):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true", help="validate only, do not rewrite databases")
+    ap.add_argument("--report", nargs="*", metavar="TRAINER",
+                    help="print the designed teams' findings and raised forms (every team's, or these trainers')")
+    ap.add_argument("--pending", action="store_true",
+                    help="print trainer_rules.PENDING as the [V] rules' findings give it now")
     args = ap.parse_args()
 
     errors, notes = [], []
@@ -580,6 +593,24 @@ def main():
     # Mega Stones: the Mega Evolutions, the Mega Specialist's lists and the MEGA code agree (D58)
     mega_errors, stones, tiers = mega_stone_errors(species)
     errors += mega_errors
+    # The trainer standard's rules for the designed teams
+    findings, raised, teams = trainer_rules.check(encounters)
+    rows = findings.settle()
+    for sev, rule, tid, text in rows:
+        if sev == "ERROR":
+            errors.append(f"{tid} [{rule}]: {text}")
+    warned = defaultdict(int)
+    for sev, rule, _, _ in rows:
+        if sev == "WARNING":
+            warned[rule] += 1
+    stale = trainer_rules.stale_pending(findings.rows)
+    for rule, tid in stale:
+        notes.append(f"{tid} no longer breaks {rule}: take it out of trainer_rules.PENDING[{rule!r}]")
+    if args.pending:
+        print(trainer_rules.pending_table(findings))
+    if args.report is not None:
+        shown = [t for t in teams if not args.report or t.tid in args.report or t.tid[len("TRAINER_"):-len("_HNS")] in args.report]
+        print(trainer_rules.report([r for r in rows if r[2] in {t.tid for t in shown} or not args.report], raised, shown))
 
     # Family availability
     fam = families(species)
@@ -590,6 +621,9 @@ def main():
     print(f"trainers: {len(trainers)}   species entries: {len(species)}   level caps: {caps}")
     print(f"Mega Stones of compiled Mega Evolutions: {stones}; the Mega Specialist's lists: "
           f"{', '.join(map(str, tiers))} (MEGA gives the last)")
+    print(f"designed teams: {len(teams)}; trainer standard findings: {sum(1 for r in rows if r[0] == 'ERROR')} errors, "
+          f"{sum(warned.values())} warnings (" + ", ".join(f"{r} {n}" for r, n in sorted(warned.items())) + ")"
+          + ("; validate.py --report lists them" if warned else ""))
     print(f"obtainable evolution families (wild + scripted): {len(obtainable_roots)}; "
           f"families with no source yet: {len(missing)}")
     for n in notes:
@@ -611,7 +645,9 @@ def main():
             json.dump({"generated_by": "tools/crystal_imperium/validate.py",
                        "species": {k: v for k, v in sorted(encounters.items())},
                        "families_without_source": missing}, f, separators=(",", ":"))
-        print(f"wrote {os.path.relpath(DATA_OUT, ROOT)}/trainer_balance.json and encounters.json")
+        with open(os.path.join(DATA_OUT, "trainer_report.txt"), "w") as f:
+            f.write(trainer_rules.report(rows, raised, teams))
+        print(f"wrote {os.path.relpath(DATA_OUT, ROOT)}/trainer_balance.json, encounters.json and trainer_report.txt")
 
     return 1 if errors else 0
 

@@ -17,7 +17,13 @@ Design rules (DECISIONS.md D21):
     (src/battle_main.c)
   * every Pokemon has a held item, a nature, an ability chosen for the set and four moves it
     can learn (validate.py checks abilities and moves)
-  * IVs are 31 (Minimal Grinding gives every Pokemon 31 IVs anyway; this covers games with it off)
+  * IVs are 31 (Minimal Grinding gives every Pokemon 31 IVs anyway; this covers games with it off),
+    except where a set needs others: mon()'s ivs (tools/crystal_imperium/team_kit.py), such as 0 Speed
+    on a Trick Room team, which the battle keeps
+  * a team made for a stage keeps its Pokemon as made at its stage's cap; fought later, it evolves,
+    except a named Eviolite species holding an Eviolite and a Pikachu holding a Light Ball, and an
+    evolved Pokemon holds its raised_item instead (team_kit.py; src/data/level_cap_bosses.h lists
+    both for the battle code)
   * from the 5th Gym on, each boss has one Mega Evolution, normally the ace
   * Red is the hardest battle in the game (D27): level 100, competitive EVs (which he keeps under
     Minimal Grinding), the prediction AI and the most Full Restores; validate.py checks it
@@ -30,6 +36,8 @@ import sys
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import ace_trainer_data  # noqa: E402  (the Ace Trainers and the Cooltrainers' teams, and their stages)
+import team_kit  # noqa: E402  (mon(), the party renderer, the named Eviolite species)
+from team_kit import mon, FRIENDSHIP_MOVES, FULL_FRIENDSHIP  # noqa: E402,F401  (other tools read them here too)
 PARTY = os.path.join(ROOT, "src", "data", "trainers_hns.party")
 BOSS_LIST = os.path.join(ROOT, "src", "data", "level_cap_bosses.h")
 
@@ -41,11 +49,6 @@ RED_AI = "Smart Trainer / Prediction / Ace Pokemon / HP Aware"
 JOHTO_CHAMPION = "Johto Champion"
 KANTO_CHAMPION = "Kanto Champion"
 MAX_LEVEL = 100
-
-# Moves whose power comes from friendship. A trainer's Pokemon has its party entry's Happiness,
-# 0 when it has none (CreateNPCTrainerPartyFromTrainer), which would leave Return at power 1.
-FRIENDSHIP_MOVES = {"Return", "Pika Papow", "Veevee Volley"}
-FULL_FRIENDSHIP = 255
 
 
 def read_caps():
@@ -68,10 +71,6 @@ def cap(stage):
     if stage == JOHTO_CHAMPION:
         return KANTO_CAP
     return NORMAL_CAPS[stage]
-
-
-def mon(species, item, ability, nature, moves, evs=None):
-    return {"species": species, "item": item, "ability": ability, "nature": nature, "moves": moves, "evs": evs}
 
 
 # --- Falkner (1st Gym, no badges: cap 15) -----------------------------------------------------------
@@ -1641,10 +1640,31 @@ STAGES.update(LEVEL_ONLY)
 # writes their parties) and Heart & Soul's Cooltrainers with competitive teams. Like the bosses, they
 # keep their Pokemon as made until the player's cap is above their stage's; unlike a boss, a team is
 # never above the player's cap, even met before its stage.
-# (Their stage 9 is the Johto League won.)
+# (Their stage 9 is the Johto League won, 10 the Kanto League.)
+def stage_of(stage):
+    """A stage as ace_trainer_data.py may write it (0-8, 9 for the Johto League won, 10 for the Kanto
+    League) as the other tables write it."""
+    return {9: JOHTO_CHAMPION, 10: KANTO_CHAMPION}.get(stage, stage)
+
+
 TEAM_STAGES = {f"TRAINER_ACE_{a['key']}_HNS": a["stage"] for a in ace_trainer_data.ACES}
 TEAM_STAGES.update(ace_trainer_data.UPGRADE_STAGES)
-TEAM_STAGES = {tid: JOHTO_CHAMPION if stage >= 9 else stage for tid, stage in TEAM_STAGES.items()}
+TEAM_STAGES = {tid: stage_of(stage) for tid, stage in TEAM_STAGES.items()}
+
+
+def designed_parties():
+    """Every team designed in the tables, trainer -> its Pokemon in party order: the bosses' (TEAMS), the Ace
+    Trainers' and the upgraded Cooltrainers' (ace_trainer_data.py)."""
+    out = {tid: entry[2] for tid, entry in TEAMS.items()}
+    out.update({f"TRAINER_ACE_{a['key']}_HNS": a["team"] for a in ace_trainer_data.ACES})
+    out.update(ace_trainer_data.UPGRADES)
+    return out
+
+
+def raised_items():
+    """[(trainer, index in its party data, item)] for every designed Pokemon with a raised_item."""
+    return [(tid, i, m["raised_item"]) for tid, mons in sorted(designed_parties().items())
+            for i, m in enumerate(mons) if m.get("raised_item")]
 
 
 def render(tid, header, stage, items, mons, ai=BOSS_AI):
@@ -1659,19 +1679,7 @@ def render(tid, header, stage, items, mons, ai=BOSS_AI):
         lines.append(line)
     if items and not any(l.startswith("Items:") for l in lines):
         lines.append("Items: " + items)
-    out = "\n".join(lines) + "\n"
-    for m in mons:
-        out += f"\n{m['species']} @ {m['item']}\n"
-        out += f"Level: {cap(stage)}\n"
-        out += "IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe\n"
-        if m.get("evs"):
-            out += f"EVs: {m['evs']}\n"
-        out += f"Ability: {m['ability']}\n"
-        out += f"Nature: {m['nature']}\n"
-        if FRIENDSHIP_MOVES & set(m["moves"]):
-            out += f"Happiness: {FULL_FRIENDSHIP}\n"
-        out += "".join(f"- {mv}\n" for mv in m["moves"])
-    return out
+    return "\n".join(lines) + "\n" + team_kit.render_mons(mons, cap(stage))
 
 
 def set_levels(block, level):
@@ -1725,11 +1733,23 @@ def boss_list():
     out += "".join(f"    {{{tid}, {stage_constant(STAGES[tid])}}},\n" for tid in sorted(STAGES))
     out += "};\n\n"
     out += ("// The other teams made for a stage of the game (D56): the Ace Trainers and Heart & Soul's\n"
-            "// Cooltrainers with competitive teams, every Pokemon at its stage's cap in the party data. Like any\n"
-            "// trainer's, they are at the player's level cap; like a boss's, they keep their Pokemon as made\n"
-            "// unless that cap is above their party data's levels.\n"
-            "static const u16 sTeamsMadeForStage[] =\n{\n")
-    out += "".join(f"    {tid},\n" for tid in sorted(TEAM_STAGES))
+            "// Cooltrainers with competitive teams, every Pokemon at its stage's cap in the party data, and the\n"
+            "// stage. Like any trainer's, they are at the player's level cap; like a boss's, they keep their\n"
+            "// Pokemon as made unless that cap is above their party data's levels. A rematch tier listed here is\n"
+            "// offered from its stage on (GetMaxRematchStageForBadges, src/battle_setup.c).\n"
+            "static const struct LevelCapBoss sTeamsMadeForStage[] =\n{\n")
+    out += "".join(f"    {{{tid}, {stage_constant(TEAM_STAGES[tid])}}},\n" for tid in sorted(TEAM_STAGES))
+    out += "};\n\n"
+    out += ("// The named Eviolite species (tools/crystal_imperium/team_kit.py): raised to a later stage's cap, a\n"
+            "// team made for a stage keeps one of these as made while it holds an Eviolite, and a Pikachu while it\n"
+            "// holds a Light Ball; any other Pokemon evolves as any trainer's does (GetTrainerMonEvolvedSpecies).\n"
+            "static const u16 sKeptUnevolvedSpecies[] =\n{\n")
+    out += "".join(f"    {team_kit.species_constant(sp)},\n" for sp in team_kit.NAMED_EVIOLITE)
+    out += "};\n\n"
+    out += ("// The item a designed Pokemon holds instead once it has evolved in a battle fought after its team's\n"
+            "// stage (mon()'s raised_item): the trainer, the Pokemon's index in the party data, the item.\n"
+            "static const struct RaisedItem\n{\n    u16 trainerId;\n    u8 monIndex;\n    u16 item;\n} sRaisedItems[] =\n{\n")
+    out += "".join(f"    {{{tid}, {i}, {team_kit.constant('ITEM', item)}}},\n" for tid, i, item in raised_items())
     return out + "};\n"
 
 
@@ -1752,7 +1772,8 @@ def main():
         print(f"updated {len(TEAMS)} boss parties and the levels of {len(LEVEL_ONLY)} more")
     if new_list != old_list:
         open(BOSS_LIST, "w", encoding="utf-8").write(new_list)
-        print(f"wrote {os.path.relpath(BOSS_LIST, ROOT)} ({len(STAGES)} bosses, {len(TEAM_STAGES)} other teams made for a stage)")
+        print(f"wrote {os.path.relpath(BOSS_LIST, ROOT)} ({len(STAGES)} bosses, {len(TEAM_STAGES)} other teams made for a "
+              f"stage, {len(team_kit.NAMED_EVIOLITE)} named Eviolite species, {len(raised_items())} raised items)")
     return 0
 
 if __name__ == "__main__":

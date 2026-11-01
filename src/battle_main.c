@@ -2064,13 +2064,15 @@ void CustomTrainerPartyAssignMoves(struct Pokemon *mon, const struct TrainerMon 
 // the bosses, the route mini-bosses, the side battles) are at the cap of its stage or of the player's
 // progress, whichever is later (D21): its stage is the earliest point its battle can happen, so in
 // play that is the player's cap too. While an opponent's party is created, sTrainerLevel is every
-// Pokemon's level (0: no opponent's party being created) and sTeamMadeForStage says the team is a
+// Pokemon's level (0: no opponent's party being created), sTeamMadeForStage says the team is a
 // boss's or another made for a stage (sTeamsMadeForStage: the Ace Trainers and Heart & Soul's
-// Cooltrainers with competitive teams), which keeps its Pokemon as made up to its party data's levels.
+// Cooltrainers with competitive teams), which keeps its Pokemon as made up to its party data's levels,
+// and sTrainerNum is the trainer (for its raised items, sRaisedItems).
 #include "data/level_cap_bosses.h"
 
 static u8 sTrainerLevel;
 static bool8 sTeamMadeForStage;
+static u16 sTrainerNum;
 
 static u32 GetLevelCapBossLevel(u16 trainerNum)
 {
@@ -2082,14 +2084,22 @@ static u32 GetLevelCapBossLevel(u16 trainerNum)
     return 0;
 }
 
-static bool32 IsTeamMadeForStage(u16 trainerNum)
+// The stage a team made for a stage (sTeamsMadeForStage, not a boss) is made for, or -1 for any other
+// trainer: a badge count or LEVEL_CAP_STAGE_*. The rematch gate offers such a tier from that stage on
+// (GetMaxRematchStageForBadges, src/battle_setup.c).
+s32 GetTrainerTeamStage(u16 trainerNum)
 {
     for (u32 i = 0; i < ARRAY_COUNT(sTeamsMadeForStage); i++)
     {
-        if (sTeamsMadeForStage[i] == trainerNum)
-            return TRUE;
+        if (sTeamsMadeForStage[i].trainerId == trainerNum)
+            return sTeamsMadeForStage[i].stage;
     }
-    return FALSE;
+    return -1;
+}
+
+static bool32 IsTeamMadeForStage(u16 trainerNum)
+{
+    return GetTrainerTeamStage(trainerNum) >= 0;
 }
 
 // The level of every Pokemon of a trainer in battle (D56): the boss's level for a boss, the player's
@@ -2109,14 +2119,68 @@ static u8 GetTrainerMonLevel(u8 level)
 // Crystal Imperium (DECISIONS.md D46): a trainer's Pokemon is as evolved as its level allows, as
 // in Emerald Imperium, where no trainer uses one far above its evolution level: by a level evolution
 // at its level, by any other (an item, a trade, friendship, a move) from TRAINER_OTHER_EVOLUTION_LEVEL.
-// The first route that applies is taken. A boss's team, or another made for a stage, is made for its
-// stage's cap, the level in its party data: there it stays as it is, and raised to a later cap it
-// evolves. Any other trainer's team is Heart & Soul's, made for its levels there, so its Pokemon
-// evolve at the player's cap. A Pokemon that holds an Eviolite or Everstone, or an item that works
-// only for its own species (Light Ball, Lucky Punch, the Deep Sea items, Metal and Quick Powder),
-// never does, whoever's it is (until 0.15.2 only a team made for a stage's: a Lass's Eviolite
-// Happiny battled as a Blissey and a Light Ball Pikachu as a Raichu).
+// The first route that applies is taken, two steps at most. A boss's team, or another made for a
+// stage, is made for its stage's cap, the level in its party data: there it stays as it is, and
+// raised to a later cap it evolves as any trainer's does, except a named Eviolite species holding an
+// Eviolite (sKeptUnevolvedSpecies, the trainer standard's rule E3) and a Pikachu holding a Light Ball,
+// which stay as they are (a Pokemon that evolves into one of them stops there); an evolved Pokemon
+// holds its raised item (sRaisedItems) if it has one. Before, an Eviolite kept any of them unevolved
+// whatever the level: Petrel's Eviolite Pupitar battled as a Pupitar at 66, past Tyranitar's 55.
+// Any other trainer's team is Heart & Soul's, made for its levels there, so its Pokemon evolve at
+// the player's cap, and one that holds an Eviolite or Everstone, or an item that works only for its
+// own species (Light Ball, Lucky Punch, the Deep Sea items, Metal and Quick Powder), never does
+// (D56: a Lass's Eviolite Happiny battled as a Blissey and a Light Ball Pikachu as a Raichu).
 #define TRAINER_OTHER_EVOLUTION_LEVEL 32
+
+static bool32 IsEvolutionBlockingItem(u16 heldItem)
+{
+    switch (GetItemHoldEffect(heldItem))
+    {
+    case HOLD_EFFECT_EVIOLITE:
+    case HOLD_EFFECT_PREVENT_EVOLVE:
+    case HOLD_EFFECT_LIGHT_BALL:
+    case HOLD_EFFECT_LUCKY_PUNCH:
+    case HOLD_EFFECT_DEEP_SEA_TOOTH:
+    case HOLD_EFFECT_DEEP_SEA_SCALE:
+    case HOLD_EFFECT_METAL_POWDER:
+    case HOLD_EFFECT_QUICK_POWDER:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
+// A Pokemon of a team made for a stage that stays as it is when raised
+static bool32 IsKeptUnevolved(u16 species, u16 heldItem)
+{
+    u32 i;
+
+    switch (GetItemHoldEffect(heldItem))
+    {
+    case HOLD_EFFECT_EVIOLITE:
+        for (i = 0; i < ARRAY_COUNT(sKeptUnevolvedSpecies); i++)
+        {
+            if (sKeptUnevolvedSpecies[i] == species)
+                return TRUE;
+        }
+        return FALSE;
+    case HOLD_EFFECT_LIGHT_BALL:
+        return GET_BASE_SPECIES_ID(species) == SPECIES_PIKACHU;
+    default:
+        return FALSE;
+    }
+}
+
+// The item a designed Pokemon (its index in the party data) holds once it has evolved, raised
+static u16 GetTrainerMonRaisedItem(u16 trainerNum, u32 monIndex)
+{
+    for (u32 i = 0; i < ARRAY_COUNT(sRaisedItems); i++)
+    {
+        if (sRaisedItems[i].trainerId == trainerNum && sRaisedItems[i].monIndex == monIndex)
+            return sRaisedItems[i].item;
+    }
+    return ITEM_NONE;
+}
 
 static u32 GetTrainerEvolutionLevel(const struct Evolution *evolution)
 {
@@ -2139,24 +2203,15 @@ static u16 GetTrainerMonEvolvedSpecies(u16 species, u32 level, u32 teamLevel, u1
 
     if (sTeamMadeForStage && level <= teamLevel)
         return species;
-    switch (GetItemHoldEffect(heldItem))
-    {
-    case HOLD_EFFECT_EVIOLITE:
-    case HOLD_EFFECT_PREVENT_EVOLVE:
-    case HOLD_EFFECT_LIGHT_BALL:
-    case HOLD_EFFECT_LUCKY_PUNCH:
-    case HOLD_EFFECT_DEEP_SEA_TOOTH:
-    case HOLD_EFFECT_DEEP_SEA_SCALE:
-    case HOLD_EFFECT_METAL_POWDER:
-    case HOLD_EFFECT_QUICK_POWDER:
+    if (!sTeamMadeForStage && IsEvolutionBlockingItem(heldItem))
         return species;
-    default:
-        break;
-    }
     for (stage = 0; stage < 2; stage++)
     {
         const struct Evolution *evolutions = GetSpeciesEvolutions(species);
         u16 next = SPECIES_NONE;
+
+        if (sTeamMadeForStage && IsKeptUnevolved(species, heldItem))
+            break;
 
         for (i = 0; evolutions != NULL && evolutions[i].method != EVOLUTIONS_END; i++)
         {
@@ -2233,6 +2288,7 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 otId.method = OT_ID_PRESET;
                 otId.value = HIHALF(personalityValue) ^ LOHALF(personalityValue);
             }
+            bool32 evolved = FALSE;
             {
                 u16 species = partyData[monIndex].species;
                 u8 level = GetTrainerMonLevel(partyData[monIndex].lvl);
@@ -2240,10 +2296,22 @@ u8 CreateNPCTrainerPartyFromTrainer(struct Pokemon *party, const struct Trainer 
                 species = RandomizeTrainerMon(trainer->trainerClass, i, monsCount, species);
                 #endif
                 if (sTrainerLevel) // an opponent's party, not a partner's or a party for the player
+                {
+                    u16 made = species;
                     species = GetTrainerMonEvolvedSpecies(species, level, partyData[monIndex].lvl, partyData[monIndex].heldItem);
+                    evolved = (species != made);
+                }
                 CreateMon(&party[i], species, level, personalityValue, otId);
             }
             SetMonData(&party[i], MON_DATA_HELD_ITEM, &partyData[monIndex].heldItem);
+            // Crystal Imperium: a designed Pokemon that has evolved, its battle fought after its team's
+            // stage, holds its raised item (an Eviolite holder's Sitrus Berry once it is a Tyranitar)
+            if (evolved && sTeamMadeForStage)
+            {
+                u16 raisedItem = GetTrainerMonRaisedItem(sTrainerNum, monIndex);
+                if (raisedItem != ITEM_NONE)
+                    SetMonData(&party[i], MON_DATA_HELD_ITEM, &raisedItem);
+            }
 
             CustomTrainerPartyAssignMoves(&party[i], &partyData[monIndex]);
             {
@@ -2397,6 +2465,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
         return 0;
     sTrainerLevel = GetTrainerBattleLevel(trainerNum);
     sTeamMadeForStage = (GetLevelCapBossLevel(trainerNum) != 0 || IsTeamMadeForStage(trainerNum));
+    sTrainerNum = trainerNum;
     if (GetTrainerStructFromId(trainerNum)->overrideTrainer)
     {
         struct Trainer tempTrainer;
@@ -2417,6 +2486,7 @@ static u8 CreateNPCTrainerParty(struct Pokemon *party, u16 trainerNum, bool8 fir
     }
     sTrainerLevel = 0;
     sTeamMadeForStage = FALSE;
+    sTrainerNum = TRAINER_NONE;
     return retVal;
 }
 

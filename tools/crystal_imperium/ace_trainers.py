@@ -35,7 +35,8 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import side_battles as sb  # noqa: E402  (maps, texts, the trainer ID block's neighbour)
 import ace_trainer_data as data  # noqa: E402  (the trainers and their teams)
-import boss_teams  # noqa: E402  (the caps, from src/caps.c, and the friendship moves)
+import boss_teams  # noqa: E402  (the caps, from src/caps.c)
+import team_kit  # noqa: E402  (the party renderer)
 
 ROOT = sb.ROOT
 OPPONENTS, PARTY = sb.OPPONENTS, sb.PARTY
@@ -65,8 +66,9 @@ def label(ace):
 
 
 def stage_cap(stage):
-    """The NORMAL level cap at a stage (boss_teams.py's caps; 9 is after the Johto League)."""
-    return boss_teams.cap(boss_teams.JOHTO_CHAMPION if stage >= 9 else stage)
+    """The NORMAL level cap at a stage (boss_teams.py's caps; 9 is after the Johto League, 10 the Kanto
+    League)."""
+    return boss_teams.cap(boss_teams.stage_of(stage))
 
 
 def party_levels(stage, size):
@@ -75,17 +77,7 @@ def party_levels(stage, size):
 
 
 def render_mons(mons, levels):
-    out = ""
-    for m, level in zip(mons, levels):
-        out += f"\n{m['species']} @ {m['item']}\nLevel: {level}\n"
-        out += "IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe\n"
-        if m.get("evs"):
-            out += f"EVs: {m['evs']}\n"
-        out += f"Ability: {m['ability']}\nNature: {m['nature']}\n"
-        if boss_teams.FRIENDSHIP_MOVES & set(m["moves"]):
-            out += f"Happiness: {boss_teams.FULL_FRIENDSHIP}\n"
-        out += "".join(f"- {mv}\n" for mv in m["moves"])
-    return out
+    return "".join(team_kit.render_mon(m, level) for m, level in zip(mons, levels))
 
 
 def render_opponents(text):
