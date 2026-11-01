@@ -1,5 +1,37 @@
 # Crystal Imperium changelog
 
+## Unreleased (the trainer redesign, phase 1: engine and tools)
+
+### Teams fought later evolve
+- A boss's, Ace Trainer's or Cooltrainer's team fought after the part of the game it was made for
+  evolves at your cap, as any trainer's does, Eviolite holders too: Petrel's Pupitar is a Tyranitar
+  when you take the Rocket Hideout with five or six badges (before, a Pupitar at 66, past
+  Tyranitar's 55), Ace Kaito's Cutiefly a Ribombee with eight badges. Only a Pokémon that is bulkier
+  with its Eviolite than evolved (the trainer standard's named Eviolite species: Golbat, Sneasel,
+  Scyther, Chansey, Porygon2, Dusclops, Rhydon...) or a Light Ball Pikachu stays as it is, and one
+  that evolves into one of them stops there (Route 42's Rhyhorn becomes an Eviolite Rhydon). A
+  team can give an evolved Pokémon another item instead of its Eviolite.
+- Heart & Soul's own trainers keep 0.15.2's rule: an Eviolite, an Everstone or a Pokémon's own item
+  keeps it as it is (Lass Carrie's Happiny).
+
+### Cooltrainer rematches
+- Gaven, Beth and Reena offer their later rematch teams again: since 0.15.2 their third teams
+  waited for the sixteenth badge. A rematch team made for a part of the game is offered from it
+  on (Gaven's third with eight badges, Reena's third after the Johto League). Heart & Soul's other
+  rematch trainers are unchanged.
+
+### Tools
+- The designed teams can give a Pokémon IVs (0 Speed for a Trick Room team, Hidden Power's type),
+  EVs and an item for when it has evolved in a battle fought later (`team_kit.py`).
+- `validate.py` checks every designed team against the trainer standard with the build's own species,
+  move and item data (`species_db.py`, `trainer_rules.py`): evolution at every point of the game a
+  battle can be fought, team sizes, items, natures, IVs and EVs, abilities, moves, team roles,
+  Trick Room, Megas, legendaries, map weather, tag battles, rematch tiers and repeated sets.
+  What 0.15.2's teams still break is listed and warns until the redesigned teams land.
+- Play tests: `designed_species` (written by `trainer_tests.py` from the teams: all 234 designed
+  battles as made at their stages), `fought_later`, `rematch_gate`, `tag_battle` (Ariana's real
+  multi battle with Lance); the test runner checks a Pokémon's held item (`expectpartyitem`).
+
 ## 0.16.0-experimental (2026-10-31)
 
 ### Emerald Imperium's Megas (DECISIONS.md D58)
