@@ -73,16 +73,7 @@ PENDING = {rule: {f"TRAINER_{name}_HNS" for name in names.split()} for rule, nam
     "M4": ("EUSINE LTSURGE"),
     "M5": ("ACE_R19_MAREN RIVAL_CHIKORITA_2 RIVAL_CHIKORITA_3 RIVAL_CYNDAQUIL_2 RIVAL_CYNDAQUIL_3 RIVAL_TOTODILE_2 "
              "RIVAL_TOTODILE_3"),
-    "M6": ("AARON ACE_DARKCAVE_ZEPHYR ACE_DOJO_BRIGID ACE_MTMOONSQ_MISTRAL ACE_MTMOON_TOBIAS ACE_NATPARK_SUNNIVA "
-             "ACE_R13_MARLOW ACE_R15_HAYATE ACE_R19_MAREN ACE_R39_MIRIAM ACE_R6_LUCIEN ACE_R7_MARIGOLD "
-             "ACE_R8_MORDECAI ACE_R9_ROSALIND ACE_VR1F_OPHELIA ACE_VRB2F_ELIAS BETH BETH_2 BETH_3 BLAINE BLAKE BRET "
-             "CAROL CLAIR_1 EUGENE EUSINE FALKNER_2 FALKNER_POSTOBC HERMAN JAKE JANINE JANINE_POSTOBC "
-             "JASMINE_POSTOBC JOYCE KAREN_1 KAREN_2 KEVIN LANCE_1 LANCE_POSTOBC LTSURGE LTSURGE_POSTOBC MORTY_2 "
-             "MORTY_POSTOBC OTIS PROTON_1 PRYCE_2 PRYCE_POSTOBC RED RED_POSTOBC RIVAL_CHIKORITA_4 RIVAL_CHIKORITA_6 "
-             "RIVAL_CHIKORITA_7 RIVAL_CYNDAQUIL_4 RIVAL_CYNDAQUIL_5 RIVAL_CYNDAQUIL_6 RIVAL_CYNDAQUIL_7 "
-             "RIVAL_TOTODILE_4 RIVAL_TOTODILE_6 RIVAL_TOTODILE_7 RYAN SABRINA SABRINA_POSTOBC SIDE_BRASSIUS "
-             "SIDE_FANTINA SIDE_IONO SIDE_N SIDE_RYME SIDE_TULIP SIDE_VOLKNER STEPHEN WHITNEY_2 WILL_1 WILL_2 "
-             "WILL_POSTOBC"),
+    "M6": ("EUGENE"),
     "M8": ("ACE_DARKCAVE_ZEPHYR ACE_R22_SERAPHINA ACE_R8_MORDECAI ACE_SEAFOAM_LENORE ACE_VR1F_OPHELIA ARCHER BLAINE "
              "BLAINE_POSTOBC BROCK CLAIR_2 ERIKA_POSTOBC EUSINE FALKNER_2 FALKNER_POSTOBC KAREN_1 KOGA_POSTOBC KUNI "
              "LANCE_2 LTSURGE LTSURGE_POSTOBC MEGAN MIKI MORTY_1 MORTY_POSTOBC NAOKO OTIS PETREL_1 PETREL_2 PRYCE_1 "
@@ -219,9 +210,10 @@ EI_MEDIAN_POWER = {0: 65, 1: 70, 2: 80, 3: 90, 4: 100, 5: 95, 6: 100, 7: 100, 8:
                    KANTO_CHAMPION: 110}
 TIER_A = 1.10
 # Rule M6: an attack below this accuracy needs its enabler (No Guard, Compound Eyes, Mind Reader, Lock-On, or rain
-# or snow for the moves they make sure to hit). The standard's text says 75%, so Focus Blast's 70% needs one too;
-# its count of the 0.15.2 teams (1, Eugene's Dynamic Punch) only looked at the 50% moves.
-M6_ACCURACY = 75
+# or snow for the moves they make sure to hit). The standard's text says under 75%, but its count of the 0.15.2
+# teams (1, Eugene's Dynamic Punch) looked only at the 50% moves (Dynamic Punch, Zap Cannon, Inferno); at 75% the
+# rule also flagged Focus Blast, Hurricane, Thunder and Blizzard on 74 teams, so the bound is 50% or less.
+M6_ACCURACY = 51
 
 
 # ---------------------------------------------------------------- the teams

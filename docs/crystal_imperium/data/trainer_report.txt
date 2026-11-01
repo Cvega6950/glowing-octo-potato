@@ -9,7 +9,6 @@ TRAINER_MISTY_HNS (boss, stage J, fought at stages J to K)
   WARNING V4: no full EV spread from stage 3 on: Pelipper, Golduck, Lapras, Milotic, Blastoise, Starmie
 TRAINER_LTSURGE_HNS (boss, stage J, fought at stages J to K)
   WARNING M4: Electrode (slot 1): an attacker with one attacking type
-  WARNING M6: Raichu (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
   WARNING V4: no full EV spread from stage 3 on: Electrode, Magnezone, Lanturn, Electivire, Manectric, Raichu
 TRAINER_ERIKA_HNS (boss, stage J, fought at stages J to K)
@@ -19,15 +18,12 @@ TRAINER_ERIKA_HNS (boss, stage J, fought at stages J to K)
   WARNING A2: Bellossom (slot 5): Chlorophyll without sun on the team or the map
   WARNING V4: no full EV spread from stage 3 on: Jumpluff, Roserade, Tangrowth, Victreebel, Bellossom, Venusaur
 TRAINER_JANINE_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Gengar (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING V4: no full EV spread from stage 3 on: Weezing, Nidoqueen, Muk, Crobat, Venomoth, Gengar
 TRAINER_SABRINA_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Alakazam (slot 5): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Mr Mime, Wobbuffet, Slowbro, Espeon, Alakazam, Metagross
 TRAINER_BLAINE_HNS (boss, stage J, fought at stages J to K)
   WARNING A2: Magmortar (slot 3): Mega Launcher without a pulse move, it has Flame Body, Quick Draw
-  WARNING M6: Magmortar (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING M8: more than one Stealth Rock setter
   WARNING V4: no full EV spread from stage 3 on: Torkoal, Rapidash, Magmortar, Volcarona, Arcanine Hisui, Camerupt
 TRAINER_BLUE_HNS (boss, stage J, fought at stages J to K)
@@ -46,10 +42,8 @@ TRAINER_BLUE_HNS (boss, stage J, fought at stages J to K)
   WARNING V2: Pidgeot (slot 6): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
   WARNING V4: no full EV spread from stage 3 on: Machamp, Exeggutor, Rhyperior, Arcanine, Tyranitar, Pidgeot
 TRAINER_RED_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Charizard (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no pivot or hazard on the team
 TRAINER_RED_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Charizard (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no pivot or hazard on the team
 TRAINER_PETREL_1_HNS (boss, stage 4, fought at stages 4 to 6)
   WARNING V2: Forretress (slot 1): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
@@ -103,11 +97,9 @@ TRAINER_WILL_1_HNS (boss, stage 8, fought at stages 8 to 8)
   WARNING N2: Gardevoir (slot 5): on a Trick Room team with Timid, which doesn't lower Speed (base 80)
   WARNING P2: Gardevoir (slot 5): Timid raises Speed on a Trick Room team
   WARNING V2: Gardevoir (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING M6: Gardevoir (slot 5): Focus Blast at 70% accuracy without its enabler
   WARNING N2: Alakazam (slot 6): on a Trick Room team with Timid, which doesn't lower Speed (base 120)
   WARNING P2: Alakazam (slot 6): Timid raises Speed on a Trick Room team
   WARNING V2: Alakazam (slot 6): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING M6: Alakazam (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
   WARNING V4: no full EV spread from stage 3 on: Xatu, Slowbro, Bronzong, Farigiraf, Gardevoir, Alakazam
   WARNING P4: an Elite Four member without a legendary-tier Pokemon
@@ -122,21 +114,18 @@ TRAINER_BRUNO_1_HNS (boss, stage 8, fought at stages 8 to 8)
   WARNING P4: an Elite Four member without a legendary-tier Pokemon
   WARNING S4: Machamp @ Sitrus Berry (No Guard; Bullet Punch, Close Combat, Knock Off, Stone Edge) is on TRAINER_BLUE_HNS, TRAINER_BRUNO_1_HNS
 TRAINER_KAREN_1_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING M6: Gengar (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Umbreon, Vileplume, Gengar, Honchkrow, Absol, Houndoom
   WARNING P4: an Elite Four member without a legendary-tier Pokemon
   WARNING S4: Honchkrow @ Scope Lens (Super Luck; Brave Bird, Heat Wave, Night Slash, Sucker Punch) is on TRAINER_ARIANA_1_HNS, TRAINER_ARIANA_2_HNS, TRAINER_KAREN_1_HNS
 TRAINER_LANCE_1_HNS (boss, stage 8, fought at stages 8 to 8)
   WARNING A2: Charizard (slot 3): Solar Power without sun on the team or the map, it has Blaze
-  WARNING M6: Charizard (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING V4: no full EV spread from stage 3 on: Gyarados, Aerodactyl, Charizard, Salamence, Garchomp, Dragonite
   WARNING P4: an Elite Four member without a legendary-tier Pokemon
 TRAINER_PROTON_1_HNS (boss, stage 1, fought at stages 1 to 1)
   WARNING M2: Koffing (slot 1): filler: Smokescreen
   WARNING M2: Golbat (slot 2): filler: Confuse Ray
   WARNING E1: Houndour (slot 6), fought at stage 1: Houndour at 24, past Houndoom's 23
-  WARNING M6: Houndour (slot 6): Smog at 70% accuracy without its enabler
   WARNING I3: an item more than twice: Eviolite x4
 TRAINER_FALKNER_1_HNS (boss, stage 0, fought at stages 0 to 0)
   WARNING M2: Pidgey (slot 1): filler: Sand Attack
@@ -144,7 +133,6 @@ TRAINER_FALKNER_1_HNS (boss, stage 0, fought at stages 0 to 0)
   WARNING I3: an item more than twice: Eviolite x4
 TRAINER_BUGSY_1_HNS (boss, stage 1, fought at stages 1 to 1)
 TRAINER_EUSINE_HNS (boss, stage 4, fought at stages 4 to K)
-  WARNING M6: Hypno (slot 2): Focus Blast at 70% accuracy without its enabler
   WARNING M4: Electrode (slot 3): an attacker with one attacking type
   WARNING M8: no priority move on the team
   WARNING V4: no full EV spread from stage 3 on: Politoed, Hypno, Electrode, Lanturn, Gengar, Starmie
@@ -194,59 +182,44 @@ TRAINER_PRYCE_1_3_HNS (boss, stage 6, fought at stages 6 to 6)
   WARNING V4: no full EV spread from stage 3 on: Cloyster, Dewgong, Jynx, Weavile, Mamoswine, Abomasnow
   WARNING S4: Cloyster @ Focus Sash (Skill Link; Icicle Spear, Liquidation, Rock Blast, Shell Smash) is on TRAINER_PETREL_2_HNS, TRAINER_PRYCE_1_2_HNS, TRAINER_PRYCE_1_3_HNS, TRAINER_PRYCE_1_HNS
 TRAINER_CLAIR_1_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING M6: Dragalge (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING V4: no full EV spread from stage 3 on: Druddigon, Flygon, Dragalge, Altaria, Kommo O, Kingdra
 TRAINER_FALKNER_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Zapdos (slot 5): Hurricane at 70% accuracy without its enabler
   WARNING M7: Pidgeot (slot 6): weak setup: Work Up
   WARNING M8: no priority move on the team
 TRAINER_BUGSY_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_WHITNEY_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Zoroark Hisui (slot 4): Focus Blast at 70% accuracy without its enabler
 TRAINER_MORTY_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Typhlosion Hisui (slot 5): Focus Blast at 70% accuracy without its enabler
 TRAINER_CHUCK_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_JASMINE_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_PRYCE_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Abomasnow (slot 1): Focus Blast at 70% accuracy without its enabler
 TRAINER_CLAIR_2_HNS (boss, stage J, fought at stages J to K)
   WARNING M8: no priority move on the team
 TRAINER_FALKNER_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Moltres (slot 3): Hurricane at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
 TRAINER_BUGSY_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_WHITNEY_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_MORTY_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Gholdengo (slot 4): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Gengar (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
 TRAINER_CHUCK_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_JASMINE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Iron Crown (slot 2): Focus Blast at 70% accuracy without its enabler
 TRAINER_PRYCE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Abomasnow (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
 TRAINER_CLAIR_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_BROCK_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_MISTY_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_LTSURGE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Ampharos (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
 TRAINER_ERIKA_POSTOBC_HNS (boss, stage K, fought at stages K to K)
   WARNING M8: no setup move on the team
 TRAINER_JANINE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Gengar (slot 6): Focus Blast at 70% accuracy without its enabler
 TRAINER_SABRINA_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Alakazam (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
 TRAINER_BLAINE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
   WARNING M8: no priority move on the team
 TRAINER_BLUE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_WILL_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Tapu Lele (slot 2): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
 TRAINER_WILL_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M6: Reuniclus (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
 TRAINER_KOGA_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_KOGA_POSTOBC_HNS (boss, stage K, fought at stages K to K)
@@ -254,14 +227,12 @@ TRAINER_KOGA_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_BRUNO_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_BRUNO_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_KAREN_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Iron Jugulis (slot 3): Hurricane at 70% accuracy without its enabler
 TRAINER_KAREN_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_LANCE_2_HNS (boss, stage J, fought at stages J to K)
   WARNING M8: no pivot or hazard on the team
   WARNING S4: Salamence @ Salamencite (Intimidate; Double Edge, Dragon Dance, Earthquake, Roost) is on TRAINER_FALKNER_POSTOBC_HNS, TRAINER_LANCE_2_HNS
 TRAINER_LANCE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
   WARNING M3: Dragonite (slot 4): no attack of its own type
-  WARNING M6: Noivern (slot 5): Hurricane at 70% accuracy without its enabler
 TRAINER_LI_HNS (boss, stage 0, fought at stages 0 to 0)
   WARNING A2: Weepinbell (slot 3): Chlorophyll without sun on the team or the map, it has Gluttony
   WARNING I3: an item more than twice: Eviolite x3
@@ -295,7 +266,6 @@ TRAINER_SIDE_FANTINA_HNS (side, stage 3, fought at stages 3 to K)
   WARNING N2: Zoroark Hisui (slot 4): on a Trick Room team with Timid, which doesn't lower Speed (base 110)
   WARNING P2: Zoroark Hisui (slot 4): Timid raises Speed on a Trick Room team
   WARNING V2: Zoroark Hisui (slot 4): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING M6: Zoroark Hisui (slot 4): Focus Blast at 70% accuracy without its enabler
   WARNING N2: Banette (slot 5): on a Trick Room team with Adamant, which doesn't lower Speed (base 65)
   WARNING V2: Banette (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
   WARNING N2: Mismagius (slot 6): on a Trick Room team with Timid, which doesn't lower Speed (base 105)
@@ -320,21 +290,17 @@ TRAINER_SIDE_ROARK_HNS (side, stage 7, fought at stages 7 to K)
   WARNING M8: more than one Stealth Rock setter
   WARNING V4: no full EV spread from stage 3 on: Glimmora, Garganacl, Tyrantrum, Kleavor, Rampardos, Tyranitar
 TRAINER_SIDE_VOLKNER_HNS (side, stage 8, fought at stages 8 to K)
-  WARNING M6: Raichu Alola (slot 2): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
   WARNING V4: no full EV spread from stage 3 on: Jolteon, Raichu Alola, Luxray, Rotom Wash, Electivire, Manectric
   WARNING S4: Rotom Wash @ Leftovers (Levitate; Hydro Pump, Pain Split, Volt Switch, Will O Wisp) is on TRAINER_LTSURGE_POSTOBC_HNS, TRAINER_SIDE_VOLKNER_HNS
 TRAINER_SIDE_KATY_HNS (side, stage J, fought at stages J to K)
   WARNING V4: no full EV spread from stage 3 on: Ribombee, Lokix, Volcarona, Golisopod, Ursaluna, Pinsir
 TRAINER_SIDE_BRASSIUS_HNS (side, stage J, fought at stages J to K)
-  WARNING M6: Sceptile (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no setup move on the team
   WARNING V4: no full EV spread from stage 3 on: Brambleghast, Meowscarada, Scovillain, Tsareena, Rillaboom, Sceptile
   WARNING S4: Meowscarada @ Choice Band (Protean; Flower Trick, Knock Off, Play Rough, U Turn) is on TRAINER_KAREN_POSTOBC_HNS, TRAINER_SIDE_BRASSIUS_HNS
 TRAINER_SIDE_IONO_HNS (side, stage J, fought at stages J to K)
   WARNING I4: Kilowattrel (slot 1): Choice Specs with status or setup moves it would be locked into: Roost
-  WARNING M6: Kilowattrel (slot 1): Hurricane at 70% accuracy without its enabler
-  WARNING M6: Ampharos (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
   WARNING V4: no full EV spread from stage 3 on: Kilowattrel, Bellibolt, Toxtricity, Electrode Hisui, Mismagius, Ampharos
 TRAINER_SIDE_KOFU_HNS (side, stage J, fought at stages J to K)
@@ -346,14 +312,12 @@ TRAINER_SIDE_LARRY_HNS (side, stage J, fought at stages J to K)
   WARNING V4: no full EV spread from stage 3 on: Komala, Dudunsparce, Staraptor, Porygon Z, Bewear, Kangaskhan
 TRAINER_SIDE_RYME_HNS (side, stage J, fought at stages J to K)
   WARNING I4: Gholdengo (slot 4): Choice Scarf with status or setup moves it would be locked into: Nasty Plot, Recover
-  WARNING M6: Gengar (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move on the team
   WARNING V4: no full EV spread from stage 3 on: Houndstone, Annihilape, Ceruledge, Gholdengo, Dragapult, Gengar
   WARNING S4: Gengar @ Gengarite (Levitate; Focus Blast, Nasty Plot, Shadow Ball, Sludge Wave) is on TRAINER_MORTY_POSTOBC_HNS, TRAINER_SIDE_RYME_HNS
 TRAINER_SIDE_TULIP_HNS (side, stage J, fought at stages J to K)
   WARNING V2: Hatterene (slot 4): 31 Speed IVs setting Trick Room (ivs="0 Spe")
   WARNING I4: Gallade (slot 5): Choice Band with status or setup moves it would be locked into: Swords Dance
-  WARNING M6: Gardevoir (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: no priority move, no pivot or hazard on the team
   WARNING P2: Trick Room from 1 setter on a team with 2 members of base Speed 60 or less, and Espathra, Gallade, Gardevoir with Speed-raising natures
   WARNING V4: no full EV spread from stage 3 on: Farigiraf, Espathra, Florges, Hatterene, Gallade, Gardevoir
@@ -369,7 +333,6 @@ TRAINER_SIDE_IRIS_HNS (side, stage K, fought at stages K to K)
 TRAINER_SIDE_GEETA_HNS (side, stage K, fought at stages K to K)
   WARNING S4: Kingambit @ Black Glasses (Supreme Overlord; Iron Head, Kowtow Cleave, Sucker Punch, Swords Dance) is on TRAINER_SIDE_BYRON_HNS, TRAINER_SIDE_GEETA_HNS
 TRAINER_SIDE_N_HNS (side, stage K, fought at stages K to K)
-  WARNING M6: Zoroark (slot 1): Focus Blast at 70% accuracy without its enabler
 TRAINER_SIDE_CYRUS_HNS (side, stage K, fought at stages K to K)
   WARNING S4: Houndoom @ Houndoominite (Flash Fire; Dark Pulse, Fire Blast, Nasty Plot, Sludge Bomb) is on TRAINER_ARCHER_HNS, TRAINER_KAREN_2_HNS, TRAINER_SIDE_CYRUS_HNS
 TRAINER_SIDE_WALLACE_HNS (side, stage K, fought at stages K to K)
@@ -482,12 +445,10 @@ TRAINER_CYBIL_HNS (miniboss, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Ninetales, Jumpluff, Butterfree, Arcanine, Bellossom
   WARNING S4: Arcanine @ Choice Band (Intimidate; Close Combat, Extreme Speed, Flare Blitz, Wild Charge) is on TRAINER_BLUE_HNS, TRAINER_CYBIL_HNS
 TRAINER_JAKE_HNS (miniboss, stage 4, fought at stages 4 to K)
-  WARNING M6: Magmortar (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING V4: no full EV spread from stage 3 on: Tangrowth, Electivire, Magmortar, Togekiss, Kingdra, Gyarados
   WARNING S4: Electivire @ Life Orb (Motor Drive; Cross Chop, Earthquake, Ice Punch, Wild Charge) is on TRAINER_JAKE_HNS, TRAINER_LTSURGE_HNS, TRAINER_LTSURGE_POSTOBC_HNS
   WARNING S4: Tangrowth @ Rocky Helmet (Regenerator; Earthquake, Giga Drain, Knock Off, Sleep Powder) is on TRAINER_ERIKA_HNS, TRAINER_JAKE_HNS
 TRAINER_BLAKE_HNS (miniboss, stage 4, fought at stages 4 to K)
-  WARNING M6: Ampharos (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING I3: an item more than twice: Life Orb x3
   WARNING V4: no full EV spread from stage 3 on: Scizor, Starmie, Ampharos, Houndoom, Heracross, Nidoking
 TRAINER_KELLY_HNS (miniboss, stage 6, fought at stages 6 to K)
@@ -498,8 +459,6 @@ TRAINER_QUINN_HNS (miniboss, stage J, fought at stages J to K)
   WARNING S4: Garchomp @ Rocky Helmet (Rough Skin; Dragon Claw, Earthquake, Stone Edge, Swords Dance) is on TRAINER_LANCE_1_HNS, TRAINER_QUINN_HNS
   WARNING S4: Gliscor @ Toxic Orb (Poison Heal; Earthquake, Knock Off, Roost, Toxic) is on TRAINER_FALKNER_POSTOBC_HNS, TRAINER_QUINN_HNS
 TRAINER_OTIS_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING M6: Magmortar (slot 4): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Charizard (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: needs setup or priority, and a pivot or a hazard
   WARNING V4: no full EV spread from stage 3 on: Ninetales, Houndoom, Chandelure, Magmortar, Volcarona, Charizard
   WARNING S4: Houndoom @ Black Glasses (Flash Fire; Dark Pulse, Fire Blast, Nasty Plot, Sludge Bomb) is on TRAINER_KAREN_1_HNS, TRAINER_OTIS_HNS
@@ -522,24 +481,20 @@ TRAINER_HERMAN_HNS (miniboss, stage J, fought at stages J to K)
   WARNING N2: Gallade (slot 3): on a Trick Room team with Adamant, which doesn't lower Speed (base 80)
   WARNING V2: Gallade (slot 3): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
   WARNING V2: Reuniclus (slot 4): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING M6: Reuniclus (slot 4): Focus Blast at 70% accuracy without its enabler
   WARNING N2: Alakazam (slot 5): on a Trick Room team with Timid, which doesn't lower Speed (base 120)
   WARNING P2: Alakazam (slot 5): Timid raises Speed on a Trick Room team
   WARNING V2: Alakazam (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING M6: Alakazam (slot 5): Focus Blast at 70% accuracy without its enabler
   WARNING N2: Metagross (slot 6): on a Trick Room team with Adamant, which doesn't lower Speed (base 70)
   WARNING V2: Metagross (slot 6): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
   WARNING I3: an item more than twice: Life Orb x3
   WARNING V4: no full EV spread from stage 3 on: Bronzong, Hatterene, Gallade, Reuniclus, Alakazam, Metagross
   WARNING S4: Bronzong @ Leftovers (Levitate; Earthquake, Gyro Ball, Hypnosis, Stealth Rock) is on TRAINER_HERMAN_HNS, TRAINER_JASMINE_1_2_HNS, TRAINER_JASMINE_1_3_HNS, TRAINER_JASMINE_1_HNS
 TRAINER_STEPHEN_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING M6: Ludicolo (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING I3: 2 items twice: Life Orb, Leftovers
   WARNING V4: no full EV spread from stage 3 on: Politoed, Kingdra, Ludicolo, Seismitoad, Lanturn, Gyarados
   WARNING S4: Politoed @ Damp Rock (Drizzle; Encore, Hypnosis, Ice Beam, Scald) is on TRAINER_EUSINE_HNS, TRAINER_SIDE_WAKE_HNS, TRAINER_STEPHEN_HNS
 TRAINER_BRET_HNS (miniboss, stage J, fought at stages J to K)
   WARNING I4: Klefki (slot 1): Light Clay without Reflect, Light Screen or Aurora Veil
-  WARNING M6: Mr Mime (slot 4): Focus Blast at 70% accuracy without its enabler
   WARNING V3: Magnezone (slot 6): Hidden Power with 31 IVs is Dark; its ivs must give the type it is meant to be
   WARNING V4: no full EV spread from stage 3 on: Klefki, Sableye, Ambipom, Mr Mime, Rotom, Magnezone
 TRAINER_COLETTE_HNS (miniboss, stage J, fought at stages J to K)
@@ -557,7 +512,6 @@ TRAINER_LORI_HNS (miniboss, stage J, fought at stages J to K)
   WARNING S4: Vaporeon @ Leftovers (Water Absorb; Ice Beam, Protect, Scald, Wish) is on TRAINER_KUNI_HNS, TRAINER_LORI_HNS
   WARNING S4: Starmie @ Life Orb (Analytic; Hydro Pump, Ice Beam, Psychic, Thunderbolt) is on TRAINER_BLAKE_HNS, TRAINER_LORI_HNS
 TRAINER_KEVIN_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING M6: Gengar (slot 1): Focus Blast at 70% accuracy without its enabler
   WARNING V2: Ferrothorn (slot 3): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
   WARNING I3: an item more than twice: Life Orb x4
   WARNING V4: no full EV spread from stage 3 on: Gengar, Scizor, Ferrothorn, Crawdaunt, Kommo O, Salamence
@@ -645,21 +599,17 @@ TRAINER_RIVAL_CHIKORITA_3_HNS (boss, stage 3, fought at stages 3 to 3)
   WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
   WARNING E8: his starter is a Bayleef at 42: a Meganium there
 TRAINER_RIVAL_CYNDAQUIL_4_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING M6: Alakazam (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING A2: Victreebel (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
   WARNING E1: Pupitar (slot 5), fought at stage 7: Pupitar at 75, past Tyranitar's 55
-  WARNING M6: Typhlosion (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Alakazam, Victreebel, Pupitar, Typhlosion
   WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
   WARNING S4: shares 4 species with TRAINER_RIVAL_CYNDAQUIL_5_HNS (stage 8): Crobat, Typhlosion, Victreebel, Weavile
 TRAINER_RIVAL_TOTODILE_4_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING M6: Alakazam (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING A2: Victreebel (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
   WARNING E1: Pupitar (slot 5), fought at stage 7: Pupitar at 75, past Tyranitar's 55
   WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Alakazam, Victreebel, Pupitar, Feraligatr
   WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
 TRAINER_RIVAL_CHIKORITA_4_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING M6: Alakazam (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING A2: Victreebel (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
   WARNING E1: Pupitar (slot 5), fought at stage 7: Pupitar at 75, past Tyranitar's 55
   WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Alakazam, Victreebel, Pupitar, Meganium
@@ -668,7 +618,6 @@ TRAINER_RIVAL_CHIKORITA_4_HNS (boss, stage 7, fought at stages 7 to 7)
 TRAINER_RIVAL_CYNDAQUIL_5_HNS (boss, stage 8, fought at stages 8 to 8)
   WARNING A2: Victreebel (slot 3): Chlorophyll without sun on the team or the map, it has Gluttony
   WARNING E1: Ursaring (slot 4), fought at stage 8: Ursaring at 85, past Ursaluna's 48
-  WARNING M6: Typhlosion (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Victreebel, Ursaring, Tyranitar, Typhlosion
   WARNING S4: shares 4 species with TRAINER_RIVAL_CYNDAQUIL_6_HNS (stage J): Crobat, Typhlosion, Tyranitar, Weavile
   WARNING S4: shares 4 species with TRAINER_RIVAL_CYNDAQUIL_7_HNS (stage J): Crobat, Typhlosion, Tyranitar, Weavile
@@ -686,22 +635,14 @@ TRAINER_RIVAL_CHIKORITA_5_HNS (boss, stage 8, fought at stages 8 to 8)
   WARNING S4: Victreebel @ Black Sludge (Chlorophyll; Poison Jab, Power Whip, Sleep Powder, Sucker Punch) is on TRAINER_RIVAL_CHIKORITA_4_HNS, TRAINER_RIVAL_CHIKORITA_5_HNS, TRAINER_RIVAL_CYNDAQUIL_4_HNS, TRAINER_RIVAL_CYNDAQUIL_5_HNS, TRAINER_RIVAL_TOTODILE_4_HNS, TRAINER_RIVAL_TOTODILE_5_HNS
   WARNING S4: Meganium @ Leftovers (Overgrow; Earth Power, Energy Ball, Leech Seed, Synthesis) is on TRAINER_RIVAL_CHIKORITA_4_HNS, TRAINER_RIVAL_CHIKORITA_5_HNS
 TRAINER_RIVAL_CYNDAQUIL_6_HNS (boss, stage J, fought at stages J to J)
-  WARNING M6: Gengar (slot 3): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Typhlosion (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING S4: shares 5 species with TRAINER_RIVAL_CYNDAQUIL_7_HNS (stage J): Crobat, Gengar, Typhlosion, Tyranitar, Weavile
 TRAINER_RIVAL_TOTODILE_6_HNS (boss, stage J, fought at stages J to J)
-  WARNING M6: Gengar (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING I3: an item more than twice: Life Orb x3
 TRAINER_RIVAL_CHIKORITA_6_HNS (boss, stage J, fought at stages J to J)
-  WARNING M6: Gengar (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING S4: Tyranitar @ Tyranitarite (Sand Stream; Dragon Dance, Earthquake, Knock Off, Stone Edge) is on TRAINER_KAREN_POSTOBC_HNS, TRAINER_RIVAL_CHIKORITA_6_HNS, TRAINER_RIVAL_CYNDAQUIL_6_HNS, TRAINER_RIVAL_TOTODILE_6_HNS
 TRAINER_RIVAL_CYNDAQUIL_7_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Gengar (slot 3): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Typhlosion (slot 6): Focus Blast at 70% accuracy without its enabler
 TRAINER_RIVAL_TOTODILE_7_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Gengar (slot 3): Focus Blast at 70% accuracy without its enabler
 TRAINER_RIVAL_CHIKORITA_7_HNS (boss, stage J, fought at stages J to K)
-  WARNING M6: Gengar (slot 3): Focus Blast at 70% accuracy without its enabler
 TRAINER_ACE_R29_KAITO_HNS (ace, stage 0, fought at stages 0 to K)
   WARNING E1: Shinx (slot 1), fought at stage 0: Shinx at 15, past Luxio's 15
   WARNING E6: Cutiefly (slot 2), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Ribombee at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
@@ -741,7 +682,6 @@ TRAINER_ACE_NATPARK_SUNNIVA_HNS (ace, stage 2, fought at stages 2 to K)
   WARNING E2: Gloom (slot 2), fought at stage 2: Gloom at 33 unevolved: it evolves by item into Vileplume, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
   WARNING E6: Gloom (slot 2), fought at stages 3, 4, 5, 6, 7, 8, J, K: Vileplume at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
   WARNING E6: Krokorok (slot 3), fought at stages 3, 4, 5, 6, 7, 8, J, K: Krookodile at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING M6: Charmeleon (slot 5): Focus Blast at 70% accuracy without its enabler
   WARNING I3: 2 Eviolites at stage 2
   raised to 42 to 100: Ninetales @ Heat Rock, Vileplume @ Eviolite, Krookodile @ Eviolite, Jumpluff @ Yache Berry, Charizard @ Charcoal
 TRAINER_ACE_ILEX_CALDER_HNS (ace, stage 2, fought at stages 2 to K)
@@ -762,7 +702,6 @@ TRAINER_ACE_R39_MIRIAM_HNS (ace, stage 3, fought at stages 3 to K)
   WARNING V2: Cofagrigus (slot 1): 31 Speed IVs setting Trick Room (ivs="0 Spe")
   WARNING V2: Escavalier (slot 2): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
   WARNING V2: Reuniclus (slot 3): 31 Speed IVs setting Trick Room (ivs="0 Spe")
-  WARNING M6: Reuniclus (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING V2: Ursaluna (slot 4): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
   WARNING V2: Conkeldurr (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
   WARNING V4: no full EV spread from stage 3 on: Cofagrigus, Escavalier, Reuniclus, Ursaluna, Conkeldurr
@@ -785,13 +724,11 @@ TRAINER_ACE_R43_VIKTOR_HNS (ace, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Orthworm, Amoonguss, Mandibuzz, Clodsire, Jellicent
 TRAINER_ACE_ICEPATH_CELESTE_HNS (ace, stage 7, fought at stages 7 to K)
 TRAINER_ACE_DARKCAVE_ZEPHYR_HNS (ace, stage 7, fought at stages 7 to K)
-  WARNING M6: Typhlosion Hisui (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: needs setup or priority, and a pivot or a hazard
   WARNING S4: Whimsicott @ Focus Sash (Prankster; Encore, Moonblast, Tailwind, U Turn) is on TRAINER_ACE_DARKCAVE_ZEPHYR_HNS, TRAINER_ERIKA_POSTOBC_HNS
 TRAINER_ACE_ICEPATH_B1F_RHEA_HNS (ace, stage 7, fought at stages 7 to K)
   WARNING S4: Feraligatr @ Life Orb (Sheer Force; Crunch, Dragon Dance, Ice Punch, Liquidation) is on TRAINER_ACE_ICEPATH_B1F_RHEA_HNS, TRAINER_RIVAL_TOTODILE_4_HNS, TRAINER_RIVAL_TOTODILE_5_HNS, TRAINER_RIVAL_TOTODILE_6_HNS
 TRAINER_ACE_VRB2F_ELIAS_HNS (ace, stage 8, fought at stages 8 to K)
-  WARNING M6: Gholdengo (slot 6): Focus Blast at 70% accuracy without its enabler
 TRAINER_ACE_TOHJO_IMOGEN_HNS (ace, stage 8, fought at stages 8 to K)
   WARNING S4: Ribombee @ Focus Sash (Shield Dust; Moonblast, Sticky Web, Stun Spore, U Turn) is on TRAINER_ACE_TOHJO_IMOGEN_HNS, TRAINER_SIDE_KATY_HNS
 TRAINER_ACE_VRB1F_MAXIM_HNS (ace, stage 8, fought at stages 8 to K)
@@ -806,21 +743,16 @@ TRAINER_ACE_R4_ESTELLE_HNS (ace, stage J, fought at stages J to K)
   WARNING S4: Glimmora @ Focus Sash (Toxic Debris; Earth Power, Mortal Spin, Power Gem, Stealth Rock) is on TRAINER_ACE_R4_ESTELLE_HNS, TRAINER_SIDE_GEETA_HNS
 TRAINER_ACE_MTMOON_TOBIAS_HNS (ace, stage J, fought at stages J to K)
   WARNING A2: Glaceon (slot 4): Ice Body without snow on the team or the map, it has Slush Rush
-  WARNING M6: Glaceon (slot 4): Blizzard at 70% accuracy without its enabler
   WARNING S4: Rampardos @ Choice Scarf (Mold Breaker; Earthquake, Fire Punch, Head Smash, Zen Headbutt) is on TRAINER_ACE_MTMOON_TOBIAS_HNS, TRAINER_SIDE_ROARK_HNS
 TRAINER_ACE_R5_VERA_HNS (ace, stage J, fought at stages J to K)
   WARNING I3: 2 items twice: Life Orb, Sitrus Berry
 TRAINER_ACE_R6_LUCIEN_HNS (ace, stage J, fought at stages J to K)
-  WARNING M6: Exploud (slot 3): Focus Blast at 70% accuracy without its enabler
 TRAINER_ACE_R7_MARIGOLD_HNS (ace, stage J, fought at stages J to K)
-  WARNING M6: Typhlosion (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING S4: Typhlosion @ Choice Scarf (Flash Fire; Eruption, Extrasensory, Fire Blast, Focus Blast) is on TRAINER_ACE_R7_MARIGOLD_HNS, TRAINER_RIVAL_CYNDAQUIL_4_HNS, TRAINER_RIVAL_CYNDAQUIL_5_HNS
 TRAINER_ACE_R8_MORDECAI_HNS (ace, stage J, fought at stages J to K)
-  WARNING M6: Gothitelle (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING M8: needs setup or priority, and a pivot or a hazard
   WARNING S4: Heatran @ Air Balloon (Flash Fire; Earth Power, Flash Cannon, Magma Storm, Taunt) is on TRAINER_ACE_R8_MORDECAI_HNS, TRAINER_JASMINE_2_HNS
 TRAINER_ACE_R9_ROSALIND_HNS (ace, stage J, fought at stages J to K)
-  WARNING M6: Gengar (slot 4): Focus Blast at 70% accuracy without its enabler
 TRAINER_ACE_R10_EDISON_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_ROCKTUN_1F_SABLE_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R11_WESLEY_HNS (ace, stage J, fought at stages J to K)
@@ -835,7 +767,6 @@ TRAINER_ACE_R24_MAGNUS_HNS (ace, stage J, fought at stages J to K)
   WARNING S4: Staraptor @ Choice Band (Reckless; Brave Bird, Close Combat, Double Edge, U Turn) is on TRAINER_ACE_R24_MAGNUS_HNS, TRAINER_BORIS_HNS, TRAINER_FALKNER_2_HNS, TRAINER_SIDE_LARRY_HNS
   WARNING S4: Darmanitan Galar @ Choice Scarf (Gorilla Tactics; Earthquake, Flare Blitz, Icicle Crash, U Turn) is on TRAINER_ACE_R24_MAGNUS_HNS, TRAINER_PRYCE_POSTOBC_HNS
 TRAINER_ACE_MTMOONSQ_MISTRAL_HNS (ace, stage J, fought at stages J to K)
-  WARNING M6: Oricorio Pom Pom (slot 5): Hurricane at 70% accuracy without its enabler
 TRAINER_ACE_PPLANT_EVANGELINE_HNS (ace, stage J, fought at stages J to K)
   WARNING A2: Glaceon (slot 4): Ice Body without snow on the team or the map, it has Slush Rush
   WARNING I3: 2 items twice: Choice Specs, Leftovers
@@ -845,15 +776,11 @@ TRAINER_ACE_SEAFOAM_LENORE_HNS (ace, stage J, fought at stages J to K)
   WARNING S4: Volcarona @ Heavy Duty Boots (Flame Body; Bug Buzz, Fiery Dance, Giga Drain, Quiver Dance) is on TRAINER_ACE_SEAFOAM_LENORE_HNS, TRAINER_BUGSY_2_HNS, TRAINER_SIDE_KATY_HNS
   WARNING S4: Gallade @ Life Orb (Sharpness; Leaf Blade, Psycho Cut, Sacred Sword, Swords Dance) is on TRAINER_ACE_SEAFOAM_LENORE_HNS, TRAINER_WILL_2_HNS
 TRAINER_ACE_R13_MARLOW_HNS (ace, stage J, fought at stages J to K)
-  WARNING M6: Ludicolo (slot 3): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Ampharos (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING S4: Pelipper @ Damp Rock (Drizzle; Hurricane, Roost, Scald, U Turn) is on TRAINER_ACE_R13_MARLOW_HNS, TRAINER_MISTY_HNS, TRAINER_SIDE_WALLACE_HNS, TRAINER_SIMON_HNS
   WARNING S4: Ludicolo @ Life Orb (Swift Swim; Focus Blast, Giga Drain, Hydro Pump, Ice Beam) is on TRAINER_ACE_R13_MARLOW_HNS, TRAINER_STEPHEN_HNS
 TRAINER_ACE_R14_BEATRIX_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R15_HAYATE_HNS (ace, stage J, fought at stages J to K)
-  WARNING M6: Dragalge (slot 4): Focus Blast at 70% accuracy without its enabler
 TRAINER_ACE_DOJO_BRIGID_HNS (ace, stage J, fought at stages J to K)
-  WARNING M6: Magmortar (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING S4: Magmortar @ Expert Belt (Flame Body; Fire Blast, Focus Blast, Psychic, Thunderbolt) is on TRAINER_ACE_DOJO_BRIGID_HNS, TRAINER_JAKE_HNS, TRAINER_OTIS_HNS
 TRAINER_ACE_R16_HAZEL_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R17_RYKER_HNS (ace, stage J, fought at stages J to K)
@@ -863,13 +790,10 @@ TRAINER_ACE_ROCKTUN_B1F_MATILDA_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R18_DUNCAN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R19_MAREN_HNS (ace, stage J, fought at stages J to K)
   WARNING M5: Tentacruel (slot 2): its strongest attack has 65 power
-  WARNING M6: Raichu (slot 4): Focus Blast at 70% accuracy without its enabler
 TRAINER_ACE_R20_BJORN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R23_LEANDER_HNS (ace, stage 8, fought at stages 8 to K)
   WARNING V2: Bronzong (slot 1): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
 TRAINER_ACE_VR1F_OPHELIA_HNS (ace, stage 8, fought at stages 8 to K)
-  WARNING M6: Mr Rime (slot 2): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Delphox (slot 3): Focus Blast at 70% accuracy without its enabler
   WARNING M8: needs setup or priority, and a pivot or a hazard
 TRAINER_ACE_R28_ROWAN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_IRENE_HNS (cooltrainer, stage 3, fought at stages 3 to K)
@@ -881,7 +805,6 @@ TRAINER_NICK_HNS (cooltrainer, stage 4, fought at stages 4 to K)
 TRAINER_AARON_HNS (cooltrainer, stage 4, fought at stages 4 to K)
   WARNING M7: Venusaur (slot 2): weak setup: Growth
   WARNING E6: Dragonair (slot 3), fought at stages 5, 6, 7, 8, J, K: Dragonite at 58, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING M6: Charizard (slot 5): Focus Blast at 70% accuracy without its enabler
   WARNING V4: no full EV spread from stage 3 on: Mr Mime, Venusaur, Dragonair, Blastoise, Charizard
   WARNING P6: LakeOfRage_hns has rain: fewer than two of the team use it, and it sets no weather of its own
   raised to 58 to 100: Mr Mime @ Light Clay, Venusaur @ Miracle Seed, Dragonite @ Eviolite, Blastoise @ Sitrus Berry, Charizard @ Charcoal
@@ -895,7 +818,6 @@ TRAINER_EMMA_HNS (cooltrainer, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Politoed, Octillery, Azumarill, Linoone, Poliwrath
   WARNING S4: Azumarill @ Sitrus Berry (Huge Power; Aqua Jet, Belly Drum, Knock Off, Play Rough) is on TRAINER_ACE_SEAFOAM_LENORE_HNS, TRAINER_EMMA_HNS
 TRAINER_RYAN_HNS (cooltrainer, stage 6, fought at stages 6 to K)
-  WARNING M6: Magmortar (slot 4): Focus Blast at 70% accuracy without its enabler
   WARNING S4: Lucario @ Life Orb (Justified; Close Combat, Extreme Speed, Meteor Mash, Swords Dance) is on TRAINER_COLETTE_HNS, TRAINER_RYAN_HNS
 TRAINER_ALLEN_HNS (cooltrainer, stage 6, fought at stages 6 to K)
 TRAINER_BRIAN_HNS (cooltrainer, stage 7, fought at stages 7 to K)
@@ -917,14 +839,8 @@ TRAINER_MEGAN_HNS (cooltrainer, stage 7, fought at stages 7 to K)
   WARNING V2: Exeggutor Alola (slot 6): 31 Speed IVs setting Trick Room (ivs="0 Spe")
   WARNING M8: needs setup or priority, and a pivot or a hazard
 TRAINER_BETH_HNS (cooltrainer, stage 7, fought at stages 7 to K)
-  WARNING M6: Ampharos (slot 3): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Gengar (slot 5): Focus Blast at 70% accuracy without its enabler
 TRAINER_BETH_2_HNS (cooltrainer, stage 8, fought at stages 8 to K)
-  WARNING M6: Ampharos (slot 4): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Gengar (slot 6): Focus Blast at 70% accuracy without its enabler
 TRAINER_BETH_3_HNS (cooltrainer, stage 8, fought at stages 8 to K)
-  WARNING M6: Ampharos (slot 4): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Gengar (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING R1: tier 3 at stage 8, not after tier 2's (8): the rematch gate tells tiers apart by their stages
   WARNING R2: tier 3 is a copy of tier 2's team
 TRAINER_REENA_HNS (cooltrainer, stage 7, fought at stages 7 to K)
@@ -944,11 +860,7 @@ TRAINER_GAVEN_3_HNS (cooltrainer, stage 8, fought at stages 8 to K)
   WARNING R2: tier 3 is a copy of tier 2's team
   WARNING S4: Porygon Z @ Choice Specs (Adaptability; Ice Beam, Shadow Ball, Thunderbolt, Tri Attack) is on TRAINER_ARCHER_HNS, TRAINER_GAVEN_2_HNS, TRAINER_GAVEN_3_HNS, TRAINER_GAVEN_HNS, TRAINER_SIDE_LARRY_HNS, TRAINER_WHITNEY_2_HNS
 TRAINER_JOYCE_HNS (cooltrainer, stage 8, fought at stages 8 to K)
-  WARNING M6: Raichu (slot 4): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Typhlosion (slot 6): Focus Blast at 70% accuracy without its enabler
   WARNING S4: Blastoise @ White Herb (Torrent; Aura Sphere, Hydro Pump, Ice Beam, Shell Smash) is on TRAINER_JOYCE_HNS, TRAINER_RED_HNS, TRAINER_RED_POSTOBC_HNS
 TRAINER_CAROL_HNS (cooltrainer, stage J, fought at stages J to K)
-  WARNING M6: Sceptile (slot 3): Focus Blast at 70% accuracy without its enabler
-  WARNING M6: Alakazam (slot 4): Focus Blast at 70% accuracy without its enabler
 TRAINER_SEAN_HNS (cooltrainer, stage J, fought at stages J to K)
   WARNING S4: Forretress @ Leftovers (Sturdy; Rapid Spin, Spikes, Stealth Rock, Volt Switch) is on TRAINER_BUGSY_POSTOBC_HNS, TRAINER_SEAN_HNS
