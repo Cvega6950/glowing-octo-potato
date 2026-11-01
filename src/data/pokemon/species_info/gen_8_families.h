@@ -1420,7 +1420,7 @@ const struct SpeciesInfo gSpeciesInfoGen8[] =
         .palette = gMonPalette_OrbeetleGmax,
         .shinyPalette = gMonShinyPalette_OrbeetleGmax,
         .iconSprite = gMonIcon_OrbeetleGmax,
-        .iconPalIndex = 0,
+        .iconPalIndex = 2,
         .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(0, 12, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Orbeetle)

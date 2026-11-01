@@ -20735,7 +20735,7 @@ const struct SpeciesInfo gSpeciesInfoGen1[] =
         .palette = gMonPalette_SnorlaxGmax,
         .shinyPalette = gMonShinyPalette_SnorlaxGmax,
         .iconSprite = gMonIcon_SnorlaxGmax,
-        .iconPalIndex = 3,
+        .iconPalIndex = 1,
         .pokemonJumpType = PKMN_JUMP_TYPE_NONE,
         SHADOW(0, 11, SHADOW_SIZE_XL_BATTLE_ONLY)
         FOOTPRINT(Snorlax)
