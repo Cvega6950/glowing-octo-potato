@@ -74,8 +74,7 @@ def cap(stage):
 
 
 # --- Falkner (1st Gym, no badges: cap 15) -----------------------------------------------------------
-# Heart & Soul's Pidgey, Rookidee and Noctowl, and since 0.8.0 a full six: Magic Bounce Natu,
-# Gale Wings Fletchling and Prankster Murkrow (Thunder Wave) for Speed control.
+# Tailwind and pivots, the first Gym's lesson in speed.
 FALKNER = [
     mon("Murkrow", "Eviolite", "Prankster", "Bold", ["Tailwind", "Thunder Wave", "Foul Play", "Haze"]),
     mon("Natu", "Eviolite", "Magic Bounce", "Bold", ["Night Shade", "Air Cutter", "Teleport", "Wish"],
@@ -101,9 +100,8 @@ BUGSY = [
 ]
 
 # --- Whitney (3rd Gym, 2 badges: cap 33) ----------------------------------------------------------
-# Heart & Soul's four and their moves, with held items: at the higher caps (D29) her team without
-# items lost 13 battles in 20 to a naive team (0.7.0: 15 in 20 won by her). Furret and Girafarig
-# make six (D30).
+# Normal-type pressure around Whitney's Miltank. Aipom (the named Eviolite species, tier A at 33) leads with Fake
+# Out, Skill Link Tail Slap and U-turn; Clefable paralyses, Encores setup moves and heals with Soft-Boiled.
 WHITNEY = [
     mon("Aipom", "Eviolite", "Skill Link", "Jolly", ["Fake Out", "Tail Slap", "U-turn", "Knock Off"]),
     mon("Clefable", "Leftovers", "Magic Guard", "Bold", ["Moonblast", "Thunder Wave", "Encore", "Soft-Boiled"],
@@ -116,6 +114,7 @@ WHITNEY = [
 ]
 
 # --- Morty (4th Gym, 3 badges: cap 42) ------------------------------------------------------------
+# A Mega ace behind status and hazards, the first Mega boss after the 3rd badge's Mega Ring.
 MORTY = [
     mon("Marowak Alola", "Thick Club", "Lightning Rod", "Adamant", ["Stealth Rock", "Shadow Bone", "Bonemerang", "Fire Punch"],
         "252 HP / 252 Atk / 4 SpD"),
@@ -134,6 +133,8 @@ MORTY = [
 # --- Chuck, Jasmine, Pryce (5th to 7th Gym in any order) ------------------------------------------
 # HnS picks the party by how many of the three the player has beaten: _1 with 4 badges (cap 50),
 # _1_2 with 5 (cap 58), _1_3 with 6 (cap 66).
+# Fighting priority and setup, closed by Mega Heracross. Intimidate Hitmontop leads with Fake Out and Sucker Punch;
+# then Spore from Technician Breloom (Life Orb Bullet Seed, Mach Punch, Rock Tomb for Flying types).
 CHUCK = [
     mon("Hitmontop", "Rocky Helmet", "Intimidate", "Adamant", ["Fake Out", "Close Combat", "Sucker Punch", "Triple Axel"],
         "252 HP / 252 Atk / 4 SpD"),
@@ -148,6 +149,7 @@ CHUCK = [
     mon("Heracross", "Heracronite", "Moxie", "Jolly", ["Pin Missile", "Rock Blast", "Close Combat", "Swords Dance"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
+# Fighting priority and setup, closed by Mega Heracross.
 CHUCK_1_3 = [
     mon("Iron Hands", "Booster Energy", "Quark Drive", "Adamant", ["Fake Out", "Drain Punch", "Supercell Slam", "Ice Punch"],
         "252 HP / 252 Atk / 4 SpD"),
@@ -162,6 +164,7 @@ CHUCK_1_3 = [
     mon("Heracross", "Heracronite", "Moxie", "Jolly", ["Pin Missile", "Rock Blast", "Close Combat", "Swords Dance"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
+# Fighting priority and setup, closed by Mega Heracross.
 CHUCK_1_2 = [
     mon("Iron Hands", "Booster Energy", "Quark Drive", "Adamant", ["Fake Out", "Drain Punch", "Supercell Slam", "Ice Punch"],
         "252 HP / 252 Atk / 4 SpD"),
@@ -176,6 +179,8 @@ CHUCK_1_2 = [
     mon("Heracross", "Heracronite", "Moxie", "Jolly", ["Pin Missile", "Rock Blast", "Close Combat", "Swords Dance"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
+# Steel hazards and a slow, heavy core around Mega Steelix. Rocky Helmet Skarmory lays Spikes and Whirlwinds the
+# player through them; Sassy Bronzong adds Stealth Rock and Toxic, and Gyro Balls the fast attackers.
 JASMINE = [
     mon("Skarmory", "Rocky Helmet", "Sturdy", "Impish", ["Spikes", "Drill Peck", "Roost", "Whirlwind"],
         "252 HP / 4 Atk / 252 Def"),
@@ -190,6 +195,7 @@ JASMINE = [
     mon("Steelix", "Steelixite", "Sturdy", "Brave", ["Gyro Ball", "Earthquake", "Rock Slide", "Curse"],
         "252 HP / 252 Atk / 4 SpD", ivs="31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe"),
 ]
+# Steel hazards and a slow, heavy core around Mega Steelix.
 JASMINE_1_3 = [
     mon("Skarmory", "Rocky Helmet", "Sturdy", "Impish", ["Spikes", "Drill Peck", "Roost", "Whirlwind"],
         "252 HP / 4 Atk / 252 Def"),
@@ -204,6 +210,7 @@ JASMINE_1_3 = [
     mon("Steelix", "Steelixite", "Sturdy", "Brave", ["Gyro Ball", "Earthquake", "Rock Slide", "Curse"],
         "252 HP / 252 Atk / 4 SpD", ivs="31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe"),
 ]
+# Steel hazards and a slow, heavy core around Mega Steelix.
 JASMINE_1_2 = [
     mon("Skarmory", "Rocky Helmet", "Sturdy", "Impish", ["Spikes", "Drill Peck", "Roost", "Whirlwind"],
         "252 HP / 4 Atk / 252 Def"),
@@ -218,24 +225,72 @@ JASMINE_1_2 = [
     mon("Steelix", "Steelixite", "Sturdy", "Brave", ["Gyro Ball", "Earthquake", "Rock Slide", "Curse"],
         "252 HP / 252 Atk / 4 SpD", ivs="31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe"),
 ]
+# Snow: Shell Smash Skill Link Cloyster leads; Mamoswine sets Stealth Rock; Dewgong, Lovely Kiss Jynx and Weavile
+# (Ice Shard) support; Abomasnow's Snow Warning brings the snow as it comes in.
 PRYCE = [
-    mon("Cloyster", "Focus Sash", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Shell Smash", "Liquidation"]),
-    mon("Dewgong", "Leftovers", "Thick Fat", "Bold", ["Surf", "Ice Beam", "Toxic", "Protect"]),
-    mon("Jynx", "Wise Glasses", "Dry Skin", "Timid", ["Lovely Kiss", "Ice Beam", "Psychic", "Nasty Plot"]),
-    mon("Weavile", "Razor Claw", "Pressure", "Jolly", ["Ice Punch", "Knock Off", "Ice Shard", "Low Kick"]),
-    mon("Mamoswine", "Never Melt Ice", "Thick Fat", "Adamant", ["Earthquake", "Icicle Crash", "Ice Shard", "Stone Edge"]),
-    mon("Abomasnow", "Abomasite", "Snow Warning", "Quiet", ["Blizzard", "Energy Ball", "Ice Shard", "Earthquake"]),
+    mon("Cloyster", "Focus Sash", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Shell Smash", "Liquidation"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Dewgong", "Leftovers", "Thick Fat", "Bold", ["Surf", "Ice Beam", "Toxic", "Protect"],
+        "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Jynx", "Wise Glasses", "Dry Skin", "Timid", ["Lovely Kiss", "Ice Beam", "Psychic", "Nasty Plot"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Weavile", "Razor Claw", "Pressure", "Jolly", ["Ice Punch", "Knock Off", "Ice Shard", "Low Kick"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Mamoswine", "Never Melt Ice", "Thick Fat", "Adamant", ["Earthquake", "Icicle Crash", "Ice Shard", "Stealth Rock"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Abomasnow", "Abomasite", "Snow Warning", "Mild", ["Blizzard", "Energy Ball", "Ice Shard", "Earth Power"],
+        "4 Atk / 252 SpA / 252 Spe"),
+]
+# Snow: Shell Smash Skill Link Cloyster leads; Mamoswine sets Stealth Rock; Booster Energy Iron Bundle (the team's
+# one Paradox Pokemon) Freeze Drys, Taunts and Flip Turns; Dragon Dance Baxcalibur and Weavile (Ice Shard) attack.
+PRYCE_1_3 = [
+    mon("Cloyster", "Focus Sash", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Shell Smash", "Liquidation"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Iron Bundle", "Booster Energy", "Quark Drive", "Timid", ["Hydro Pump", "Freeze Dry", "Taunt", "Flip Turn"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Baxcalibur", "Life Orb", "Thermal Exchange", "Jolly", ["Dragon Dance", "Icicle Crash", "Glaive Rush", "Earthquake"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Weavile", "Razor Claw", "Pressure", "Jolly", ["Ice Punch", "Knock Off", "Ice Shard", "Low Kick"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Mamoswine", "Never Melt Ice", "Thick Fat", "Adamant", ["Earthquake", "Icicle Crash", "Ice Shard", "Stealth Rock"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Abomasnow", "Abomasite", "Snow Warning", "Mild", ["Blizzard", "Energy Ball", "Ice Shard", "Earth Power"],
+        "4 Atk / 252 SpA / 252 Spe"),
+]
+# Snow: Shell Smash Skill Link Cloyster leads; Mamoswine sets Stealth Rock; Booster Energy Iron Bundle (the team's
+# one Paradox Pokemon) Freeze Drys, Taunts and Flip Turns; Lovely Kiss Jynx and Weavile (Ice Shard) support.
+PRYCE_1_2 = [
+    mon("Cloyster", "Focus Sash", "Skill Link", "Adamant", ["Icicle Spear", "Rock Blast", "Shell Smash", "Liquidation"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Iron Bundle", "Booster Energy", "Quark Drive", "Timid", ["Hydro Pump", "Freeze Dry", "Taunt", "Flip Turn"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Jynx", "Wise Glasses", "Dry Skin", "Timid", ["Lovely Kiss", "Ice Beam", "Psychic", "Nasty Plot"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Weavile", "Razor Claw", "Pressure", "Jolly", ["Ice Punch", "Knock Off", "Ice Shard", "Low Kick"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Mamoswine", "Never Melt Ice", "Thick Fat", "Adamant", ["Earthquake", "Icicle Crash", "Ice Shard", "Stealth Rock"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Abomasnow", "Abomasite", "Snow Warning", "Mild", ["Blizzard", "Energy Ball", "Ice Shard", "Earth Power"],
+        "4 Atk / 252 SpA / 252 Spe"),
 ]
 
 
 # --- Clair (8th Gym, 7 badges: cap 75) ------------------------------------------------------------
+# Dragon Gym: Rough Skin Druddigon paralyses with Glare; Choice Scarf Flygon U-turns; Dragalge lays Toxic Spikes;
+# Mega Altaria's Pixilate Hyper Voice, Swords Dance Kommo-o and Rain Dance Swift Swim Kingdra sweep.
 CLAIR = [
-    mon("Druddigon", "Rocky Helmet", "Rough Skin", "Adamant", ["Outrage", "Gunk Shot", "Sucker Punch", "Glare"]),
-    mon("Flygon", "Choice Scarf", "Levitate", "Jolly", ["Earthquake", "Dragon Claw", "U Turn", "Fire Punch"]),
-    mon("Dragalge", "Black Sludge", "Adaptability", "Modest", ["Sludge Bomb", "Dragon Pulse", "Focus Blast", "Toxic Spikes"]),
-    mon("Altaria", "Altarianite", "Natural Cure", "Modest", ["Hyper Voice", "Dragon Pulse", "Fire Blast", "Roost"]),
-    mon("Kommo O", "Life Orb", "Bulletproof", "Jolly", ["Scale Shot", "Close Combat", "Poison Jab", "Swords Dance"]),
-    mon("Kingdra", "Wacan Berry", "Swift Swim", "Modest", ["Hydro Pump", "Draco Meteor", "Ice Beam", "Rain Dance"]),
+    mon("Druddigon", "Rocky Helmet", "Rough Skin", "Adamant", ["Outrage", "Gunk Shot", "Sucker Punch", "Glare"],
+        "252 HP / 252 Atk / 4 Def"),
+    mon("Flygon", "Choice Scarf", "Levitate", "Jolly", ["Earthquake", "Dragon Claw", "U Turn", "Fire Punch"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Dragalge", "Black Sludge", "Adaptability", "Modest", ["Sludge Bomb", "Dragon Pulse", "Focus Blast", "Toxic Spikes"],
+        "252 HP / 252 SpA / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Altaria", "Altarianite", "Natural Cure", "Modest", ["Hyper Voice", "Dragon Pulse", "Fire Blast", "Roost"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Kommo O", "Life Orb", "Bulletproof", "Jolly", ["Scale Shot", "Close Combat", "Poison Jab", "Swords Dance"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Kingdra", "Wacan Berry", "Swift Swim", "Modest", ["Hydro Pump", "Draco Meteor", "Ice Beam", "Rain Dance"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 
 # --- Side battles: Sinnoh's Gym Leaders visiting Johto (DECISIONS.md D41) ------------------------
@@ -243,8 +298,9 @@ CLAIR = [
 # Each is a Gym Leader at its stage's cap: six Pokemon, the bag items of the real Gym Leaders of the
 # stage, and from the 5th Gym's stage (4 badges) on one Mega Evolution. None is a Pokemon the Johto
 # Gym Leaders of the stage use, so the side battle is a different fight.
-#   Candice (no badges, Violet City's Trainer School): Fake Out and Icy Wind for Speed, Huge Power
-#   Meditite and a Recover Cryogonal as the ace.
+#   Candice (no badges, Violet City's Trainer School): Snow. Snover's Snow Warning starts it on entry and its
+#   Icy Rock keeps it for eight turns: every Ice type takes physical hits at 1.5x Defense, Slush Rush doubles
+#   Cubchoo's Speed and Ice Body heals Snorunt.
 SIDE_CANDICE = [
     mon("Snover", "Icy Rock", "Snow Warning", "Quiet", ["Icy Wind", "Giga Drain", "Leech Seed", "Ice Shard"]),
     mon("Sneasel", "Never Melt Ice", "Inner Focus", "Jolly", ["Fake Out", "Icicle Crash", "Knock Off", "Ice Shard"]),
@@ -256,8 +312,8 @@ SIDE_CANDICE = [
     mon("Cryogonal", "Leftovers", "Levitate", "Modest", ["Freeze Dry", "Flash Cannon", "Recover", "Reflect"],
         ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
-#   Gardenia (2 badges, Ilex Forest): Cherrim's sun for Solar Beam, Weather Ball and a Harvest Dolliv;
-#   from 4 badges her second team, with Mega Venusaur.
+#   Gardenia (2 badges, Ilex Forest): Sun. Whimsicott leads with a Prankster (priority) Sunny Day that its Heat
+#   Rock stretches to eight turns, Leech Seeds with priority too and U-turns out.
 SIDE_GARDENIA = [
     mon("Whimsicott", "Heat Rock", "Prankster", "Timid", ["Sunny Day", "Leech Seed", "Moonblast", "U Turn"]),
     mon("Cherrim", "Miracle Seed", "Flower Gift", "Adamant", ["Solar Blade", "Play Rough", "Swords Dance", "Morning Sun"]),
@@ -270,16 +326,25 @@ SIDE_GARDENIA = [
     mon("Roserade", "Black Sludge", "Natural Cure", "Timid", ["Sludge Bomb", "Giga Drain", "Weather Ball", "Spikes"],
         "252 SpA", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
+# Grass hazards and setup: Sudowoodo sets Stealth Rock, Iron Barbs Ferrothorn (Rocky Helmet) Spikes; Regenerator
+# Tangrowth and Seed Sower Arboliva hold the middle; Shell Smash Torterra and Mega Roserade, Gardenia's ace since
+# her first battle, win.
 SIDE_GARDENIA_2 = [
-    mon("Sudowoodo", "Sitrus Berry", "Rock Head", "Adamant", ["Stealth Rock", "Head Smash", "Sucker Punch", "Wood Hammer"]),
-    mon("Vileplume", "Black Sludge", "Effect Spore", "Modest", ["Sleep Powder", "Giga Drain", "Moonblast", "Sludge Bomb"]),
-    mon("Arboliva", "Leftovers", "Seed Sower", "Modest", ["Hyper Voice", "Energy Ball", "Earth Power", "Strength Sap"]),
-    mon("Torterra", "White Herb", "Shell Armor", "Adamant", ["Wood Hammer", "Earthquake", "Stone Edge", "Shell Smash"]),
-    mon("Roserade", "Focus Sash", "Natural Cure", "Timid", ["Leaf Storm", "Sludge Bomb", "Shadow Ball", "Spikes"]),
-    mon("Venusaur", "Venusaurite", "Chlorophyll", "Modest", ["Giga Drain", "Sludge Bomb", "Earth Power", "Synthesis"]),
+    mon("Sudowoodo", "Sitrus Berry", "Rock Head", "Adamant", ["Stealth Rock", "Head Smash", "Sucker Punch", "Wood Hammer"],
+        "252 HP / 252 Atk / 4 Def"),
+    mon("Tangrowth", "Assault Vest", "Regenerator", "Sassy", ["Leaf Storm", "Knock Off", "Earthquake", "Sludge Bomb"],
+        "252 HP / 4 Atk / 252 SpD"),
+    mon("Arboliva", "Leftovers", "Seed Sower", "Modest", ["Hyper Voice", "Energy Ball", "Earth Power", "Strength Sap"],
+        "252 HP / 252 SpA / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Torterra", "White Herb", "Shell Armor", "Adamant", ["Wood Hammer", "Earthquake", "Stone Edge", "Shell Smash"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Ferrothorn", "Rocky Helmet", "Iron Barbs", "Relaxed", ["Spikes", "Leech Seed", "Power Whip", "Gyro Ball"],
+        "252 HP / 252 Def / 4 SpD", ivs="31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe"),
+    mon("Roserade", "Roseradite", "Natural Cure", "Timid", ["Leaf Storm", "Sludge Bomb", "Mud Shot", "Synthesis"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
-#   Fantina (3 badges, Ecruteak City): Will-O-Wisp for Hex, Trick Room for the slow ones, an Illusion
-#   Hisuian Zoroark.
+#   Fantina (3 badges, Ecruteak City): Trick Room and burns for Hex. Cofagrigus leads: Shadow Shield halves the
+#   first hit and its Mental Herb stops one Taunt, so it sets Trick Room, then burns for Hex and Pain Splits.
 SIDE_FANTINA = [
     mon("Cofagrigus", "Mental Herb", "Shadow Shield", "Sassy", ["Trick Room", "Will O Wisp", "Hex", "Pain Split"],
         "252 HP / 4 Def / 252 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe"),
@@ -294,7 +359,8 @@ SIDE_FANTINA = [
     mon("Dusknoir", "Dusknoirite", "Pressure", "Brave", ["Poltergeist", "Darkest Lariat", "Shadow Sneak", "Will O Wisp"],
         "252 HP / 252 Atk / 4 SpD", ivs="31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe"),
 ]
-#   Maylene (4 badges, Cianwood City): fast Fighting types and Mega Lucario.
+#   Maylene (4 badges, Cianwood City): Fighting priority and setup in Cianwood's rain. Huge Power Medicham leads
+#   with Fake Out and Bullet Punch; Regenerator Mienshao U-turns out and heals as it goes.
 SIDE_MAYLENE = [
     mon("Medicham", "Sitrus Berry", "Huge Power", "Jolly", ["Fake Out", "High Jump Kick", "Zen Headbutt", "Bullet Punch"],
         "4 HP / 252 Atk / 252 Spe"),
@@ -309,16 +375,25 @@ SIDE_MAYLENE = [
     mon("Lucario", "Lucarionite", "Inner Focus", "Jolly", ["Swords Dance", "Close Combat", "Meteor Mash", "Ice Punch"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
-#   Wake (5 badges, Lake of Rage): Drizzle rain for Swift Swim, and Mega Gyarados.
+#   Wake (5 badges, Lake of Rage): Rain. Drizzle Politoed (Damp Rock) Encores and sleeps; Swift Swim Choice Band
+#   Barraskewda Flip Turns; Floatzel and Mega Gyarados set up, Quagsire and Toedscruel (Spore) support.
 SIDE_WAKE = [
-    mon("Politoed", "Damp Rock", "Drizzle", "Bold", ["Scald", "Ice Beam", "Hypnosis", "Encore"]),
-    mon("Floatzel", "Life Orb", "Technician", "Jolly", ["Wave Crash", "Ice Spinner", "Aqua Jet", "Bulk Up"]),
-    mon("Quagsire", "Leftovers", "Unaware", "Impish", ["Earthquake", "Liquidation", "Recover", "Toxic"]),
-    mon("Toedscruel", "Sitrus Berry", "Mold Breaker", "Timid", ["Spore", "Earth Power", "Giga Drain", "Rapid Spin"]),
-    mon("Barraskewda", "Choice Band", "Swift Swim", "Adamant", ["Liquidation", "Close Combat", "Psychic Fangs", "Aqua Jet"]),
-    mon("Gyarados", "Gyaradosite", "Moxie", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Dragon Dance"]),
+    mon("Politoed", "Damp Rock", "Drizzle", "Bold", ["Scald", "Ice Beam", "Hypnosis", "Encore"],
+        "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Floatzel", "Life Orb", "Technician", "Jolly", ["Wave Crash", "Ice Spinner", "Aqua Jet", "Bulk Up"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Quagsire", "Leftovers", "Unaware", "Impish", ["Earthquake", "Liquidation", "Recover", "Toxic"],
+        "252 HP / 252 Def / 4 SpD"),
+    mon("Toedscruel", "Sitrus Berry", "Mold Breaker", "Timid", ["Spore", "Earth Power", "Giga Drain", "Rapid Spin"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Barraskewda", "Choice Band", "Swift Swim", "Adamant", ["Liquidation", "Close Combat", "Aqua Jet", "Flip Turn"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Gyarados", "Gyaradosite", "Moxie", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Dragon Dance"],
+        "4 HP / 252 Atk / 252 Spe"),
 ]
-#   Byron (6 badges, Olivine City): Steel walls and Mega Aggron.
+#   Byron (6 badges, Olivine City): Steel walls in Olivine's rain. The rain halves the Fire attacks that hit
+#   Steel, and the team uses it: Empoleon's Hydro Pump is boosted and Aqua Jet picks off; Magnezone's Thunder never
+#   misses, Magnet Pull traps the player's Steel types for Hidden Power Fire, and Choice Specs Volt Switch pivots.
 SIDE_BYRON = [
     mon("Bastiodon", "Leftovers", "Dauntless Shield", "Impish", ["Stealth Rock", "Iron Defense", "Body Press", "Roar"],
         "252 HP / 252 Def / 4 SpD"),
@@ -333,45 +408,76 @@ SIDE_BYRON = [
     mon("Aggron", "Aggronite", "Sturdy", "Adamant", ["Heavy Slam", "Earthquake", "Ice Punch", "Rock Polish"],
         "252 HP / 252 Atk / 4 SpD"),
 ]
-#   Roark (7 badges, Route 44 by the Ice Path): hazards, Head Smash and Mega Tyranitar's sand.
+#   Roark (7 badges, Route 44 by the Ice Path): Rock hazards. Glimmora lays Spikes and Toxic Spikes (Toxic
+#   Debris), Kleavor's Stone Axe the rocks; Curse Garganacl walls; Tough Claws Lycanroc (Accelerock), Swords Dance
+#   Kleavor, Choice Scarf Rampardos and Mega Aerodactyl, Roark's fossil, break through.
 SIDE_ROARK = [
-    mon("Glimmora", "Focus Sash", "Toxic Debris", "Timid", ["Mortal Spin", "Power Gem", "Sludge Wave", "Stealth Rock"]),
-    mon("Garganacl", "Leftovers", "Purifying Salt", "Careful", ["Salt Cure", "Body Press", "Iron Defense", "Recover"]),
-    mon("Tyrantrum", "Life Orb", "Rock Head", "Jolly", ["Head Smash", "Dragon Claw", "Psychic Fangs", "Dragon Dance"]),
-    mon("Kleavor", "Lum Berry", "Sharpness", "Jolly", ["Stone Axe", "X Scissor", "Close Combat", "Swords Dance"]),
-    mon("Rampardos", "Choice Scarf", "Mold Breaker", "Adamant", ["Head Smash", "Earthquake", "Fire Punch", "Zen Headbutt"]),
-    mon("Tyranitar", "Tyranitarite", "Sand Stream", "Jolly", ["Stone Edge", "Crunch", "Earthquake", "Dragon Dance"]),
+    mon("Glimmora", "Focus Sash", "Toxic Debris", "Timid", ["Mortal Spin", "Power Gem", "Sludge Wave", "Spikes"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Garganacl", "Leftovers", "Purifying Salt", "Careful", ["Salt Cure", "Body Press", "Curse", "Recover"],
+        "252 HP / 252 Def / 4 SpD"),
+    mon("Lycanroc Dusk", "Life Orb", "Tough Claws", "Jolly", ["Accelerock", "Stone Edge", "Close Combat", "Crunch"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Kleavor", "Lum Berry", "Sharpness", "Jolly", ["Stone Axe", "X Scissor", "Close Combat", "Swords Dance"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Rampardos", "Choice Scarf", "Mold Breaker", "Adamant", ["Head Smash", "Earthquake", "Fire Punch", "Zen Headbutt"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Aerodactyl", "Aerodactylite", "Rock Head", "Jolly", ["Stone Edge", "Earthquake", "Ice Fang", "Roost"],
+        "4 HP / 252 Atk / 252 Spe"),
 ]
-#   Volkner (8 badges, Indigo Plateau): fast Electric types, Rotom-Wash and Mega Manectric.
+#   Volkner (8 badges, Indigo Plateau): Electric. Calm Mind Jolteon and Nasty Plot Alolan Raichu (Fake Out)
+#   boost; Life Orb Manectric, Rotom-Wash (Volt Switch, burns) and Electivire attack and pivot; Mega Luxray,
+#   Volkner's ace, closes with Strong Jaw fangs.
 SIDE_VOLKNER = [
-    mon("Jolteon", "Life Orb", "Volt Absorb", "Timid", ["Thunderbolt", "Shadow Ball", "Hyper Voice", "Calm Mind"]),
-    mon("Raichu Alola", "Focus Sash", "Surge Surfer", "Timid", ["Thunderbolt", "Psychic", "Focus Blast", "Nasty Plot"]),
-    mon("Luxray", "Choice Band", "Intimidate", "Adamant", ["Wild Charge", "Crunch", "Ice Fang", "Play Rough"]),
-    mon("Rotom Wash", "Leftovers", "Levitate", "Bold", ["Hydro Pump", "Volt Switch", "Will O Wisp", "Pain Split"]),
-    mon("Electivire", "Expert Belt", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Earthquake", "Cross Chop"]),
-    mon("Manectric", "Manectite", "Lightning Rod", "Timid", ["Thunderbolt", "Flamethrower", "Volt Switch", "Snarl"]),
+    mon("Jolteon", "Life Orb", "Volt Absorb", "Timid", ["Thunderbolt", "Shadow Ball", "Hyper Voice", "Calm Mind"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Raichu Alola", "Focus Sash", "Surge Surfer", "Timid", ["Fake Out", "Thunderbolt", "Psychic", "Nasty Plot"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Manectric", "Life Orb", "Lightning Rod", "Timid", ["Thunderbolt", "Flamethrower", "Volt Switch", "Snarl"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Rotom Wash", "Rocky Helmet", "Levitate", "Bold", ["Hydro Pump", "Volt Switch", "Will O Wisp", "Pain Split"],
+        "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Electivire", "Expert Belt", "Motor Drive", "Adamant", ["Supercell Slam", "Ice Punch", "Earthquake", "Knock Off"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Luxray", "Luxrite", "Intimidate", "Adamant", ["Thunder Fang", "Crunch", "Ice Fang", "Play Rough"],
+        "4 HP / 252 Atk / 252 Spe"),
 ]
 # --- Side battles: Paldea's Gym Leaders visiting Kanto (D41), after the Johto League ---------------
 # Each at Kanto's cap like Kanto's own leaders: six Pokemon, two Full Restores and one Mega Evolution.
-#   Katy (Pewter City): Sticky Web, Quiver Dance Volcarona, Guts Ursaluna and Mega Pinsir.
+#   Katy (Pewter City): Bugs. Ribombee lays Sticky Web and U-turns; First Impression Lokix and Golisopod, Quiver
+#   Dance Volcarona, Guts Ursaluna and Mega Pinsir sweep the slowed team.
 SIDE_KATY = [
-    mon("Ribombee", "Focus Sash", "Shield Dust", "Timid", ["Sticky Web", "Moonblast", "Stun Spore", "U Turn"]),
-    mon("Lokix", "Life Orb", "Tinted Lens", "Jolly", ["First Impression", "Sucker Punch", "Lunge", "Swords Dance"]),
-    mon("Volcarona", "Heavy Duty Boots", "Flame Body", "Timid", ["Quiver Dance", "Fiery Dance", "Bug Buzz", "Giga Drain"]),
-    mon("Golisopod", "Assault Vest", "Emergency Exit", "Adamant", ["First Impression", "Liquidation", "Leech Life", "Knock Off"]),
-    mon("Ursaluna", "Flame Orb", "Guts", "Adamant", ["Facade", "Headlong Rush", "Crunch", "Swords Dance"]),
-    mon("Pinsir", "Pinsirite", "Moxie", "Jolly", ["Double Edge", "Close Combat", "Earthquake", "Swords Dance"]),
+    mon("Ribombee", "Focus Sash", "Shield Dust", "Timid", ["Sticky Web", "Pollen Puff", "Moonblast", "U Turn"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Lokix", "Life Orb", "Tinted Lens", "Jolly", ["First Impression", "Sucker Punch", "Lunge", "Swords Dance"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Volcarona", "Heavy Duty Boots", "Flame Body", "Timid", ["Quiver Dance", "Fire Blast", "Bug Buzz", "Giga Drain"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Golisopod", "Assault Vest", "Emergency Exit", "Adamant", ["First Impression", "Liquidation", "Leech Life", "Knock Off"],
+        "252 HP / 252 Atk / 4 Def"),
+    mon("Ursaluna", "Flame Orb", "Guts", "Adamant", ["Facade", "Headlong Rush", "Crunch", "Swords Dance"],
+        "252 HP / 252 Atk / 4 Def"),
+    mon("Pinsir", "Pinsirite", "Moxie", "Jolly", ["Double Edge", "Close Combat", "Earthquake", "Swords Dance"],
+        "4 HP / 252 Atk / 252 Spe"),
 ]
-#   Brassius (Route 25, Cerulean Cape): Grassy Surge Rillaboom and Mega Sceptile.
+#   Brassius (Route 25, Cerulean Cape): Grass art. Focus Sash Brambleghast lays Spikes; Choice Band Meowscarada
+#   and Grassy Surge Rillaboom U-turn with priority (Sucker Punch, Grassy Glide); Scovillain sets its own sun and
+#   Growth; Tsareena and Mega Sceptile finish.
 SIDE_BRASSIUS = [
-    mon("Brambleghast", "Focus Sash", "Wind Rider", "Jolly", ["Spikes", "Power Whip", "Poltergeist", "Rapid Spin"]),
-    mon("Meowscarada", "Choice Band", "Protean", "Jolly", ["Flower Trick", "Knock Off", "U Turn", "Play Rough"]),
-    mon("Scovillain", "Life Orb", "Chlorophyll", "Modest", ["Fire Blast", "Energy Ball", "Sunny Day", "Solar Beam"]),
-    mon("Tsareena", "Sitrus Berry", "Queenly Majesty", "Jolly", ["Power Whip", "High Jump Kick", "Triple Axel", "Rapid Spin"]),
-    mon("Rillaboom", "Miracle Seed", "Grassy Surge", "Adamant", ["Grassy Glide", "Wood Hammer", "Knock Off", "U Turn"]),
-    mon("Sceptile", "Sceptilite", "Unburden", "Timid", ["Leaf Storm", "Dragon Pulse", "Focus Blast", "Earthquake"]),
+    mon("Brambleghast", "Focus Sash", "Wind Rider", "Jolly", ["Spikes", "Power Whip", "Poltergeist", "Rapid Spin"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Meowscarada", "Choice Band", "Protean", "Jolly", ["Flower Trick", "Knock Off", "U Turn", "Sucker Punch"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Scovillain", "Life Orb", "Chlorophyll", "Modest", ["Sunny Day", "Growth", "Fire Blast", "Solar Beam"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Tsareena", "Sitrus Berry", "Queenly Majesty", "Jolly", ["Power Whip", "High Jump Kick", "Triple Axel", "Rapid Spin"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Rillaboom", "Miracle Seed", "Grassy Surge", "Adamant", ["Grassy Glide", "Wood Hammer", "Knock Off", "U Turn"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Sceptile", "Sceptilite", "Unburden", "Timid", ["Leaf Storm", "Dragon Breath", "Focus Blast", "Earthquake"],
+        "4 HP / 252 SpA / 252 Spe"),
 ]
-#   Iono (Lavender Town, by the Radio Tower): Volt Switch pivots, her Mismagius and Mega Ampharos.
+#   Iono (Lavender Town, by the Radio Tower): Sticky Web and Volt Switch pivots for a show.
 SIDE_IONO = [
     mon("Galvantula", "Focus Sash", "Compound Eyes", "Timid", ["Sticky Web", "Thunder", "Energy Ball", "Volt Switch"],
         "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -386,16 +492,25 @@ SIDE_IONO = [
     mon("Luxray", "Luxrite", "Intimidate", "Jolly", ["Crunch", "Psychic Fangs", "Thunder Fang", "Quick Attack"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
-#   Kofu (Vermilion City's pier): Dondozo, Mega Launcher Clawitzer and Mega Sharpedo.
+#   Kofu (Vermilion City's pier): Water. Focus Sash Wugtrio attacks and Mementos; Fillet Away Veluza, Bulk Up
+#   Crabominable and Curse Dondozo set up; Choice Specs Clawitzer Flip Turns; Mega Sharpedo sweeps with four Strong
+#   Jaw-boosted or STAB attacks.
 SIDE_KOFU = [
-    mon("Wugtrio", "Focus Sash", "Gooey", "Jolly", ["Triple Dive", "Sucker Punch", "Memento", "Liquidation"]),
-    mon("Veluza", "Life Orb", "Sharpness", "Adamant", ["Aqua Cutter", "Psycho Cut", "Night Slash", "Fillet Away"]),
-    mon("Crabominable", "Sitrus Berry", "Iron Fist", "Adamant", ["Ice Hammer", "Close Combat", "Crabhammer", "Bulk Up"]),
-    mon("Dondozo", "Leftovers", "Unaware", "Impish", ["Wave Crash", "Body Press", "Rest", "Curse"]),
-    mon("Clawitzer", "Choice Specs", "Mega Launcher", "Modest", ["Water Pulse", "Dark Pulse", "Aura Sphere", "Dragon Pulse"]),
-    mon("Sharpedo", "Sharpedonite", "Speed Boost", "Adamant", ["Waterfall", "Crunch", "Psychic Fangs", "Protect"]),
+    mon("Wugtrio", "Focus Sash", "Gooey", "Jolly", ["Triple Dive", "Sucker Punch", "Memento", "Liquidation"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Veluza", "Life Orb", "Sharpness", "Adamant", ["Aqua Cutter", "Psycho Cut", "Night Slash", "Fillet Away"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Crabominable", "Sitrus Berry", "Iron Fist", "Adamant", ["Ice Hammer", "Close Combat", "Crabhammer", "Bulk Up"],
+        "252 HP / 252 Atk / 4 Def"),
+    mon("Dondozo", "Chesto Berry", "Unaware", "Impish", ["Curse", "Wave Crash", "Body Press", "Rest"],
+        "252 HP / 252 Def / 4 SpD"),
+    mon("Clawitzer", "Choice Specs", "Mega Launcher", "Modest", ["Water Pulse", "Dark Pulse", "Aura Sphere", "Flip Turn"],
+        "4 HP / 252 SpA / 252 Spe"),
+    mon("Sharpedo", "Sharpedonite", "Speed Boost", "Adamant", ["Waterfall", "Crunch", "Psychic Fangs", "Ice Fang"],
+        "4 HP / 252 Atk / 252 Spe"),
 ]
-#   Larry (Viridian City): his Staraptor and Komala, Serene Grace Dudunsparce and Mega Kangaskhan.
+#   Larry (Viridian City): A tired salaryman's Normal types that never rest. Comatose Komala cannot be statused;
+#   it leads with Assault Vest bulk, Sucker Punch and a U-turn out.
 SIDE_LARRY = [
     mon("Komala", "Assault Vest", "Comatose", "Adamant", ["Double Edge", "Wood Hammer", "Sucker Punch", "U Turn"],
         "252 HP / 252 Atk / 4 SpD"),
@@ -410,7 +525,7 @@ SIDE_LARRY = [
     mon("Slaking", "Slakite", "Truant", "Jolly", ["Double Edge", "Earthquake", "Knock Off", "Slack Off"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
-#   Ryme (Celadon City): Last Respects, Rage Fist, Gholdengo and Mega Gengar.
+#   Ryme (Celadon City): A Ghost set list that ends on Mega Toxtricity.
 SIDE_RYME = [
     mon("Mimikyu", "Life Orb", "Disguise", "Jolly", ["Swords Dance", "Play Rough", "Shadow Claw", "Drain Punch"],
         "4 HP / 252 Atk / 252 Spe"),
@@ -425,7 +540,9 @@ SIDE_RYME = [
     mon("Toxtricity", "Toxtricitite", "Punk Rock", "Timid", ["Boomburst", "Overdrive", "Sludge Bomb", "Volt Switch"],
         "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
-#   Tulip (Saffron City): Armor Tail Farigiraf against priority, Calm Mind and Mega Gardevoir.
+#   Tulip (Saffron City): Calm Mind and setup behind a priority shield and Wish support. Armor Tail Farigiraf
+#   leads: the player's priority moves fail against Tulip's team while it is in, it Nasty Plots, and Psychic Noise
+#   stops the player healing.
 SIDE_TULIP = [
     mon("Farigiraf", "Sitrus Berry", "Armor Tail", "Modest", ["Nasty Plot", "Hyper Voice", "Psychic Noise", "Shadow Ball"],
         "252 HP / 252 SpA / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -440,7 +557,8 @@ SIDE_TULIP = [
     mon("Gallade", "Galladite", "Sharpness", "Jolly", ["Swords Dance", "Sacred Sword", "Psycho Cut", "Shadow Sneak"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
-#   Grusha (Cinnabar Island): Alolan Ninetales' snow and Aurora Veil, Slush Rush and Mega Altaria.
+#   Grusha (Cinnabar Island): Snow and Slush Rush. Alolan Ninetales leads: Snow Warning starts the snow, Light
+#   Clay keeps Aurora Veil up for eight turns, and Blizzard never misses in it.
 SIDE_GRUSHA = [
     mon("Ninetales Alola", "Light Clay", "Snow Warning", "Timid", ["Aurora Veil", "Blizzard", "Moonblast", "Freeze Dry"],
         "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -459,7 +577,8 @@ SIDE_GRUSHA = [
 # Level 100, when Red battles too. Red stays the hardest battle (D27): these have no EVs, the Ace AI
 # without prediction and three Full Restores to his four.
 POST_ITEMS = "Full Restore / Full Restore / Full Restore"
-#   Cynthia (Ruins of Alph): her Platinum six, with Mega Garchomp.
+#   Cynthia (Ruins of Alph): Her Platinum six, a balanced champion team. Intimidate Spiritomb leads with
+#   Will-O-Wisp, Foul Play and Sucker Punch; Focus Sash Roserade lays Spikes.
 POST_CYNTHIA = [
     mon("Spiritomb", "Leftovers", "Intimidate", "Careful", ["Foul Play", "Will O Wisp", "Sucker Punch", "Pain Split"]),
     mon("Roserade", "Focus Sash", "Natural Cure", "Timid", ["Spikes", "Leaf Storm", "Sludge Bomb", "Extrasensory"],
@@ -471,12 +590,15 @@ POST_CYNTHIA = [
     mon("Lucario", "Lucarionite", "Inner Focus", "Timid", ["Nasty Plot", "Aura Sphere", "Flash Cannon", "Dark Pulse"],
         ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
-#   Iris (Blackthorn City): her Champion team's dragons, Mega Aggron and her Haxorus.
+#   Iris (Blackthorn City): Dragon master. Focus Sash Archeops U-turns; Mega Lapras (Liquid Voice Hyper Voice,
+#   Freeze Dry, Ice Shard for the Dragon types), Choice Specs Hydreigon, Choice Band Rock Head Aggron, Weakness
+#   Policy Dragonite and Haxorus set up and break through.
 POST_IRIS = [
     mon("Archeops", "Focus Sash", "Defeatist", "Jolly", ["Stone Edge", "Acrobatics", "Earthquake", "U Turn"]),
-    mon("Lapras", "Leftovers", "Water Absorb", "Modest", ["Freeze Dry", "Hydro Pump", "Thunderbolt", "Ice Shard"]),
-    mon("Hydreigon", "Choice Specs", "Levitate", "Timid", ["Draco Meteor", "Dark Pulse", "Flamethrower", "U Turn"]),
-    mon("Aggron", "Aggronite", "Rock Head", "Adamant", ["Heavy Slam", "Earthquake", "Head Smash", "Ice Punch"]),
+    mon("Lapras", "Laprasite", "Water Absorb", "Modest", ["Hyper Voice", "Freeze Dry", "Thunderbolt", "Ice Shard"]),
+    mon("Hydreigon", "Choice Specs", "Levitate", "Timid", ["Draco Meteor", "Dark Pulse", "Flash Cannon", "Earth Power"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Aggron", "Choice Band", "Rock Head", "Adamant", ["Heavy Slam", "Earthquake", "Head Smash", "Ice Punch"]),
     mon("Dragonite", "Weakness Policy", "Multiscale", "Adamant", ["Dragon Dance", "Extreme Speed", "Earthquake", "Outrage"]),
     mon("Haxorus", "Lum Berry", "Mold Breaker", "Jolly", ["Swords Dance", "Outrage", "Earthquake", "Poison Jab"]),
 ]
@@ -498,19 +620,22 @@ POST_N = [
     mon("Klinklang", "Leftovers", "Clear Body", "Adamant", ["Shift Gear", "Gear Grind", "Wild Charge", "Substitute"]),
     mon("Zekrom", "Life Orb", "Teravolt", "Adamant", ["Bolt Strike", "Outrage", "Dragon Dance", "Crunch"]),
 ]
-#   Cyrus (Mahogany Town): his Platinum team, Sneasler and Mega Houndoom.
+#   Cyrus (Mahogany Town): Galactic Dark and Poison. Crobat Taunts and U-turns; Moxie Honchkrow, Dragon Dance
+#   Gyarados, Swords Dance Weavile and Unburden Sneasler sweep; Mega Houndoom Nasty Plots and takes a foe with it.
 POST_CYRUS = [
     mon("Crobat", "Black Sludge", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Taunt"]),
     mon("Honchkrow", "Life Orb", "Moxie", "Adamant", ["Brave Bird", "Sucker Punch", "Night Slash", "Heat Wave"]),
     mon("Gyarados", "Lum Berry", "Intimidate", "Jolly", ["Waterfall", "Bounce", "Earthquake", "Dragon Dance"]),
     mon("Weavile", "Razor Claw", "Pressure", "Jolly", ["Knock Off", "Triple Axel", "Ice Shard", "Swords Dance"]),
     mon("Sneasler", "Focus Sash", "Unburden", "Jolly", ["Dire Claw", "Close Combat", "Gunk Shot", "Swords Dance"]),
-    mon("Houndoom", "Houndoominite", "Flash Fire", "Timid", ["Fire Blast", "Dark Pulse", "Sludge Bomb", "Nasty Plot"]),
+    mon("Houndoom", "Houndoominite", "Flash Fire", "Timid", ["Nasty Plot", "Dark Pulse", "Fire Blast", "Destiny Bond"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
-#   Wallace (Cherrygrove City): Drizzle rain, Mega Swampert and his Milotic.
+#   Wallace (Cherrygrove City): Rain. Drizzle Pelipper (Damp Rock) U-turns; Swift Swim Ludicolo (Fake Out) and
+#   Mega Swampert sweep in it; Starmie spins, Whiscash Dragon Dances, Milotic walls.
 POST_WALLACE = [
-    mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Hurricane", "Scald", "U Turn", "Roost"]),
-    mon("Ludicolo", "Life Orb", "Swift Swim", "Modest", ["Hydro Pump", "Giga Drain", "Ice Beam", "Rain Dance"]),
+    mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Scald", "Hurricane", "U Turn", "Knock Off"]),
+    mon("Ludicolo", "Life Orb", "Swift Swim", "Modest", ["Hydro Pump", "Giga Drain", "Ice Beam", "Fake Out"]),
     mon("Starmie", "Choice Specs", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Thunderbolt", "Rapid Spin"]),
     mon("Whiscash", "Leftovers", "Hydration", "Adamant", ["Earthquake", "Waterfall", "Dragon Dance", "Stone Edge"]),
     mon("Swampert", "Swampertite", "Damp", "Adamant", ["Waterfall", "Earthquake", "Ice Punch", "Superpower"]),
@@ -534,13 +659,16 @@ POST_ARCHIE = [
     mon("Crawdaunt", "Choice Band", "Adaptability", "Adamant", ["Crabhammer", "Knock Off", "Aqua Jet", "Close Combat"]),
     mon("Sharpedo", "Sharpedonite", "Speed Boost", "Adamant", ["Waterfall", "Crunch", "Close Combat", "Protect"]),
 ]
-#   Wally (Pallet Town): his Omega Ruby team and Mega Gallade.
+#   Wally (Pallet Town): Wally's partners. Dragon Dance Altaria, Fake Out Delcatty, Roserade (sleep) and Choice
+#   Specs Magnezone support a Choice Scarf Flygon and Mega Gallade.
 POST_WALLY = [
     mon("Altaria", "Leftovers", "Natural Cure", "Adamant", ["Dragon Dance", "Brave Bird", "Earthquake", "Roost"]),
     mon("Delcatty", "Silk Scarf", "Wonder Skin", "Jolly", ["Fake Out", "Double Edge", "Sucker Punch", "Thunder Wave"]),
-    mon("Roserade", "Focus Sash", "Natural Cure", "Timid", ["Leaf Storm", "Sludge Bomb", "Shadow Ball", "Sleep Powder"]),
-    mon("Magnezone", "Choice Specs", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Body Press"]),
-    mon("Flygon", "Choice Scarf", "Levitate", "Jolly", ["Earthquake", "Dragon Claw", "U Turn", "Fire Punch"]),
+    mon("Roserade", "Focus Sash", "Natural Cure", "Timid", ["Leaf Storm", "Sludge Bomb", "Shadow Ball", "Sleep Powder"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Magnezone", "Choice Specs", "Analytic", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Body Press"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Flygon", "Choice Scarf", "Levitate", "Jolly", ["Earthquake", "Outrage", "U Turn", "Fire Punch"]),
     mon("Gallade", "Galladite", "Sharpness", "Jolly", ["Close Combat", "Psycho Cut", "Leaf Blade", "Swords Dance"]),
 ]
 # Trainer -> (stage, bag items, Pokemon)
@@ -610,6 +738,7 @@ RIVAL_TEAM = {
 }
 
 # --- Team Rocket: Proton in Slowpoke Well (1 badge, cap 24) -----------------------------------------
+# Poison and attrition, then a Nasty Plot.
 PROTON_1 = [
     mon("Koffing", "Eviolite", "Levitate", "Bold", ["Toxic Spikes", "Will O Wisp", "Sludge Bomb", "Pain Split"],
         ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -623,6 +752,7 @@ PROTON_1 = [
 ]
 
 # --- Team Rocket: Rocket Hideout (4 badges at the earliest: the Lake of Rage needs Surf; cap 50) ------
+# Two kinds of hazards, attrition and a disguise.
 PETREL_1 = [
     mon("Forretress", "Leftovers", "Sturdy", "Relaxed", ["Spikes", "Gyro Ball", "Earthquake", "Volt Switch"],
         "252 HP / 4 Atk / 252 Def", ivs="31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe"),
@@ -637,6 +767,9 @@ PETREL_1 = [
     mon("Sableye", "Sablenite", "Frisk", "Careful", ["Will O Wisp", "Recover", "Foul Play", "Taunt"],
         "252 HP / 4 Def / 252 SpD"),
 ]
+# Doubles support for her Mega, beside Grunt 23's two Golbat and Arbok. Alolan Persian leads with Fake Out and Icy
+# Wind (both foes slowed), and Parting Shot brings in the next Pokemon behind a drop; Fur Coat halves the physical
+# hits it takes.
 ARIANA_1 = [
     mon("Persian Alola", "Sitrus Berry", "Fur Coat", "Jolly", ["Fake Out", "Icy Wind", "Parting Shot", "Foul Play"],
         "252 HP / 4 Atk / 252 Spe"),
@@ -647,8 +780,8 @@ ARIANA_1 = [
 ]
 
 # --- Eusine in Cianwood (4 badges at the earliest: cap 50) --------------------------------------------
-# Heart & Soul's Politoed, Hypno and Electrode had 2 IVs and the basic AI. Since 0.8.0 a rain team
-# of six around them: Drizzle Politoed, Thunder from Electrode and Lanturn.
+# Rain and Thunder: Drizzle Politoed starts the rain (Damp Rock: eight turns), Encores setup and puts a Pokemon to
+# sleep; Galvanize Electrode leads off with Thunder, which never misses in rain.
 EUSINE = [
     mon("Politoed", "Damp Rock", "Drizzle", "Bold", ["Hydro Pump", "Ice Beam", "Encore", "Hypnosis"],
         "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -665,6 +798,7 @@ EUSINE = [
 ]
 
 # --- Team Rocket: Radio Tower (7 badges, cap 75) ----------------------------------------------------
+# Hazards and poison, then a Mega that traps.
 PROTON_2 = [
     mon("Rhydon", "Eviolite", "Lightning Rod", "Adamant", ["Stealth Rock", "Stone Edge", "Earthquake", "Megahorn"],
         "252 HP / 252 Atk / 4 SpD"),
@@ -679,6 +813,9 @@ PROTON_2 = [
     mon("Gengar", "Gengarite", "Levitate", "Timid", ["Shadow Ball", "Sludge Wave", "Dazzling Gleam", "Destiny Bond"],
         "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
+# Hazard stall with a disguise: Rocky Helmet Forretress lays Spikes and Volt Switches; Toxapex lays Toxic Spikes and
+# Hazes away the player's set-up; Galarian Weezing's Neutralizing Gas shuts off the player's abilities, and it
+# burns.
 PETREL_2 = [
     mon("Forretress", "Rocky Helmet", "Sturdy", "Relaxed", ["Spikes", "Iron Head", "Volt Switch", "Rapid Spin"],
         "252 HP / 252 Def / 4 SpD"),
@@ -693,6 +830,7 @@ PETREL_2 = [
     mon("Sableye", "Sablenite", "Frisk", "Impish", ["Will O Wisp", "Recover", "Knock Off", "Parting Shot"],
         "252 HP / 252 Def / 4 SpD"),
 ]
+# Intimidate, paralysis and priority, then her Mega.
 ARIANA_2 = [
     mon("Persian Alola", "Focus Sash", "Fur Coat", "Jolly", ["Fake Out", "Foul Play", "Parting Shot", "Taunt"],
         "252 HP / 4 Atk / 252 Spe"),
@@ -707,6 +845,7 @@ ARIANA_2 = [
     mon("Kangaskhan", "Kangaskhanite", "Inner Focus", "Adamant", ["Double Edge", "Earthquake", "Drain Punch", "Ice Punch"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
+# Team Rocket's leader hits hard from every side, then his Mega Houndoom.
 ARCHER = [
     mon("Kingambit", "Leftovers", "Supreme Overlord", "Adamant", ["Stealth Rock", "Kowtow Cleave", "Sucker Punch", "Iron Head"],
         "252 HP / 252 Atk / 4 SpD"),
@@ -766,14 +905,21 @@ RIVAL_TEAM[5] = [
 
 # --- Kimono Girls: Ecruteak Dance Theater, one after another (8 badges, cap 85) ----------------------
 KIMONO = {
-    "TRAINER_ZUKI_HNS": [mon("Umbreon", "Leftovers", "Inner Focus", "Calm", ["Foul Play", "Moonlight", "Protect", "Toxic"])],
-    "TRAINER_NAOKO_HNS": [mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"])],
-    "TRAINER_MIKI_HNS": [mon("Flareon", "Toxic Orb", "Toxic Boost", "Adamant", ["Flare Blitz", "Facade", "Superpower", "Quick Attack"])],
-    "TRAINER_SAYO_HNS": [mon("Jolteon", "Choice Specs", "Volt Absorb", "Timid", ["Thunderbolt", "Shadow Ball", "Volt Switch", "Hyper Voice"])],
-    "TRAINER_KUNI_HNS": [mon("Vaporeon", "Leftovers", "Water Absorb", "Bold", ["Scald", "Ice Beam", "Wish", "Protect"])],
+    "TRAINER_ZUKI_HNS": [mon("Umbreon", "Leftovers", "Inner Focus", "Calm", ["Foul Play", "Moonlight", "Protect", "Toxic"],
+                             "252 HP / 4 Def / 252 SpD")],
+    "TRAINER_NAOKO_HNS": [mon("Espeon", "Leftovers", "Magic Bounce", "Timid", ["Calm Mind", "Stored Power", "Dazzling Gleam", "Morning Sun"],
+                              "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe")],
+    "TRAINER_MIKI_HNS": [mon("Flareon", "Toxic Orb", "Toxic Boost", "Adamant", ["Flare Blitz", "Facade", "Superpower", "Protect"],
+                             "4 HP / 252 Atk / 252 Spe")],
+    "TRAINER_SAYO_HNS": [mon("Jolteon", "Leftovers", "Volt Absorb", "Timid", ["Calm Mind", "Thunderbolt", "Shadow Ball", "Substitute"],
+                             "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe")],
+    "TRAINER_KUNI_HNS": [mon("Vaporeon", "Leftovers", "Water Absorb", "Bold", ["Calm Mind", "Scald", "Ice Beam", "Wish"],
+                             "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe")],
 }
 
 # --- Elite Four and Lance (8 badges, cap 85) -----------------------------------------------------------
+# A whole Trick Room team, the Psychic master's mind games. Magic Bounce Xatu, Will's signature, leads: it reflects
+# the player's hazards, Taunt and status, puts up Reflect and Light Screen (Light Clay) and U-turns out.
 WILL = [
     mon("Xatu", "Light Clay", "Magic Bounce", "Timid", ["Reflect", "Light Screen", "U-turn", "Psychic"],
         "252 HP / 4 Def / 252 Spe"),
@@ -788,6 +934,7 @@ WILL = [
     mon("Slowbro", "Slowbronite", "Own Tempo", "Quiet", ["Scald", "Psyshock", "Fire Blast", "Slack Off"],
         "252 HP / 252 SpA / 4 Def", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe"),
 ]
+# Poison and pivots, the ninja's attrition.
 KOGA = [
     mon("Crobat", "Black Sludge", "Infiltrator", "Jolly", ["Brave Bird", "Super Fang", "U Turn", "Taunt"],
         "4 HP / 252 Atk / 252 Spe"),
@@ -802,6 +949,7 @@ KOGA = [
     mon("Beedrill", "Beedrillite", "Sniper", "Jolly", ["Swords Dance", "Poison Jab", "U Turn", "Drill Run"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
+# Fighting pressure with priority.
 BRUNO = [
     mon("Hitmontop", "Rocky Helmet", "Intimidate", "Impish", ["Fake Out", "Close Combat", "Sucker Punch", "Rapid Spin"],
         "252 HP / 4 Atk / 252 Def"),
@@ -816,6 +964,7 @@ BRUNO = [
     mon("Machamp", "Machampite", "No Guard", "Adamant", ["Close Combat", "Ice Punch", "Thunder Punch", "Bullet Punch"],
         "252 HP / 252 Atk / 4 SpD"),
 ]
+# Dark-type pressure, then Nasty Plot sweepers.
 KAREN = [
     mon("Umbreon", "Leftovers", "Inner Focus", "Calm", ["Foul Play", "Wish", "Protect", "Toxic"],
         "252 HP / 4 Def / 252 SpD"),
@@ -830,10 +979,9 @@ KAREN = [
     mon("Houndoom", "Houndoominite", "Flash Fire", "Timid", ["Nasty Plot", "Dark Pulse", "Flamethrower", "Sludge Bomb"],
         "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
-# Lance leads Mega Gyarados (tools/emurun/tests/mega_evolution.emu checks it Mega Evolves on turn 1)
-# One Dragon Dance sweeper (Dragonite): with Mega Gyarados and Salamence also setting up, the
-# prepared six of the bosses_m4 play test lost all of six tries. Charizard attacks instead of
-# Roosting: with the Full Restores it outlasted every team built for Lance in the play tests.
+# The Champion's dragons, with his two legendary-tier Pokemon (P4). Mega Gyarados leads (Mold Breaker, Thunder Wave
+# for the fastest threat; tools/emurun/tests/mega_evolution.emu checks it Mega Evolves on turn 1); Focus Sash
+# Aerodactyl sets Stealth Rock and Taunts the player's own setters.
 LANCE = [
     mon("Gyarados", "Gyaradosite", "Intimidate", "Jolly", ["Waterfall", "Crunch", "Earthquake", "Thunder Wave"],
         "4 HP / 252 Atk / 252 Spe"),
@@ -850,6 +998,8 @@ LANCE = [
 ]
 
 # --- Kanto Gym Leaders and Blue (after the Johto League: cap 90, any order) ------------------------
+# Sand for a Rock Gym: Gigalith's Sand Stream (Smooth Rock, eight turns) raises every Rock type's Sp. Def by half
+# and chips everything else.
 BROCK = [
     mon("Gigalith", "Smooth Rock", "Sand Stream", "Adamant", ["Stealth Rock", "Rock Slide", "Earthquake", "Explosion"],
         "252 HP / 252 Atk / 4 Def"),
@@ -864,22 +1014,41 @@ BROCK = [
     mon("Aerodactyl", "Aerodactylite", "Unnerve", "Jolly", ["Dragon Dance", "Stone Edge", "Dual Wingbeat", "Iron Head"],
         "4 HP / 252 Atk / 252 Spe"),
 ]
+# Rain: Drizzle Pelipper (Damp Rock) leads and U-turns; Swift Swim Golduck Nasty Plots; Lapras, Competitive Milotic,
+# Mega Blastoise (Mega Launcher) and Starmie attack in the rain.
 MISTY = [
-    mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Scald", "Hurricane", "U Turn", "Roost"]),
-    mon("Golduck", "Life Orb", "Swift Swim", "Timid", ["Hydro Pump", "Ice Beam", "Psychic", "Nasty Plot"]),
-    mon("Lapras", "Leftovers", "Water Absorb", "Modest", ["Freeze Dry", "Hydro Pump", "Thunderbolt", "Ice Shard"]),
-    mon("Milotic", "Leftovers", "Competitive", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"]),
-    mon("Blastoise", "Blastoisinite", "Torrent", "Modest", ["Water Pulse", "Aura Sphere", "Dark Pulse", "Ice Beam"]),
-    mon("Starmie", "Wise Glasses", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Thunderbolt", "Ice Beam"]),
+    mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Hurricane", "Hydro Pump", "U Turn", "Roost"],
+        "252 HP / 252 Def / 4 SpD"),
+    mon("Golduck", "Life Orb", "Swift Swim", "Timid", ["Hydro Pump", "Ice Beam", "Psychic", "Nasty Plot"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Lapras", "Leftovers", "Water Absorb", "Modest", ["Freeze Dry", "Hydro Pump", "Thunder", "Ice Shard"],
+        "252 HP / 252 SpA / 4 SpD"),
+    mon("Milotic", "Leftovers", "Competitive", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"],
+        "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Blastoise", "Blastoisinite", "Torrent", "Modest", ["Water Pulse", "Aura Sphere", "Dark Pulse", "Ice Beam"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Starmie", "Wise Glasses", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Thunderbolt", "Ice Beam"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
+# Electric volt-turn: Focus Sash Galvanize Electrode leads (Volt Switch, Foul Play, Explosion); Magnet Pull
+# Magnezone traps Steel types; Lanturn, Electivire, Mega Manectric and Nasty Plot Raichu (Fake Out for a free turn)
+# pivot and attack.
 LT_SURGE = [
-    mon("Electrode", "Focus Sash", "Galvanize", "Timid", ["Thunderbolt", "Volt Switch", "Taunt", "Explosion"]),
-    mon("Magnezone", "Choice Specs", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Body Press"]),
-    mon("Lanturn", "Leftovers", "Volt Absorb", "Bold", ["Scald", "Discharge", "Ice Beam", "Heal Bell"]),
-    mon("Electivire", "Life Orb", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Earthquake", "Cross Chop"]),
-    mon("Manectric", "Manectite", "Lightning Rod", "Timid", ["Thunderbolt", "Overheat", "Snarl", "Volt Switch"]),
-    mon("Raichu", "Magnet", "Lightning Rod", "Timid", ["Thunderbolt", "Focus Blast", "Nasty Plot", "Grass Knot"]),
+    mon("Electrode", "Focus Sash", "Galvanize", "Hasty", ["Thunderbolt", "Volt Switch", "Foul Play", "Explosion"],
+        "4 Atk / 252 SpA / 252 Spe"),
+    mon("Magnezone", "Choice Specs", "Magnet Pull", "Modest", ["Thunderbolt", "Flash Cannon", "Volt Switch", "Tri Attack"],
+        "252 HP / 252 SpA / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Lanturn", "Leftovers", "Volt Absorb", "Bold", ["Scald", "Discharge", "Ice Beam", "Heal Bell"],
+        "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Electivire", "Life Orb", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Earthquake", "Fire Punch"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Manectric", "Manectite", "Lightning Rod", "Timid", ["Thunderbolt", "Overheat", "Snarl", "Volt Switch"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Raichu", "Magnet", "Lightning Rod", "Timid", ["Thunderbolt", "Fake Out", "Nasty Plot", "Grass Knot"],
+        "4 HP / 252 SpA / 252 Spe"),
 ]
+# Sun for Chlorophyll: Prankster Whimsicott sets Sunny Day first (Heat Rock, eight turns), Encores setup moves and
+# U-turns out.
 ERIKA = [
     mon("Whimsicott", "Heat Rock", "Prankster", "Timid", ["Sunny Day", "Encore", "Moonblast", "U-turn"],
         "252 HP / 4 Def / 252 Spe"),
@@ -894,22 +1063,40 @@ ERIKA = [
     mon("Venusaur", "Venusaurite", "Chlorophyll", "Modest", ["Growth", "Giga Drain", "Sludge Bomb", "Weather Ball"],
         "252 HP / 252 SpA / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
+# Poison ninja: Weezing lays Toxic Spikes and burns; Sheer Force Nidoqueen, Curse Muk and Crobat (U-turn) wear the
+# player down; Quiver Dance Venomoth and Mega Gengar finish.
 JANINE = [
-    mon("Weezing", "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Toxic Spikes"]),
-    mon("Nidoqueen", "Life Orb", "Sheer Force", "Modest", ["Earth Power", "Sludge Wave", "Ice Beam", "Flamethrower"]),
-    mon("Muk", "Leftovers", "Poison Touch", "Adamant", ["Gunk Shot", "Knock Off", "Shadow Sneak", "Curse"]),
-    mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
-    mon("Venomoth", "Focus Sash", "Tinted Lens", "Timid", ["Quiver Dance", "Bug Buzz", "Sludge Bomb", "Sleep Powder"]),
-    mon("Gengar", "Gengarite", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Focus Blast", "Nasty Plot"]),
+    mon("Weezing", "Black Sludge", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Toxic Spikes"],
+        "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Nidoqueen", "Life Orb", "Sheer Force", "Modest", ["Earth Power", "Sludge Wave", "Ice Beam", "Flamethrower"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Muk", "Leftovers", "Poison Touch", "Adamant", ["Gunk Shot", "Knock Off", "Shadow Sneak", "Curse"],
+        "252 HP / 252 Atk / 4 Def"),
+    mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"],
+        "4 HP / 252 Atk / 252 Spe"),
+    mon("Venomoth", "Focus Sash", "Tinted Lens", "Timid", ["Quiver Dance", "Bug Buzz", "Sludge Bomb", "Sleep Powder"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Gengar", "Gengarite", "Levitate", "Timid", ["Shadow Ball", "Sludge Bomb", "Focus Blast", "Nasty Plot"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
+# Psychic: Mr. Mime sets both screens; Shadow Tag Wobbuffet traps and Encores; Regenerator Slowbro Teleports slowly
+# into Calm Mind Espeon and Alakazam; Mega Metagross closes with Bullet Punch.
 SABRINA = [
-    mon("Mr Mime", "Light Clay", "Filter", "Timid", ["Light Screen", "Reflect", "Psychic", "Dazzling Gleam"]),
-    mon("Wobbuffet", "Sitrus Berry", "Shadow Tag", "Bold", ["Counter", "Mirror Coat", "Encore", "Destiny Bond"]),
-    mon("Slowbro", "Leftovers", "Regenerator", "Bold", ["Scald", "Psyshock", "Slack Off", "Thunder Wave"]),
-    mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"]),
-    mon("Alakazam", "Twisted Spoon", "Magic Guard", "Timid", ["Psychic", "Shadow Ball", "Focus Blast", "Calm Mind"]),
-    mon("Metagross", "Metagrossite", "Clear Body", "Jolly", ["Meteor Mash", "Zen Headbutt", "Earthquake", "Bullet Punch"]),
+    mon("Mr Mime", "Light Clay", "Filter", "Timid", ["Light Screen", "Reflect", "Psychic", "Dazzling Gleam"],
+        "252 HP / 4 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Wobbuffet", "Sitrus Berry", "Shadow Tag", "Bold", ["Counter", "Mirror Coat", "Encore", "Destiny Bond"],
+        "252 HP / 252 Def / 4 SpD"),
+    mon("Slowbro", "Leftovers", "Regenerator", "Bold", ["Scald", "Psyshock", "Slack Off", "Teleport"],
+        "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Calm Mind", "Psychic", "Dazzling Gleam", "Morning Sun"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Alakazam", "Twisted Spoon", "Magic Guard", "Timid", ["Psychic", "Shadow Ball", "Focus Blast", "Calm Mind"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Metagross", "Metagrossite", "Clear Body", "Jolly", ["Meteor Mash", "Zen Headbutt", "Earthquake", "Bullet Punch"],
+        "4 HP / 252 Atk / 252 Spe"),
 ]
+# Drought sun for the Fire Gym. Torkoal leads: Drought (Heat Rock, eight turns), the team's one Stealth Rock and
+# Yawn.
 BLAINE = [
     mon("Torkoal", "Heat Rock", "Drought", "Bold", ["Stealth Rock", "Lava Plume", "Earth Power", "Yawn"],
         "252 HP / 4 SpA / 252 Def", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -924,8 +1111,7 @@ BLAINE = [
     mon("Camerupt", "Cameruptite", "Solid Rock", "Modest", ["Fire Blast", "Earth Power", "Solar Beam", "Will-O-Wisp"],
         "252 HP / 252 SpA / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
-# Machamp has Close Combat, not No Guard Dynamic Punch: with the guaranteed confusion, Blue beat
-# every play-test team in all six tries (Bruno's Machamp likewise).
+# Blue's Kanto veterans as a balanced team, closed by his Mega Pidgeot.
 BLUE = [
     mon("Rhyperior", "Rocky Helmet", "Solid Rock", "Adamant", ["Stealth Rock", "Stone Edge", "Earthquake", "Ice Punch"],
         "252 HP / 252 Atk / 4 SpD"),
@@ -948,7 +1134,8 @@ BLUE = [
 # never above the player's cap and is raised to it when met later. 3 Pokemon before the first
 # badge, 4 to 5 in mid-Johto, 6 from Route 45 on and in Kanto.
 ROUTE_BOSSES = {
-    # Route 30, Youngster Mikey: a Guts Rattata with a Flame Orb
+    # Route 30, Youngster Mikey: Pivots into a Guts Rattata. Eviolite Pichu leads with Fake Out and a paralysing
+    # Nuzzle, then Volt Switches out (Grass Knot for Geodude and Onix).
     "TRAINER_MIKEY_HNS": (0, [
         mon("Pichu", "Eviolite", "Static", "Hasty", ["Fake Out", "Nuzzle", "Volt Switch", "Grass Knot"],
             raised_item="Focus Sash"),
@@ -972,7 +1159,8 @@ ROUTE_BOSSES = {
         mon("Kadabra", "Eviolite", "Magic Guard", "Timid", ["Psyshock", "Dazzling Gleam", "Calm Mind", "Recover"],
             ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe", raised_item="Life Orb"),
     ]),
-    # Route 35, Bird Keeper Bryan: a Leek Farfetch'd for critical hits
+    # Route 35, Bird Keeper Bryan: Critical hits and setup. Eviolite Swablu leads with Toxic and Roost (Natural Cure
+    # clears its own status as it switches).
     "TRAINER_BRYAN_HNS": (1, [
         mon("Swablu", "Eviolite", "Natural Cure", "Calm", ["Toxic", "Roost", "Dragon Pulse", "Air Cutter"],
             ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe", raised_item="Leftovers"),
@@ -1005,13 +1193,19 @@ ROUTE_BOSSES = {
         mon("Kingler", "Life Orb", "Sheer Force", "Adamant", ["Swords Dance", "Liquidation", "Rock Slide", "Knock Off"],
             "252 Atk"),
     ]),
-    # Route 40, Swimmer Simon: rain
+    # Route 40, Swimmer Simon: Rain. Drizzle Pelipper (Damp Rock) Knocks Off items; Swift Swim Golduck Calm Minds,
+    # Floatzel and Seaking set up, Unaware Quagsire walls.
     "TRAINER_SIMON_HNS": (3, [
-        mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Scald", "Hurricane", "U Turn", "Roost"]),
-        mon("Floatzel", "Life Orb", "Water Veil", "Adamant", ["Waterfall", "Aqua Jet", "Crunch", "Bulk Up"]),
-        mon("Seaking", "Mystic Water", "Lightning Rod", "Adamant", ["Waterfall", "Megahorn", "Drill Run", "Agility"]),
-        mon("Golduck", "Wise Glasses", "Swift Swim", "Modest", ["Hydro Pump", "Ice Beam", "Psychic", "Calm Mind"]),
-        mon("Quagsire", "Leftovers", "Unaware", "Impish", ["Earthquake", "Waterfall", "Recover", "Toxic"]),
+        mon("Pelipper", "Damp Rock", "Drizzle", "Bold", ["Scald", "Hurricane", "Knock Off", "Roost"],
+            "252 HP / 252 Def / 4 SpD"),
+        mon("Floatzel", "Life Orb", "Water Veil", "Adamant", ["Waterfall", "Aqua Jet", "Crunch", "Bulk Up"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Seaking", "Mystic Water", "Lightning Rod", "Adamant", ["Waterfall", "Megahorn", "Drill Run", "Agility"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Golduck", "Wise Glasses", "Swift Swim", "Modest", ["Hydro Pump", "Ice Beam", "Psychic", "Calm Mind"],
+            "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+        mon("Quagsire", "Leftovers", "Unaware", "Impish", ["Earthquake", "Waterfall", "Recover", "Toxic"],
+            "252 HP / 252 Def / 4 SpD"),
     ]),
     # Route 41, Swimmer George
     "TRAINER_GEORGE_HNS": (3, [
@@ -1039,7 +1233,8 @@ ROUTE_BOSSES = {
         mon("Sudowoodo", "Choice Band", "Rock Head", "Adamant", ["Head Smash", "Wood Hammer", "Sucker Punch", "Earthquake"],
             "252 HP / 252 Atk / 4 SpD"),
     ]),
-    # Route 43, Pokemaniac Ben: rare Pokemon
+    # Route 43, Pokemaniac Ben: A collector's rare finds. Focus Sash Aerodactyl leads with Stealth Rock and Rock
+    # Head Double-Edge.
     "TRAINER_BEN_HNS": (3, [
         mon("Aerodactyl", "Focus Sash", "Rock Head", "Jolly", ["Stealth Rock", "Stone Edge", "Double Edge", "Earthquake"],
             "4 HP / 252 Atk / 252 Spe"),
@@ -1065,22 +1260,34 @@ ROUTE_BOSSES = {
         mon("Hariyama", "Flame Orb", "Guts", "Adamant", ["Close Combat", "Knock Off", "Bullet Punch", "Fake Out"],
             "252 HP / 252 Atk / 4 SpD"),
     ]),
-    # Route 44, Cooltrainer Cybil: sun
+    # Route 44, Cooltrainer Cybil: Sun. Drought Ninetales (Heat Rock) leads with Nasty Plot and Will-O-Wisp;
+    # Chlorophyll Jumpluff puts the player to sleep, seeds.
     "TRAINER_CYBIL_HNS": (4, [
-        mon("Ninetales", "Heat Rock", "Drought", "Timid", ["Flamethrower", "Solar Beam", "Nasty Plot", "Will O Wisp"]),
-        mon("Jumpluff", "Leftovers", "Chlorophyll", "Jolly", ["Acrobatics", "Sleep Powder", "Leech Seed", "U Turn"]),
-        mon("Butterfree", "Focus Sash", "Tinted Lens", "Timid", ["Quiver Dance", "Bug Buzz", "Sleep Powder", "Air Slash"]),
-        mon("Arcanine", "Choice Band", "Intimidate", "Adamant", ["Flare Blitz", "Extreme Speed", "Wild Charge", "Close Combat"]),
-        mon("Bellossom", "Life Orb", "Chlorophyll", "Modest", ["Quiver Dance", "Giga Drain", "Moonblast", "Sludge Bomb"]),
+        mon("Ninetales", "Heat Rock", "Drought", "Timid", ["Flamethrower", "Solar Beam", "Nasty Plot", "Will O Wisp"],
+            "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+        mon("Jumpluff", "Leftovers", "Chlorophyll", "Jolly", ["Strength Sap", "Sleep Powder", "Leech Seed", "U Turn"],
+            "252 HP / 4 Atk / 252 Spe"),
+        mon("Butterfree", "Focus Sash", "Tinted Lens", "Timid", ["Quiver Dance", "Bug Buzz", "Sleep Powder", "Air Slash"],
+            "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+        mon("Arcanine", "Choice Band", "Intimidate", "Adamant", ["Flare Blitz", "Extreme Speed", "Wild Charge", "Close Combat"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Bellossom", "Life Orb", "Chlorophyll", "Modest", ["Quiver Dance", "Giga Drain", "Moonblast", "Sludge Bomb"],
+            "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
     ]),
     # Route 26, Cooltrainer Jake (the road to the Indigo Plateau; with Surf it can be reached earlier)
     "TRAINER_JAKE_HNS": (4, [
-        mon("Tangrowth", "Rocky Helmet", "Regenerator", "Relaxed", ["Giga Drain", "Knock Off", "Earthquake", "Sleep Powder"]),
-        mon("Electivire", "Life Orb", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Cross Chop", "Earthquake"]),
-        mon("Magmortar", "Expert Belt", "Flame Body", "Modest", ["Fire Blast", "Thunderbolt", "Focus Blast", "Psychic"]),
-        mon("Togekiss", "Leftovers", "Serene Grace", "Timid", ["Air Slash", "Dazzling Gleam", "Thunder Wave", "Roost"]),
-        mon("Kingdra", "Choice Specs", "Sniper", "Modest", ["Draco Meteor", "Hydro Pump", "Ice Beam", "Flash Cannon"]),
-        mon("Gyarados", "Sitrus Berry", "Intimidate", "Jolly", ["Waterfall", "Earthquake", "Dragon Dance", "Ice Fang"]),
+        mon("Tangrowth", "Rocky Helmet", "Regenerator", "Relaxed", ["Giga Drain", "Knock Off", "Earthquake", "Sleep Powder"],
+            "252 HP / 252 Def / 4 SpD"),
+        mon("Electivire", "Life Orb", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Cross Chop", "Earthquake"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Magmortar", "Expert Belt", "Flame Body", "Modest", ["Fire Blast", "Thunderbolt", "Focus Blast", "Psychic"],
+            "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+        mon("Togekiss", "Leftovers", "Serene Grace", "Timid", ["Air Slash", "Dazzling Gleam", "Thunder Wave", "Roost"],
+            "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+        mon("Kingdra", "Choice Specs", "Sniper", "Modest", ["Draco Meteor", "Hydro Pump", "Ice Beam", "Flash Cannon"],
+            "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+        mon("Gyarados", "Sitrus Berry", "Intimidate", "Jolly", ["Waterfall", "Earthquake", "Dragon Dance", "Ice Fang"],
+            "4 HP / 252 Atk / 252 Spe"),
     ]),
     # Route 27, Cooltrainer Blake
     "TRAINER_BLAKE_HNS": (4, [
@@ -1113,7 +1320,8 @@ ROUTE_BOSSES = {
             "4 HP / 252 Atk / 252 Spe"),
     ]),
     # Kanto (after the Johto League, cap 90)
-    # Route 1, Cooltrainer Quinn: sand
+    # Route 1, Cooltrainer Quinn: Sand. Hippowdon starts it, sets Stealth Rock and phazes; Sand Rush Excadrill and
+    # Sandslash Swords Dance at double Speed.
     "TRAINER_QUINN_HNS": (JOHTO_CHAMPION, [
         mon("Hippowdon", "Leftovers", "Sand Stream", "Impish", ["Earthquake", "Slack Off", "Stealth Rock", "Whirlwind"],
             "252 HP / 4 Atk / 252 Def"),
@@ -1128,7 +1336,8 @@ ROUTE_BOSSES = {
         mon("Garchomp", "Garchompite", "Rough Skin", "Jolly", ["Swords Dance", "Earthquake", "Outrage", "Fire Fang"],
             "4 HP / 252 Atk / 252 Spe"),
     ]),
-    # Route 3, Firebreather Otis: sun
+    # Route 3, Firebreather Otis: Sun. Drought Ninetales starts it and Mega Charizard Y, the ace, keeps it going
+    # (Drought), so Solar Beam fires in one turn for the Water.
     "TRAINER_OTIS_HNS": (JOHTO_CHAMPION, [
         mon("Ninetales", "Heat Rock", "Drought", "Timid", ["Fire Blast", "Solar Beam", "Nasty Plot", "Will O Wisp"],
             "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -1145,12 +1354,18 @@ ROUTE_BOSSES = {
     ]),
     # Route 8, Biker Dwayne
     "TRAINER_DWAYNE_HNS": (JOHTO_CHAMPION, [
-        mon("Weezing", "Rocky Helmet", "Levitate", "Bold", ["Sludge Bomb", "Will O Wisp", "Pain Split", "Toxic Spikes"]),
-        mon("Muk", "Black Sludge", "Poison Touch", "Adamant", ["Gunk Shot", "Knock Off", "Shadow Sneak", "Curse"]),
-        mon("Scrafty", "Leftovers", "Intimidate", "Careful", ["Drain Punch", "Knock Off", "Ice Punch", "Bulk Up"]),
-        mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "U Turn", "Roost"]),
-        mon("Krookodile", "Choice Scarf", "Moxie", "Jolly", ["Earthquake", "Knock Off", "Stone Edge", "Gunk Shot"]),
-        mon("Hydreigon", "Life Orb", "Levitate", "Timid", ["Dark Pulse", "Draco Meteor", "Flamethrower", "U Turn"]),
+        mon("Overqwil", "Rocky Helmet", "Toxic Debris", "Impish", ["Crunch", "Gunk Shot", "Spikes", "Pain Split"],
+            "252 HP / 252 Def / 4 SpD"),
+        mon("Muk Alola", "Black Sludge", "Poison Touch", "Adamant", ["Curse", "Gunk Shot", "Knock Off", "Drain Punch"],
+            "252 HP / 252 Atk / 4 SpD"),
+        mon("Scrafty", "Leftovers", "Intimidate", "Careful", ["Drain Punch", "Knock Off", "Ice Punch", "Bulk Up"],
+            "252 HP / 4 Def / 252 SpD"),
+        mon("Crobat", "Sharp Beak", "Infiltrator", "Jolly", ["Brave Bird", "Cross Poison", "Taunt", "Roost"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Krookodile", "Choice Scarf", "Moxie", "Jolly", ["Earthquake", "Knock Off", "Stone Edge", "Gunk Shot"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Hydreigon", "Life Orb", "Levitate", "Timid", ["Dark Pulse", "Draco Meteor", "Flamethrower", "U Turn"],
+            "4 HP / 252 SpA / 252 Spe"),
     ]),
     # Route 9, Hiker Tim
     "TRAINER_TIM_HNS": (JOHTO_CHAMPION, [
@@ -1167,7 +1382,8 @@ ROUTE_BOSSES = {
         mon("Aggron", "Aggronite", "Sturdy", "Impish", ["Iron Defense", "Body Press", "Heavy Slam", "Stone Edge"],
             "252 HP / 4 Atk / 252 Def"),
     ]),
-    # Route 10, Pokefan Robert: Fairy types
+    # Route 10, Pokefan Robert: A Pokefan's Fairy setup. Magic Guard Clefable lays Stealth Rock, paralyses and
+    # heals.
     "TRAINER_ROBERT_HNS": (JOHTO_CHAMPION, [
         mon("Clefable", "Leftovers", "Magic Guard", "Bold", ["Stealth Rock", "Moonblast", "Soft-Boiled", "Thunder Wave"],
             "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -1197,7 +1413,8 @@ ROUTE_BOSSES = {
         mon("Gallade", "Galladite", "Sharpness", "Jolly", ["Swords Dance", "Psycho Cut", "Sacred Sword", "Leaf Blade"],
             "4 HP / 252 Atk / 252 Spe"),
     ]),
-    # Route 12, Fisherman Stephen: rain
+    # Route 12, Fisherman Stephen: Rain. Drizzle Politoed starts it (Damp Rock), Encores and Hazes setup; Swift Swim
+    # Kingdra.
     "TRAINER_STEPHEN_HNS": (JOHTO_CHAMPION, [
         mon("Politoed", "Damp Rock", "Drizzle", "Bold", ["Scald", "Hypnosis", "Encore", "Haze"],
             "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -1212,7 +1429,8 @@ ROUTE_BOSSES = {
         mon("Gyarados", "Gyaradosite", "Moxie", "Jolly", ["Waterfall", "Earthquake", "Dragon Dance", "Bounce"],
             "4 HP / 252 Atk / 252 Spe"),
     ]),
-    # Route 13, Juggler Bret: tricks
+    # Route 13, Juggler Bret: A Juggler's tricks. Prankster Klefki puts up Reflect and Light Screen (Light Clay) and
+    # Spikes before the player can move.
     "TRAINER_BRET_HNS": (JOHTO_CHAMPION, [
         mon("Klefki", "Light Clay", "Prankster", "Calm", ["Reflect", "Light Screen", "Spikes", "Foul Play"],
             "252 HP / 4 Def / 252 SpD"),
@@ -1227,14 +1445,21 @@ ROUTE_BOSSES = {
         mon("Sableye", "Sablenite", "Frisk", "Careful", ["Will-O-Wisp", "Encore", "Recover", "Foul Play"],
             "252 HP / 4 Def / 252 SpD"),
     ]),
-    # Route 15, Expert Colette: Fighting
+    # Route 15, Expert Colette: Fighting dojo. Unburden Hawlucha and Spore Breloom lead; No Guard Machamp, Swords
+    # Dance Toxicroak and Nasty Plot Lucario.
     "TRAINER_COLETTE_HNS": (JOHTO_CHAMPION, [
-        mon("Hawlucha", "White Herb", "Unburden", "Jolly", ["High Jump Kick", "Acrobatics", "Swords Dance", "Roost"]),
-        mon("Breloom", "Focus Sash", "Technician", "Jolly", ["Mach Punch", "Bullet Seed", "Rock Tomb", "Spore"]),
-        mon("Machamp", "Sitrus Berry", "No Guard", "Adamant", ["Dynamic Punch", "Stone Edge", "Knock Off", "Bullet Punch"]),
-        mon("Conkeldurr", "Flame Orb", "Guts", "Adamant", ["Drain Punch", "Mach Punch", "Knock Off", "Ice Punch"]),
-        mon("Infernape", "Life Orb", "Iron Fist", "Jolly", ["Close Combat", "Flare Blitz", "Mach Punch", "U Turn"]),
-        mon("Lucario", "Life Orb", "Justified", "Adamant", ["Close Combat", "Extreme Speed", "Meteor Mash", "Swords Dance"]),
+        mon("Hawlucha", "White Herb", "Unburden", "Jolly", ["Close Combat", "Acrobatics", "Swords Dance", "Roost"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Breloom", "Focus Sash", "Technician", "Jolly", ["Mach Punch", "Bullet Seed", "Rock Tomb", "Spore"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Machamp", "Sitrus Berry", "No Guard", "Adamant", ["Dynamic Punch", "Stone Edge", "Knock Off", "Bullet Punch"],
+            "252 HP / 252 Atk / 4 Def"),
+        mon("Toxicroak", "Life Orb", "Dry Skin", "Jolly", ["Swords Dance", "Drain Punch", "Gunk Shot", "Sucker Punch"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Lucario", "Life Orb", "Justified", "Timid", ["Nasty Plot", "Aura Sphere", "Flash Cannon", "Vacuum Wave"],
+            "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+        mon("Infernape", "Infernapite", "Iron Fist", "Jolly", ["Close Combat", "Fire Punch", "Mach Punch", "U Turn"],
+            "4 HP / 252 Atk / 252 Spe"),
     ]),
     # Route 18, Bird Keeper Boris
     "TRAINER_BORIS_HNS": (JOHTO_CHAMPION, [
@@ -1253,12 +1478,18 @@ ROUTE_BOSSES = {
     ]),
     # Route 20, Swimmer Lori
     "TRAINER_LORI_HNS": (JOHTO_CHAMPION, [
-        mon("Araquanid", "Sitrus Berry", "Water Bubble", "Adamant", ["Liquidation", "Leech Life", "Sticky Web", "Mirror Coat"]),
-        mon("Starmie", "Life Orb", "Analytic", "Timid", ["Hydro Pump", "Psychic", "Ice Beam", "Thunderbolt"]),
-        mon("Vaporeon", "Leftovers", "Water Absorb", "Bold", ["Scald", "Ice Beam", "Wish", "Protect"]),
-        mon("Lapras", "Choice Specs", "Water Absorb", "Modest", ["Freeze Dry", "Hydro Pump", "Thunderbolt", "Ice Beam"]),
-        mon("Primarina", "Life Orb", "Liquid Voice", "Modest", ["Sparkling Aria", "Moonblast", "Ice Beam", "Calm Mind"]),
-        mon("Milotic", "Leftovers", "Marvel Scale", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"]),
+        mon("Araquanid", "Sitrus Berry", "Water Bubble", "Adamant", ["Liquidation", "Leech Life", "Sticky Web", "Mirror Coat"],
+            "252 HP / 252 Atk / 4 Def"),
+        mon("Greninja", "Life Orb", "Protean", "Timid", ["Hydro Pump", "Ice Beam", "Dark Pulse", "Grass Knot"],
+            "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+        mon("Vaporeon", "Leftovers", "Water Absorb", "Bold", ["Scald", "Wish", "Protect", "Flip Turn"],
+            "252 HP / 252 Def / 4 SpD"),
+        mon("Samurott", "Choice Band", "Sharpness", "Adamant", ["Razor Shell", "Sacred Sword", "Knock Off", "Aqua Jet"],
+            "4 HP / 252 Atk / 252 Spe"),
+        mon("Primarina", "Life Orb", "Liquid Voice", "Modest", ["Sparkling Aria", "Moonblast", "Ice Beam", "Calm Mind"],
+            "252 HP / 252 SpA / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+        mon("Milotic", "Flame Orb", "Marvel Scale", "Bold", ["Scald", "Ice Beam", "Recover", "Haze"],
+            "252 HP / 252 Def / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
     ]),
     # Route 25, Cooltrainer Kevin
     "TRAINER_KEVIN_HNS": (JOHTO_CHAMPION, [
@@ -1278,22 +1509,38 @@ ROUTE_BOSSES = {
 }
 
 # --- Red on Mt. Silver: the hardest battle in the game (DECISIONS.md D27) ------------------------
-# Red battles only the Kanto Champion, when no level cap is left: all six at 100, in his first
-# battle and in the rematch after the Sinjoh storyline (TRAINER_RED_POSTOBC_HNS). Every Pokemon has
-# a competitive EV spread, which Minimal Grinding leaves him (src/pokemon.c).
+# The hardest battle (D27), Heart & Soul's six. Pikachu leads with Fake Out and Volt Switch; Calm Mind Espeon, Curse
+# Snorlax, Venusaur (sleep) and Shell Smash Blastoise; Mega Charizard Y's Drought turns Mt. Silver's snow into sun for
+# its one-turn Solar Beam.
 RED_SIX = [
-    mon("Pikachu", "Light Ball", "Lightning Rod", "Hasty", ["Volt Tackle", "Surf", "Knock Off", "Fake Out"],
+    mon("Pikachu", "Light Ball", "Lightning Rod", "Hasty", ["Volt Tackle", "Surf", "Volt Switch", "Fake Out"],
         "252 Atk / 4 SpA / 252 Spe"),
     mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"],
-        "4 HP / 252 SpA / 252 Spe"),
-    mon("Snorlax", "Leftovers", "Thick Fat", "Careful", ["Curse", "Body Slam", "Rest", "Sleep Talk"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Snorlax", "Chesto Berry", "Thick Fat", "Careful", ["Curse", "Body Slam", "Earthquake", "Rest"],
         "252 HP / 4 Atk / 252 SpD"),
-    mon("Venusaur", "Life Orb", "Chlorophyll", "Modest", ["Sleep Powder", "Growth", "Giga Drain", "Sludge Bomb"],
-        "4 HP / 252 SpA / 252 Spe"),
+    mon("Venusaur", "Life Orb", "Overgrow", "Modest", ["Sleep Powder", "Giga Drain", "Sludge Bomb", "Weather Ball"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
     mon("Blastoise", "White Herb", "Torrent", "Modest", ["Shell Smash", "Hydro Pump", "Ice Beam", "Aura Sphere"],
-        "4 HP / 252 SpA / 252 Spe"),
-    mon("Charizard", "Charizardite Y", "Solar Power", "Timid", ["Fire Blast", "Solar Beam", "Focus Blast", "Air Slash"],
-        "4 HP / 252 SpA / 252 Spe"),
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Charizard", "Charizardite Y", "Blaze", "Timid", ["Fire Blast", "Solar Beam", "Focus Blast", "Roost"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+]
+# Red's rematch after the Sinjoh story: the same six and plan as his first battle (D27), with Earth Power on
+# Venusaur for the Fire and Steel types.
+RED_POSTOBC = [
+    mon("Pikachu", "Light Ball", "Lightning Rod", "Hasty", ["Volt Tackle", "Surf", "Volt Switch", "Fake Out"],
+        "252 Atk / 4 SpA / 252 Spe"),
+    mon("Espeon", "Life Orb", "Magic Bounce", "Timid", ["Psychic", "Dazzling Gleam", "Shadow Ball", "Calm Mind"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Snorlax", "Chesto Berry", "Thick Fat", "Careful", ["Curse", "Body Slam", "Earthquake", "Rest"],
+        "252 HP / 4 Atk / 252 SpD"),
+    mon("Venusaur", "Life Orb", "Overgrow", "Modest", ["Sleep Powder", "Giga Drain", "Sludge Bomb", "Earth Power"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Blastoise", "White Herb", "Torrent", "Modest", ["Shell Smash", "Hydro Pump", "Ice Beam", "Aura Sphere"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Charizard", "Charizardite Y", "Blaze", "Timid", ["Fire Blast", "Solar Beam", "Focus Blast", "Roost"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 RED_ITEMS = "Full Restore / Full Restore / Full Restore / Full Restore"
 
@@ -1303,11 +1550,7 @@ RED_ITEMS = "Full Restore / Full Restore / Full Restore / Full Restore"
 # 0.15.0. These are Emerald Imperium-style teams in their place: six (Li three) with items, natures,
 # abilities, EVs and one Mega Evolution, each rematch stronger than the last.
 
-# Landorus-T leads: Intimidate, Stealth Rock, U-turn. Gale Wings Talonflame's priority Tailwind
-# and Will-O-Wisp; Choice Band Staraptor breaks walls; Iron Defense Corviknight Body Presses the
-# Rock, Ice and Steel types; Static Zapdos Volt Switches and paralyses on contact. Mega Pidgeot's No
-# Guard
-# Hurricane and Work Up close.
+# Tailwind and pivots at full strength.
 FALKNER_2 = [
     mon("Landorus-Therian", "Leftovers", "Intimidate", "Impish", ["Stealth Rock", "Earthquake", "Knock Off", "U-turn"],
         "252 HP / 4 Atk / 252 Def"),
@@ -1436,33 +1679,33 @@ PRYCE_2 = [
         "252 Atk / 4 SpA / 252 Spe"),
 ]
 
-# Focus Sash Garchomp sets Stealth Rock; Kingdra brings its own rain for Swift Swim (and
-# Archaludon's Electro Shot then skips its charge); Rock Head Tyrantrum Dragon Dances and Head
-# Smashes; Flash Cannons answer Fairies; Throat Spray Kommo-o's Clangorous Soul. Mega Latios closes.
+# Dragon rematch: Focus Sash Garchomp sets Stealth Rock; Rain Dance Kingdra, Dragon Dance Tyrantrum, Power Herb
+# Electro Shot Archaludon, Throat Spray Kommo-o and Mega Latios break through.
 CLAIR_2 = [
     mon("Garchomp", "Focus Sash", "Rough Skin", "Jolly", ["Stealth Rock", "Earthquake", "Scale Shot", "Iron Head"],
         "4 HP / 252 Atk / 252 Spe"),
     mon("Kingdra", "Life Orb", "Swift Swim", "Modest", ["Rain Dance", "Hydro Pump", "Draco Meteor", "Flash Cannon"],
-        "4 HP / 252 SpA / 252 Spe"),
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
     mon("Tyrantrum", "Life Orb", "Rock Head", "Jolly", ["Dragon Dance", "Head Smash", "Outrage", "Earthquake"],
         "4 HP / 252 Atk / 252 Spe"),
     mon("Archaludon", "Power Herb", "Stamina", "Modest", ["Electro Shot", "Draco Meteor", "Flash Cannon", "Body Press"],
-        "252 HP / 252 SpA / 4 SpD"),
-    mon("Kommo O", "Throat Spray", "Bulletproof", "Timid", ["Clangorous Soul", "Clanging Scales", "Aura Sphere", "Flash Cannon"],
-        "4 HP / 252 SpA / 252 Spe"),
+        "252 HP / 252 SpA / 4 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Kommo O", "Throat Spray", "Bulletproof", "Timid", ["Clangorous Soul", "Clanging Scales", "Vacuum Wave", "Flash Cannon"],
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
     mon("Latios", "Latiosite", "Levitate", "Timid", ["Draco Meteor", "Psyshock", "Aura Sphere", "Recover"],
-        "4 HP / 252 SpA / 252 Spe"),
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 
-# Prankster Thundurus leads with Taunt and U-turns out; Togekiss Defogs and flinches with Air Slash.
-# Poison Heal Gliscor takes the Electric attacks; Moltres and Choice Scarf Galarian Zapdos hit the
-# Steel, Rock and Ice types that beat Flying. Mega Salamence Dragon Dances last.
+# Birds of six types: Prankster Thundurus U-turns and Taunts; Togekiss defogs; Gale Wings Talonflame (Brave Bird
+# with priority while it is at full HP; Heavy-Duty Boots and Roost keep it there) Bulk Ups; Choice Scarf Galarian
+# Zapdos attacks.
 FALKNER_POSTOBC = [
     mon("Thundurus", "Focus Sash", "Prankster", "Timid", ["U Turn", "Taunt", "Thunderbolt", "Grass Knot"]),
-    mon("Togekiss", "Heavy Duty Boots", "Serene Grace", "Timid", ["Air Slash", "Moonblast", "Defog", "Roost"]),
-    mon("Moltres", "Heavy Duty Boots", "Flame Body", "Modest", ["Fire Blast", "Hurricane", "Scorching Sands", "Roost"]),
+    mon("Togekiss", "Heavy Duty Boots", "Serene Grace", "Timid", ["Air Slash", "Moonblast", "Defog", "Roost"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Talonflame", "Heavy Duty Boots", "Gale Wings", "Adamant", ["Bulk Up", "Brave Bird", "Flare Blitz", "Roost"]),
     mon("Zapdos Galar", "Choice Scarf", "Defiant", "Jolly", ["Close Combat", "Brave Bird", "Knock Off", "U Turn"]),
-    mon("Gliscor", "Toxic Orb", "Poison Heal", "Impish", ["Earthquake", "Knock Off", "Toxic", "Roost"]),
+    mon("Gliscor", "Toxic Orb", "Poison Heal", "Impish", ["Earthquake", "Knock Off", "Roost", "Toxic"]),
     mon("Salamence", "Salamencite", "Intimidate", "Jolly", ["Dragon Dance", "Double Edge", "Earthquake", "Roost"]),
 ]
 
@@ -1491,16 +1734,20 @@ WHITNEY_POSTOBC = [
     mon("Kangaskhan", "Kangaskhanite", "Scrappy", "Jolly", ["Fake Out", "Double Edge", "Power Up Punch", "Sucker Punch"]),
 ]
 
-# Golurk sets Stealth Rock behind a Focus Sash; Nasty Plot Spectrier snowballs with Grim Neigh and
-# Bulk Up Annihilape grows Rage Fist. Choice Scarf Gholdengo revenge-kills and Tricks walls, Calm
-# Mind Blacephalon breaks them; Mega Gengar's Shadow Tag traps the rest.
+# Ghosts: Focus Sash Golurk sets Stealth Rock; Nasty Plot Spectrier, Swords Dance Mimikyu (STAB Shadow Sneak behind
+# its Disguise), Choice Scarf Gholdengo and Calm Mind Blacephalon attack; Mega Gengar traps with Shadow Tag and
+# takes the trapped Pokemon down with Destiny Bond.
 MORTY_POSTOBC = [
     mon("Golurk", "Focus Sash", "Iron Fist", "Adamant", ["Stealth Rock", "Earthquake", "Poltergeist", "Drain Punch"]),
-    mon("Spectrier", "Life Orb", "Grim Neigh", "Timid", ["Nasty Plot", "Shadow Ball", "Dark Pulse", "Substitute"]),
-    mon("Annihilape", "Leftovers", "Defiant", "Careful", ["Bulk Up", "Rage Fist", "Drain Punch", "Taunt"]),
-    mon("Gholdengo", "Choice Scarf", "Good As Gold", "Timid", ["Make It Rain", "Shadow Ball", "Focus Blast", "Trick"]),
-    mon("Blacephalon", "Life Orb", "Beast Boost", "Timid", ["Shadow Ball", "Fire Blast", "Psyshock", "Calm Mind"]),
-    mon("Gengar", "Gengarite", "Levitate", "Timid", ["Shadow Ball", "Sludge Wave", "Focus Blast", "Nasty Plot"]),
+    mon("Spectrier", "Life Orb", "Grim Neigh", "Timid", ["Nasty Plot", "Shadow Ball", "Dark Pulse", "Substitute"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Mimikyu", "Lum Berry", "Disguise", "Jolly", ["Swords Dance", "Play Rough", "Shadow Sneak", "Drain Punch"]),
+    mon("Gholdengo", "Choice Scarf", "Good As Gold", "Timid", ["Make It Rain", "Shadow Ball", "Focus Blast", "Trick"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Blacephalon", "Life Orb", "Beast Boost", "Timid", ["Shadow Ball", "Fire Blast", "Psyshock", "Calm Mind"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Gengar", "Gengarite", "Levitate", "Timid", ["Shadow Ball", "Sludge Wave", "Thunderbolt", "Destiny Bond"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 
 # Terrakion sets Stealth Rock and Stone Edges the Flying types; Choice Band Urshifu's Wicked Blow
@@ -1529,17 +1776,17 @@ JASMINE_POSTOBC = [
     mon("Metagross", "Metagrossite", "Clear Body", "Jolly", ["Meteor Mash", "Zen Headbutt", "Earthquake", "Ice Punch"]),
 ]
 
-# Icy Rock Alolan Ninetales starts eight turns of snow and Aurora Veil; Slush Rush Arctozolt moves
-# first and doubles Bolt Beak; Dragon Dance Baxcalibur sweeps behind the Veil. Assault Vest
-# Glastrier soaks hits, Choice Scarf Galarian Darmanitan burns Steels; Mega Abomasnow brings the
-# snow back as it switches in, then its Slush Rush doubles its Speed.
+# Snow: Snow Warning Alolan Ninetales sets Aurora Veil; Slush Rush Arctozolt, Dragon Dance Baxcalibur, Glastrier,
+# Choice Scarf Darmanitan and Mega Abomasnow attack behind it.
 PRYCE_POSTOBC = [
-    mon("Ninetales Alola", "Icy Rock", "Snow Warning", "Timid", ["Aurora Veil", "Blizzard", "Moonblast", "Encore"]),
+    mon("Ninetales Alola", "Icy Rock", "Snow Warning", "Timid", ["Aurora Veil", "Blizzard", "Moonblast", "Encore"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
     mon("Arctozolt", "Life Orb", "Slush Rush", "Adamant", ["Bolt Beak", "Icicle Crash", "Low Kick", "Stone Edge"]),
-    mon("Baxcalibur", "Loaded Dice", "Thermal Exchange", "Jolly", ["Dragon Dance", "Icicle Spear", "Scale Shot", "Earthquake"]),
+    mon("Baxcalibur", "Loaded Dice", "Thermal Exchange", "Jolly", ["Dragon Dance", "Icicle Spear", "Earthquake", "Ice Shard"]),
     mon("Glastrier", "Assault Vest", "Chilling Neigh", "Adamant", ["Icicle Crash", "High Horsepower", "Close Combat", "Heavy Slam"]),
-    mon("Darmanitan Galar", "Choice Scarf", "Gorilla Tactics", "Jolly", ["Icicle Crash", "Flare Blitz", "U Turn", "Earthquake"]),
-    mon("Abomasnow", "Abomasite", "Snow Warning", "Modest", ["Blizzard", "Energy Ball", "Earth Power", "Focus Blast"]),
+    mon("Darmanitan Galar", "Choice Scarf", "Gorilla Tactics", "Jolly", ["Icicle Crash", "Flare Blitz", "U Turn", "Superpower"]),
+    mon("Abomasnow", "Abomasite", "Snow Warning", "Modest", ["Blizzard", "Energy Ball", "Earth Power", "Focus Blast"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 
 # Focus Sash Dragapult leads with Will-O-Wisp and U-turn; Booster Energy Roaring Moon and Booster
@@ -1581,30 +1828,34 @@ MISTY_POSTOBC = [
     mon("Blastoise", "Blastoisinite", "Torrent", "Modest", ["Shell Smash", "Water Pulse", "Aura Sphere", "Ice Beam"]),
 ]
 
-# Electric Terrain and screens: Tapu Koko sets both and Volt Switches out; Sandy Shocks lays Stealth
-# Rock and Spikes and Earth Powers the Electric types. Motor Drive Electivire punches through,
-# Rotom-Wash takes the Ground moves and burns, and Tail Glow Xurkitree and Agility Mega Ampharos
-# (Thick Fat) sweep.
+# Electric Terrain behind screens. Tapu Koko sets screens and the terrain; Sandy Shocks lays Stealth Rock and
+# Spikes; Iron Fist Pawmot (Mach Punch), Rotom-Wash, Tail Glow Xurkitree and Agility Mega Ampharos break through.
 LTSURGE_POSTOBC = [
-    mon("Tapu Koko", "Light Clay", "Electric Surge", "Timid", ["Reflect", "Light Screen", "Volt Switch", "Dazzling Gleam"]),
-    mon("Sandy Shocks", "Booster Energy", "Protosynthesis", "Timid", ["Stealth Rock", "Spikes", "Earth Power", "Volt Switch"]),
-    mon("Electivire", "Life Orb", "Motor Drive", "Adamant", ["Wild Charge", "Ice Punch", "Earthquake", "Cross Chop"]),
-    mon("Rotom Wash", "Leftovers", "Levitate", "Bold", ["Hydro Pump", "Volt Switch", "Will O Wisp", "Pain Split"]),
-    mon("Xurkitree", "Life Orb", "Beast Boost", "Timid", ["Tail Glow", "Thunderbolt", "Energy Ball", "Dazzling Gleam"]),
-    mon("Ampharos", "Ampharosite", "Static", "Modest", ["Agility", "Thunderbolt", "Dragon Pulse", "Focus Blast"]),
+    mon("Tapu Koko", "Light Clay", "Electric Surge", "Timid", ["Reflect", "Light Screen", "Volt Switch", "Dazzling Gleam"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Sandy Shocks", "Booster Energy", "Protosynthesis", "Timid", ["Stealth Rock", "Spikes", "Earth Power", "Volt Switch"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Pawmot", "Life Orb", "Iron Fist", "Jolly", ["Supercell Slam", "Close Combat", "Mach Punch", "Ice Punch"]),
+    mon("Rotom Wash", "Leftovers", "Levitate", "Bold", ["Hydro Pump", "Volt Switch", "Will O Wisp", "Pain Split"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Xurkitree", "Life Orb", "Beast Boost", "Timid", ["Tail Glow", "Thunderbolt", "Energy Ball", "Dazzling Gleam"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Ampharos", "Ampharosite", "Static", "Modest", ["Agility", "Thunderbolt", "Dragon Pulse", "Focus Blast"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 
-# Prankster Whimsicott leads with Tailwind, Encores set-up and U-turns out. Rillaboom's Grassy Surge
-# powers Grassy Glide priority after Fake Out; Choice Band Tsareena (no priority against it) and
-# Contrary Serperior sweep in the Tailwind; Rotom-Mow's Thunderbolt and Will-O-Wisp handle Steel and
-# Flying types; Mega Venusaur's Thick Fat takes the Fire and Ice moves last.
+# Grassy Terrain: Prankster Whimsicott sets Tailwind and U-turns; Grassy Surge Rillaboom Swords Dances and Grassy
+# Glides first; Queenly Majesty Tsareena, Contrary Serperior, Rotom-Mow and Mega Venusaur follow.
 ERIKA_POSTOBC = [
     mon("Whimsicott", "Focus Sash", "Prankster", "Timid", ["Tailwind", "Encore", "Moonblast", "U Turn"]),
-    mon("Rillaboom", "Assault Vest", "Grassy Surge", "Adamant", ["Fake Out", "Grassy Glide", "Wood Hammer", "High Horsepower"]),
+    mon("Rillaboom", "Life Orb", "Grassy Surge", "Adamant", ["Swords Dance", "Grassy Glide", "Wood Hammer", "High Horsepower"]),
     mon("Tsareena", "Choice Band", "Queenly Majesty", "Jolly", ["High Jump Kick", "Power Whip", "Knock Off", "U Turn"]),
-    mon("Serperior", "Leftovers", "Contrary", "Timid", ["Leaf Storm", "Glare", "Dragon Pulse", "Synthesis"]),
-    mon("Rotom Mow", "Sitrus Berry", "Levitate", "Modest", ["Volt Switch", "Thunderbolt", "Leaf Storm", "Will O Wisp"]),
-    mon("Venusaur", "Venusaurite", "Chlorophyll", "Modest", ["Giga Drain", "Sludge Bomb", "Earth Power", "Sleep Powder"]),
+    mon("Serperior", "Leftovers", "Contrary", "Timid", ["Leaf Storm", "Glare", "Dragon Pulse", "Synthesis"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Rotom Mow", "Sitrus Berry", "Levitate", "Modest", ["Volt Switch", "Thunderbolt", "Leaf Storm", "Will O Wisp"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Venusaur", "Venusaurite", "Chlorophyll", "Modest", ["Giga Drain", "Sludge Bomb", "Earth Power", "Sleep Powder"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 
 # A ninja's traps: Focus Sash Glimmora lays Stealth Rock and Spikes, and Toxic Debris adds Toxic
@@ -1620,17 +1871,18 @@ JANINE_POSTOBC = [
     mon("Gengar", "Gengarite", "Levitate", "Timid", ["Hex", "Sludge Wave", "Focus Blast", "Will O Wisp"]),
 ]
 
-# Psychic Terrain: Tapu Lele sets it (no priority moves against her grounded Pokemon) and both
-# screens. Weakness Policy Metagross lays Stealth Rock; Choice Specs Armarouge's Mega Launcher Aura
-# Sphere and Dark Pulse and Choice Scarf Iron Boulder's blades break walls; Calm Mind Cresselia
-# walls; Mega Alakazam's Nasty Plot Expanding Force closes.
+# Psychic Terrain behind screens.
 SABRINA_POSTOBC = [
-    mon("Tapu Lele", "Light Clay", "Psychic Surge", "Timid", ["Reflect", "Light Screen", "Psychic", "Moonblast"]),
-    mon("Metagross", "Weakness Policy", "Tough Claws", "Adamant", ["Stealth Rock", "Meteor Mash", "Psychic Fangs", "Earthquake"]),
+    mon("Tapu Lele", "Light Clay", "Psychic Surge", "Timid", ["Reflect", "Light Screen", "Psychic", "Moonblast"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Metagross", "Weakness Policy", "Tough Claws", "Adamant", ["Stealth Rock", "Meteor Mash", "Earthquake", "Bullet Punch"]),
     mon("Iron Boulder", "Choice Scarf", "Sharpness", "Jolly", ["Mighty Cleave", "Psycho Cut", "Sacred Sword", "X Scissor"]),
-    mon("Cresselia", "Leftovers", "Levitate", "Bold", ["Calm Mind", "Moonblast", "Psyshock", "Moonlight"]),
-    mon("Armarouge", "Choice Specs", "Mega Launcher", "Timid", ["Armor Cannon", "Expanding Force", "Aura Sphere", "Dark Pulse"]),
-    mon("Alakazam", "Alakazite", "Magic Guard", "Timid", ["Nasty Plot", "Expanding Force", "Shadow Ball", "Focus Blast"]),
+    mon("Cresselia", "Leftovers", "Levitate", "Bold", ["Calm Mind", "Moonblast", "Psyshock", "Moonlight"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Armarouge", "Choice Specs", "Mega Launcher", "Timid", ["Armor Cannon", "Expanding Force", "Aura Sphere", "Dark Pulse"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Alakazam", "Alakazite", "Magic Guard", "Timid", ["Nasty Plot", "Expanding Force", "Shadow Ball", "Focus Blast"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 
 # Sun: Ninetales' Drought (Heat Rock) and Encore; Air Balloon Heatran lays Stealth Rock and traps
@@ -1659,35 +1911,34 @@ BLUE_POSTOBC = [
     mon("Marowak Alola", "Thick Club", "Rock Head", "Adamant", ["Shadow Bone", "Flare Blitz", "Earthquake", "Swords Dance"]),
 ]
 
-# Focus Sash Azelf sets Stealth Rock, Taunts and U-turns out. Tapu Lele's Psychic Terrain stops
-# Sucker Punch and other priority while its Choice Specs breaks walls. Assault Vest Galarian
-# Slowking tanks, Magic Bounce Xatu paralyses and bounces hazards back; Gallade sweeps after Swords
-# Dance, and Calm Mind Mega Gardevoir (Pixilate Hyper Voice) closes.
+# Psychic Terrain: Focus Sash Azelf sets Stealth Rock, Taunts and U-turns; Choice Specs Tapu Lele, Assault Vest
+# Slowking, Magic Bounce Xatu, Swords Dance Gallade and Mega Gardevoir.
 WILL_2 = [
     mon("Azelf", "Focus Sash", "Levitate", "Hasty", ["Stealth Rock", "Taunt", "Psychic", "U Turn"],
         "4 Atk / 252 SpA / 252 Spe"),
     mon("Tapu Lele", "Choice Specs", "Psychic Surge", "Timid", ["Psychic", "Moonblast", "Focus Blast", "Shadow Ball"],
-        "4 HP / 252 SpA / 252 Spe"),
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
     mon("Slowking Galar", "Assault Vest", "Regenerator", "Calm", ["Sludge Bomb", "Psyshock", "Fire Blast", "Power Gem"],
-        "252 HP / 4 SpA / 252 SpD"),
+        "252 HP / 4 SpA / 252 SpD", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
     mon("Xatu", "Rocky Helmet", "Magic Bounce", "Bold", ["Psychic", "Thunder Wave", "U Turn", "Roost"],
         "252 HP / 252 Def / 4 SpD"),
-    mon("Gallade", "Life Orb", "Sharpness", "Jolly", ["Swords Dance", "Sacred Sword", "Psycho Cut", "Leaf Blade"],
+    mon("Gallade", "Life Orb", "Sharpness", "Jolly", ["Swords Dance", "Sacred Sword", "Psycho Cut", "Shadow Sneak"],
         "4 HP / 252 Atk / 252 Spe"),
     mon("Gardevoir", "Gardevoirite", "Trace", "Timid", ["Hyper Voice", "Psyshock", "Mystical Fire", "Calm Mind"],
-        "4 HP / 252 SpA / 252 Spe"),
+        "4 HP / 252 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 
-# Light Clay Uxie sets Reflect, Light Screen and Stealth Rock, then U-turns out. Speed Boost
-# Espathra Calm Minds behind the screens; Magic Guard Reuniclus and Choice Specs Latias break walls,
-# Choice Band Iron Leaves hits hard, and Sharpness Mega Gallade Swords Dances to finish.
+# Psychic legends behind screens.
 WILL_POSTOBC = [
     mon("Uxie", "Light Clay", "Levitate", "Impish", ["Reflect", "Light Screen", "Stealth Rock", "U Turn"]),
-    mon("Espathra", "Leftovers", "Speed Boost", "Timid", ["Calm Mind", "Stored Power", "Dazzling Gleam", "Roost"]),
-    mon("Reuniclus", "Life Orb", "Magic Guard", "Modest", ["Psyshock", "Focus Blast", "Shadow Ball", "Recover"]),
-    mon("Latias", "Choice Specs", "Levitate", "Timid", ["Draco Meteor", "Mist Ball", "Aura Sphere", "Mystical Fire"]),
+    mon("Espathra", "Leftovers", "Speed Boost", "Timid", ["Calm Mind", "Stored Power", "Dazzling Gleam", "Roost"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Reuniclus", "Life Orb", "Magic Guard", "Modest", ["Psyshock", "Focus Blast", "Shadow Ball", "Recover"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
     mon("Iron Leaves", "Choice Band", "Sharpness", "Jolly", ["Psyblade", "Leaf Blade", "Sacred Sword", "X Scissor"]),
-    mon("Gallade", "Galladite", "Sharpness", "Jolly", ["Swords Dance", "Sacred Sword", "Psycho Cut", "Night Slash"]),
+    mon("Gallade", "Life Orb", "Sharpness", "Jolly", ["Sacred Sword", "Psycho Cut", "Night Slash", "Shadow Sneak"]),
+    mon("Latias", "Latiasite", "Levitate", "Timid", ["Calm Mind", "Mist Ball", "Dragon Pulse", "Recover"],
+        ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
 ]
 
 # Tentacruel lays Toxic Spikes and spins; Corrosion Crobat badly poisons even Steel types and
@@ -1708,12 +1959,11 @@ KOGA_2 = [
         "252 Atk / 4 SpD / 252 Spe"),
 ]
 
-# Focus Sash Nihilego sets Stealth Rock and Grass Knots Ground types; Crobat Taunts and U-turns.
-# Bulk Up Okidogi's Toxic Chain badly poisons; Scope Lens Sniper Drapion lands critical hits;
-# Fezandipiti's Toxic Chain and Play Rough handle Dragons and Fighters. Swords Dance Mega Beedrill
-# strikes last.
+# Poison legends: the Loyal Three. Focus Sash Munkidori leads with Fake Out and U-turns; Crobat (Taunt) and
+# Fezandipiti U-turn; Bulk Up Okidogi, Sniper Drapion and Mega Beedrill Swords Dance; Toxic Chain on all three of
+# the Loyal Three.
 KOGA_POSTOBC = [
-    mon("Nihilego", "Focus Sash", "Beast Boost", "Timid", ["Stealth Rock", "Power Gem", "Sludge Wave", "Grass Knot"]),
+    mon("Munkidori", "Focus Sash", "Toxic Chain", "Timid", ["Fake Out", "Sludge Bomb", "Psyshock", "U Turn"]),
     mon("Crobat", "Heavy Duty Boots", "Infiltrator", "Jolly", ["Brave Bird", "U Turn", "Taunt", "Roost"]),
     mon("Okidogi", "Leftovers", "Toxic Chain", "Careful", ["Bulk Up", "Drain Punch", "Gunk Shot", "Knock Off"]),
     mon("Drapion", "Scope Lens", "Sniper", "Jolly", ["Swords Dance", "Night Slash", "Cross Poison", "Earthquake"]),
@@ -1785,29 +2035,24 @@ KAREN_POSTOBC = [
     mon("Tyranitar", "Tyranitarite", "Sand Stream", "Jolly", ["Dragon Dance", "Stone Edge", "Knock Off", "Earthquake"]),
 ]
 
-# Light Clay Latias sets Reflect and Light Screen and Thunder Waves the fastest threat. Choice Specs
-# Hydreigon and Choice Scarf Haxorus break walls and revenge-kill (Flash Cannon, Poison Jab for
-# Fairies); Booster Energy Gouging Fire takes Ice and Fairy hits. Mega Salamence Dragon Dances
-# behind the screens; Choice Band Dragonite's Extreme Speed closes.
+# Dragons behind screens: Latias sets Reflect and Light Screen and paralyses; Choice Specs Hydreigon U-turns;
+# Gouging Fire, Choice Scarf Haxorus, Mega Salamence (Dragon Dance) and Choice Band Dragonite (Extreme Speed) hit.
 LANCE_2 = [
     mon("Latias", "Light Clay", "Levitate", "Timid", ["Reflect", "Light Screen", "Draco Meteor", "Thunder Wave"],
-        "252 HP / 4 SpA / 252 Spe"),
-    mon("Hydreigon", "Choice Specs", "Levitate", "Timid", ["Draco Meteor", "Dark Pulse", "Flash Cannon", "Fire Blast"],
+        "252 HP / 4 SpA / 252 Spe", ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
+    mon("Hydreigon", "Choice Specs", "Levitate", "Timid", ["Draco Meteor", "Dark Pulse", "Fire Blast", "U Turn"],
         "4 HP / 252 SpA / 252 Spe"),
     mon("Gouging Fire", "Booster Energy", "Protosynthesis", "Adamant", ["Flare Blitz", "Dragon Claw", "Earthquake", "Morning Sun"],
         "252 HP / 252 Atk / 4 SpD"),
     mon("Haxorus", "Choice Scarf", "Mold Breaker", "Jolly", ["Outrage", "Earthquake", "Close Combat", "Poison Jab"],
         "4 HP / 252 Atk / 252 Spe"),
-    mon("Salamence", "Salamencite", "Intimidate", "Adamant", ["Dragon Dance", "Double Edge", "Earthquake", "Roost"],
+    mon("Salamence", "Salamencite", "Intimidate", "Adamant", ["Dragon Dance", "Double Edge", "Earthquake", "Dragon Claw"],
         "4 HP / 252 Atk / 252 Spe"),
     mon("Dragonite", "Choice Band", "Multiscale", "Adamant", ["Extreme Speed", "Outrage", "Earthquake", "Iron Head"],
         "252 HP / 252 Atk / 4 Def"),
 ]
 
-# Sturdy Archaludon sets Stealth Rock, its Custap Berry buying a last move; Booster Energy Walking
-# Wake hits hard specially and Choice Band Baxcalibur brings Ice for opposing Dragons. Dragonite has
-# Extreme Speed and Roost, Choice Specs Noivern's Draco Meteor and Hurricane break walls, and Mega
-# Garchomp Swords Dances last.
+# The postgame Champion's dragons at 100, without EVs (V4: only Red has them at K).
 LANCE_POSTOBC = [
     mon("Archaludon", "Custap Berry", "Sturdy", "Modest", ["Stealth Rock", "Draco Meteor", "Flash Cannon", "Thunderbolt"],
         ivs="31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe"),
@@ -1818,10 +2063,8 @@ LANCE_POSTOBC = [
     mon("Charizard", "Charizardite X", "Blaze", "Jolly", ["Dragon Dance", "Flare Blitz", "Dragon Claw", "Thunder Punch"]),
 ]
 
-# A temple bell, a haunted stump and the tower's Bellsprout. Bronzor leads with Stealth Rock,
-# Rock Tomb for the Fire and Flying types and Light Screen; Heatproof and the Eviolite take
-# Fire moves. Phantump burns for Hex and Leech Seeds; Weepinbell, the ace, puts one to sleep
-# and heals with Strength Sap.
+# A temple bell, a haunted stump and the tower's Bellsprout. Eviolite Bronzor leads with Stealth Rock, Rock Tomb for
+# Speed and Light Screen; Heatproof and the Eviolite take Fire moves.
 LI = [
     mon("Bronzor", "Eviolite", "Heatproof", "Relaxed", ["Stealth Rock", "Rock Tomb", "Payback", "Light Screen"]),
     mon("Phantump", "Eviolite", "Natural Cure", "Sassy", ["Will O Wisp", "Hex", "Leech Seed", "Horn Leech"]),
@@ -1892,7 +2135,7 @@ TEAMS = {
     "TRAINER_BLAINE_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", BLAINE),
     "TRAINER_BLUE_HNS": (JOHTO_CHAMPION, "Full Restore / Full Restore", BLUE),
     "TRAINER_RED_HNS": (KANTO_CHAMPION, RED_ITEMS, RED_SIX, RED_AI),
-    "TRAINER_RED_POSTOBC_HNS": (KANTO_CHAMPION, RED_ITEMS, RED_SIX, RED_AI),
+    "TRAINER_RED_POSTOBC_HNS": (KANTO_CHAMPION, RED_ITEMS, RED_POSTOBC, RED_AI),
     "TRAINER_PETREL_1_HNS": (4, "Full Restore / Full Restore", PETREL_1),
     "TRAINER_ARIANA_1_HNS": (4, "Full Restore / Full Restore", ARIANA_1),
     "TRAINER_PROTON_2_HNS": (7, "Full Restore / Full Restore", PROTON_2),
@@ -1917,8 +2160,8 @@ TEAMS = {
     "TRAINER_JASMINE_1_2_HNS": (5, "Full Restore / Full Restore", JASMINE_1_2),
     "TRAINER_JASMINE_1_3_HNS": (6, "Full Restore / Full Restore", JASMINE_1_3),
     "TRAINER_PRYCE_1_HNS": (4, "Hyper Potion / Hyper Potion", PRYCE),
-    "TRAINER_PRYCE_1_2_HNS": (5, "Full Restore / Full Restore", PRYCE),
-    "TRAINER_PRYCE_1_3_HNS": (6, "Full Restore / Full Restore", PRYCE),
+    "TRAINER_PRYCE_1_2_HNS": (5, "Full Restore / Full Restore", PRYCE_1_2),
+    "TRAINER_PRYCE_1_3_HNS": (6, "Full Restore / Full Restore", PRYCE_1_3),
     "TRAINER_CLAIR_1_HNS": (7, "Full Restore / Full Restore", CLAIR),
 }
 TEAMS.update({

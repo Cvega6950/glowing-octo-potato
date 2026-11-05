@@ -2,33 +2,14 @@ Crystal Imperium designed teams against the trainer standard (validate.py; tools
 
 TRAINER_BROCK_HNS (boss, stage J, fought at stages J to K)
 TRAINER_MISTY_HNS (boss, stage J, fought at stages J to K)
-  WARNING V4: no full EV spread from stage 3 on: Pelipper, Golduck, Lapras, Milotic, Blastoise, Starmie
 TRAINER_LTSURGE_HNS (boss, stage J, fought at stages J to K)
-  WARNING M4: Electrode (slot 1): an attacker with one attacking type
-  WARNING M8: no priority move on the team
-  WARNING V4: no full EV spread from stage 3 on: Electrode, Magnezone, Lanturn, Electivire, Manectric, Raichu
 TRAINER_ERIKA_HNS (boss, stage J, fought at stages J to K)
 TRAINER_JANINE_HNS (boss, stage J, fought at stages J to K)
-  WARNING V4: no full EV spread from stage 3 on: Weezing, Nidoqueen, Muk, Crobat, Venomoth, Gengar
 TRAINER_SABRINA_HNS (boss, stage J, fought at stages J to K)
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Mr Mime, Wobbuffet, Slowbro, Espeon, Alakazam, Metagross
 TRAINER_BLAINE_HNS (boss, stage J, fought at stages J to K)
 TRAINER_BLUE_HNS (boss, stage J, fought at stages J to K)
 TRAINER_RED_HNS (boss, stage K, fought at stages K to K)
-  WARNING A2: Venusaur (slot 4): Chlorophyll without sun on the team or the map, it has Overgrow
-  WARNING M7: Venusaur (slot 4): weak setup: Growth
-  WARNING M8: no pivot or hazard on the team
-  WARNING P6: MtSilver_SummitDay_hns has snow: fewer than two of the team use it, and it sets no weather of its own
-  WARNING P6: Venusaur depends on sun, which MtSilver_SummitDay_hns's snow cancels
-  WARNING P6: Charizard depends on sun, which MtSilver_SummitDay_hns's snow cancels
 TRAINER_RED_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING A2: Venusaur (slot 4): Chlorophyll without sun on the team or the map, it has Overgrow
-  WARNING M7: Venusaur (slot 4): weak setup: Growth
-  WARNING M8: no pivot or hazard on the team
-  WARNING P6: MtSilver_SummitDay_hns has snow: fewer than two of the team use it, and it sets no weather of its own
-  WARNING P6: Venusaur depends on sun, which MtSilver_SummitDay_hns's snow cancels
-  WARNING P6: Charizard depends on sun, which MtSilver_SummitDay_hns's snow cancels
 TRAINER_PETREL_1_HNS (boss, stage 4, fought at stages 4 to 6)
 TRAINER_ARIANA_1_HNS (boss, stage 4, fought at stages 4 to 6)
 TRAINER_PROTON_2_HNS (boss, stage 7, fought at stages 7 to 7)
@@ -53,16 +34,9 @@ TRAINER_JASMINE_1_HNS (boss, stage 4, fought at stages 4 to 4)
 TRAINER_JASMINE_1_2_HNS (boss, stage 5, fought at stages 5 to 5)
 TRAINER_JASMINE_1_3_HNS (boss, stage 6, fought at stages 6 to 6)
 TRAINER_PRYCE_1_HNS (boss, stage 4, fought at stages 4 to 4)
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Cloyster, Dewgong, Jynx, Weavile, Mamoswine, Abomasnow
 TRAINER_PRYCE_1_2_HNS (boss, stage 5, fought at stages 5 to 5)
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Cloyster, Dewgong, Jynx, Weavile, Mamoswine, Abomasnow
 TRAINER_PRYCE_1_3_HNS (boss, stage 6, fought at stages 6 to 6)
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Cloyster, Dewgong, Jynx, Weavile, Mamoswine, Abomasnow
 TRAINER_CLAIR_1_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING V4: no full EV spread from stage 3 on: Druddigon, Flygon, Dragalge, Altaria, Kommo O, Kingdra
 TRAINER_FALKNER_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_BUGSY_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_WHITNEY_2_HNS (boss, stage J, fought at stages J to K)
@@ -71,43 +45,31 @@ TRAINER_CHUCK_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_JASMINE_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_PRYCE_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_CLAIR_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M8: no priority move on the team
 TRAINER_FALKNER_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M8: no priority move on the team
 TRAINER_BUGSY_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_WHITNEY_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_MORTY_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M8: no priority move on the team
 TRAINER_CHUCK_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_JASMINE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_PRYCE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M8: no priority move on the team
 TRAINER_CLAIR_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_BROCK_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_MISTY_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_LTSURGE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M8: no priority move on the team
 TRAINER_ERIKA_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M8: no setup move on the team
 TRAINER_JANINE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_SABRINA_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M8: no priority move on the team
 TRAINER_BLAINE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_BLUE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_WILL_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M8: no priority move on the team
 TRAINER_WILL_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M8: no priority move on the team
 TRAINER_KOGA_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_KOGA_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M8: no priority move on the team
 TRAINER_BRUNO_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_BRUNO_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_KAREN_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_KAREN_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_LANCE_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M8: no pivot or hazard on the team
-  WARNING S4: Salamence @ Salamencite (Intimidate; Double Edge, Dragon Dance, Earthquake, Roost) is on TRAINER_FALKNER_POSTOBC_HNS, TRAINER_LANCE_2_HNS
 TRAINER_LANCE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_LI_HNS (boss, stage 0, fought at stages 0 to 0)
 TRAINER_SIDE_CANDICE_HNS (side, stage 0, fought at stages 0 to K)
@@ -116,60 +78,34 @@ TRAINER_SIDE_CANDICE_HNS (side, stage 0, fought at stages 0 to K)
 TRAINER_SIDE_GARDENIA_HNS (side, stage 2, fought at stages 2 to 3)
   raised to 42: Whimsicott @ Heat Rock, Cherrim Overcast @ Miracle Seed, Bellossom @ Leftovers, Torterra @ White Herb, Arboliva @ Sitrus Berry, Roserade @ Black Sludge
 TRAINER_SIDE_GARDENIA_2_HNS (side, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Sudowoodo, Vileplume, Arboliva, Torterra, Roserade, Venusaur
 TRAINER_SIDE_FANTINA_HNS (side, stage 3, fought at stages 3 to K)
 TRAINER_SIDE_MAYLENE_HNS (side, stage 4, fought at stages 4 to K)
 TRAINER_SIDE_WAKE_HNS (side, stage 5, fought at stages 5 to K)
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Politoed, Floatzel, Quagsire, Toedscruel, Barraskewda, Gyarados
 TRAINER_SIDE_BYRON_HNS (side, stage 6, fought at stages 6 to K)
 TRAINER_SIDE_ROARK_HNS (side, stage 7, fought at stages 7 to K)
-  WARNING M8: no priority move on the team
-  WARNING M8: more than one Stealth Rock setter
-  WARNING V4: no full EV spread from stage 3 on: Glimmora, Garganacl, Tyrantrum, Kleavor, Rampardos, Tyranitar
 TRAINER_SIDE_VOLKNER_HNS (side, stage 8, fought at stages 8 to K)
-  WARNING M8: no priority move on the team
-  WARNING V4: no full EV spread from stage 3 on: Jolteon, Raichu Alola, Luxray, Rotom Wash, Electivire, Manectric
-  WARNING S4: Rotom Wash @ Leftovers (Levitate; Hydro Pump, Pain Split, Volt Switch, Will O Wisp) is on TRAINER_LTSURGE_POSTOBC_HNS, TRAINER_SIDE_VOLKNER_HNS
 TRAINER_SIDE_KATY_HNS (side, stage J, fought at stages J to K)
-  WARNING V4: no full EV spread from stage 3 on: Ribombee, Lokix, Volcarona, Golisopod, Ursaluna, Pinsir
 TRAINER_SIDE_BRASSIUS_HNS (side, stage J, fought at stages J to K)
-  WARNING V4: no full EV spread from stage 3 on: Brambleghast, Meowscarada, Scovillain, Tsareena, Rillaboom, Sceptile
-  WARNING S4: Meowscarada @ Choice Band (Protean; Flower Trick, Knock Off, Play Rough, U Turn) is on TRAINER_KAREN_POSTOBC_HNS, TRAINER_SIDE_BRASSIUS_HNS
 TRAINER_SIDE_IONO_HNS (side, stage J, fought at stages J to K)
 TRAINER_SIDE_KOFU_HNS (side, stage J, fought at stages J to K)
-  WARNING M2: Dondozo (slot 4): filler: Rest
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Wugtrio, Veluza, Crabominable, Dondozo, Clawitzer, Sharpedo
 TRAINER_SIDE_LARRY_HNS (side, stage J, fought at stages J to K)
 TRAINER_SIDE_RYME_HNS (side, stage J, fought at stages J to K)
 TRAINER_SIDE_TULIP_HNS (side, stage J, fought at stages J to K)
 TRAINER_SIDE_GRUSHA_HNS (side, stage J, fought at stages J to K)
 TRAINER_SIDE_CYNTHIA_HNS (side, stage K, fought at stages K to K)
 TRAINER_SIDE_IRIS_HNS (side, stage K, fought at stages K to K)
-  WARNING S4: Lapras @ Leftovers (Water Absorb; Freeze Dry, Hydro Pump, Ice Shard, Thunderbolt) is on TRAINER_MISTY_HNS, TRAINER_SIDE_IRIS_HNS
 TRAINER_SIDE_GEETA_HNS (side, stage K, fought at stages K to K)
 TRAINER_SIDE_N_HNS (side, stage K, fought at stages K to K)
 TRAINER_SIDE_CYRUS_HNS (side, stage K, fought at stages K to K)
-  WARNING S4: Houndoom @ Houndoominite (Flash Fire; Dark Pulse, Fire Blast, Nasty Plot, Sludge Bomb) is on TRAINER_KAREN_2_HNS, TRAINER_SIDE_CYRUS_HNS
 TRAINER_SIDE_WALLACE_HNS (side, stage K, fought at stages K to K)
-  WARNING M8: no priority move on the team
 TRAINER_SIDE_MAXIE_HNS (side, stage K, fought at stages K to K)
 TRAINER_SIDE_ARCHIE_HNS (side, stage K, fought at stages K to K)
 TRAINER_SIDE_WALLY_HNS (side, stage K, fought at stages K to K)
-  WARNING S4: Magnezone @ Choice Specs (Magnet Pull; Body Press, Flash Cannon, Thunderbolt, Volt Switch) is on TRAINER_JASMINE_2_HNS, TRAINER_LTSURGE_HNS, TRAINER_SIDE_WALLY_HNS
-  WARNING S4: Flygon @ Choice Scarf (Levitate; Dragon Claw, Earthquake, Fire Punch, U Turn) is on TRAINER_CLAIR_1_HNS, TRAINER_SIDE_WALLY_HNS
 TRAINER_ZUKI_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING V4: no full EV spread from stage 3 on: Umbreon
 TRAINER_NAOKO_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING V4: no full EV spread from stage 3 on: Espeon
-  WARNING S4: Espeon @ Life Orb (Magic Bounce; Calm Mind, Dazzling Gleam, Psychic, Shadow Ball) is on TRAINER_NAOKO_HNS, TRAINER_RED_HNS, TRAINER_RED_POSTOBC_HNS, TRAINER_SABRINA_HNS
 TRAINER_MIKI_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING V4: no full EV spread from stage 3 on: Flareon
 TRAINER_SAYO_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING V4: no full EV spread from stage 3 on: Jolteon
 TRAINER_KUNI_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING V4: no full EV spread from stage 3 on: Vaporeon
 TRAINER_MIKEY_HNS (miniboss, stage 0, fought at stages 0 to K)
   raised to 24: Pichu @ Eviolite, Furret @ Sitrus Berry, Raticate @ Flame Orb
   raised to 33 to 100: Pikachu @ Focus Sash, Furret @ Sitrus Berry, Raticate @ Flame Orb
@@ -184,39 +120,26 @@ TRAINER_GREG_HNS (miniboss, stage 2, fought at stages 2 to K)
 TRAINER_VALERIE_HNS (miniboss, stage 2, fought at stages 2 to K)
 TRAINER_EUGENE_HNS (miniboss, stage 2, fought at stages 2 to K)
 TRAINER_SIMON_HNS (miniboss, stage 3, fought at stages 3 to K)
-  WARNING V4: no full EV spread from stage 3 on: Pelipper, Floatzel, Seaking, Golduck, Quagsire
-  WARNING S4: Pelipper @ Damp Rock (Drizzle; Hurricane, Roost, Scald, U Turn) is on TRAINER_MISTY_HNS, TRAINER_SIDE_WALLACE_HNS, TRAINER_SIMON_HNS
 TRAINER_GEORGE_HNS (miniboss, stage 3, fought at stages 3 to K)
 TRAINER_BENJAMIN_HNS (miniboss, stage 3, fought at stages 3 to K)
 TRAINER_BEN_HNS (miniboss, stage 3, fought at stages 3 to K)
   raised to 58 to 100: Aerodactyl @ Focus Sash, Kangaskhan @ Silk Scarf, Slowbro @ Leftovers, Lickilicky @ Sitrus Berry, Dragonite @ Lum Berry
 TRAINER_DEVIN_HNS (miniboss, stage 3, fought at stages 3 to K)
 TRAINER_CYBIL_HNS (miniboss, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Ninetales, Jumpluff, Butterfree, Arcanine, Bellossom
 TRAINER_JAKE_HNS (miniboss, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Tangrowth, Electivire, Magmortar, Togekiss, Kingdra, Gyarados
-  WARNING S4: Electivire @ Life Orb (Motor Drive; Cross Chop, Earthquake, Ice Punch, Wild Charge) is on TRAINER_JAKE_HNS, TRAINER_LTSURGE_HNS, TRAINER_LTSURGE_POSTOBC_HNS
 TRAINER_BLAKE_HNS (miniboss, stage 4, fought at stages 4 to K)
 TRAINER_KELLY_HNS (miniboss, stage 6, fought at stages 6 to K)
 TRAINER_QUINN_HNS (miniboss, stage J, fought at stages J to K)
 TRAINER_OTIS_HNS (miniboss, stage J, fought at stages J to K)
 TRAINER_DWAYNE_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING V4: no full EV spread from stage 3 on: Weezing, Muk, Scrafty, Crobat, Krookodile, Hydreigon
-  WARNING S4: Crobat @ Sharp Beak (Infiltrator; Brave Bird, Cross Poison, Roost, U Turn) is on TRAINER_DWAYNE_HNS, TRAINER_JANINE_HNS
 TRAINER_TIM_HNS (miniboss, stage J, fought at stages J to K)
 TRAINER_ROBERT_HNS (miniboss, stage J, fought at stages J to K)
 TRAINER_HERMAN_HNS (miniboss, stage J, fought at stages J to K)
 TRAINER_STEPHEN_HNS (miniboss, stage J, fought at stages J to K)
 TRAINER_BRET_HNS (miniboss, stage J, fought at stages J to K)
 TRAINER_COLETTE_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING V4: no full EV spread from stage 3 on: Hawlucha, Breloom, Machamp, Conkeldurr, Infernape, Lucario
-  WARNING S4: Conkeldurr @ Flame Orb (Guts; Drain Punch, Ice Punch, Knock Off, Mach Punch) is on TRAINER_BRUNO_2_HNS, TRAINER_COLETTE_HNS
-  WARNING S4: shares 4 species with TRAINER_BRUNO_2_HNS (stage J): Conkeldurr, Hawlucha, Infernape, Lucario
 TRAINER_BORIS_HNS (miniboss, stage J, fought at stages J to K)
 TRAINER_LORI_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING I3: 2 items twice: Life Orb, Leftovers
-  WARNING V4: no full EV spread from stage 3 on: Araquanid, Starmie, Vaporeon, Lapras, Primarina, Milotic
-  WARNING S4: Vaporeon @ Leftovers (Water Absorb; Ice Beam, Protect, Scald, Wish) is on TRAINER_KUNI_HNS, TRAINER_LORI_HNS
 TRAINER_KEVIN_HNS (miniboss, stage J, fought at stages J to K)
 TRAINER_RIVAL_CYNDAQUIL_2_HNS (boss, stage 2, fought at stages 2 to 2)
 TRAINER_RIVAL_TOTODILE_2_HNS (boss, stage 2, fought at stages 2 to 2)
@@ -266,46 +189,30 @@ TRAINER_ACE_R35_ADELINE_HNS (ace, stage 2, fought at stages 2 to K)
   raised to 42: Meowstic M @ Light Clay, Mawile @ Sitrus Berry, Infernape @ Life Orb, Gabite @ Dragon Fang, Gyarados @ Wacan Berry
   raised to 50 to 100: Meowstic M @ Light Clay, Mawile @ Sitrus Berry, Infernape @ Life Orb, Garchomp @ Dragon Fang, Gyarados @ Wacan Berry
 TRAINER_ACE_R36_THEO_HNS (ace, stage 3, fought at stages 3 to K)
-  WARNING V4: no full EV spread from stage 3 on: Dedenne, Galvantula, Electivire, Eelektross, Raichu Alola
 TRAINER_ACE_R37_CASSIA_HNS (ace, stage 3, fought at stages 3 to K)
-  WARNING V4: no full EV spread from stage 3 on: Klefki, Weezing Galar, Florges Red, Sylveon, Slurpuff
 TRAINER_ACE_R38_DESMOND_HNS (ace, stage 3, fought at stages 3 to K)
-  WARNING V4: no full EV spread from stage 3 on: Hippowdon, Skarmory, Lycanroc Midday, Archaludon, Excadrill
 TRAINER_ACE_R39_MIRIAM_HNS (ace, stage 3, fought at stages 3 to K)
 TRAINER_ACE_R40_KAIA_HNS (ace, stage 3, fought at stages 3 to K)
 TRAINER_ACE_R42_SOREN_HNS (ace, stage 3, fought at stages 3 to K)
-  WARNING V4: no full EV spread from stage 3 on: Illumise, Polteageist Phony, Lilligant Hisui, Scolipede, Haxorus
 TRAINER_ACE_CLIFFGATE_ASTRID_HNS (ace, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Vanilluxe, Swampert, Sandslash Alola, Arctozolt, Arctovish
 TRAINER_ACE_WHIRL_NOLAN_HNS (ace, stage 4, fought at stages 4 to K)
 TRAINER_ACE_R48_SOLANA_HNS (ace, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Torkoal, Chesnaught, Heliolisk, Shiftry, Flygon
-  WARNING S4: Torkoal @ Heat Rock (Drought; Lava Plume, Rapid Spin, Stealth Rock, Yawn) is on TRAINER_ACE_R48_SOLANA_HNS, TRAINER_SIDE_MAXIE_HNS
 TRAINER_ACE_R43_VIKTOR_HNS (ace, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Orthworm, Amoonguss, Mandibuzz, Clodsire, Jellicent
 TRAINER_ACE_ICEPATH_CELESTE_HNS (ace, stage 7, fought at stages 7 to K)
 TRAINER_ACE_DARKCAVE_ZEPHYR_HNS (ace, stage 7, fought at stages 7 to K)
-  WARNING M8: needs setup or priority, and a pivot or a hazard
-  WARNING S4: Whimsicott @ Focus Sash (Prankster; Encore, Moonblast, Tailwind, U Turn) is on TRAINER_ACE_DARKCAVE_ZEPHYR_HNS, TRAINER_ERIKA_POSTOBC_HNS
 TRAINER_ACE_ICEPATH_B1F_RHEA_HNS (ace, stage 7, fought at stages 7 to K)
 TRAINER_ACE_VRB2F_ELIAS_HNS (ace, stage 8, fought at stages 8 to K)
 TRAINER_ACE_TOHJO_IMOGEN_HNS (ace, stage 8, fought at stages 8 to K)
-  WARNING S4: Ribombee @ Focus Sash (Shield Dust; Moonblast, Sticky Web, Stun Spore, U Turn) is on TRAINER_ACE_TOHJO_IMOGEN_HNS, TRAINER_SIDE_KATY_HNS
 TRAINER_ACE_VRB1F_MAXIM_HNS (ace, stage 8, fought at stages 8 to K)
 TRAINER_ACE_VFOREST_MERRICK_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R2_SYLVIE_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R3_GIDEON_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R4_ESTELLE_HNS (ace, stage J, fought at stages J to K)
-  WARNING S4: Cresselia @ Leftovers (Levitate; Calm Mind, Moonblast, Moonlight, Psyshock) is on TRAINER_ACE_R4_ESTELLE_HNS, TRAINER_SABRINA_POSTOBC_HNS
-  WARNING S4: Nidoking @ Life Orb (Sheer Force; Earth Power, Flamethrower, Ice Beam, Sludge Wave) is on TRAINER_ACE_R4_ESTELLE_HNS, TRAINER_KOGA_2_HNS
-  WARNING S4: Glimmora @ Focus Sash (Toxic Debris; Earth Power, Mortal Spin, Power Gem, Stealth Rock) is on TRAINER_ACE_R4_ESTELLE_HNS, TRAINER_SIDE_GEETA_HNS
 TRAINER_ACE_MTMOON_TOBIAS_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R5_VERA_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R6_LUCIEN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R7_MARIGOLD_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R8_MORDECAI_HNS (ace, stage J, fought at stages J to K)
-  WARNING M8: needs setup or priority, and a pivot or a hazard
-  WARNING S4: Heatran @ Air Balloon (Flash Fire; Earth Power, Flash Cannon, Magma Storm, Taunt) is on TRAINER_ACE_R8_MORDECAI_HNS, TRAINER_JASMINE_2_HNS
 TRAINER_ACE_R9_ROSALIND_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R10_EDISON_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_ROCKTUN_1F_SABLE_HNS (ace, stage J, fought at stages J to K)
@@ -314,53 +221,36 @@ TRAINER_ACE_R12_CORALIE_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_DIGLETT_OSWALD_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R22_SERAPHINA_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R24_MAGNUS_HNS (ace, stage J, fought at stages J to K)
-  WARNING I3: 2 items twice: Choice Band, Choice Scarf
-  WARNING S4: Darmanitan Galar @ Choice Scarf (Gorilla Tactics; Earthquake, Flare Blitz, Icicle Crash, U Turn) is on TRAINER_ACE_R24_MAGNUS_HNS, TRAINER_PRYCE_POSTOBC_HNS
 TRAINER_ACE_MTMOONSQ_MISTRAL_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_PPLANT_EVANGELINE_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_SEAFOAM_LENORE_HNS (ace, stage J, fought at stages J to K)
-  WARNING M8: needs setup or priority, and a pivot or a hazard
-  WARNING S4: Volcarona @ Heavy Duty Boots (Flame Body; Bug Buzz, Fiery Dance, Giga Drain, Quiver Dance) is on TRAINER_ACE_SEAFOAM_LENORE_HNS, TRAINER_BUGSY_2_HNS, TRAINER_SIDE_KATY_HNS
-  WARNING S4: Gallade @ Life Orb (Sharpness; Leaf Blade, Psycho Cut, Sacred Sword, Swords Dance) is on TRAINER_ACE_SEAFOAM_LENORE_HNS, TRAINER_WILL_2_HNS
 TRAINER_ACE_R13_MARLOW_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R14_BEATRIX_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R15_HAYATE_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_DOJO_BRIGID_HNS (ace, stage J, fought at stages J to K)
-  WARNING S4: Magmortar @ Expert Belt (Flame Body; Fire Blast, Focus Blast, Psychic, Thunderbolt) is on TRAINER_ACE_DOJO_BRIGID_HNS, TRAINER_JAKE_HNS
 TRAINER_ACE_R16_HAZEL_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R17_RYKER_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_ROCKTUN_B1F_MATILDA_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R18_DUNCAN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R19_MAREN_HNS (ace, stage J, fought at stages J to K)
-  WARNING M5: Tentacruel (slot 2): its strongest attack has 65 power
 TRAINER_ACE_R20_BJORN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R23_LEANDER_HNS (ace, stage 8, fought at stages 8 to K)
 TRAINER_ACE_VR1F_OPHELIA_HNS (ace, stage 8, fought at stages 8 to K)
-  WARNING M8: needs setup or priority, and a pivot or a hazard
 TRAINER_ACE_R28_ROWAN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_IRENE_HNS (cooltrainer, stage 3, fought at stages 3 to K)
-  WARNING V4: no full EV spread from stage 3 on: Palossand, Toxapex, Huntail, Seaking, Sharpedo
 TRAINER_JENN_HNS (cooltrainer, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Empoleon, Clawitzer, Primarina, Gorebyss, Starmie
 TRAINER_NICK_HNS (cooltrainer, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Raichu, Blastoise, Venusaur, Lapras, Charizard
 TRAINER_AARON_HNS (cooltrainer, stage 4, fought at stages 4 to K)
   raised to 58 to 100: Mr Mime @ Light Clay, Venusaur @ Black Sludge, Dragonite @ Lum Berry, Blastoise @ White Herb, Charizard @ Life Orb
 TRAINER_GWEN_HNS (cooltrainer, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Jolteon, Vaporeon, Flareon, Espeon, Sylveon
-  WARNING S4: Flareon @ Toxic Orb (Toxic Boost; Facade, Flare Blitz, Quick Attack, Superpower) is on TRAINER_GWEN_HNS, TRAINER_MIKI_HNS
 TRAINER_LOIS_HNS (cooltrainer, stage 4, fought at stages 4 to K)
 TRAINER_EMMA_HNS (cooltrainer, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Politoed, Octillery, Azumarill, Linoone, Poliwrath
-  WARNING S4: Azumarill @ Sitrus Berry (Huge Power; Aqua Jet, Belly Drum, Knock Off, Play Rough) is on TRAINER_ACE_SEAFOAM_LENORE_HNS, TRAINER_EMMA_HNS
 TRAINER_RYAN_HNS (cooltrainer, stage 6, fought at stages 6 to K)
-  WARNING S4: Lucario @ Life Orb (Justified; Close Combat, Extreme Speed, Meteor Mash, Swords Dance) is on TRAINER_COLETTE_HNS, TRAINER_RYAN_HNS
 TRAINER_ALLEN_HNS (cooltrainer, stage 6, fought at stages 6 to K)
 TRAINER_BRIAN_HNS (cooltrainer, stage 7, fought at stages 7 to K)
 TRAINER_FRAN_HNS (cooltrainer, stage 7, fought at stages 7 to K)
 TRAINER_LOLA_HNS (cooltrainer, stage 7, fought at stages 7 to K)
 TRAINER_CARA_HNS (cooltrainer, stage 7, fought at stages 7 to K)
-  WARNING S4: Milotic @ Leftovers (Competitive; Dragon Tail, Ice Beam, Recover, Scald) is on TRAINER_CARA_HNS, TRAINER_SIDE_WALLACE_HNS
 TRAINER_MEGAN_HNS (cooltrainer, stage 7, fought at stages 7 to K)
 TRAINER_BETH_HNS (cooltrainer, stage 7, fought at stages 7 to K)
 TRAINER_BETH_2_HNS (cooltrainer, stage 8, fought at stages 8 to K)

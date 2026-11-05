@@ -35,8 +35,8 @@ trainerproc and the C compiler; this script adds the semantic checks:
     with the build's compiled species, move and item data, species_db.py): evolution by stage as the
     battle code fields each team at every stage it can be fought at (E1 to E8), team sizes, items,
     natures, IVs and EVs, abilities, moves, team roles, Trick Room, Megas, legendaries, map
-    weather, two-opponent battles, rematch tiers and repeated sets. A rule the 0.15.2 teams still
-    break warns for those teams (trainer_rules.PENDING) until the redesign fixes them
+    weather, two-opponent battles, rematch tiers and repeated sets (none pending since the
+    redesign, D59: trainer_rules.PENDING lists the teams whose findings only warn)
   * every evolution family should be obtainable (reported, not fatal: the
     Gen 4-9 roll-out is ongoing work)
 """

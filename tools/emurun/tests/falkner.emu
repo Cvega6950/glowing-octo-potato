@@ -53,7 +53,8 @@ expect16 {gPlayerParty+288} 41 geodude_max_hp_31iv_0ev
 !battle_trainer(402)
 !wait_action_menu("falkner_action_menu")
 shot 04_falkner_start.png
-expect16 {gBattleMons+136} 16 falkner_leads_pidgey
+# His lead as his team's data designs it (a Pidgey before the trainer standard, a Murkrow since)
+!expect_battler(1, "species", designed_species("TRAINER_FALKNER_1_HNS", 0, 0), "falkner_leads_as_designed")
 # The battle is played by the autopilot (it follows the battle state, so it also runs on other
 # emulators, whose RNG seed differs): Cyndaquil Flame Wheel, Mareep Tackle, Geodude Rollout
 # (move slots at level 15: Ember / Flame Wheel / Quick Attack / Double Kick, Tackle / Thunder Wave

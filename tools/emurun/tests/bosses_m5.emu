@@ -1,13 +1,14 @@
 # Crystal Imperium play test for the third batch of Imperium-style bosses
 # (tools/crystal_imperium/boss_teams.py): the eight Kanto Gym Leaders and Blue (cap 90 after the
-# Johto Champion). No team holds items. Red has his own test (red).
-# - The prepared all-round six at the cap fights each Gym Leader once, played naively (one move
-#   per Pokemon, never switching): every battle plays to a result, and the wins are tallied and
-#   reported, not required.
-# - A six built for Blue, played with a game plan (autobattle in emu.py: for each of his Pokemon
-#   some of the six have a move, and one of them is switched in if the Pokemon out has none),
-#   beats him at least once in 24 tries (1 of 6 on VBA-M against the trainer standard's Blue; 10 of 12
-#   against his 0.16.0 team, naively 1 of 12), as Red's test does.
+# Johto Champion). Red has his own test (red).
+# - The prepared all-round six at the cap, holding no items, fights each Gym Leader once, played
+#   naively (one move per Pokemon, never switching): every battle plays to a result, and the wins
+#   are tallied and reported, not required.
+# - A six built for Blue, holding care-package items and Mega Evolving Ampharos, played with a
+#   game plan (autobattle in emu.py: for each of his Pokemon some of the six have a move, and one of
+#   them is switched in if the Pokemon out has none), beats him at least once in 24 tries, as Red's
+#   test does (1 of 6 on VBA-M against the trainer standard's Blue; 10 of 12 against his 0.16.0
+#   team, naively 1 of 12).
 # - The prepared six at level 100 reaches each leader's and Blue's ace: every Mega Evolution happens.
 !new_game()
 !battle_style_set()

@@ -2,10 +2,10 @@
 [V] and [W]; DECISIONS.md D59): every team in boss_teams.TEAMS, ace_trainer_data.ACES and UPGRADES, read with the
 build's own species, move and item data (species_db.py). validate.py runs them.
 
-A finding is an ERROR (CI fails) or a WARNING. A [V] rule the designed teams of 0.15.2 still break is listed in
-PENDING with the trainers that break it: their findings are warnings until the redesigned teams land, and any
-other trainer's are errors. Once a team is fixed, it comes out of PENDING (validate.py says so), and once a
-rule's list is empty the rule is an error everywhere. [W] rules are always warnings.
+A finding is an ERROR (CI fails) or a WARNING. A [V] rule's findings are errors, except for the trainers PENDING
+lists under it (and every trainer, for a rule in PENDING_EVERYWHERE): theirs are warnings until their teams are
+fixed, and validate.py says when one no longer breaks it. Both are empty since the redesign (D59) met every [V]
+rule on every designed team. [W] rules are always warnings.
 
 The evolution rules follow the battle code (GetTrainerMonEvolvedSpecies, src/battle_main.c): a team made for a
 stage keeps its Pokemon as made up to its stage's cap; raised to a later cap it evolves as any trainer's does,
@@ -42,26 +42,13 @@ def cap(stage):
     return boss_teams.cap(stage)
 
 
-# ---------------------------------------------------------------- rules whose 0.15.2 violations are warnings
-# rule -> the trainers whose teams break it in 0.15.2 (the redesign plan's work groups F1-F5 fix them). P3 and
-# V4 are the standard's additions (redesign plan 2.3, phase 1b): they are warnings until 1b lands, for every
-# team. Written by `validate.py --pending` from the findings, and kept by hand from then on.
-PENDING_EVERYWHERE = {"P3", "V4"}
-PENDING = {rule: {f"TRAINER_{name}_HNS" for name in names.split()} for rule, names in {
-    "A2": ("RED RED_POSTOBC"),
-    "I3": ("ACE_R24_MAGNUS LORI"),
-    "M2": ("SIDE_KOFU"),
-    "M4": ("LTSURGE"),
-    "M5": ("ACE_R19_MAREN"),
-    "M8": ("ACE_DARKCAVE_ZEPHYR ACE_R8_MORDECAI ACE_SEAFOAM_LENORE ACE_VR1F_OPHELIA CLAIR_2 ERIKA_POSTOBC "
-             "FALKNER_POSTOBC KOGA_POSTOBC LANCE_2 LTSURGE LTSURGE_POSTOBC MORTY_POSTOBC PRYCE_1 PRYCE_1_2 "
-             "PRYCE_1_3 PRYCE_POSTOBC RED RED_POSTOBC SABRINA SABRINA_POSTOBC SIDE_KOFU SIDE_ROARK SIDE_VOLKNER "
-             "SIDE_WAKE SIDE_WALLACE WILL_2 WILL_POSTOBC"),
-    "P6": ("RED RED_POSTOBC"),
-    "S4": ("ACE_DARKCAVE_ZEPHYR ACE_DOJO_BRIGID ACE_R24_MAGNUS ACE_R48_SOLANA ACE_R4_ESTELLE ACE_R8_MORDECAI "
-             "ACE_SEAFOAM_LENORE ACE_TOHJO_IMOGEN CARA COLETTE DWAYNE EMMA GWEN JAKE LANCE_2 LORI NAOKO RYAN "
-             "SIDE_BRASSIUS SIDE_CYRUS SIDE_IRIS SIDE_VOLKNER SIDE_WALLY SIMON"),
-}.items()}
+# ---------------------------------------------------------------- rules whose findings are warnings for now
+# rule -> the trainers whose teams may break it for now: their findings are warnings, anyone else's errors. The
+# redesign (D59) emptied both: a change that can't meet a rule at once puts the rule's trainers here
+# (`validate.py --pending` prints the table today's findings give), and PENDING_EVERYWHERE makes a new rule a warning
+# for every team until the teams meet it.
+PENDING_EVERYWHERE = set()
+PENDING = {}
 
 # ---------------------------------------------------------------- the move, item and ability classes
 ROLES = {

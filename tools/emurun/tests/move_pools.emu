@@ -8,9 +8,12 @@
 #   Cosmic Power, then Dark Hole and Draco Barrage once the game is cleared: Emerald Imperium's
 #   postgame TMs wait until then;
 # - DRAGONITE's tutor list has Draco Barrage once the game is cleared; it learns it, and in battle
-#   knocks out Whitney's Fairy-type CLEFAIRY (99 HP, Eviolite) with it: Draco Barrage hits
-#   Fairy-types, and with DRAGONITE's Attack above its Sp. Atk it is physical (117-138 damage;
-#   special, 79-93). The user takes a third of the 99 HP as recoil;
+#   knocks out a Fairy-type CLEFAIRY (99 HP, Eviolite) with it: Draco Barrage hits Fairy-types, and
+#   with DRAGONITE's Attack above its Sp. Atk it is physical (117-138 damage; special, 79-93). The
+#   user takes a third of the 99 HP as recoil. The CLEFAIRY was Whitney's lead until the trainer
+#   standard; whatever she leads with now, the battle's opposing Pokemon is given that Clefairy's
+#   type, HP, defences (level 33, Bold, 31 IVs), Eviolite and Magic Guard as soon as the battle copies
+#   it into gBattleMons, before the AI chooses for the first turn, with Speed 1 and four Tackles;
 # - TERAPAGOS learns what Imperium's Terapagos (its Terastal Form) does: Hyper Voice by TM, not
 #   Solar Beam or Power Gem.
 # Each list is checked against the build's own teachable learnsets (relearner_list).
@@ -82,17 +85,19 @@ mash B 120
 wait 60
 
 !battle_trainer(406)
+![c for v in [probe.resolve({'size': 'sizeof(struct BattlePokemon)', 'types': 'offsetof(struct BattlePokemon, types)', 'hp': 'offsetof(struct BattlePokemon, hp)', 'maxhp': 'offsetof(struct BattlePokemon, maxHP)', 'def': 'offsetof(struct BattlePokemon, defense)', 'spdef': 'offsetof(struct BattlePokemon, spDefense)', 'speed': 'offsetof(struct BattlePokemon, speed)', 'moves': 'offsetof(struct BattlePokemon, moves)', 'item': 'offsetof(struct BattlePokemon, item)', 'ability': 'offsetof(struct BattlePokemon, ability)', 'fairy': 'TYPE_FAIRY', 'eviolite': 'ITEM_EVIOLITE', 'guard': 'ABILITY_MAGIC_GUARD', 'tackle': 'MOVE_TACKLE', 'lead': designed_species("TRAINER_WHITNEY_1_HNS", 0, 0)})] for c in [f"within16 {{gBattleMons+{v['size']}}} {v['lead']} 1500 whitney_lead_in_battle"] + [f"poke8 {{gBattleMons+{v['size'] + v['types'] + i}}} {v['fairy']}" for i in range(2)] + [f"poke16 {{gBattleMons+{v['size'] + v[f]}}} {n}" for f, n in (('hp', 99), ('maxhp', 99), ('def', 50), ('spdef', 58), ('speed', 1), ('item', v['eviolite']), ('ability', v['guard']))] + [f"poke16 {{gBattleMons+{v['size'] + v['moves'] + 2 * i}}} {v['tackle']}" for i in range(4)]]
 !wait_action_menu("whitney_menu", 3000)
 !expect_battler(0, "moves[0]", "MOVE_DRACO_BARRAGE", "dragonite_learned_draco_barrage")
-!expect_battler(1, "species", "SPECIES_CLEFAIRY", "whitney_leads_with_clefairy")
+!expect_battler(1, "types[0]", "TYPE_FAIRY", "the_opposing_pokemon_is_fairy_type", bits=8)
+!expect_battler(1, "maxHP", "99", "the_opposing_pokemon_has_99_hp")
 !expect_battler(0, "hp", "166", "dragonite_at_full_hp")
 press A
 wait 20
 press A
 !wait_action_menu("next_turn", 3000)
 shot 05_after_draco_barrage.png
-expect16 {gEnemyParty+86} 0 clefairy_knocked_out_by_draco_barrage
-# Recoil: a third of the 99 HP CLEFAIRY lost, rounded down
+expect16 {gEnemyParty+86} 0 knocked_out_by_draco_barrage
+# Recoil: a third of the 99 HP it lost, rounded down
 !expect_battler(0, "hp", "134", "dragonite_took_32_recoil")
 
 # Egg Moves (D45): a species Heart & Soul had no Egg Move list for gets the dex's (Impidimp: Parting
