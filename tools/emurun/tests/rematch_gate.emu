@@ -18,7 +18,8 @@
 !give_mon(157, 50)
 savestate base.ss
 
-# Cooltrainer Gaven, Route 26 (three tiers, all made for eight badges)
+# Cooltrainer Gaven, Route 26 (tiers made for 8 badges, the Johto League and the Kanto League: with seven
+# or eight badges the gate offers his first team, his second beaten or not)
 !rematch_battle("TRAINER_GAVEN_HNS", 8, 1, "gaven_8_badges_first_beaten")
 !rematch_battle("TRAINER_GAVEN_HNS", 7, 1, "gaven_7_badges_first_beaten")
 !rematch_battle("TRAINER_GAVEN_HNS", 8, 2, "gaven_8_badges_second_beaten")

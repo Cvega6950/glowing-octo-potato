@@ -407,6 +407,11 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   against 3 of 5. Emerald Imperium predates the prediction flags.
 - Cost: none measurable. In `gym_trainers_m2` a turn takes 562 frames on average against 568
   before (most of a turn is animation and text).
+- Measured again for 0.17.0 (D59), on 0.16.0's teams before the redesign, against two more of the
+  engine's AI flags: in the 126 battles of
+  the Ace Trainer, Cooltrainer and rematch tests (`ace_trainers_johto`, `ace_trainers_kanto`,
+  `cooltrainers`, `boss_rematches`, mGBA), the prepared six won 61 against these two flags, 61 with
+  `Try To 2HKO` added, 71 with `Predict Move` and 64 with both. Neither is added.
 
 ## D21. Imperium-style boss teams
 
@@ -456,7 +461,9 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
   - From the 5th Gym on, each boss has one Mega Evolution with a stone from the Mega shop's
     tiers (D9). The stone isn't always on sale before the boss who uses it: Steelixite and
     Abomasite come with the 6th badge, and Jasmine or Pryce can be the 5th Gym. Morty has none
-    (the player's Mega Ring arrives only one badge earlier).
+    (the player's Mega Ring arrives only one badge earlier). Since D59 the bosses Mega Evolve from
+    the 3rd badge's stage: the rival's Mega Absol in the Burned Tower first, then Morty's Mega
+    Gengar (Absolite and Gengarite, like Steelixite and Abomasite, go on sale with the 6th badge).
   - Chuck, Jasmine and Pryce have three versions each, picked by how many of the three the
     player has beaten (HnS's `_1`, `_1_2`, `_1_3`): caps 50, 58 and 66.
   - The Kanto leaders and Blue are at 90 (the cap for all of Kanto). Red, with no cap left, was
@@ -1472,7 +1479,8 @@ DexNav shows and that wild encounters draw from:
   defeat flag; the reward's flag (`FLAG_SIDE_REWARD_*`, unused flags of Heart & Soul's).
 - **Teams** (`boss_teams.py`): every one is a boss at its stage's level cap (D21: raised to the
   player's cap when fought later), six Pokémon, the bag items of the stage's own Gym Leaders, and
-  from the 5th Gym's stage one Mega Evolution (not Geeta and N, whose teams have none). The
+  from the 5th Gym's stage one Mega Evolution (not Geeta and N, whose teams have none; since D59
+  from the 3rd badge's, Fantina's on). The
   Johto eight use none of their stage's Johto leaders' Pokémon. The postgame's nine are at level
   100 like Red, who stays the hardest battle (D27): no EVs, no prediction AI, three Full Restores
   to his four (`validate.py` checks). Rotom-Wash's Hydro Pump is allowed: the Rotom Catalog
@@ -1863,9 +1871,13 @@ follows is the first build's; D45 lists what changed.)
   below the player's strongest, evolved, 31 IVs) with Imperium-style teams for the route's stage
   (the badges the player has when the route can first be reached): three Pokémon on the first
   routes, four after the first badge, five to the fourth, six from the fifth and on the routes
-  past Cianwood and Mahogany (43, 47, 48), EVs from the sixth and in Kanto; every Pokémon with
-  an item, a nature, an ability and four moves; every team with a plan (sand, rain, sun, snow,
-  Trick Room, hazards, screens, Tailwind, terrain, pivots); no Mega Stones; sub-legendaries in
+  past Cianwood and Mahogany (43, 47, 48), EVs from the sixth and in Kanto (since D59, full spreads
+  from the 3rd badge through the Johto League and the ace's in one stat at the 2nd); every Pokémon
+  with an item, a nature, an ability and four moves; every team with a plan (sand, rain, sun, snow,
+  Trick Room, hazards, screens, Tailwind, terrain, pivots); no Mega Stones (since D59, Megas on a
+  third of the teams from the 5th badge and two thirds from the 8th and in Kanto, counted with the
+  route mini-bosses and Heart & Soul's Cooltrainers; the first Aces with one, Leander and Maxim, are
+  at the 8th badge); sub-legendaries in
   Kanto only, one at most. Each has a name and texts of its own. The two on Route 23 are stage
   8: the player reaches it with eight badges, before the Johto League. Heart & Soul's own
   Cooltrainers (20, 26 teams with their phone rematches) get competitive teams that keep their
@@ -2277,3 +2289,91 @@ follows is the first build's; D45 lists what changed.)
   `imperium_species.py --check` (the dex's 24 Megas match these entries: nothing to rewrite). All
   78 play tests and the old-save test pass on mGBA and VBA-M with this ROM (TESTING.md).
   `FixOldHallOfFameEggs` is checked by reading only.
+
+## D59. The trainer standard: every designed team redesigned
+
+- The user, after meeting a level-39 Quilava and a level-39 Weepinbell on the rival in the Burned
+  Tower: "You need to review every trainer team and do a better job ... Study the way imperium and
+  radical red are built I need this on that same level", then "make the AI better, the teams
+  better, do better".
+- **Before.** The 234 designed battles (the bosses, the rival, Team Rocket, the side battles, the
+  route mini-bosses, the Ace Trainers and the upgraded Cooltrainers) had competitive sets but kept
+  many Pokémon below the stage their level calls for: 60 Pokémon in 34 battles at their own stage
+  (26 past a level evolution), and 28 more on 19 teams once a battle was fought later (an Eviolite
+  kept any of them unevolved: Petrel's Pupitar at 66, D56). The rival's Burned Tower team had a
+  Quilava and a Weepinbell at the cap (39 on HARD caps), the starter past its evolution and the
+  Weepinbell with Chlorophyll on a team with no sun.
+- **The study.** Radical Red's and Emerald Imperium's trainers were studied for how they are built,
+  from their public documents and data (Radical Red 4.1's boss sheet and trainer dumps, Emerald
+  Imperium 1.3.1's trainer data, Boss Battles sheet and changelogs: TRAINER_STANDARD.md 0.1), for
+  their rules, not for their teams (D2: no team of either game was copied, and the designers never
+  opened their team lists; a review script
+  compared every set and team with both games' data and found nothing copied but Red's canonical
+  six, which D27 keeps). What makes them hard is not levels: their Pokémon are as evolved as their
+  level allows, hold items and have natures, abilities and four moves that fit a plan, their teams
+  have a setup move, priority and a pivot or hazards, bosses Mega Evolve from the early Gyms and
+  have EVs, and the late bosses bring legendaries.
+- **The standard,** `docs/crystal_imperium/TRAINER_STANDARD.md`: rules by code (E evolution, Z team
+  size, I items, N natures, V IVs and EVs, A abilities, M moves, P plans, Megas and legendaries, C
+  class themes, DB doubles, R rematches, S variety and copies, L levels), each tagged [V] (checked
+  by `validate.py`, an error), [W] (a warning) or [C] (for a critic's reading). Approved for it:
+  Megas on bosses and side battles from the 3rd badge, Morty included (this changes D21's "Morty
+  has none"); Megas on a third of the mini-boss and Ace Trainer teams from the 5th badge and two
+  thirds from the 8th and in Kanto (this changes D47's "no Mega Stones"); full EV spreads on the
+  designed teams from the 3rd badge through the Johto League, none after the Kanto League (as D47
+  had it; this changes D47's "EVs from the sixth"); a legendary-tier Pokémon for each Elite Four
+  member and up to two for Lance, no
+  restricted legendary but N's Zekrom; Red still the hardest battle (D27). EVs and IVs count with
+  Minimal Grinding off (D3), as the player's do; a nature always does, so a Trick Room team's
+  members (its setters and slow Pokémon) have Speed-lowering natures as well as 0 Speed IVs, and a
+  fast support Pokémon such as Will's Xatu keeps its Speed.
+- **The engine,** the redesign's first part: a team fought after its stage evolves as any
+  trainer's does, Eviolite holders too, except a named Eviolite species (bulkier with its Eviolite
+  than evolved: Golbat, Sneasel, Scyther, Chansey, Porygon2, Dusclops, Rhydon...) and a Light Ball
+  Pikachu; an evolved Pokémon can hold another item (`raised_item`). A rematch tier made for a part
+  of the game is offered from it on (the rematch gate by stage), which gave Gaven, Beth and Reena
+  their later teams back.
+- **The redesign.** Six work groups redesigned 193 of the 234 battles (the other 41 already met
+  every rule a script checks), each team checked by a script against every such rule at its stage
+  and at every later stage its battle can be fought, then read by a critic as a Radical Red or
+  Emerald Imperium player would:
+  - F1, the rival, Team Rocket and Elder Li (23): the Burned Tower rival has Pupitar with Stealth
+    Rock, Crobat, Weavile, a Focus Sash Gengar, Mega Absol and his final-stage starter; Petrel's
+    Hideout team has nothing left that evolves when it is fought later; Ariana's three are built
+    for the tag battle beside Grunt 23.
+  - F2, the Gym Leaders, the Elite Four and Lance, Eusine, Kanto and its mini-bosses, the
+    rematches (30): Megas from Morty's Mega Gengar on; Will's Trick Room with Cresselia and Mega
+    Slowbro, Koga's Munkidori, Bruno's Terrakion and Mega Machamp, Karen's Darkrai and Mega
+    Houndoom, Lance's Raging Bolt and Latios; Chuck's and Jasmine's 5th, 6th and 7th Gym versions
+    each a team of its own.
+  - F3, the side battles and the Johto route mini-bosses (23); F4, the Ace Trainers and the
+    upgraded Cooltrainers (42, with the Megas the standard's share needs); F5, the Cooltrainer
+    rematch families (9: Gaven's tiers made for the 8th badge, the Johto League and the Kanto
+    League, Beth's and Reena's for the 7th, the 8th and the Johto League).
+  - F6, the 66 designed battles the others didn't cover, mostly for EV spreads, team roles and
+    repeated sets: Pryce's three Gym versions each a team of its own (Iron Bundle from the 6th
+    Gym, Baxcalibur too at the 7th), sets the Kimono Girls' lone Pokémon win with, priority from
+    Pokémon that use it on the postgame rematches (Gale Wings Talonflame, Fake Out Munkidori, Mach
+    Punch Pawmot, Shadow Sneak Mimikyu) and fewer repeated Megas (Roark's Aerodactyl, Volkner's
+    Luxray, Iris's Lapras, Gardenia's Roserade, Will's postgame Latias). Red keeps his six species
+    and EVs; his Mega Charizard Y now has Drought (the battle gives a Mega the ability of its base
+    form's slot, and Solar Power's slot gave it Sheer Force) for a sun the team uses.
+- **The validator** reports every finding by its rule: 591 warnings on 0.15.2's designed teams,
+  0 errors and 0 warnings now.
+- **Measured** (the play tests, 0.17.0's regression; the automated player never heals or uses the
+  Bag): Whitney, the 3rd Gym, beat a six of the Pokémon a player has by then in all 36 battles it
+  played with two game plans when her team was made (it took two to four of her six each time),
+  and in the regression won 36 of 36 on mGBA and 35 on VBA-M, naive and planned, so her battles
+  are reported, not judged. Playing game plans, the prepared six beat Morty 19 and 18 times in 24
+  (mGBA, VBA-M), Jasmine 4 and 5 times in 16 (naively 3 and 1: its Ground moves miss her Air
+  Balloon Magnezone, Levitate Bronzong and Skarmory) and Koga 4 and 7 times in 8; sixes built for
+  them beat Karen 7 and 8 times in 18 and Blue 7 and 5 times in 16 (holding care-package items and
+  Mega Evolving Ampharos, as Red's six does; with a Gardevoir and a Lucario where its Staraptor
+  and Garchomp are, 1 and 2 of 24), and Red 7 times in 24 on both. Red stays the hardest battle by
+  design (D27: EVs that Minimal Grinding leaves him, four Full Restores, level 100); the tests'
+  sixes differ by battle, so their counts don't rank the battles.
+- **The AI** is unchanged: the smart AI every trainer has (D20) was measured, on 0.16.0's teams
+  before the redesign, against two more of the engine's AI flags, Try To 2HKO and Predict Move, in
+  126 battles, and neither did better (D20).
+- Not yet: Heart & Soul's 425 ordinary trainers keep their own teams at the cap (D56); they are the
+  standard's next part.

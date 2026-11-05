@@ -1,41 +1,53 @@
 # Crystal Imperium changelog
 
-## 0.17.0 (unreleased)
+## 0.17.0-experimental (2026-11-05)
 
-### Every designed team redesigned (DECISIONS.md D59)
+### Every designed team to the trainer standard (DECISIONS.md D59)
 - Trainers on Radical Red's and Emerald Imperium's level (the rival in the Burned Tower had a level-39
   Quilava and Weepinbell). Both games' trainers were studied for how they are built (not for their
   teams, which aren't copied), and that became the trainer standard (`TRAINER_STANDARD.md`): every
-  Pokémon as evolved as its level allows wherever its battle can be fought, real sets (an item, a nature
-  and an ability that fit, four useful moves), teams with a setup move, priority and a pivot or hazards,
-  EVs from the 3rd badge, Megas from the 3rd Gym on, and a legendary for each Elite Four member.
-- Every designed battle was redesigned to it, each team checked by script and read by a critic:
+  Pokémon as evolved as its level allows wherever its battle can be fought (but the named Eviolite
+  species holding an Eviolite and a Light Ball Pikachu), real sets (an item, a nature and an ability
+  that fit, four useful moves), boss teams with a setup move, priority and a pivot or hazards from the
+  3rd badge, full EV spreads from the 3rd badge through the Johto League (they count with Minimal
+  Grinding off, as yours do), Megas from the 3rd badge on (the Burned Tower rival's and Morty's
+  first), and a legendary for each Elite Four member.
+- 193 of the 234 designed battles were redesigned to it, each team checked by script and read by a
+  critic; the other 41 already met every rule a script checks and keep their teams:
   - The rival. His Burned Tower team is Pupitar with Stealth Rock, Crobat, Weavile, a Focus Sash Gengar,
     Mega Absol and his fully evolved starter; every later battle has a Mega (Tyranitar from the 4th).
   - Team Rocket: Proton's poison and Nasty Plot Houndoom; Petrel's Zoroark disguised as his Mega
     Sableye; Ariana's three built for the tag battle beside Grunt 23; Archer's Kingambit and Mega
     Houndoom.
-  - The Gym Leaders. Falkner's Tailwind, Whitney's Clefable and Miltank (a real wall now), Morty's Mega
-    Gengar, Chuck's and Jasmine's 5th, 6th and 7th Gym versions each a team of its own, and the
-    rematches.
+  - The Gym Leaders. Falkner's Tailwind, Whitney's Clefable and Miltank (a real wall now), Morty's
+    Mega Gengar, Chuck's, Jasmine's and Pryce's 5th, 6th and 7th Gym versions each a team of its own
+    (Pryce's later ones with Iron Bundle and Baxcalibur), and some of the rematches.
   - The Elite Four and Lance: Will's Trick Room with Cresselia and Mega Slowbro, Koga's Munkidori, Bruno's
     Terrakion and Mega Machamp, Karen's Darkrai and Mega Houndoom, Lance's Raging Bolt and Latios.
   - Kanto's Gym Leaders, Blue and the Kanto mini-bosses; Red keeps his six, and his Mega Charizard Y now
-    brings its sun (Drought).
-  - The side battles, the route mini-bosses, the Ace Trainers (a third with a Mega from the 5th badge, two
-    thirds from the 8th) and the Cooltrainers, whose rematch teams are each made for their own part of
-    the game (Gaven's last after the Kanto League).
-- The trainer AI is unchanged: the smart AI every trainer has (D20) did better in 126 test battles than
-  the engine's other options (the 2HKO check, move prediction).
+    brings its sun (Drought). The postgame rematches' priority moves hit (Gale Wings Talonflame,
+    Fake Out Munkidori, Mach Punch Pawmot, Shadow Sneak Mimikyu), and the Kimono Girls' lone
+    Pokémon have sets that win alone.
+  - The side battles (fewer repeated Megas: Roark's Mega Aerodactyl, Volkner's Mega Luxray, Iris's
+    Mega Lapras, Gardenia's Mega Roserade), the route mini-bosses, the Ace Trainers (Megas from the
+    8th badge, on 20 of the 31 teams after the Johto League) and the Cooltrainers (Megas from the
+    7th badge), whose rematch teams are each made for their own part of the game (Gaven's last after
+    the Kanto League).
+  - Every designed team passes the standard's checks: 0 errors and 0 warnings from `validate.py`
+    (591 warnings on 0.16.0's teams).
+- The trainer AI is unchanged: in 126 test battles (on 0.16.0's teams) the smart AI every trainer has
+  (D20) was beaten as often as, or less often than, with two more of the engine's AI flags added
+  (the 2HKO check, move prediction).
 
 ### Teams fought later evolve
 - A boss's, Ace Trainer's or Cooltrainer's team fought after the part of the game it was made for
-  evolves at your cap, as any trainer's does, Eviolite holders too: Petrel's Pupitar is a Tyranitar
-  when you take the Rocket Hideout with five or six badges (before, a Pupitar at 66, past
-  Tyranitar's 55), Ace Kaito's Cutiefly a Ribombee with eight badges. Only a Pokémon that is bulkier
+  evolves at your cap, as any trainer's does, Eviolite holders too: Ace Kaito's Cutiefly is a
+  Ribombee from two badges on (before, an Eviolite kept any of them as made: 0.16.0's Petrel had a
+  Pupitar at 66 in the Rocket Hideout, past Tyranitar's 55). Only a Pokémon that is bulkier
   with its Eviolite than evolved (the trainer standard's named Eviolite species: Golbat, Sneasel,
   Scyther, Chansey, Porygon2, Dusclops, Rhydon...) or a Light Ball Pikachu stays as it is, and one
-  that evolves into one of them stops there (Route 42's Rhyhorn becomes an Eviolite Rhydon). A
+  that evolves into one of them stops there (Route 30's Mikey's Eviolite Pichu becomes a Pikachu,
+  holding its raised item). A
   team can give an evolved Pokémon another item instead of its Eviolite.
 - Heart & Soul's own trainers keep 0.15.2's rule: an Eviolite, an Everstone or a Pokémon's own item
   keeps it as it is (Lass Carrie's Happiny).
@@ -43,8 +55,13 @@
 ### Cooltrainer rematches
 - Gaven, Beth and Reena offer their later rematch teams again: since 0.15.2 their third teams
   waited for the sixteenth badge. A rematch team made for a part of the game is offered from it
-  on (Gaven's third with eight badges, Reena's third after the Johto League). Heart & Soul's other
+  on (Gaven's second after the Johto League and his third after the Kanto League, Beth's and
+  Reena's third after the Johto League). Heart & Soul's other
   rematch trainers are unchanged.
+
+### Fixes
+- Mega Snorlax's and Mega Orbeetle's icons had the wrong colours (Snorlax's garden and tree blue,
+  Orbeetle's dome salmon and teal); they use the palettes their icons were drawn for.
 
 ### Tools
 - The designed teams can give a Pokémon IVs (0 Speed for a Trick Room team, Hidden Power's type),
@@ -53,10 +70,22 @@
   move and item data (`species_db.py`, `trainer_rules.py`): evolution at every point of the game a
   battle can be fought, team sizes, items, natures, IVs and EVs, abilities, moves, team roles,
   Trick Room, Megas, legendaries, map weather, tag battles, rematch tiers and repeated sets.
-  What 0.15.2's teams still break is listed and warns until the redesigned teams land.
+  Since the redesigned teams meet every rule it checks, any finding fails the check
+  (`trainer_rules.PENDING`, which made 0.15.2's findings warnings during the redesign, is empty).
 - Play tests: `designed_species` (written by `trainer_tests.py` from the teams: all 234 designed
   battles as made at their stages), `fought_later`, `rematch_gate`, `tag_battle` (Ariana's real
   multi battle with Lance); the test runner checks a Pokémon's held item (`expectpartyitem`).
+- The test runner takes script lines up to 4,094 characters and game plans of up to 64 rules: a
+  longer line was cut at 512 bytes and its tail run as a command of its own, and a plan kept only
+  its first 16 rules (Karen's, Lance's, Blue's, Chuck's and Pryce's last Pokémon got no planned
+  move). `emu.py` refuses a longer line or plan.
+- Tests that named a boss's Pokémon read the team data instead (Falkner's lead), and the turn
+  timing test (`battle_turn_flow`) gives Whitney's lead one plain move, whatever her team leads
+  with (her Aipom's Fake Out moved first).
+- The boss tests follow the new teams: Koga, Morty and Jasmine are fought with game plans, Karen gets
+  18 tries, Blue's six holds care-package items, Mega Evolves Ampharos and brings a Rotom-Wash, a
+  Staraptor and a Garchomp, and Whitney's battles are reported, not judged (the autopilot won 1 of
+  72 against her new team, on mGBA and VBA-M).
 
 ## 0.16.0-experimental (2026-10-31)
 

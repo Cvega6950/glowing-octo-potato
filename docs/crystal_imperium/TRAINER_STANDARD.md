@@ -15,8 +15,9 @@ trainer. The user asked for it after the rival's battle in the Burned Tower:
 
 The standard was written against the teams of 0.15.2. Where a rule's evidence counts what our teams
 do or break, and in the last columns of tables 11.1 and 16, the counts describe those 0.15.2 teams.
-0.17.0's designed teams were redesigned to the standard. Rules settled after it was written say
-"Decided after the standard was written".
+0.17.0's designed teams meet the standard: 193 of the 234 were redesigned to it, and the other 41
+already met every rule a script checks (D59). Rules settled after it was written say "Decided after
+the standard was written".
 
 The evidence comes from two studies written for this standard, of Radical Red 4.1's and Emerald
 Imperium 1.3.1's public documents and data, from an audit of 0.15.2's teams against them, from
@@ -66,18 +67,21 @@ changelog has "Elite 4 will now scale to level 100 after you become the Champion
 | [C] | the critic checks it by reading the team as a competitive player, as D47's critic did |
 | [P] | the play tests check it (`tools/emurun/tests/`) |
 
-A rule marked "exists" was in `validate.py` before the standard: legal abilities, four learnable
-moves on reworked teams, the cap of each team's stage, Return's happiness and Red. The other [V] and
-[W] rules came with the standard, in `trainer_rules.py`, which reads the build's own species, move
-and item data through its preprocessor (`species_db.py`). A [V] rule that a 0.15.2 team still breaks
-only warns for that team while the team is listed in `trainer_rules.PENDING`
-(`validate.py --pending` prints the list). P3 and V4 warn for every team while they are in
-`PENDING_EVERYWHERE`.
+A rule marked "exists" was in `validate.py` before the standard: legal abilities (A1), four
+learnable moves on reworked teams (M1), the cap of each team's stage (L1) and Return's happiness
+(L5), as was I8's check of Red. R3 has no check of its own: S4's exact-set test refuses a set a boss
+rematch shares with its first battle. The other [V] and [W] rules came with the standard, in
+`trainer_rules.py`, which reads the build's own species, move and item data through its preprocessor
+(`species_db.py`). While the redesign was under way, a [V] rule that a 0.15.2 team still broke only
+warned for that team, listed in `trainer_rules.PENDING` (`validate.py --pending` prints the list),
+and P3 and V4 warned for every team from `PENDING_EVERYWHERE`. Since 0.17.0 both are empty: every
+designed team meets every rule the validator runs (0 errors, 0 warnings).
 
 In 0.17.0, `validate.py` runs the [V] and [W] rules on the designed teams except V1, V5, N3, A3, C1,
-M5's stage medians and I8 beyond Red's items. Rules on Heart & Soul's ordinary trainers wait for
-their redesign: E9, Z4, I2, A4, M10, DB1, S2 and S3, and the parts of other rules that name them. L3
-waits for the stage tool and G1 for the trainer document. S6 runs in review.
+P3's Mega shares for mini-bosses and Aces, M5's stage medians and I8 beyond Red's items. Rules on
+Heart & Soul's ordinary trainers wait for their redesign: E9, Z4, I2, A4, M10, DB1, S2 and S3, and
+the parts of other rules that name them. L3 waits for the stage tool and G1 for the trainer
+document. S6 runs in review.
 
 ### 0.3 Numbers computed for this standard
 
@@ -442,7 +446,7 @@ Counts are the trainers placed on the maps, counted for this standard. The last 
 |---|---|---|
 | R1 | [V] | Each phone rematch tier is a team made for its own stage. Tier 2's stage is at least the later of stage 3 and the first battle's stage: rematches need three badges (`HasEnoughBadgesForRematch`, `#define OW_REMATCH_BADGE_COUNT 3 // After Whitney`). Each tier's stage is at least the stage of the tier before. The rematch gate offers a tier only from its stage, tier 2 included (`GetMaxRematchStageForBadges`, for every tier made for a stage; Heart & Soul's own tiers keep its level ceiling). |
 | R2 | [V] | A tier is a new team, not a copy of the one before. It keeps the trainer's theme and ace, and adds a Pokémon (Z3), evolves its line or upgrades its sets. RR 13.1: "The teams are not the first teams leveled up"; D47: "three Cooltrainers' rematches (Gaven, Beth, Reena) have their first battle's teams". EI copies its tiers (EI 11), which we do not follow. |
-| R3 | [V] exists | Boss rematches (`_2` at J, `_POSTOBC` at K) are new teams (D47). |
+| R3 | [V] | Boss rematches (`_2` at J, `_POSTOBC` at K) are new teams (D47). |
 | R4 | [V] | A tier list that repeats an ID in `gRematchTable` keeps the repeated ID's team. Examples: `TRAINER_KENNY_3_HNS` three times, `TRAINER_KENJI_2_HNS` four times. The validator reads the table and checks each distinct ID once. |
 
 ## 14. Variety and no copying

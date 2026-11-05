@@ -100,8 +100,9 @@ expectne8 {gBattleOutcome} 0 clair_resolved
 # prepared six beat Pryce only 1 time in 16 even with items and a game plan (0 in 16 without), so
 # Chuck and Pryce face sixes built for them, played with a game plan like the Elite Four's
 # (bosses_e4): they won 16 of 16 and 13 of 16 when built. Each Gym Leader must be beaten at least
-# once in eight tries (Jasmine and Clair sixteen, Morty twenty-four), and every boss Mega Evolution
-# happens. The prepared six beat Morty about 1 time in 5 and Jasmine about 1 in 3, so eight tries
+# once in eight tries (Jasmine and Clair sixteen, Morty twenty-four), and the Mega Evolutions of the
+# 5th-Gym versions and Clair happen (Morty's and the Burned Tower rival's, new with the trainer standard,
+# aren't checked). The prepared six beat Morty about 1 time in 5 and Jasmine about 1 in 3, so eight tries
 # missed every win by chance about 18% and 4% of the time. (With the battle's per-frame random number
 # advance switched off, the battle code before and after DECISIONS.md D40 plays the same battles
 # move for move: D40 only changes which random numbers a battle draws, not the odds.)

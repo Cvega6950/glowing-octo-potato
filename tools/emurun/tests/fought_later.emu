@@ -2,10 +2,10 @@
 # standard's rule E6; src/battle_main.c GetTrainerMonEvolvedSpecies). At its own stage's cap it keeps its
 # Pokemon as made; raised to a later cap it evolves as any trainer's does, a level evolution at its level and
 # any other from 32, and only a named Eviolite species holding an Eviolite (Golbat, Sneasel, Rhydon...) or a
-# Pikachu holding a Light Ball stays as it is; a Pokemon that evolves into one of them stops there (no
-# designed team has one since the trainer standard: rule E6 gives every Eviolite holder that evolves a raised
-# item). An evolved Pokemon holds its raised item (mon()'s raised_item) when its team gives it one, else its
-# own item.
+# Pikachu holding a Light Ball stays as it is; a Pokemon that evolves into one of them stops there (Mikey's
+# Eviolite Pichu at Pikachu, below). An evolved Pokemon holds its raised item (mon()'s raised_item) when its
+# team gives it one, else its own item; since the trainer standard every Eviolite holder that evolves has one
+# (rule E6).
 # Before, an Eviolite kept any of them unevolved whatever the level: Petrel's Pupitar battled at 66.
 # Every slot's level, species and item come from the team's data and those rules (expect_designed_party),
 # so the checks follow the teams as the designers change them; the named lines are the code's own cases.

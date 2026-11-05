@@ -4,10 +4,11 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.16.0-experimental).** The full Heart & Soul story is in and
-> playable. All the systems listed below work and are tested in an emulator. Every trainer
-> uses the smart AI and fights at your level cap, every boss from the rival to Red, rematches and
-> postgame included, has an Imperium-style team with all of its Pokémon at the level cap, Ace
+> **Status: in development (0.17.0-experimental).** The full Heart & Soul story is in and playable.
+> All the systems listed below work and are tested in an emulator. Every trainer uses the smart AI
+> and fights at your level cap, every boss from the rival to Red, rematches and postgame included,
+> has a team built to a trainer standard on Radical Red's and Emerald Imperium's level (as are the
+> side battles, route mini-bosses and Ace Trainers), with all of its Pokémon at the level cap, Ace
 > Trainers wait along the way, the Pokémon have Emerald Imperium's abilities, move pools and
 > evolutions (from its official dex), Emerald Imperium's own Megas are in, the TM list is Emerald
 > Imperium's, and HMs work without being taught. Nobody has played the whole story through yet.
@@ -162,16 +163,26 @@ From the first step of a new game:
 - **Smart AI for every trainer** on NORMAL and HARD: it knows your team, picks the best move,
   switches smartly and plays around HP (EASY keeps Heart & Soul's AI for ordinary trainers).
   Sleep Clause.
-- **Imperium-style bosses for the whole story and the postgame:** every Johto Gym Leader
-  (Chuck, Jasmine and Pryce in three versions, for whichever order you take them), the rival
-  from Azalea to the Indigo Plateau, Team Rocket's executives, the Kimono Girls, the Elite Four
-  and Lance, the eight Kanto leaders, Blue and Red, and every rematch: the Johto leaders in the
-  Fighting Dojo, the Elite Four again after the Johto League, and all of them after the Kanto
-  League, with legendaries and Paradox Pokémon. **Every boss Pokémon is at your level cap** (not just the ace;
-  with HARD level caps, the HARD cap), with held items, natures, abilities, competitive moves,
-  and Mega Evolutions from the 5th Gym on. A boss you fight later than usual (the Rocket Hideout
-  with six badges, a rematch after the Kanto League) is raised to your cap then; rematches after
-  the Kanto League are at 100.
+- **Imperium-style bosses for the whole story and the postgame:** every Johto Gym Leader (Chuck,
+  Jasmine and Pryce in three versions, for whichever order you take them), the rival from Azalea to
+  the Indigo Plateau, Team Rocket's executives, the Kimono Girls, the Elite Four and Lance, the
+  eight Kanto leaders, Blue and Red, and every rematch: the Johto leaders in the Fighting Dojo, the
+  Elite Four again after the Johto League, and all of them after the Kanto League, with legendaries
+  and Paradox Pokémon. **Every boss Pokémon is at your level cap** (not just the ace; with HARD
+  level caps, the HARD cap), with held items, natures, abilities, competitive moves, and Mega
+  Evolutions from the 3rd badge on (the Burned Tower rival's and Morty's first). A boss you fight
+  later than usual (the Rocket Hideout with six badges, a rematch after the Kanto League) is raised
+  to your cap then, its Pokémon evolved as that level allows (a named Eviolite species holding its
+  Eviolite, such as Petrel's Golbat, stays as it is); rematches after the Kanto League are at 100.
+- **Trainers on Radical Red's and Emerald Imperium's level** (since 0.17.0): every designed team,
+  from the bosses to the side battles, the route mini-bosses, the Ace Trainers and the Cooltrainers,
+  is built to a written standard (`TRAINER_STANDARD.md`) and checked by script: its Pokémon as
+  evolved as their level allows wherever you meet them (but a named Eviolite species holding its
+  Eviolite, such as Golbat, Aipom or Rhydon, and Red's Light Ball Pikachu), a set for each (item,
+  nature, ability and four moves that fit a plan), a setup move, priority and a pivot or hazards on
+  the boss and side-battle teams from the 3rd badge, EV spreads from the 3rd badge through the Johto
+  League (none after the Kanto League but Red's; they count with Minimal Grinding off, as yours do),
+  and a legendary-tier Pokémon for each Elite Four member.
 - **Red is the hardest battle in the game:** all six at level 100, competitive EVs that only his
   Pokémon keep under Minimal Grinding, the boss AI with move and switch prediction, four Full
   Restores, and a sun team around Mega Charizard Y. He battles only the Kanto Champion, so win
@@ -203,15 +214,15 @@ your house), except Auto Run, which is in the Options menu and the L menu.
 Also asked for and done: DexNav and Rare Candy before the first Gym (both are there from the
 first step), Easy Catch, an unlimited PokéVial given with the Rare Candy Box, milestone care
 packages (in stacks since 0.11.0), Emerald Imperium's L menu (with a start menu that fits on
-the screen again), Emerald Imperium's abilities and move pools, a TM clerk in every Poké Mart, and
-Emerald Imperium's custom Megas (D58).
+the screen again), Emerald Imperium's abilities and move pools, a TM clerk in every Poké Mart,
+Emerald Imperium's custom Megas (D58), and every designed trainer team brought to the trainer
+standard (D59: 193 of the 234 redesigned, the other 41 already met it).
 
 **Not done yet:** a full story playthrough; a test on a real iPhone; Imperium-style teams for
 Heart & Soul's other ordinary trainers (they keep their own teams, at your level cap, evolved,
 with 31 IVs); the abilities Imperium and Radical Red made themselves, which the engine doesn't
-have (D35, D45; six of Imperium's Megas have the closest official one, D58); a boss or side battle
-with one of Imperium's Megas (none has one yet). Imperium's two TMs of Radical Red moves, Dark
-Hole and Draco Barrage, are postgame tutor moves instead (D39).
+have (D35, D45; six of Imperium's Megas have the closest official one, D58). Imperium's two TMs
+of Radical Red moves, Dark Hole and Draco Barrage, are postgame tutor moves instead (D39).
 
 Details: [EVOLUTIONS.md](EVOLUTIONS.md) · [FEATURE_MATRIX.md](FEATURE_MATRIX.md) · [TESTING.md](TESTING.md) ·
 [DECISIONS.md](DECISIONS.md) · [BALANCE.md](BALANCE.md) · [KNOWN_ISSUES.md](KNOWN_ISSUES.md) ·
