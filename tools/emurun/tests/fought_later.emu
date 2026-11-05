@@ -2,8 +2,10 @@
 # standard's rule E6; src/battle_main.c GetTrainerMonEvolvedSpecies). At its own stage's cap it keeps its
 # Pokemon as made; raised to a later cap it evolves as any trainer's does, a level evolution at its level and
 # any other from 32, and only a named Eviolite species holding an Eviolite (Golbat, Sneasel, Rhydon...) or a
-# Pikachu holding a Light Ball stays as it is; a Pokemon that evolves into one of them stops there. An evolved
-# Pokemon holds its raised item (mon()'s raised_item) when its team gives it one, else its own item.
+# Pikachu holding a Light Ball stays as it is; a Pokemon that evolves into one of them stops there (no
+# designed team has one since the trainer standard: rule E6 gives every Eviolite holder that evolves a raised
+# item). An evolved Pokemon holds its raised item (mon()'s raised_item) when its team gives it one, else its
+# own item.
 # Before, an Eviolite kept any of them unevolved whatever the level: Petrel's Pupitar battled at 66.
 # Every slot's level, species and item come from the team's data and those rules (expect_designed_party),
 # so the checks follow the teams as the designers change them; the named lines are the code's own cases.
@@ -16,23 +18,22 @@
 !give_mon(157, 50)
 savestate base.ss
 
-# Petrel in the Rocket Hideout (stage 4, fought with 4 to 6 badges): at 50 his team as made
+# Petrel in the Rocket Hideout (stage 4, fought with 4 to 6 badges): at 50 his team as made. Since the
+# trainer standard's redesign nothing on it evolves later (his Eviolite Pupitar left the team); his Eviolite
+# Golbat is a named Eviolite species and stays a Golbat at 58 and 66
 loadstate base.ss
 !set_stage(4)
 !battle("TRAINER_PETREL_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B petrel_at_50_action_menu
 shot 01_petrel_50.png
-!expect_party_species("gEnemyParty", designed_slot("TRAINER_PETREL_1_HNS", "Pupitar"), "SPECIES_PUPITAR", "petrel_pupitar_as_made_at_50")
 !expect_designed_party("TRAINER_PETREL_1_HNS", 4, "petrel_at_50")
 
-# Five badges, 58: the Pupitar is a Tyranitar (55) with its raised item; the named Golbat keeps its Eviolite
+# Five badges, 58: the named Golbat keeps its Eviolite
 loadstate base.ss
 !set_stage(5)
 !battle("TRAINER_PETREL_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B petrel_at_58_action_menu
 shot 02_petrel_58.png
-!expect_party_species("gEnemyParty", designed_slot("TRAINER_PETREL_1_HNS", "Pupitar"), "SPECIES_TYRANITAR", "petrel_pupitar_is_a_tyranitar_at_58")
-!expect_party_item("gEnemyParty", designed_slot("TRAINER_PETREL_1_HNS", "Pupitar"), designed_item("TRAINER_PETREL_1_HNS", designed_slot("TRAINER_PETREL_1_HNS", "Pupitar"), 5), "petrel_tyranitar_holds_its_raised_item_at_58")
 !expect_party_species("gEnemyParty", designed_slot("TRAINER_PETREL_1_HNS", "Golbat"), "SPECIES_GOLBAT", "petrel_named_eviolite_golbat_stays_at_58")
 !expect_party_item("gEnemyParty", designed_slot("TRAINER_PETREL_1_HNS", "Golbat"), "ITEM_EVIOLITE", "petrel_golbat_keeps_its_eviolite_at_58")
 !expect_designed_party("TRAINER_PETREL_1_HNS", 5, "petrel_at_58")
@@ -43,7 +44,6 @@ loadstate base.ss
 !battle("TRAINER_PETREL_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B petrel_at_66_action_menu
 shot 03_petrel_66.png
-!expect_party_species("gEnemyParty", designed_slot("TRAINER_PETREL_1_HNS", "Pupitar"), "SPECIES_TYRANITAR", "petrel_pupitar_is_a_tyranitar_at_66")
 !expect_party_species("gEnemyParty", designed_slot("TRAINER_PETREL_1_HNS", "Golbat"), "SPECIES_GOLBAT", "petrel_named_eviolite_golbat_stays_at_66")
 !expect_designed_party("TRAINER_PETREL_1_HNS", 6, "petrel_at_66")
 
@@ -57,36 +57,39 @@ shot 04_kaito_33.png
 !expect_party_species("gEnemyParty", designed_slot("TRAINER_ACE_R29_KAITO_HNS", "Cutiefly"), "SPECIES_RIBOMBEE", "kaito_eviolite_cutiefly_is_a_ribombee_at_33")
 !expect_designed_party("TRAINER_ACE_R29_KAITO_HNS", 2, "kaito_at_33")
 
-# Route 42's Benjamin (stage 3) two stages later, 58: his Eviolite Rhyhorn evolves into a Rhydon (42), a
-# named Eviolite species, and stops there with its Eviolite (a Rhydon evolves by trade from 32)
+# Route 42's Benjamin (stage 3) two stages later, 58: his Eviolite Rhydon, a named Eviolite species, stays a
+# Rhydon with its Eviolite (a Rhydon evolves by trade from 32)
 loadstate base.ss
 !set_stage(5)
 !battle("TRAINER_BENJAMIN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B benjamin_at_58_action_menu
 shot 05_benjamin_58.png
-!expect_party_species("gEnemyParty", designed_slot("TRAINER_BENJAMIN_HNS", "Rhyhorn"), "SPECIES_RHYDON", "benjamin_rhyhorn_stops_at_the_named_rhydon")
-!expect_party_item("gEnemyParty", designed_slot("TRAINER_BENJAMIN_HNS", "Rhyhorn"), "ITEM_EVIOLITE", "benjamin_rhydon_keeps_its_eviolite")
+!expect_party_species("gEnemyParty", designed_slot("TRAINER_BENJAMIN_HNS", "Rhydon"), "SPECIES_RHYDON", "benjamin_named_eviolite_rhydon_stays")
+!expect_party_item("gEnemyParty", designed_slot("TRAINER_BENJAMIN_HNS", "Rhydon"), "ITEM_EVIOLITE", "benjamin_rhydon_keeps_its_eviolite")
 !expect_designed_party("TRAINER_BENJAMIN_HNS", 5, "benjamin_at_58")
 
-# Route 30's Mikey (stage 0) with four badges, 50: his Eviolite Pichu is a Pikachu (friendship, from 32),
-# named, and not a Raichu
+# Route 30's Mikey (stage 0) with four badges, 50: his Eviolite Pichu is a Pikachu (friendship, from 32)
+# holding its raised item instead of the Eviolite
 loadstate base.ss
 !set_stage(4)
 !battle("TRAINER_MIKEY_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B mikey_at_50_action_menu
 shot 06_mikey_50.png
-!expect_party_species("gEnemyParty", designed_slot("TRAINER_MIKEY_HNS", "Pichu"), "SPECIES_PIKACHU", "mikey_eviolite_pichu_stops_at_pikachu")
+!expect_party_species("gEnemyParty", designed_slot("TRAINER_MIKEY_HNS", "Pichu"), "SPECIES_PIKACHU", "mikey_eviolite_pichu_is_a_pikachu")
+!expect_party_item("gEnemyParty", designed_slot("TRAINER_MIKEY_HNS", "Pichu"), designed_item("TRAINER_MIKEY_HNS", designed_slot("TRAINER_MIKEY_HNS", "Pichu"), 4), "mikey_pikachu_holds_its_raised_item")
 !expect_designed_party("TRAINER_MIKEY_HNS", 4, "mikey_at_50")
 
-# Candice's side battle (stage 0) with eight badges, 85: her named Eviolite Sneasel stays a Sneasel, and the
-# others evolve
+# Candice's side battle (stage 0) with eight badges, 85: her Eviolite Snorunt is a Glalie (42) holding its
+# raised item; her Sneasel, without an Eviolite, a Weavile (Razor Claw, from 32); her Snover an Abomasnow
 loadstate base.ss
 !set_stage(8)
 !battle("TRAINER_SIDE_CANDICE_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B candice_at_85_action_menu
 shot 07_candice_85.png
-!expect_party_species("gEnemyParty", designed_slot("TRAINER_SIDE_CANDICE_HNS", "Sneasel"), "SPECIES_SNEASEL", "candice_named_eviolite_sneasel_stays_at_85")
-!expect_party_species("gEnemyParty", designed_slot("TRAINER_SIDE_CANDICE_HNS", "Snover"), "SPECIES_ABOMASNOW", "candice_eviolite_snover_evolves_at_85")
+!expect_party_species("gEnemyParty", designed_slot("TRAINER_SIDE_CANDICE_HNS", "Snorunt"), "SPECIES_GLALIE", "candice_eviolite_snorunt_is_a_glalie_at_85")
+!expect_party_item("gEnemyParty", designed_slot("TRAINER_SIDE_CANDICE_HNS", "Snorunt"), designed_item("TRAINER_SIDE_CANDICE_HNS", designed_slot("TRAINER_SIDE_CANDICE_HNS", "Snorunt"), 8), "candice_glalie_holds_its_raised_item")
+!expect_party_species("gEnemyParty", designed_slot("TRAINER_SIDE_CANDICE_HNS", "Sneasel"), "SPECIES_WEAVILE", "candice_sneasel_is_a_weavile_at_85")
+!expect_party_species("gEnemyParty", designed_slot("TRAINER_SIDE_CANDICE_HNS", "Snover"), "SPECIES_ABOMASNOW", "candice_snover_is_an_abomasnow_at_85")
 !expect_designed_party("TRAINER_SIDE_CANDICE_HNS", 8, "candice_at_85")
 
 # Heart & Soul's own teams with eight badges, 85: Lass Carrie's Eviolite Happiny stays a Happiny, Pokefan

@@ -4,8 +4,9 @@
 # Girls (the Elite Four and Lance are bosses_e4). The player brings a prepared six at the level cap
 # (good natures and moves, holding items from the care packages; the autopilot uses one move per
 # Pokemon and never switches). Every battle plays to a result. Archer's and the rival's Mega
-# Evolutions happen: those come last, so they are checked with the six at level 100, which always
-# gets to them (at the cap the six can lose before the ace comes out).
+# Evolutions happen: those come last, so they are checked with the six at level 100, in up to three
+# battles each (at the cap the six can lose before the ace comes out; since the trainer standard's
+# teams, at 100 too: on mGBA one battle against Archer lost before his Mega Houndoom came out).
 !new_game()
 !battle_style_set()
 savestate base.ss
@@ -78,11 +79,8 @@ loadstate base.ss
 !prepared_team(100)
 savestate prep100.ss
 seenreset
-!battle("TRAINER_ARCHER_HNS")
-!autobattle("0,0,0,0,2,2")
+!sample_battle("TRAINER_ARCHER_HNS", "0,0,0,0,2,2", 3, 0, 3, "prep100.ss", tag="_mega")
 !expect_const_seen("SPECIES_HOUNDOOM_MEGA", "archer_mega_houndoom")
-loadstate prep100.ss
 seenreset
-!battle("TRAINER_RIVAL_CYNDAQUIL_5_HNS")
-!autobattle("1,0,0,0,0,0")
+!sample_battle("TRAINER_RIVAL_CYNDAQUIL_5_HNS", "1,0,0,0,0,0", 3, 0, 3, "prep100.ss", tag="_mega")
 !expect_const_seen("SPECIES_TYRANITAR_MEGA", "rival_5_mega_tyranitar")

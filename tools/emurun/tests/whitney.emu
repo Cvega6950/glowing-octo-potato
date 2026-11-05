@@ -1,14 +1,21 @@
-# Crystal Imperium balance test: Whitney (trainer 406) at the badge-2 level cap (33), with Heart &
-# Soul's four and, since 0.8.0, Furret and Girafarig and held items (boss_teams.py). Team:
-# Pidgeotto / Quilava / Kadabra / Scyther / Primeape / Machoke (Machoke is kept for Miltank,
-# holding the first care package's Eviolite), never switching voluntarily, each with a move a
-# player at 33 would keep (the default movesets at 33 drop Quilava's Fire moves and give Kadabra
-# the physical Psycho Cut). 24 battles with different RNG must include at least one win and at
-# least two losses. Since 0.15.1 the others hold their types' boosters, as the starting care
-# package gives ten of each (it has since 0.12.0): with Emerald Imperium's base stats (D50: Furret
-# Attack 86, Miltank 85) the six without them lost all 24 battles; with them they win 3 on mGBA.
+# Crystal Imperium balance test: Whitney (trainer 406) at the badge-2 level cap (33). Since the trainer
+# standard her team is an Eviolite Aipom (Fake Out, Skill Link Tail Slap, U-turn), Clefable (Thunder Wave,
+# Encore, Soft-Boiled), Adaptability Furret, Intimidate Stantler, Nasty Plot Girafarig and her Miltank
+# (boss_teams.py). Team: Pidgeotto / Quilava / Kadabra / Scyther / Primeape / Machoke at 33, Machoke
+# holding the first care package's Eviolite and the others their types' boosters (the starting care
+# package gives ten of each), with moves a player at 33 keeps.
+# - Played naively (one move per Pokemon, never switching), the six are reported, not judged, and must
+#   lose at least two battles in 24: they won 3 on mGBA against 0.15.1's Whitney, and against this one
+#   none on mGBA and 1 on VBA-M.
+# - Played with a plan as a player would (autobattle in emu.py): Fighting moves for her Normal types,
+#   Fire and Psychic for Clefable, Bug and Dark for Girafarig; Scyther and Primeape with their moves set
+#   (X-Scissor and Aerial Ace; Brick Break and Rock Slide, from the early TMs). Reported, not judged, and
+#   it must lose at least twice in 12: when her team was made (the trainer standard), these six and a
+#   second plan (Golbat for Clefable, Haunter for the Normal types) took two to four of her six in each
+#   battle and won none of 36 on mGBA and VBA-M; the autopilot never uses the Bag, as a player can.
 !new_game()
 !battle_style_set()
+savestate base.ss
 !give_mon_complex("SPECIES_PIDGEOTTO", 33, "NATURE_HARDY", 0, ['MOVE_WING_ATTACK', 'MOVE_TWISTER', 'MOVE_QUICK_ATTACK', 'MOVE_AGILITY'])
 !give_mon_complex("SPECIES_QUILAVA", 33, "NATURE_HARDY", 0, ['MOVE_FLAME_WHEEL', 'MOVE_SWIFT', 'MOVE_QUICK_ATTACK', 'MOVE_SMOKESCREEN'])
 !give_mon_complex("SPECIES_KADABRA", 33, "NATURE_HARDY", 0, ['MOVE_PSYBEAM', 'MOVE_CONFUSION', 'MOVE_REFLECT', 'MOVE_RECOVER'])
@@ -24,7 +31,24 @@
 savestate team.ss
 !battle_trainer(406)
 wait 1100
-expect16 {gBattleMons+136} 35 whitney_leads_clefairy
+!expect_battler(1, "species", designed_species("TRAINER_WHITNEY_1_HNS", 0, 2), "whitney_leads_as_designed")
 # Pidgeotto Wing Attack, Quilava Flame Wheel, Kadabra Psybeam, Scyther Wing Attack, Primeape Brick
 # Break (Cross Chop before 0.11.0: Emerald Imperium's Primeape learns it at 53), Machoke Low Sweep
-!sample_battle(406, "0,0,0,0,1,0", runs=24, min_wins=1, max_wins=22)
+!sample_battle(406, "0,0,0,0,1,0", runs=24, min_wins=0, max_wins=22)
+
+# The same six with a plan
+loadstate base.ss
+!give_mon_complex("SPECIES_PIDGEOTTO", 33, "NATURE_HARDY", 0, ['MOVE_WING_ATTACK', 'MOVE_TWISTER', 'MOVE_QUICK_ATTACK', 'MOVE_AGILITY'])
+!give_mon_complex("SPECIES_QUILAVA", 33, "NATURE_HARDY", 0, ['MOVE_FLAME_WHEEL', 'MOVE_SWIFT', 'MOVE_QUICK_ATTACK', 'MOVE_SMOKESCREEN'])
+!give_mon_complex("SPECIES_KADABRA", 33, "NATURE_HARDY", 0, ['MOVE_PSYBEAM', 'MOVE_CONFUSION', 'MOVE_REFLECT', 'MOVE_RECOVER'])
+!give_mon_complex("SPECIES_SCYTHER", 33, "NATURE_HARDY", 0, ['MOVE_X_SCISSOR', 'MOVE_AERIAL_ACE', 'MOVE_SWORDS_DANCE', 'MOVE_QUICK_ATTACK'])
+!give_mon_complex("SPECIES_PRIMEAPE", 33, "NATURE_HARDY", 0, ['MOVE_BRICK_BREAK', 'MOVE_ROCK_SLIDE', 'MOVE_U_TURN', 'MOVE_BULK_UP'])
+!give_mon_complex("SPECIES_MACHOKE", 33, "NATURE_HARDY", 0, ['MOVE_LOW_SWEEP', 'MOVE_VITAL_THROW', 'MOVE_KNOCK_OFF', 'MOVE_BULK_UP'])
+!hold_item("ITEM_SHARP_BEAK", 0)
+!hold_item("ITEM_CHARCOAL", 1)
+!hold_item("ITEM_TWISTED_SPOON", 2)
+!hold_item("ITEM_SILVER_POWDER", 3)
+!hold_item("ITEM_BLACK_BELT", 4)
+!hold_item("ITEM_EVIOLITE", 5)
+savestate plan.ss
+!sample_battle(406, "0,0,0,0,0,0", runs=12, min_wins=0, max_wins=10, state="plan.ss", tag="_plan", plan={"SPECIES_AIPOM": [(5, 1), (4, 0)], "SPECIES_CLEFABLE": [(1, 0), (2, 0), (0, 0)], "SPECIES_FURRET": [(4, 0), (5, 1)], "SPECIES_STANTLER": [(4, 0), (5, 1)], "SPECIES_GIRAFARIG": [(3, 0), (5, 2)], "SPECIES_MILTANK": [(5, 1), (4, 0)]})

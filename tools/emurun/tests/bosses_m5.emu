@@ -31,7 +31,7 @@ expectne8 {gBattleOutcome} 0 sabrina_resolved
 expectne8 {gBattleOutcome} 0 blaine_resolved
 
 # Blue: a six built for him (Fairy for Machamp, Bug for Exeggutor, Water for Rhyperior and Arcanine,
-# Fighting for Tyranitar, Electric for Pidgeot)
+# Electric for Gyarados and Pidgeot; Fighting for the Tyranitar he had before the trainer standard)
 loadstate base.ss
 !give_mon_complex("SPECIES_SWAMPERT", 90, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_EARTHQUAKE', 'MOVE_ICE_PUNCH', 'MOVE_STEALTH_ROCK'])
 !give_mon_complex("SPECIES_GARDEVOIR", 90, "NATURE_MODEST", 0, ['MOVE_MOONBLAST', 'MOVE_PSYCHIC', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
@@ -40,7 +40,7 @@ loadstate base.ss
 !give_mon_complex("SPECIES_AMPHAROS", 90, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
 !give_mon_complex("SPECIES_GYARADOS", 90, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_ICE_FANG', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
 savestate blue90.ss
-!sample_battle("TRAINER_BLUE_HNS", "0,0,0,0,0,0", 6, 1, 6, "blue90.ss", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (5, 1), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 0), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 0)], "SPECIES_TYRANITAR": [(2, 0), (0, 0), (5, 0), (1, 0)], "SPECIES_PIDGEOT": [(4, 0), (0, 2), (5, 1)], "SPECIES_PIDGEOT_MEGA": [(4, 0), (0, 2), (5, 1)]})
+!sample_battle("TRAINER_BLUE_HNS", "0,0,0,0,0,0", 6, 1, 6, "blue90.ss", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (5, 1), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 0), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 0)], "SPECIES_GYARADOS": [(4, 0), (1, 0)], "SPECIES_TYRANITAR": [(2, 0), (0, 0), (5, 0), (1, 0)], "SPECIES_PIDGEOT": [(4, 0), (0, 2), (5, 1)], "SPECIES_PIDGEOT_MEGA": [(4, 0), (0, 2), (5, 1)]})
 
 # Every leader's Mega Evolution, with the prepared six at level 100. A leader's Mega is the ace,
 # her or his last Pokemon; at 90 (70 before 0.8.0) a leader can beat the naive six before it comes
@@ -81,5 +81,5 @@ loadstate base.ss
 !give_mon_complex("SPECIES_GYARADOS", 100, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_ICE_FANG', 'MOVE_EARTHQUAKE', 'MOVE_DRAGON_DANCE'])
 seenreset
 !battle("TRAINER_BLUE_HNS")
-!autobattle("0,0,0,0,0,0", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (5, 1), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 0), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 0)], "SPECIES_TYRANITAR": [(2, 0), (0, 0), (5, 0), (1, 0)], "SPECIES_PIDGEOT": [(4, 0), (0, 2), (5, 1)], "SPECIES_PIDGEOT_MEGA": [(4, 0), (0, 2), (5, 1)]})
+!autobattle("0,0,0,0,0,0", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (5, 1), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 0), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 0)], "SPECIES_GYARADOS": [(4, 0), (1, 0)], "SPECIES_TYRANITAR": [(2, 0), (0, 0), (5, 0), (1, 0)], "SPECIES_PIDGEOT": [(4, 0), (0, 2), (5, 1)], "SPECIES_PIDGEOT_MEGA": [(4, 0), (0, 2), (5, 1)]})
 !expect_const_seen("SPECIES_PIDGEOT_MEGA", "blue_mega_pidgeot")

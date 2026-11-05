@@ -1,10 +1,6 @@
 Crystal Imperium designed teams against the trainer standard (validate.py; tools/crystal_imperium/trainer_rules.py)
 
 TRAINER_BROCK_HNS (boss, stage J, fought at stages J to K)
-  WARNING A2: Omastar (slot 2): Swift Swim without rain on the team or the map, it has Shell Armor, Weak Armor
-  WARNING A2: Kabutops (slot 3): Swift Swim without rain on the team or the map, it has Sharpness
-  WARNING M8: more than one Stealth Rock setter
-  WARNING V4: no full EV spread from stage 3 on: Golem, Omastar, Kabutops, Relicanth, Kleavor, Aerodactyl
 TRAINER_MISTY_HNS (boss, stage J, fought at stages J to K)
   WARNING V4: no full EV spread from stage 3 on: Pelipper, Golduck, Lapras, Milotic, Blastoise, Starmie
 TRAINER_LTSURGE_HNS (boss, stage J, fought at stages J to K)
@@ -12,165 +8,50 @@ TRAINER_LTSURGE_HNS (boss, stage J, fought at stages J to K)
   WARNING M8: no priority move on the team
   WARNING V4: no full EV spread from stage 3 on: Electrode, Magnezone, Lanturn, Electivire, Manectric, Raichu
 TRAINER_ERIKA_HNS (boss, stage J, fought at stages J to K)
-  WARNING A2: Jumpluff (slot 1): Aerilate without a Normal-type attack, it has Chlorophyll, Leaf Guard
-  WARNING A2: Roserade (slot 2): Technician without a move of 60 power or less, it has Natural Cure, Poison Touch
-  WARNING A2: Victreebel (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING A2: Bellossom (slot 5): Chlorophyll without sun on the team or the map
-  WARNING V4: no full EV spread from stage 3 on: Jumpluff, Roserade, Tangrowth, Victreebel, Bellossom, Venusaur
 TRAINER_JANINE_HNS (boss, stage J, fought at stages J to K)
   WARNING V4: no full EV spread from stage 3 on: Weezing, Nidoqueen, Muk, Crobat, Venomoth, Gengar
 TRAINER_SABRINA_HNS (boss, stage J, fought at stages J to K)
   WARNING M8: no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Mr Mime, Wobbuffet, Slowbro, Espeon, Alakazam, Metagross
 TRAINER_BLAINE_HNS (boss, stage J, fought at stages J to K)
-  WARNING A2: Magmortar (slot 3): Mega Launcher without a pulse move, it has Flame Body, Quick Draw
-  WARNING M8: more than one Stealth Rock setter
-  WARNING V4: no full EV spread from stage 3 on: Torkoal, Rapidash, Magmortar, Volcarona, Arcanine Hisui, Camerupt
 TRAINER_BLUE_HNS (boss, stage J, fought at stages J to K)
-  WARNING N2: Machamp (slot 1): on a Trick Room team with Adamant, which doesn't lower Speed (base 55)
-  WARNING V2: Machamp (slot 1): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Exeggutor (slot 2): setting Trick Room with Modest, which doesn't lower Speed (base 55)
-  WARNING V2: Exeggutor (slot 2): 31 Speed IVs setting Trick Room (ivs="0 Spe")
-  WARNING N2: Rhyperior (slot 3): on a Trick Room team with Adamant, which doesn't lower Speed (base 40)
-  WARNING V2: Rhyperior (slot 3): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Arcanine (slot 4): on a Trick Room team with Adamant, which doesn't lower Speed (base 95)
-  WARNING V2: Arcanine (slot 4): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Tyranitar (slot 5): on a Trick Room team with Adamant, which doesn't lower Speed (base 61)
-  WARNING V2: Tyranitar (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Pidgeot (slot 6): on a Trick Room team with Timid, which doesn't lower Speed (base 101)
-  WARNING P2: Pidgeot (slot 6): Timid raises Speed on a Trick Room team
-  WARNING V2: Pidgeot (slot 6): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING V4: no full EV spread from stage 3 on: Machamp, Exeggutor, Rhyperior, Arcanine, Tyranitar, Pidgeot
 TRAINER_RED_HNS (boss, stage K, fought at stages K to K)
+  WARNING A2: Venusaur (slot 4): Chlorophyll without sun on the team or the map, it has Overgrow
+  WARNING M7: Venusaur (slot 4): weak setup: Growth
   WARNING M8: no pivot or hazard on the team
+  WARNING P6: MtSilver_SummitDay_hns has snow: fewer than two of the team use it, and it sets no weather of its own
+  WARNING P6: Venusaur depends on sun, which MtSilver_SummitDay_hns's snow cancels
+  WARNING P6: Charizard depends on sun, which MtSilver_SummitDay_hns's snow cancels
 TRAINER_RED_POSTOBC_HNS (boss, stage K, fought at stages K to K)
+  WARNING A2: Venusaur (slot 4): Chlorophyll without sun on the team or the map, it has Overgrow
+  WARNING M7: Venusaur (slot 4): weak setup: Growth
   WARNING M8: no pivot or hazard on the team
+  WARNING P6: MtSilver_SummitDay_hns has snow: fewer than two of the team use it, and it sets no weather of its own
+  WARNING P6: Venusaur depends on sun, which MtSilver_SummitDay_hns's snow cancels
+  WARNING P6: Charizard depends on sun, which MtSilver_SummitDay_hns's snow cancels
 TRAINER_PETREL_1_HNS (boss, stage 4, fought at stages 4 to 6)
-  WARNING V2: Forretress (slot 1): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING M2: Golbat (slot 3): filler: Confuse Ray
-  WARNING E6: Pupitar (slot 5), fought at stages 5, 6: Tyranitar at 58, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING I3: 2 items twice: Eviolite, Black Glasses
-  WARNING I3: 2 Eviolites at stage 4
-  WARNING M8: no priority move on the team
-  WARNING V4: no full EV spread from stage 3 on: Forretress, Weezing, Golbat, Houndoom, Pupitar, Drapion
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  raised to 58 to 66: Forretress @ Leftovers, Weezing @ Black Sludge, Golbat @ Eviolite, Houndoom @ Black Glasses, Tyranitar @ Eviolite, Drapion @ Black Glasses
 TRAINER_ARIANA_1_HNS (boss, stage 4, fought at stages 4 to 6)
-  WARNING Z1: 6 Pokemon; its kind has 3 at stage 4
-  WARNING I3: 2 items twice: Black Sludge, Sitrus Berry
-  WARNING V4: no full EV spread from stage 3 on: Arbok, Persian, Liepard, Vileplume, Gyarados, Honchkrow
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  WARNING Z2: fought only in a two-opponent battle (multi_2_vs_2 with TRAINER_GRUNT_23_HNS): it battles with its first three of 6; it should have exactly 3
 TRAINER_PROTON_2_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING E3: Rhydon (slot 6): a named Eviolite species whose set uses none of its bulk (no recovery, status, hazards, pivot, screens, Trick Room or phazing)
-  WARNING I3: an item more than twice: Life Orb x3
-  WARNING V4: no full EV spread from stage 3 on: Muk, Nidoqueen, Weezing, Nidoking, Toxicroak, Rhydon
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  WARNING S4: Nidoqueen @ Life Orb (Sheer Force; Earth Power, Flamethrower, Ice Beam, Sludge Wave) is on TRAINER_JANINE_HNS, TRAINER_PROTON_2_HNS
 TRAINER_PETREL_2_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING V2: Forretress (slot 1): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING E1: Pupitar (slot 4), fought at stage 7: Pupitar at 75, past Tyranitar's 55
-  WARNING M8: no priority move on the team
-  WARNING V4: no full EV spread from stage 3 on: Forretress, Weezing Galar, Toxapex, Pupitar, Cloyster, Drapion
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  WARNING S4: Forretress @ Leftovers (Sturdy; Gyro Ball, Rapid Spin, Spikes, Volt Switch) is on TRAINER_PETREL_1_HNS, TRAINER_PETREL_2_HNS
-  WARNING S4: Drapion @ Black Glasses (Sniper; Earthquake, Knock Off, Poison Jab, Swords Dance) is on TRAINER_PETREL_1_HNS, TRAINER_PETREL_2_HNS
 TRAINER_ARIANA_2_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING I3: an item more than twice: Black Sludge x3
-  WARNING V4: no full EV spread from stage 3 on: Arbok, Persian, Skuntank, Vileplume, Gyarados, Honchkrow
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  WARNING S4: Arbok @ Black Sludge (Intimidate; Earthquake, Glare, Gunk Shot, Sucker Punch) is on TRAINER_ARIANA_1_HNS, TRAINER_ARIANA_2_HNS
-  WARNING S4: Persian @ Silk Scarf (Technician; Faint Attack, Fake Out, Hypnosis, U Turn) is on TRAINER_ARIANA_1_HNS, TRAINER_ARIANA_2_HNS
-  WARNING S4: Gyarados @ Sitrus Berry (Intimidate; Crunch, Dragon Dance, Earthquake, Waterfall) is on TRAINER_ARIANA_1_HNS, TRAINER_ARIANA_2_HNS
 TRAINER_ARCHER_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING E1: Bisharp (slot 5), fought at stage 7: Bisharp at 75, past Kingambit's 50
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Porygon Z, Tauros, Crawdaunt, Slowbro, Bisharp, Houndoom
 TRAINER_WILL_1_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING N2: Xatu (slot 1): on a Trick Room team with Timid, which doesn't lower Speed (base 105)
-  WARNING P2: Xatu (slot 1): Timid raises Speed on a Trick Room team
-  WARNING V2: Xatu (slot 1): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING V2: Slowbro (slot 2): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING V2: Bronzong (slot 3): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING N2: Farigiraf (slot 4): on a Trick Room team with Modest, which doesn't lower Speed (base 60)
-  WARNING V2: Farigiraf (slot 4): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Gardevoir (slot 5): on a Trick Room team with Timid, which doesn't lower Speed (base 80)
-  WARNING P2: Gardevoir (slot 5): Timid raises Speed on a Trick Room team
-  WARNING V2: Gardevoir (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Alakazam (slot 6): on a Trick Room team with Timid, which doesn't lower Speed (base 120)
-  WARNING P2: Alakazam (slot 6): Timid raises Speed on a Trick Room team
-  WARNING V2: Alakazam (slot 6): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING M8: no priority move on the team
-  WARNING V4: no full EV spread from stage 3 on: Xatu, Slowbro, Bronzong, Farigiraf, Gardevoir, Alakazam
-  WARNING P4: an Elite Four member without a legendary-tier Pokemon
-  WARNING S4: Slowbro @ Leftovers (Regenerator; Calm Mind, Psyshock, Scald, Slack Off) is on TRAINER_ARCHER_HNS, TRAINER_WILL_1_HNS
 TRAINER_KOGA_1_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING V4: no full EV spread from stage 3 on: Toxapex, Muk Alola, Toxicroak, Venomoth, Beedrill, Crobat
-  WARNING P4: an Elite Four member without a legendary-tier Pokemon
-  WARNING S4: Venomoth @ Focus Sash (Tinted Lens; Bug Buzz, Quiver Dance, Sleep Powder, Sludge Bomb) is on TRAINER_JANINE_HNS, TRAINER_KOGA_1_HNS
-  WARNING S4: Toxicroak @ Life Orb (Dry Skin; Drain Punch, Gunk Shot, Sucker Punch, Swords Dance) is on TRAINER_KOGA_1_HNS, TRAINER_PROTON_2_HNS
 TRAINER_BRUNO_1_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING V4: no full EV spread from stage 3 on: Hitmontop, Steelix, Hitmonlee, Hitmonchan, Machamp, Lucario
-  WARNING P4: an Elite Four member without a legendary-tier Pokemon
-  WARNING S4: Machamp @ Sitrus Berry (No Guard; Bullet Punch, Close Combat, Knock Off, Stone Edge) is on TRAINER_BLUE_HNS, TRAINER_BRUNO_1_HNS
 TRAINER_KAREN_1_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Umbreon, Vileplume, Gengar, Honchkrow, Absol, Houndoom
-  WARNING P4: an Elite Four member without a legendary-tier Pokemon
-  WARNING S4: Honchkrow @ Scope Lens (Super Luck; Brave Bird, Heat Wave, Night Slash, Sucker Punch) is on TRAINER_ARIANA_1_HNS, TRAINER_ARIANA_2_HNS, TRAINER_KAREN_1_HNS
 TRAINER_LANCE_1_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING A2: Charizard (slot 3): Solar Power without sun on the team or the map, it has Blaze
-  WARNING V4: no full EV spread from stage 3 on: Gyarados, Aerodactyl, Charizard, Salamence, Garchomp, Dragonite
-  WARNING P4: an Elite Four member without a legendary-tier Pokemon
 TRAINER_PROTON_1_HNS (boss, stage 1, fought at stages 1 to 1)
-  WARNING M2: Koffing (slot 1): filler: Smokescreen
-  WARNING M2: Golbat (slot 2): filler: Confuse Ray
-  WARNING E1: Houndour (slot 6), fought at stage 1: Houndour at 24, past Houndoom's 23
-  WARNING I3: an item more than twice: Eviolite x4
 TRAINER_FALKNER_1_HNS (boss, stage 0, fought at stages 0 to 0)
-  WARNING M2: Pidgey (slot 1): filler: Sand Attack
-  WARNING M2: Natu (slot 2): filler: Confuse Ray
-  WARNING I3: an item more than twice: Eviolite x4
 TRAINER_BUGSY_1_HNS (boss, stage 1, fought at stages 1 to 1)
 TRAINER_EUSINE_HNS (boss, stage 4, fought at stages 4 to K)
-  WARNING M4: Electrode (slot 3): an attacker with one attacking type
-  WARNING M8: no priority move on the team
-  WARNING V4: no full EV spread from stage 3 on: Politoed, Hypno, Electrode, Lanturn, Gengar, Starmie
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
 TRAINER_WHITNEY_1_HNS (boss, stage 2, fought at stages 2 to 2)
-  WARNING E2: Clefairy (slot 1), fought at stage 2: Clefairy at 33 unevolved: it evolves by item into Clefable, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING M2: Clefairy (slot 1): filler: Metronome, Charm
-  WARNING E2: Aipom (slot 2), fought at stage 2: Aipom at 33 unevolved: it evolves by move into Ambipom, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING A2: Aipom (slot 2): Pickup does nothing in a trainer battle, it has Run Away, Skill Link
-  WARNING M2: Miltank (slot 6): filler: Attract
 TRAINER_MORTY_1_HNS (boss, stage 3, fought at stages 3 to 3)
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Sableye, Misdreavus, Drifblim, Marowak Alola, Mimikyu, Gengar
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
 TRAINER_CHUCK_1_HNS (boss, stage 4, fought at stages 4 to 4)
-  WARNING E2: Primeape (slot 4), fought at stage 4: Primeape at 50 unevolved: it evolves by move into Annihilape, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING V4: no full EV spread from stage 3 on: Hitmontop, Breloom, Hawlucha, Primeape, Poliwrath, Heracross
 TRAINER_CHUCK_1_2_HNS (boss, stage 5, fought at stages 5 to 5)
-  WARNING E2: Primeape (slot 4), fought at stage 5: Primeape at 58 unevolved: it evolves by move into Annihilape, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING V4: no full EV spread from stage 3 on: Hitmontop, Breloom, Hawlucha, Primeape, Poliwrath, Heracross
 TRAINER_CHUCK_1_3_HNS (boss, stage 6, fought at stages 6 to 6)
-  WARNING E2: Primeape (slot 4), fought at stage 6: Primeape at 66 unevolved: it evolves by move into Annihilape, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING V4: no full EV spread from stage 3 on: Hitmontop, Breloom, Hawlucha, Primeape, Poliwrath, Heracross
 TRAINER_JASMINE_1_HNS (boss, stage 4, fought at stages 4 to 4)
-  WARNING E2: Magneton (slot 2), fought at stage 4: Magneton at 50 unevolved: it evolves by other into Magnezone, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING V2: Bronzong (slot 3): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING V2: Steelix (slot 6): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING V4: no full EV spread from stage 3 on: Skarmory, Magneton, Bronzong, Mawile, Scizor, Steelix
 TRAINER_JASMINE_1_2_HNS (boss, stage 5, fought at stages 5 to 5)
-  WARNING E2: Magneton (slot 2), fought at stage 5: Magneton at 58 unevolved: it evolves by other into Magnezone, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING V2: Bronzong (slot 3): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING V2: Steelix (slot 6): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING V4: no full EV spread from stage 3 on: Skarmory, Magneton, Bronzong, Mawile, Scizor, Steelix
 TRAINER_JASMINE_1_3_HNS (boss, stage 6, fought at stages 6 to 6)
-  WARNING E2: Magneton (slot 2), fought at stage 6: Magneton at 66 unevolved: it evolves by other into Magnezone, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING V2: Bronzong (slot 3): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING V2: Steelix (slot 6): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING V4: no full EV spread from stage 3 on: Skarmory, Magneton, Bronzong, Mawile, Scizor, Steelix
 TRAINER_PRYCE_1_HNS (boss, stage 4, fought at stages 4 to 4)
   WARNING M8: no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Cloyster, Dewgong, Jynx, Weavile, Mamoswine, Abomasnow
@@ -180,12 +61,9 @@ TRAINER_PRYCE_1_2_HNS (boss, stage 5, fought at stages 5 to 5)
 TRAINER_PRYCE_1_3_HNS (boss, stage 6, fought at stages 6 to 6)
   WARNING M8: no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Cloyster, Dewgong, Jynx, Weavile, Mamoswine, Abomasnow
-  WARNING S4: Cloyster @ Focus Sash (Skill Link; Icicle Spear, Liquidation, Rock Blast, Shell Smash) is on TRAINER_PETREL_2_HNS, TRAINER_PRYCE_1_2_HNS, TRAINER_PRYCE_1_3_HNS, TRAINER_PRYCE_1_HNS
 TRAINER_CLAIR_1_HNS (boss, stage 7, fought at stages 7 to 7)
   WARNING V4: no full EV spread from stage 3 on: Druddigon, Flygon, Dragalge, Altaria, Kommo O, Kingdra
 TRAINER_FALKNER_2_HNS (boss, stage J, fought at stages J to K)
-  WARNING M7: Pidgeot (slot 6): weak setup: Work Up
-  WARNING M8: no priority move on the team
 TRAINER_BUGSY_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_WHITNEY_2_HNS (boss, stage J, fought at stages J to K)
 TRAINER_MORTY_2_HNS (boss, stage J, fought at stages J to K)
@@ -215,7 +93,6 @@ TRAINER_JANINE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_SABRINA_POSTOBC_HNS (boss, stage K, fought at stages K to K)
   WARNING M8: no priority move on the team
 TRAINER_BLAINE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M8: no priority move on the team
 TRAINER_BLUE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
 TRAINER_WILL_2_HNS (boss, stage J, fought at stages J to K)
   WARNING M8: no priority move on the team
@@ -232,59 +109,20 @@ TRAINER_LANCE_2_HNS (boss, stage J, fought at stages J to K)
   WARNING M8: no pivot or hazard on the team
   WARNING S4: Salamence @ Salamencite (Intimidate; Double Edge, Dragon Dance, Earthquake, Roost) is on TRAINER_FALKNER_POSTOBC_HNS, TRAINER_LANCE_2_HNS
 TRAINER_LANCE_POSTOBC_HNS (boss, stage K, fought at stages K to K)
-  WARNING M3: Dragonite (slot 4): no attack of its own type
 TRAINER_LI_HNS (boss, stage 0, fought at stages 0 to 0)
-  WARNING A2: Weepinbell (slot 3): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING I3: an item more than twice: Eviolite x3
-  WARNING V4: EVs at stage 0: Bronzor, Phantump, Weepinbell
 TRAINER_SIDE_CANDICE_HNS (side, stage 0, fought at stages 0 to K)
-  WARNING E6: Snover (slot 1), fought at stages 3, 4, 5, 6, 7, 8, J, K: Abomasnow at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING A2: Snover (slot 1): Ice Body without snow on the team or the map, it has Snow Warning, Soundproof
-  WARNING E6: Spheal (slot 3), fought at stages 4, 5, 6, 7, 8, J, K: Walrein at 50, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Cetoddle (slot 4), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Cetitan at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Meditite (slot 5), fought at stages 3, 4, 5, 6, 7, 8, J, K: Medicham at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING I3: an item more than twice: Eviolite x5
-  raised to 33: Snover @ Eviolite, Sneasel @ Eviolite, Sealeo @ Eviolite, Cetitan @ Eviolite, Meditite @ Eviolite, Cryogonal @ Sitrus Berry
-  raised to 42: Abomasnow @ Eviolite, Sneasel @ Eviolite, Sealeo @ Eviolite, Cetitan @ Eviolite, Medicham @ Eviolite, Cryogonal @ Sitrus Berry
-  raised to 50 to 100: Abomasnow @ Eviolite, Sneasel @ Eviolite, Walrein @ Eviolite, Cetitan @ Eviolite, Medicham @ Eviolite, Cryogonal @ Sitrus Berry
+  raised to 33: Snover @ Icy Rock, Weavile @ Never Melt Ice, Froslass @ Focus Sash, Cubchoo @ Muscle Band, Meditite @ Eviolite, Cryogonal @ Leftovers
+  raised to 42 to 100: Abomasnow @ Icy Rock, Weavile @ Never Melt Ice, Glalie @ Focus Sash, Beartic @ Muscle Band, Medicham @ Life Orb, Cryogonal @ Leftovers
 TRAINER_SIDE_GARDENIA_HNS (side, stage 2, fought at stages 2 to 3)
-  WARNING E2: Gloom (slot 3), fought at stage 2: Gloom at 33 unevolved: it evolves by item into Vileplume, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Gloom (slot 3), fought at stage 3: Vileplume at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Grotle (slot 5), fought at stage 3: Torterra at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING I3: 2 items twice: Sitrus Berry, Eviolite
-  WARNING I3: 2 Eviolites at stage 2
-  raised to 42: Sudowoodo @ Sitrus Berry, Cherrim Overcast @ Miracle Seed, Vileplume @ Eviolite, Arboliva @ Sitrus Berry, Torterra @ Eviolite, Roserade @ Black Sludge
+  raised to 42: Whimsicott @ Heat Rock, Cherrim Overcast @ Miracle Seed, Bellossom @ Leftovers, Torterra @ White Herb, Arboliva @ Sitrus Berry, Roserade @ Black Sludge
 TRAINER_SIDE_GARDENIA_2_HNS (side, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Sudowoodo, Vileplume, Arboliva, Torterra, Roserade, Venusaur
-  WARNING S4: Venusaur @ Venusaurite (Chlorophyll; Earth Power, Giga Drain, Sludge Bomb, Synthesis) is on TRAINER_ERIKA_HNS, TRAINER_SIDE_GARDENIA_2_HNS
 TRAINER_SIDE_FANTINA_HNS (side, stage 3, fought at stages 3 to K)
-  WARNING N2: Spiritomb (slot 1): on a Trick Room team with Careful, which doesn't lower Speed (base 35)
-  WARNING V2: Spiritomb (slot 1): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING V2: Dusclops (slot 2): 31 Speed IVs setting Trick Room (ivs="0 Spe")
-  WARNING N2: Cursola (slot 3): on a Trick Room team with Modest, which doesn't lower Speed (base 55)
-  WARNING V2: Cursola (slot 3): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Zoroark Hisui (slot 4): on a Trick Room team with Timid, which doesn't lower Speed (base 110)
-  WARNING P2: Zoroark Hisui (slot 4): Timid raises Speed on a Trick Room team
-  WARNING V2: Zoroark Hisui (slot 4): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Banette (slot 5): on a Trick Room team with Adamant, which doesn't lower Speed (base 65)
-  WARNING V2: Banette (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Mismagius (slot 6): on a Trick Room team with Timid, which doesn't lower Speed (base 105)
-  WARNING P2: Mismagius (slot 6): Timid raises Speed on a Trick Room team
-  WARNING V2: Mismagius (slot 6): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Spiritomb, Dusclops, Cursola, Zoroark Hisui, Banette, Mismagius
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
 TRAINER_SIDE_MAYLENE_HNS (side, stage 4, fought at stages 4 to K)
-  WARNING I5: Pawmot (slot 3): Shell Bell is a weak item for a designed set
-  WARNING V4: no full EV spread from stage 3 on: Medicham, Mienshao, Pawmot, Machamp, Toxicroak, Lucario
-  WARNING P6: CianwoodCity_hns has rain: fewer than two of the team use it, and it sets no weather of its own
-  WARNING S4: Lucario @ Lucarionite (Inner Focus; Close Combat, Extreme Speed, Meteor Mash, Swords Dance) is on TRAINER_BRUNO_1_HNS, TRAINER_BRUNO_2_HNS, TRAINER_SIDE_MAYLENE_HNS
 TRAINER_SIDE_WAKE_HNS (side, stage 5, fought at stages 5 to K)
   WARNING M8: no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Politoed, Floatzel, Quagsire, Toedscruel, Barraskewda, Gyarados
 TRAINER_SIDE_BYRON_HNS (side, stage 6, fought at stages 6 to K)
-  WARNING V4: no full EV spread from stage 3 on: Bastiodon, Copperajah, Excadrill, Kingambit, Corviknight, Aggron
-  WARNING P6: OlivineCity_hns has rain: fewer than two of the team use it, and it sets no weather of its own
 TRAINER_SIDE_ROARK_HNS (side, stage 7, fought at stages 7 to K)
   WARNING M8: no priority move on the team
   WARNING M8: more than one Stealth Rock setter
@@ -296,402 +134,137 @@ TRAINER_SIDE_VOLKNER_HNS (side, stage 8, fought at stages 8 to K)
 TRAINER_SIDE_KATY_HNS (side, stage J, fought at stages J to K)
   WARNING V4: no full EV spread from stage 3 on: Ribombee, Lokix, Volcarona, Golisopod, Ursaluna, Pinsir
 TRAINER_SIDE_BRASSIUS_HNS (side, stage J, fought at stages J to K)
-  WARNING M8: no setup move on the team
   WARNING V4: no full EV spread from stage 3 on: Brambleghast, Meowscarada, Scovillain, Tsareena, Rillaboom, Sceptile
   WARNING S4: Meowscarada @ Choice Band (Protean; Flower Trick, Knock Off, Play Rough, U Turn) is on TRAINER_KAREN_POSTOBC_HNS, TRAINER_SIDE_BRASSIUS_HNS
 TRAINER_SIDE_IONO_HNS (side, stage J, fought at stages J to K)
-  WARNING I4: Kilowattrel (slot 1): Choice Specs with status or setup moves it would be locked into: Roost
-  WARNING M8: no priority move on the team
-  WARNING V4: no full EV spread from stage 3 on: Kilowattrel, Bellibolt, Toxtricity, Electrode Hisui, Mismagius, Ampharos
 TRAINER_SIDE_KOFU_HNS (side, stage J, fought at stages J to K)
   WARNING M2: Dondozo (slot 4): filler: Rest
   WARNING M8: no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Wugtrio, Veluza, Crabominable, Dondozo, Clawitzer, Sharpedo
 TRAINER_SIDE_LARRY_HNS (side, stage J, fought at stages J to K)
-  WARNING A2: Dudunsparce (slot 2): Serene Grace without a move with a secondary effect, it has Run Away
-  WARNING V4: no full EV spread from stage 3 on: Komala, Dudunsparce, Staraptor, Porygon Z, Bewear, Kangaskhan
 TRAINER_SIDE_RYME_HNS (side, stage J, fought at stages J to K)
-  WARNING I4: Gholdengo (slot 4): Choice Scarf with status or setup moves it would be locked into: Nasty Plot, Recover
-  WARNING M8: no priority move on the team
-  WARNING V4: no full EV spread from stage 3 on: Houndstone, Annihilape, Ceruledge, Gholdengo, Dragapult, Gengar
-  WARNING S4: Gengar @ Gengarite (Levitate; Focus Blast, Nasty Plot, Shadow Ball, Sludge Wave) is on TRAINER_MORTY_POSTOBC_HNS, TRAINER_SIDE_RYME_HNS
 TRAINER_SIDE_TULIP_HNS (side, stage J, fought at stages J to K)
-  WARNING V2: Hatterene (slot 4): 31 Speed IVs setting Trick Room (ivs="0 Spe")
-  WARNING I4: Gallade (slot 5): Choice Band with status or setup moves it would be locked into: Swords Dance
-  WARNING M8: no priority move, no pivot or hazard on the team
-  WARNING P2: Trick Room from 1 setter on a team with 2 members of base Speed 60 or less, and Espathra, Gallade, Gardevoir with Speed-raising natures
-  WARNING V4: no full EV spread from stage 3 on: Farigiraf, Espathra, Florges, Hatterene, Gallade, Gardevoir
 TRAINER_SIDE_GRUSHA_HNS (side, stage J, fought at stages J to K)
-  WARNING I4: Baxcalibur (slot 5): Loaded Dice without a multi-hit move
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Ninetales Alola, Frosmoth, Beartic, Cetitan, Baxcalibur, Altaria
 TRAINER_SIDE_CYNTHIA_HNS (side, stage K, fought at stages K to K)
-  WARNING I3: an item more than twice: Leftovers x3
-  WARNING S4: Roserade @ Black Sludge (Natural Cure; Dazzling Gleam, Giga Drain, Sludge Bomb, Toxic Spikes) is on TRAINER_SIDE_CYNTHIA_HNS, TRAINER_SIDE_GARDENIA_HNS
 TRAINER_SIDE_IRIS_HNS (side, stage K, fought at stages K to K)
   WARNING S4: Lapras @ Leftovers (Water Absorb; Freeze Dry, Hydro Pump, Ice Shard, Thunderbolt) is on TRAINER_MISTY_HNS, TRAINER_SIDE_IRIS_HNS
 TRAINER_SIDE_GEETA_HNS (side, stage K, fought at stages K to K)
-  WARNING S4: Kingambit @ Black Glasses (Supreme Overlord; Iron Head, Kowtow Cleave, Sucker Punch, Swords Dance) is on TRAINER_SIDE_BYRON_HNS, TRAINER_SIDE_GEETA_HNS
 TRAINER_SIDE_N_HNS (side, stage K, fought at stages K to K)
 TRAINER_SIDE_CYRUS_HNS (side, stage K, fought at stages K to K)
-  WARNING S4: Houndoom @ Houndoominite (Flash Fire; Dark Pulse, Fire Blast, Nasty Plot, Sludge Bomb) is on TRAINER_ARCHER_HNS, TRAINER_KAREN_2_HNS, TRAINER_SIDE_CYRUS_HNS
+  WARNING S4: Houndoom @ Houndoominite (Flash Fire; Dark Pulse, Fire Blast, Nasty Plot, Sludge Bomb) is on TRAINER_KAREN_2_HNS, TRAINER_SIDE_CYRUS_HNS
 TRAINER_SIDE_WALLACE_HNS (side, stage K, fought at stages K to K)
   WARNING M8: no priority move on the team
 TRAINER_SIDE_MAXIE_HNS (side, stage K, fought at stages K to K)
-  WARNING S4: Weezing @ Black Sludge (Levitate; Fire Blast, Pain Split, Sludge Bomb, Will O Wisp) is on TRAINER_PETREL_1_HNS, TRAINER_SIDE_MAXIE_HNS
 TRAINER_SIDE_ARCHIE_HNS (side, stage K, fought at stages K to K)
-  WARNING M8: no setup move on the team
 TRAINER_SIDE_WALLY_HNS (side, stage K, fought at stages K to K)
   WARNING S4: Magnezone @ Choice Specs (Magnet Pull; Body Press, Flash Cannon, Thunderbolt, Volt Switch) is on TRAINER_JASMINE_2_HNS, TRAINER_LTSURGE_HNS, TRAINER_SIDE_WALLY_HNS
   WARNING S4: Flygon @ Choice Scarf (Levitate; Dragon Claw, Earthquake, Fire Punch, U Turn) is on TRAINER_CLAIR_1_HNS, TRAINER_SIDE_WALLY_HNS
 TRAINER_ZUKI_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING M8: no setup move, no priority move, no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Umbreon
 TRAINER_NAOKO_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING M8: no priority move, no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Espeon
+  WARNING S4: Espeon @ Life Orb (Magic Bounce; Calm Mind, Dazzling Gleam, Psychic, Shadow Ball) is on TRAINER_NAOKO_HNS, TRAINER_RED_HNS, TRAINER_RED_POSTOBC_HNS, TRAINER_SABRINA_HNS
 TRAINER_MIKI_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING M8: no setup move, no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Flareon
 TRAINER_SAYO_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING M8: no setup move, no priority move on the team
   WARNING V4: no full EV spread from stage 3 on: Jolteon
 TRAINER_KUNI_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING M8: no setup move, no priority move, no pivot or hazard on the team
   WARNING V4: no full EV spread from stage 3 on: Vaporeon
 TRAINER_MIKEY_HNS (miniboss, stage 0, fought at stages 0 to K)
-  WARNING M2: Pichu (slot 1): filler: Sweet Kiss
-  WARNING E1: Sentret (slot 2), fought at stage 0: Sentret at 15, past Furret's 15
-  WARNING E6: Sentret (slot 2), fought at stages 1, 2, 3, 4, 5, 6, 7, 8, J, K: Furret at 24, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING M2: Sentret (slot 2): filler: Defense Curl
-  raised to 24: Pichu @ Eviolite, Furret @ Eviolite, Raticate @ Flame Orb
-  raised to 33 to 100: Pikachu @ Eviolite, Furret @ Eviolite, Raticate @ Flame Orb
+  raised to 24: Pichu @ Eviolite, Furret @ Sitrus Berry, Raticate @ Flame Orb
+  raised to 33 to 100: Pikachu @ Focus Sash, Furret @ Sitrus Berry, Raticate @ Flame Orb
 TRAINER_ROLAND_HNS (miniboss, stage 0, fought at stages 0 to K)
-  WARNING E6: Bellsprout (slot 1), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Victreebel at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING A2: Bellsprout (slot 1): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING M7: Bellsprout (slot 1): weak setup: Growth
-  WARNING E1: Mareep (slot 2), fought at stage 0: Mareep at 15, past Flaaffy's 15
-  WARNING E6: Mareep (slot 2), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Ampharos at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Geodude (slot 3), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Golem at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING I3: an item more than twice: Eviolite x3
-  raised to 24: Weepinbell @ Eviolite, Flaaffy @ Eviolite, Graveler @ Eviolite
-  raised to 33 to 100: Victreebel @ Eviolite, Ampharos @ Eviolite, Golem @ Eviolite
+  raised to 24: Graveler @ Rocky Helmet, Flaaffy @ Eviolite, Weepinbell @ Salac Berry
+  raised to 33 to 100: Golem @ Rocky Helmet, Ampharos @ Leftovers, Victreebel @ Salac Berry
 TRAINER_KATE_HNS (miniboss, stage 1, fought at stages 1 to K)
-  WARNING E6: Shellder (slot 1), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Cloyster at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING M3: Shellder (slot 1): no attack of its own type
-  WARNING E6: Growlithe (slot 2), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Arcanine at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E1: Snubbull (slot 3), fought at stage 1: Snubbull at 24, past Granbull's 23
-  WARNING E6: Snubbull (slot 3), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Granbull at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Kadabra (slot 4), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Alakazam at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING I3: an item more than twice: Eviolite x4
-  raised to 33 to 100: Cloyster @ Eviolite, Arcanine @ Eviolite, Granbull @ Eviolite, Alakazam @ Eviolite
+  raised to 33 to 100: Granbull @ Sitrus Berry, Cloyster @ White Herb, Arcanine @ Charcoal, Alakazam @ Life Orb
 TRAINER_BRYAN_HNS (miniboss, stage 1, fought at stages 1 to K)
-  WARNING E6: Swablu (slot 1), fought at stages 3, 4, 5, 6, 7, 8, J, K: Altaria at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  raised to 42 to 100: Altaria @ Eviolite, Farfetchd @ Leek, Fearow @ Sharp Beak, Noctowl @ Sitrus Berry
+  raised to 42 to 100: Altaria @ Leftovers, Farfetchd @ Leek, Fearow @ Sharp Beak, Noctowl @ Sitrus Berry
 TRAINER_GREG_HNS (miniboss, stage 2, fought at stages 2 to K)
-  WARNING I4: Xatu (slot 1): Light Clay without Reflect, Light Screen or Aurora Veil
-  WARNING E1: Kirlia (slot 3), fought at stage 2: Kirlia at 33, past Gardevoir's 30
-  WARNING E2: Kirlia (slot 3), fought at stage 2: Kirlia at 33 unevolved: it evolves by item into Gallade, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Kirlia (slot 3), fought at stages 3, 4, 5, 6, 7, 8, J, K: Gardevoir at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING S4: Espeon @ Life Orb (Magic Bounce; Calm Mind, Dazzling Gleam, Psychic, Shadow Ball) is on TRAINER_GREG_HNS, TRAINER_NAOKO_HNS, TRAINER_RED_HNS, TRAINER_RED_POSTOBC_HNS, TRAINER_SABRINA_HNS
-  raised to 42 to 100: Xatu @ Light Clay, Grumpig @ Leftovers, Gardevoir @ Eviolite, Espeon @ Life Orb
 TRAINER_VALERIE_HNS (miniboss, stage 2, fought at stages 2 to K)
 TRAINER_EUGENE_HNS (miniboss, stage 2, fought at stages 2 to K)
-  WARNING E2: Poliwhirl (slot 2), fought at stage 2: Poliwhirl at 33 unevolved: it evolves by item into Poliwrath, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Poliwhirl (slot 2), fought at stages 3, 4, 5, 6, 7, 8, J, K: Poliwrath at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E2: Machoke (slot 3), fought at stage 2: Machoke at 33 unevolved: it evolves by trade into Machamp, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Machoke (slot 3), fought at stages 3, 4, 5, 6, 7, 8, J, K: Machamp at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING M6: Machoke (slot 3): Dynamic Punch at 50% accuracy without its enabler
-  WARNING I3: 2 Eviolites at stage 2
-  WARNING S4: Tentacruel @ Black Sludge (Clear Body; Rapid Spin, Scald, Sludge Bomb, Toxic Spikes) is on TRAINER_EUGENE_HNS, TRAINER_SIDE_ARCHIE_HNS
-  raised to 42 to 100: Tentacruel @ Black Sludge, Poliwrath @ Eviolite, Machamp @ Eviolite, Kingler @ Life Orb
 TRAINER_SIMON_HNS (miniboss, stage 3, fought at stages 3 to K)
   WARNING V4: no full EV spread from stage 3 on: Pelipper, Floatzel, Seaking, Golduck, Quagsire
+  WARNING S4: Pelipper @ Damp Rock (Drizzle; Hurricane, Roost, Scald, U Turn) is on TRAINER_MISTY_HNS, TRAINER_SIDE_WALLACE_HNS, TRAINER_SIMON_HNS
 TRAINER_GEORGE_HNS (miniboss, stage 3, fought at stages 3 to K)
-  WARNING E2: Seadra (slot 3), fought at stage 3: Seadra at 42 unevolved: it evolves by trade into Kingdra, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Seadra (slot 3), fought at stages 4, 5, 6, 7, 8, J, K: Kingdra at 50, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING V4: no full EV spread from stage 3 on: Mantine, Octillery, Seadra, Lapras, Starmie
-  raised to 50 to 100: Mantine @ Leftovers, Octillery @ Life Orb, Kingdra @ Eviolite, Lapras @ Sitrus Berry, Starmie @ Life Orb
 TRAINER_BENJAMIN_HNS (miniboss, stage 3, fought at stages 3 to K)
-  WARNING E2: Graveler (slot 1), fought at stage 3: Graveler at 42 unevolved: it evolves by trade into Golem, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Graveler (slot 1), fought at stages 4, 5, 6, 7, 8, J, K: Golem at 50, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E2: Onix (slot 2), fought at stage 3: Onix at 42 unevolved: it evolves by trade into Steelix, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Onix (slot 2), fought at stages 4, 5, 6, 7, 8, J, K: Steelix at 50, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E1: Rhyhorn (slot 3), fought at stage 3: Rhyhorn at 42, past Rhydon's 42
-  WARNING A2: Rhyhorn (slot 3): Rock Head without a recoil move, it has Lightning Rod, Reckless
-  WARNING E2: Piloswine (slot 4), fought at stage 3: Piloswine at 42 unevolved: it evolves by move into Mamoswine, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Piloswine (slot 4), fought at stages 4, 5, 6, 7, 8, J, K: Mamoswine at 50, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING I3: an item more than twice: Eviolite x4
-  WARNING V4: no full EV spread from stage 3 on: Graveler, Onix, Rhyhorn, Piloswine, Sudowoodo
-  raised to 50 to 100: Golem @ Eviolite, Steelix @ Eviolite, Rhydon @ Eviolite, Mamoswine @ Eviolite, Sudowoodo @ Choice Band
 TRAINER_BEN_HNS (miniboss, stage 3, fought at stages 3 to K)
-  WARNING E1: Lickitung (slot 1), fought at stage 3: Lickitung at 42, past Lickilicky's 35
-  WARNING E2: Lickitung (slot 1), fought at stage 3: Lickitung at 42 unevolved: it evolves by move into Lickilicky, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Lickitung (slot 1), fought at stages 4, 5, 6, 7, 8, J, K: Lickilicky at 50, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Dragonair (slot 5), fought at stages 5, 6, 7, 8, J, K: Dragonite at 58, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING M3: Dragonair (slot 5): no attack of its own type
-  WARNING I3: 2 Eviolites at stage 3
-  WARNING V4: no full EV spread from stage 3 on: Lickitung, Kangaskhan, Slowbro, Aerodactyl, Dragonair
-  raised to 50: Lickilicky @ Eviolite, Kangaskhan @ Silk Scarf, Slowbro @ Leftovers, Aerodactyl @ Focus Sash, Dragonair @ Eviolite
-  raised to 58 to 100: Lickilicky @ Eviolite, Kangaskhan @ Silk Scarf, Slowbro @ Leftovers, Aerodactyl @ Focus Sash, Dragonite @ Eviolite
+  raised to 58 to 100: Aerodactyl @ Focus Sash, Kangaskhan @ Silk Scarf, Slowbro @ Leftovers, Lickilicky @ Sitrus Berry, Dragonite @ Lum Berry
 TRAINER_DEVIN_HNS (miniboss, stage 3, fought at stages 3 to K)
-  WARNING E1: Lairon (slot 2), fought at stage 3: Lairon at 42, past Aggron's 42
-  WARNING E6: Lairon (slot 2), fought at stages 4, 5, 6, 7, 8, J, K: Aggron at 50, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING A2: Marowak (slot 3): Rock Head without a recoil move, it has Battle Armor, Lightning Rod
-  WARNING I3: 2 Eviolites at stage 3
-  WARNING V4: no full EV spread from stage 3 on: Gligar, Lairon, Marowak, Hariyama, Golem
-  raised to 50 to 100: Gligar @ Eviolite, Aggron @ Eviolite, Marowak @ Thick Club, Hariyama @ Flame Orb, Golem @ Sitrus Berry
 TRAINER_CYBIL_HNS (miniboss, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Ninetales, Jumpluff, Butterfree, Arcanine, Bellossom
-  WARNING S4: Arcanine @ Choice Band (Intimidate; Close Combat, Extreme Speed, Flare Blitz, Wild Charge) is on TRAINER_BLUE_HNS, TRAINER_CYBIL_HNS
 TRAINER_JAKE_HNS (miniboss, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Tangrowth, Electivire, Magmortar, Togekiss, Kingdra, Gyarados
   WARNING S4: Electivire @ Life Orb (Motor Drive; Cross Chop, Earthquake, Ice Punch, Wild Charge) is on TRAINER_JAKE_HNS, TRAINER_LTSURGE_HNS, TRAINER_LTSURGE_POSTOBC_HNS
-  WARNING S4: Tangrowth @ Rocky Helmet (Regenerator; Earthquake, Giga Drain, Knock Off, Sleep Powder) is on TRAINER_ERIKA_HNS, TRAINER_JAKE_HNS
 TRAINER_BLAKE_HNS (miniboss, stage 4, fought at stages 4 to K)
-  WARNING I3: an item more than twice: Life Orb x3
-  WARNING V4: no full EV spread from stage 3 on: Scizor, Starmie, Ampharos, Houndoom, Heracross, Nidoking
 TRAINER_KELLY_HNS (miniboss, stage 6, fought at stages 6 to K)
-  WARNING A2: Roserade (slot 1): Technician without a move of 60 power or less, it has Natural Cure, Poison Touch
-  WARNING V4: no full EV spread from stage 3 on: Roserade, Lopunny, Froslass, Azumarill, Gardevoir, Milotic
 TRAINER_QUINN_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING V4: no full EV spread from stage 3 on: Hippowdon, Excadrill, Gliscor, Sandslash, Garchomp, Tyranitar
-  WARNING S4: Garchomp @ Rocky Helmet (Rough Skin; Dragon Claw, Earthquake, Stone Edge, Swords Dance) is on TRAINER_LANCE_1_HNS, TRAINER_QUINN_HNS
-  WARNING S4: Gliscor @ Toxic Orb (Poison Heal; Earthquake, Knock Off, Roost, Toxic) is on TRAINER_FALKNER_POSTOBC_HNS, TRAINER_QUINN_HNS
 TRAINER_OTIS_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING M8: needs setup or priority, and a pivot or a hazard
-  WARNING V4: no full EV spread from stage 3 on: Ninetales, Houndoom, Chandelure, Magmortar, Volcarona, Charizard
-  WARNING S4: Houndoom @ Black Glasses (Flash Fire; Dark Pulse, Fire Blast, Nasty Plot, Sludge Bomb) is on TRAINER_KAREN_1_HNS, TRAINER_OTIS_HNS
 TRAINER_DWAYNE_HNS (miniboss, stage J, fought at stages J to K)
   WARNING V4: no full EV spread from stage 3 on: Weezing, Muk, Scrafty, Crobat, Krookodile, Hydreigon
-  WARNING S4: Muk @ Black Sludge (Poison Touch; Curse, Gunk Shot, Knock Off, Shadow Sneak) is on TRAINER_DWAYNE_HNS, TRAINER_PROTON_2_HNS
-  WARNING S4: Weezing @ Rocky Helmet (Levitate; Pain Split, Sludge Bomb, Toxic Spikes, Will O Wisp) is on TRAINER_DWAYNE_HNS, TRAINER_PROTON_2_HNS
+  WARNING S4: Crobat @ Sharp Beak (Infiltrator; Brave Bird, Cross Poison, Roost, U Turn) is on TRAINER_DWAYNE_HNS, TRAINER_JANINE_HNS
 TRAINER_TIM_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING I4: Golem (slot 3): a Focus Sash on a Sturdy Pokemon
-  WARNING V4: no full EV spread from stage 3 on: Donphan, Steelix, Golem, Mamoswine, Aggron, Rhyperior
 TRAINER_ROBERT_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING I3: an item more than twice: Leftovers x3
-  WARNING M8: needs setup or priority, and a pivot or a hazard
-  WARNING V4: no full EV spread from stage 3 on: Granbull, Azumarill, Mimikyu, Togekiss, Sylveon, Clefable
-  WARNING S4: Mimikyu @ Life Orb (Disguise; Play Rough, Shadow Claw, Shadow Sneak, Swords Dance) is on TRAINER_MORTY_1_HNS, TRAINER_MORTY_2_HNS, TRAINER_ROBERT_HNS
-  WARNING S4: Azumarill @ Choice Band (Huge Power; Aqua Jet, Play Rough, Superpower, Waterfall) is on TRAINER_KELLY_HNS, TRAINER_ROBERT_HNS
 TRAINER_HERMAN_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING V2: Bronzong (slot 1): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING V2: Hatterene (slot 2): 31 Speed IVs setting Trick Room (ivs="0 Spe")
-  WARNING N2: Gallade (slot 3): on a Trick Room team with Adamant, which doesn't lower Speed (base 80)
-  WARNING V2: Gallade (slot 3): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING V2: Reuniclus (slot 4): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Alakazam (slot 5): on a Trick Room team with Timid, which doesn't lower Speed (base 120)
-  WARNING P2: Alakazam (slot 5): Timid raises Speed on a Trick Room team
-  WARNING V2: Alakazam (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING N2: Metagross (slot 6): on a Trick Room team with Adamant, which doesn't lower Speed (base 70)
-  WARNING V2: Metagross (slot 6): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING I3: an item more than twice: Life Orb x3
-  WARNING V4: no full EV spread from stage 3 on: Bronzong, Hatterene, Gallade, Reuniclus, Alakazam, Metagross
-  WARNING S4: Bronzong @ Leftovers (Levitate; Earthquake, Gyro Ball, Hypnosis, Stealth Rock) is on TRAINER_HERMAN_HNS, TRAINER_JASMINE_1_2_HNS, TRAINER_JASMINE_1_3_HNS, TRAINER_JASMINE_1_HNS
 TRAINER_STEPHEN_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING I3: 2 items twice: Life Orb, Leftovers
-  WARNING V4: no full EV spread from stage 3 on: Politoed, Kingdra, Ludicolo, Seismitoad, Lanturn, Gyarados
-  WARNING S4: Politoed @ Damp Rock (Drizzle; Encore, Hypnosis, Ice Beam, Scald) is on TRAINER_EUSINE_HNS, TRAINER_SIDE_WAKE_HNS, TRAINER_STEPHEN_HNS
 TRAINER_BRET_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING I4: Klefki (slot 1): Light Clay without Reflect, Light Screen or Aurora Veil
-  WARNING V3: Magnezone (slot 6): Hidden Power with 31 IVs is Dark; its ivs must give the type it is meant to be
-  WARNING V4: no full EV spread from stage 3 on: Klefki, Sableye, Ambipom, Mr Mime, Rotom, Magnezone
 TRAINER_COLETTE_HNS (miniboss, stage J, fought at stages J to K)
   WARNING V4: no full EV spread from stage 3 on: Hawlucha, Breloom, Machamp, Conkeldurr, Infernape, Lucario
-  WARNING S4: Breloom @ Focus Sash (Technician; Bullet Seed, Mach Punch, Rock Tomb, Spore) is on TRAINER_CHUCK_1_2_HNS, TRAINER_CHUCK_1_3_HNS, TRAINER_CHUCK_1_HNS, TRAINER_COLETTE_HNS
-  WARNING S4: Hawlucha @ White Herb (Unburden; Acrobatics, High Jump Kick, Roost, Swords Dance) is on TRAINER_CHUCK_1_2_HNS, TRAINER_CHUCK_1_3_HNS, TRAINER_CHUCK_1_HNS, TRAINER_COLETTE_HNS
+  WARNING S4: Conkeldurr @ Flame Orb (Guts; Drain Punch, Ice Punch, Knock Off, Mach Punch) is on TRAINER_BRUNO_2_HNS, TRAINER_COLETTE_HNS
   WARNING S4: shares 4 species with TRAINER_BRUNO_2_HNS (stage J): Conkeldurr, Hawlucha, Infernape, Lucario
 TRAINER_BORIS_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING M3: Dragonite (slot 6): no attack of its own type
-  WARNING V4: no full EV spread from stage 3 on: Skarmory, Staraptor, Talonflame, Corviknight, Togekiss, Dragonite
 TRAINER_LORI_HNS (miniboss, stage J, fought at stages J to K)
   WARNING I3: 2 items twice: Life Orb, Leftovers
   WARNING V4: no full EV spread from stage 3 on: Araquanid, Starmie, Vaporeon, Lapras, Primarina, Milotic
-  WARNING S4: Milotic @ Leftovers (Marvel Scale; Haze, Ice Beam, Recover, Scald) is on TRAINER_KELLY_HNS, TRAINER_LORI_HNS, TRAINER_SIDE_CYNTHIA_HNS
   WARNING S4: Vaporeon @ Leftovers (Water Absorb; Ice Beam, Protect, Scald, Wish) is on TRAINER_KUNI_HNS, TRAINER_LORI_HNS
-  WARNING S4: Starmie @ Life Orb (Analytic; Hydro Pump, Ice Beam, Psychic, Thunderbolt) is on TRAINER_BLAKE_HNS, TRAINER_LORI_HNS
 TRAINER_KEVIN_HNS (miniboss, stage J, fought at stages J to K)
-  WARNING V2: Ferrothorn (slot 3): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING I3: an item more than twice: Life Orb x4
-  WARNING V4: no full EV spread from stage 3 on: Gengar, Scizor, Ferrothorn, Crawdaunt, Kommo O, Salamence
-  WARNING S4: Crawdaunt @ Life Orb (Adaptability; Aqua Jet, Crabhammer, Knock Off, Swords Dance) is on TRAINER_ARCHER_HNS, TRAINER_KEVIN_HNS
 TRAINER_RIVAL_CYNDAQUIL_2_HNS (boss, stage 2, fought at stages 2 to 2)
-  WARNING M2: Golbat (slot 1): filler: Confuse Ray
-  WARNING M5: Golbat (slot 1): its strongest attack has 60 power
-  WARNING E2: Haunter (slot 2), fought at stage 2: Haunter at 33 unevolved: it evolves by trade into Gengar, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Magneton (slot 3), fought at stage 2: Magneton at 33 unevolved: it evolves by other into Magnezone, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E1: Larvitar (slot 4), fought at stage 2: Larvitar at 33, past Pupitar's 30
-  WARNING M2: Larvitar (slot 4): filler: Scary Face
-  WARNING E2: Sneasel (slot 5), fought at stage 2: Sneasel at 33 unevolved: it evolves by item into Weavile, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING I5: Sneasel (slot 5): Oran Berry is a weak item for a designed set
-  WARNING M5: Sneasel (slot 5): its strongest attack has 60 power
-  WARNING M2: Quilava (slot 6): filler: Smokescreen
-  WARNING I3: an item more than twice: Eviolite x4
-  WARNING S4: shares 5 species with TRAINER_RIVAL_CYNDAQUIL_3_HNS (stage 3): Golbat, Haunter, Larvitar, Quilava, Sneasel
 TRAINER_RIVAL_TOTODILE_2_HNS (boss, stage 2, fought at stages 2 to 2)
-  WARNING M2: Golbat (slot 1): filler: Confuse Ray
-  WARNING M5: Golbat (slot 1): its strongest attack has 60 power
-  WARNING E2: Haunter (slot 2), fought at stage 2: Haunter at 33 unevolved: it evolves by trade into Gengar, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Magneton (slot 3), fought at stage 2: Magneton at 33 unevolved: it evolves by other into Magnezone, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E1: Larvitar (slot 4), fought at stage 2: Larvitar at 33, past Pupitar's 30
-  WARNING M2: Larvitar (slot 4): filler: Scary Face
-  WARNING E2: Sneasel (slot 5), fought at stage 2: Sneasel at 33 unevolved: it evolves by item into Weavile, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING I5: Sneasel (slot 5): Oran Berry is a weak item for a designed set
-  WARNING M5: Sneasel (slot 5): its strongest attack has 60 power
-  WARNING M2: Croconaw (slot 6): filler: Scary Face
-  WARNING M5: Croconaw (slot 6): its strongest attack has 65 power
-  WARNING I3: an item more than twice: Eviolite x4
 TRAINER_RIVAL_CHIKORITA_2_HNS (boss, stage 2, fought at stages 2 to 2)
-  WARNING M2: Golbat (slot 1): filler: Confuse Ray
-  WARNING M5: Golbat (slot 1): its strongest attack has 60 power
-  WARNING E2: Haunter (slot 2), fought at stage 2: Haunter at 33 unevolved: it evolves by trade into Gengar, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Magneton (slot 3), fought at stage 2: Magneton at 33 unevolved: it evolves by other into Magnezone, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E1: Larvitar (slot 4), fought at stage 2: Larvitar at 33, past Pupitar's 30
-  WARNING M2: Larvitar (slot 4): filler: Scary Face
-  WARNING E2: Sneasel (slot 5), fought at stage 2: Sneasel at 33 unevolved: it evolves by item into Weavile, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING I5: Sneasel (slot 5): Oran Berry is a weak item for a designed set
-  WARNING M5: Sneasel (slot 5): its strongest attack has 60 power
-  WARNING I3: an item more than twice: Eviolite x4
-  WARNING S4: Golbat @ Eviolite (Infiltrator; Bite, Confuse Ray, Toxic, Wing Attack) is on TRAINER_PROTON_1_HNS, TRAINER_RIVAL_CHIKORITA_2_HNS, TRAINER_RIVAL_CYNDAQUIL_2_HNS, TRAINER_RIVAL_TOTODILE_2_HNS
-  WARNING S4: Magneton @ Eviolite (Magnet Pull; Flash Cannon, Thunder Wave, Thunderbolt, Volt Switch) is on TRAINER_JASMINE_1_2_HNS, TRAINER_JASMINE_1_3_HNS, TRAINER_JASMINE_1_HNS, TRAINER_RIVAL_CHIKORITA_2_HNS, TRAINER_RIVAL_CYNDAQUIL_2_HNS, TRAINER_RIVAL_TOTODILE_2_HNS
 TRAINER_RIVAL_CYNDAQUIL_3_HNS (boss, stage 3, fought at stages 3 to 3)
-  WARNING M2: Golbat (slot 1): filler: Confuse Ray
-  WARNING M5: Golbat (slot 1): its strongest attack has 60 power
-  WARNING E2: Sneasel (slot 2), fought at stage 3: Sneasel at 42 unevolved: it evolves by item into Weavile, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Haunter (slot 3), fought at stage 3: Haunter at 42 unevolved: it evolves by trade into Gengar, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Weepinbell (slot 4), fought at stage 3: Weepinbell at 42 unevolved: it evolves by item into Victreebel, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING A2: Weepinbell (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING E1: Larvitar (slot 5), fought at stage 3: Larvitar at 42, past Pupitar's 30
-  WARNING E1: Quilava (slot 6), fought at stage 3: Quilava at 42, past Typhlosion's 36
-  WARNING M2: Quilava (slot 6): filler: Smokescreen
-  WARNING I3: an item more than twice: Eviolite x4
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Golbat, Sneasel, Haunter, Weepinbell, Larvitar, Quilava
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  WARNING E8: his starter is a Quilava at 42: a Typhlosion there
 TRAINER_RIVAL_TOTODILE_3_HNS (boss, stage 3, fought at stages 3 to 3)
-  WARNING M2: Golbat (slot 1): filler: Confuse Ray
-  WARNING M5: Golbat (slot 1): its strongest attack has 60 power
-  WARNING E2: Sneasel (slot 2), fought at stage 3: Sneasel at 42 unevolved: it evolves by item into Weavile, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Haunter (slot 3), fought at stage 3: Haunter at 42 unevolved: it evolves by trade into Gengar, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Weepinbell (slot 4), fought at stage 3: Weepinbell at 42 unevolved: it evolves by item into Victreebel, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING A2: Weepinbell (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING E1: Larvitar (slot 5), fought at stage 3: Larvitar at 42, past Pupitar's 30
-  WARNING E1: Croconaw (slot 6), fought at stage 3: Croconaw at 42, past Feraligatr's 36
-  WARNING I3: an item more than twice: Eviolite x4
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Golbat, Sneasel, Haunter, Weepinbell, Larvitar, Croconaw
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  WARNING E8: his starter is a Croconaw at 42: a Feraligatr there
 TRAINER_RIVAL_CHIKORITA_3_HNS (boss, stage 3, fought at stages 3 to 3)
-  WARNING M2: Golbat (slot 1): filler: Confuse Ray
-  WARNING M5: Golbat (slot 1): its strongest attack has 60 power
-  WARNING E2: Sneasel (slot 2), fought at stage 3: Sneasel at 42 unevolved: it evolves by item into Weavile, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Haunter (slot 3), fought at stage 3: Haunter at 42 unevolved: it evolves by trade into Gengar, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Weepinbell (slot 4), fought at stage 3: Weepinbell at 42 unevolved: it evolves by item into Victreebel, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING A2: Weepinbell (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING E1: Larvitar (slot 5), fought at stage 3: Larvitar at 42, past Pupitar's 30
-  WARNING E1: Bayleef (slot 6), fought at stage 3: Bayleef at 42, past Meganium's 36
-  WARNING I3: an item more than twice: Eviolite x4
-  WARNING M8: no pivot or hazard on the team
-  WARNING V4: no full EV spread from stage 3 on: Golbat, Sneasel, Haunter, Weepinbell, Larvitar, Bayleef
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  WARNING E8: his starter is a Bayleef at 42: a Meganium there
 TRAINER_RIVAL_CYNDAQUIL_4_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING A2: Victreebel (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING E1: Pupitar (slot 5), fought at stage 7: Pupitar at 75, past Tyranitar's 55
-  WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Alakazam, Victreebel, Pupitar, Typhlosion
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  WARNING S4: shares 4 species with TRAINER_RIVAL_CYNDAQUIL_5_HNS (stage 8): Crobat, Typhlosion, Victreebel, Weavile
 TRAINER_RIVAL_TOTODILE_4_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING A2: Victreebel (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING E1: Pupitar (slot 5), fought at stage 7: Pupitar at 75, past Tyranitar's 55
-  WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Alakazam, Victreebel, Pupitar, Feraligatr
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
 TRAINER_RIVAL_CHIKORITA_4_HNS (boss, stage 7, fought at stages 7 to 7)
-  WARNING A2: Victreebel (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING E1: Pupitar (slot 5), fought at stage 7: Pupitar at 75, past Tyranitar's 55
-  WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Alakazam, Victreebel, Pupitar, Meganium
-  WARNING P3: no Mega Evolution (required on every boss and side battle from stage 3)
-  WARNING S4: Pupitar @ Eviolite (Shed Skin; Crunch, Dragon Dance, Earthquake, Stone Edge) is on TRAINER_PETREL_2_HNS, TRAINER_RIVAL_CHIKORITA_4_HNS, TRAINER_RIVAL_CYNDAQUIL_4_HNS, TRAINER_RIVAL_TOTODILE_4_HNS
 TRAINER_RIVAL_CYNDAQUIL_5_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING A2: Victreebel (slot 3): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING E1: Ursaring (slot 4), fought at stage 8: Ursaring at 85, past Ursaluna's 48
-  WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Victreebel, Ursaring, Tyranitar, Typhlosion
-  WARNING S4: shares 4 species with TRAINER_RIVAL_CYNDAQUIL_6_HNS (stage J): Crobat, Typhlosion, Tyranitar, Weavile
-  WARNING S4: shares 4 species with TRAINER_RIVAL_CYNDAQUIL_7_HNS (stage J): Crobat, Typhlosion, Tyranitar, Weavile
 TRAINER_RIVAL_TOTODILE_5_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING A2: Victreebel (slot 3): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING E1: Ursaring (slot 4), fought at stage 8: Ursaring at 85, past Ursaluna's 48
-  WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Victreebel, Ursaring, Tyranitar, Feraligatr
 TRAINER_RIVAL_CHIKORITA_5_HNS (boss, stage 8, fought at stages 8 to 8)
-  WARNING A2: Victreebel (slot 3): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING E1: Ursaring (slot 4), fought at stage 8: Ursaring at 85, past Ursaluna's 48
-  WARNING V4: no full EV spread from stage 3 on: Crobat, Weavile, Victreebel, Ursaring, Tyranitar, Meganium
-  WARNING S4: Crobat @ Sharp Beak (Infiltrator; Brave Bird, Cross Poison, Roost, U Turn) is on TRAINER_DWAYNE_HNS, TRAINER_JANINE_HNS, TRAINER_KOGA_1_HNS, TRAINER_RIVAL_CHIKORITA_4_HNS, TRAINER_RIVAL_CHIKORITA_5_HNS, TRAINER_RIVAL_CYNDAQUIL_4_HNS, TRAINER_RIVAL_CYNDAQUIL_5_HNS, TRAINER_RIVAL_TOTODILE_4_HNS, TRAINER_RIVAL_TOTODILE_5_HNS
-  WARNING S4: Tyranitar @ Tyranitarite (Sand Stream; Crunch, Dragon Dance, Earthquake, Stone Edge) is on TRAINER_RIVAL_CHIKORITA_5_HNS, TRAINER_RIVAL_CYNDAQUIL_5_HNS, TRAINER_RIVAL_TOTODILE_5_HNS, TRAINER_SIDE_ROARK_HNS
-  WARNING S4: Weavile @ Life Orb (Pressure; Ice Punch, Ice Shard, Knock Off, Low Kick) is on TRAINER_RIVAL_CHIKORITA_4_HNS, TRAINER_RIVAL_CHIKORITA_5_HNS, TRAINER_RIVAL_CYNDAQUIL_4_HNS, TRAINER_RIVAL_CYNDAQUIL_5_HNS, TRAINER_RIVAL_TOTODILE_4_HNS, TRAINER_RIVAL_TOTODILE_5_HNS
-  WARNING S4: Victreebel @ Black Sludge (Chlorophyll; Poison Jab, Power Whip, Sleep Powder, Sucker Punch) is on TRAINER_RIVAL_CHIKORITA_4_HNS, TRAINER_RIVAL_CHIKORITA_5_HNS, TRAINER_RIVAL_CYNDAQUIL_4_HNS, TRAINER_RIVAL_CYNDAQUIL_5_HNS, TRAINER_RIVAL_TOTODILE_4_HNS, TRAINER_RIVAL_TOTODILE_5_HNS
-  WARNING S4: Meganium @ Leftovers (Overgrow; Earth Power, Energy Ball, Leech Seed, Synthesis) is on TRAINER_RIVAL_CHIKORITA_4_HNS, TRAINER_RIVAL_CHIKORITA_5_HNS
 TRAINER_RIVAL_CYNDAQUIL_6_HNS (boss, stage J, fought at stages J to J)
-  WARNING S4: shares 5 species with TRAINER_RIVAL_CYNDAQUIL_7_HNS (stage J): Crobat, Gengar, Typhlosion, Tyranitar, Weavile
 TRAINER_RIVAL_TOTODILE_6_HNS (boss, stage J, fought at stages J to J)
-  WARNING I3: an item more than twice: Life Orb x3
 TRAINER_RIVAL_CHIKORITA_6_HNS (boss, stage J, fought at stages J to J)
-  WARNING S4: Tyranitar @ Tyranitarite (Sand Stream; Dragon Dance, Earthquake, Knock Off, Stone Edge) is on TRAINER_KAREN_POSTOBC_HNS, TRAINER_RIVAL_CHIKORITA_6_HNS, TRAINER_RIVAL_CYNDAQUIL_6_HNS, TRAINER_RIVAL_TOTODILE_6_HNS
 TRAINER_RIVAL_CYNDAQUIL_7_HNS (boss, stage J, fought at stages J to K)
 TRAINER_RIVAL_TOTODILE_7_HNS (boss, stage J, fought at stages J to K)
 TRAINER_RIVAL_CHIKORITA_7_HNS (boss, stage J, fought at stages J to K)
 TRAINER_ACE_R29_KAITO_HNS (ace, stage 0, fought at stages 0 to K)
-  WARNING E1: Shinx (slot 1), fought at stage 0: Shinx at 15, past Luxio's 15
-  WARNING E6: Cutiefly (slot 2), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Ribombee at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  raised to 24: Luxio @ Oran Berry, Cutiefly @ Eviolite, Riolu @ Black Belt
-  raised to 33 to 100: Luxray @ Oran Berry, Ribombee @ Eviolite, Lucario @ Black Belt
+  raised to 33 to 100: Luxray @ Sitrus Berry, Ribombee @ Focus Sash, Lucario @ Black Belt
 TRAINER_ACE_R30_SELENE_HNS (ace, stage 0, fought at stages 0 to K)
-  WARNING M2: Marill (slot 3): filler: Charm
-  raised to 24 to 100: Breloom @ Oran Berry, Houndoom @ Charcoal, Azumarill @ Sitrus Berry
+  raised to 24 to 100: Breloom @ Big Root, Houndoom @ Charcoal, Azumarill @ Sitrus Berry
 TRAINER_ACE_R31_BRANT_HNS (ace, stage 0, fought at stages 0 to K)
-  WARNING E6: Magnemite (slot 2), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Magnezone at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  raised to 24: Carkol @ Oran Berry, Magnemite @ Eviolite, Tyrunt @ Sitrus Berry
-  raised to 33: Carkol @ Oran Berry, Magnezone @ Eviolite, Tyrunt @ Sitrus Berry
-  raised to 42 to 100: Coalossal @ Oran Berry, Magnezone @ Eviolite, Tyrantrum @ Sitrus Berry
+  raised to 24: Carkol @ Sitrus Berry, Magnemite @ Eviolite, Tyrunt @ Muscle Band
+  raised to 33: Carkol @ Sitrus Berry, Magnezone @ Magnet, Tyrunt @ Muscle Band
+  raised to 42 to 100: Coalossal @ Sitrus Berry, Magnezone @ Magnet, Tyrantrum @ Muscle Band
 TRAINER_ACE_R46_TAMSIN_HNS (ace, stage 0, fought at stages 0 to K)
-  WARNING E6: Goomy (slot 2), fought at stages 4, 5, 6, 7, 8, J, K: Goodra at 50, holding its Eviolite, which does nothing for it: it needs a raised_item
-  raised to 33: Noibat @ Oran Berry, Sliggoo Hisui @ Eviolite, Axew @ Dragon Fang
-  raised to 42: Noivern @ Oran Berry, Sliggoo @ Eviolite, Fraxure @ Dragon Fang
-  raised to 50 to 100: Noivern @ Oran Berry, Goodra @ Eviolite, Haxorus @ Dragon Fang
+  raised to 33: Noibat @ Sitrus Berry, Sliggoo Hisui @ Leftovers, Axew @ Dragon Fang
+  raised to 42: Noivern @ Sitrus Berry, Sliggoo @ Leftovers, Fraxure @ Dragon Fang
+  raised to 50 to 100: Noivern @ Sitrus Berry, Goodra @ Leftovers, Haxorus @ Dragon Fang
 TRAINER_ACE_R32_NAIA_HNS (ace, stage 1, fought at stages 1 to K)
-  WARNING E6: Chinchou (slot 2), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Lanturn at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Lombre (slot 3), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Ludicolo at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  raised to 33: Pelipper @ Damp Rock, Lanturn @ Eviolite, Ludicolo @ Eviolite, Brionne @ Mystic Water
-  raised to 42 to 100: Pelipper @ Damp Rock, Lanturn @ Eviolite, Ludicolo @ Eviolite, Primarina @ Mystic Water
+  raised to 33: Pelipper @ Damp Rock, Lanturn @ Leftovers, Ludicolo @ Life Orb, Brionne @ Mystic Water
+  raised to 42 to 100: Pelipper @ Damp Rock, Lanturn @ Leftovers, Ludicolo @ Life Orb, Primarina @ Mystic Water
 TRAINER_ACE_UNIONCAVE_BRODIE_HNS (ace, stage 1, fought at stages 1 to K)
-  WARNING E6: Scraggy (slot 1), fought at stages 3, 4, 5, 6, 7, 8, J, K: Scrafty at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Timburr (slot 3), fought at stages 2, 3, 4, 5, 6, 7, 8, J, K: Conkeldurr at 33, holding its Eviolite, which does nothing for it: it needs a raised_item
-  raised to 33: Scraggy @ Eviolite, Mienshao @ Sitrus Berry, Conkeldurr @ Eviolite, Machamp @ Black Belt
-  raised to 42 to 100: Scrafty @ Eviolite, Mienshao @ Sitrus Berry, Conkeldurr @ Eviolite, Machamp @ Black Belt
+  raised to 33: Scraggy @ Eviolite, Mienshao @ Sitrus Berry, Conkeldurr @ Life Orb, Machamp @ Black Belt
+  raised to 42 to 100: Scrafty @ Leftovers, Mienshao @ Sitrus Berry, Conkeldurr @ Life Orb, Machamp @ Black Belt
 TRAINER_ACE_R33_SILAS_HNS (ace, stage 1, fought at stages 1 to K)
-  WARNING E6: Impidimp (slot 1), fought at stages 3, 4, 5, 6, 7, 8, J, K: Grimmsnarl at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Pawniard (slot 4), fought at stages 4, 5, 6, 7, 8, J, K: Kingambit at 50, holding its Eviolite, which does nothing for it: it needs a raised_item
-  raised to 33: Morgrem @ Eviolite, Litwick @ Spell Tag, Zoroark @ Black Glasses, Pawniard @ Eviolite
-  raised to 42: Grimmsnarl @ Eviolite, Chandelure @ Spell Tag, Zoroark @ Black Glasses, Bisharp @ Eviolite
-  raised to 50 to 100: Grimmsnarl @ Eviolite, Chandelure @ Spell Tag, Zoroark @ Black Glasses, Kingambit @ Eviolite
+  raised to 33: Morgrem @ Leftovers, Litwick @ Spell Tag, Zoroark @ Black Glasses, Pawniard @ Eviolite
+  raised to 42: Grimmsnarl @ Leftovers, Chandelure @ Spell Tag, Zoroark @ Black Glasses, Bisharp @ Life Orb
+  raised to 50 to 100: Grimmsnarl @ Leftovers, Chandelure @ Spell Tag, Zoroark @ Black Glasses, Kingambit @ Life Orb
 TRAINER_ACE_NATPARK_SUNNIVA_HNS (ace, stage 2, fought at stages 2 to K)
-  WARNING E2: Vulpix (slot 1), fought at stage 2: Vulpix at 33 unevolved: it evolves by item into Ninetales, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E2: Gloom (slot 2), fought at stage 2: Gloom at 33 unevolved: it evolves by item into Vileplume, and from stage 2 only a named Eviolite species holding an Eviolite, or a Pikachu holding a Light Ball, stays
-  WARNING E6: Gloom (slot 2), fought at stages 3, 4, 5, 6, 7, 8, J, K: Vileplume at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING E6: Krokorok (slot 3), fought at stages 3, 4, 5, 6, 7, 8, J, K: Krookodile at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING I3: 2 Eviolites at stage 2
-  raised to 42 to 100: Ninetales @ Heat Rock, Vileplume @ Eviolite, Krookodile @ Eviolite, Jumpluff @ Yache Berry, Charizard @ Charcoal
+  raised to 42 to 100: Ninetales @ Heat Rock, Bellossom @ Miracle Seed, Krookodile @ Life Orb, Jumpluff @ Yache Berry, Charizard @ Charcoal
 TRAINER_ACE_ILEX_CALDER_HNS (ace, stage 2, fought at stages 2 to K)
-  WARNING E6: Naclstack (slot 1), fought at stages 3, 4, 5, 6, 7, 8, J, K: Garganacl at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING V2: Ferroseed (slot 2): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  raised to 42 to 100: Garganacl @ Eviolite, Ferrothorn @ Occa Berry, Qwilfish @ Black Sludge, Mudsdale @ Sitrus Berry, Lokix @ Silver Powder
+  raised to 42 to 100: Garganacl @ Leftovers, Ferrothorn @ Occa Berry, Qwilfish @ Black Sludge, Mudsdale @ Sitrus Berry, Lokix @ Silver Powder
 TRAINER_ACE_R35_ADELINE_HNS (ace, stage 2, fought at stages 2 to K)
-  WARNING E6: Monferno (slot 3), fought at stages 3, 4, 5, 6, 7, 8, J, K: Infernape at 42, holding its Eviolite, which does nothing for it: it needs a raised_item
-  raised to 42: Meowstic M @ Light Clay, Mawile @ Sitrus Berry, Infernape @ Eviolite, Gabite @ Dragon Fang, Gyarados @ Wacan Berry
-  raised to 50 to 100: Meowstic M @ Light Clay, Mawile @ Sitrus Berry, Infernape @ Eviolite, Garchomp @ Dragon Fang, Gyarados @ Wacan Berry
+  raised to 42: Meowstic M @ Light Clay, Mawile @ Sitrus Berry, Infernape @ Life Orb, Gabite @ Dragon Fang, Gyarados @ Wacan Berry
+  raised to 50 to 100: Meowstic M @ Light Clay, Mawile @ Sitrus Berry, Infernape @ Life Orb, Garchomp @ Dragon Fang, Gyarados @ Wacan Berry
 TRAINER_ACE_R36_THEO_HNS (ace, stage 3, fought at stages 3 to K)
   WARNING V4: no full EV spread from stage 3 on: Dedenne, Galvantula, Electivire, Eelektross, Raichu Alola
 TRAINER_ACE_R37_CASSIA_HNS (ace, stage 3, fought at stages 3 to K)
@@ -699,27 +272,15 @@ TRAINER_ACE_R37_CASSIA_HNS (ace, stage 3, fought at stages 3 to K)
 TRAINER_ACE_R38_DESMOND_HNS (ace, stage 3, fought at stages 3 to K)
   WARNING V4: no full EV spread from stage 3 on: Hippowdon, Skarmory, Lycanroc Midday, Archaludon, Excadrill
 TRAINER_ACE_R39_MIRIAM_HNS (ace, stage 3, fought at stages 3 to K)
-  WARNING V2: Cofagrigus (slot 1): 31 Speed IVs setting Trick Room (ivs="0 Spe")
-  WARNING V2: Escavalier (slot 2): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING V2: Reuniclus (slot 3): 31 Speed IVs setting Trick Room (ivs="0 Spe")
-  WARNING V2: Ursaluna (slot 4): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING V2: Conkeldurr (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING V4: no full EV spread from stage 3 on: Cofagrigus, Escavalier, Reuniclus, Ursaluna, Conkeldurr
-  WARNING S4: Conkeldurr @ Flame Orb (Guts; Drain Punch, Ice Punch, Knock Off, Mach Punch) is on TRAINER_ACE_R39_MIRIAM_HNS, TRAINER_BRUNO_2_HNS, TRAINER_COLETTE_HNS
 TRAINER_ACE_R40_KAIA_HNS (ace, stage 3, fought at stages 3 to K)
-  WARNING V4: no full EV spread from stage 3 on: Incineroar, Pawmot, Golisopod, Corviknight, Meowscarada
-  WARNING P6: Route40_hns has rain: fewer than two of the team use it, and it sets no weather of its own
 TRAINER_ACE_R42_SOREN_HNS (ace, stage 3, fought at stages 3 to K)
   WARNING V4: no full EV spread from stage 3 on: Illumise, Polteageist Phony, Lilligant Hisui, Scolipede, Haxorus
 TRAINER_ACE_CLIFFGATE_ASTRID_HNS (ace, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Vanilluxe, Swampert, Sandslash Alola, Arctozolt, Arctovish
 TRAINER_ACE_WHIRL_NOLAN_HNS (ace, stage 4, fought at stages 4 to K)
-  WARNING V2: Ferrothorn (slot 2): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
-  WARNING V4: no full EV spread from stage 3 on: Politoed, Ferrothorn, Kilowattrel, Goodra, Drednaw
-  WARNING S4: Ferrothorn @ Leftovers (Iron Barbs; Gyro Ball, Leech Seed, Power Whip, Spikes) is on TRAINER_ACE_WHIRL_NOLAN_HNS, TRAINER_KEVIN_HNS
 TRAINER_ACE_R48_SOLANA_HNS (ace, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Torkoal, Chesnaught, Heliolisk, Shiftry, Flygon
-  WARNING S4: Torkoal @ Heat Rock (Drought; Lava Plume, Rapid Spin, Stealth Rock, Yawn) is on TRAINER_ACE_R48_SOLANA_HNS, TRAINER_BLAINE_HNS, TRAINER_SIDE_MAXIE_HNS
+  WARNING S4: Torkoal @ Heat Rock (Drought; Lava Plume, Rapid Spin, Stealth Rock, Yawn) is on TRAINER_ACE_R48_SOLANA_HNS, TRAINER_SIDE_MAXIE_HNS
 TRAINER_ACE_R43_VIKTOR_HNS (ace, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Orthworm, Amoonguss, Mandibuzz, Clodsire, Jellicent
 TRAINER_ACE_ICEPATH_CELESTE_HNS (ace, stage 7, fought at stages 7 to K)
@@ -727,28 +288,21 @@ TRAINER_ACE_DARKCAVE_ZEPHYR_HNS (ace, stage 7, fought at stages 7 to K)
   WARNING M8: needs setup or priority, and a pivot or a hazard
   WARNING S4: Whimsicott @ Focus Sash (Prankster; Encore, Moonblast, Tailwind, U Turn) is on TRAINER_ACE_DARKCAVE_ZEPHYR_HNS, TRAINER_ERIKA_POSTOBC_HNS
 TRAINER_ACE_ICEPATH_B1F_RHEA_HNS (ace, stage 7, fought at stages 7 to K)
-  WARNING S4: Feraligatr @ Life Orb (Sheer Force; Crunch, Dragon Dance, Ice Punch, Liquidation) is on TRAINER_ACE_ICEPATH_B1F_RHEA_HNS, TRAINER_RIVAL_TOTODILE_4_HNS, TRAINER_RIVAL_TOTODILE_5_HNS, TRAINER_RIVAL_TOTODILE_6_HNS
 TRAINER_ACE_VRB2F_ELIAS_HNS (ace, stage 8, fought at stages 8 to K)
 TRAINER_ACE_TOHJO_IMOGEN_HNS (ace, stage 8, fought at stages 8 to K)
   WARNING S4: Ribombee @ Focus Sash (Shield Dust; Moonblast, Sticky Web, Stun Spore, U Turn) is on TRAINER_ACE_TOHJO_IMOGEN_HNS, TRAINER_SIDE_KATY_HNS
 TRAINER_ACE_VRB1F_MAXIM_HNS (ace, stage 8, fought at stages 8 to K)
-  WARNING S4: Tsareena @ Choice Band (Queenly Majesty; High Jump Kick, Knock Off, Power Whip, U Turn) is on TRAINER_ACE_VRB1F_MAXIM_HNS, TRAINER_ERIKA_POSTOBC_HNS
 TRAINER_ACE_VFOREST_MERRICK_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R2_SYLVIE_HNS (ace, stage J, fought at stages J to K)
-  WARNING S4: Scizor @ Choice Band (Technician; Bullet Punch, Close Combat, Knock Off, U Turn) is on TRAINER_ACE_R2_SYLVIE_HNS, TRAINER_BLUE_POSTOBC_HNS
 TRAINER_ACE_R3_GIDEON_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R4_ESTELLE_HNS (ace, stage J, fought at stages J to K)
   WARNING S4: Cresselia @ Leftovers (Levitate; Calm Mind, Moonblast, Moonlight, Psyshock) is on TRAINER_ACE_R4_ESTELLE_HNS, TRAINER_SABRINA_POSTOBC_HNS
-  WARNING S4: Nidoking @ Life Orb (Sheer Force; Earth Power, Flamethrower, Ice Beam, Sludge Wave) is on TRAINER_ACE_R4_ESTELLE_HNS, TRAINER_BLAKE_HNS, TRAINER_KOGA_2_HNS
+  WARNING S4: Nidoking @ Life Orb (Sheer Force; Earth Power, Flamethrower, Ice Beam, Sludge Wave) is on TRAINER_ACE_R4_ESTELLE_HNS, TRAINER_KOGA_2_HNS
   WARNING S4: Glimmora @ Focus Sash (Toxic Debris; Earth Power, Mortal Spin, Power Gem, Stealth Rock) is on TRAINER_ACE_R4_ESTELLE_HNS, TRAINER_SIDE_GEETA_HNS
 TRAINER_ACE_MTMOON_TOBIAS_HNS (ace, stage J, fought at stages J to K)
-  WARNING A2: Glaceon (slot 4): Ice Body without snow on the team or the map, it has Slush Rush
-  WARNING S4: Rampardos @ Choice Scarf (Mold Breaker; Earthquake, Fire Punch, Head Smash, Zen Headbutt) is on TRAINER_ACE_MTMOON_TOBIAS_HNS, TRAINER_SIDE_ROARK_HNS
 TRAINER_ACE_R5_VERA_HNS (ace, stage J, fought at stages J to K)
-  WARNING I3: 2 items twice: Life Orb, Sitrus Berry
 TRAINER_ACE_R6_LUCIEN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R7_MARIGOLD_HNS (ace, stage J, fought at stages J to K)
-  WARNING S4: Typhlosion @ Choice Scarf (Flash Fire; Eruption, Extrasensory, Fire Blast, Focus Blast) is on TRAINER_ACE_R7_MARIGOLD_HNS, TRAINER_RIVAL_CYNDAQUIL_4_HNS, TRAINER_RIVAL_CYNDAQUIL_5_HNS
 TRAINER_ACE_R8_MORDECAI_HNS (ace, stage J, fought at stages J to K)
   WARNING M8: needs setup or priority, and a pivot or a hazard
   WARNING S4: Heatran @ Air Balloon (Flash Fire; Earth Power, Flash Cannon, Magma Storm, Taunt) is on TRAINER_ACE_R8_MORDECAI_HNS, TRAINER_JASMINE_2_HNS
@@ -757,42 +311,30 @@ TRAINER_ACE_R10_EDISON_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_ROCKTUN_1F_SABLE_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R11_WESLEY_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R12_CORALIE_HNS (ace, stage J, fought at stages J to K)
-  WARNING A2: Froslass (slot 1): Ice Body without snow on the team or the map, it has Stakeout
 TRAINER_ACE_DIGLETT_OSWALD_HNS (ace, stage J, fought at stages J to K)
-  WARNING S4: Toxapex @ Black Sludge (Regenerator; Haze, Recover, Scald, Toxic) is on TRAINER_ACE_DIGLETT_OSWALD_HNS, TRAINER_KOGA_1_HNS, TRAINER_PETREL_2_HNS
 TRAINER_ACE_R22_SERAPHINA_HNS (ace, stage J, fought at stages J to K)
-  WARNING M8: needs setup or priority, and a pivot or a hazard
 TRAINER_ACE_R24_MAGNUS_HNS (ace, stage J, fought at stages J to K)
   WARNING I3: 2 items twice: Choice Band, Choice Scarf
-  WARNING S4: Staraptor @ Choice Band (Reckless; Brave Bird, Close Combat, Double Edge, U Turn) is on TRAINER_ACE_R24_MAGNUS_HNS, TRAINER_BORIS_HNS, TRAINER_FALKNER_2_HNS, TRAINER_SIDE_LARRY_HNS
   WARNING S4: Darmanitan Galar @ Choice Scarf (Gorilla Tactics; Earthquake, Flare Blitz, Icicle Crash, U Turn) is on TRAINER_ACE_R24_MAGNUS_HNS, TRAINER_PRYCE_POSTOBC_HNS
 TRAINER_ACE_MTMOONSQ_MISTRAL_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_PPLANT_EVANGELINE_HNS (ace, stage J, fought at stages J to K)
-  WARNING A2: Glaceon (slot 4): Ice Body without snow on the team or the map, it has Slush Rush
-  WARNING I3: 2 items twice: Choice Specs, Leftovers
-  WARNING S4: Sylveon @ Choice Specs (Pixilate; Hyper Voice, Mystical Fire, Psyshock, Shadow Ball) is on TRAINER_ACE_PPLANT_EVANGELINE_HNS, TRAINER_ROBERT_HNS
 TRAINER_ACE_SEAFOAM_LENORE_HNS (ace, stage J, fought at stages J to K)
   WARNING M8: needs setup or priority, and a pivot or a hazard
   WARNING S4: Volcarona @ Heavy Duty Boots (Flame Body; Bug Buzz, Fiery Dance, Giga Drain, Quiver Dance) is on TRAINER_ACE_SEAFOAM_LENORE_HNS, TRAINER_BUGSY_2_HNS, TRAINER_SIDE_KATY_HNS
   WARNING S4: Gallade @ Life Orb (Sharpness; Leaf Blade, Psycho Cut, Sacred Sword, Swords Dance) is on TRAINER_ACE_SEAFOAM_LENORE_HNS, TRAINER_WILL_2_HNS
 TRAINER_ACE_R13_MARLOW_HNS (ace, stage J, fought at stages J to K)
-  WARNING S4: Pelipper @ Damp Rock (Drizzle; Hurricane, Roost, Scald, U Turn) is on TRAINER_ACE_R13_MARLOW_HNS, TRAINER_MISTY_HNS, TRAINER_SIDE_WALLACE_HNS, TRAINER_SIMON_HNS
-  WARNING S4: Ludicolo @ Life Orb (Swift Swim; Focus Blast, Giga Drain, Hydro Pump, Ice Beam) is on TRAINER_ACE_R13_MARLOW_HNS, TRAINER_STEPHEN_HNS
 TRAINER_ACE_R14_BEATRIX_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R15_HAYATE_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_DOJO_BRIGID_HNS (ace, stage J, fought at stages J to K)
-  WARNING S4: Magmortar @ Expert Belt (Flame Body; Fire Blast, Focus Blast, Psychic, Thunderbolt) is on TRAINER_ACE_DOJO_BRIGID_HNS, TRAINER_JAKE_HNS, TRAINER_OTIS_HNS
+  WARNING S4: Magmortar @ Expert Belt (Flame Body; Fire Blast, Focus Blast, Psychic, Thunderbolt) is on TRAINER_ACE_DOJO_BRIGID_HNS, TRAINER_JAKE_HNS
 TRAINER_ACE_R16_HAZEL_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R17_RYKER_HNS (ace, stage J, fought at stages J to K)
-  WARNING I5: Cinccino (slot 3): Kings Rock is a weak item for a designed set
-  WARNING P6: Route17_hns has rain: fewer than two of the team use it, and it sets no weather of its own
 TRAINER_ACE_ROCKTUN_B1F_MATILDA_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R18_DUNCAN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R19_MAREN_HNS (ace, stage J, fought at stages J to K)
   WARNING M5: Tentacruel (slot 2): its strongest attack has 65 power
 TRAINER_ACE_R20_BJORN_HNS (ace, stage J, fought at stages J to K)
 TRAINER_ACE_R23_LEANDER_HNS (ace, stage 8, fought at stages 8 to K)
-  WARNING V2: Bronzong (slot 1): 31 Speed IVs with Gyro Ball (ivs="0 Spe")
 TRAINER_ACE_VR1F_OPHELIA_HNS (ace, stage 8, fought at stages 8 to K)
   WARNING M8: needs setup or priority, and a pivot or a hazard
 TRAINER_ACE_R28_ROWAN_HNS (ace, stage J, fought at stages J to K)
@@ -803,17 +345,11 @@ TRAINER_JENN_HNS (cooltrainer, stage 4, fought at stages 4 to K)
 TRAINER_NICK_HNS (cooltrainer, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Raichu, Blastoise, Venusaur, Lapras, Charizard
 TRAINER_AARON_HNS (cooltrainer, stage 4, fought at stages 4 to K)
-  WARNING M7: Venusaur (slot 2): weak setup: Growth
-  WARNING E6: Dragonair (slot 3), fought at stages 5, 6, 7, 8, J, K: Dragonite at 58, holding its Eviolite, which does nothing for it: it needs a raised_item
-  WARNING V4: no full EV spread from stage 3 on: Mr Mime, Venusaur, Dragonair, Blastoise, Charizard
-  WARNING P6: LakeOfRage_hns has rain: fewer than two of the team use it, and it sets no weather of its own
-  raised to 58 to 100: Mr Mime @ Light Clay, Venusaur @ Miracle Seed, Dragonite @ Eviolite, Blastoise @ Sitrus Berry, Charizard @ Charcoal
+  raised to 58 to 100: Mr Mime @ Light Clay, Venusaur @ Black Sludge, Dragonite @ Lum Berry, Blastoise @ White Herb, Charizard @ Life Orb
 TRAINER_GWEN_HNS (cooltrainer, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Jolteon, Vaporeon, Flareon, Espeon, Sylveon
   WARNING S4: Flareon @ Toxic Orb (Toxic Boost; Facade, Flare Blitz, Quick Attack, Superpower) is on TRAINER_GWEN_HNS, TRAINER_MIKI_HNS
 TRAINER_LOIS_HNS (cooltrainer, stage 4, fought at stages 4 to K)
-  WARNING V4: no full EV spread from stage 3 on: Butterfree, Hitmontop, Jumpluff, Gyarados, Ninetales
-  WARNING P6: LakeOfRage_hns has rain: fewer than two of the team use it, and it sets no weather of its own
 TRAINER_EMMA_HNS (cooltrainer, stage 4, fought at stages 4 to K)
   WARNING V4: no full EV spread from stage 3 on: Politoed, Octillery, Azumarill, Linoone, Poliwrath
   WARNING S4: Azumarill @ Sitrus Berry (Huge Power; Aqua Jet, Belly Drum, Knock Off, Play Rough) is on TRAINER_ACE_SEAFOAM_LENORE_HNS, TRAINER_EMMA_HNS
@@ -821,46 +357,20 @@ TRAINER_RYAN_HNS (cooltrainer, stage 6, fought at stages 6 to K)
   WARNING S4: Lucario @ Life Orb (Justified; Close Combat, Extreme Speed, Meteor Mash, Swords Dance) is on TRAINER_COLETTE_HNS, TRAINER_RYAN_HNS
 TRAINER_ALLEN_HNS (cooltrainer, stage 6, fought at stages 6 to K)
 TRAINER_BRIAN_HNS (cooltrainer, stage 7, fought at stages 7 to K)
-  WARNING A2: Sandslash (slot 1): Sand Veil without sand on the team or the map, it has Sand Rush
-  WARNING S4: Weavile @ Life Orb (Pressure; Ice Shard, Knock Off, Swords Dance, Triple Axel) is on TRAINER_ACE_R11_WESLEY_HNS, TRAINER_BRIAN_HNS
 TRAINER_FRAN_HNS (cooltrainer, stage 7, fought at stages 7 to K)
 TRAINER_LOLA_HNS (cooltrainer, stage 7, fought at stages 7 to K)
 TRAINER_CARA_HNS (cooltrainer, stage 7, fought at stages 7 to K)
   WARNING S4: Milotic @ Leftovers (Competitive; Dragon Tail, Ice Beam, Recover, Scald) is on TRAINER_CARA_HNS, TRAINER_SIDE_WALLACE_HNS
 TRAINER_MEGAN_HNS (cooltrainer, stage 7, fought at stages 7 to K)
-  WARNING V2: Exeggutor (slot 1): 31 Speed IVs setting Trick Room (ivs="0 Spe")
-  WARNING V2: Tangrowth (slot 2): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING A2: Bellossom (slot 3): Chlorophyll without sun on the team or the map
-  WARNING V2: Bellossom (slot 3): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING A2: Victreebel (slot 4): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING V2: Victreebel (slot 4): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING V2: Venusaur (slot 5): 31 Speed IVs on a Trick Room team (ivs="0 Spe")
-  WARNING A2: Exeggutor Alola (slot 6): Harvest without a Berry, it has Chlorophyll
-  WARNING V2: Exeggutor Alola (slot 6): 31 Speed IVs setting Trick Room (ivs="0 Spe")
-  WARNING M8: needs setup or priority, and a pivot or a hazard
 TRAINER_BETH_HNS (cooltrainer, stage 7, fought at stages 7 to K)
 TRAINER_BETH_2_HNS (cooltrainer, stage 8, fought at stages 8 to K)
-TRAINER_BETH_3_HNS (cooltrainer, stage 8, fought at stages 8 to K)
-  WARNING R1: tier 3 at stage 8, not after tier 2's (8): the rematch gate tells tiers apart by their stages
-  WARNING R2: tier 3 is a copy of tier 2's team
+TRAINER_BETH_3_HNS (cooltrainer, stage J, fought at stages J to K)
 TRAINER_REENA_HNS (cooltrainer, stage 7, fought at stages 7 to K)
 TRAINER_REENA_2_HNS (cooltrainer, stage 8, fought at stages 8 to K)
 TRAINER_REENA_3_HNS (cooltrainer, stage J, fought at stages J to K)
-  WARNING R2: tier 3 is a copy of tier 2's team
-  WARNING S4: Vileplume @ Black Sludge (Effect Spore; Giga Drain, Sleep Powder, Sludge Bomb, Strength Sap) is on TRAINER_ARIANA_1_HNS, TRAINER_ARIANA_2_HNS, TRAINER_KAREN_1_HNS, TRAINER_REENA_2_HNS, TRAINER_REENA_3_HNS, TRAINER_REENA_HNS
 TRAINER_GAVEN_HNS (cooltrainer, stage 8, fought at stages 8 to K)
-  WARNING A2: Victreebel (slot 3): Chlorophyll without sun on the team or the map, it has Gluttony
-TRAINER_GAVEN_2_HNS (cooltrainer, stage 8, fought at stages 8 to K)
-  WARNING A2: Victreebel (slot 3): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING R1: tier 2 at stage 8, not after tier 1's (8): the rematch gate tells tiers apart by their stages
-  WARNING R2: tier 2 is a copy of tier 1's team
-TRAINER_GAVEN_3_HNS (cooltrainer, stage 8, fought at stages 8 to K)
-  WARNING A2: Victreebel (slot 3): Chlorophyll without sun on the team or the map, it has Gluttony
-  WARNING R1: tier 3 at stage 8, not after tier 2's (8): the rematch gate tells tiers apart by their stages
-  WARNING R2: tier 3 is a copy of tier 2's team
-  WARNING S4: Porygon Z @ Choice Specs (Adaptability; Ice Beam, Shadow Ball, Thunderbolt, Tri Attack) is on TRAINER_ARCHER_HNS, TRAINER_GAVEN_2_HNS, TRAINER_GAVEN_3_HNS, TRAINER_GAVEN_HNS, TRAINER_SIDE_LARRY_HNS, TRAINER_WHITNEY_2_HNS
+TRAINER_GAVEN_2_HNS (cooltrainer, stage J, fought at stages J to K)
+TRAINER_GAVEN_3_HNS (cooltrainer, stage K, fought at stages K to K)
 TRAINER_JOYCE_HNS (cooltrainer, stage 8, fought at stages 8 to K)
-  WARNING S4: Blastoise @ White Herb (Torrent; Aura Sphere, Hydro Pump, Ice Beam, Shell Smash) is on TRAINER_JOYCE_HNS, TRAINER_RED_HNS, TRAINER_RED_POSTOBC_HNS
 TRAINER_CAROL_HNS (cooltrainer, stage J, fought at stages J to K)
 TRAINER_SEAN_HNS (cooltrainer, stage J, fought at stages J to K)
-  WARNING S4: Forretress @ Leftovers (Sturdy; Rapid Spin, Spikes, Stealth Rock, Volt Switch) is on TRAINER_BUGSY_POSTOBC_HNS, TRAINER_SEAN_HNS

@@ -11,15 +11,16 @@
 #   at 30, Dragonair at 55), with 31 IVs.
 # - Bird Keeper Abe in the Violet Gym: Heart & Soul's 20 in every IV (its Gym trainers' even spread)
 #   is 31s too.
-# - Pokemaniac Ben, a route boss raised to the cap: his Eviolite Lickitung, not a named Eviolite
-#   species, is a Lickilicky (at 35).
-# - A boss at its team's own level keeps its team as designed: Whitney's Silk Scarf Aipom (a
-#   trainer's evolves knowing Double Hit from 32) at her 33 with no badges; raised to 85 with eight
-#   badges, it is an Ambipom and her Stantler a Wyrdeer (44).
+# - Pokemaniac Ben, a route boss raised to the cap: his Eviolite Dragonair, not a named Eviolite
+#   species, is a Dragonite (at 55) holding its raised item.
+# - A boss at its team's own level keeps its team as designed: Whitney's Stantler (a trainer's
+#   evolves by its move condition from 32) at her 33 with no badges; raised to 85 with eight badges,
+#   it is a Wyrdeer, and her Eviolite Aipom, a named Eviolite species, stays an Aipom.
 # - A level-10 TYPHLOSION with six badges: a Rocket Grunt's Koffing (Heart & Soul: 20) is at the
 #   cap, 66, and so a Weezing (at 35).
-# - Ace Trainer Kaito on Route 29 (D47), made for no badges: at 15 with none, his Shinx, Cutiefly
-#   and Riolu as made (a Shinx evolves at 15); with eight badges at 85: Luxray and Lucario, and his
+# - Ace Trainer Kaito on Route 29 (D47), made for no badges: at 15 with none, his Luxio, Cutiefly
+#   and Riolu as made (since the trainer standard a Luxio: a Shinx evolves at 15); with eight badges
+#   at 85: Luxray and Lucario, and his
 #   Eviolite Cutiefly a Ribombee (at 25), holding its raised item if the team gives it one.
 # - Prize money from the level a trainer's Pokemon battle at (D56): Youngster Albert (4 a level for
 #   a Youngster; Heart & Soul's 7 in his party data) at 15 pays 4 x 15 x 4 = 240, not 112.
@@ -61,13 +62,16 @@ expect8 {gEnemyParty+384} 85 third_dragonair_at_the_cap
 !expect_battler_ivs(1, 0x3FFFFFFF, "paul_ivs_31")
 !expect_battler(1, "friendship", "0", "paul_dratini_no_happiness", bits=8)
 
-# Ben (a route boss, his team at 42, the 3-badge cap): raised to 85, his Eviolite Lickitung evolves
+# Ben (a route boss, his team at 42, the 3-badge cap): raised to 85, his Eviolite Dragonair evolves and
+# holds its raised item
 loadstate level72.ss
 !battle("TRAINER_BEN_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ben_action_menu
 shot 02_ben.png
 expect8 {gEnemyParty+84} 85 ben_at_the_cap
-!expect_battler(1, "species", "SPECIES_LICKILICKY", "eviolite_lickitung_evolves_raised")
+!expect_party_species("gEnemyParty", designed_slot("TRAINER_BEN_HNS", "Dragonair"), "SPECIES_DRAGONITE", "eviolite_dragonair_evolves_raised")
+!expect_party_item("gEnemyParty", designed_slot("TRAINER_BEN_HNS", "Dragonair"), designed_item("TRAINER_BEN_HNS", designed_slot("TRAINER_BEN_HNS", "Dragonair"), 8), "ben_dragonite_holds_its_raised_item")
+!expect_designed_party("TRAINER_BEN_HNS", 8, "ben_raised_to_85")
 
 # A level-10 player with six badges: the Grunt's Koffing is at the cap, 66, a Weezing
 loadstate six_badges.ss
@@ -92,9 +96,9 @@ loadstate start.ss
 !battle("TRAINER_ACE_R29_KAITO_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kaito_action_menu
 shot 04_kaito.png
-expect8 {gEnemyParty+84} 15 kaito_shinx_at_15
+expect8 {gEnemyParty+84} 15 kaito_luxio_at_15
 expect8 {gEnemyParty+284} 15 kaito_riolu_at_15
-!expect_party_species("gEnemyParty", 0, "SPECIES_SHINX", "kaito_shinx_as_made")
+!expect_party_species("gEnemyParty", 0, "SPECIES_LUXIO", "kaito_luxio_as_made")
 !expect_party_species("gEnemyParty", 1, "SPECIES_CUTIEFLY", "kaito_cutiefly_as_made")
 !expect_party_species("gEnemyParty", 2, "SPECIES_RIOLU", "kaito_riolu_as_made")
 
@@ -105,7 +109,7 @@ loadstate eight_badges.ss
 !battle("TRAINER_ACE_R29_KAITO_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kaito_raised_action_menu
 expect8 {gEnemyParty+84} 85 kaito_raised_to_85
-!expect_party_species("gEnemyParty", 0, "SPECIES_LUXRAY", "kaito_shinx_evolves_when_raised")
+!expect_party_species("gEnemyParty", 0, "SPECIES_LUXRAY", "kaito_luxio_evolves_when_raised")
 !expect_party_species("gEnemyParty", 1, "SPECIES_RIBOMBEE", "kaito_eviolite_cutiefly_evolves_when_raised")
 !expect_party_item("gEnemyParty", 1, designed_item("TRAINER_ACE_R29_KAITO_HNS", 1, 8), "kaito_ribombee_holds_its_raised_item")
 !expect_party_species("gEnemyParty", 2, "SPECIES_LUCARIO", "kaito_riolu_evolves_when_raised")
@@ -128,23 +132,23 @@ waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller
 !expect_battler(1, "species", "SPECIES_RATICATE", "grunt_lead_raticate")
 !expect_battler(1, "friendship", "255", "grunt_raticate_return_full_friendship", bits=8)
 
-# Whitney at her team's own level, 33: her Aipom stays an Aipom
+# Whitney at her team's own level, 33: her team as made
 loadstate start.ss
 !give_mon(157, 33)
 !battle("TRAINER_WHITNEY_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B whitney_action_menu
-expect8 {gEnemyParty+184} 33 whitney_aipom_at_33
-!expect_party_species("gEnemyParty", 1, "SPECIES_AIPOM", "whitney_aipom_stays")
-!expect_party_species("gEnemyParty", 3, "SPECIES_STANTLER", "whitney_stantler_stays")
+!expect_designed_party("TRAINER_WHITNEY_1_HNS", 2, "whitney_at_33")
+!expect_party_species("gEnemyParty", designed_slot("TRAINER_WHITNEY_1_HNS", "Stantler"), "SPECIES_STANTLER", "whitney_stantler_stays")
 
-# Raised to 85 with eight badges: Ambipom and Wyrdeer
+# Raised to 85 with eight badges: her Stantler is a Wyrdeer (from 32); her Eviolite Aipom, a named Eviolite
+# species, stays an Aipom
 loadstate eight_badges.ss
 !give_mon(157, 72)
 !battle("TRAINER_WHITNEY_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B whitney_raised_action_menu
-expect8 {gEnemyParty+184} 85 whitney_aipom_raised_to_85
-!expect_party_species("gEnemyParty", 1, "SPECIES_AMBIPOM", "whitney_aipom_evolves_when_raised")
-!expect_party_species("gEnemyParty", 3, "SPECIES_WYRDEER", "whitney_stantler_evolves_when_raised")
+!expect_designed_party("TRAINER_WHITNEY_1_HNS", 8, "whitney_raised_to_85")
+!expect_party_species("gEnemyParty", designed_slot("TRAINER_WHITNEY_1_HNS", "Stantler"), "SPECIES_WYRDEER", "whitney_stantler_evolves_when_raised")
+!expect_party_species("gEnemyParty", designed_slot("TRAINER_WHITNEY_1_HNS", "Aipom"), "SPECIES_AIPOM", "whitney_named_eviolite_aipom_stays_when_raised")
 
 # Bird Keeper Abe (Violet Gym): his party data's 20s battle as 31s
 loadstate start.ss

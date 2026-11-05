@@ -48,59 +48,19 @@ def cap(stage):
 # team. Written by `validate.py --pending` from the findings, and kept by hand from then on.
 PENDING_EVERYWHERE = {"P3", "V4"}
 PENDING = {rule: {f"TRAINER_{name}_HNS" for name in names.split()} for rule, names in {
-    "A2": ("ACE_MTMOON_TOBIAS ACE_PPLANT_EVANGELINE ACE_R12_CORALIE BENJAMIN BLAINE BRIAN BROCK DEVIN ERIKA GAVEN "
-             "GAVEN_2 GAVEN_3 KELLY LANCE_1 LI MEGAN RIVAL_CHIKORITA_3 RIVAL_CHIKORITA_4 RIVAL_CHIKORITA_5 "
-             "RIVAL_CYNDAQUIL_3 RIVAL_CYNDAQUIL_4 RIVAL_CYNDAQUIL_5 RIVAL_TOTODILE_3 RIVAL_TOTODILE_4 "
-             "RIVAL_TOTODILE_5 ROLAND SIDE_CANDICE SIDE_LARRY WHITNEY_1"),
-    "E1": ("ACE_R29_KAITO ARCHER BEN BENJAMIN DEVIN GREG KATE MIKEY PETREL_2 PROTON_1 RIVAL_CHIKORITA_2 "
-             "RIVAL_CHIKORITA_3 RIVAL_CHIKORITA_4 RIVAL_CHIKORITA_5 RIVAL_CYNDAQUIL_2 RIVAL_CYNDAQUIL_3 "
-             "RIVAL_CYNDAQUIL_4 RIVAL_CYNDAQUIL_5 RIVAL_TOTODILE_2 RIVAL_TOTODILE_3 RIVAL_TOTODILE_4 "
-             "RIVAL_TOTODILE_5 ROLAND"),
-    "E2": ("ACE_NATPARK_SUNNIVA BEN BENJAMIN CHUCK_1 CHUCK_1_2 CHUCK_1_3 EUGENE GEORGE GREG JASMINE_1 JASMINE_1_2 "
-             "JASMINE_1_3 RIVAL_CHIKORITA_2 RIVAL_CHIKORITA_3 RIVAL_CYNDAQUIL_2 RIVAL_CYNDAQUIL_3 RIVAL_TOTODILE_2 "
-             "RIVAL_TOTODILE_3 SIDE_GARDENIA WHITNEY_1"),
-    "E6": ("AARON ACE_ILEX_CALDER ACE_NATPARK_SUNNIVA ACE_R29_KAITO ACE_R31_BRANT ACE_R32_NAIA ACE_R33_SILAS "
-             "ACE_R35_ADELINE ACE_R46_TAMSIN ACE_UNIONCAVE_BRODIE BEN BENJAMIN BRYAN DEVIN EUGENE GEORGE GREG KATE "
-             "MIKEY PETREL_1 ROLAND SIDE_CANDICE SIDE_GARDENIA"),
-    "E8": ("RIVAL_CHIKORITA_3 RIVAL_CYNDAQUIL_3 RIVAL_TOTODILE_3"),
-    "I3": ("ACE_NATPARK_SUNNIVA ACE_PPLANT_EVANGELINE ACE_R24_MAGNUS ACE_R5_VERA ARIANA_1 ARIANA_2 BEN BENJAMIN "
-             "BLAKE DEVIN EUGENE FALKNER_1 HERMAN KATE KEVIN LI LORI PETREL_1 PROTON_1 PROTON_2 RIVAL_CHIKORITA_2 "
-             "RIVAL_CHIKORITA_3 RIVAL_CYNDAQUIL_2 RIVAL_CYNDAQUIL_3 RIVAL_TOTODILE_2 RIVAL_TOTODILE_3 "
-             "RIVAL_TOTODILE_6 ROBERT ROLAND SIDE_CANDICE SIDE_CYNTHIA SIDE_GARDENIA STEPHEN"),
-    "I4": ("BRET GREG SIDE_GRUSHA SIDE_IONO SIDE_RYME SIDE_TULIP TIM"),
-    "M2": ("ACE_R30_SELENE FALKNER_1 MIKEY PETREL_1 PROTON_1 RIVAL_CHIKORITA_2 RIVAL_CHIKORITA_3 RIVAL_CYNDAQUIL_2 "
-             "RIVAL_CYNDAQUIL_3 RIVAL_TOTODILE_2 RIVAL_TOTODILE_3 SIDE_KOFU WHITNEY_1"),
-    "M4": ("EUSINE LTSURGE"),
-    "M5": ("ACE_R19_MAREN RIVAL_CHIKORITA_2 RIVAL_CHIKORITA_3 RIVAL_CYNDAQUIL_2 RIVAL_CYNDAQUIL_3 RIVAL_TOTODILE_2 "
-             "RIVAL_TOTODILE_3"),
-    "M6": ("EUGENE"),
-    "M8": ("ACE_DARKCAVE_ZEPHYR ACE_R22_SERAPHINA ACE_R8_MORDECAI ACE_SEAFOAM_LENORE ACE_VR1F_OPHELIA ARCHER BLAINE "
-             "BLAINE_POSTOBC BROCK CLAIR_2 ERIKA_POSTOBC EUSINE FALKNER_2 FALKNER_POSTOBC KAREN_1 KOGA_POSTOBC KUNI "
-             "LANCE_2 LTSURGE LTSURGE_POSTOBC MEGAN MIKI MORTY_1 MORTY_POSTOBC NAOKO OTIS PETREL_1 PETREL_2 PRYCE_1 "
-             "PRYCE_1_2 PRYCE_1_3 PRYCE_POSTOBC RED RED_POSTOBC RIVAL_CHIKORITA_3 RIVAL_CYNDAQUIL_3 "
-             "RIVAL_TOTODILE_3 ROBERT SABRINA SABRINA_POSTOBC SAYO SIDE_ARCHIE SIDE_BRASSIUS SIDE_FANTINA "
-             "SIDE_GRUSHA SIDE_IONO SIDE_KOFU SIDE_ROARK SIDE_RYME SIDE_TULIP SIDE_VOLKNER SIDE_WAKE SIDE_WALLACE "
-             "WILL_1 WILL_2 WILL_POSTOBC ZUKI"),
-    "N2": ("BLUE HERMAN SIDE_FANTINA WILL_1"),
-    "P2": ("BLUE HERMAN SIDE_FANTINA SIDE_TULIP WILL_1"),
-    "P4": ("BRUNO_1 KAREN_1 KOGA_1 LANCE_1 WILL_1"),
-    "P6": ("AARON ACE_R17_RYKER ACE_R40_KAIA LOIS SIDE_BYRON SIDE_MAYLENE"),
-    "R1": ("BETH_3 GAVEN_2 GAVEN_3"),
-    "R2": ("BETH_3 GAVEN_2 GAVEN_3 REENA_3"),
-    "S4": ("ACE_DARKCAVE_ZEPHYR ACE_DIGLETT_OSWALD ACE_DOJO_BRIGID ACE_ICEPATH_B1F_RHEA ACE_MTMOON_TOBIAS "
-             "ACE_PPLANT_EVANGELINE ACE_R13_MARLOW ACE_R24_MAGNUS ACE_R2_SYLVIE ACE_R39_MIRIAM ACE_R48_SOLANA "
-             "ACE_R4_ESTELLE ACE_R7_MARIGOLD ACE_R8_MORDECAI ACE_SEAFOAM_LENORE ACE_TOHJO_IMOGEN ACE_VRB1F_MAXIM "
-             "ACE_WHIRL_NOLAN ARIANA_2 BRIAN BRUNO_1 CARA COLETTE CYBIL DWAYNE EMMA EUGENE GAVEN_3 GREG GWEN HERMAN "
-             "JAKE JOYCE KAREN_1 KEVIN KOGA_1 LANCE_2 LORI OTIS PETREL_2 PROTON_2 PRYCE_1_3 QUINN REENA_3 "
-             "RIVAL_CHIKORITA_2 RIVAL_CHIKORITA_4 RIVAL_CHIKORITA_5 RIVAL_CHIKORITA_6 RIVAL_CYNDAQUIL_2 "
-             "RIVAL_CYNDAQUIL_4 RIVAL_CYNDAQUIL_5 RIVAL_CYNDAQUIL_6 ROBERT RYAN SEAN SIDE_BRASSIUS SIDE_CYNTHIA "
-             "SIDE_CYRUS SIDE_GARDENIA_2 SIDE_GEETA SIDE_IRIS SIDE_MAXIE SIDE_MAYLENE SIDE_RYME SIDE_VOLKNER "
-             "SIDE_WALLY STEPHEN WILL_1"),
-    "V2": ("ACE_ILEX_CALDER ACE_R23_LEANDER ACE_R39_MIRIAM ACE_WHIRL_NOLAN BLUE HERMAN JASMINE_1 JASMINE_1_2 "
-             "JASMINE_1_3 KEVIN MEGAN PETREL_1 PETREL_2 SIDE_FANTINA SIDE_TULIP WILL_1"),
-    "V3": ("BRET"),
-    "Z1": ("ARIANA_1"),
-    "Z2": ("ARIANA_1"),
+    "A2": ("RED RED_POSTOBC"),
+    "I3": ("ACE_R24_MAGNUS LORI"),
+    "M2": ("SIDE_KOFU"),
+    "M4": ("LTSURGE"),
+    "M5": ("ACE_R19_MAREN"),
+    "M8": ("ACE_DARKCAVE_ZEPHYR ACE_R8_MORDECAI ACE_SEAFOAM_LENORE ACE_VR1F_OPHELIA CLAIR_2 ERIKA_POSTOBC "
+             "FALKNER_POSTOBC KOGA_POSTOBC LANCE_2 LTSURGE LTSURGE_POSTOBC MORTY_POSTOBC PRYCE_1 PRYCE_1_2 "
+             "PRYCE_1_3 PRYCE_POSTOBC RED RED_POSTOBC SABRINA SABRINA_POSTOBC SIDE_KOFU SIDE_ROARK SIDE_VOLKNER "
+             "SIDE_WAKE SIDE_WALLACE WILL_2 WILL_POSTOBC"),
+    "P6": ("RED RED_POSTOBC"),
+    "S4": ("ACE_DARKCAVE_ZEPHYR ACE_DOJO_BRIGID ACE_R24_MAGNUS ACE_R48_SOLANA ACE_R4_ESTELLE ACE_R8_MORDECAI "
+             "ACE_SEAFOAM_LENORE ACE_TOHJO_IMOGEN CARA COLETTE DWAYNE EMMA GWEN JAKE LANCE_2 LORI NAOKO RYAN "
+             "SIDE_BRASSIUS SIDE_CYRUS SIDE_IRIS SIDE_VOLKNER SIDE_WALLY SIMON"),
 }.items()}
 
 # ---------------------------------------------------------------- the move, item and ability classes
@@ -113,7 +73,8 @@ ROLES = {
               "FILLET_AWAY", "BELLY_DRUM", "CURSE", "WORK_UP", "TAIL_GLOW", "GEOMANCY", "CLANGOROUS_SOUL", "NO_RETREAT",
               "IRON_DEFENSE", "COSMIC_POWER", "HOWL", "TIDY_UP", "STOCKPILE", "ACID_ARMOR", "AMNESIA", "BARRIER",
               "DEFEND_ORDER", "MEDITATE", "SHARPEN", "POWER_UP_PUNCH", "CHARGE_BEAM", "FLAME_CHARGE", "TRAILBLAZE",
-              "SCALE_SHOT", "AQUA_STEP", "ESPER_WING", "TORCH_SONG", "RAPID_SPIN"},
+              "SCALE_SHOT", "AQUA_STEP", "ESPER_WING", "TORCH_SONG", "RAPID_SPIN", "COTTON_GUARD", "METEOR_BEAM",
+              "ELECTRO_SHOT"},
     "hazard": {"STEALTH_ROCK", "SPIKES", "TOXIC_SPIKES", "STICKY_WEB", "STONE_AXE", "CEASELESS_EDGE"},
     "pivot": {"U_TURN", "VOLT_SWITCH", "FLIP_TURN", "PARTING_SHOT", "TELEPORT", "SHED_TAIL", "BATON_PASS",
               "CHILLY_RECEPTION"},
@@ -130,8 +91,6 @@ ROLES = {
     "hazard_control": {"RAPID_SPIN", "DEFOG", "MORTAL_SPIN", "TIDY_UP", "COURT_CHANGE"},
     "disruption": {"TAUNT", "ENCORE", "TRICK", "SWITCHEROO", "KNOCK_OFF", "DISABLE", "TORMENT", "SPIRIT_BREAK"},
 }
-SETUP_STATUS = ROLES["setup"] - {"POWER_UP_PUNCH", "CHARGE_BEAM", "FLAME_CHARGE", "TRAILBLAZE", "SCALE_SHOT", "AQUA_STEP",
-                                 "ESPER_WING", "TORCH_SONG", "RAPID_SPIN"}
 HAZARD_KIND = {"STEALTH_ROCK": "Stealth Rock", "STONE_AXE": "Stealth Rock", "SPIKES": "Spikes", "CEASELESS_EDGE": "Spikes",
                "TOXIC_SPIKES": "Toxic Spikes", "STICKY_WEB": "Sticky Web"}
 # Rule M2's filler moves, and the ones that are filler only without their partner
@@ -326,7 +285,8 @@ class Mon:
         self.mega = (db.mega.get(self.item) or {}).get(self.species) if self.item else None
         # A Mega Stone holder is judged by its Mega's ability (it battles as the Mega)
         mega_info = db.get(self.mega) if self.mega else None
-        self.battle_ability = (mega_info["abilities"][0] if mega_info else None) or self.ability
+        self.battle_ability = (mega_ability((self.info or {}).get("abilities", []), mega_info["abilities"], self.ability)
+                               if mega_info else None) or self.ability
         self.types = (mega_info or self.info or {}).get("types", [])
 
     def attacks(self):
@@ -343,6 +303,20 @@ class Mon:
             else:
                 spec += 1
         return phys, spec
+
+
+def mega_ability(base, mega, ability):
+    """The ability a Mega battles with, as the engine picks it: the party data's ability sets the Pokemon's slot (the
+    first slot of the base form that has it), and Mega Evolving keeps the slot (GetAbilityBySpecies with the Mega's
+    species): an empty slot falls back to another hidden one, then to the first that isn't empty."""
+    empty = ("ABILITY_NONE", "0", "", None)
+    slot = base.index(ability) if ability in base else 0
+    got = mega[slot] if slot < len(mega) else None
+    if got in empty and slot >= 2:
+        got = next((a for a in mega[2:] if a not in empty), None)
+    if got in empty:
+        got = next((a for a in mega if a not in empty), None)
+    return got
 
 
 def is_attack(mi):
@@ -725,18 +699,25 @@ def check_mon(db, f, team, mon, slot, ctx):
     elif spec and not phys and down == "SpA":
         f.add("N1", team, f"{who}: {mon.nature} lowers the Sp. Atk its special set attacks with")
     gyro = any(mi.get("effect") == "EFFECT_GYRO_BALL" for _, mi in mon.move_info)
-    # A Trick Room setter, a member of a Trick Room team (rule P2's: on a fast team with one setter, rule P2 fails
-    # the team instead), or a Gyro Ball user
-    slow_set = "TRICK_ROOM" in mon.keys or gyro or ctx["tr_team"]
-    why = "with Gyro Ball" if gyro else "setting Trick Room" if "TRICK_ROOM" in mon.keys else "on a Trick Room team"
+    # A Trick Room setter or member, or a Gyro Ball user. On a whole Trick Room team (rule P2) the members are the
+    # setters, base Speed 60 or less, or a Speed-lowering nature, as the designers' checker reads the standard: a fast
+    # Pokemon with another nature is support outside Trick Room (Will's Xatu sets screens, then U-turns out) and isn't
+    # held to N2, V2 or P2. On a fast team with one setter, rule P2 fails the team instead.
     base_speed = mon.info["base"]["Spe"]
+    setter = "TRICK_ROOM" in mon.keys
+    member = ctx["tr_team"] and (setter or base_speed <= 60 or down == "Spe")
+    slow_set = setter or gyro or member
+    why = "with Gyro Ball" if gyro else "setting Trick Room" if setter else "on a Trick Room team"
     if slow_set and down != "Spe" and base_speed > 30:
         f.add("N2", team, f"{who}: {why} with {mon.nature}, which doesn't lower Speed (base {base_speed})")
-    if ctx["tr_team"] and up == "Spe":
+    if member and up == "Spe":
         f.add("P2", team, f"{who}: {mon.nature} raises Speed on a Trick Room team")
     ivs = team_kit.ivs_of(mon.m)
     if slow_set and ivs["Spe"] != 0:
         f.add("V2", team, f"{who}: {ivs['Spe']} Speed IVs {why} (ivs=\"0 Spe\")")
+    elif ctx["tr_team"] and base_speed <= 70 and ivs["Spe"] != 0:
+        f.add("V2", team, f"{who}: {ivs['Spe']} Speed IVs on a Trick Room team at base Speed {base_speed}: 0 if it is "
+                          "meant to move under Trick Room (ivs=\"0 Spe\")", warn=True)
     if "HIDDEN_POWER" in mon.keys:
         bits = sum((ivs[s] & 1) << i for i, s in enumerate(("HP", "Atk", "Def", "Spe", "SpA", "SpD")))
         hp_type = HIDDEN_POWER_TYPES[bits * 15 // 63]
@@ -958,13 +939,19 @@ def check_team(db, f, team, maps, all_teams, encounters):
         f.add("I3", team, f"{len(twice)} items twice: {', '.join(i[5:].replace('_', ' ').title() for i in twice)}")
     if eviolites > (1 if st >= 2 else 2) and not thrice:
         f.add("I3", team, f"{eviolites} Eviolites at stage {label(team.stage)}")
-    # ---- M8: team roles
+    # ---- M8: team roles. An attack that raises its user's stats (Power-Up Punch, Flame Charge) is setup, Gale Wings
+    # makes Flying attacks priority and Toxic Debris lays Toxic Spikes, as the designers' checker counts them
     keys = [k for m in mons for k in m.keys]
-    setup = any(k in SETUP_STATUS for k in keys)
-    priority = any(k in ROLES["priority"] or (m.move_info[i][1].get("priority", 0) > 0 and is_attack(m.move_info[i][1]))
+    setup = any(k in ROLES["setup"] for k in keys)
+    priority = any(k in ROLES["priority"] or (is_attack(m.move_info[i][1]) and (
+                       m.move_info[i][1].get("priority", 0) > 0
+                       or (m.battle_ability == "ABILITY_GALE_WINGS" and m.move_info[i][1].get("type") == "TYPE_FLYING")))
                    for m in mons for i, k in enumerate(m.keys))
-    pivot_or_hazard = any(k in ROLES["pivot"] or k in ROLES["hazard"] for k in keys)
-    if team.kind in ("boss", "side") and st >= 3:
+    pivot_or_hazard = (any(k in ROLES["pivot"] or k in ROLES["hazard"] for k in keys)
+                       or any(m.battle_ability == "ABILITY_TOXIC_DEBRIS" for m in mons))
+    if len(mons) < 3:
+        pass  # one or two Pokemon (the Kimono Girls' five single battles) can't carry a team's roles
+    elif team.kind in ("boss", "side") and st >= 3:
         missing = [what for what, ok in (("setup move", setup), ("priority move", priority),
                                          ("pivot or hazard", pivot_or_hazard)) if not ok]
         if missing:
@@ -1093,6 +1080,15 @@ def team_size(team):
 
 
 # ---------------------------------------------------------------- across teams
+def person_group(tid):
+    """The trainer a battle belongs to: his battles may share species (his team grows), as the standard's S4 means
+    "a boss" other than himself (Blue and his postgame rematch, a Gym Leader and her Dojo rematch)."""
+    name = tid[len("TRAINER_"):-len("_HNS")]
+    if name.startswith("RIVAL_"):
+        return "RIVAL"
+    return re.sub(r"(_\d+)+$", "", re.sub(r"_POSTOBC$", "", name))
+
+
 def version_group(tid):
     """Teams that are versions of one battle (the rival's three, the Gym versions, Red's two, a rematch family,
     Gardenia's two): the same group key."""
@@ -1160,7 +1156,8 @@ def check_across(db, f, teams, mons_of, maps):
         mine = {m.species for m in mons_of[t.tid]}
         for b in bosses:
             pair = frozenset((version_group(t.tid), version_group(b.tid)))
-            if len(pair) == 1 or pair in seen or stage_index(b.stage) - stage_index(t.stage) not in (0, 1):
+            if len(pair) == 1 or person_group(t.tid) == person_group(b.tid) or pair in seen \
+                    or stage_index(b.stage) - stage_index(t.stage) not in (0, 1):
                 continue
             shared = mine & {m.species for m in mons_of[b.tid]}
             if len(shared) > 3:

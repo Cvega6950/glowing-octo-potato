@@ -1,6 +1,6 @@
 # Crystal Imperium play test: the DIFFICULTY option (challenge menu > Difficulty tab).
 # Every trainer's Pokemon are at the player's level cap on every difficulty (DECISIONS.md D21 for the
-# bosses, D56 for the others since 0.15.2): Falkner's Pidgey / Rookidee / Noctowl and Youngster
+# bosses, D56 for the others since 0.15.2): Falkner's team (his lead read from boss_teams.py) and Youngster
 # Albert's Sentret and Zubat (Heart & Soul's 7s) are 15 on EASY (NORMAL level caps) and 12 on HARD
 # (the HARD preset picks the HARD level caps too), whatever the player's own level (a level-11
 # CYNDAQUIL); Grunt 33's level-20 Koffing is 12 on HARD. With the LEVEL CAP off, the trainers keep
@@ -18,8 +18,8 @@ savestate easy.ss
 !battle("TRAINER_FALKNER_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B easy_falkner_action_menu
 shot 02_easy_falkner.png
-expect16 {gBattleMons+136} 16 falkner_leads_pidgey_easy
-expect8 {gBattleMons+180} 15 easy_pidgey_at_cap_15
+!expect_battler(1, "species", designed_species("TRAINER_FALKNER_1_HNS", 0, 0), "falkner_leads_as_designed_easy")
+expect8 {gBattleMons+180} 15 easy_falkner_lead_at_cap_15
 expect8 {gEnemyParty+184} 15 easy_rookidee_at_cap_15
 expect8 {gEnemyParty+284} 15 easy_noctowl_at_cap_15
 
@@ -37,8 +37,8 @@ savestate hard.ss
 !battle("TRAINER_FALKNER_1_HNS")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B hard_falkner_action_menu
 shot 03_hard_falkner.png
-expect16 {gBattleMons+136} 16 falkner_leads_pidgey_hard
-expect8 {gBattleMons+180} 12 hard_pidgey_at_cap_12
+!expect_battler(1, "species", designed_species("TRAINER_FALKNER_1_HNS", 0, 0), "falkner_leads_as_designed_hard")
+expect8 {gBattleMons+180} 12 hard_falkner_lead_at_cap_12
 expect8 {gEnemyParty+184} 12 hard_rookidee_at_cap_12
 expect8 {gEnemyParty+284} 12 hard_noctowl_at_cap_12
 

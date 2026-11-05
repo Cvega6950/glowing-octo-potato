@@ -112,21 +112,21 @@ Pichu @ Eviolite
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Static
-Nature: Timid
-- Nuzzle
-- Thunder Shock
-- Sweet Kiss
+Nature: Hasty
 - Fake Out
+- Nuzzle
+- Volt Switch
+- Grass Knot
 
-Sentret @ Eviolite
+Furret @ Sitrus Berry
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Frisk
+Ability: Adaptability
 Nature: Jolly
+- Body Slam
 - U Turn
 - Quick Attack
-- Fury Swipes
-- Defense Curl
+- Knock Off
 
 Rattata @ Flame Orb
 Level: 15
@@ -539,42 +539,42 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Swablu @ Eviolite
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Natural Cure
-Nature: Bold
-- Dragon Breath
-- Peck
-- Sing
+Nature: Calm
+- Toxic
 - Roost
+- Dragon Pulse
+- Air Cutter
 
 Farfetchd @ Leek
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+Ability: Sharpness
 Nature: Jolly
-- Leaf Blade
-- Brave Bird
-- Night Slash
 - Swords Dance
+- Leaf Blade
+- Night Slash
+- Aerial Ace
 
 Fearow @ Sharp Beak
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Frisk
+Ability: Technician
 Nature: Jolly
-- Drill Peck
-- Drill Run
-- Pursuit
+- Pluck
 - Quick Attack
+- Drill Run
+- U Turn
 
 Noctowl @ Sitrus Berry
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Tinted Lens
 Nature: Modest
 - Air Slash
 - Extrasensory
-- Hypnosis
+- Calm Mind
 - Roost
 
 === TRAINER_THEO_HNS ===
@@ -695,6 +695,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Skarmory @ Rocky Helmet
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Sturdy
 Nature: Impish
 - Spikes
@@ -702,39 +703,32 @@ Nature: Impish
 - Roost
 - Whirlwind
 
-Staraptor @ Choice Band
+Staraptor @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Reckless
 Nature: Jolly
 - Brave Bird
 - Close Combat
-- U Turn
-- Double Edge
+- Double-Edge
+- U-turn
 
 Talonflame @ Sharp Beak
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Gale Wings
 Nature: Adamant
 - Brave Bird
 - Flare Blitz
-- U Turn
-- Roost
-
-Corviknight @ Leftovers
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pressure
-Nature: Impish
-- Brave Bird
-- Iron Head
-- Bulk Up
+- U-turn
 - Roost
 
 Togekiss @ Choice Scarf
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Serene Grace
 Nature: Timid
 - Air Slash
@@ -745,12 +739,24 @@ Nature: Timid
 Dragonite @ Lum Berry
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Multiscale
 Nature: Adamant
-- Dragon Dance
 - Extreme Speed
+- Dual Wingbeat
 - Earthquake
 - Fire Punch
+
+Altaria @ Altarianite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Natural Cure
+Nature: Adamant
+- Dragon Dance
+- Double-Edge
+- Earthquake
+- Roost
 
 === TRAINER_BOB_HNS ===
 Name: BOB
@@ -832,62 +838,68 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Klefki @ Light Clay
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
 Ability: Prankster
-Nature: Bold
+Nature: Calm
+- Reflect
+- Light Screen
 - Spikes
-- Thunder Wave
-- Foul Play
-- Play Rough
-
-Sableye @ Leftovers
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Prankster
-Nature: Careful
-- Will O Wisp
-- Knock Off
-- Recover
 - Foul Play
 
-Ambipom @ Silk Scarf
+Rotom-Wash @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Technician
-Nature: Jolly
-- Fake Out
-- Double Hit
-- U Turn
-- Knock Off
-
-Mr Mime @ Life Orb
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Filter
-Nature: Timid
-- Psychic
-- Dazzling Gleam
-- Focus Blast
-- Nasty Plot
-
-Rotom @ Leftovers
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 SpA / 252 Spe
 Ability: Levitate
 Nature: Timid
+- Hydro Pump
 - Thunderbolt
+- Will-O-Wisp
+- Pain Split
+
+Mr. Mime @ Life Orb
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Filter
+Nature: Timid
+- Nasty Plot
+- Psychic
+- Dazzling Gleam
+- Thunderbolt
+
+Chandelure @ Choice Scarf
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Flash Fire
+Nature: Timid
 - Shadow Ball
-- Will O Wisp
-- Volt Switch
+- Flamethrower
+- Energy Ball
+- Trick
 
 Magnezone @ Choice Specs
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magnet Pull
 Nature: Modest
 - Thunderbolt
 - Flash Cannon
 - Volt Switch
 - Hidden Power
+
+Sableye @ Sablenite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Frisk
+Nature: Careful
+- Will-O-Wisp
+- Encore
+- Recover
+- Foul Play
 
 === TRAINER_CARRIE_HNS ===
 Name: CARRIE
@@ -1187,52 +1199,57 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Mr Mime @ Light Clay
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Misty Surge
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 SpA / 252 Spe
+Ability: Filter
 Nature: Timid
 - Reflect
 - Light Screen
-- Psychic
+- Thunder
 - Encore
 
-Venusaur @ Miracle Seed
+Venusaur @ Black Sludge
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Overgrow
 Nature: Modest
-- Growth
 - Giga Drain
 - Sludge Bomb
-- Earth Power
+- Weather Ball
+- Sleep Powder
 
 Dragonair @ Eviolite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Marvel Scale
-Nature: Adamant
+Nature: Jolly
 - Dragon Dance
 - Outrage
 - Extreme Speed
-- Iron Tail
+- Aqua Tail
 
-Blastoise @ Sitrus Berry
+Blastoise @ White Herb
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Torrent
-Nature: Bold
-- Iron Defense
-- Body Press
-- Scald
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Rain Dish
+Nature: Modest
+- Shell Smash
+- Hydro Pump
 - Ice Beam
+- Aura Sphere
 
-Charizard @ Charcoal
+Charizard @ Life Orb
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Blaze
 Nature: Timid
-- Flamethrower
-- Air Slash
+- Hurricane
 - Focus Blast
+- Flamethrower
 - Roost
 
 
@@ -1327,60 +1344,60 @@ Nature: Adamant
 - Earthquake
 - Knock Off
 
-Kingler @ Life Orb
+Porygon2 @ Eviolite
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Sheer Force
-Nature: Adamant
-- Agility
-- Liquidation
-- Rock Slide
-- Superpower
-
-Victreebel @ Black Sludge
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 SpA / 4 SpD
-Ability: Chlorophyll
-Nature: Modest
-- Sleep Powder
-- Strength Sap
-- Giga Drain
-- Sludge Bomb
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Trace
+Nature: Calm
+- Tri Attack
+- Ice Beam
+- Thunder Wave
+- Recover
 
 Flareon @ Choice Band
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Flash Fire
-Nature: Adamant
+Nature: Jolly
 - Flare Blitz
 - Superpower
 - Double Edge
 - Quick Attack
 
-Porygon Z @ Choice Specs
+Victreebel @ Salac Berry
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Ability: Adaptability
-Nature: Timid
-- Tri Attack
-- Shadow Ball
-- Ice Beam
-- Thunderbolt
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Gluttony
+Nature: Adamant
+- Swords Dance
+- Power Whip
+- Sucker Punch
+- Poison Jab
 
 Dragonite @ Loaded Dice
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Multiscale
-Nature: Adamant
+Nature: Jolly
 - Dragon Dance
 - Scale Shot
 - Extreme Speed
 - Earthquake
+
+Kingler @ Kinglerite
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Hyper Cutter
+Nature: Jolly
+- Swords Dance
+- Crabhammer
+- High Horsepower
+- Knock Off
 
 
 === TRAINER_RYAN_HNS ===
@@ -1540,6 +1557,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Scizor @ Choice Band
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Technician
 Nature: Adamant
 - Bullet Punch
@@ -1547,39 +1565,43 @@ Nature: Adamant
 - Knock Off
 - Superpower
 
-Starmie @ Life Orb
+Starmie @ Expert Belt
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Analytic
 Nature: Timid
 - Hydro Pump
-- Psychic
-- Ice Beam
+- Psyshock
 - Thunderbolt
+- Rapid Spin
 
 Ampharos @ Leftovers
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Static
 Nature: Modest
 - Thunderbolt
 - Dragon Pulse
-- Focus Blast
+- Hidden Power
 - Volt Switch
 
 Houndoom @ Life Orb
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flash Fire
 Nature: Timid
+- Nasty Plot
 - Dark Pulse
 - Fire Blast
 - Sludge Bomb
-- Nasty Plot
 
 Heracross @ Choice Scarf
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Moxie
 Nature: Jolly
 - Megahorn
@@ -1589,13 +1611,14 @@ Nature: Jolly
 
 Nidoking @ Life Orb
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Sheer Force
-Nature: Timid
+Nature: Modest
 - Earth Power
 - Sludge Wave
 - Ice Beam
-- Flamethrower
+- Shadow Ball
 
 === TRAINER_BRIAN_HNS ===
 Name: BRIAN
@@ -1606,16 +1629,27 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Sandslash @ Rocky Helmet
+Tyranitar @ Smooth Rock
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 4 Atk / 252 Def
-Ability: Sand Veil
-Nature: Impish
-- Spikes
-- Rapid Spin
-- Knock Off
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Sand Stream
+Nature: Jolly
+- Stealth Rock
+- Stone Edge
+- Crunch
+- Fire Punch
+
+Sandslash @ Life Orb
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Sand Rush
+Nature: Jolly
+- Swords Dance
 - Earthquake
+- Stone Edge
+- Knock Off
 
 Scizor @ Leftovers
 Level: 75
@@ -1625,24 +1659,24 @@ Ability: Technician
 Nature: Adamant
 - Swords Dance
 - Bullet Punch
-- Bug Bite
+- U Turn
 - Roost
 
-Weavile @ Life Orb
+Weavile @ Razor Claw
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Pressure
 Nature: Jolly
 - Swords Dance
+- Night Slash
 - Triple Axel
-- Knock Off
 - Ice Shard
 
 Sneasler @ White Herb
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Unburden
 Nature: Jolly
 - Close Combat
@@ -1650,27 +1684,16 @@ Nature: Jolly
 - Acrobatics
 - Fake Out
 
-Zangoose @ Choice Band
+Charizard @ Charizardite X
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Tough Claws
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Blaze
 Nature: Jolly
-- Double Edge
-- Close Combat
-- Shadow Claw
-- Quick Attack
-
-Ursaluna @ Flame Orb
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Atk / 4 SpD
-Ability: Guts
-Nature: Adamant
-- Facade
-- Headlong Rush
-- Crunch
-- Ice Punch
+- Dragon Dance
+- Flare Blitz
+- Outrage
+- Thunder Punch
 
 
 === TRAINER_ERICK_HNS ===
@@ -1745,7 +1768,7 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Forretress @ Leftovers
+Forretress @ Rocky Helmet
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
@@ -1789,20 +1812,20 @@ Nature: Adamant
 - Trailblaze
 - Quick Attack
 
-Tyranitar @ Lum Berry
+Tyranitar @ Tyranitarite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Unnerve
+Ability: Sand Stream
 Nature: Jolly
 - Dragon Dance
 - Stone Edge
 - Crunch
-- Earthquake
+- Ice Punch
 
 Gastrodon @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Storm Drain
 Nature: Calm
@@ -1821,49 +1844,43 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Gengar @ Focus Sash
+Ferrothorn @ Rocky Helmet
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Levitate
-Nature: Timid
-- Shadow Ball
-- Sludge Bomb
-- Focus Blast
-- Nasty Plot
-
-Scizor @ Life Orb
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Technician
-Nature: Adamant
-- Bullet Punch
-- U Turn
-- Knock Off
-- Swords Dance
-
-Ferrothorn @ Leftovers
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Iron Barbs
 Nature: Relaxed
-- Gyro Ball
-- Power Whip
-- Leech Seed
 - Spikes
+- Leech Seed
+- Gyro Ball
+- Knock Off
 
-Crawdaunt @ Life Orb
+Gengar @ Focus Sash
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Nasty Plot
+- Shadow Ball
+- Sludge Bomb
+- Thunderbolt
+
+Crawdaunt @ Choice Band
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Adaptability
 Nature: Adamant
 - Crabhammer
 - Knock Off
 - Aqua Jet
-- Swords Dance
+- Superpower
 
-Kommo O @ Life Orb
+Kommo-o @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Bulletproof
 Nature: Jolly
 - Close Combat
@@ -1874,12 +1891,24 @@ Nature: Jolly
 Salamence @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Intimidate
-Nature: Adamant
+Nature: Jolly
 - Dragon Dance
 - Dual Wingbeat
 - Earthquake
 - Fire Fang
+
+Scizor @ Scizorite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Technician
+Nature: Adamant
+- Swords Dance
+- Bullet Punch
+- Bug Bite
+- Roost
 
 === TRAINER_STEVE_HNS ===
 Name: STEVE
@@ -2072,9 +2101,21 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Butterfree @ Sitrus Berry
+Ninetales @ Heat Rock
+Level: 50
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Drought
+Nature: Timid
+- Nasty Plot
+- Flamethrower
+- Solar Beam
+- Extrasensory
+
+Butterfree @ Focus Sash
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Compound Eyes
 Nature: Timid
 - Tailwind
@@ -2085,42 +2126,35 @@ Nature: Timid
 Hitmontop @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Def
 Ability: Intimidate
-Nature: Adamant
+Nature: Jolly
 - Fake Out
 - Rapid Spin
 - Close Combat
 - Sucker Punch
 
-Jumpluff @ Sharp Beak
+Lilligant Hisui @ Life Orb
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Aerilate
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Chlorophyll
+Nature: Jolly
+- Victory Dance
+- Close Combat
+- Solar Blade
+- Ice Spinner
+
+Jumpluff @ Flying Gem
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Chlorophyll
 Nature: Jolly
 - Swords Dance
-- Double Edge
+- Acrobatics
 - Seed Bomb
 - Strength Sap
-
-Gyarados @ Mystic Water
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Moxie
-Nature: Jolly
-- Dragon Dance
-- Waterfall
-- Earthquake
-- Ice Fang
-
-Ninetales @ Charcoal
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Flash Fire
-Nature: Timid
-- Nasty Plot
-- Flamethrower
-- Energy Ball
-- Extrasensory
 
 
 === TRAINER_FRAN_HNS ===
@@ -2284,42 +2318,42 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
+Granbull @ Sitrus Berry
+Level: 24
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Intimidate
+Nature: Adamant
+- Play Rough
+- Crunch
+- Thunder Wave
+- Roar
+
 Shellder @ Eviolite
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Skill Link
 Nature: Adamant
+- Shell Smash
 - Icicle Spear
 - Rock Blast
-- Ice Shard
-- Protect
+- Liquidation
 
-Growlithe @ Eviolite
+Growlithe @ Charcoal
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
+Ability: Flash Fire
 Nature: Adamant
 - Fire Fang
-- Bite
+- Wild Charge
+- Crunch
 - Will O Wisp
-- Roar
-
-Snubbull @ Eviolite
-Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
-Nature: Impish
-- Play Rough
-- Bite
-- Thunder Wave
-- Roar
 
 Kadabra @ Eviolite
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Guard
 Nature: Timid
-- Psybeam
+- Psyshock
 - Dazzling Gleam
 - Calm Mind
 - Recover
@@ -2393,50 +2427,43 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Roserade @ Focus Sash
-Level: 66
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Technician
-Nature: Timid
-- Giga Drain
-- Sludge Bomb
-- Shadow Ball
-- Sleep Powder
-
-Lopunny @ Life Orb
-Level: 66
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Limber
-Nature: Jolly
-Happiness: 255
-- Return
-- High Jump Kick
-- Fake Out
-- Ice Punch
-
 Froslass @ Focus Sash
 Level: 66
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Stakeout
 Nature: Timid
+- Spikes
 - Ice Beam
 - Shadow Ball
-- Spikes
 - Destiny Bond
 
-Azumarill @ Choice Band
+Roserade @ Black Sludge
+Level: 66
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Natural Cure
+Nature: Timid
+- Toxic Spikes
+- Sludge Bomb
+- Giga Drain
+- Sleep Powder
+
+Azumarill @ Sitrus Berry
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Huge Power
 Nature: Adamant
-- Play Rough
+- Belly Drum
 - Aqua Jet
-- Waterfall
-- Superpower
+- Play Rough
+- Liquidation
 
 Gardevoir @ Choice Scarf
 Level: 66
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Trace
 Nature: Timid
 - Moonblast
@@ -2447,12 +2474,25 @@ Nature: Timid
 Milotic @ Leftovers
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Marvel Scale
-Nature: Bold
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Competitive
+Nature: Calm
 - Scald
 - Ice Beam
 - Recover
-- Haze
+- Flip Turn
+
+Lopunny @ Lopunnite
+Level: 66
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Limber
+Nature: Jolly
+Happiness: 255
+- Fake Out
+- Return
+- High Jump Kick
+- Ice Punch
 
 === TRAINER_JOYCE_HNS ===
 Name: JOYCE
@@ -2498,7 +2538,7 @@ Nature: Jolly
 
 Raichu @ Life Orb
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Lightning Rod
 Nature: Timid
@@ -2507,9 +2547,9 @@ Nature: Timid
 - Focus Blast
 - Grass Knot
 
-Blastoise @ White Herb
+Blastoise @ Blastoisinite
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Torrent
 Nature: Modest
@@ -2520,7 +2560,7 @@ Nature: Modest
 
 Typhlosion @ Choice Scarf
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flash Fire
 Nature: Timid
@@ -2552,7 +2592,7 @@ Nature: Impish
 
 Lanturn @ Leftovers
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Volt Absorb
 Nature: Calm
@@ -2561,15 +2601,15 @@ Nature: Calm
 - Ice Beam
 - Thunder Wave
 
-Ampharos @ Expert Belt
+Gengar @ Life Orb
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 4 HP / 252 SpA / 252 Spe
-Ability: Static
-Nature: Modest
-- Agility
-- Thunderbolt
-- Dragon Pulse
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Hex
+- Will O Wisp
+- Sludge Bomb
 - Focus Blast
 
 Rapidash @ Heavy Duty Boots
@@ -2583,15 +2623,15 @@ Nature: Jolly
 - Wild Charge
 - High Horsepower
 
-Gengar @ Life Orb
+Ampharos @ Ampharosite
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Ability: Levitate
-Nature: Timid
-- Hex
-- Will O Wisp
-- Sludge Bomb
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Plus
+Nature: Modest
+- Agility
+- Thunderbolt
+- Dragon Pulse
 - Focus Blast
 
 
@@ -2606,7 +2646,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Electrode @ Focus Sash
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Static
 Nature: Timid
@@ -2617,7 +2657,7 @@ Nature: Timid
 
 Nidoqueen @ Black Sludge
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Sheer Force
 Nature: Calm
@@ -2626,10 +2666,10 @@ Nature: Calm
 - Earth Power
 - Sludge Bomb
 
-Vileplume @ Black Sludge
+Vileplume @ Rocky Helmet
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Def / 4 SpA
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Effect Spore
 Nature: Bold
 - Strength Sap
@@ -2637,22 +2677,22 @@ Nature: Bold
 - Giga Drain
 - Sludge Bomb
 
-Arbok @ Leftovers
+Alakazam @ Alakazite
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Atk / 4 SpD
-Ability: Intimidate
-Nature: Adamant
-- Glare
-- Coil
-- Gunk Shot
-- Earthquake
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Magic Guard
+Nature: Timid
+- Nasty Plot
+- Psychic
+- Focus Blast
+- Shadow Ball
 
 Starmie @ Power Herb
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Ability: Analytic
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Natural Cure
 Nature: Timid
 - Meteor Beam
 - Hydro Pump
@@ -2671,7 +2711,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Exeggutor @ Sitrus Berry
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 EVs: 252 HP / 4 Def / 252 SpA
 Ability: Harvest
 Nature: Quiet
@@ -2680,9 +2720,20 @@ Nature: Quiet
 - Energy Ball
 - Sleep Powder
 
+Ferrothorn @ Leftovers
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 Def
+Ability: Iron Barbs
+Nature: Brave
+- Stealth Rock
+- Gyro Ball
+- Power Whip
+- Leech Seed
+
 Tangrowth @ Assault Vest
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Regenerator
 Nature: Brave
@@ -2691,42 +2742,20 @@ Nature: Brave
 - Earthquake
 - Rock Slide
 
-Bellossom @ Leftovers
+Torterra @ Life Orb
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 SpA / 4 SpD
-Ability: Chlorophyll
-Nature: Quiet
-- Strength Sap
-- Moonblast
-- Giga Drain
-- Sludge Bomb
-
-Victreebel @ Life Orb
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
-Ability: Chlorophyll
+Ability: Rock Head
 Nature: Brave
-- Power Whip
-- Poison Jab
-- Knock Off
-- Sucker Punch
+- Swords Dance
+- Wood Hammer
+- Headlong Rush
+- Stone Edge
 
-Venusaur @ Black Sludge
+Exeggutor Alola @ Lum Berry
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 SpA / 4 SpD
-Ability: Overgrow
-Nature: Quiet
-- Leaf Storm
-- Sludge Bomb
-- Earth Power
-- Leech Seed
-
-Exeggutor Alola @ Expert Belt
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Harvest
 Nature: Quiet
@@ -2734,6 +2763,17 @@ Nature: Quiet
 - Draco Meteor
 - Flamethrower
 - Giga Drain
+
+Venusaur @ Venusaurite
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Overgrow
+Nature: Quiet
+- Giga Drain
+- Sludge Bomb
+- Earth Power
+- Leech Seed
 
 
 === TRAINER_CAROL_HNS ===
@@ -2747,7 +2787,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Electrode @ Light Clay
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 SpA / 252 Spe
 Ability: Soundproof
 Nature: Timid
@@ -2769,7 +2809,7 @@ Nature: Jolly
 
 Sceptile @ Focus Sash
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Unburden
 Nature: Timid
@@ -2778,9 +2818,9 @@ Nature: Timid
 - Focus Blast
 - Dragon Pulse
 
-Alakazam @ Life Orb
+Alakazam @ Alakazite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Magic Guard
 Nature: Timid
@@ -2791,7 +2831,7 @@ Nature: Timid
 
 Starmie @ Choice Specs
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Analytic
 Nature: Timid
@@ -2802,7 +2842,7 @@ Nature: Timid
 
 Ninetales @ Heavy Duty Boots
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flash Fire
 Nature: Timid
@@ -2824,6 +2864,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Hippowdon @ Leftovers
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Sand Stream
 Nature: Impish
 - Earthquake
@@ -2834,6 +2875,7 @@ Nature: Impish
 Excadrill @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Sand Rush
 Nature: Adamant
 - Earthquake
@@ -2844,16 +2886,18 @@ Nature: Adamant
 Gliscor @ Toxic Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Poison Heal
 Nature: Impish
 - Earthquake
 - Knock Off
-- Toxic
+- U Turn
 - Roost
 
 Sandslash @ Focus Sash
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Sand Rush
 Nature: Jolly
 - Earthquake
@@ -2861,25 +2905,27 @@ Nature: Jolly
 - Swords Dance
 - Rapid Spin
 
-Garchomp @ Rocky Helmet
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Rough Skin
-Nature: Jolly
-- Earthquake
-- Dragon Claw
-- Stone Edge
-- Swords Dance
-
 Tyranitar @ Choice Band
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sand Stream
 Nature: Adamant
 - Stone Edge
 - Crunch
 - Earthquake
 - Ice Punch
+
+Garchomp @ Garchompite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Rough Skin
+Nature: Jolly
+- Swords Dance
+- Earthquake
+- Outrage
+- Fire Fang
 
 === TRAINER_EMMA_HNS ===
 Name: EMMA
@@ -3510,21 +3556,23 @@ Music: Hg Suspicious 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Lickitung @ Eviolite
+Aerodactyl @ Focus Sash
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Own Tempo
-Nature: Careful
-- Body Slam
-- Knock Off
-- Power Whip
-- Swords Dance
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Rock Head
+Nature: Jolly
+- Stealth Rock
+- Stone Edge
+- Double Edge
+- Earthquake
 
 Kangaskhan @ Silk Scarf
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Scrappy
-Nature: Adamant
+Nature: Jolly
 - Fake Out
 - Double Edge
 - Sucker Punch
@@ -3532,7 +3580,8 @@ Nature: Adamant
 
 Slowbro @ Leftovers
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Regenerator
 Nature: Bold
 - Scald
@@ -3540,25 +3589,27 @@ Nature: Bold
 - Slack Off
 - Thunder Wave
 
-Aerodactyl @ Focus Sash
+Lickilicky @ Sitrus Berry
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Rock Head
-Nature: Jolly
-- Stone Edge
-- Double Edge
-- Earthquake
-- Stealth Rock
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Unaware
+Nature: Careful
+- Swords Dance
+- Body Slam
+- Knock Off
+- Power Whip
 
 Dragonair @ Eviolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Shed Skin
-Nature: Adamant
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Marvel Scale
+Nature: Jolly
 - Dragon Dance
+- Outrage
 - Extreme Speed
-- Aqua Tail
-- Iron Tail
+- Waterfall
 
 === TRAINER_BRENT_HNS ===
 Name: BRENT
@@ -4993,17 +5044,19 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Politoed @ Damp Rock
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Drizzle
 Nature: Bold
 - Scald
-- Ice Beam
-- Encore
 - Hypnosis
+- Encore
+- Haze
 
 Kingdra @ Life Orb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Swift Swim
 Nature: Modest
 - Hydro Pump
@@ -5011,9 +5064,10 @@ Nature: Modest
 - Ice Beam
 - Rain Dance
 
-Ludicolo @ Life Orb
+Ludicolo @ Choice Specs
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Swift Swim
 Nature: Modest
 - Hydro Pump
@@ -5023,7 +5077,8 @@ Nature: Modest
 
 Seismitoad @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Swift Swim
 Nature: Modest
 - Hydro Pump
@@ -5033,7 +5088,8 @@ Nature: Modest
 
 Lanturn @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Volt Absorb
 Nature: Modest
 - Thunder
@@ -5041,9 +5097,10 @@ Nature: Modest
 - Ice Beam
 - Volt Switch
 
-Gyarados @ Sitrus Berry
+Gyarados @ Gyaradosite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Moxie
 Nature: Jolly
 - Waterfall
@@ -5218,53 +5275,58 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Mantine @ Leftovers
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Water Absorb
-Nature: Calm
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Swift Swim
+Nature: Timid
+- Hurricane
 - Scald
-- Air Slash
-- Haze
 - Roost
+- Haze
 
-Octillery @ Life Orb
+Barraskewda @ Life Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sniper
-Nature: Modest
-- Hydro Pump
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Swift Swim
+Nature: Jolly
+- Liquidation
+- Close Combat
+- Psychic Fangs
+- Aqua Jet
+
+Lanturn @ Assault Vest
+Level: 42
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Volt Absorb
+Nature: Timid
+- Thunder
+- Scald
 - Ice Beam
-- Fire Blast
-- Gunk Shot
+- Volt Switch
 
-Seadra @ Eviolite
+Starmie @ Expert Belt
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sniper
-Nature: Modest
-- Hydro Pump
-- Dragon Pulse
-- Ice Beam
-- Focus Energy
-
-Lapras @ Sitrus Berry
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Water Absorb
-Nature: Modest
-- Freeze Dry
-- Surf
-- Thunderbolt
-- Ice Shard
-
-Starmie @ Life Orb
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Analytic
 Nature: Timid
-- Surf
-- Psychic
-- Thunderbolt
-- Rapid Spin
+- Hydro Pump
+- Psyshock
+- Ice Beam
+- Recover
+
+Kingdra @ Choice Specs
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Swift Swim
+Nature: Timid
+- Hydro Pump
+- Draco Meteor
+- Hurricane
+- Flip Turn
 
 === TRAINER_BERKE_HNS ===
 Name: BERKE
@@ -5937,42 +5999,43 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Tentacruel @ Black Sludge
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Clear Body
-Nature: Timid
+Ability: Liquid Ooze
+Nature: Calm
+- Toxic Spikes
 - Scald
 - Sludge Bomb
-- Toxic Spikes
-- Rapid Spin
+- Knock Off
 
-Poliwhirl @ Eviolite
+Poliwrath @ Leftovers
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Water Absorb
-Nature: Bold
-- Scald
-- Hypnosis
-- Ice Beam
-- Encore
+Nature: Adamant
+- Bulk Up
+- Waterfall
+- Drain Punch
+- Rock Slide
 
-Machoke @ Eviolite
+Machamp @ Expert Belt
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
+Ability: No Guard
 Nature: Adamant
 - Dynamic Punch
+- Stone Edge
 - Knock Off
 - Bullet Punch
-- Bulk Up
 
 Kingler @ Life Orb
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk
 Ability: Sheer Force
 Nature: Adamant
-- Crabhammer
-- Knock Off
-- Rock Slide
 - Swords Dance
+- Liquidation
+- Rock Slide
+- Knock Off
 
 === TRAINER_HUEY_HNS ===
 Name: HUEY
@@ -6488,49 +6551,54 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Graveler @ Eviolite
+Hippowdon @ Smooth Rock
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sturdy
-Nature: Adamant
-- Stealth Rock
-- Earthquake
-- Rock Slide
-- Explosion
-
-Onix @ Eviolite
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sturdy
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Sand Stream
 Nature: Impish
 - Stealth Rock
-- Rock Slide
 - Earthquake
-- Curse
+- Slack Off
+- Whirlwind
 
-Rhyhorn @ Eviolite
+Excadrill @ Life Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Rock Head
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Sand Rush
+Nature: Jolly
+- Swords Dance
+- Earthquake
+- Iron Head
+- Rapid Spin
+
+Rhydon @ Eviolite
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Lightning Rod
 Nature: Adamant
-- Rock Blast
+- Stone Edge
 - Earthquake
 - Megahorn
-- Stealth Rock
+- Roar
 
-Piloswine @ Eviolite
+Steelix @ Leftovers
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Thick Fat
-Nature: Adamant
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Sturdy
+Nature: Impish
+- Curse
+- Heavy Slam
 - Earthquake
-- Icicle Crash
-- Ice Shard
-- Stealth Rock
+- Rock Slide
 
 Sudowoodo @ Choice Band
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Rock Head
 Nature: Adamant
 - Head Smash
@@ -6664,9 +6732,21 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
+Steelix @ Leftovers
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
+Ability: Sturdy
+Nature: Impish
+- Stealth Rock
+- Heavy Slam
+- Earthquake
+- Curse
+
 Donphan @ Leftovers
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Def
 Ability: Sturdy
 Nature: Adamant
 - Earthquake
@@ -6674,19 +6754,10 @@ Nature: Adamant
 - Knock Off
 - Rapid Spin
 
-Steelix @ Leftovers
+Golem @ Custap Berry
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sturdy
-Nature: Impish
-- Heavy Slam
-- Earthquake
-- Stealth Rock
-- Curse
-
-Golem @ Focus Sash
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
 Nature: Adamant
 - Stone Edge
@@ -6697,32 +6768,35 @@ Nature: Adamant
 Mamoswine @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Thick Fat
-Nature: Adamant
+Nature: Jolly
 - Earthquake
 - Icicle Crash
 - Ice Shard
 - Stone Edge
 
-Aggron @ Sitrus Berry
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Rock Head
-Nature: Adamant
-- Head Smash
-- Heavy Slam
-- Earthquake
-- Rock Polish
-
 Rhyperior @ Weakness Policy
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Solid Rock
 Nature: Adamant
 - Stone Edge
 - Earthquake
 - Megahorn
 - Ice Punch
+
+Aggron @ Aggronite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
+Ability: Sturdy
+Nature: Impish
+- Iron Defense
+- Body Press
+- Heavy Slam
+- Stone Edge
 
 === TRAINER_NOLAND_HNS ===
 Name: NOLAND
@@ -6805,9 +6879,21 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
+Golem @ Sitrus Berry
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Sturdy
+Nature: Adamant
+- Stealth Rock
+- Earthquake
+- Stone Edge
+- Sucker Punch
+
 Gligar @ Eviolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Spe
 Ability: Immunity
 Nature: Jolly
 - Earthquake
@@ -6815,45 +6901,38 @@ Nature: Jolly
 - U Turn
 - Roost
 
-Lairon @ Eviolite
+Aggron @ Life Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Rock Head
 Nature: Adamant
 - Head Smash
 - Iron Head
 - Earthquake
-- Stealth Rock
+- Rock Polish
 
 Marowak @ Thick Club
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Rock Head
 Nature: Adamant
 - Bonemerang
-- Rock Slide
+- Double Edge
 - Fire Punch
 - Swords Dance
 
 Hariyama @ Flame Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Guts
 Nature: Adamant
 - Close Combat
 - Knock Off
 - Bullet Punch
 - Fake Out
-
-Golem @ Sitrus Berry
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sturdy
-Nature: Adamant
-- Stealth Rock
-- Earthquake
-- Stone Edge
-- Sucker Punch
 
 === TRAINER_DANIEL_HNS ===
 Name: DANIEL
@@ -7160,7 +7239,8 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Ninetales @ Heat Rock
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Drought
 Nature: Timid
 - Fire Blast
@@ -7170,7 +7250,8 @@ Nature: Timid
 
 Houndoom @ Black Glasses
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flash Fire
 Nature: Timid
 - Dark Pulse
@@ -7180,7 +7261,8 @@ Nature: Timid
 
 Chandelure @ Choice Specs
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flash Fire
 Nature: Modest
 - Shadow Ball
@@ -7190,28 +7272,31 @@ Nature: Modest
 
 Magmortar @ Expert Belt
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flame Body
 Nature: Modest
 - Fire Blast
 - Thunderbolt
 - Focus Blast
-- Psychic
+- Solar Beam
 
-Volcarona @ Leftovers
+Volcarona @ Heavy Duty Boots
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flame Body
 Nature: Modest
-- Quiver Dance
 - Fiery Dance
 - Bug Buzz
 - Giga Drain
+- U Turn
 
-Charizard @ Life Orb
+Charizard @ Charizardite Y
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Solar Power
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Blaze
 Nature: Timid
 - Fire Blast
 - Solar Beam
@@ -7562,65 +7647,71 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Bronzong @ Leftovers
+Tapu Lele @ Terrain Extender
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Levitate
-Nature: Relaxed
-- Gyro Ball
-- Earthquake
-- Stealth Rock
-- Hypnosis
-
-Hatterene @ Life Orb
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Magic Bounce
-Nature: Quiet
-- Psychic
-- Dazzling Gleam
-- Mystical Fire
-- Trick Room
-
-Gallade @ Choice Band
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Justified
-Nature: Adamant
-- Psycho Cut
-- Close Combat
-- Leaf Blade
-- Knock Off
-
-Reuniclus @ Life Orb
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Magic Guard
-Nature: Modest
-- Psychic
-- Focus Blast
-- Shadow Ball
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Psychic Surge
+Nature: Timid
 - Calm Mind
+- Psychic
+- Moonblast
+- Energy Ball
 
-Alakazam @ Focus Sash
+Espathra @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Speed Boost
+Nature: Timid
+- Calm Mind
+- Expanding Force
+- Dazzling Gleam
+- Protect
+
+Alakazam @ Life Orb
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magic Guard
 Nature: Timid
-- Psychic
-- Shadow Ball
-- Focus Blast
 - Nasty Plot
+- Expanding Force
+- Shadow Ball
+- Energy Ball
 
-Metagross @ Life Orb
+Slowking @ Leftovers
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Regenerator
+Nature: Bold
+- Scald
+- Future Sight
+- Teleport
+- Slack Off
+
+Metagross @ Weakness Policy
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Clear Body
-Nature: Adamant
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Tough Claws
+Nature: Jolly
+- Stealth Rock
 - Meteor Mash
-- Zen Headbutt
-- Bullet Punch
-- Earthquake
+- Psychic Fangs
+- Knock Off
+
+Gallade @ Galladite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Sharpness
+Nature: Jolly
+- Swords Dance
+- Psycho Cut
+- Sacred Sword
+- Leaf Blade
 
 === TRAINER_FIDEL_HNS ===
 Name: FIDEL
@@ -7649,14 +7740,24 @@ Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Bounce
 Nature: Timid
-- Psychic
+- Reflect
+- Light Screen
 - Air Slash
-- Thunder Wave
-- Roost
+- U Turn
+
+Gallade @ Focus Sash
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sharpness
+Nature: Adamant
+- Swords Dance
+- Psycho Cut
+- Sacred Sword
+- Night Slash
 
 Grumpig @ Leftovers
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Thick Fat
 Nature: Modest
 - Psychic
@@ -7664,25 +7765,16 @@ Nature: Modest
 - Power Gem
 - Calm Mind
 
-Kirlia @ Eviolite
+Espeon @ Twisted Spoon
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Trace
-Nature: Modest
-- Psychic
-- Dazzling Gleam
-- Calm Mind
-- Thunderbolt
-
-Espeon @ Life Orb
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA
 Ability: Magic Bounce
 Nature: Timid
+- Calm Mind
 - Psychic
 - Dazzling Gleam
 - Shadow Ball
-- Calm Mind
 
 === TRAINER_NORMAN_HNS ===
 Name: NORMAN
@@ -8045,35 +8137,35 @@ Music: Hg Boy 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Bellsprout @ Eviolite
-Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Vine Whip
-- Sleep Powder
-- Acid
-- Growth
-
-Mareep @ Eviolite
-Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Static
-Nature: Modest
-- Thunder Shock
-- Thunder Wave
-- Cotton Spore
-- Take Down
-
 Geodude @ Eviolite
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Adamant
-- Rock Throw
-- Bulldoze
 - Stealth Rock
-- Rollout
+- Rock Tomb
+- Bulldoze
+- Explosion
+
+Flaaffy @ Eviolite
+Level: 15
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Static
+Nature: Modest
+- Thunder Wave
+- Volt Switch
+- Discharge
+- Power Gem
+
+Bellsprout @ Salac Berry
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Gluttony
+Nature: Adamant
+- Sleep Powder
+- Bullet Seed
+- Poison Jab
+- Sucker Punch
 
 === TRAINER_TODD_HNS ===
 Name: TODD
@@ -8570,7 +8662,6 @@ Mugshot: Light Blue
 Bronzor @ Eviolite
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Def / 4 SpD
 Ability: Heatproof
 Nature: Relaxed
 - Stealth Rock
@@ -8581,7 +8672,6 @@ Nature: Relaxed
 Phantump @ Eviolite
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 4 Def / 252 SpD
 Ability: Natural Cure
 Nature: Sassy
 - Will O Wisp
@@ -8589,11 +8679,10 @@ Nature: Sassy
 - Leech Seed
 - Horn Leech
 
-Weepinbell @ Eviolite
+Weepinbell @ Liechi Berry
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Atk / 4 Def
-Ability: Chlorophyll
+Ability: Gluttony
 Nature: Adamant
 - Sleep Powder
 - Bullet Seed
@@ -8872,65 +8961,71 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Granbull @ Leftovers
+Clefable @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
-Nature: Impish
-- Play Rough
-- Earthquake
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Magic Guard
+Nature: Bold
+- Stealth Rock
+- Moonblast
+- Soft-Boiled
 - Thunder Wave
-- Heal Bell
 
-Azumarill @ Choice Band
+Azumarill @ Sitrus Berry
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Def
 Ability: Huge Power
 Nature: Adamant
-- Play Rough
+- Belly Drum
 - Aqua Jet
-- Waterfall
-- Superpower
+- Play Rough
+- Ice Spinner
 
 Mimikyu @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Disguise
 Nature: Jolly
-- Play Rough
-- Shadow Claw
-- Shadow Sneak
 - Swords Dance
+- Play Rough
+- Shadow Sneak
+- Wood Hammer
 
-Togekiss @ Leftovers
+Togekiss @ Heavy-Duty Boots
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Serene Grace
 Nature: Timid
+- Nasty Plot
 - Air Slash
 - Dazzling Gleam
 - Aura Sphere
-- Roost
 
-Sylveon @ Choice Specs
+Sylveon @ Throat Spray
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Pixilate
 Nature: Modest
 - Hyper Voice
-- Psyshock
+- Calm Mind
 - Shadow Ball
-- Mystical Fire
+- Wish
 
-Clefable @ Leftovers
+Mawile @ Mawilite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Magic Guard
-Nature: Bold
-- Moonblast
-- Flamethrower
-- Soft Boiled
-- Calm Mind
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Intimidate
+Nature: Adamant
+- Swords Dance
+- Play Rough
+- Sucker Punch
+- Fire Fang
 
 === TRAINER_JOSHUA_HNS ===
 Name: JOSHUA
@@ -9426,65 +9521,65 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Light Blue
 
-Pidgey @ Oran Berry
+Murkrow @ Eviolite
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: No Guard
-Nature: Timid
+Ability: Prankster
+Nature: Bold
 - Tailwind
-- Gust
-- Sand Attack
-- Quick Attack
+- Thunder Wave
+- Foul Play
+- Haze
 
 Natu @ Eviolite
 Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Magic Bounce
 Nature: Bold
 - Night Shade
-- Peck
-- Confuse Ray
+- Air Cutter
+- Teleport
 - Wish
 
-Fletchling @ Eviolite
+Fletchling @ Oran Berry
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Gale Wings
 Nature: Jolly
 - Acrobatics
-- Quick Attack
-- Agility
-- Flail
+- Flame Charge
+- U-turn
+- Roost
 
-Murkrow @ Eviolite
+Trumbeak @ Muscle Band
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Prankster
-Nature: Calm
-- Foul Play
-- Peck
-- Thunder Wave
-- Haze
-
-Rookidee @ Eviolite
-Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Frisk
+Ability: Skill Link
 Nature: Adamant
-- Hone Claws
-- Power Trip
-- Peck
-- Rock Smash
+- Rock Blast
+- Bullet Seed
+- Pluck
+- Knock Off
 
-Noctowl @ Sitrus Berry
+Squawkabilly @ Silk Scarf
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Tinted Lens
-Nature: Modest
-- Hypnosis
-- Air Cutter
-- Reflect
-- Mud Slap
+Ability: Intimidate
+Nature: Jolly
+- Parting Shot
+- Dual Wingbeat
+- Facade
+- Quick Attack
+
+Pidgeotto @ Sitrus Berry
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: No Guard
+Nature: Adamant
+- Wing Attack
+- Steel Wing
+- Quick Attack
+- Roost
 
 === TRAINER_FALKNER_2_HNS ===
 Name: FALKNER
@@ -9497,18 +9592,18 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Light Blue
 Items: Full Restore / Full Restore
 
-Landorus Therian @ Focus Sash
+Landorus-Therian @ Leftovers
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 4 HP / 252 Atk / 252 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Intimidate
-Nature: Jolly
+Nature: Impish
 - Stealth Rock
 - Earthquake
-- Stone Edge
-- U Turn
+- Knock Off
+- U-turn
 
-Talonflame @ Heavy Duty Boots
+Talonflame @ Heavy-Duty Boots
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 Atk / 252 Spe
@@ -9516,8 +9611,8 @@ Ability: Gale Wings
 Nature: Jolly
 - Tailwind
 - Brave Bird
-- Will O Wisp
-- U Turn
+- Will-O-Wisp
+- U-turn
 
 Staraptor @ Choice Band
 Level: 90
@@ -9527,8 +9622,8 @@ Ability: Reckless
 Nature: Jolly
 - Brave Bird
 - Close Combat
-- Double Edge
-- U Turn
+- Double-Edge
+- Quick Attack
 
 Corviknight @ Rocky Helmet
 Level: 90
@@ -9541,26 +9636,26 @@ Nature: Impish
 - Iron Defense
 - Roost
 
-Zapdos @ Heavy Duty Boots
+Zapdos @ Heavy-Duty Boots
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Static
 Nature: Timid
 - Thunderbolt
-- Hurricane
+- Heat Wave
 - Volt Switch
 - Roost
 
 Pidgeot @ Pidgeotite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 30 SpA / 30 SpD / 31 Spe
 EVs: 4 HP / 252 SpA / 252 Spe
 Ability: No Guard
 Nature: Timid
 - Hurricane
 - Heat Wave
-- Work Up
+- Hidden Power
 - Roost
 
 === TRAINER_BUGSY_1_HNS ===
@@ -9722,65 +9817,66 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Pink
 Items: Potion
 
-Clefairy @ Eviolite
+Aipom @ Eviolite
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Magic Guard
-Nature: Bold
-- Double Slap
-- Metronome
-- Encore
-- Charm
-
-Aipom @ Silk Scarf
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pickup
+Ability: Skill Link
 Nature: Jolly
 - Fake Out
-- Double Hit
-- U Turn
-- Astonish
+- Tail Slap
+- U-turn
+- Knock Off
 
-Furret @ Sitrus Berry
+Clefable @ Leftovers
+Level: 33
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Magic Guard
+Nature: Bold
+- Moonblast
+- Thunder Wave
+- Encore
+- Soft-Boiled
+
+Furret @ Silk Scarf
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Frisk
+Ability: Adaptability
 Nature: Jolly
-- Double Edge
+- Double-Edge
 - Sucker Punch
-- U Turn
-- Coil
+- Ice Punch
+- Knock Off
 
 Stantler @ Sitrus Berry
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
 Nature: Adamant
-- Hypnosis
-- Stomp
-- Zen Headbutt
-- Take Down
+- Body Slam
+- Earthquake
+- Megahorn
+- Thunder Wave
 
 Girafarig @ Twisted Spoon
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Sap Sipper
 Nature: Modest
-- Psybeam
-- Shadow Ball
-- Thunderbolt
 - Nasty Plot
+- Psychic
+- Hyper Voice
+- Thunderbolt
 
 Miltank @ Leftovers
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Scrappy
+EVs: 252 HP
+Ability: Thick Fat
 Nature: Impish
 - Rollout
+- Defense Curl
 - Body Slam
 - Milk Drink
-- Attract
 
 === TRAINER_WHITNEY_2_HNS ===
 Name: WHITNEY
@@ -9870,9 +9966,21 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Purple
 Items: Hyper Potion / Hyper Potion
 
+Marowak Alola @ Thick Club
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Lightning Rod
+Nature: Adamant
+- Stealth Rock
+- Shadow Bone
+- Bonemerang
+- Fire Punch
+
 Sableye @ Sitrus Berry
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
 Ability: Prankster
 Nature: Careful
 - Will O Wisp
@@ -9882,7 +9990,8 @@ Nature: Careful
 
 Misdreavus @ Eviolite
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Hex
@@ -9892,43 +10001,36 @@ Nature: Timid
 
 Drifblim @ Sitrus Berry
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Unburden
 Nature: Modest
+- Calm Mind
 - Shadow Ball
 - Air Slash
 - Thunderbolt
-- Calm Mind
-
-Marowak Alola @ Thick Club
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Lightning Rod
-Nature: Adamant
-- Shadow Bone
-- Fire Punch
-- Bonemerang
-- Thunder Punch
 
 Mimikyu @ Life Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Disguise
 Nature: Jolly
-- Shadow Claw
+- Swords Dance
 - Play Rough
 - Shadow Sneak
-- Swords Dance
+- Drain Punch
 
-Gengar @ Spell Tag
+Gengar @ Gengarite
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Bomb
 - Thunderbolt
-- Hypnosis
+- Focus Blast
 
 === TRAINER_MORTY_2_HNS ===
 Name: MORTY
@@ -10311,6 +10413,7 @@ Items: Hyper Potion / Hyper Potion
 Skarmory @ Rocky Helmet
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Sturdy
 Nature: Impish
 - Spikes
@@ -10318,11 +10421,12 @@ Nature: Impish
 - Roost
 - Whirlwind
 
-Magneton @ Eviolite
+Magnezone @ Air Balloon
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magnet Pull
-Nature: Modest
+Nature: Timid
 - Thunderbolt
 - Flash Cannon
 - Volt Switch
@@ -10330,17 +10434,19 @@ Nature: Modest
 
 Bronzong @ Leftovers
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 4 Atk / 252 SpD
 Ability: Levitate
-Nature: Relaxed
+Nature: Sassy
+- Stealth Rock
 - Gyro Ball
 - Earthquake
-- Hypnosis
-- Stealth Rock
+- Toxic
 
 Mawile @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
 Nature: Adamant
 - Iron Head
@@ -10351,18 +10457,20 @@ Nature: Adamant
 Scizor @ Metal Coat
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Technician
 Nature: Adamant
 - Bullet Punch
-- U Turn
+- U-turn
 - Knock Off
 - Swords Dance
 
 Steelix @ Steelixite
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
-Nature: Impish
+Nature: Brave
 - Gyro Ball
 - Earthquake
 - Rock Slide
@@ -10459,6 +10567,7 @@ Items: Full Restore / Full Restore
 Skarmory @ Rocky Helmet
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Sturdy
 Nature: Impish
 - Spikes
@@ -10466,29 +10575,32 @@ Nature: Impish
 - Roost
 - Whirlwind
 
-Magneton @ Eviolite
+Magnezone @ Air Balloon
 Level: 58
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magnet Pull
-Nature: Modest
+Nature: Timid
 - Thunderbolt
 - Flash Cannon
 - Volt Switch
 - Thunder Wave
 
-Bronzong @ Leftovers
+Iron Treads @ Booster Energy
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Levitate
-Nature: Relaxed
-- Gyro Ball
-- Earthquake
-- Hypnosis
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Quark Drive
+Nature: Jolly
 - Stealth Rock
+- Earthquake
+- Knock Off
+- Rapid Spin
 
 Mawile @ Sitrus Berry
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
 Nature: Adamant
 - Iron Head
@@ -10499,18 +10611,20 @@ Nature: Adamant
 Scizor @ Metal Coat
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Technician
 Nature: Adamant
 - Bullet Punch
-- U Turn
+- U-turn
 - Knock Off
 - Swords Dance
 
 Steelix @ Steelixite
 Level: 58
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
-Nature: Impish
+Nature: Brave
 - Gyro Ball
 - Earthquake
 - Rock Slide
@@ -10530,6 +10644,7 @@ Items: Full Restore / Full Restore
 Skarmory @ Rocky Helmet
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Sturdy
 Nature: Impish
 - Spikes
@@ -10537,51 +10652,56 @@ Nature: Impish
 - Roost
 - Whirlwind
 
-Magneton @ Eviolite
+Magnezone @ Air Balloon
 Level: 66
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magnet Pull
-Nature: Modest
+Nature: Timid
 - Thunderbolt
 - Flash Cannon
 - Volt Switch
 - Thunder Wave
 
-Bronzong @ Leftovers
+Iron Treads @ Booster Energy
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Levitate
-Nature: Relaxed
-- Gyro Ball
-- Earthquake
-- Hypnosis
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Quark Drive
+Nature: Jolly
 - Stealth Rock
+- Earthquake
+- Knock Off
+- Rapid Spin
 
-Mawile @ Sitrus Berry
+Kingambit @ Black Glasses
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Supreme Overlord
 Nature: Adamant
-- Iron Head
-- Play Rough
-- Sucker Punch
 - Swords Dance
+- Kowtow Cleave
+- Sucker Punch
+- Low Kick
 
 Scizor @ Metal Coat
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Technician
 Nature: Adamant
 - Bullet Punch
-- U Turn
+- U-turn
 - Knock Off
 - Swords Dance
 
 Steelix @ Steelixite
 Level: 66
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
-Nature: Impish
+Nature: Brave
 - Gyro Ball
 - Earthquake
 - Rock Slide
@@ -10598,65 +10718,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Orange
 Items: Hyper Potion / Hyper Potion
 
-Hitmontop @ Sitrus Berry
+Hitmontop @ Rocky Helmet
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
 Nature: Adamant
 - Fake Out
-- Triple Kick
+- Close Combat
 - Sucker Punch
-- Rock Slide
+- Triple Axel
 
-Breloom @ Focus Sash
+Breloom @ Life Orb
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Technician
 Nature: Jolly
-- Mach Punch
-- Bullet Seed
-- Rock Tomb
 - Spore
+- Bullet Seed
+- Mach Punch
+- Rock Tomb
 
-Hawlucha @ White Herb
+Hawlucha @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Unburden
 Nature: Jolly
-- High Jump Kick
-- Acrobatics
 - Swords Dance
-- Roost
+- Close Combat
+- Acrobatics
+- Throat Chop
 
-Primeape @ Eviolite
+Annihilape @ Leftovers
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Spe
 Ability: Defiant
 Nature: Jolly
+- Bulk Up
 - Rage Fist
 - Drain Punch
-- U Turn
-- Bulk Up
+- U-turn
 
-Poliwrath @ Leftovers
+Poliwrath @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Def
 Ability: Water Absorb
 Nature: Adamant
-- Waterfall
-- Dynamic Punch
-- Mind Reader
+- Belly Drum
+- Liquidation
+- Close Combat
 - Ice Punch
 
 Heracross @ Heracronite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Moxie
 Nature: Jolly
 - Pin Missile
 - Rock Blast
 - Close Combat
-- Bullet Seed
+- Swords Dance
 
 === TRAINER_CHUCK_2_HNS ===
 Name: CHUCK
@@ -10746,65 +10872,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Orange
 Items: Full Restore / Full Restore
 
-Hitmontop @ Sitrus Berry
+Iron Hands @ Booster Energy
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Quark Drive
 Nature: Adamant
 - Fake Out
-- Triple Kick
-- Sucker Punch
-- Rock Slide
+- Drain Punch
+- Supercell Slam
+- Ice Punch
 
-Breloom @ Focus Sash
+Breloom @ Life Orb
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Technician
 Nature: Jolly
-- Mach Punch
-- Bullet Seed
-- Rock Tomb
 - Spore
+- Bullet Seed
+- Mach Punch
+- Rock Tomb
 
-Hawlucha @ White Herb
+Hawlucha @ Sitrus Berry
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Unburden
 Nature: Jolly
-- High Jump Kick
-- Acrobatics
 - Swords Dance
-- Roost
+- Close Combat
+- Acrobatics
+- Throat Chop
 
-Primeape @ Eviolite
+Annihilape @ Leftovers
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Spe
 Ability: Defiant
 Nature: Jolly
+- Bulk Up
 - Rage Fist
 - Drain Punch
-- U Turn
-- Bulk Up
+- U-turn
 
-Poliwrath @ Leftovers
+Poliwrath @ Sitrus Berry
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Def
 Ability: Water Absorb
 Nature: Adamant
-- Waterfall
-- Dynamic Punch
-- Mind Reader
+- Belly Drum
+- Liquidation
+- Close Combat
 - Ice Punch
 
 Heracross @ Heracronite
 Level: 58
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Moxie
 Nature: Jolly
 - Pin Missile
 - Rock Blast
 - Close Combat
-- Bullet Seed
+- Swords Dance
 
 === TRAINER_CHUCK_1_3_HNS ===
 Name: CHUCK
@@ -10817,65 +10949,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Orange
 Items: Full Restore / Full Restore
 
-Hitmontop @ Sitrus Berry
+Iron Hands @ Booster Energy
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Quark Drive
 Nature: Adamant
 - Fake Out
-- Triple Kick
-- Sucker Punch
-- Rock Slide
+- Drain Punch
+- Supercell Slam
+- Ice Punch
 
-Breloom @ Focus Sash
+Breloom @ Life Orb
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Technician
 Nature: Jolly
-- Mach Punch
-- Bullet Seed
-- Rock Tomb
 - Spore
+- Bullet Seed
+- Mach Punch
+- Rock Tomb
 
-Hawlucha @ White Herb
+Kommo-o @ Life Orb
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Unburden
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Bulletproof
 Nature: Jolly
-- High Jump Kick
-- Acrobatics
-- Swords Dance
-- Roost
+- Dragon Dance
+- Close Combat
+- Scale Shot
+- Iron Head
 
-Primeape @ Eviolite
+Annihilape @ Leftovers
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Spe
 Ability: Defiant
 Nature: Jolly
+- Bulk Up
 - Rage Fist
 - Drain Punch
-- U Turn
-- Bulk Up
+- U-turn
 
-Poliwrath @ Leftovers
+Poliwrath @ Sitrus Berry
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 Def
 Ability: Water Absorb
 Nature: Adamant
-- Waterfall
-- Dynamic Punch
-- Mind Reader
+- Belly Drum
+- Liquidation
+- Close Combat
 - Ice Punch
 
 Heracross @ Heracronite
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Moxie
 Nature: Jolly
 - Pin Missile
 - Rock Blast
 - Close Combat
-- Bullet Seed
+- Swords Dance
 
 === TRAINER_CLAIR_1_HNS ===
 Name: CLAIR
@@ -11036,65 +11174,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Orange
 Items: Full Restore / Full Restore
 
-Golem @ Leftovers
+Gigalith @ Smooth Rock
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sturdy
+EVs: 252 HP / 252 Atk / 4 Def
+Ability: Sand Stream
 Nature: Adamant
 - Stealth Rock
+- Rock Slide
 - Earthquake
-- Stone Edge
 - Explosion
 
 Omastar @ White Herb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Swift Swim
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Weak Armor
 Nature: Modest
 - Shell Smash
-- Hydro Pump
+- Surf
 - Ice Beam
 - Earth Power
 
 Kabutops @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Swift Swim
-Nature: Adamant
-- Stone Edge
-- Liquidation
-- Swords Dance
-- Aqua Jet
-
-Relicanth @ Choice Band
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Rock Head
-Nature: Adamant
-- Head Smash
-- Liquidation
-- Earthquake
-- Double Edge
-
-Kleavor @ Focus Sash
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Sharpness
 Nature: Jolly
-- Stone Axe
-- X Scissor
+- Razor Shell
+- Stone Edge
+- X-Scissor
+- Aqua Jet
+
+Golem @ Weakness Policy
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Sturdy
+Nature: Adamant
+- Earthquake
+- Stone Edge
+- Sucker Punch
+- Rock Polish
+
+Lycanroc-Midday @ Focus Sash
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Sand Rush
+Nature: Jolly
+- Accelerock
+- Rock Slide
 - Close Combat
-- Swords Dance
+- Psychic Fangs
 
 Aerodactyl @ Aerodactylite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Unnerve
 Nature: Jolly
+- Dragon Dance
 - Stone Edge
-- Earthquake
-- Crunch
-- Ice Fang
+- Dual Wingbeat
+- Iron Head
 
 === TRAINER_MISTY_HNS ===
 Name: MISTY
@@ -11249,65 +11393,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Green
 Items: Full Restore / Full Restore
 
-Jumpluff @ Leftovers
+Whimsicott @ Heat Rock
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Aerilate
+EVs: 252 HP / 4 Def / 252 Spe
+Ability: Prankster
+Nature: Timid
+- Sunny Day
+- Encore
+- Moonblast
+- U-turn
+
+Jumpluff @ Flying Gem
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Spe
+Ability: Chlorophyll
 Nature: Jolly
 - Sleep Powder
 - Leech Seed
 - Acrobatics
-- U Turn
+- Strength Sap
 
-Roserade @ Life Orb
+Victreebel @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Technician
-Nature: Timid
-- Giga Drain
-- Sludge Bomb
-- Shadow Ball
-- Spikes
-
-Tangrowth @ Rocky Helmet
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Regenerator
-Nature: Relaxed
-- Giga Drain
-- Knock Off
-- Earthquake
-- Sleep Powder
-
-Victreebel @ Black Sludge
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Chlorophyll
 Nature: Adamant
+- Swords Dance
 - Power Whip
 - Sucker Punch
 - Poison Jab
-- Weather Ball
+
+Tangrowth @ Assault Vest
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 SpA / 252 SpD
+Ability: Regenerator
+Nature: Sassy
+- Power Whip
+- Knock Off
+- Earthquake
+- Sludge Bomb
 
 Bellossom @ Sitrus Berry
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Chlorophyll
 Nature: Modest
 - Quiver Dance
-- Giga Drain
+- Solar Beam
 - Moonblast
 - Strength Sap
 
 Venusaur @ Venusaurite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Chlorophyll
 Nature: Modest
+- Growth
 - Giga Drain
 - Sludge Bomb
-- Earth Power
-- Synthesis
+- Weather Ball
 
 === TRAINER_SABRINA_HNS ===
 Name: SABRINA
@@ -11464,17 +11614,19 @@ Items: Full Restore / Full Restore
 
 Torkoal @ Heat Rock
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 SpA / 252 Def
 Ability: Drought
 Nature: Bold
-- Lava Plume
 - Stealth Rock
-- Rapid Spin
+- Lava Plume
+- Earth Power
 - Yawn
 
 Rapidash @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Flash Fire
 Nature: Jolly
 - Flare Blitz
@@ -11484,17 +11636,19 @@ Nature: Jolly
 
 Magmortar @ Expert Belt
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Mega Launcher
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Flame Body
 Nature: Modest
 - Fire Blast
 - Thunderbolt
-- Focus Blast
+- Solar Beam
 - Psychic
 
 Volcarona @ Charcoal
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flame Body
 Nature: Timid
 - Quiver Dance
@@ -11502,9 +11656,10 @@ Nature: Timid
 - Bug Buzz
 - Giga Drain
 
-Arcanine Hisui @ Choice Band
+Arcanine-Hisui @ Choice Band
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Rock Head
 Nature: Adamant
 - Head Smash
@@ -11514,13 +11669,14 @@ Nature: Adamant
 
 Camerupt @ Cameruptite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Solid Rock
 Nature: Modest
 - Fire Blast
 - Earth Power
-- Ancient Power
-- Stealth Rock
+- Solar Beam
+- Will-O-Wisp
 
 === TRAINER_BLUE_HNS ===
 Name: BLUE
@@ -11533,9 +11689,54 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Blue
 Items: Full Restore / Full Restore
 
-Machamp @ Sitrus Berry
+Rhyperior @ Rocky Helmet
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Solid Rock
+Nature: Adamant
+- Stealth Rock
+- Stone Edge
+- Earthquake
+- Ice Punch
+
+Exeggutor @ Sitrus Berry
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Harvest
+Nature: Modest
+- Leaf Storm
+- Psychic
+- Sludge Bomb
+- Sleep Powder
+
+Gyarados @ Lum Berry
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Moxie
+Nature: Jolly
+- Dragon Dance
+- Waterfall
+- Earthquake
+- Stone Edge
+
+Arcanine @ Life Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Intimidate
+Nature: Adamant
+- Flare Blitz
+- Extreme Speed
+- Close Combat
+- Psychic Fangs
+
+Machamp @ Assault Vest
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: No Guard
 Nature: Adamant
 - Close Combat
@@ -11543,54 +11744,15 @@ Nature: Adamant
 - Knock Off
 - Bullet Punch
 
-Exeggutor @ Sitrus Berry
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Harvest
-Nature: Modest
-- Leaf Storm
-- Psychic
-- Sludge Bomb
-- Trick Room
-
-Rhyperior @ Weakness Policy
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Solid Rock
-Nature: Adamant
-- Stone Edge
-- Earthquake
-- Megahorn
-- Rock Polish
-
-Arcanine @ Choice Band
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
-Nature: Adamant
-- Flare Blitz
-- Extreme Speed
-- Wild Charge
-- Close Combat
-
-Tyranitar @ Leftovers
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sand Stream
-Nature: Adamant
-- Stone Edge
-- Crunch
-- Earthquake
-- Dragon Dance
-
 Pidgeot @ Pidgeotite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Frisk
 Nature: Timid
 - Hurricane
 - Heat Wave
-- U Turn
+- U-turn
 - Roost
 
 === TRAINER_BLUE_2_HNS ===
@@ -11666,62 +11828,68 @@ Items: Full Restore / Full Restore
 Xatu @ Light Clay
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 Spe
 Ability: Magic Bounce
 Nature: Timid
-- Psychic
-- Air Slash
-- Roost
 - Reflect
+- Light Screen
+- U-turn
+- Psychic
 
-Slowbro @ Leftovers
+Bronzong @ Mental Herb
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Regenerator
-Nature: Bold
-- Scald
-- Psyshock
-- Slack Off
-- Calm Mind
-
-Bronzong @ Leftovers
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 Def
 Ability: Levitate
 Nature: Relaxed
 - Trick Room
+- Stealth Rock
 - Gyro Ball
 - Earthquake
-- Stealth Rock
 
-Farigiraf @ Sitrus Berry
+Exeggutor @ Sitrus Berry
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Armor Tail
-Nature: Modest
-- Twin Beam
-- Hyper Voice
-- Shadow Ball
-- Nasty Plot
-
-Gardevoir @ Choice Scarf
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Trace
-Nature: Timid
-- Moonblast
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 SpA / 4 Def
+Ability: Harvest
+Nature: Quiet
+- Trick Room
+- Leaf Storm
 - Psychic
-- Mystical Fire
-- Focus Blast
+- Sludge Bomb
 
-Alakazam @ Alakazite
+Cresselia @ Leftovers
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Magic Guard
-Nature: Timid
-- Psychic
-- Shadow Ball
-- Focus Blast
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Levitate
+Nature: Relaxed
 - Calm Mind
+- Moonlight
+- Psyshock
+- Ice Beam
+
+Farigiraf @ Life Orb
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 SpA / 4 Def
+Ability: Armor Tail
+Nature: Quiet
+- Trick Room
+- Hyper Voice
+- Psychic
+- Sucker Punch
+
+Slowbro @ Slowbronite
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 SpA / 4 Def
+Ability: Own Tempo
+Nature: Quiet
+- Scald
+- Psyshock
+- Fire Blast
+- Slack Off
 
 === TRAINER_WILL_2_HNS ===
 Name: WILL
@@ -11814,6 +11982,7 @@ Items: Full Restore / Full Restore
 Hitmontop @ Rocky Helmet
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Intimidate
 Nature: Impish
 - Fake Out
@@ -11824,52 +11993,57 @@ Nature: Impish
 Steelix @ Leftovers
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Sturdy
 Nature: Impish
+- Stealth Rock
 - Heavy Slam
 - Earthquake
 - Stone Edge
-- Stealth Rock
 
-Hitmonlee @ Life Orb
+Conkeldurr @ Flame Orb
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Reckless
-Nature: Jolly
-- High Jump Kick
-- Knock Off
-- Blaze Kick
-- Fake Out
-
-Hitmonchan @ Punching Glove
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Iron Fist
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Guts
 Nature: Adamant
+- Facade
 - Drain Punch
-- Ice Punch
-- Thunder Punch
 - Mach Punch
+- Ice Punch
 
-Machamp @ Sitrus Berry
+Lucario @ Life Orb
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Justified
+Nature: Jolly
+- Swords Dance
+- Close Combat
+- Meteor Mash
+- Bullet Punch
+
+Terrakion @ Choice Scarf
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Justified
+Nature: Jolly
+- Close Combat
+- Stone Edge
+- Earthquake
+- Iron Head
+
+Machamp @ Machampite
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: No Guard
 Nature: Adamant
 - Close Combat
-- Stone Edge
-- Knock Off
+- Ice Punch
+- Thunder Punch
 - Bullet Punch
-
-Lucario @ Lucarionite
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
-Nature: Adamant
-- Close Combat
-- Meteor Mash
-- Extreme Speed
-- Swords Dance
 
 === TRAINER_BRUNO_2_HNS ===
 Name: BRUNO
@@ -11962,6 +12136,7 @@ Items: Full Restore / Full Restore
 Umbreon @ Leftovers
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
 Ability: Inner Focus
 Nature: Calm
 - Foul Play
@@ -11971,53 +12146,58 @@ Nature: Calm
 
 Vileplume @ Black Sludge
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Effect Spore
 Nature: Bold
 - Giga Drain
 - Sludge Bomb
 - Sleep Powder
-- Strength Sap
+- Leech Seed
 
-Gengar @ Life Orb
+Honchkrow @ Choice Band
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Levitate
-Nature: Timid
-- Shadow Ball
-- Sludge Bomb
-- Focus Blast
-- Nasty Plot
-
-Honchkrow @ Scope Lens
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Super Luck
 Nature: Adamant
 - Brave Bird
 - Night Slash
 - Sucker Punch
-- Heat Wave
+- U Turn
 
-Absol @ Absolite
+Gengar @ Focus Sash
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Super Luck
-Nature: Adamant
-- Knock Off
-- Sucker Punch
-- Play Rough
-- Swords Dance
-
-Houndoom @ Black Glasses
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Flash Fire
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
 Nature: Timid
-- Fire Blast
+- Nasty Plot
+- Shadow Ball
+- Sludge Bomb
+- Focus Blast
+
+Darkrai @ Life Orb
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Bad Dreams
+Nature: Timid
+- Nasty Plot
 - Dark Pulse
 - Sludge Bomb
+- Focus Blast
+
+Houndoom @ Houndoominite
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Flash Fire
+Nature: Timid
 - Nasty Plot
+- Dark Pulse
+- Flamethrower
+- Sludge Bomb
 
 === TRAINER_KAREN_2_HNS ===
 Name: KAREN
@@ -12107,19 +12287,32 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Purple
 Items: Full Restore / Full Restore
 
-Toxapex @ Black Sludge
+Crobat @ Black Sludge
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Brave Bird
+- Super Fang
+- U Turn
+- Taunt
+
+Toxapex @ Rocky Helmet
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Regenerator
 Nature: Bold
+- Toxic Spikes
 - Scald
-- Toxic
 - Recover
 - Haze
 
-Muk Alola @ Black Sludge
+Muk Alola @ Assault Vest
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Poison Touch
 Nature: Adamant
 - Knock Off
@@ -12127,45 +12320,38 @@ Nature: Adamant
 - Ice Punch
 - Shadow Sneak
 
-Toxicroak @ Life Orb
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Dry Skin
-Nature: Jolly
-- Gunk Shot
-- Drain Punch
-- Sucker Punch
-- Swords Dance
-
 Venomoth @ Focus Sash
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Tinted Lens
 Nature: Timid
 - Quiver Dance
 - Bug Buzz
 - Sludge Bomb
-- Sleep Powder
+- Roost
+
+Munkidori @ Choice Specs
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Toxic Chain
+Nature: Timid
+- Sludge Bomb
+- Psyshock
+- Focus Blast
+- U Turn
 
 Beedrill @ Beedrillite
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Sniper
 Nature: Jolly
+- Swords Dance
 - Poison Jab
 - U Turn
 - Drill Run
-- Swords Dance
-
-Crobat @ Sharp Beak
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Infiltrator
-Nature: Jolly
-- Brave Bird
-- Cross Poison
-- U Turn
-- Roost
 
 === TRAINER_KOGA_2_HNS ===
 Name: KOGA
@@ -12258,6 +12444,7 @@ Mugshot: Blue
 Gyarados @ Gyaradosite
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Intimidate
 Nature: Jolly
 - Waterfall
@@ -12268,50 +12455,55 @@ Nature: Jolly
 Aerodactyl @ Focus Sash
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Unnerve
 Nature: Jolly
-- Stone Edge
-- Earthquake
-- Taunt
 - Stealth Rock
+- Stone Edge
+- Dual Wingbeat
+- Taunt
 
-Charizard @ Charcoal
+Charizard @ Heavy-Duty Boots
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Solar Power
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Blaze
 Nature: Timid
 - Fire Blast
 - Air Slash
-- Focus Blast
 - Dragon Pulse
+- Scorching Sands
 
-Salamence @ Life Orb
+Raging Bolt @ Booster Energy
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
-Nature: Jolly
-- Outrage
-- Earthquake
-- Fire Fang
-- Dual Wingbeat
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Protosynthesis
+Nature: Modest
+- Thunderclap
+- Draco Meteor
+- Thunderbolt
+- Calm Mind
 
-Garchomp @ Rocky Helmet
+Latios @ Soul Dew
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Rough Skin
-Nature: Jolly
-- Earthquake
-- Dragon Claw
-- Stone Edge
-- Swords Dance
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Draco Meteor
+- Luster Purge
+- Aura Sphere
+- Recover
 
 Dragonite @ Lum Berry
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Multiscale
 Nature: Adamant
-- Extreme Speed
 - Dragon Dance
+- Extreme Speed
 - Earthquake
 - Outrage
 
@@ -12481,64 +12673,65 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Super Potion
 
+Pupitar @ Focus Sash
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Shed Skin
+Nature: Adamant
+- Stealth Rock
+- Rock Slide
+- Earthquake
+- Taunt
+
 Golbat @ Eviolite
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
-Nature: Jolly
-- Wing Attack
-- Bite
-- Confuse Ray
+Nature: Impish
+- Brave Bird
+- U Turn
+- Roost
 - Toxic
 
-Haunter @ Eviolite
+Weavile @ Never Melt Ice
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Knock Off
+- Ice Spinner
+- Ice Shard
+- Low Kick
+
+Gengar @ Black Sludge
+Level: 33
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Timid
-- Hex
+- Shadow Ball
 - Sludge Bomb
-- Hypnosis
-- Dazzling Gleam
-
-Magneton @ Eviolite
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Magnet Pull
-Nature: Modest
 - Thunderbolt
+- Will O Wisp
+
+Magnezone @ Leftovers
+Level: 33
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Analytic
+Nature: Modest
 - Flash Cannon
-- Thunder Wave
+- Thunderbolt
 - Volt Switch
+- Thunder Wave
 
-Larvitar @ Eviolite
+Bayleef @ Leftovers
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
-Nature: Adamant
-- Rock Slide
-- Bite
-- Bulldoze
-- Scary Face
-
-Sneasel @ Oran Berry
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
-Nature: Jolly
-- Faint Attack
-- Ice Shard
-- Quick Attack
-- Icy Wind
-
-Bayleef @ Sitrus Berry
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP
 Ability: Overgrow
 Nature: Bold
-- Razor Leaf
-- Reflect
-- Poison Powder
+- Giga Drain
+- Earth Power
+- Leech Seed
 - Synthesis
 
 === TRAINER_RIVAL_CHIKORITA_3_HNS ===
@@ -12552,64 +12745,70 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Super Potion / Super Potion
 
-Golbat @ Eviolite
+Pupitar @ Eviolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Shed Skin
+Nature: Adamant
+- Stealth Rock
+- Stone Edge
+- Earthquake
+- Dragon Dance
+
+Crobat @ Sharp Beak
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
-- Air Cutter
-- Bite
-- Confuse Ray
-- Toxic
+- Brave Bird
+- Cross Poison
+- U Turn
+- Taunt
 
-Sneasel @ Razor Claw
+Weavile @ Life Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
 Nature: Jolly
-- Fake Out
-- Ice Punch
-- Faint Attack
+- Knock Off
+- Icicle Crash
 - Ice Shard
+- Low Kick
 
-Haunter @ Eviolite
+Gengar @ Focus Sash
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Bomb
-- Hypnosis
 - Dazzling Gleam
+- Destiny Bond
 
-Weepinbell @ Eviolite
+Absol @ Absolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Bullet Seed
-- Poison Jab
-- Sleep Powder
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Pressure
+Nature: Jolly
+- Swords Dance
 - Knock Off
+- Sucker Punch
+- Play Rough
 
-Larvitar @ Eviolite
+Meganium @ Leftovers
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
-Nature: Adamant
-- Rock Slide
-- Crunch
-- Bulldoze
-- Dragon Dance
-
-Bayleef @ Sitrus Berry
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Overgrow
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Triage
 Nature: Bold
-- Magical Leaf
+- Giga Drain
+- Body Press
 - Leech Seed
-- Reflect
 - Synthesis
 
 === TRAINER_RIVAL_CHIKORITA_4_HNS ===
@@ -12623,64 +12822,70 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
-Crobat @ Sharp Beak
+Crobat @ Black Sludge
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
 - Brave Bird
-- Cross Poison
 - U Turn
+- Super Fang
 - Roost
 
-Weavile @ Life Orb
+Weavile @ Choice Band
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pressure
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
 Nature: Jolly
 - Knock Off
-- Ice Punch
+- Triple Axel
 - Ice Shard
 - Low Kick
 
-Alakazam @ Focus Sash
+Alakazam @ Life Orb
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magic Guard
 Nature: Timid
+- Nasty Plot
 - Psychic
 - Shadow Ball
-- Focus Blast
-- Calm Mind
+- Dazzling Gleam
 
-Victreebel @ Black Sludge
+Gengar @ Choice Specs
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Sludge Wave
+- Energy Ball
+- Thunderbolt
+
+Tyranitar @ Tyranitarite
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Power Whip
-- Sucker Punch
-- Poison Jab
-- Sleep Powder
-
-Pupitar @ Eviolite
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Shed Skin
-Nature: Adamant
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Sand Stream
+Nature: Jolly
+- Dragon Dance
 - Stone Edge
 - Crunch
-- Earthquake
-- Dragon Dance
+- Fire Punch
 
 Meganium @ Leftovers
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Overgrow
-Nature: Bold
-- Energy Ball
-- Earth Power
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Triage
+Nature: Calm
+- Giga Drain
 - Leech Seed
+- Dragon Tail
 - Synthesis
 
 === TRAINER_RIVAL_CHIKORITA_5_HNS ===
@@ -12694,9 +12899,21 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
-Crobat @ Sharp Beak
+Tyranitar @ Tyranitarite
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Sand Stream
+Nature: Adamant
+- Stealth Rock
+- Stone Edge
+- Knock Off
+- Earthquake
+
+Crobat @ Heavy Duty Boots
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
 - Brave Bird
@@ -12707,51 +12924,45 @@ Nature: Jolly
 Weavile @ Life Orb
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pressure
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
 Nature: Jolly
-- Knock Off
-- Ice Punch
+- Swords Dance
+- Throat Chop
+- Triple Axel
 - Ice Shard
-- Low Kick
 
-Victreebel @ Black Sludge
+Gengar @ Black Sludge
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Sludge Wave
+- Energy Ball
+- Destiny Bond
+
+Ursaluna @ Flame Orb
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Power Whip
-- Sucker Punch
-- Poison Jab
-- Sleep Powder
-
-Ursaring @ Flame Orb
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Guts
 Nature: Adamant
+- Bulk Up
 - Facade
-- Close Combat
+- Headlong Rush
 - Crunch
-- Swords Dance
 
-Tyranitar @ Tyranitarite
+Meganium @ Rocky Helmet
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sand Stream
-Nature: Adamant
-- Stone Edge
-- Crunch
-- Earthquake
-- Dragon Dance
-
-Meganium @ Leftovers
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Overgrow
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Triage
 Nature: Bold
-- Energy Ball
-- Earth Power
-- Leech Seed
+- Body Press
+- Giga Drain
+- Knock Off
 - Synthesis
 
 === TRAINER_RIVAL_CHIKORITA_6_HNS ===
@@ -12789,13 +13000,13 @@ Nature: Jolly
 
 Gengar @ Life Orb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Wave
-- Focus Blast
+- Dazzling Gleam
 - Will O Wisp
 
 Ursaluna @ Flame Orb
@@ -12818,11 +13029,11 @@ Nature: Jolly
 - Dragon Dance
 - Stone Edge
 - Knock Off
-- Earthquake
+- Ice Punch
 
 Meganium @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Triage
 Nature: Calm
@@ -12933,65 +13144,66 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Super Potion
 
+Pupitar @ Focus Sash
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Shed Skin
+Nature: Adamant
+- Stealth Rock
+- Rock Slide
+- Earthquake
+- Taunt
+
 Golbat @ Eviolite
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
-Nature: Jolly
-- Wing Attack
-- Bite
-- Confuse Ray
+Nature: Impish
+- Brave Bird
+- U Turn
+- Roost
 - Toxic
 
-Haunter @ Eviolite
+Weavile @ Never Melt Ice
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Knock Off
+- Ice Spinner
+- Ice Shard
+- Low Kick
+
+Gengar @ Black Sludge
+Level: 33
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Timid
-- Hex
+- Shadow Ball
 - Sludge Bomb
-- Hypnosis
-- Dazzling Gleam
-
-Magneton @ Eviolite
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Magnet Pull
-Nature: Modest
 - Thunderbolt
+- Will O Wisp
+
+Magnezone @ Leftovers
+Level: 33
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Analytic
+Nature: Modest
 - Flash Cannon
-- Thunder Wave
+- Thunderbolt
 - Volt Switch
+- Thunder Wave
 
-Larvitar @ Eviolite
+Quilava @ Charcoal
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
-Nature: Adamant
-- Rock Slide
-- Bite
-- Bulldoze
-- Scary Face
-
-Sneasel @ Oran Berry
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
-Nature: Jolly
-- Faint Attack
-- Ice Shard
-- Quick Attack
-- Icy Wind
-
-Quilava @ Sitrus Berry
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Blaze
+IVs: 30 HP / 0 Atk / 31 Def / 30 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA
+Ability: Flash Fire
 Nature: Timid
-- Lava Plume
+- Eruption
+- Flamethrower
 - Extrasensory
-- Quick Attack
-- Smokescreen
+- Hidden Power
 
 === TRAINER_RIVAL_CYNDAQUIL_3_HNS ===
 Name: {B_RIVAL_NAME}
@@ -13004,65 +13216,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Super Potion / Super Potion
 
-Golbat @ Eviolite
+Pupitar @ Eviolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Shed Skin
+Nature: Adamant
+- Stealth Rock
+- Stone Edge
+- Earthquake
+- Dragon Dance
+
+Crobat @ Sharp Beak
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
-- Air Cutter
-- Bite
-- Confuse Ray
-- Toxic
+- Brave Bird
+- Cross Poison
+- U Turn
+- Taunt
 
-Sneasel @ Razor Claw
+Weavile @ Life Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
 Nature: Jolly
-- Fake Out
-- Ice Punch
-- Faint Attack
+- Knock Off
+- Icicle Crash
 - Ice Shard
+- Low Kick
 
-Haunter @ Eviolite
+Gengar @ Focus Sash
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Bomb
-- Hypnosis
 - Dazzling Gleam
+- Destiny Bond
 
-Weepinbell @ Eviolite
+Absol @ Absolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Bullet Seed
-- Poison Jab
-- Sleep Powder
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Pressure
+Nature: Jolly
+- Swords Dance
 - Knock Off
+- Sucker Punch
+- Play Rough
 
-Larvitar @ Eviolite
+Typhlosion @ Charcoal
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
-Nature: Adamant
-- Rock Slide
-- Crunch
-- Bulldoze
-- Dragon Dance
-
-Quilava @ Sitrus Berry
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Blaze
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Flash Fire
 Nature: Timid
-- Lava Plume
-- Extrasensory
-- Flame Charge
-- Smokescreen
+- Eruption
+- Flamethrower
+- Shadow Ball
+- Scorching Sands
 
 === TRAINER_RIVAL_CYNDAQUIL_4_HNS ===
 Name: {B_RIVAL_NAME}
@@ -13075,65 +13293,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
-Crobat @ Sharp Beak
+Crobat @ Black Sludge
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
 - Brave Bird
-- Cross Poison
 - U Turn
+- Super Fang
 - Roost
 
-Weavile @ Life Orb
+Weavile @ Choice Band
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pressure
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
 Nature: Jolly
 - Knock Off
-- Ice Punch
+- Triple Axel
 - Ice Shard
 - Low Kick
 
-Alakazam @ Focus Sash
+Alakazam @ Life Orb
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magic Guard
 Nature: Timid
+- Nasty Plot
 - Psychic
 - Shadow Ball
-- Focus Blast
-- Calm Mind
+- Dazzling Gleam
 
-Victreebel @ Black Sludge
+Gengar @ Choice Specs
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Sludge Wave
+- Energy Ball
+- Thunderbolt
+
+Tyranitar @ Tyranitarite
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Power Whip
-- Sucker Punch
-- Poison Jab
-- Sleep Powder
-
-Pupitar @ Eviolite
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Shed Skin
-Nature: Adamant
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Sand Stream
+Nature: Jolly
+- Dragon Dance
 - Stone Edge
 - Crunch
-- Earthquake
-- Dragon Dance
+- Fire Punch
 
 Typhlosion @ Choice Scarf
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flash Fire
 Nature: Timid
 - Eruption
 - Fire Blast
-- Focus Blast
 - Extrasensory
+- Scorching Sands
 
 === TRAINER_RIVAL_CYNDAQUIL_5_HNS ===
 Name: {B_RIVAL_NAME}
@@ -13146,9 +13370,21 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
-Crobat @ Sharp Beak
+Tyranitar @ Tyranitarite
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Sand Stream
+Nature: Adamant
+- Stealth Rock
+- Stone Edge
+- Knock Off
+- Earthquake
+
+Crobat @ Heavy Duty Boots
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
 - Brave Bird
@@ -13159,51 +13395,45 @@ Nature: Jolly
 Weavile @ Life Orb
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pressure
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
 Nature: Jolly
-- Knock Off
-- Ice Punch
+- Swords Dance
+- Throat Chop
+- Triple Axel
 - Ice Shard
-- Low Kick
 
-Victreebel @ Black Sludge
+Gengar @ Black Sludge
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Sludge Wave
+- Energy Ball
+- Destiny Bond
+
+Ursaluna @ Flame Orb
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Power Whip
-- Sucker Punch
-- Poison Jab
-- Sleep Powder
-
-Ursaring @ Flame Orb
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Guts
 Nature: Adamant
+- Bulk Up
 - Facade
-- Close Combat
+- Headlong Rush
 - Crunch
-- Swords Dance
 
-Tyranitar @ Tyranitarite
+Typhlosion @ Choice Specs
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sand Stream
-Nature: Adamant
-- Stone Edge
-- Crunch
-- Earthquake
-- Dragon Dance
-
-Typhlosion @ Choice Scarf
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flash Fire
 Nature: Timid
 - Eruption
 - Fire Blast
-- Focus Blast
+- Shadow Ball
 - Extrasensory
 
 === TRAINER_RIVAL_CYNDAQUIL_6_HNS ===
@@ -13241,13 +13471,13 @@ Nature: Jolly
 
 Gengar @ Life Orb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Wave
-- Focus Blast
+- Dazzling Gleam
 - Will O Wisp
 
 Ursaluna @ Flame Orb
@@ -13270,11 +13500,11 @@ Nature: Jolly
 - Dragon Dance
 - Stone Edge
 - Knock Off
-- Earthquake
+- Ice Punch
 
 Typhlosion @ Choice Specs
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flash Fire
 Nature: Timid
@@ -13385,65 +13615,66 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Super Potion
 
+Pupitar @ Focus Sash
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Shed Skin
+Nature: Adamant
+- Stealth Rock
+- Rock Slide
+- Earthquake
+- Taunt
+
 Golbat @ Eviolite
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
-Nature: Jolly
-- Wing Attack
-- Bite
-- Confuse Ray
+Nature: Impish
+- Brave Bird
+- U Turn
+- Roost
 - Toxic
 
-Haunter @ Eviolite
+Weavile @ Never Melt Ice
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Infiltrator
+Nature: Jolly
+- Knock Off
+- Ice Spinner
+- Ice Shard
+- Low Kick
+
+Gengar @ Black Sludge
+Level: 33
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Timid
-- Hex
+- Shadow Ball
 - Sludge Bomb
-- Hypnosis
-- Dazzling Gleam
-
-Magneton @ Eviolite
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Magnet Pull
-Nature: Modest
 - Thunderbolt
+- Will O Wisp
+
+Magnezone @ Leftovers
+Level: 33
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Analytic
+Nature: Modest
 - Flash Cannon
-- Thunder Wave
+- Thunderbolt
 - Volt Switch
+- Thunder Wave
 
-Larvitar @ Eviolite
+Croconaw @ Mystic Water
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
+EVs: 252 Atk
+Ability: Strong Jaw
 Nature: Adamant
-- Rock Slide
-- Bite
-- Bulldoze
-- Scary Face
-
-Sneasel @ Oran Berry
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
-Nature: Jolly
-- Faint Attack
-- Ice Shard
-- Quick Attack
-- Icy Wind
-
-Croconaw @ Sitrus Berry
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sheer Force
-Nature: Adamant
+- Liquidation
+- Crunch
 - Ice Fang
-- Bite
 - Aqua Jet
-- Scary Face
 
 === TRAINER_RIVAL_TOTODILE_3_HNS ===
 Name: {B_RIVAL_NAME}
@@ -13456,65 +13687,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Super Potion / Super Potion
 
-Golbat @ Eviolite
+Pupitar @ Eviolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Shed Skin
+Nature: Adamant
+- Stealth Rock
+- Stone Edge
+- Earthquake
+- Dragon Dance
+
+Crobat @ Sharp Beak
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
-- Air Cutter
-- Bite
-- Confuse Ray
-- Toxic
+- Brave Bird
+- Cross Poison
+- U Turn
+- Taunt
 
-Sneasel @ Razor Claw
+Weavile @ Life Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
 Nature: Jolly
-- Fake Out
-- Ice Punch
-- Faint Attack
+- Knock Off
+- Icicle Crash
 - Ice Shard
+- Low Kick
 
-Haunter @ Eviolite
+Gengar @ Focus Sash
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Bomb
-- Hypnosis
 - Dazzling Gleam
+- Destiny Bond
 
-Weepinbell @ Eviolite
+Absol @ Absolite
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Bullet Seed
-- Poison Jab
-- Sleep Powder
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Pressure
+Nature: Jolly
+- Swords Dance
 - Knock Off
+- Sucker Punch
+- Play Rough
 
-Larvitar @ Eviolite
+Feraligatr @ Mystic Water
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Guts
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Strong Jaw
 Nature: Adamant
-- Rock Slide
-- Crunch
-- Bulldoze
 - Dragon Dance
-
-Croconaw @ Sitrus Berry
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sheer Force
-Nature: Adamant
-- Aqua Tail
+- Liquidation
+- Crunch
 - Ice Fang
-- Crunch
-- Dragon Dance
 
 === TRAINER_RIVAL_TOTODILE_4_HNS ===
 Name: {B_RIVAL_NAME}
@@ -13527,65 +13764,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
-Crobat @ Sharp Beak
+Crobat @ Black Sludge
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
 - Brave Bird
-- Cross Poison
 - U Turn
+- Super Fang
 - Roost
 
-Weavile @ Life Orb
+Weavile @ Choice Band
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pressure
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
 Nature: Jolly
 - Knock Off
-- Ice Punch
+- Triple Axel
 - Ice Shard
 - Low Kick
 
-Alakazam @ Focus Sash
+Alakazam @ Life Orb
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magic Guard
 Nature: Timid
+- Nasty Plot
 - Psychic
 - Shadow Ball
-- Focus Blast
-- Calm Mind
+- Dazzling Gleam
 
-Victreebel @ Black Sludge
+Gengar @ Choice Specs
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Sludge Wave
+- Energy Ball
+- Thunderbolt
+
+Tyranitar @ Tyranitarite
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Power Whip
-- Sucker Punch
-- Poison Jab
-- Sleep Powder
-
-Pupitar @ Eviolite
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Shed Skin
-Nature: Adamant
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Sand Stream
+Nature: Jolly
+- Dragon Dance
 - Stone Edge
 - Crunch
-- Earthquake
-- Dragon Dance
+- Fire Punch
 
 Feraligatr @ Life Orb
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Sheer Force
 Nature: Adamant
+- Dragon Dance
 - Liquidation
 - Ice Punch
-- Crunch
-- Dragon Dance
+- Earthquake
 
 === TRAINER_RIVAL_TOTODILE_5_HNS ===
 Name: {B_RIVAL_NAME}
@@ -13598,9 +13841,21 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
-Crobat @ Sharp Beak
+Tyranitar @ Tyranitarite
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Sand Stream
+Nature: Adamant
+- Stealth Rock
+- Stone Edge
+- Knock Off
+- Earthquake
+
+Crobat @ Heavy Duty Boots
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
 - Brave Bird
@@ -13611,52 +13866,46 @@ Nature: Jolly
 Weavile @ Life Orb
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pressure
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Infiltrator
 Nature: Jolly
-- Knock Off
-- Ice Punch
+- Swords Dance
+- Throat Chop
+- Triple Axel
 - Ice Shard
-- Low Kick
 
-Victreebel @ Black Sludge
+Gengar @ Black Sludge
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Sludge Wave
+- Energy Ball
+- Destiny Bond
+
+Ursaluna @ Flame Orb
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Chlorophyll
-Nature: Adamant
-- Power Whip
-- Sucker Punch
-- Poison Jab
-- Sleep Powder
-
-Ursaring @ Flame Orb
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Guts
 Nature: Adamant
+- Bulk Up
 - Facade
-- Close Combat
+- Headlong Rush
 - Crunch
-- Swords Dance
 
-Tyranitar @ Tyranitarite
+Feraligatr @ Mystic Water
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sand Stream
-Nature: Adamant
-- Stone Edge
-- Crunch
-- Earthquake
-- Dragon Dance
-
-Feraligatr @ Life Orb
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sheer Force
 Nature: Adamant
+- Swords Dance
 - Liquidation
-- Ice Punch
 - Crunch
-- Dragon Dance
+- Aqua Jet
 
 === TRAINER_RIVAL_TOTODILE_6_HNS ===
 Name: {B_RIVAL_NAME}
@@ -13693,13 +13942,13 @@ Nature: Jolly
 
 Gengar @ Life Orb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Wave
-- Focus Blast
+- Dazzling Gleam
 - Will O Wisp
 
 Ursaluna @ Flame Orb
@@ -13722,9 +13971,9 @@ Nature: Jolly
 - Dragon Dance
 - Stone Edge
 - Knock Off
-- Earthquake
+- Ice Punch
 
-Feraligatr @ Life Orb
+Feraligatr @ Mystic Water
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
@@ -13901,63 +14150,69 @@ Items: Full Restore / Full Restore
 
 Politoed @ Damp Rock
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Drizzle
 Nature: Bold
-- Scald
+- Hydro Pump
 - Ice Beam
-- Hypnosis
 - Encore
-
-Hypno @ Leftovers
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Insomnia
-Nature: Calm
-- Psychic
-- Thunder Wave
-- Focus Blast
-- Nasty Plot
+- Hypnosis
 
 Electrode @ Focus Sash
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Galvanize
 Nature: Timid
 - Thunder
 - Volt Switch
-- Thunder Wave
+- Foul Play
 - Explosion
 
-Lanturn @ Sitrus Berry
+Hypno @ Leftovers
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Volt Absorb
-Nature: Modest
-- Thunder
-- Scald
-- Ice Beam
-- Volt Switch
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Insomnia
+Nature: Calm
+- Nasty Plot
+- Psychic
+- Focus Blast
+- Thunder Wave
 
 Gengar @ Black Sludge
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Bomb
-- Thunderbolt
+- Shadow Sneak
 - Destiny Bond
 
 Starmie @ Life Orb
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Analytic
 Nature: Timid
 - Hydro Pump
 - Psychic
 - Thunder
 - Rapid Spin
+
+Manectric @ Manectite
+Level: 50
+IVs: 31 HP / 0 Atk / 30 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Static
+Nature: Timid
+- Thunder
+- Volt Switch
+- Hidden Power
+- Snarl
 
 === TRAINER_GIOVANNI_HNS ===
 Name: GIOVANNI
@@ -14031,63 +14286,63 @@ Items: Super Potion
 
 Koffing @ Eviolite
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
 Nature: Bold
-- Sludge
+- Toxic Spikes
 - Will O Wisp
-- Clear Smog
-- Smokescreen
+- Sludge Bomb
+- Pain Split
 
-Golbat @ Eviolite
+Golbat @ Sharp Beak
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Jolly
+- Cross Poison
 - Wing Attack
-- Bite
-- Confuse Ray
-- Toxic
+- U Turn
+- Taunt
 
-Slowpoke @ Eviolite
+Slowpoke @ Sitrus Berry
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Regenerator
-Nature: Relaxed
-- Water Pulse
-- Confusion
-- Yawn
+Nature: Bold
+- Scald
+- Psyshock
 - Slack Off
+- Teleport
 
-Grimer @ Eviolite
+Grimer Alola @ Eviolite
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Poison Touch
 Nature: Adamant
+- Knock Off
 - Poison Jab
 - Shadow Sneak
-- Disable
-- Rock Tomb
+- Curse
 
-Raticate @ Silk Scarf
+Raticate @ Flame Orb
 Level: 24
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Hustle
+Ability: Guts
 Nature: Jolly
-- Super Fang
+- Facade
 - Sucker Punch
-- Crunch
-- Quick Attack
+- Super Fang
+- U Turn
 
-Houndour @ Charcoal
+Houndoom @ Charcoal
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flash Fire
 Nature: Timid
-- Incinerate
-- Snarl
-- Smog
 - Nasty Plot
+- Flamethrower
+- Dark Pulse
+- Sludge Bomb
 
 === TRAINER_PROTON_2_HNS ===
 Name: PROTON
@@ -14100,39 +14355,43 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
-Muk @ Black Sludge
+Rhydon @ Eviolite
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Poison Touch
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Lightning Rod
 Nature: Adamant
-- Gunk Shot
-- Shadow Sneak
-- Knock Off
-- Curse
-
-Nidoqueen @ Life Orb
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sheer Force
-Nature: Modest
-- Earth Power
-- Sludge Wave
-- Ice Beam
-- Flamethrower
+- Stealth Rock
+- Stone Edge
+- Earthquake
+- Megahorn
 
 Weezing @ Rocky Helmet
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Levitate
 Nature: Bold
-- Sludge Bomb
-- Will O Wisp
-- Pain Split
 - Toxic Spikes
+- Will O Wisp
+- Sludge Bomb
+- Fire Blast
+
+Muk @ Assault Vest
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Poison Touch
+Nature: Adamant
+- Gunk Shot
+- Knock Off
+- Shadow Sneak
+- Ice Punch
 
 Nidoking @ Life Orb
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Sheer Force
 Nature: Timid
 - Earth Power
@@ -14140,25 +14399,27 @@ Nature: Timid
 - Ice Beam
 - Thunderbolt
 
-Toxicroak @ Life Orb
+Toxicroak @ Black Sludge
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Dry Skin
 Nature: Jolly
+- Bulk Up
 - Drain Punch
 - Gunk Shot
 - Sucker Punch
-- Swords Dance
 
-Rhydon @ Eviolite
+Gengar @ Gengarite
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Lightning Rod
-Nature: Adamant
-- Stone Edge
-- Earthquake
-- Megahorn
-- Swords Dance
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Shadow Ball
+- Sludge Wave
+- Dazzling Gleam
+- Destiny Bond
 
 === TRAINER_ARCHER_HNS ===
 Name: ARCHER
@@ -14171,65 +14432,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
-Porygon Z @ Choice Specs
+Kingambit @ Leftovers
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Adaptability
-Nature: Modest
-- Tri Attack
-- Thunderbolt
-- Ice Beam
-- Shadow Ball
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Supreme Overlord
+Nature: Adamant
+- Stealth Rock
+- Kowtow Cleave
+- Sucker Punch
+- Iron Head
 
-Tauros @ Life Orb
+Tauros @ Choice Band
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Intimidate
 Nature: Jolly
 - Double Edge
+- Close Combat
 - Earthquake
-- Rock Slide
-- Zen Headbutt
+- Iron Head
+
+Porygon Z @ Choice Scarf
+Level: 75
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Adaptability
+Nature: Timid
+- Tri Attack
+- Ice Beam
+- Thunderbolt
+- Dark Pulse
 
 Crawdaunt @ Life Orb
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Adaptability
 Nature: Adamant
+- Dragon Dance
 - Crabhammer
 - Knock Off
 - Aqua Jet
-- Swords Dance
 
-Slowbro @ Leftovers
+Slowbro @ Heavy Duty Boots
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Regenerator
-Nature: Bold
+Nature: Relaxed
 - Scald
 - Psyshock
 - Slack Off
-- Calm Mind
-
-Bisharp @ Black Glasses
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Defiant
-Nature: Adamant
-- Sucker Punch
-- Iron Head
-- Knock Off
-- Swords Dance
+- Teleport
 
 Houndoom @ Houndoominite
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Flash Fire
 Nature: Timid
-- Fire Blast
-- Dark Pulse
-- Sludge Bomb
 - Nasty Plot
+- Dark Pulse
+- Heat Wave
+- Sludge Bomb
 
 === TRAINER_ARCHER_1_HNS ===
 Name: ARCHER
@@ -14381,63 +14648,69 @@ Items: Full Restore / Full Restore
 
 Forretress @ Leftovers
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 4 Atk / 252 Def
 Ability: Sturdy
 Nature: Relaxed
 - Spikes
-- Volt Switch
 - Gyro Ball
-- Rapid Spin
+- Earthquake
+- Volt Switch
 
 Weezing @ Black Sludge
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Levitate
 Nature: Bold
+- Toxic Spikes
 - Sludge Bomb
-- Will O Wisp
+- Flamethrower
 - Pain Split
-- Fire Blast
 
 Golbat @ Eviolite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Infiltrator
-Nature: Jolly
-- Cross Poison
-- Crunch
-- Confuse Ray
+Nature: Impish
+- Brave Bird
 - U Turn
+- Taunt
+- Roost
 
-Houndoom @ Black Glasses
+Zoroark @ Life Orb
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Flash Fire
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Illusion
 Nature: Timid
+- Nasty Plot
 - Dark Pulse
 - Flamethrower
-- Sludge Bomb
-- Nasty Plot
+- Sucker Punch
 
-Pupitar @ Eviolite
+Drapion @ Scope Lens
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Shed Skin
-Nature: Adamant
-- Rock Slide
-- Crunch
-- Earthquake
-- Dragon Dance
-
-Drapion @ Black Glasses
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Sniper
 Nature: Jolly
-- Knock Off
-- Poison Jab
+- Night Slash
+- Cross Poison
 - Earthquake
-- Swords Dance
+- Ice Fang
+
+Sableye @ Sablenite
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Frisk
+Nature: Careful
+- Will O Wisp
+- Recover
+- Foul Play
+- Taunt
 
 === TRAINER_PETREL_2_HNS ===
 Name: PETREL
@@ -14450,65 +14723,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
-Forretress @ Leftovers
+Forretress @ Rocky Helmet
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Sturdy
 Nature: Relaxed
 - Spikes
+- Iron Head
 - Volt Switch
-- Gyro Ball
 - Rapid Spin
 
 Weezing Galar @ Black Sludge
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Neutralizing Gas
 Nature: Bold
 - Strange Steam
-- Sludge Bomb
 - Will O Wisp
 - Pain Split
+- Fire Blast
 
-Toxapex @ Black Sludge
+Toxapex @ Leftovers
 Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
 Ability: Regenerator
-Nature: Bold
+Nature: Calm
+- Toxic Spikes
 - Scald
-- Toxic
 - Recover
 - Haze
 
-Pupitar @ Eviolite
+Zoroark @ Focus Sash
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Shed Skin
-Nature: Adamant
-- Stone Edge
-- Crunch
-- Earthquake
-- Dragon Dance
-
-Cloyster @ Focus Sash
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Skill Link
-Nature: Adamant
-- Icicle Spear
-- Rock Blast
-- Shell Smash
-- Liquidation
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Illusion
+Nature: Timid
+- Nasty Plot
+- Night Daze
+- Sludge Bomb
+- Sucker Punch
 
 Drapion @ Black Glasses
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sniper
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Battle Armor
 Nature: Jolly
+- Swords Dance
 - Knock Off
 - Poison Jab
-- Earthquake
-- Swords Dance
+- Aqua Tail
+
+Sableye @ Sablenite
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
+Ability: Frisk
+Nature: Impish
+- Will O Wisp
+- Recover
+- Knock Off
+- Parting Shot
 
 === TRAINER_ARIANA_1_HNS ===
 Name: ARIANA
@@ -14521,65 +14800,38 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
+Persian Alola @ Sitrus Berry
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Spe
+Ability: Fur Coat
+Nature: Jolly
+- Fake Out
+- Icy Wind
+- Parting Shot
+- Foul Play
+
 Arbok @ Black Sludge
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
 Nature: Adamant
-- Gunk Shot
-- Sucker Punch
 - Glare
-- Earthquake
+- Gunk Shot
+- Rock Slide
+- Sucker Punch
 
-Persian @ Silk Scarf
+Kangaskhan @ Kangaskhanite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Technician
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Inner Focus
 Nature: Jolly
 - Fake Out
-- Faint Attack
-- U Turn
-- Hypnosis
-
-Liepard @ Sitrus Berry
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Prankster
-Nature: Jolly
-- Foul Play
-- Thunder Wave
-- U Turn
-- Encore
-
-Vileplume @ Black Sludge
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Effect Spore
-Nature: Calm
-- Giga Drain
-- Sludge Bomb
-- Sleep Powder
-- Strength Sap
-
-Gyarados @ Sitrus Berry
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
-Nature: Jolly
-- Waterfall
-- Crunch
-- Earthquake
-- Dragon Dance
-
-Honchkrow @ Scope Lens
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Super Luck
-Nature: Adamant
-- Brave Bird
-- Night Slash
-- Sucker Punch
-- Heat Wave
+- Double Edge
+- Ice Punch
+- Power Up Punch
 
 === TRAINER_ARIANA_2_HNS ===
 Name: ARIANA
@@ -14592,65 +14844,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Dark Red
 Items: Full Restore / Full Restore
 
+Persian Alola @ Focus Sash
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Atk / 252 Spe
+Ability: Fur Coat
+Nature: Jolly
+- Fake Out
+- Foul Play
+- Parting Shot
+- Taunt
+
 Arbok @ Black Sludge
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Intimidate
-Nature: Adamant
+Nature: Jolly
+- Glare
 - Gunk Shot
 - Sucker Punch
-- Glare
 - Earthquake
 
-Persian @ Silk Scarf
+Skuntank @ Assault Vest
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Technician
-Nature: Jolly
-- Fake Out
-- Faint Attack
-- U Turn
-- Hypnosis
-
-Skuntank @ Black Sludge
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Aftermath
 Nature: Adamant
-- Sucker Punch
 - Crunch
-- Poison Jab
-- Fire Blast
+- Gunk Shot
+- Sucker Punch
+- Temper Flare
 
-Vileplume @ Black Sludge
+Gyarados @ Leftovers
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Effect Spore
-Nature: Calm
-- Giga Drain
-- Sludge Bomb
-- Sleep Powder
-- Strength Sap
-
-Gyarados @ Sitrus Berry
-Level: 75
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Intimidate
 Nature: Jolly
-- Waterfall
-- Crunch
-- Earthquake
 - Dragon Dance
+- Waterfall
+- Earthquake
+- Power Whip
 
 Honchkrow @ Scope Lens
 Level: 75
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Super Luck
 Nature: Adamant
 - Brave Bird
 - Night Slash
 - Sucker Punch
-- Heat Wave
+- U Turn
+
+Kangaskhan @ Kangaskhanite
+Level: 75
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Inner Focus
+Nature: Adamant
+- Double Edge
+- Earthquake
+- Drain Punch
+- Ice Punch
 
 === TRAINER_ANABEL_BF_BRAIN_HNS ===
 Name: ANABEL
@@ -16342,7 +16600,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Donphan @ Leftovers
-Level: 85
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
@@ -16350,62 +16608,62 @@ Nature: Adamant
 - Stealth Rock
 - Rapid Spin
 - Earthquake
-- Knock Off
+- Ice Shard
 
-Kingler @ Life Orb
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Sheer Force
-Nature: Adamant
-- Agility
-- Liquidation
-- Rock Slide
-- Superpower
-
-Victreebel @ Black Sludge
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 SpA / 4 SpD
-Ability: Chlorophyll
-Nature: Modest
-- Sleep Powder
-- Strength Sap
-- Giga Drain
-- Sludge Bomb
-
-Flareon @ Choice Band
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Flash Fire
-Nature: Adamant
-- Flare Blitz
-- Superpower
-- Double Edge
-- Quick Attack
-
-Porygon Z @ Choice Specs
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Porygon Z @ Life Orb
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Adaptability
 Nature: Timid
+- Nasty Plot
 - Tri Attack
 - Shadow Ball
 - Ice Beam
-- Thunderbolt
 
-Dragonite @ Loaded Dice
-Level: 85
+Flareon @ Toxic Orb
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Toxic Boost
+Nature: Jolly
+- Facade
+- Flare Blitz
+- Superpower
+- Trailblaze
+
+Victreebel @ Iapapa Berry
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Gluttony
+Nature: Modest
+- Sleep Powder
+- Strength Sap
+- Sludge Bomb
+- Leaf Storm
+
+Dragonite @ Heavy Duty Boots
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Multiscale
 Nature: Adamant
 - Dragon Dance
-- Scale Shot
+- Outrage
 - Extreme Speed
 - Earthquake
+
+Kingler @ Kinglerite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Hyper Cutter
+Nature: Adamant
+- Swords Dance
+- Crabhammer
+- Superpower
+- Knock Off
 
 
 === TRAINER_GAVEN_3_HNS ===
@@ -16417,71 +16675,65 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Donphan @ Leftovers
-Level: 85
+Donphan @ Rocky Helmet
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
-Nature: Adamant
+Nature: Impish
 - Stealth Rock
 - Rapid Spin
-- Earthquake
 - Knock Off
+- Earthquake
 
-Kingler @ Life Orb
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Sheer Force
-Nature: Adamant
-- Agility
-- Liquidation
-- Rock Slide
-- Superpower
-
-Victreebel @ Black Sludge
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 SpA / 4 SpD
-Ability: Chlorophyll
-Nature: Modest
-- Sleep Powder
-- Strength Sap
-- Giga Drain
-- Sludge Bomb
-
-Flareon @ Choice Band
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Flash Fire
-Nature: Adamant
-- Flare Blitz
-- Superpower
-- Double Edge
-- Quick Attack
-
-Porygon Z @ Choice Specs
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
+Porygon Z @ Life Orb
+Level: 100
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Adaptability
 Nature: Timid
+- Agility
 - Tri Attack
 - Shadow Ball
 - Ice Beam
-- Thunderbolt
+
+Flareon @ Toxic Orb
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Toxic Boost
+Nature: Jolly
+- Facade
+- Flare Blitz
+- Quick Attack
+- Trailblaze
+
+Victreebel @ Liechi Berry
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Gluttony
+Nature: Adamant
+- Swords Dance
+- Power Whip
+- Sucker Punch
+- Poison Jab
 
 Dragonite @ Loaded Dice
-Level: 85
+Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Multiscale
-Nature: Adamant
+Nature: Jolly
 - Dragon Dance
 - Scale Shot
 - Extreme Speed
 - Earthquake
+
+Kingler @ Kinglerite
+Level: 100
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Hyper Cutter
+Nature: Jolly
+- Swords Dance
+- Crabhammer
+- High Horsepower
+- Knock Off
 
 
 === TRAINER_BETH_2_HNS ===
@@ -16497,16 +16749,16 @@ Miltank @ Leftovers
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
-Ability: Thick Fat
+Ability: Scrappy
 Nature: Impish
 - Stealth Rock
 - Body Slam
 - Milk Drink
-- Heal Bell
+- Earthquake
 
 Lanturn @ Leftovers
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Volt Absorb
 Nature: Calm
@@ -16517,24 +16769,24 @@ Nature: Calm
 
 Meganium @ Big Root
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Def / 4 SpD
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
 Ability: Triage
-Nature: Bold
+Nature: Calm
 - Giga Drain
-- Synthesis
+- Earth Power
 - Leech Seed
-- Dragon Tail
+- Synthesis
 
-Ampharos @ Expert Belt
+Gengar @ Life Orb
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 4 HP / 252 SpA / 252 Spe
-Ability: Static
-Nature: Modest
-- Agility
-- Thunderbolt
-- Dragon Pulse
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Nasty Plot
+- Shadow Ball
+- Sludge Wave
 - Focus Blast
 
 Rapidash @ Heavy Duty Boots
@@ -16548,16 +16800,16 @@ Nature: Jolly
 - Wild Charge
 - High Horsepower
 
-Gengar @ Life Orb
+Ampharos @ Ampharosite
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Ability: Levitate
-Nature: Timid
-- Hex
-- Will O Wisp
-- Sludge Bomb
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Static
+Nature: Modest
+- Thunderbolt
+- Dragon Pulse
 - Focus Blast
+- Heal Bell
 
 
 === TRAINER_BETH_3_HNS ===
@@ -16570,7 +16822,7 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Miltank @ Leftovers
-Level: 85
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Thick Fat
@@ -16580,59 +16832,59 @@ Nature: Impish
 - Milk Drink
 - Heal Bell
 
-Lanturn @ Leftovers
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Lanturn @ Assault Vest
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Volt Absorb
 Nature: Calm
 - Volt Switch
 - Scald
 - Ice Beam
-- Thunder Wave
+- Thunderbolt
 
 Meganium @ Big Root
-Level: 85
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Triage
 Nature: Bold
 - Giga Drain
-- Synthesis
 - Leech Seed
+- Synthesis
 - Dragon Tail
 
-Ampharos @ Expert Belt
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 4 HP / 252 SpA / 252 Spe
-Ability: Static
-Nature: Modest
-- Agility
-- Thunderbolt
-- Dragon Pulse
+Gengar @ Life Orb
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA / 4 SpD / 252 Spe
+Ability: Levitate
+Nature: Timid
+- Nasty Plot
+- Shadow Ball
+- Sludge Wave
 - Focus Blast
 
-Rapidash @ Heavy Duty Boots
-Level: 85
+Rapidash @ Choice Band
+Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Reckless
 Nature: Jolly
-- Swords Dance
 - Flare Blitz
 - Wild Charge
 - High Horsepower
+- Megahorn
 
-Gengar @ Life Orb
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Ability: Levitate
-Nature: Timid
-- Hex
-- Will O Wisp
-- Sludge Bomb
+Ampharos @ Ampharosite
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Plus
+Nature: Modest
+- Volt Switch
+- Thunderbolt
+- Dragon Pulse
 - Focus Blast
 
 
@@ -16690,71 +16942,71 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Electrode @ Focus Sash
+Electrode @ Light Clay
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 4 HP / 252 SpA / 252 Spe
-Ability: Static
-Nature: Timid
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Galvanize
+Nature: Jolly
+- Light Screen
+- Reflect
 - Taunt
-- Thunder Wave
-- Volt Switch
-- Foul Play
+- Explosion
 
-Nidoqueen @ Black Sludge
+Nidoqueen @ Life Orb
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 4 Def / 252 SpD
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Sheer Force
-Nature: Calm
+Nature: Modest
 - Stealth Rock
-- Toxic Spikes
 - Earth Power
-- Sludge Bomb
+- Sludge Wave
+- Ice Beam
 
-Vileplume @ Black Sludge
+Vileplume @ Leftovers
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Def / 4 SpA
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
 Ability: Effect Spore
-Nature: Bold
+Nature: Calm
 - Strength Sap
 - Sleep Powder
-- Giga Drain
 - Sludge Bomb
+- Moonblast
 
-Arbok @ Leftovers
+Arbok @ Black Sludge
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Intimidate
 Nature: Adamant
-- Glare
 - Coil
+- Glare
 - Gunk Shot
 - Earthquake
 
-Dodrio @ Life Orb
+Alakazam @ Alakazite
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Rock Head
-Nature: Jolly
-- Swords Dance
-- Brave Bird
-- Double Edge
-- Drill Run
-
-Starmie @ Power Herb
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Ability: Analytic
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Magic Guard
 Nature: Timid
-- Meteor Beam
+- Nasty Plot
+- Psychic
+- Focus Blast
+- Dazzling Gleam
+
+Starmie @ Life Orb
+Level: 85
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Natural Cure
+Nature: Timid
 - Hydro Pump
 - Psyshock
 - Ice Beam
+- Thunderbolt
 
 
 === TRAINER_REENA_3_HNS ===
@@ -16766,32 +17018,32 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Electrode @ Focus Sash
+Electrode @ Light Clay
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 4 HP / 252 SpA / 252 Spe
-Ability: Static
-Nature: Timid
+EVs: 252 Atk / 4 SpD / 252 Spe
+Ability: Galvanize
+Nature: Jolly
+- Light Screen
+- Reflect
 - Taunt
-- Thunder Wave
-- Volt Switch
-- Foul Play
+- Explosion
 
 Nidoqueen @ Black Sludge
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Sheer Force
 Nature: Calm
 - Stealth Rock
 - Toxic Spikes
 - Earth Power
-- Sludge Bomb
+- Sludge Wave
 
-Vileplume @ Black Sludge
+Vileplume @ Rocky Helmet
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Def / 4 SpA
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Effect Spore
 Nature: Bold
 - Strength Sap
@@ -16799,38 +17051,38 @@ Nature: Bold
 - Giga Drain
 - Sludge Bomb
 
-Arbok @ Leftovers
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Atk / 4 SpD
-Ability: Intimidate
-Nature: Adamant
-- Glare
-- Coil
-- Gunk Shot
-- Earthquake
-
-Dodrio @ Life Orb
+Arbok @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Rock Head
+Ability: Strong Jaw
 Nature: Jolly
-- Swords Dance
-- Brave Bird
-- Double Edge
-- Drill Run
+- Coil
+- Gunk Shot
+- Crunch
+- Psychic Fangs
 
-Starmie @ Power Herb
+Alakazam @ Alakazite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Ability: Analytic
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Magic Guard
 Nature: Timid
-- Meteor Beam
+- Calm Mind
+- Psyshock
+- Focus Blast
+- Shadow Ball
+
+Starmie @ Choice Specs
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Natural Cure
+Nature: Timid
 - Hydro Pump
 - Psyshock
 - Ice Beam
+- Thunderbolt
 
 
 === TRAINER_ALEX_2_HNS ===
@@ -19990,7 +20242,7 @@ Mugshot: Blue
 
 Archaludon @ Custap Berry
 Level: 100
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Modest
 - Stealth Rock
@@ -20018,14 +20270,14 @@ Nature: Timid
 - Flamethrower
 - Flip Turn
 
-Dragonite @ Heavy Duty Boots
+Dragonite @ Heavy-Duty Boots
 Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Multiscale
 Nature: Adamant
 - Extreme Speed
+- Dual Wingbeat
 - Earthquake
-- Fire Punch
 - Roost
 
 Noivern @ Choice Specs
@@ -20034,19 +20286,19 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
 Nature: Timid
 - Draco Meteor
-- Hurricane
+- Air Slash
 - Flamethrower
-- U Turn
+- U-turn
 
-Garchomp @ Garchompite
+Charizard @ Charizardite X
 Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Rough Skin
+Ability: Blaze
 Nature: Jolly
-- Swords Dance
-- Scale Shot
-- Earthquake
-- Iron Head
+- Dragon Dance
+- Flare Blitz
+- Dragon Claw
+- Thunder Punch
 
 === TRAINER_RED_POSTOBC_HNS ===
 Name: RED
@@ -20134,63 +20386,63 @@ Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Light Blue
 
-Snover @ Eviolite
+Snover @ Icy Rock
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Ice Body
-Nature: Modest
+Ability: Snow Warning
+Nature: Quiet
 - Icy Wind
-- Razor Leaf
+- Giga Drain
 - Leech Seed
 - Ice Shard
 
-Sneasel @ Eviolite
+Sneasel @ Never Melt Ice
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Inner Focus
 Nature: Jolly
 - Fake Out
+- Icicle Crash
+- Knock Off
 - Ice Shard
-- Bite
-- Quick Attack
 
-Spheal @ Eviolite
+Snorunt @ Eviolite
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Thick Fat
-Nature: Bold
-- Ice Ball
-- Defense Curl
-- Brine
-- Yawn
-
-Cetoddle @ Eviolite
-Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Thick Fat
-Nature: Adamant
-- Ice Shard
+Ability: Ice Body
+Nature: Jolly
+- Spikes
 - Ice Fang
-- Bulldoze
-- Body Slam
+- Crunch
+- Disable
+
+Cubchoo @ Muscle Band
+Level: 15
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Slush Rush
+Nature: Adamant
+- Ice Punch
+- Liquidation
+- Low Kick
+- Play Rough
 
 Meditite @ Eviolite
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Huge Power
 Nature: Adamant
-- Force Palm
+- Drain Punch
+- Zen Headbutt
 - Ice Punch
 - Bullet Punch
-- Detect
 
-Cryogonal @ Sitrus Berry
+Cryogonal @ Leftovers
 Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Levitate
-Nature: Calm
+Nature: Modest
 - Freeze Dry
-- Icy Wind
+- Flash Cannon
 - Recover
 - Reflect
 
@@ -20205,39 +20457,49 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Green
 Items: Potion
 
-Sudowoodo @ Sitrus Berry
+Whimsicott @ Heat Rock
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sturdy
-Nature: Adamant
-- Stealth Rock
-- Rock Slide
-- Sucker Punch
-- Wood Hammer
+Ability: Prankster
+Nature: Timid
+- Sunny Day
+- Leech Seed
+- Moonblast
+- U Turn
 
 Cherrim @ Miracle Seed
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flower Gift
-Nature: Modest
-- Sunny Day
-- Solar Beam
-- Weather Ball
-- Growth
+Nature: Adamant
+- Solar Blade
+- Play Rough
+- Swords Dance
+- Morning Sun
 
-Gloom @ Eviolite
+Bellossom @ Leftovers
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Modest
-- Sleep Powder
+- Quiver Dance
 - Giga Drain
-- Sludge Bomb
 - Moonblast
+- Strength Sap
+
+Grotle @ Eviolite
+Level: 33
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Shell Armor
+Nature: Adamant
+- Shell Smash
+- Seed Bomb
+- Crunch
+- Bulldoze
 
 Dolliv @ Sitrus Berry
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Harvest
 Nature: Bold
 - Energy Ball
@@ -20245,25 +20507,16 @@ Nature: Bold
 - Strength Sap
 - Leech Seed
 
-Grotle @ Eviolite
-Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Shell Armor
-Nature: Adamant
-- Seed Bomb
-- Bite
-- Bulldoze
-- Synthesis
-
 Roserade @ Black Sludge
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA
 Ability: Natural Cure
 Nature: Timid
-- Giga Drain
 - Sludge Bomb
-- Dazzling Gleam
-- Toxic Spikes
+- Giga Drain
+- Weather Ball
+- Spikes
 
 === TRAINER_SIDE_GARDENIA_2_HNS ===
 Name: GARDENIA
@@ -20347,65 +20600,71 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Purple
 Items: Hyper Potion / Hyper Potion
 
-Spiritomb @ Sitrus Berry
+Cofagrigus @ Mental Herb
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
-Nature: Careful
-- Will O Wisp
-- Foul Play
-- Shadow Sneak
-- Sucker Punch
-
-Dusclops @ Eviolite
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Frisk
-Nature: Relaxed
-- Night Shade
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Shadow Shield
+Nature: Sassy
 - Trick Room
+- Will O Wisp
+- Hex
 - Pain Split
-- Ice Beam
 
-Cursola @ Life Orb
+Golurk @ Life Orb
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Weak Armor
-Nature: Modest
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: No Guard
+Nature: Brave
+- Stealth Rock
+- Dynamic Punch
+- Poltergeist
+- Earthquake
+
+Cursola @ Spell Tag
+Level: 42
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Perish Body
+Nature: Quiet
 - Hex
 - Earth Power
-- Power Gem
 - Strength Sap
+- Power Gem
 
-Zoroark Hisui @ Focus Sash
+Trevenant @ Sitrus Berry
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Illusion
-Nature: Timid
-- Shadow Ball
-- Hyper Voice
-- Focus Blast
-- Nasty Plot
-
-Banette @ Spell Tag
-Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Insomnia
-Nature: Adamant
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Harvest
+Nature: Brave
+- Trick Room
+- Horn Leech
 - Poltergeist
-- Gunk Shot
-- Knock Off
-- Shadow Sneak
+- Will O Wisp
 
 Mismagius @ Wise Glasses
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Levitate
 Nature: Timid
+- Nasty Plot
 - Shadow Ball
 - Mystical Fire
-- Dazzling Gleam
-- Nasty Plot
+- Thunderbolt
+
+Dusknoir @ Dusknoirite
+Level: 42
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Pressure
+Nature: Brave
+- Poltergeist
+- Darkest Lariat
+- Shadow Sneak
+- Will O Wisp
 
 === TRAINER_SIDE_MAYLENE_HNS ===
 Name: MAYLENE
@@ -20421,6 +20680,7 @@ Items: Hyper Potion / Hyper Potion
 Medicham @ Sitrus Berry
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Huge Power
 Nature: Jolly
 - Fake Out
@@ -20431,52 +20691,57 @@ Nature: Jolly
 Mienshao @ Life Orb
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Regenerator
 Nature: Jolly
-- Drain Punch
+- Close Combat
 - U Turn
 - Knock Off
-- Stone Edge
+- Triple Axel
 
-Pawmot @ Shell Bell
+Poliwrath @ Mystic Water
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Iron Fist
-Nature: Jolly
-- Double Shock
-- Close Combat
-- Mach Punch
-- Ice Punch
-
-Machamp @ Expert Belt
-Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: No Guard
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Swift Swim
 Nature: Adamant
-- Dynamic Punch
-- Knock Off
-- Stone Edge
+- Bulk Up
+- Liquidation
+- Drain Punch
 - Ice Punch
 
 Toxicroak @ Black Sludge
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Dry Skin
 Nature: Adamant
+- Swords Dance
+- Gunk Shot
 - Drain Punch
 - Sucker Punch
-- Gunk Shot
-- Swords Dance
+
+Pawmot @ Expert Belt
+Level: 50
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Iron Fist
+Nature: Jolly
+- Double Shock
+- Mach Punch
+- Ice Punch
+- Thunder Punch
 
 Lucario @ Lucarionite
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Inner Focus
 Nature: Jolly
+- Swords Dance
 - Close Combat
 - Meteor Mash
-- Extreme Speed
-- Swords Dance
+- Ice Punch
 
 === TRAINER_SIDE_WAKE_HNS ===
 Name: WAKE
@@ -20563,6 +20828,7 @@ Items: Full Restore / Full Restore
 Bastiodon @ Leftovers
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Dauntless Shield
 Nature: Impish
 - Stealth Rock
@@ -20570,39 +20836,43 @@ Nature: Impish
 - Body Press
 - Roar
 
-Copperajah @ Sitrus Berry
+Empoleon @ Assault Vest
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Heavy Metal
-Nature: Adamant
-- Heavy Slam
-- Play Rough
-- Superpower
-- Earthquake
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Competitive
+Nature: Modest
+- Hydro Pump
+- Flash Cannon
+- Ice Beam
+- Aqua Jet
 
 Excadrill @ Focus Sash
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Mold Breaker
 Nature: Jolly
-- Iron Head
 - Earthquake
+- Iron Head
 - Rapid Spin
 - Swords Dance
 
-Kingambit @ Black Glasses
+Magnezone @ Choice Specs
 Level: 66
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Supreme Overlord
-Nature: Adamant
-- Kowtow Cleave
-- Iron Head
-- Sucker Punch
-- Swords Dance
+IVs: 31 HP / 0 Atk / 31 Def / 30 SpA / 31 SpD / 30 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Magnet Pull
+Nature: Timid
+- Thunder
+- Flash Cannon
+- Volt Switch
+- Hidden Power
 
-Corviknight @ Leftovers
+Corviknight @ Rocky Helmet
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Pressure
 Nature: Impish
 - Brave Bird
@@ -20613,12 +20883,13 @@ Nature: Impish
 Aggron @ Aggronite
 Level: 66
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Sturdy
-Nature: Impish
+Nature: Adamant
 - Heavy Slam
 - Earthquake
-- Body Press
-- Iron Defense
+- Ice Punch
+- Rock Polish
 
 === TRAINER_SIDE_ROARK_HNS ===
 Name: ROARK
@@ -20915,19 +21186,32 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Yellow
 Items: Full Restore / Full Restore
 
-Kilowattrel @ Choice Specs
+Galvantula @ Focus Sash
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Compound Eyes
+Nature: Timid
+- Sticky Web
+- Thunder
+- Energy Ball
+- Volt Switch
+
+Kilowattrel @ Heavy Duty Boots
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Volt Absorb
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Competitive
 Nature: Timid
+- Air Slash
 - Thunderbolt
-- Hurricane
-- Volt Switch
 - Roost
+- U Turn
 
 Bellibolt @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Electromorphosis
 Nature: Bold
 - Discharge
@@ -20935,19 +21219,10 @@ Nature: Bold
 - Slack Off
 - Toxic
 
-Toxtricity @ Throat Spray
+Electrode Hisui @ Life Orb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Punk Rock
-Nature: Modest
-- Overdrive
-- Boomburst
-- Sludge Bomb
-- Volt Switch
-
-Electrode Hisui @ Focus Sash
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Soundproof
 Nature: Timid
 - Volt Switch
@@ -20955,25 +21230,27 @@ Nature: Timid
 - Thunderbolt
 - Taunt
 
-Mismagius @ Life Orb
+Mismagius @ Spell Tag
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Levitate
 Nature: Timid
+- Nasty Plot
 - Shadow Ball
 - Thunderbolt
-- Nasty Plot
 - Dazzling Gleam
 
-Ampharos @ Ampharosite
+Luxray @ Luxrite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Static
-Nature: Modest
-- Thunderbolt
-- Dragon Pulse
-- Focus Blast
-- Volt Switch
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Intimidate
+Nature: Jolly
+- Crunch
+- Psychic Fangs
+- Thunder Fang
+- Quick Attack
 
 === TRAINER_SIDE_KOFU_HNS ===
 Name: KOFU
@@ -21060,26 +21337,29 @@ Items: Full Restore / Full Restore
 Komala @ Assault Vest
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Comatose
 Nature: Adamant
+- Double Edge
 - Wood Hammer
 - Sucker Punch
-- Earthquake
-- Rapid Spin
+- U Turn
 
 Dudunsparce @ Leftovers
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Serene Grace
-Nature: Bold
-- Hyper Drill
-- Glare
+Nature: Careful
+- Coil
+- Body Slam
+- Earthquake
 - Roost
-- Boomburst
 
-Staraptor @ Choice Band
+Staraptor @ Choice Scarf
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Reckless
 Nature: Jolly
 - Brave Bird
@@ -21087,35 +21367,38 @@ Nature: Jolly
 - Double Edge
 - U Turn
 
-Porygon Z @ Choice Specs
+Flamigo @ Sharp Beak
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Adaptability
-Nature: Timid
-- Tri Attack
-- Shadow Ball
-- Ice Beam
-- Thunderbolt
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Scrappy
+Nature: Jolly
+- Swords Dance
+- Brave Bird
+- Close Combat
+- Throat Chop
 
 Bewear @ Sitrus Berry
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Fluffy
 Nature: Adamant
-- Double Edge
-- Close Combat
-- Drain Punch
 - Swords Dance
+- Double Edge
+- Drain Punch
+- Darkest Lariat
 
-Kangaskhan @ Kangaskhanite
+Slaking @ Slakite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Scrappy
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Truant
 Nature: Jolly
-- Fake Out
 - Double Edge
 - Earthquake
-- Sucker Punch
+- Knock Off
+- Slack Off
 
 === TRAINER_SIDE_RYME_HNS ===
 Name: RYME
@@ -21128,49 +21411,32 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 Mugshot: Purple
 Items: Full Restore / Full Restore
 
-Houndstone @ Choice Band
+Mimikyu @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Fluffy
-Nature: Adamant
-- Last Respects
-- Body Press
-- Play Rough
-- Trick
-
-Annihilape @ Leftovers
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Defiant
-Nature: Adamant
-- Rage Fist
-- Drain Punch
-- Bulk Up
-- Gunk Shot
-
-Ceruledge @ Life Orb
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Flash Fire
-Nature: Adamant
-- Bitter Blade
-- Poltergeist
-- Close Combat
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Disguise
+Nature: Jolly
 - Swords Dance
+- Play Rough
+- Shadow Claw
+- Drain Punch
 
-Gholdengo @ Choice Scarf
+Banette @ Spell Tag
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Good As Gold
-Nature: Timid
-- Make It Rain
-- Shadow Ball
-- Nasty Plot
-- Recover
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Insomnia
+Nature: Adamant
+- Poltergeist
+- Knock Off
+- Gunk Shot
+- Will O Wisp
 
 Dragapult @ Focus Sash
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Infiltrator
 Nature: Jolly
 - Dragon Darts
@@ -21178,15 +21444,38 @@ Nature: Jolly
 - U Turn
 - Dragon Dance
 
-Gengar @ Gengarite
+Gholdengo @ Choice Specs
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Good As Gold
+Nature: Modest
+- Make It Rain
+- Shadow Ball
+- Dazzling Gleam
+- Trick
+
+Houndstone @ Choice Band
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Levitate
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Fluffy
+Nature: Adamant
+- Last Respects
+- Play Rough
+- Psychic Fangs
+- Shadow Sneak
+
+Toxtricity @ Toxtricitite
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Punk Rock
 Nature: Timid
-- Shadow Ball
-- Sludge Wave
-- Focus Blast
-- Nasty Plot
+- Boomburst
+- Overdrive
+- Sludge Bomb
+- Volt Switch
 
 === TRAINER_SIDE_TULIP_HNS ===
 Name: TULIP
@@ -21201,27 +21490,52 @@ Items: Full Restore / Full Restore
 
 Farigiraf @ Sitrus Berry
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Armor Tail
 Nature: Modest
-- Hyper Voice
-- Psychic
 - Nasty Plot
+- Hyper Voice
+- Psychic Noise
 - Shadow Ball
+
+Gardevoir @ Leftovers
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Trace
+Nature: Calm
+- Moonblast
+- Mystical Fire
+- Wish
+- Teleport
 
 Espathra @ Life Orb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Speed Boost
 Nature: Timid
-- Lumina Crash
-- Dazzling Gleam
 - Calm Mind
 - Stored Power
+- Dazzling Gleam
+- Lumina Crash
+
+Hatterene @ Expert Belt
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
+Ability: Magic Bounce
+Nature: Modest
+- Psyshock
+- Draining Kiss
+- Mystical Fire
+- Nuzzle
 
 Florges @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
 Ability: Natural Cure
 Nature: Calm
 - Moonblast
@@ -21229,35 +21543,16 @@ Nature: Calm
 - Calm Mind
 - Synthesis
 
-Hatterene @ Focus Sash
+Gallade @ Galladite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Magic Bounce
-Nature: Quiet
-- Psychic
-- Draining Kiss
-- Mystical Fire
-- Trick Room
-
-Gallade @ Choice Band
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Sharpness
 Nature: Jolly
+- Swords Dance
 - Sacred Sword
 - Psycho Cut
-- Leaf Blade
-- Swords Dance
-
-Gardevoir @ Gardevoirite
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Trace
-Nature: Timid
-- Hyper Voice
-- Psyshock
-- Focus Blast
-- Calm Mind
+- Shadow Sneak
 
 === TRAINER_SIDE_GRUSHA_HNS ===
 Name: GRUSHA
@@ -21272,7 +21567,8 @@ Items: Full Restore / Full Restore
 
 Ninetales Alola @ Light Clay
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Snow Warning
 Nature: Timid
 - Aurora Veil
@@ -21280,53 +21576,58 @@ Nature: Timid
 - Moonblast
 - Freeze Dry
 
-Frosmoth @ Heavy Duty Boots
+Sandslash Alola @ Leftovers
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Slush Rush
+Nature: Jolly
+- Stealth Rock
+- Icicle Crash
+- Iron Head
+- Rapid Spin
+
+Frosmoth @ Heavy Duty Boots
+Level: 90
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Ice Scales
 Nature: Timid
 - Quiver Dance
-- Ice Beam
+- Blizzard
 - Bug Buzz
 - Giga Drain
 
 Beartic @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Slush Rush
 Nature: Adamant
+- Swords Dance
 - Icicle Crash
 - Close Combat
 - Aqua Jet
-- Swords Dance
 
 Cetitan @ Sitrus Berry
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Slush Rush
 Nature: Adamant
+- Belly Drum
 - Icicle Crash
 - Earthquake
 - Ice Shard
-- Belly Drum
-
-Baxcalibur @ Loaded Dice
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Thermal Exchange
-Nature: Jolly
-- Glaive Rush
-- Icicle Crash
-- Earthquake
-- Dragon Dance
 
 Altaria @ Altarianite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Natural Cure
-Nature: Adamant
-- Hyper Voice
+Nature: Jolly
 - Dragon Dance
+- Body Slam
 - Earthquake
 - Roost
 
@@ -21344,26 +21645,26 @@ Items: Full Restore / Full Restore / Full Restore
 Spiritomb @ Leftovers
 Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pressure
+Ability: Intimidate
 Nature: Careful
 - Foul Play
 - Will O Wisp
 - Sucker Punch
 - Pain Split
 
-Roserade @ Black Sludge
+Roserade @ Focus Sash
 Level: 100
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Natural Cure
 Nature: Timid
-- Giga Drain
+- Spikes
+- Leaf Storm
 - Sludge Bomb
-- Dazzling Gleam
-- Toxic Spikes
+- Extrasensory
 
 Togekiss @ Leftovers
 Level: 100
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Serene Grace
 Nature: Timid
 - Air Slash
@@ -21371,17 +21672,7 @@ Nature: Timid
 - Nasty Plot
 - Roost
 
-Lucario @ Life Orb
-Level: 100
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Inner Focus
-Nature: Timid
-- Aura Sphere
-- Flash Cannon
-- Vacuum Wave
-- Nasty Plot
-
-Milotic @ Leftovers
+Milotic @ Sitrus Berry
 Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Marvel Scale
@@ -21389,17 +21680,27 @@ Nature: Bold
 - Scald
 - Ice Beam
 - Recover
-- Haze
+- Dragon Tail
 
-Garchomp @ Garchompite
+Garchomp @ Loaded Dice
 Level: 100
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Rough Skin
 Nature: Jolly
-- Earthquake
-- Dragon Claw
-- Stone Edge
 - Swords Dance
+- Scale Shot
+- Earthquake
+- Iron Head
+
+Lucario @ Lucarionite
+Level: 100
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+Ability: Inner Focus
+Nature: Timid
+- Nasty Plot
+- Aura Sphere
+- Flash Cannon
+- Dark Pulse
 
 === TRAINER_SIDE_IRIS_HNS ===
 Name: IRIS
@@ -21978,9 +22279,9 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Shroomish @ Oran Berry
+Shroomish @ Big Root
 Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Effect Spore
 Nature: Relaxed
 - Leech Seed
@@ -21990,7 +22291,7 @@ Nature: Relaxed
 
 Houndour @ Charcoal
 Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flash Fire
 Nature: Timid
 - Incinerate
@@ -22004,9 +22305,9 @@ IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Huge Power
 Nature: Adamant
 - Aqua Jet
+- Play Rough
 - Ice Punch
 - Brick Break
-- Charm
 
 
 === TRAINER_ACE_R31_BRANT_HNS ===
@@ -22018,7 +22319,7 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Rolycoly @ Oran Berry
+Rolycoly @ Sitrus Berry
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Steam Engine
@@ -22030,7 +22331,7 @@ Nature: Impish
 
 Magnemite @ Eviolite
 Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Sturdy
 Nature: Modest
 - Charge Beam
@@ -22038,7 +22339,7 @@ Nature: Modest
 - Electroweb
 - Light Screen
 
-Tyrunt @ Sitrus Berry
+Tyrunt @ Muscle Band
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Strong Jaw
@@ -22058,11 +22359,11 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Noibat @ Oran Berry
+Noibat @ Sitrus Berry
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Infiltrator
-Nature: Timid
+Nature: Naive
 - Tailwind
 - U Turn
 - Air Cutter
@@ -22070,7 +22371,7 @@ Nature: Timid
 
 Goomy @ Eviolite
 Level: 15
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Gooey
 Nature: Calm
 - Dragon Breath
@@ -22110,7 +22411,7 @@ Nature: Timid
 
 Chinchou @ Eviolite
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Volt Absorb
 Nature: Modest
 - Thunder
@@ -22130,7 +22431,7 @@ Nature: Modest
 
 Brionne @ Mystic Water
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Liquid Voice
 Nature: Modest
 - Rain Dance
@@ -22160,7 +22461,7 @@ Nature: Careful
 
 Litwick @ Spell Tag
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Flash Fire
 Nature: Modest
 - Will O Wisp
@@ -22170,7 +22471,7 @@ Nature: Modest
 
 Zorua @ Black Glasses
 Level: 24
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Illusion
 Nature: Timid
 - Nasty Plot
@@ -22200,7 +22501,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Meowstic M @ Light Clay
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Prankster
 Nature: Bold
 - Reflect
@@ -22241,11 +22542,12 @@ Nature: Jolly
 Gyarados @ Wacan Berry
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk
 Ability: Moxie
 Nature: Jolly
 - Dragon Dance
 - Waterfall
-- Ice Fang
+- Crunch
 - Earthquake
 
 
@@ -22441,7 +22743,8 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Cofagrigus @ Mental Herb
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 4 Def / 252 SpA
 Ability: Mummy
 Nature: Quiet
 - Trick Room
@@ -22451,7 +22754,8 @@ Nature: Quiet
 
 Escavalier @ Choice Band
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Shell Armor
 Nature: Brave
 - Iron Head
@@ -22461,7 +22765,8 @@ Nature: Brave
 
 Reuniclus @ Life Orb
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Magic Guard
 Nature: Quiet
 - Trick Room
@@ -22471,7 +22776,8 @@ Nature: Quiet
 
 Ursaluna @ Expert Belt
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Bulletproof
 Nature: Brave
 - Headlong Rush
@@ -22481,13 +22787,14 @@ Nature: Brave
 
 Conkeldurr @ Flame Orb
 Level: 42
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Guts
 Nature: Brave
+- Facade
 - Drain Punch
 - Mach Punch
-- Knock Off
-- Ice Punch
+- Rock Slide
 
 
 === TRAINER_ACE_R40_KAIA_HNS ===
@@ -22499,19 +22806,21 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Incineroar @ Sitrus Berry
+Pelipper @ Damp Rock
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Intimidate
-Nature: Careful
-- Fake Out
-- Parting Shot
-- Knock Off
-- Flare Blitz
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Drizzle
+Nature: Timid
+- U Turn
+- Hurricane
+- Weather Ball
+- Roost
 
 Pawmot @ Focus Sash
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Iron Fist
 Nature: Jolly
 - Volt Switch
@@ -22522,6 +22831,7 @@ Nature: Jolly
 Golisopod @ Assault Vest
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
 Ability: Emergency Exit
 Nature: Adamant
 - First Impression
@@ -22529,25 +22839,27 @@ Nature: Adamant
 - Leech Life
 - Aqua Jet
 
-Corviknight @ Leftovers
+Barraskewda @ Choice Band
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Pressure
-Nature: Impish
-- U Turn
-- Brave Bird
-- Defog
-- Roost
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Swift Swim
+Nature: Jolly
+- Liquidation
+- Flip Turn
+- Close Combat
+- Psychic Fangs
 
 Meowscarada @ Life Orb
 Level: 42
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Protean
 Nature: Jolly
 - Flower Trick
 - Knock Off
 - U Turn
-- Triple Axel
+- Play Rough
 
 
 === TRAINER_ACE_R42_SOREN_HNS ===
@@ -22783,7 +23095,7 @@ Nature: Jolly
 - Close Combat
 - U Turn
 
-Scizor @ Choice Band
+Scizor @ Scizorite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
@@ -22807,7 +23119,7 @@ Nature: Jolly
 
 Butterfree @ Heavy Duty Boots
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Compound Eyes
 Nature: Timid
@@ -22818,7 +23130,7 @@ Nature: Timid
 
 Yanmega @ Heavy Duty Boots
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Speed Boost
 Nature: Timid
@@ -23044,7 +23356,7 @@ Nature: Jolly
 - Iron Head
 - Throat Chop
 
-Medicham @ Life Orb
+Medicham @ Medichamite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
@@ -23065,7 +23377,7 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Kangaskhan @ Silk Scarf
+Kangaskhan @ Kangaskhanite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
@@ -23089,7 +23401,7 @@ Nature: Impish
 
 Exploud @ Choice Specs
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Punk Rock
 Nature: Modest
@@ -23143,7 +23455,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Ninetales @ Heat Rock
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Drought
 Nature: Timid
@@ -23152,9 +23464,9 @@ Nature: Timid
 - Will O Wisp
 - Healing Wish
 
-Venusaur @ Life Orb
+Venusaur @ Venusaurite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Chlorophyll
 Nature: Modest
@@ -23176,7 +23488,7 @@ Nature: Timid
 
 Lilligant @ Focus Sash
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Chlorophyll
 Nature: Timid
@@ -23198,14 +23510,14 @@ Nature: Adamant
 
 Typhlosion @ Choice Scarf
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Flash Fire
 Nature: Timid
 - Eruption
 - Fire Blast
 - Focus Blast
-- Extrasensory
+- Solar Beam
 
 
 === TRAINER_ACE_R8_MORDECAI_HNS ===
@@ -23295,14 +23607,14 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Forretress @ Rocky Helmet
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Sturdy
 Nature: Relaxed
-- Spikes
 - Toxic Spikes
 - Rapid Spin
 - Volt Switch
+- Gyro Ball
 
 Ting Lu @ Leftovers
 Level: 90
@@ -23326,16 +23638,16 @@ Nature: Bold
 - Roost
 - U Turn
 
-Gengar @ Choice Specs
+Gengar @ Gengarite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Shadow Ball
 - Sludge Wave
-- Focus Blast
-- Trick
+- Thunderbolt
+- Will O Wisp
 
 Dugtrio @ Choice Band
 Level: 90
@@ -23467,7 +23779,7 @@ Nature: Jolly
 - Triple Axel
 - Ice Shard
 
-Lucario @ Focus Sash
+Lucario @ Lucarionite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
@@ -23521,16 +23833,16 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Froslass @ Focus Sash
+Grimmsnarl @ Light Clay
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 4 Def / 252 Spe
-Ability: Ice Body
-Nature: Timid
-- Spikes
-- Will O Wisp
-- Taunt
-- Destiny Bond
+EVs: 252 HP / 4 Def / 252 SpD
+Ability: Prankster
+Nature: Careful
+- Reflect
+- Light Screen
+- Parting Shot
+- Foul Play
 
 Poliwrath @ Sitrus Berry
 Level: 90
@@ -23543,21 +23855,10 @@ Nature: Jolly
 - Drain Punch
 - Ice Punch
 
-Hariyama @ Sitrus Berry
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 252 Atk / 4 SpD
-Ability: Thick Fat
-Nature: Adamant
-- Belly Drum
-- Bullet Punch
-- Close Combat
-- Knock Off
-
 Eiscue @ Lum Berry
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Ice Face
 Nature: Jolly
 - Belly Drum
@@ -23579,13 +23880,25 @@ Nature: Adamant
 Linoone @ Salac Berry
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Gluttony
 Nature: Jolly
 - Belly Drum
 - Extreme Speed
 - Shadow Claw
 - Seed Bomb
+
+Snorlax @ Snorlaxite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 Atk / 4 SpD
+Ability: Thick Fat
+Nature: Adamant
+Happiness: 255
+- Belly Drum
+- Return
+- Seed Bomb
+- Earthquake
 
 
 === TRAINER_ACE_R22_SERAPHINA_HNS ===
@@ -23599,7 +23912,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Tapu Fini @ Terrain Extender
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Misty Surge
 Nature: Calm
@@ -23619,16 +23932,16 @@ Nature: Adamant
 - Earthquake
 - Roar
 
-Gardevoir @ Choice Scarf
+Gardevoir @ Gardevoirite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Trace
 Nature: Timid
-- Moonblast
+- Hyper Voice
 - Psychic
 - Mystical Fire
-- Trick
+- Calm Mind
 
 Rapidash Galar @ Life Orb
 Level: 90
@@ -23649,10 +23962,10 @@ Ability: Triage
 Nature: Calm
 - Calm Mind
 - Draining Kiss
-- Giga Drain
+- U Turn
 - Synthesis
 
-Cloyster @ White Herb
+Cloyster @ Focus Sash
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
@@ -23661,7 +23974,7 @@ Nature: Adamant
 - Shell Smash
 - Icicle Spear
 - Rock Blast
-- Liquidation
+- Drill Run
 
 
 === TRAINER_ACE_R24_MAGNUS_HNS ===
@@ -23758,11 +24071,11 @@ Nature: Bold
 - Hurricane
 - Scald
 - U Turn
-- Roost
+- Tailwind
 
 Seismitoad @ Choice Specs
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Swift Swim
 Nature: Modest
@@ -23773,12 +24086,12 @@ Nature: Modest
 
 Ludicolo @ Life Orb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Swift Swim
 Nature: Modest
 - Hydro Pump
-- Giga Drain
+- Energy Ball
 - Ice Beam
 - Focus Blast
 
@@ -23804,13 +24117,13 @@ Nature: Adamant
 - Gunk Shot
 - Liquidation
 
-Ampharos @ Assault Vest
+Ampharos @ Ampharosite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Static
 Nature: Modest
-- Thunderbolt
+- Thunder
 - Dragon Pulse
 - Focus Blast
 - Power Gem
@@ -23880,14 +24193,14 @@ Nature: Jolly
 - Drill Run
 - Knock Off
 
-Aggron @ Weakness Policy
+Aggron @ Aggronite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
 Ability: Rock Head
 Nature: Adamant
 - Rock Polish
-- Head Smash
+- Stone Edge
 - Iron Head
 - Earthquake
 
@@ -23901,7 +24214,7 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Garbodor @ Rocky Helmet
+Garbodor @ Garbodorite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 Atk
@@ -24001,7 +24314,7 @@ Nature: Jolly
 
 Arboliva @ Big Root
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Seed Sower
 Nature: Modest
@@ -24010,7 +24323,7 @@ Nature: Modest
 - Earth Power
 - Strength Sap
 
-Coalossal @ Heavy Duty Boots
+Coalossal @ Coalossite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
@@ -24023,7 +24336,7 @@ Nature: Bold
 
 Lanturn @ Assault Vest
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Volt Absorb
 Nature: Modest
@@ -24055,8 +24368,8 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Accelgor @ Focus Sash
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Unburden
 Nature: Timid
 - Spikes
@@ -24067,7 +24380,7 @@ Nature: Timid
 Sharpedo @ Life Orb
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Speed Boost
 Nature: Adamant
 - Protect
@@ -24075,10 +24388,10 @@ Nature: Adamant
 - Liquidation
 - Close Combat
 
-Cinccino @ Kings Rock
+Cinccino @ Silk Scarf
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Skill Link
 Nature: Jolly
 - Tidy Up
@@ -24086,21 +24399,10 @@ Nature: Jolly
 - Bullet Seed
 - Rock Blast
 
-Manectric @ Expert Belt
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Ability: Lightning Rod
-Nature: Timid
-- Volt Switch
-- Thunderbolt
-- Overheat
-- Signal Beam
-
 Drifblim @ Sitrus Berry
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Unburden
 Nature: Timid
 - Calm Mind
@@ -24110,14 +24412,25 @@ Nature: Timid
 
 Espathra @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Speed Boost
 Nature: Timid
 - Protect
 - Calm Mind
 - Stored Power
 - Dazzling Gleam
+
+Swampert @ Swampertite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Torrent
+Nature: Adamant
+- Liquidation
+- Earthquake
+- Ice Punch
+- Superpower
 
 
 === TRAINER_ACE_R18_DUNCAN_HNS ===
@@ -24129,7 +24442,7 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Tyranitar @ Smooth Rock
+Tyranitar @ Tyranitarite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
@@ -24283,7 +24596,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Aurorus @ Light Clay
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Snow Warning
 Nature: Timid
@@ -24294,7 +24607,7 @@ Nature: Timid
 
 Rotom Frost @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Levitate
 Nature: Modest
@@ -24314,20 +24627,20 @@ Nature: Impish
 - Rapid Spin
 - Recover
 
-Lapras @ Assault Vest
+Lapras @ Laprasite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Water Absorb
 Nature: Modest
+- Hyper Voice
 - Freeze Dry
-- Surf
 - Thunderbolt
-- Psychic
+- Dragon Pulse
 
 Skeledirge @ Rocky Helmet
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Unaware
 Nature: Bold
@@ -24359,7 +24672,7 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Bronzong @ Leftovers
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Levitate
 Nature: Relaxed
@@ -24370,7 +24683,7 @@ Nature: Relaxed
 
 Altaria @ Heavy Duty Boots
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpA
 Ability: Natural Cure
 Nature: Bold
@@ -24392,8 +24705,8 @@ Nature: Modest
 
 Hydreigon @ Life Orb
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Levitate
 Nature: Timid
 - Nasty Plot
@@ -24401,27 +24714,27 @@ Nature: Timid
 - Dark Pulse
 - Flash Cannon
 
-Kingdra @ Lum Berry
-Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
-Ability: Sniper
-Nature: Adamant
-- Dragon Dance
-- Wave Crash
-- Scale Shot
-- Iron Head
-
 Garchomp @ Loaded Dice
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Rough Skin
 Nature: Jolly
 - Swords Dance
 - Scale Shot
 - Earthquake
 - Fire Fang
+
+Flapple @ Applite
+Level: 85
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Ripen
+Nature: Jolly
+- Dragon Dance
+- Outrage
+- Grav Apple
+- Sucker Punch
 
 
 === TRAINER_ACE_R29_KAITO_HNS ===
@@ -24433,7 +24746,7 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Shinx @ Oran Berry
+Luxio @ Sitrus Berry
 Level: 15
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Intimidate
@@ -24497,7 +24810,7 @@ Nature: Bold
 
 Porygon Z @ Choice Scarf
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Adaptability
 Nature: Timid
@@ -24508,7 +24821,7 @@ Nature: Timid
 
 Mismagius @ Focus Sash
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Levitate
 Nature: Timid
@@ -24517,7 +24830,7 @@ Nature: Timid
 - Dazzling Gleam
 - Thunderbolt
 
-Blaziken @ Life Orb
+Blaziken @ Blazikenite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
@@ -24599,9 +24912,9 @@ Music: Hg Girl 1
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Vulpix @ Heat Rock
+Ninetales @ Heat Rock
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Drought
 Nature: Timid
 - Flamethrower
@@ -24609,14 +24922,14 @@ Nature: Timid
 - Will O Wisp
 - Encore
 
-Gloom @ Eviolite
+Bellossom @ Miracle Seed
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 Ability: Chlorophyll
 Nature: Modest
-- Growth
+- Quiver Dance
 - Giga Drain
-- Sludge Bomb
+- Moonblast
 - Sleep Powder
 
 Krokorok @ Eviolite
@@ -24641,7 +24954,8 @@ Nature: Jolly
 
 Charmeleon @ Charcoal
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 SpA
 Ability: Solar Power
 Nature: Timid
 - Sunny Day
@@ -24671,7 +24985,7 @@ Nature: Impish
 
 Ferroseed @ Occa Berry
 Level: 33
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
 Ability: Iron Barbs
 Nature: Relaxed
 - Spikes
@@ -24702,6 +25016,7 @@ Nature: Adamant
 Lokix @ Silver Powder
 Level: 33
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 Atk
 Ability: Tinted Lens
 Nature: Jolly
 - First Impression
@@ -24792,7 +25107,8 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Politoed @ Damp Rock
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 4 Def / 252 SpD
 Ability: Drizzle
 Nature: Calm
 - Scald
@@ -24802,17 +25118,19 @@ Nature: Calm
 
 Ferrothorn @ Leftovers
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 0 Spe
+EVs: 252 HP / 252 Def / 4 SpD
 Ability: Iron Barbs
 Nature: Relaxed
 - Spikes
 - Leech Seed
-- Power Whip
 - Gyro Ball
+- Knock Off
 
 Kilowattrel @ Life Orb
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Volt Absorb
 Nature: Timid
 - Thunder
@@ -24820,19 +25138,21 @@ Nature: Timid
 - Volt Switch
 - Roost
 
-Goodra @ Assault Vest
+Kingdra @ Choice Specs
 Level: 50
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-Ability: Sap Sipper
-Nature: Modest
-- Draco Meteor
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Swift Swim
+Nature: Timid
 - Hydro Pump
-- Thunderbolt
-- Sludge Bomb
+- Draco Meteor
+- Hurricane
+- Ice Beam
 
 Drednaw @ White Herb
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Swift Swim
 Nature: Adamant
 - Shell Smash
@@ -24843,7 +25163,7 @@ Nature: Adamant
 Basculegion @ Choice Band
 Level: 50
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Swift Swim
 Nature: Adamant
 - Wave Crash
@@ -25265,7 +25585,7 @@ Nature: Careful
 
 Salazzle @ Focus Sash
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Corrosion
 Nature: Timid
@@ -25274,18 +25594,18 @@ Nature: Timid
 - Fire Blast
 - Sludge Wave
 
-Toxtricity Amped @ Throat Spray
+Toxtricity Amped @ Toxtricitite
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Punk Rock
 Nature: Modest
 - Overdrive
 - Boomburst
-- Sludge Bomb
+- Sludge Wave
 - Volt Switch
 
-Tsareena @ Choice Band
+Tsareena @ Choice Scarf
 Level: 85
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
@@ -25298,7 +25618,7 @@ Nature: Jolly
 
 Serperior @ Life Orb
 Level: 85
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 SpA / 4 SpD / 252 Spe
 Ability: Contrary
 Nature: Timid
@@ -25352,7 +25672,7 @@ Nature: Adamant
 
 Exeggutor @ Sitrus Berry
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Harvest
 Nature: Modest
@@ -25372,7 +25692,7 @@ Nature: Jolly
 - Earthquake
 - Throat Chop
 
-Gyarados @ Lum Berry
+Gyarados @ Gyaradosite
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 Atk / 4 SpD / 252 Spe
@@ -25393,11 +25713,11 @@ Music: Hg Suspicious 2
 Double Battle: No
 AI: Smart Trainer / Ace Pokemon / HP Aware
 
-Gigalith @ Custap Berry
+Gigalith @ Smooth Rock
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Atk / 4 SpD
-Ability: Sturdy
+Ability: Sand Stream
 Nature: Adamant
 - Stealth Rock
 - Gravity
@@ -25406,8 +25726,8 @@ Nature: Adamant
 
 Sigilyph @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Magic Guard
 Nature: Timid
 - Gravity
@@ -25426,38 +25746,38 @@ Nature: Adamant
 - Dynamic Punch
 - Ice Punch
 
-Glaceon @ Choice Specs
-Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
-Ability: Ice Body
-Nature: Modest
-- Blizzard
-- Freeze Dry
-- Shadow Ball
-- Water Pulse
-
 Rampardos @ Choice Scarf
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Mold Breaker
 Nature: Jolly
 - Head Smash
 - Earthquake
-- Zen Headbutt
-- Fire Punch
+- Crunch
+- Superpower
 
 Xurkitree @ Life Orb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Beast Boost
 Nature: Timid
 - Tail Glow
 - Thunderbolt
 - Energy Ball
 - Hypnosis
+
+Garchomp @ Garchompite
+Level: 90
+IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
+Ability: Rough Skin
+Nature: Jolly
+- Swords Dance
+- Earthquake
+- Stone Edge
+- Iron Head
 
 
 === TRAINER_ACE_ROCKTUN_1F_SABLE_HNS ===
@@ -25556,9 +25876,9 @@ Nature: Impish
 - U Turn
 - Knock Off
 
-Toxapex @ Black Sludge
+Toxapex @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
 Ability: Regenerator
 Nature: Bold
@@ -25589,11 +25909,11 @@ Nature: Sassy
 - Earthquake
 - Sludge Bomb
 
-Slowbro @ Leftovers
+Slowbro @ Slowbronite
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 252 Def / 4 SpD
-Ability: Regenerator
+Ability: Own Tempo
 Nature: Bold
 - Scald
 - Psyshock
@@ -25699,8 +26019,8 @@ AI: Smart Trainer / Ace Pokemon / HP Aware
 
 Jolteon @ Choice Specs
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
 Ability: Volt Absorb
 Nature: Timid
 - Thunderbolt
@@ -25710,7 +26030,7 @@ Nature: Timid
 
 Umbreon @ Leftovers
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
 EVs: 252 HP / 4 Def / 252 SpD
 Ability: Synchronize
 Nature: Careful
@@ -25730,21 +26050,21 @@ Nature: Bold
 - Scald
 - Flip Turn
 
-Glaceon @ Leftovers
+Espeon @ Life Orb
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 HP / 4 Def / 252 SpD
-Ability: Ice Body
-Nature: Calm
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 4 HP / 252 SpA / 252 Spe
+Ability: Magic Bounce
+Nature: Timid
 - Calm Mind
-- Freeze Dry
+- Psyshock
 - Shadow Ball
-- Protect
+- Dazzling Gleam
 
 Leafeon @ Lum Berry
 Level: 90
 IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 Atk / 4 SpD / 252 Spe
+EVs: 4 HP / 252 Atk / 252 Spe
 Ability: Sap Sipper
 Nature: Jolly
 - Swords Dance
@@ -25752,15 +26072,15 @@ Nature: Jolly
 - Knock Off
 - X Scissor
 
-Sylveon @ Choice Specs
+Sylveon @ Pixie Plate
 Level: 90
-IVs: 31 HP / 31 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
-EVs: 252 SpA / 4 SpD / 252 Spe
+IVs: 31 HP / 0 Atk / 31 Def / 31 SpA / 31 SpD / 31 Spe
+EVs: 252 HP / 252 SpA / 4 SpD
 Ability: Pixilate
 Nature: Modest
+- Calm Mind
 - Hyper Voice
 - Mystical Fire
-- Psyshock
 - Shadow Ball
 
 
