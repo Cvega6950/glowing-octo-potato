@@ -1,6 +1,6 @@
-"""The trainer standard's rules for the designed teams (the scratchpad's standard.md, rules tagged [V] and [W];
-redesign plan 2.1 item 4 and 3.4): every team in boss_teams.TEAMS, ace_trainer_data.ACES and UPGRADES, read
-with the build's own species, move and item data (species_db.py). validate.py runs them.
+"""The trainer standard's rules for the designed teams (docs/crystal_imperium/TRAINER_STANDARD.md, the rules tagged
+[V] and [W]; DECISIONS.md D59): every team in boss_teams.TEAMS, ace_trainer_data.ACES and UPGRADES, read with the
+build's own species, move and item data (species_db.py). validate.py runs them.
 
 A finding is an ERROR (CI fails) or a WARNING. A [V] rule the designed teams of 0.15.2 still break is listed in
 PENDING with the trainers that break it: their findings are warnings until the redesigned teams land, and any

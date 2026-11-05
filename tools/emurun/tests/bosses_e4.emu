@@ -1,7 +1,8 @@
 # Crystal Imperium play test for the Elite Four and Lance (tools/crystal_imperium/boss_teams.py),
 # at the cap of 85 (56 before 0.8.0), where every one of their Pokemon is since 0.7.0. The player's sixes hold items
 # from the first eight care packages (DECISIONS.md D16), as a player would by then. Koga faces the
-# prepared six of bosses_m3 played naively (one move per Pokemon, never switching). Will, Bruno,
+# prepared six of bosses_m3 with a game plan (Electric and Rock for Crobat, Ground for Toxapex and Muk,
+# Dark and Ground for Munkidori; naively it lost all 6 against the trainer standard's Koga). Will, Bruno,
 # Karen and Lance face sixes built for them, played with a game plan like a player's: for each of
 # the boss's Pokemon some of the six have a move to use against it, and if the Pokemon that is out
 # has none, the first of them that can still fight is switched in (autobattle in emu.py); no Choice
@@ -18,7 +19,7 @@ savestate base.ss
 savestate prep85.ss
 
 seenreset
-!sample_battle("TRAINER_KOGA_1_HNS", "2,2,1,0,0,0", 6, 1, 6, "prep85.ss")
+!sample_battle("TRAINER_KOGA_1_HNS", "0,0,1,0,0,0", 8, 1, 8, "prep85.ss", plan={"SPECIES_CROBAT": [(5, 0), (0, 1), (2, 1)], "SPECIES_TOXAPEX": [(3, 0), (5, 0), (2, 1)], "SPECIES_MUK_ALOLA": [(3, 0), (0, 2), (1, 2)], "SPECIES_VENOMOTH": [(0, 1), (4, 0), (2, 1), (5, 3)], "SPECIES_MUNKIDORI": [(0, 0), (3, 0)], "SPECIES_BEEDRILL": [(0, 1), (4, 0), (2, 1)], "SPECIES_BEEDRILL_MEGA": [(0, 1), (4, 0), (2, 1)]})
 !expect_const_seen("SPECIES_BEEDRILL_MEGA", "koga_mega_beedrill")
 
 # Will (a Trick Room team since the trainer standard): Dark and Ghost attackers, Fire for Bronzong and

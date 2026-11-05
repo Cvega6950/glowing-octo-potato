@@ -1,6 +1,32 @@
 # Crystal Imperium changelog
 
-## Unreleased (the trainer redesign, phase 1: engine and tools)
+## 0.17.0 (unreleased)
+
+### Every designed team redesigned (DECISIONS.md D59)
+- Trainers on Radical Red's and Emerald Imperium's level (the rival in the Burned Tower had a level-39
+  Quilava and Weepinbell). Both games' trainers were studied for how they are built (not for their
+  teams, which aren't copied), and that became the trainer standard (`TRAINER_STANDARD.md`): every
+  Pokémon as evolved as its level allows wherever its battle can be fought, real sets (an item, a nature
+  and an ability that fit, four useful moves), teams with a setup move, priority and a pivot or hazards,
+  EVs from the 3rd badge, Megas from the 3rd Gym on, and a legendary for each Elite Four member.
+- Every designed battle was redesigned to it, each team checked by script and read by a critic:
+  - The rival. His Burned Tower team is Pupitar with Stealth Rock, Crobat, Weavile, a Focus Sash Gengar,
+    Mega Absol and his fully evolved starter; every later battle has a Mega (Tyranitar from the 4th).
+  - Team Rocket: Proton's poison and Nasty Plot Houndoom; Petrel's Zoroark disguised as his Mega
+    Sableye; Ariana's three built for the tag battle beside Grunt 23; Archer's Kingambit and Mega
+    Houndoom.
+  - The Gym Leaders. Falkner's Tailwind, Whitney's Clefable and Miltank (a real wall now), Morty's Mega
+    Gengar, Chuck's and Jasmine's 5th, 6th and 7th Gym versions each a team of its own, and the
+    rematches.
+  - The Elite Four and Lance: Will's Trick Room with Cresselia and Mega Slowbro, Koga's Munkidori, Bruno's
+    Terrakion and Mega Machamp, Karen's Darkrai and Mega Houndoom, Lance's Raging Bolt and Latios.
+  - Kanto's Gym Leaders, Blue and the Kanto mini-bosses; Red keeps his six, and his Mega Charizard Y now
+    brings its sun (Drought).
+  - The side battles, the route mini-bosses, the Ace Trainers (a third with a Mega from the 5th badge, two
+    thirds from the 8th) and the Cooltrainers, whose rematch teams are each made for their own part of
+    the game (Gaven's last after the Kanto League).
+- The trainer AI is unchanged: the smart AI every trainer has (D20) did better in 126 test battles than
+  the engine's other options (the 2HKO check, move prediction).
 
 ### Teams fought later evolve
 - A boss's, Ace Trainer's or Cooltrainer's team fought after the part of the game it was made for

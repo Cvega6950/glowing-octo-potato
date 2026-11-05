@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Crystal Imperium's trainer play tests, written from the team tables (redesign plan 3.6) so they always match
+"""Crystal Imperium's trainer play tests, written from the team tables (DECISIONS.md D59) so they always match
 them. This first version writes tools/emurun/tests/designed_species.emu: every designed battle (boss_teams.TEAMS,
 ace_trainer_data.ACES and UPGRADES) started from the debug menu with the player at the team's own stage, and its
 whole team checked as the battle code fields it there: the team size, every Pokemon at its stage's cap, as the

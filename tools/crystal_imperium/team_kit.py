@@ -1,4 +1,4 @@
-"""Crystal Imperium's team kit (scratchpad redesign plan 2.1, docs/crystal_imperium/DECISIONS.md D47, D56): the
+"""Crystal Imperium's team kit (docs/crystal_imperium/DECISIONS.md D47, D56, D59): the
 mon() every designed team is written with, and the party file renderer the generators share
 (boss_teams.py for the bosses, ace_trainers.py for the Ace Trainers and the upgraded Cooltrainers).
 

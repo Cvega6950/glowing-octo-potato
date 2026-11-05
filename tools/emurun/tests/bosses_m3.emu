@@ -91,7 +91,9 @@ expectne8 {gBattleOutcome} 0 clair_resolved
 # Winnable with a well-built team. Since 0.7.0 every boss Pokemon is at the cap, and the player's
 # teams hold items from the care packages they have by then (DECISIONS.md D16). Morty, Jasmine
 # and Clair face the prepared six (prepared_team with items: Life Orb, Leftovers, Choice Specs,
-# Focus Sash, Choice Band, Expert Belt), played naively (one move per Pokemon, no switching). The
+# Focus Sash, Choice Band, Expert Belt), Jasmine and Clair played naively (one move per Pokemon, no
+# switching), Morty with a game plan since the trainer standard's Mega Gengar (naively 2 and 0 wins
+# in 24 on mGBA and VBA-M; its Choice holders keep to one move each). The
 # prepared six beat Pryce only 1 time in 16 even with items and a game plan (0 in 16 without), so
 # Chuck and Pryce face sixes built for them, played with a game plan like the Elite Four's
 # (bosses_e4): they won 16 of 16 and 13 of 16 when built. Each Gym Leader must be beaten at least
@@ -103,7 +105,7 @@ expectne8 {gBattleOutcome} 0 clair_resolved
 loadstate base.ss
 !prepared_team(42, items=True)
 savestate prep42.ss
-!sample_battle("TRAINER_MORTY_1_HNS", "0,0,1,0,3,0", 24, 1, 24, "prep42.ss")
+!sample_battle("TRAINER_MORTY_1_HNS", "0,0,0,0,3,0", 24, 1, 24, "prep42.ss", plan={"SPECIES_MAROWAK_ALOLA": [(1, 0), (0, 0), (3, 0)], "SPECIES_SABLEYE": [(2, 0), (0, 0)], "SPECIES_MISDREAVUS": [(0, 0), (4, 3)], "SPECIES_DRIFBLIM": [(5, 0), (0, 0), (4, 3)], "SPECIES_MIMIKYU": [(3, 0), (1, 0)], "SPECIES_GENGAR": [(3, 0), (0, 0)], "SPECIES_GENGAR_MEGA": [(3, 0), (0, 0)]})
 loadstate base.ss
 !prepared_team(50, items=True)
 savestate prep50.ss
