@@ -91,9 +91,12 @@ expectne8 {gBattleOutcome} 0 clair_resolved
 # Winnable with a well-built team. Since 0.7.0 every boss Pokemon is at the cap, and the player's
 # teams hold items from the care packages they have by then (DECISIONS.md D16). Morty, Jasmine
 # and Clair face the prepared six (prepared_team with items: Life Orb, Leftovers, Choice Specs,
-# Focus Sash, Choice Band, Expert Belt), Jasmine and Clair played naively (one move per Pokemon, no
-# switching), Morty with a game plan since the trainer standard's Mega Gengar (naively 2 and 0 wins
-# in 24 on mGBA and VBA-M; its Choice holders keep to one move each). The
+# Focus Sash, Choice Band, Expert Belt), Clair played naively (one move per Pokemon, no switching),
+# Morty and Jasmine with a game plan since the trainer standard (its Choice holders keep to one move
+# each): against Morty's Mega Gengar the naive line won 2 and 0 of 24 (mGBA, VBA-M), against
+# Jasmine's Air Balloon Magnezone, Levitate Bronzong and Skarmory, which its Ground moves miss, 3
+# and 1 of 16; the plan sends Fire at her Steel types, Electric at Skarmory and Water and Fighting
+# at Mega Steelix. The
 # prepared six beat Pryce only 1 time in 16 even with items and a game plan (0 in 16 without), so
 # Chuck and Pryce face sixes built for them, played with a game plan like the Elite Four's
 # (bosses_e4): they won 16 of 16 and 13 of 16 when built. Each Gym Leader must be beaten at least
@@ -110,7 +113,7 @@ loadstate base.ss
 !prepared_team(50, items=True)
 savestate prep50.ss
 seenreset
-!sample_battle("TRAINER_JASMINE_1_HNS", "1,2,2,0,0,2", 16, 1, 16, "prep50.ss")
+!sample_battle("TRAINER_JASMINE_1_HNS", "1,2,2,0,0,2", 16, 1, 16, "prep50.ss", plan={"SPECIES_SKARMORY": [(5, 0), (4, 0), (2, 2)], "SPECIES_MAGNEZONE": [(4, 0), (2, 2), (5, 2)], "SPECIES_BRONZONG": [(4, 0), (2, 2), (0, 0)], "SPECIES_MAWILE": [(4, 0), (3, 0), (2, 2)], "SPECIES_SCIZOR": [(4, 0), (2, 2), (3, 2)], "SPECIES_STEELIX": [(1, 0), (5, 2), (4, 0), (3, 0)], "SPECIES_STEELIX_MEGA": [(1, 0), (5, 2), (4, 0), (3, 0)]})
 !expect_const_seen("SPECIES_STEELIX_MEGA", "jasmine_mega_steelix")
 
 # Chuck: Psychic, Flying and Fairy attackers (Talonflame with a Lum Berry against Breloom's Spore)

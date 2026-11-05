@@ -6,9 +6,9 @@
 #   are tallied and reported, not required.
 # - A six built for Blue, holding care-package items and Mega Evolving Ampharos, played with a
 #   game plan (autobattle in emu.py: for each of his Pokemon some of the six have a move, and one of
-#   them is switched in if the Pokemon out has none), beats him at least once in 24 tries, as Red's
-#   test does (1 of 6 on VBA-M against the trainer standard's Blue; 10 of 12 against his 0.16.0
-#   team, naively 1 of 12).
+#   them is switched in if the Pokemon out has none), beats him at least once in 16 tries (9 and 7
+#   of 24 on mGBA and VBA-M against the trainer standard's Blue; 10 of 12 against his 0.16.0 team,
+#   naively 1 of 12).
 # - The prepared six at level 100 reaches each leader's and Blue's ace: every Mega Evolution happens.
 !new_game()
 !battle_style_set()
@@ -32,15 +32,17 @@ expectne8 {gBattleOutcome} 0 sabrina_resolved
 !sample_battle("TRAINER_BLAINE_HNS", "1,0,1,0,2,3", 1, 0, 1, "prep90.ss")
 expectne8 {gBattleOutcome} 0 blaine_resolved
 
-# Blue: a six built for him (Fairy for Machamp, Bug for Exeggutor, Water for Rhyperior and Arcanine,
-# Electric for Gyarados and Pidgeot from a Rotom-Wash, which a Dragon Dance Gyarados can't sweep
-# (Levitate, and it resists Waterfall),
+# Blue: a six built for him (Flying for Machamp and Exeggutor from an Intimidate Staraptor, Bug for
+# Exeggutor, Water and Ground for Rhyperior and Arcanine, Electric for Gyarados and Pidgeot from a
+# Rotom-Wash, which a Dragon Dance Gyarados can't sweep: Levitate, and it resists Waterfall),
 # holding care-package items and Mega Evolving Ampharos, as Red's six does (red.emu): without them the
-# six lost all 12 battles against the trainer standard's Blue, whose Dragon Dance Gyarados swept it
+# six lost all 12 battles against the trainer standard's Blue, whose Dragon Dance Gyarados swept it.
+# With Gardevoir and Lucario where Staraptor and Garchomp are (Machamp's Knock Off and Stone Edge met
+# Blue's switch-ins) it won 1 and 2 of 24 (mGBA, VBA-M); this six won 9 and 7 of 24
 loadstate base.ss
 !give_mon_complex("SPECIES_SWAMPERT", 90, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_EARTHQUAKE', 'MOVE_ICE_PUNCH', 'MOVE_STEALTH_ROCK'])
-!give_mon_complex("SPECIES_GARDEVOIR", 90, "NATURE_MODEST", 0, ['MOVE_MOONBLAST', 'MOVE_PSYCHIC', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
-!give_mon_complex("SPECIES_LUCARIO", 90, "NATURE_ADAMANT", 1, ['MOVE_CLOSE_COMBAT', 'MOVE_EXTREME_SPEED', 'MOVE_ICE_PUNCH', 'MOVE_SWORDS_DANCE'])
+!give_mon_complex("SPECIES_STARAPTOR", 90, "NATURE_ADAMANT", 0, ['MOVE_BRAVE_BIRD', 'MOVE_CLOSE_COMBAT', 'MOVE_U_TURN', 'MOVE_QUICK_ATTACK'])
+!give_mon_complex("SPECIES_GARCHOMP", 90, "NATURE_JOLLY", 0, ['MOVE_EARTHQUAKE', 'MOVE_DRAGON_CLAW', 'MOVE_STONE_EDGE', 'MOVE_SWORDS_DANCE'])
 !give_mon_complex("SPECIES_VOLCARONA", 90, "NATURE_MODEST", 0, ['MOVE_BUG_BUZZ', 'MOVE_FIERY_DANCE', 'MOVE_GIGA_DRAIN', 'MOVE_QUIVER_DANCE'])
 !give_mon_complex("SPECIES_AMPHAROS", 90, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
 !give_mon_complex("SPECIES_ROTOM_WASH", 90, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_HYDRO_PUMP', 'MOVE_WILL_O_WISP', 'MOVE_PAIN_SPLIT'])
@@ -52,7 +54,7 @@ loadstate base.ss
 !hold_item("ITEM_SITRUS_BERRY", 5)
 !give_item("ITEM_MEGA_RING")
 savestate blue90.ss
-!sample_battle("TRAINER_BLUE_HNS", "0,0,0,0,0m,0", 24, 1, 24, "blue90.ss", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 1), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 1)], "SPECIES_GYARADOS": [(5, 0), (4, 0)], "SPECIES_PIDGEOT": [(5, 0), (4, 0)], "SPECIES_PIDGEOT_MEGA": [(5, 0), (4, 0)]})
+!sample_battle("TRAINER_BLUE_HNS", "0,0,0,0,0m,0", 16, 1, 16, "blue90.ss", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (1, 0)], "SPECIES_RHYPERIOR": [(0, 0), (2, 0), (5, 1)], "SPECIES_ARCANINE": [(0, 1), (2, 0), (5, 1)], "SPECIES_GYARADOS": [(5, 0), (4, 0)], "SPECIES_PIDGEOT": [(5, 0), (4, 0), (2, 2)], "SPECIES_PIDGEOT_MEGA": [(5, 0), (4, 0), (2, 2)]})
 
 # Every leader's Mega Evolution, with the prepared six at level 100. A leader's Mega is the ace,
 # her or his last Pokemon; at 90 (70 before 0.8.0) a leader can beat the naive six before it comes
@@ -86,8 +88,8 @@ seenreset
 # before it comes out, so the six built for him, at level 100 and with its game plan, checks it
 loadstate base.ss
 !give_mon_complex("SPECIES_SWAMPERT", 100, "NATURE_ADAMANT", 0, ['MOVE_WATERFALL', 'MOVE_EARTHQUAKE', 'MOVE_ICE_PUNCH', 'MOVE_STEALTH_ROCK'])
-!give_mon_complex("SPECIES_GARDEVOIR", 100, "NATURE_MODEST", 0, ['MOVE_MOONBLAST', 'MOVE_PSYCHIC', 'MOVE_MYSTICAL_FIRE', 'MOVE_CALM_MIND'])
-!give_mon_complex("SPECIES_LUCARIO", 100, "NATURE_ADAMANT", 1, ['MOVE_CLOSE_COMBAT', 'MOVE_EXTREME_SPEED', 'MOVE_ICE_PUNCH', 'MOVE_SWORDS_DANCE'])
+!give_mon_complex("SPECIES_STARAPTOR", 100, "NATURE_ADAMANT", 0, ['MOVE_BRAVE_BIRD', 'MOVE_CLOSE_COMBAT', 'MOVE_U_TURN', 'MOVE_QUICK_ATTACK'])
+!give_mon_complex("SPECIES_GARCHOMP", 100, "NATURE_JOLLY", 0, ['MOVE_EARTHQUAKE', 'MOVE_DRAGON_CLAW', 'MOVE_STONE_EDGE', 'MOVE_SWORDS_DANCE'])
 !give_mon_complex("SPECIES_VOLCARONA", 100, "NATURE_MODEST", 0, ['MOVE_BUG_BUZZ', 'MOVE_FIERY_DANCE', 'MOVE_GIGA_DRAIN', 'MOVE_QUIVER_DANCE'])
 !give_mon_complex("SPECIES_AMPHAROS", 100, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_DRAGON_PULSE', 'MOVE_FOCUS_BLAST', 'MOVE_POWER_GEM'])
 !give_mon_complex("SPECIES_ROTOM_WASH", 100, "NATURE_MODEST", 0, ['MOVE_THUNDERBOLT', 'MOVE_HYDRO_PUMP', 'MOVE_WILL_O_WISP', 'MOVE_PAIN_SPLIT'])
@@ -100,5 +102,5 @@ seenreset
 !hold_item("ITEM_SITRUS_BERRY", 5)
 !give_item("ITEM_MEGA_RING")
 !battle("TRAINER_BLUE_HNS")
-!autobattle("0,0,0,0,0m,0", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (2, 2)], "SPECIES_RHYPERIOR": [(0, 0), (5, 1), (2, 0)], "SPECIES_ARCANINE": [(0, 1), (5, 1)], "SPECIES_GYARADOS": [(5, 0), (4, 0)], "SPECIES_PIDGEOT": [(5, 0), (4, 0)], "SPECIES_PIDGEOT_MEGA": [(5, 0), (4, 0)]})
+!autobattle("0,0,0,0,0m,0", plan={"SPECIES_MACHAMP": [(1, 0), (4, 0), (0, 0)], "SPECIES_EXEGGUTOR": [(3, 0), (1, 0)], "SPECIES_RHYPERIOR": [(0, 0), (2, 0), (5, 1)], "SPECIES_ARCANINE": [(0, 1), (2, 0), (5, 1)], "SPECIES_GYARADOS": [(5, 0), (4, 0)], "SPECIES_PIDGEOT": [(5, 0), (4, 0), (2, 2)], "SPECIES_PIDGEOT_MEGA": [(5, 0), (4, 0), (2, 2)]})
 !expect_const_seen("SPECIES_PIDGEOT_MEGA", "blue_mega_pidgeot")

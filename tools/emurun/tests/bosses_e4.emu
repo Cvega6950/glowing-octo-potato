@@ -11,7 +11,8 @@
 # (Lance, beaten about one try in five, gets 24), so a pass or a fail is not luck. With the items
 # (0.7.0) Will was beaten 9 and 7 times in 16 (mGBA, VBA-M), Bruno 10 and 9, Lance 9 in 24 on
 # VBA-M; Karen, 1 of 8 on VBA-M without items, and Bruno, 2 and 1 of 6 in one regression run,
-# get 12 tries.
+# got 12 tries, which Bruno keeps. The trainer standard's Karen (Darkrai, Mega Houndoom) was beaten
+# 3 and 4 times in 12 (mGBA, VBA-M), so she gets 18.
 !new_game()
 !battle_style_set()
 savestate base.ss
@@ -81,7 +82,7 @@ loadstate base.ss
 !hold_item("ITEM_ASSAULT_VEST", 5)
 savestate karen85.ss
 seenreset
-!sample_battle("TRAINER_KAREN_1_HNS", "0,0,0,0,0,0", 12, 1, 12, "karen85.ss", plan={"SPECIES_UMBREON": [(0, 0), (4, 0), (2, 0), (3, 2)], "SPECIES_VILEPLUME": [(2, 1), (4, 1), (1, 2), (0, 2)], "SPECIES_HONCHKROW": [(3, 0), (5, 1), (2, 0), (4, 0)], "SPECIES_GENGAR": [(2, 1), (5, 0), (1, 1)], "SPECIES_DARKRAI": [(2, 0), (0, 0), (4, 0)], "SPECIES_HOUNDOOM": [(1, 0), (5, 1), (0, 0), (3, 2)], "SPECIES_HOUNDOOM_MEGA": [(1, 0), (5, 1), (0, 0), (3, 2)]})
+!sample_battle("TRAINER_KAREN_1_HNS", "0,0,0,0,0,0", 18, 1, 18, "karen85.ss", plan={"SPECIES_UMBREON": [(0, 0), (4, 0), (2, 0), (3, 2)], "SPECIES_VILEPLUME": [(2, 1), (4, 1), (1, 2), (0, 2)], "SPECIES_HONCHKROW": [(3, 0), (5, 1), (2, 0), (4, 0)], "SPECIES_GENGAR": [(2, 1), (5, 0), (1, 1)], "SPECIES_DARKRAI": [(2, 0), (0, 0), (4, 0)], "SPECIES_HOUNDOOM": [(1, 0), (5, 1), (0, 0), (3, 2)], "SPECIES_HOUNDOOM_MEGA": [(1, 0), (5, 1), (0, 0), (3, 2)]})
 !expect_const_seen("SPECIES_HOUNDOOM_MEGA", "karen_mega_houndoom")
 
 # Lance: Electric for Gyarados and Aerodactyl, Rock for Charizard, Ice and Fairy for the Dragons
