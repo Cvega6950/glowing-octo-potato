@@ -349,7 +349,7 @@ struct AutoSyms
     uint32_t main, outcome, ctrl, act, mov, actcur, movcur, partyidx, party, count, pmenu, pmenucb2, battlecb2, mons, ppoff;
 };
 
-#define MAX_PLAN 16
+#define MAX_PLAN 64 // emu.py refuses a longer plan
 struct PlanRule
 {
     unsigned species;
@@ -647,7 +647,7 @@ int main(int argc, char **argv)
         fprintf(stderr, "could not open script %s\n", argv[2]);
         return 1;
     }
-    char line[512];
+    char line[4096]; // emu.py refuses a longer line, which fgets would split
     int lineNo = 0;
     while (fgets(line, sizeof(line), script))
     {

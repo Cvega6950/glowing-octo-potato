@@ -1332,6 +1332,12 @@ def weaken_opponents(count, hp=1):
     return out + [f"poke16 {{gEnemyParty+{i * v['psize'] + v['php']}}} {hp}" for i in range(count)]
 
 
+# emurun.c's limits: its script lines (char line[4096]) and a game plan's rules (MAX_PLAN). A longer line was split
+# by fgets into a bogus command, and rules past the limit were dropped, so both are refused here instead.
+MAX_LINE = 4095
+MAX_PLAN = 64
+
+
 def autobattle(moves, max_frames=60000, plan=None):
     """Play the current battle to the end. moves: per party slot, the move slot (0-3) to use,
     e.g. "2,3,1,2"; add 'm' to Mega Evolve first ("2m"). Forced switches pick the first healthy
@@ -1350,6 +1356,8 @@ def autobattle(moves, max_frames=60000, plan=None):
     if plan:
         ids = probe.resolve({sp: sp for sp in plan})
         rules = [(sp, r) for sp, rs in plan.items() for r in (rs if isinstance(rs, list) else [rs])]
+        if len(rules) > MAX_PLAN:
+            raise ValueError(f"a plan of {len(rules)} rules; emurun takes {MAX_PLAN} (MAX_PLAN in emurun.c)")
         keys.append("plan=" + "/".join(f"{ids[sp]}:{slot}.{move}" for sp, (slot, move) in rules))
     return [f"autobattle {moves} {max_frames} " + " ".join(keys)]
 
@@ -1422,6 +1430,9 @@ def expand(path, syms):
             lines += [re.sub(r"\{([\w@]+)(?:\+(\d+))?\}", sub, l) for l in eval(line[1:])]
         else:
             lines.append(re.sub(r"\{([\w@]+)(?:\+(\d+))?\}", sub, line))
+    long = [l for l in lines if len(l) >= MAX_LINE]
+    if long:
+        sys.exit(f"{path}: a script line of {len(long[0])} characters; emurun reads {MAX_LINE - 1}: {long[0][:80]}...")
     return lines
 
 
