@@ -109,6 +109,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleScript = BattleScript_EffectSpecialAttackUp3,
         .battleTvScore = 0, // TODO: Assign points
         .battleFactoryStyle = FACTORY_STYLE_PREPARATION,
+        .encourageEncore = TRUE, // Crystal Imperium (DECISIONS.md D60): a boost Encore would lock in
     },
 
     [EFFECT_ATTACK_DOWN] =
@@ -1537,6 +1538,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     {
         .battleScript = BattleScript_EffectQuiverDance,
         .battleTvScore = 0, // TODO: Assign points
+        .encourageEncore = TRUE, // Crystal Imperium (DECISIONS.md D60): a boost Encore would lock in
     },
 
     [EFFECT_COIL] =
@@ -1835,6 +1837,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
         .battleScript = BattleScript_EffectGeomancy,
         .battleTvScore = 0, // TODO: Assign points
         .twoTurnEffect = TRUE,
+        .encourageEncore = TRUE, // Crystal Imperium (DECISIONS.md D60): a boost Encore would lock in
     },
 
     [EFFECT_FAIRY_LOCK] =
@@ -1971,6 +1974,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     {
         .battleScript = BattleScript_EffectClangorousSoul,
         .battleTvScore = 0, // TODO: Assign points
+        .encourageEncore = TRUE, // Crystal Imperium (DECISIONS.md D60): a boost Encore would lock in
     },
 
     [EFFECT_BOLT_BEAK] =
@@ -2059,6 +2063,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     {
         .battleScript = BattleScript_EffectTakeHeart,
         .battleTvScore = 0, // TODO: Assign points
+        .encourageEncore = TRUE, // Crystal Imperium (DECISIONS.md D60): a boost Encore would lock in
     },
 
     [EFFECT_COLLISION_COURSE] =
@@ -2115,6 +2120,7 @@ const struct BattleMoveEffect gBattleMoveEffects[NUM_BATTLE_MOVE_EFFECTS] =
     {
         .battleScript = BattleScript_EffectFilletAway,
         .battleTvScore = 0, // TODO: Assign points
+        .encourageEncore = TRUE, // Crystal Imperium (DECISIONS.md D60): a boost Encore would lock in
     },
 
     [EFFECT_IVY_CUDGEL] =

@@ -29,6 +29,7 @@
 #include "test_runner.h"
 #include "trig.h"
 #include "trainer_slide.h"
+#include "difficulty.h"
 #include "window.h"
 #include "battle_message.h"
 #include "battle_ai_main.h"
@@ -6490,12 +6491,25 @@ static inline u32 CalcMoveBasePower(struct BattleContext *ctx)
         }
         break;
     case EFFECT_PAYBACK:
-        if (HasBattlerActedThisTurn(battlerDef)
+        // Crystal Imperium (DECISIONS.md D60): while the AI chooses, this turn's order isn't known yet
+        // (the "has acted" data is last turn's); an Imperium trainer's estimate uses the order it expects
+        if (ctx->aiCalc && ctx->aiOrderExpected)
+        {
+            if (!ctx->aiAtkMovesFirst)
+                basePower *= 2;
+        }
+        else if (HasBattlerActedThisTurn(battlerDef)
             && (B_PAYBACK_SWITCH_BOOST < GEN_5 || gBattleStruct->battlerState[battlerDef].isFirstTurn != 2))
             basePower *= 2;
         break;
     case EFFECT_BOLT_BEAK:
-        if (!HasBattlerActedThisTurn(battlerDef)
+        // Crystal Imperium (DECISIONS.md D60): from the order the AI expects (see Payback)
+        if (ctx->aiCalc && ctx->aiOrderExpected)
+        {
+            if (ctx->aiAtkMovesFirst)
+                basePower *= 2;
+        }
+        else if (!HasBattlerActedThisTurn(battlerDef)
             || gBattleStruct->battlerState[battlerDef].isFirstTurn == 2)
             basePower *= 2;
         break;
@@ -6696,7 +6710,9 @@ static inline u32 CalcMoveBasePowerAfterModifiers(struct BattleContext *ctx)
             modifier = uq4_12_multiply(modifier, UQ_4_12(0.75));
         break;
     case ABILITY_ANALYTIC:
-        if (IsLastMonToMove(battlerAtk) && moveEffect != EFFECT_FUTURE_SIGHT)
+        // Crystal Imperium (DECISIONS.md D60): from the order the AI expects (see Payback)
+        if ((ctx->aiCalc && ctx->aiOrderExpected ? !ctx->aiAtkMovesFirst : IsLastMonToMove(battlerAtk))
+         && moveEffect != EFFECT_FUTURE_SIGHT)
            modifier = uq4_12_multiply(modifier, UQ_4_12(1.3));
         break;
     case ABILITY_TOUGH_CLAWS:
@@ -9153,6 +9169,10 @@ uq4_12_t GetBadgeBoostModifier(void)
 
 bool32 ShouldGetStatBadgeBoost(u16 badgeFlag, enum BattlerId battler)
 {
+    // Crystal Imperium (DECISIONS.md D25, D60): HARD plays by Emerald Imperium's rules, where Gym Badges
+    // don't boost stats (they stopped in Gen 4); NORMAL and EASY keep Heart & Soul's Gen 3 boosts
+    if (GetCurrentDifficultyLevel() == DIFFICULTY_HARD)
+        return FALSE;
     if (GetConfig(B_BADGE_BOOST) <= GEN_3 && badgeFlag != 0)
     {
         if (gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_EREADER_TRAINER | BATTLE_TYPE_RECORDED_LINK | BATTLE_TYPE_FRONTIER))

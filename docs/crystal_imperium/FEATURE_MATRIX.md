@@ -29,7 +29,8 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 |---|---|---|
 | Difficulty selection EASY / NORMAL / HARD | Done | emu: `difficulty` (every trainer at the cap on every difficulty since 0.15.2: Falkner's and Youngster Albert's Pokémon at 15 on EASY with NORMAL caps and 12 on HARD with HARD caps; a Grunt's Koffing at 12 on HARD; Albert's at 15 with LEVEL CAP off). DECISIONS.md D11, D56. |
 | HARD: SET battle style and no Bag in trainer battles (Emerald Imperium / Radical Red rules) | Done | emu: `hard_mode_rules` (SET in trainer and wild battles, BAG refused in a trainer battle and open in a wild one; NORMAL keeps SHIFT). D25. |
-| Smart AI for every trainer (omniscient, smart switching, HP aware) | Done | NORMAL/HARD; EASY keeps HnS's AI. D20. emu: whole suite; no extra time per turn. |
+| Emerald Imperium's boss AI for every trainer (omniscient, smart switching and switch-ins, EI's behaviours: Shell Smash, set-up safety, pivots, phazing, the stronger attack) | Done | NORMAL/HARD; EASY keeps each trainer's party-data AI (HnS's for ordinary trainers). D20, D60. Unit tests `test/battle/ai/ai_imperium.c` (12: Shell Smash, set-up safety, pivots, charge turns, Encore); measured AI-vs-AI over the 210 designed battles of the play tests, which also count Shell Smash and phazing (`tools/emurun/ai_measure.py`); emu: whole suite. |
+| HARD: no badge stat boosts (Emerald Imperium's rule) | Done | D25, D60. Unit test `test/battle/badge_boost_imperium.c`. |
 | Sleep Clause | Done | build. Imperium behaviour, both sides. |
 | Falkner competitive team (six since 0.8.0) | Done | emu: `falkner` (all six at the cap, 15). See BALANCE.md. D30. |
 | Violet Gym trainers, Elder Li | Done | build + val. Not yet battled in the emulator. |

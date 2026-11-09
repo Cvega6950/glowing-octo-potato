@@ -1,6 +1,8 @@
 #ifndef GUARD_BATTLE_AI_UTIL_H
 #define GUARD_BATTLE_AI_UTIL_H
 
+#include "constants/battle_ai.h"
+
 #include "battle_ai_main.h"
 #include "battle_ai_field_statuses.h"
 
@@ -20,6 +22,12 @@ enum DamageCalcContext
 {
     AI_DEFENDING,
     AI_ATTACKING,
+    // Crystal Imperium (DECISIONS.md D60). With AI_FLAG_IMPERIUM_HIGH_ROLLS an AI reads its own attacks
+    // on the field (AI_ATTACKING) at their highest roll, as Emerald Imperium does; a party member
+    // weighed as a switch-in still reads the median. An Imperium trainer weighs a stat boost against
+    // the foe's highest roll. For any other AI these are AI_ATTACKING and AI_DEFENDING.
+    AI_ATTACKING_SWITCHIN,
+    AI_DEFENDING_SETUP,
 };
 
 enum AiConsiderEndure
@@ -33,6 +41,7 @@ enum AiConsiderEndure
 enum AiCompareMovesPriority
 {
     PRIORITY_EFFECT,
+    PRIORITY_MORE_DAMAGE, // Crystal Imperium (D60): an Imperium trainer's clearly stronger attack
     PRIORITY_ACCURACY,
     PRIORITY_GUARANTEE,
     PRIORITY_AVOID_SELF_SACRIFICE,
@@ -67,6 +76,12 @@ enum ConsiderPriority
     DONT_CONSIDER_PRIORITY,
     CONSIDER_PRIORITY,
 };
+
+// Crystal Imperium (DECISIONS.md D60): whether the battler plays with Emerald Imperium's AI behaviours
+static inline bool32 IsImperiumAi(enum BattlerId battler)
+{
+    return (gAiThinkingStruct->aiFlags[battler] & AI_FLAG_IMPERIUM) != 0;
+}
 
 static inline bool32 IsMoveUnusable(u32 moveIndex, enum Move move, u32 moveLimitations)
 {

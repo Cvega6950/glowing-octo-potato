@@ -134,7 +134,9 @@ struct BattleContext
     u32 airBalloonBlocked:1;
     u32 abilityBlocked:1;
     u32 runScript:1;  // Used during actual combat where scripts have to be run / flags need to be set
-    u32 padding:22;
+    u32 aiOrderExpected:1; // Crystal Imperium (D60): an AI estimate uses the order it expects this turn...
+    u32 aiAtkMovesFirst:1; // ...in which the attacker moves first
+    u32 padding:20;
 };
 
 // Helper struct to keep the arg list small and prevent constant recalculations of abilities/hold effects.

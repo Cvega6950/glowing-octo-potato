@@ -4,9 +4,9 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.17.0-experimental).** The full Heart & Soul story is in and playable.
-> All the systems listed below work and are tested in an emulator. Every trainer uses the smart AI
-> and fights at your level cap, every boss from the rival to Red, rematches and postgame included,
+> **Status: in development (0.18.0-experimental).** The full Heart & Soul story is in and playable.
+> All the systems listed below work and are tested in an emulator. Every trainer fights at your
+> level cap (on NORMAL and HARD with Emerald Imperium's boss AI), every boss from the rival to Red, rematches and postgame included,
 > has a team built to a trainer standard on Radical Red's and Emerald Imperium's level (as are the
 > side battles, route mini-bosses and Ace Trainers), with all of its Pokémon at the level cap, Ace
 > Trainers wait along the way, the Pokémon have Emerald Imperium's abilities, move pools and
@@ -87,8 +87,9 @@ From the first step of a new game:
   your cap (NORMAL or HARD caps, on every difficulty), and no wild, DexNav, legendary or gift
   Pokémon is above it.
 - **HARD plays by Emerald Imperium's and Radical Red's rules:** the SET battle style (no "Will
-  you switch Pokémon?" after a knockout) and no Bag in trainer battles, with the HARD level
-  caps (trainers are at your cap on every difficulty, so HARD doesn't raise their levels).
+  you switch Pokémon?" after a knockout), no Bag in trainer battles and, since 0.18.0, no Gym
+  Badge stat boosts, with the HARD level caps (trainers are at your cap on every difficulty, so
+  HARD doesn't raise their levels).
 - **Emerald Imperium's abilities and move pools:** every Pokémon has Imperium's abilities,
   level-up moves, Egg Moves, and TM and tutor moves, from its official dex, so Pidgey has No
   Guard, Golbat Infiltrator and Typhlosion Flash Fire, Typhlosion learns Aura Sphere and Mystical
@@ -160,8 +161,12 @@ From the first step of a new game:
 - **Cheat menu:** hold R and press START in the overworld for HnS's debug menu (give any
   Pokémon or item, and more; *Flags & Vars… → Pokédex Flags All* fills the Pokédex). Use it
   with care: it can also change story flags.
-- **Smart AI for every trainer** on NORMAL and HARD: it knows your team, picks the best move,
-  switches smartly and plays around HP (EASY keeps Heart & Soul's AI for ordinary trainers).
+- **Emerald Imperium's boss AI for every trainer** on NORMAL and HARD (since 0.18.0): it knows your
+  team, picks its moves for KOs and effects, switches and brings in its next Pokémon (its ace
+  included) for the match-up, and plays with Emerald Imperium's own behaviours: Shell Smash and
+  other boosts only when it survives your best roll, pivots out of lost trades, phazing into your
+  hazards, the stronger of two attacks, no free charge turns. HARD also drops Heart & Soul's badge
+  stat boosts, as Emerald Imperium has none. (EASY keeps Heart & Soul's AI for ordinary trainers.)
   Sleep Clause.
 - **Imperium-style bosses for the whole story and the postgame:** every Johto Gym Leader (Chuck,
   Jasmine and Pryce in three versions, for whichever order you take them), the rival from Azalea to

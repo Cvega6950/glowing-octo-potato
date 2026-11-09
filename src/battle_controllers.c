@@ -2,6 +2,7 @@
 #include "battle.h"
 #include "battle_ai_main.h"
 #include "battle_ai_util.h"
+#include "imperium_ai_measure.h"
 #include "battle_anim.h"
 #include "battle_arena.h"
 #include "battle_controllers.h"
@@ -58,19 +59,36 @@ static void LaunchKOAnimation(enum BattlerId battlerId, u16 animId, bool32 isFro
 static void AnimateMonAfterKnockout(enum BattlerId battler);
 
 
+#if IMPERIUM_AI_MEASURE
+EWRAM_DATA u8 gImperiumAiVsAi = 0;
+#endif
+
 bool32 IsAiVsAiBattle(void)
 {
+#if IMPERIUM_AI_MEASURE
+    if (gImperiumAiVsAi)
+        return TRUE;
+#endif
     return (B_FLAG_AI_VS_AI_BATTLE && FlagGet(B_FLAG_AI_VS_AI_BATTLE));
 }
 
 bool32 BattlerIsPlayer(enum BattlerId battlerId)
 {
+#if IMPERIUM_AI_MEASURE
+    // A measured battle: the player's side speaks as the player (there is no partner trainer)
+    if (gImperiumAiVsAi && IsOnPlayerSide(battlerId))
+        return TRUE;
+#endif
     return (gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_PLAYER
          || gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_RECORDED_PLAYER);
 }
 
 bool32 BattlerIsPartner(enum BattlerId battlerId)
 {
+#if IMPERIUM_AI_MEASURE
+    if (gImperiumAiVsAi && IsOnPlayerSide(battlerId))
+        return FALSE;
+#endif
     return (gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_PLAYER_PARTNER
          || gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_RECORDED_PARTNER
          || gBattlerBattleController[battlerId] == BATTLE_CONTROLLER_LINK_PARTNER);

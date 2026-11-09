@@ -722,7 +722,15 @@ static bool32 ShouldSwitchIfOpponentChargingOrInvulnerable(enum BattlerId battle
     }
 
     // In a world with a unified ShouldSwitch function, also want to check whether we already win 1v1 and if we do don't switch; not worth doubling the HasBadOdds computation for now
-    if (gAiLogicData->mostSuitableMonId[battler] != PARTY_SIZE && RandomPercentage(RNG_AI_SWITCH_FREE_TURN, GetSwitchChance(SHOULD_SWITCH_FREE_TURN)))
+    // Crystal Imperium (DECISIONS.md D60): an Imperium trainer always takes a turn that is surely free, as in
+    // Emerald Imperium: the foe is in the air or underground, or charging its attack (not when only its
+    // last move was Fly, which may have landed)
+    u32 freeTurnChance = GetSwitchChance(SHOULD_SWITCH_FREE_TURN);
+    if (IsImperiumAi(battler)
+     && (IsSemiInvulnerable(opposingBattler, CHECK_ALL) || gBattleMons[opposingBattler].volatiles.multipleTurns))
+        freeTurnChance = 100;
+    if (gAiLogicData->mostSuitableMonId[battler] != PARTY_SIZE
+     && RandomPercentage(RNG_AI_SWITCH_FREE_TURN, freeTurnChance))
         return SetSwitchinAndSwitch(battler, PARTY_SIZE);
 
     return FALSE;
@@ -2199,8 +2207,8 @@ static u32 GetBestMonIntegrated(struct Pokemon *party, int firstId, int lastId, 
                 continue;
 
             aiMove = gBattleMons[battler].moves[moveIndex];
-            damageDealt = AI_GetDamage(battler, opposingBattler, moveIndex, AI_ATTACKING, gAiLogicData);
-            hitsToKOPlayer = GetNoOfHitsToKOBattler(battler, opposingBattler, moveIndex, AI_ATTACKING, CONSIDER_ENDURE);
+            damageDealt = AI_GetDamage(battler, opposingBattler, moveIndex, AI_ATTACKING_SWITCHIN, gAiLogicData);
+            hitsToKOPlayer = GetNoOfHitsToKOBattler(battler, opposingBattler, moveIndex, AI_ATTACKING_SWITCHIN, CONSIDER_ENDURE);
 
             // Offensive switchin decisions are based on which whether switchin moves first and whether it can win a 1v1
             isSwitchinFirst = AI_IsFaster(battler, opposingBattler, aiMove, bestPlayerMove, CONSIDER_PRIORITY);
@@ -2457,7 +2465,7 @@ static u32 GetBestMonVanilla(struct Pokemon *party, int firstId, int lastId, enu
             // Best damage
             if (aiMove != MOVE_NONE && !IsBattleMoveStatus(aiMove))
             {
-                u32 aiDmg = AI_GetDamage(battler, opposingBattler, moveIndex, AI_ATTACKING, gAiLogicData);
+                u32 aiDmg = AI_GetDamage(battler, opposingBattler, moveIndex, AI_ATTACKING_SWITCHIN, gAiLogicData);
                 if (aiDmg > bestDamage)
                 {
                     bestDamage = aiDmg;
@@ -2592,7 +2600,7 @@ u32 AI_SelectRevivalBlessingMon(enum BattlerId battler)
             if (aiMove == MOVE_NONE || gBattleMons[battler].pp[moveIndex] == 0)
                 continue;
 
-            s32 damage = AI_GetDamage(battler, opposingBattler, moveIndex, AI_ATTACKING, gAiLogicData);
+            s32 damage = AI_GetDamage(battler, opposingBattler, moveIndex, AI_ATTACKING_SWITCHIN, gAiLogicData);
             if (damage > bestDamage)
                 bestDamage = damage;
         }

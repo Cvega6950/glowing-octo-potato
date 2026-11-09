@@ -1351,7 +1351,9 @@ def autobattle(moves, max_frames=60000, plan=None):
             "actcur={gActionSelectionCursor}", "movcur={gMoveSelectionCursor}",
             "partyidx={gBattlerPartyIndexes}", "party={gPlayerParty}", "count={gPlayerPartyCount}",
             "mons={gBattleMons}", "pmenu={gPartyMenu}",
-            "pmenucb2={CB2_UpdatePartyMenu}", "battlecb2={BattleMainCB2}"]
+            "pmenucb2={CB2_UpdatePartyMenu}", "battlecb2={BattleMainCB2}",
+            "eparty={gEnemyParty}", "ecount={gEnemyPartyCount}",
+            "turnctr={gBattleTurnCounter}", "lastmoves={gLastMoves}"]
     keys.append("ppoff=%d" % probe.resolve({"ppoff": "offsetof(struct BattlePokemon, pp)"})["ppoff"])
     if plan:
         ids = probe.resolve({sp: sp for sp in plan})

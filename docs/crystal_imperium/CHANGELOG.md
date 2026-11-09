@@ -1,5 +1,45 @@
 # Crystal Imperium changelog
 
+## 0.18.0-experimental (2026-11-09)
+
+### The trainer AI on Emerald Imperium's level (DECISIONS.md D60)
+- "The trainer AI is still better in Emerald Imperium": EI's AI changes and settings were studied
+  against ours (every AI commit EI made after its last engine update, its trainer data, its AI
+  settings) and the differences re-implemented in our own code (no EI code is copied).
+- Every trainer on NORMAL and HARD now has EI's boss AI, and four flags that made ours play worse
+  are gone: random switch-ins (instead of the best resist or the bulkiest Pokémon), the HP-aware
+  penalty that held back even safe boosts at 70% HP or less, the PP-stall rule that, half the time,
+  dropped a move for the rest of the battle once you switched an immune Pokémon into it, and the Ace
+  rule (the last Pokémon now comes in whenever it is the best choice, as on all but 3 of EI's
+  bosses). EASY keeps each trainer's own AI (Heart & Soul's for ordinary trainers), apart from the
+  two fixes for every AI below.
+- EI's behaviours, written for this engine:
+  - Shell Smash is finally used (it never was: Pryce's Cloysters, Red's Blastoise, Brock, Misty,
+    Gardenia, N...), whenever it is safe.
+  - Boosts only when the trainer survives your best damage roll (twice if it is slower), never below
+    40% HP; defensive boosts only against attacks of that kind.
+  - Pivots out of lost trades in single battles (U-turn, Volt Switch, Flip Turn, Chilly Reception,
+    Parting Shot) when a good switch-in waits.
+  - The clearly stronger of two attacks that need as many hits; no free charge turns; Roar and
+    Whirlwind into the Stealth Rock or Spikes on your side; no weather under Cloud Nine; the free
+    switch always taken while you are out of reach (Fly, Dig, Dive, Phantom Force) or charging; the
+    last-chance priority move more often; your Illusion seen through; Bolt Beak, Fishious Rend,
+    Payback and Analytic judged by the turn order it expects (while it chose, it read Bolt Beak and
+    Fishious Rend at half power, Payback always doubled and Analytic by last turn's order).
+- Two fixes for every AI, EASY's and smart wild Pokémon's too: Quiver Dance, Tail Glow, Geomancy,
+  Clangorous Soul, Take Heart and Fillet Away count as boosts Encore would lock in, as every other
+  boost already did; and the AI's HP percentage no longer falls to 0 for the rest of a turn once it
+  has checked whether you could still KO it after a heal (both upstream defects).
+- HARD drops Heart & Soul's badge stat boosts (+10% to your Pokémon's stats), as EI has none.
+- Measured over the 210 designed battles of the play tests with an AI playing your side (630
+  battles a build, 627 and 629 with a result): it beat the trainers 72% of the time, against 78%
+  with 0.17.0's AI; trainer by trainer the new AI did better for 49 of the 195 trainers and worse
+  for 23. Without the Ace rule the trainers won their battles by more.
+- In the play tests the autopilot's teams won 37.6% (mGBA) and 42.5% (VBA-M) of the 15 sampled
+  battles from Bugsy to Red, against 44.6% on both with 0.17.0's AI (BALANCE.md).
+- New measurement tool: a test build where an AI plays your side lets the trainer AI be measured
+  over the 210 designed battles of the play tests (`tools/emurun/ai_measure.py`, TESTING.md).
+
 ## 0.17.0-experimental (2026-11-05)
 
 ### Every designed team to the trainer standard (DECISIONS.md D59)

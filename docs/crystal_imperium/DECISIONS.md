@@ -62,6 +62,10 @@ can decide a fight. This applies to both sides, like Emerald Imperium.
 - Red and Heart & Soul's postgame rematch teams also get `Prediction` (D20 explains why the
   rest don't; D27).
 - Ordinary trainers keep HnS's cheaper AI. AI time per turn matters on hardware and on phones.
+- Since 0.18.0 (D60) every trainer on NORMAL and HARD plays with Emerald Imperium's boss AI on top of
+  these party-data flags, without `Ace Pokemon`, `HP Aware` and Smart Trainer's random switch-ins,
+  PP-stall rule and Smart Tera; `Prediction` stays (D27). EASY uses the party-data flags as they
+  are.
 
 ## D6. Level caps stay tied to Gym aces
 
@@ -389,6 +393,8 @@ The user wants every Gen 1–9 Pokémon available on every route. Fitting ~1,000
 
 ## D20. Smart AI for every trainer
 
+- Since 0.18.0 the AI is D60's (Emerald Imperium's boss AI and behaviours, without `HP Aware`,
+  `Random Switch-ins`, `PP Stall Prevention` and `Ace Pokemon`); what follows is how it got there.
 - Heart & Soul gives most ordinary trainers `Check Bad Move` only (427 of 651), which picks at
   random among moves that don't fail; 193 more use `Basic Trainer`. The user asked for a much
   smarter AI, as in Emerald Imperium.
@@ -666,6 +672,9 @@ DexNav shows and that wild encounters draw from:
   keep the Bag (Poké Balls, healing). The options menu shows BATTLE STYLE as SET and grayed
   out on HARD.
 - HARD keeps +10% trainer levels and HARD level caps (D11). EASY and NORMAL are unchanged.
+- Since 0.18.0 (D60) HARD also gives the player's Pokémon no Gym Badge stat boosts, as in Emerald
+  Imperium (they stopped in Gen 4); NORMAL and EASY keep Heart & Soul's Gen 3 +10%
+  (`ShouldGetStatBadgeBoost`, `test/battle/badge_boost_imperium.c`).
 - Evidence: `hard_mode_rules` (HARD: a trainer battle and a wild battle play SET; BAG in the
   trainer battle is refused and the battle continues; in the wild battle the Bag opens; a
   NORMAL wild battle keeps the option's SHIFT).
@@ -724,7 +733,9 @@ DexNav shows and that wild encounters draw from:
     included, battles at 31 IVs and 0 EVs when it is on (the default). His lead Pikachu has 306
     Speed instead of 237.
   - The boss AI with `Prediction` (it predicts switches and moves and punishes them), Ace
-    Pokémon and HP Aware, and four Full Restores (other bosses carry two at most).
+    Pokémon and HP Aware (since 0.18.0, on NORMAL and HARD: Emerald Imperium's boss AI with
+    `Prediction`, without Ace Pokémon and HP Aware, D60), and four Full Restores (other bosses
+    carry two at most).
   - A sun team: Mega Charizard Y's Drought powers Venusaur's Chlorophyll and Growth and
     Charizard's Solar Beam; Light Ball Pikachu leads with Fake Out; Magic Bounce Espeon, a
     Curse/Rest Snorlax and a White Herb Shell Smash Blastoise.
@@ -2374,6 +2385,126 @@ follows is the first build's; D45 lists what changed.)
   sixes differ by battle, so their counts don't rank the battles.
 - **The AI** is unchanged: the smart AI every trainer has (D20) was measured, on 0.16.0's teams
   before the redesign, against two more of the engine's AI flags, Try To 2HKO and Predict Move, in
-  126 battles, and neither did better (D20).
+  126 battles, and neither did better (D20). 0.18.0 changed it (D60).
 - Not yet: Heart & Soul's 425 ordinary trainers keep their own teams at the cap (D56); they are the
   standard's next part.
+
+## D60. The trainer AI on Emerald Imperium's level
+
+- The user, after 0.17.0: "The trainer AI is still better in emerald imperium".
+- **The study.** Emerald Imperium's AI is pokeemerald-expansion's (its base is 1.10; ours, 1.15.2, is
+  newer) with about 80 commits of its own. Every AI commit EI made after its last upstream merge
+  (160, December 2024 on) was read against our engine: 79 had reached upstream and are in ours, the
+  others were sorted into present, partly present, absent or not applicable. EI's compiled trainer
+  data and AI settings were compared with ours. No EI code was copied (D2): each behaviour below is
+  written for our engine from what EI's does.
+- **What made ours weaker.** Not knowledge (our trainers knew as much as EI's bosses) but flags EI
+  never had, scoring defects and EI's own tuning:
+  - every trainer had four flags that make it play worse: `Random Switch-ins` (inside `Smart
+    Trainer`: a random member of the right kind of switch-in, not the best resist or the bulkiest),
+    `HP Aware` (-2 to set-up moves, stat drops and screens once its Pokémon is at 70% HP or less,
+    and to many boosts while the player's is at 31-70%, overriding the check that already decides
+    whether a boost is safe), `PP Stall Prevention` (once the player switched an immune Pokémon
+    into a move, that move was dropped half the time for the rest of the battle, even against
+    Pokémon it would KO) and `Ace Pokemon` on all 234 designed teams (the last Pokémon stays
+    out of every switch-in until it is the only one left; EI gives it to 3 bosses);
+  - no trainer ever used Shell Smash: it was refused unless the Pokémon had both physical and special
+    attacks, which none of the 25 trainer sets have (Pryce's Cloysters, Red's Blastoise, Brock, Misty,
+    Gardenia, N...), and its score counted Attack twice and Special Attack never (an upstream typo);
+  - the AI's stored HP percentage fell to 0 for the rest of a turn once it had checked whether the
+    player could still KO it after a heal (a healing or draining move weighed while it was faster
+    and in KO range, a Regenerator pivot, Recycle with Ripen, a healing or X item; an upstream bug),
+    so later checks that turn saw a Pokémon at 0%;
+  - while it chose, the AI read Bolt Beak and Fishious Rend at half power, Payback always doubled
+    and Analytic by last turn's order.
+- **The new AI** (`AI_FLAG_IMPERIUM`). On NORMAL and HARD every trainer has Emerald Imperium's boss
+  AI (Check Bad Move, Try To Faint, Check Viability, Omniscient, Smart Switching, Smart Mon Choices)
+  and none of the four flags above, even when its party data names them; EASY keeps each trainer's
+  own AI: Heart & Soul's for ordinary trainers, the party data's smart AI (D5) for the designed teams
+  (D20). Its behaviours, re-implemented from EI's:
+  - Shell Smash whenever it is safe, by physical and special smashers alike; refused at +6, held back
+    when its defences are already at -3, and White Herb only adds to a boost that is worth it.
+  - Set-up safety: a boost counts only if, on its highest damage roll, the player needs two hits or
+    more to KO the trainer when the trainer is faster, three or more when it is slower (a 2-5 hit
+    attack counts all five); no boosting below 40% HP; Defense and Special Defense raised only
+    against attacks of that kind and out of quick KO range; Bulk Up, Calm Mind, Quiver Dance and
+    Victory Dance judged on their attacking stat and Speed, so the defensive half doesn't tip a
+    trainer in KO range into boosting.
+  - In single battles, pivots out of a lost trade with U-turn, Volt Switch, Flip Turn, Chilly
+    Reception or Parting Shot (one that can lower a stat) when a good switch-in waits and no move
+    KOs: moving first when the player would KO it next (keeping a third of its HP, a quarter with
+    Regenerator), or moving second when it survives this hit but not the next and has no useful
+    boost to lose.
+  - Of two attacks that need as many hits, the clearly stronger one (its lowest roll beats the
+    other's highest; for its own 2-5 hit attacks 3 hits at most), after accuracy, and not when one
+    of them costs a turn or half its HP.
+  - No free charge turn (Solar Beam without sun); phazing with Roar or Whirlwind into the player's
+    Stealth Rock or Spikes when no attack KOs and it survives the turn (never into Guard Dog or
+    Ingrain); no weather move under Cloud Nine or Air Lock; the free switch always taken while the
+    player is out of reach (in the air, underground, underwater or vanished) or charging (50%
+    before); the last-chance priority move 80% of the time (50% before); the player's Illusion seen
+    through; Magic Guard and Rock Head counted right in recoil; Bolt Beak, Fishious Rend, Payback
+    and Analytic judged by the turn order it expects.
+  - EI's roll policy, judging its own attacks on their highest roll, is written
+    (`AI_FLAG_IMPERIUM_HIGH_ROLLS`, with a KO-certainty tie-break so a one-roll-in-sixteen KO
+    doesn't tie a sure one) but not given to any trainer: measured, it changed nothing (below).
+  - The Ace rule's cost has a flip side: a team built around a late sweeper may now bring it in
+    earlier, as a revenge killer, where it meets the player's healthy checks (Ace Trainer Rhea's
+    Focus Sash Dragapult: the player AI beat her 6 times in 12 instead of 2). Over all the designed
+    battles the trainers won by more without it (an HP lead 4.9 points smaller, t = 3.6), though not
+    significantly more often (3.0 points, standard error 2.0).
+- **For every AI** (not behind the flag, so EASY's and smart wild Pokémon's too), two upstream
+  defects are fixed: Quiver Dance, Tail Glow, Geomancy, Clangorous Soul, Take Heart and Fillet Away
+  now count as boosts Encore would lock in, as every other boost already did (the AI doesn't boost
+  with them into the player's Encore, and its Encore is encouraged after the player used one), and
+  the HP percentage above is kept (KNOWN_ISSUES #91).
+- **HARD without badge boosts.** Heart & Soul's Gym Badges raise the player's Attack, Defense,
+  Speed and Special stats by 10% in battle (Gen 3's rule); Emerald Imperium has none (Gen 4 on).
+  HARD, which plays by EI's rules (D25), now has none either; NORMAL and EASY keep them.
+- **The measurement.** The play tests' autopilot never switches and repeats one move, so it can't
+  judge a smarter AI (D20 and 0.17.0's flag tests couldn't). A measurement build
+  (`include/imperium_ai_measure.h`, 0 in a release: none of it is in the ROM) hands the player's side
+  to a fixed AI, Emerald Imperium's boss set, which doesn't change with the trainer AI being
+  measured; `tools/emurun/ai_measure.py` replays the 210 designed battles of the play tests (the
+  same teams at the same caps) three times each and counts the player AI's wins and the margin (each
+  side's HP left). The expansion's own AI-vs-AI mode had hung after the player's first Pokémon
+  fainted (D27): the switch-in message named an in-game partner that doesn't exist; the measurement
+  build has the player's side speak as the player.
+- **Measured** (630 AI-vs-AI battles a build, mGBA; the player's AI beats a weaker trainer AI
+  more often):
+  - 0.17.0's AI lost 77.7% of them (487 of 627 with a result); the new AI 72.3% (455 of 629). Paired
+    by trainer (the 210 battles are against 195 trainers; one fought in two battles counts once),
+    the new AI did better than 0.17.0's against the player AI for 49 trainers and worse for 23 (sign
+    test, z = 3.1); per trainer, the player AI won 5.6 points less often against it (standard error
+    1.8) and ended its battles with an HP lead 5.3 points smaller (t = 3.6).
+  - Step by step (per trainer): EI's boss flags and the behaviours with the Ace rule still on, 4.3
+    points fewer player wins than 0.17.0 (HP lead unchanged); EI's roll policy added to that build,
+    no change (-0.3 points, HP lead -0.5), so it isn't used; the Ace rule off as well (without the
+    roll policy), 7.3 points fewer than 0.17.0 and an HP lead 5.8 points smaller. So dropping the
+    Ace rule gave most of the HP-lead change (4.9 of 5.8 points) but only 3.0 of the 7.3 win points,
+    within noise. The reviewed AI that ships measured as the Ace-rule-off build, within noise (the
+    player AI won 1.7 points more often against it, standard error 1.4).
+  - The trainers used Shell Smash 17 times (0 before); a set-up move was their last move at the end
+    of 4.4% of turns (3.5%; 3.2% and 2.6% without a move repeated from the turn before, as on a turn
+    it couldn't act); and they phazed with Whirlwind and Roar at most 112 times (22), 109 of them
+    into their own Stealth Rock or Spikes (129 turn ends show a phazing move, 17 of them with the
+    player's Pokémon still in and acting).
+  - The four trainers who had looked weaker in the Ace-rule-off run were played 9 more times on
+    each AI (12 frame offsets, of which the first three replay the measurement exactly): Koga lost
+    7 and 9 of 9, Karen 6 and 7, Sabrina 8 of 16 and 5 of 18, Ace Rhea 6 and 2 (the Ace rule,
+    above). Three runs a battle are noisy; the totals are what the decision rests on.
+- **Checked.** 12 unit tests of the behaviours (`test/battle/ai/ai_imperium.c`) and one of HARD's
+  badge boosts (`test/battle/badge_boost_imperium.c`) pass; the expansion's 376 AI tests give the
+  same results on 0.17.0 and on this code (312 pass; the other 64 don't pass on 0.17.0 either,
+  TESTING.md). They run without the Imperium flag, but none of them checks the two fixes for every
+  AI. A smart wild Pokémon (a scripted battle such as Arceus's) fought after a trainer with
+  `Prediction` (Red, Steven, Finley, Mualani) predicts the player's move from a copy of that
+  trainer's flags, as in 0.17.0; on NORMAL and HARD the copy is now the new set without the Imperium
+  flag, so it lacks the HP Aware and PP Stall Prevention that 0.17.0's copy had. A review of the
+  change by four reviewers and a verifier found 10 defects, all fixed before the measurement of the
+  final build, among them: the 3-hit count had also capped the player's multi-hit attacks in the
+  set-up check, Roar's bonus could beat a KO and was given into Guard Dog and Ingrain, the Cloud
+  Nine rule hit Chilly Reception, the slow pivot read the AI's own move limits for the player's
+  moves, the 100% free switch also fired after Fly had landed, Parting Shot counted as a pivot when
+  it couldn't lower a stat, and the Imperium flag leaked into smart wild battles through the
+  player's copy of the trainer's flags.

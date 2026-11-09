@@ -4,6 +4,7 @@
 #include "battle.h"
 #include "battle_anim.h"
 #include "battle_ai_util.h"
+#include "imperium_ai_measure.h"
 #include "battle_ai_items.h"
 #include "battle_ai_switch.h"
 #include "battle_ai_main.h"
@@ -212,12 +213,20 @@ static u64 GetWildAiFlags(void)
     return flags;
 }
 
-// Crystal Imperium: on NORMAL and HARD every trainer battles with the expansion's smart AI, as in
-// Emerald Imperium: it knows the player's Pokemon, moves, abilities and items, switches and picks
-// its next Pokemon smartly, and plays around HP. Prediction is left out: it targets the Pokemon it
-// expects the player to switch in, which wastes turns against a player who stays in. EASY keeps
-// each trainer's own (Heart & Soul) AI.
-#define IMPERIUM_TRAINER_AI (AI_FLAG_SMART_TRAINER | AI_FLAG_HP_AWARE)
+// Crystal Imperium (DECISIONS.md D20, D60): on NORMAL and HARD every trainer battles with Emerald
+// Imperium's boss AI: it knows the player's Pokemon, moves, abilities and items, scores its moves
+// for KOs and effects, switches and picks its next Pokemon smartly, and plays with Emerald Imperium's
+// own behaviours (AI_FLAG_IMPERIUM). Flags that make it play worse are taken off, also when the
+// party data names them ("Smart Trainer", "Ace Pokemon", "HP Aware"): a random pick among good
+// switch-ins instead of the best one, -2 to set-up and screens at 70% HP or less, a move dropped
+// half the time once the player switched an immune Pokemon into it, the last Pokemon kept out until
+// it is the only one left (EI gives that to 3 bosses; it can't then switch in or revenge-kill), and
+// Tera (no trainer has a Tera Type). Prediction stays on the few battles that name it (D27). EASY
+// keeps each trainer's party-data AI (Heart & Soul's for ordinary trainers).
+#define IMPERIUM_TRAINER_AI (AI_FLAG_BASIC_TRAINER | AI_FLAG_OMNISCIENT | AI_FLAG_SMART_SWITCHING \
+                           | AI_FLAG_SMART_MON_CHOICES | AI_FLAG_IMPERIUM)
+#define IMPERIUM_TRAINER_AI_OFF (AI_FLAG_RANDOMIZE_SWITCHIN | AI_FLAG_HP_AWARE | AI_FLAG_PP_STALL_PREVENTION \
+                               | AI_FLAG_ACE_POKEMON | AI_FLAG_SMART_TERA)
 
 static u64 GetAiFlags(u16 trainerId, enum BattlerId battler)
 {
@@ -249,7 +258,10 @@ static u64 GetAiFlags(u16 trainerId, enum BattlerId battler)
         {
             flags = GetTrainerAIFlagsFromId(trainerId);
             if (GetCurrentDifficultyLevel() != DIFFICULTY_EASY)
+            {
                 flags |= IMPERIUM_TRAINER_AI;
+                flags &= ~(u64)(IMPERIUM_TRAINER_AI_OFF);
+            }
         }
     }
 
@@ -324,9 +336,23 @@ void BattleAI_SetupFlags(void)
     {
         u64 aiFlags = GetAiFlags(TRAINER_BATTLE_PARAM.opponentA, B_BATTLER_1)
                     | GetAiFlags(TRAINER_BATTLE_PARAM.opponentB, B_BATTLER_3);
+        // Crystal Imperium (DECISIONS.md D60): not when the opposing AI doesn't have them (a smart wild
+        // Pokemon fought after a trainer)
+        if (!((gAiThinkingStruct->aiFlags[B_BATTLER_1] | gAiThinkingStruct->aiFlags[B_BATTLER_3]) & AI_FLAG_IMPERIUM))
+            aiFlags &= ~(AI_FLAG_IMPERIUM | AI_FLAG_IMPERIUM_HIGH_ROLLS);
         gAiThinkingStruct->aiFlags[B_BATTLER_2] = aiFlags;
         gAiThinkingStruct->aiFlags[B_BATTLER_0] = aiFlags;
     }
+
+#if IMPERIUM_AI_MEASURE
+    // A measured battle: the player's side plays with a fixed AI (the branch above would give it
+    // the trainer's flags in a single battle)
+    if (IsAiVsAiBattle())
+    {
+        gAiThinkingStruct->aiFlags[B_BATTLER_0] = IMPERIUM_AI_MEASURE_PLAYER_FLAGS;
+        gAiThinkingStruct->aiFlags[B_BATTLER_2] = IMPERIUM_AI_MEASURE_PLAYER_FLAGS;
+    }
+#endif
 }
 
 void BattleAI_SetupAIData(u8 defaultScoreMoves, enum BattlerId battler)
@@ -842,7 +868,8 @@ static u32 ChooseMoveOrAction_Singles(enum BattlerId battler)
     u8 currentMoveArray[MAX_MON_MOVES];
     u8 consideredMoveArray[MAX_MON_MOVES];
     u32 numOfBestMoves;
-    u64 flags = gAiThinkingStruct->aiFlags[battler];
+    // Crystal Imperium (DECISIONS.md D60): the Imperium bits have no scoring function of their own
+    u64 flags = gAiThinkingStruct->aiFlags[battler] & ~(AI_FLAG_IMPERIUM | AI_FLAG_IMPERIUM_HIGH_ROLLS);
     enum BattlerId opposingBattler = GetOppositeBattler(battler);
 
     gAiThinkingStruct->aiLogicId = 0;
@@ -930,7 +957,7 @@ static u32 ChooseMoveOrAction_Doubles(enum BattlerId battler)
             gAiLogicData->partnerMove = GetAllyChosenMove(battler);
             gAiThinkingStruct->aiLogicId = 0;
             gAiThinkingStruct->movesetIndex = 0;
-            flags = gAiThinkingStruct->aiFlags[battler];
+            flags = gAiThinkingStruct->aiFlags[battler] & ~(AI_FLAG_IMPERIUM | AI_FLAG_IMPERIUM_HIGH_ROLLS);
 
             while (flags != 0)
             {
@@ -1216,6 +1243,11 @@ static s32 AI_CheckBadMove(enum BattlerId battlerAtk, enum BattlerId battlerDef,
     if (!BreaksThroughSemiInvulnerablity(battlerAtk, battlerDef, aiData->abilities[battlerAtk], aiData->abilities[battlerDef], move)
      && moveEffect != EFFECT_SEMI_INVULNERABLE && AI_IsFaster(battlerAtk, battlerDef, move, predictedMoveSpeedCheck, CONSIDER_PRIORITY)
      && abilityAtk != ABILITY_NO_GUARD && abilityDef != ABILITY_NO_GUARD)
+        RETURN_SCORE_MINUS(10);
+
+    // Crystal Imperium (DECISIONS.md D60), as Emerald Imperium: an Imperium trainer never gives the foe
+    // a free charge turn (Power Herb or the right weather make the move instant)
+    if (IsImperiumAi(battlerAtk) && IsTwoTurnNotSemiInvulnerableMove(battlerAtk, move))
         RETURN_SCORE_MINUS(10);
 
     if (CanTargetFaintAi(battlerDef, battlerAtk))
@@ -1605,7 +1637,24 @@ static s32 AI_CheckBadMove(enum BattlerId battlerAtk, enum BattlerId battlerDef,
             if (!BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_DEF))
                 ADJUST_SCORE(-10);
             else if (!BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_SPDEF))
-                ADJUST_SCORE(-8);
+                ADJUST_SCORE(IsImperiumAi(battlerAtk) ? -10 : -8);
+        }
+        else if (IsImperiumAi(battlerAtk))
+        {
+            // Crystal Imperium (DECISIONS.md D60), as Emerald Imperium: a smasher attacks with one of its
+            // attacking stats, so it isn't refused for lacking physical or special moves (which kept
+            // every smasher in the game from smashing); it is refused when what it would raise is
+            // maxed, and held back when its defenses are already low
+            bool32 physical = HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_PHYSICAL);
+            bool32 special = HasMoveWithCategory(battlerAtk, DAMAGE_CATEGORY_SPECIAL);
+            if ((!physical && !special)
+             || !BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_SPEED)
+             || (physical && !BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_ATK))
+             || (special && !BattlerStatCanRise(battlerAtk, aiData->abilities[battlerAtk], STAT_SPATK)))
+                ADJUST_SCORE(-10);
+            else if (gBattleMons[battlerAtk].statStages[STAT_DEF] < DEFAULT_STAT_STAGE - 2
+                  || gBattleMons[battlerAtk].statStages[STAT_SPDEF] < DEFAULT_STAT_STAGE - 2)
+                ADJUST_SCORE(-4);
         }
         else
         {
@@ -1820,6 +1869,10 @@ static s32 AI_CheckBadMove(enum BattlerId battlerAtk, enum BattlerId battlerDef,
         else if (aiData->abilities[battlerDef] == ABILITY_SUCTION_CUPS)
             ADJUST_SCORE(-10);
         else if (GetActiveGimmick(battlerDef) == GIMMICK_DYNAMAX)
+            ADJUST_SCORE(-10);
+        // Crystal Imperium (DECISIONS.md D60): an Imperium trainer knows Guard Dog and Ingrain stop it too
+        else if (IsImperiumAi(battlerAtk)
+              && (aiData->abilities[battlerDef] == ABILITY_GUARD_DOG || gBattleMons[battlerDef].volatiles.root))
             ADJUST_SCORE(-10);
         break;
     case EFFECT_TOXIC_THREAD:
@@ -2048,6 +2101,13 @@ static s32 AI_CheckBadMove(enum BattlerId battlerAtk, enum BattlerId battlerDef,
         }
         // fallthrough
     case EFFECT_WEATHER:
+        // Crystal Imperium (DECISIONS.md D60): an Imperium trainer doesn't set weather that Cloud Nine
+        // or Air Lock cancels (Chilly Reception, which falls through here, still pivots)
+        if (moveEffect == EFFECT_WEATHER && IsImperiumAi(battlerAtk) && !aiData->weatherHasEffect)
+        {
+            ADJUST_SCORE(-10);
+            break;
+        }
         switch (GetMoveWeatherType(move))
         {
         case BATTLE_WEATHER_RAIN:
@@ -3187,7 +3247,9 @@ static s32 AI_TryToFaint(enum BattlerId battlerAtk, enum BattlerId battlerDef, e
             && AI_GetWhichBattlerFasterOrTies(battlerAtk, battlerDef, TRUE) != AI_IS_FASTER
             && GetBattleMovePriority(battlerAtk, gAiLogicData->abilities[battlerAtk], move) > 0)
     {
-        if (RandomPercentage(RNG_AI_PRIORITIZE_LAST_CHANCE, PRIORITIZE_LAST_CHANCE_CHANCE) && !IsDoubleBattle()) // Last Chance behaviour is too easily abused in doubles
+        // Crystal Imperium (DECISIONS.md D60): an Imperium trainer goes for it 80% of the time, as in Emerald Imperium
+        u32 lastChanceChance = IsImperiumAi(battlerAtk) ? 80 : PRIORITIZE_LAST_CHANCE_CHANCE;
+        if (RandomPercentage(RNG_AI_PRIORITIZE_LAST_CHANCE, lastChanceChance) && !IsDoubleBattle()) // Last Chance behaviour is too easily abused in doubles
             ADJUST_SCORE(SLOW_KILL + 2); // Don't outscore Fast Kill (which gets a bonus point in AI_CompareDamagingMoves), but do outscore Slow Kill getting the same
         else
             ADJUST_SCORE(LAST_CHANCE);
@@ -4052,6 +4114,30 @@ static enum MoveComparisonResult CompareMoveAccuracies(enum BattlerId battlerAtk
     return MOVE_NEUTRAL_COMPARISON;
 }
 
+// Crystal Imperium (DECISIONS.md D60), as Emerald Imperium: of two attacks that need as many hits, the
+// one whose lowest roll beats the other's highest. Not for a move that costs a turn (a recharge) or
+// half the user's HP: that drawback is weighed below (PRIORITY_EFFECT) and decides
+static bool32 IsCostlyAttack(enum BattlerId battlerAtk, enum Move move)
+{
+    return MoveHasAdditionalEffectSelf(move, MOVE_EFFECT_RECHARGE)
+        || (GetMoveEffect(move) == EFFECT_MAX_HP_50_RECOIL && gAiLogicData->abilities[battlerAtk] != ABILITY_MAGIC_GUARD);
+}
+
+static enum MoveComparisonResult CompareMoveDamageRolls(enum BattlerId battlerAtk, enum BattlerId battlerDef, u32 moveSlot1, u32 moveSlot2)
+{
+    const struct SimulatedDamage *dmg1 = &gAiLogicData->simulatedDmg[battlerAtk][battlerDef][moveSlot1];
+    const struct SimulatedDamage *dmg2 = &gAiLogicData->simulatedDmg[battlerAtk][battlerDef][moveSlot2];
+    enum Move *moves = GetMovesArray(battlerAtk);
+
+    if (IsCostlyAttack(battlerAtk, moves[moveSlot1]) || IsCostlyAttack(battlerAtk, moves[moveSlot2]))
+        return MOVE_NEUTRAL_COMPARISON;
+    if (dmg1->minimum > dmg2->maximum)
+        return MOVE_WON_COMPARISON;
+    if (dmg2->minimum > dmg1->maximum)
+        return MOVE_LOST_COMPARISON;
+    return MOVE_NEUTRAL_COMPARISON;
+}
+
 static enum MoveComparisonResult CompareMoveSpeeds(enum BattlerId battlerAtk, enum BattlerId battlerDef, bool32 move1Faster, bool32 move2Faster)
 {
     if (move1Faster && !move2Faster)
@@ -4078,6 +4164,34 @@ static enum MoveComparisonResult CompareGuaranteeFaintTarget(enum BattlerId batt
     if (guarantee1 && !guarantee2)
         return MOVE_WON_COMPARISON;
     if (guarantee2 && !guarantee1)
+        return MOVE_LOST_COMPARISON;
+    return MOVE_NEUTRAL_COMPARISON;
+}
+
+// Crystal Imperium (DECISIONS.md D60): an AI that reads its own attacks at their highest roll
+// (AI_FLAG_IMPERIUM_HIGH_ROLLS) prefers, of two attacks that need as many hits, the surer KO: on the
+// lowest roll (3), the median (2) or only the highest (1), so a KO that lands one roll in sixteen
+// doesn't tie a near-certain one
+static u32 GetKoCertainty(enum BattlerId battlerAtk, enum BattlerId battlerDef, u32 moveSlot, u32 hits, enum Move move)
+{
+    const struct SimulatedDamage *dmg = &gAiLogicData->simulatedDmg[battlerAtk][battlerDef][moveSlot];
+    u32 hp = gBattleMons[battlerDef].hp;
+
+    if (hits * dmg->minimum >= hp && (hits > 1 || !CanEndureHit(battlerAtk, battlerDef, move)))
+        return 3;
+    if (hits * dmg->median >= hp)
+        return 2;
+    return 1;
+}
+
+static enum MoveComparisonResult CompareKoCertainty(enum BattlerId battlerAtk, enum BattlerId battlerDef, u32 moveSlot1, u32 moveSlot2, u32 hits, enum Move *moves)
+{
+    u32 certainty1 = GetKoCertainty(battlerAtk, battlerDef, moveSlot1, hits, moves[moveSlot1]);
+    u32 certainty2 = GetKoCertainty(battlerAtk, battlerDef, moveSlot2, hits, moves[moveSlot2]);
+
+    if (certainty1 > certainty2)
+        return MOVE_WON_COMPARISON;
+    if (certainty2 > certainty1)
         return MOVE_LOST_COMPARISON;
     return MOVE_NEUTRAL_COMPARISON;
 }
@@ -4157,6 +4271,7 @@ static void AI_CompareDamagingMoves(enum BattlerId battlerAtk, enum BattlerId ba
     enum Move *moves = GetMovesArray(battlerAtk);
     enum Move predictedMoveSpeedCheck = GetIncomingMoveSpeedCheck(battlerAtk, battlerDef, gAiLogicData);
     bool32 moveIsFaster[MAX_MON_MOVES];
+    bool32 highRolls = IsImperiumAi(battlerAtk) && (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_IMPERIUM_HIGH_ROLLS);
 
     for (u32 currId = 0; currId < MAX_MON_MOVES; currId++)
     {
@@ -4239,8 +4354,26 @@ static void AI_CompareDamagingMoves(enum BattlerId battlerAtk, enum BattlerId ba
                         case MOVE_NEUTRAL_COMPARISON:
                             break;
                         }
-                        // Min roll KOs
-                        switch (CompareGuaranteeFaintTarget(battlerAtk, battlerDef, currId, compareId, moves))
+                        // Min roll KOs (an AI reading its highest rolls compares KO certainty below instead)
+                        if (!highRolls)
+                        {
+                            switch (CompareGuaranteeFaintTarget(battlerAtk, battlerDef, currId, compareId, moves))
+                            {
+                            case MOVE_WON_COMPARISON:
+                                tempMoveScores[currId] += MathUtil_Exponent(MAX_MON_MOVES, PRIORITY_GUARANTEE);
+                                break;
+                            case MOVE_LOST_COMPARISON:
+                                tempMoveScores[compareId] += MathUtil_Exponent(MAX_MON_MOVES, PRIORITY_GUARANTEE);
+                                break;
+                            case MOVE_NEUTRAL_COMPARISON:
+                                break;
+                            }
+                        }
+                    }
+                    // Crystal Imperium (DECISIONS.md D60): the surer KO, for any number of hits
+                    if (highRolls)
+                    {
+                        switch (CompareKoCertainty(battlerAtk, battlerDef, currId, compareId, noOfHits[currId], moves))
                         {
                         case MOVE_WON_COMPARISON:
                             tempMoveScores[currId] += MathUtil_Exponent(MAX_MON_MOVES, PRIORITY_GUARANTEE);
@@ -4262,6 +4395,21 @@ static void AI_CompareDamagingMoves(enum BattlerId battlerAtk, enum BattlerId ba
                         break;
                     case MOVE_NEUTRAL_COMPARISON:
                         break;
+                    }
+                    // Two or more hits: the clearly stronger attack (one-hit KOs are settled above)
+                    if (IsImperiumAi(battlerAtk) && noOfHits[currId] >= 2)
+                    {
+                        switch (CompareMoveDamageRolls(battlerAtk, battlerDef, currId, compareId))
+                        {
+                        case MOVE_WON_COMPARISON:
+                            tempMoveScores[currId] += MathUtil_Exponent(MAX_MON_MOVES, PRIORITY_MORE_DAMAGE);
+                            break;
+                        case MOVE_LOST_COMPARISON:
+                            tempMoveScores[compareId] += MathUtil_Exponent(MAX_MON_MOVES, PRIORITY_MORE_DAMAGE);
+                            break;
+                        case MOVE_NEUTRAL_COMPARISON:
+                            break;
+                        }
                     }
                     switch (CompareMoveAccuracies(battlerAtk, battlerDef, currId, compareId))
                     {
@@ -4653,6 +4801,16 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
         else if (GetActiveGimmick(battlerDef) == GIMMICK_DYNAMAX)
             break;
         score += AI_TryToClearStats(battlerAtk, battlerDef, moveTargetsBothOpponents);
+        // Crystal Imperium (DECISIONS.md D60), as Emerald Imperium: phaze the foe into its own Stealth Rock
+        // or Spikes: worth as much as an attack that doesn't KO and a point more (not added to the
+        // raised stats it clears, so never more than a KO), when no attack KOs, it survives this turn
+        // (Roar moves last) and the phaze can work
+        if (IsImperiumAi(battlerAtk) && CountUsablePartyMons(battlerDef) > 0
+         && !CanTargetFaintAi(battlerDef, battlerAtk) && !CanAIFaintTarget(battlerAtk, battlerDef, 0)
+         && aiData->abilities[battlerDef] != ABILITY_GUARD_DOG && !gBattleMons[battlerDef].volatiles.root
+         && (IsHazardOnSide(GetBattlerSide(battlerDef), HAZARDS_STEALTH_ROCK) || IsHazardOnSide(GetBattlerSide(battlerDef), HAZARDS_SPIKES))
+         && score < BEST_EFFECT)
+            score = BEST_EFFECT;
         break;
     case EFFECT_CONVERSION:
         if (!IS_BATTLER_OF_TYPE(battlerAtk, GetMoveType(gBattleMons[battlerAtk].moves[0])))
@@ -5353,13 +5511,18 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF));
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF));
         break;
+    // Crystal Imperium (DECISIONS.md D60), as Emerald Imperium: an Imperium trainer scores Bulk Up, Calm
+    // Mind, Quiver Dance and Victory Dance on the attacking stat and Speed they raise, so the
+    // defensive half doesn't tip it into setting up while it's in KO range
     case EFFECT_BULK_UP:
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK));
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF));
+        if (!IsImperiumAi(battlerAtk))
+            ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF));
         break;
     case EFFECT_CALM_MIND:
         ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK));
-        ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF));
+        if (!IsImperiumAi(battlerAtk))
+            ADJUST_SCORE(IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF));
         break;
     case EFFECT_GEOMANCY:
         if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_POWER_HERB)
@@ -5370,7 +5533,8 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
 
         statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED);
         statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPATK);
-        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF);
+        if (!IsImperiumAi(battlerAtk))
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPDEF);
 
         if (statUpScore > BEST_EFFECT)
             ADJUST_SCORE(BEST_EFFECT);
@@ -5384,7 +5548,8 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
 
         statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED);
         statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK);
-        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF);
+        if (!IsImperiumAi(battlerAtk))
+            statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_DEF);
 
         if (statUpScore > BEST_EFFECT)
             ADJUST_SCORE(BEST_EFFECT);
@@ -5394,19 +5559,24 @@ static s32 AI_CalcMoveEffectScore(enum BattlerId battlerAtk, enum BattlerId batt
     }
     case EFFECT_SHELL_SMASH:
     {
-        if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_WHITE_HERB)
+        // Crystal Imperium (DECISIONS.md D60): for an Imperium trainer White Herb adds to a boost worth
+        // making, below (a smasher in KO range would otherwise tie its attack and smash half the time)
+        if (aiData->holdEffects[battlerAtk] == HOLD_EFFECT_WHITE_HERB && !IsImperiumAi(battlerAtk))
             ADJUST_SCORE(WEAK_EFFECT);
 
         s32 statUpScore = 0;
 
         statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_SPEED_2);
         statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK_2);
-        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, STAT_CHANGE_ATK_2);
+        // Crystal Imperium (DECISIONS.md D60): Special Attack for an Imperium trainer (upstream counts Attack twice)
+        statUpScore += IncreaseStatUpScore(battlerAtk, battlerDef, IsImperiumAi(battlerAtk) ? STAT_CHANGE_SPATK_2 : STAT_CHANGE_ATK_2);
 
         if (statUpScore > BEST_EFFECT)
             ADJUST_SCORE(BEST_EFFECT);
         else
             ADJUST_SCORE(statUpScore);
+        if (statUpScore > 0 && aiData->holdEffects[battlerAtk] == HOLD_EFFECT_WHITE_HERB && IsImperiumAi(battlerAtk))
+            ADJUST_SCORE(WEAK_EFFECT);
         break;
     }
     case EFFECT_TIDY_UP:

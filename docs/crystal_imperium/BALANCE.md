@@ -38,6 +38,15 @@ explains the *why*.
    move to use, and one of them is switched in when the Pokémon out has none. The number of
    tries follows the measured win rate, so that a correct game passes all but about one run in
    a hundred. A human who heals, switches and reads the opponent does better than these numbers.
+6. **Every trainer plays with Emerald Imperium's boss AI** on NORMAL and HARD (since 0.18.0, D60):
+   it knows the player's team, picks its moves for KOs and effects, switches and chooses its
+   next Pokémon smartly, and plays with Emerald Imperium's own behaviours (Shell Smash, set-up
+   only when it survives the player's best roll, pivots out of lost trades, phazing into hazards
+   and more). The `AI:` lines below are the party data's own flags: EASY plays with them, and on
+   NORMAL and HARD `Random Switch-ins`, `HP Aware`, `PP Stall Prevention` and `Ace Pokemon` are
+   taken off (the ace can come in whenever it is the best choice). On HARD the player's Pokémon
+   also get no badge boosts (Emerald Imperium's rule; D25, D60). The AI is measured with a
+   player AI that switches and sets up (`tools/emurun/ai_measure.py`, TESTING.md).
 
 ## Progression snapshot
 
@@ -292,7 +301,8 @@ others are on sale by then.
 ## Boss roster
 
 Every boss from `tools/crystal_imperium/boss_teams.py` (the file has the natures, abilities and
-moves). Each team's last Pokémon is its ace, kept back until the others are down. Since 0.8.0 every
+moves). Each team's last Pokémon is its ace: on EASY it is kept back until the others are down; on
+NORMAL and HARD, since 0.18.0, it comes in whenever it is the best choice (D60). Since 0.8.0 every
 Gym Leader and the big story bosses have six (D30), but for Ariana in the Rocket Hideout, who has
 three since 0.17.0: she battles beside Grunt 23 in a tag battle, where each opponent brings its
 first three (D59, `tag_battle`). Healing items: Potions for Bugsy and Whitney, Super Potions for
@@ -450,6 +460,23 @@ The naive autopilot (no switching, one move per Pokémon) and the game-plan auto
 worse than a person, so their win counts are lower bounds. Since 0.7.0 every boss Pokémon is at
 the cap, and the test teams hold items from the care packages the player has by then (before,
 no items). The regression's counts for both emulators are in TESTING.md.
+
+- **Emerald Imperium's AI** (0.18.0, D60) made most of the same battles harder for the test teams.
+  Over the 15 sampled battles from Bugsy to Red they won 37.6% (mGBA) and 42.5% (VBA-M) of the
+  time, against 44.6% on both with 0.17.0's AI; they won less often against 9 trainers and more often
+  against 5. By battle (mGBA, then VBA-M; 0.17.0's counts in brackets):
+  - worse: Lance 10 and 9 of 24 (16 and 17), Will 5 and 6 of 8 (8 and 8), Morty 16 and 13 of 24
+    (19 and 18), Pryce 5 and 8 of 16 (6 and 5 of 8: his Mega Abomasnow, no longer kept back as his
+    ace, now comes in second, so his six gets 16 tries), and Bugsy's naive six 11 and 10 of 40 (17
+    and 11);
+  - about as before (within two wins over both emulators): Chuck, Bruno, Karen, Jasmine and
+    Whitney;
+  - better: Clair 5 and 10 of 16 (5 and 5), Blue 7 and 10 of 16 (7 and 5), Red 10 and 8 of 24 (7
+    and 7) and Koga 7 and 7 of 8 (4 and 7).
+
+  Only Lance's and Will's changes are beyond these samples' spread. The autopilot plays a fixed
+  plan, so the AI-vs-AI measurement (D60), whose player switches and chooses, is the fairer test
+  of the AI.
 
 - **The trainer standard** (0.17.0, D59). Whitney's six, naive and with two game plans, won 0 of 36
   battles on mGBA and 1 on VBA-M, so her battles are reported, not judged. Koga, Morty and Jasmine

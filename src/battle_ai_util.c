@@ -92,6 +92,28 @@ enum MoveTarget AI_GetBattlerMoveTargetType(enum BattlerId battler, enum Move mo
 
 u32 AI_GetDamage(enum BattlerId battlerAtk, enum BattlerId battlerDef, u32 moveIndex, enum DamageCalcContext calcContext, struct AiLogicData *aiData)
 {
+    // Crystal Imperium (DECISIONS.md D60), as Emerald Imperium: an Imperium trainer weighs a stat boost
+    // against the foe's highest roll, and with AI_FLAG_IMPERIUM_HIGH_ROLLS counts on its own attacks'
+    // highest roll on the field (its KO checks, hits to KO, its best attack). A party member weighed
+    // as a switch-in, and the foe's other attacks, are read at the median.
+    if (calcContext == AI_ATTACKING_SWITCHIN)
+    {
+        if (BattlerHasAi(battlerAtk) && IsImperiumAi(battlerAtk))
+            return aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex].median;
+        calcContext = AI_ATTACKING;
+    }
+    else if (calcContext == AI_DEFENDING_SETUP)
+    {
+        if (BattlerHasAi(battlerDef) && IsImperiumAi(battlerDef))
+            return aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex].maximum;
+        calcContext = AI_DEFENDING;
+    }
+    else if (calcContext == AI_ATTACKING && BattlerHasAi(battlerAtk) && IsImperiumAi(battlerAtk)
+          && (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_IMPERIUM_HIGH_ROLLS))
+    {
+        return aiData->simulatedDmg[battlerAtk][battlerDef][moveIndex].maximum;
+    }
+
     if (calcContext == AI_ATTACKING && BattlerHasAi(battlerAtk))
     {
         if ((gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_RISKY) && !(gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_CONSERVATIVE)) // Risky assumes it deals max damage
@@ -404,7 +426,8 @@ void SetBattlerData(enum BattlerId battlerId)
         // Simulate Illusion
         species = gBattleMons[battlerId].species;
         illusionSpecies = GetIllusionMonSpecies(battlerId);
-        if (illusionSpecies != SPECIES_NONE && ShouldFailForIllusion(illusionSpecies, battlerId))
+        // Crystal Imperium (DECISIONS.md D60): an Imperium trainer knows the player's party, Illusion too
+        if (illusionSpecies != SPECIES_NONE && ShouldFailForIllusion(illusionSpecies, battlerId) && !IsAiFlagPresent(AI_FLAG_IMPERIUM))
         {
             // If the battler's type has not been changed, AI assumes the types of the illusion mon.
             if (gBattleMons[battlerId].types[0] == GetSpeciesType(species, 0)
@@ -812,7 +835,15 @@ static inline void CalcDynamicMoveDamage(struct BattleContext *ctx, u16 *medianD
         {
             median *= 3;
             minimum *= 2;
-            maximum *= 5;
+            // Crystal Imperium (DECISIONS.md D60): an Imperium trainer's own 2-5 hit attack on a foe counts
+            // 3 hits at most (4 or 5 come 30% of the time), so the attack can be compared with its
+            // others by their rolls and, with AI_FLAG_IMPERIUM_HIGH_ROLLS, read at its highest roll.
+            // The foe's keep 5, which its set-up check must survive
+            if (BattlerHasAi(ctx->battlerAtk) && (gAiThinkingStruct->aiFlags[ctx->battlerAtk] & AI_FLAG_IMPERIUM)
+             && !IsBattlerAlly(ctx->battlerAtk, ctx->battlerDef))
+                maximum *= 3;
+            else
+                maximum *= 5;
         }
     }
     else if (ctx->abilityAtk == ABILITY_PARENTAL_BOND
@@ -950,6 +981,14 @@ struct SimulatedDamage AI_CalcDamage(enum Move move, enum BattlerId battlerAtk, 
     ctx.abilityDef = AI_GetMoldBreakerSanitizedAbility(battlerAtk, ctx.abilityAtk, aiData->abilities[battlerDef], ctx.holdEffectDef, move);
     ctx.isCrit = ShouldCalcCritDamage(&ctx);
     ctx.typeEffectivenessModifier = CalcTypeEffectivenessMultiplier(&ctx);
+    // Crystal Imperium (DECISIONS.md D60): moves and abilities whose power depends on this turn's
+    // order use the order an Imperium trainer expects, for its own attacks and for the foe's on it
+    if ((BattlerHasAi(battlerAtk) ? IsImperiumAi(battlerAtk) : (BattlerHasAi(battlerDef) && IsImperiumAi(battlerDef)))
+     && (GetMoveEffect(move) == EFFECT_BOLT_BEAK || GetMoveEffect(move) == EFFECT_PAYBACK || ctx.abilityAtk == ABILITY_ANALYTIC))
+    {
+        ctx.aiOrderExpected = TRUE;
+        ctx.aiAtkMovesFirst = AI_IsFaster(battlerAtk, battlerDef, move, MOVE_NONE, CONSIDER_PRIORITY);
+    }
 
     u32 movePower = GetMovePower(move);
 
@@ -1235,6 +1274,24 @@ static bool32 AI_IsMoveEffectInMinus(enum BattlerId battlerAtk, enum BattlerId b
 
     if (IsExplosionMove(move))
         return TRUE;
+
+    // Crystal Imperium (DECISIONS.md D60): an Imperium trainer counts these drawbacks as our engine applies
+    // them: no half-HP loss under Magic Guard, no Chloroblast recoil under Magic Guard or Rock Head,
+    // and crash damage unless Magic Guard (Rock Head doesn't stop it)
+    if (IsImperiumAi(battlerAtk))
+    {
+        switch (GetMoveEffect(move))
+        {
+        case EFFECT_MAX_HP_50_RECOIL:
+            return abilityAtk != ABILITY_MAGIC_GUARD;
+        case EFFECT_CHLOROBLAST:
+            return abilityAtk != ABILITY_MAGIC_GUARD && abilityAtk != ABILITY_ROCK_HEAD;
+        case EFFECT_RECOIL_IF_MISS:
+            return abilityAtk != ABILITY_MAGIC_GUARD;
+        default:
+            break;
+        }
+    }
 
     switch (GetMoveEffect(move))
     {
@@ -1775,6 +1832,7 @@ bool32 CanTargetFaintAiWithMod(enum BattlerId battlerDef, enum BattlerId battler
     enum Move *moves = GetMovesArray(battlerDef);
     u32 hpCheck = gBattleMons[battlerAtk].hp + hpMod;
     u32 moveLimitations = aiData->moveLimitations[battlerAtk];
+    u8 savedHpPercent = gAiLogicData->hpPercents[battlerAtk];
 
     if (hpCheck > gBattleMons[battlerAtk].maxHP)
         hpCheck = gBattleMons[battlerAtk].maxHP;
@@ -1789,15 +1847,17 @@ bool32 CanTargetFaintAiWithMod(enum BattlerId battlerDef, enum BattlerId battler
         if (dmgMod)
             dmg *= dmgMod;
 
-        // Applies modified HP percent to AI data for consideration when running CanEndureHit
-        gAiLogicData->hpPercents[battlerAtk] = (hpCheck/gBattleMons[battlerAtk].maxHP)*100;
+        // Applies modified HP percent to AI data for consideration when running CanEndureHit.
+        // Crystal Imperium (DECISIONS.md D60): computed without truncating to 0, and the AI's real value
+        // is put back afterwards (it was left at 0, or 100 at full HP, for the rest of the turn)
+        gAiLogicData->hpPercents[battlerAtk] = hpCheck * 100 / gBattleMons[battlerAtk].maxHP;
 
         if (dmg >= hpCheck && !(CanEndureHit(battlerDef, battlerAtk, moves[moveIndex]) && (dmgMod <= 1)))
         {
-            gAiLogicData->hpPercents[battlerAtk] = (gBattleMons[battlerAtk].hp / gBattleMons[battlerAtk].maxHP) * 100;
+            gAiLogicData->hpPercents[battlerAtk] = savedHpPercent;
             return TRUE;
         }
-        gAiLogicData->hpPercents[battlerAtk] = (gBattleMons[battlerAtk].hp / gBattleMons[battlerAtk].maxHP) * 100;
+        gAiLogicData->hpPercents[battlerAtk] = savedHpPercent;
     }
 
     return FALSE;
@@ -3518,6 +3578,27 @@ enum AIPivot ShouldPivot(enum BattlerId battlerAtk, enum BattlerId battlerDef, e
         if (gAiLogicData->shouldSwitch & (1u << battlerAtk) && !CanTargetFaintAi(battlerDef, battlerAtk))
             return SHOULD_PIVOT;
     }
+    // Crystal Imperium (DECISIONS.md D60), as Emerald Imperium: out of a lost trade, pivot with damage
+    // when a good switch-in waits and no move KOs this turn: moving first when the foe would KO it
+    // next (keeping a third of its HP, a quarter with Regenerator, for later), or moving second
+    // when it survives this hit but not the next (bringing the switch-in in for free)
+    // (A Parting Shot that lowers neither stat doesn't switch out.)
+    if (IsImperiumAi(battlerAtk) && !IsDoubleBattle() && hasGoodSwitchin && !CanAIFaintTarget(battlerAtk, battlerDef, 0)
+     && (GetMoveEffect(move) != EFFECT_PARTING_SHOT
+      || CanLowerStat(battlerAtk, battlerDef, gAiLogicData, STAT_ATK) || CanLowerStat(battlerAtk, battlerDef, gAiLogicData, STAT_SPATK)))
+    {
+        if (aiIsFaster)
+        {
+            if (CanTargetFaintAi(battlerDef, battlerAtk)
+             && gAiLogicData->hpPercents[battlerAtk] >= (gAiLogicData->abilities[battlerAtk] == ABILITY_REGENERATOR ? 25 : 33))
+                return SHOULD_PIVOT;
+        }
+        else if (!CanTargetFaintAi(battlerDef, battlerAtk) && GetBestNoOfHitsToKO(battlerDef, battlerAtk, AI_DEFENDING) <= 2
+              && !AnyUsefulStatIsRaised(battlerAtk))
+        {
+            return SHOULD_PIVOT;
+        }
+    }
     // Break Focus Sash / Multiscale effects if a good switchin exists
     if (!IsBattleMoveStatus(move) && BattlerHasMaxHPProtection(battlerDef) && hasGoodSwitchin && RandomPercentage(RNG_AI_SHOULD_PIVOT_BREAK_SASH, SHOULD_PIVOT_BREAK_SASH_CHANCE))
         return SHOULD_PIVOT;
@@ -4832,10 +4913,27 @@ static u32 GetStagesOfStatChange(enum StatChange statChange)
     return 0; // STAT_HP, should never be getting changed
 }
 
+// The fewest hits the target needs to faint the battler while the battler weighs a stat boost: for an
+// Imperium trainer, on the target's highest rolls (DECISIONS.md D60)
+static u32 NoOfHitsForTargetToFaintBattlerSetup(enum BattlerId battlerDef, enum BattlerId battlerAtk)
+{
+    u32 leastNumberOfHits = UNKNOWN_NO_OF_HITS;
+
+    for (u32 moveIndex = 0; moveIndex < MAX_MON_MOVES; moveIndex++)
+    {
+        u32 currNumberOfHits = GetNoOfHitsToKOBattler(battlerDef, battlerAtk, moveIndex, AI_DEFENDING_SETUP, DONT_CONSIDER_ENDURE);
+        if (currNumberOfHits != 0 && currNumberOfHits < leastNumberOfHits)
+            leastNumberOfHits = currNumberOfHits;
+    }
+    return leastNumberOfHits;
+}
+
 static enum AIScore IncreaseStatUpScoreInternal(enum BattlerId battlerAtk, enum BattlerId battlerDef, enum StatChange statChange, bool32 considerContrary)
 {
     enum AIScore tempScore = NO_INCREASE;
-    u32 noOfHitsToFaint = NoOfHitsForTargetToFaintBattler(battlerDef, battlerAtk, DONT_CONSIDER_ENDURE);
+    bool32 imperium = IsImperiumAi(battlerAtk);
+    u32 noOfHitsToFaint = imperium ? NoOfHitsForTargetToFaintBattlerSetup(battlerDef, battlerAtk)
+                                   : NoOfHitsForTargetToFaintBattler(battlerDef, battlerAtk, DONT_CONSIDER_ENDURE);
     enum Move predictedMoveSpeedCheck = GetIncomingMoveSpeedCheck(battlerAtk, battlerDef, gAiLogicData);
     bool32 aiIsFaster = AI_IsFaster(battlerAtk, battlerDef, MOVE_NONE, predictedMoveSpeedCheck, DONT_CONSIDER_PRIORITY); // Don't care about the priority of our setup move, care about outspeeding otherwise
     bool32 shouldSetUp = ((noOfHitsToFaint >= 2 && aiIsFaster) || (noOfHitsToFaint >= 3 && !aiIsFaster) || noOfHitsToFaint == UNKNOWN_NO_OF_HITS);
@@ -4854,6 +4952,10 @@ static enum AIScore IncreaseStatUpScoreInternal(enum BattlerId battlerAtk, enum 
 
     // Don't increase stat if AI has less then 70% HP and number of hits isn't known
     if (gAiLogicData->hpPercents[battlerAtk] < 70 && noOfHitsToFaint == UNKNOWN_NO_OF_HITS)
+        return NO_INCREASE;
+
+    // Crystal Imperium (DECISIONS.md D60), as Emerald Imperium: no boosting below 40% HP
+    if (imperium && gAiLogicData->hpPercents[battlerAtk] < 40)
         return NO_INCREASE;
 
     // Don't increase stats if player has a move that can change the KO threshold
@@ -4896,7 +4998,10 @@ static enum AIScore IncreaseStatUpScoreInternal(enum BattlerId battlerAtk, enum 
         }
         break;
     case STAT_DEF:
-        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL) || !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL))
+        // Crystal Imperium (D60): an Imperium trainer raises Defense only against physical attacks
+        // and only when it isn't in quick KO range, as for its attacking stats
+        if (imperium ? (shouldSetUp && HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))
+                     : (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL) || !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL)))
         {
             if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_STALL)
                 tempScore += WEAK_EFFECT;
@@ -4925,7 +5030,8 @@ static enum AIScore IncreaseStatUpScoreInternal(enum BattlerId battlerAtk, enum 
         }
         break;
     case STAT_SPDEF:
-        if (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL) || !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL))
+        if (imperium ? (shouldSetUp && HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL))
+                     : (HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_SPECIAL) || !HasMoveWithCategory(battlerDef, DAMAGE_CATEGORY_PHYSICAL)))
         {
             if (gAiThinkingStruct->aiFlags[battlerAtk] & AI_FLAG_STALL)
                 tempScore += WEAK_EFFECT;

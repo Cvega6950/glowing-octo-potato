@@ -21,6 +21,7 @@
 #include "constants/battle_move_effects.h"
 #include "constants/items.h"
 #include "constants/moves.h"
+#include "imperium_ai_measure.h"
 
 // this file's functions
 static bool32 AI_ShouldHeal(enum BattlerId battler, u32 healAmount);
@@ -36,8 +37,14 @@ bool32 ShouldUseItem(enum BattlerId battler)
     if (gSaveBlock3Ptr->challengeSettings.tx_Challenges_NoItemTrainer)
         return FALSE;
 
+#if IMPERIUM_AI_MEASURE
+    // A measured battle: the trainer keeps its items; the player's AI has none
+    if (IsAiVsAiBattle() && IsOnPlayerSide(battler))
+        return FALSE;
+#else
     if (IsAiVsAiBattle())
         return FALSE;
+#endif
 
     // If teaming up with player and Pokemon is on the right, or Pokemon is currently held by Sky Drop
     if ((gBattleTypeFlags & BATTLE_TYPE_INGAME_PARTNER && GetBattlerPosition(battler) == B_POSITION_PLAYER_RIGHT)

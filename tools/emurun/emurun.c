@@ -347,6 +347,8 @@ static unsigned PathStep(uint32_t layout, const int *dist, int x, int y)
 struct AutoSyms
 {
     uint32_t main, outcome, ctrl, act, mov, actcur, movcur, partyidx, party, count, pmenu, pmenucb2, battlecb2, mons, ppoff;
+    uint32_t eparty, ecount; // optional: the opponent's party, printed as enemy_hp= at the end
+    uint32_t turnctr, lastmoves; // optional: gBattleTurnCounter, gLastMoves: each turn's moves are printed
 };
 
 #define MAX_PLAN 64 // emu.py refuses a longer plan
@@ -433,9 +435,31 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
     for (int i = 0; i < 6; i++)
         sig[i] = PartySignature(sy, i);
     uint32_t outcome = 0;
+    // The opponent's HP when the outcome is decided: after a loss the game clears its party
+    int enemyHp[6] = {0}, enemyMax[6] = {0}, enemyCount = -1;
+    uint32_t lastTurn = sy->turnctr ? Peek(16, sy->turnctr) : 0;
     while (frameCount - start < maxFrames)
     {
         outcome = Peek(8, sy->outcome);
+        if (sy->turnctr && sy->lastmoves && Peek(16, sy->turnctr) != lastTurn)
+        {
+            // A turn ended: the last move each side's battler used (from an earlier turn if it
+            // couldn't act in this one; 0 after it switched in or fainted).
+            // BattlePokemon is 0x88 bytes: species at +0
+            lastTurn = Peek(16, sy->turnctr);
+            printf("[frame %lu] autobattle: moves turn %u: player species %u move %u, opponent species %u move %u\n",
+                   frameCount, lastTurn, Peek(16, sy->mons), Peek(16, sy->lastmoves),
+                   Peek(16, sy->mons + 0x88), Peek(16, sy->lastmoves + 2));
+        }
+        if (outcome != 0 && enemyCount < 0 && sy->eparty && sy->ecount)
+        {
+            enemyCount = Peek(8, sy->ecount);
+            for (int i = 0; i < enemyCount && i < 6; i++)
+            {
+                enemyHp[i] = Peek(16, sy->eparty + i * 100 + 86);
+                enemyMax[i] = Peek(16, sy->eparty + i * 100 + 88);
+            }
+        }
         uint32_t cb2 = Peek(32, sy->main + 4) & ~1u;   // gMain.callback2
         uint32_t ctrl = Peek(32, sy->ctrl) & ~1u;           // gBattlerControllerFuncs[0]
         if (outcome != 0 && cb2 != sy->battlecb2)
@@ -627,6 +651,17 @@ static void AutoBattle(const char *movesArg, unsigned long maxFrames, const stru
     printf(" party_hp=");
     for (int i = 0; i < (int)Peek(8, sy->count) && i < 6; i++)
         printf("%s%d", i ? "/" : "", PartyHp(sy, i));
+    if (enemyCount >= 0)
+    {
+        // The opponent's HP and max HP (struct Pokemon +86 and +88) when the outcome was decided,
+        // for a margin of victory
+        printf(" enemy_hp=");
+        for (int i = 0; i < enemyCount && i < 6; i++)
+            printf("%s%d:%d", i ? "/" : "", enemyHp[i], enemyMax[i]);
+        printf(" party_max=");
+        for (int i = 0; i < (int)Peek(8, sy->count) && i < 6; i++)
+            printf("%s%d", i ? "/" : "", Peek(16, sy->party + i * 100 + 88));
+    }
     printf("\n");
 }
 
@@ -846,6 +881,10 @@ int main(int argc, char **argv)
                 else if (!strcmp(tok, "pmenu")) sy.pmenu = v;
                 else if (!strcmp(tok, "pmenucb2")) sy.pmenucb2 = v;
                 else if (!strcmp(tok, "battlecb2")) sy.battlecb2 = v;
+                else if (!strcmp(tok, "eparty")) sy.eparty = v;
+                else if (!strcmp(tok, "turnctr")) sy.turnctr = v;
+                else if (!strcmp(tok, "lastmoves")) sy.lastmoves = v;
+                else if (!strcmp(tok, "ecount")) sy.ecount = v;
                 else if (!strcmp(tok, "ppoff")) sy.ppoff = strtoul(eq + 1, NULL, 0);
                 else if (!strcmp(tok, "plan"))
                 {
