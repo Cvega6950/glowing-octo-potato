@@ -5,6 +5,7 @@
 set -eu
 cd "$(dirname "$0")/../.."
 make -j"$(nproc)" release
+python3 tools/imperium/check.py --check   # T0: overlay slot, vars/flags, items, append-only tables
 cp build/pokeplatinum.us.nds PlatinumImperium.nds
 echo "Built PlatinumImperium.nds ($(sha1sum PlatinumImperium.nds | cut -d' ' -f1))"
 if [ "${1:-}" = "--test" ]; then

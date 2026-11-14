@@ -31,6 +31,8 @@ Those checks are marked **[verified]**. The full list is in [§0](#0-verificatio
 | V10 | Fixed limits | All confirmed:<br>• `Options` has 15 bits used and 1 spare (`include/game_options.h:8-16`).<br>• The options menu has `cursor : 3` and a literal `% 7` (`options_menu.c:83, 903, 912`).<br>• `MAX_START_MENU_OPTIONS` is 7.<br>• The day-care counter test is `steps == Daycare_GetEggCycleLength()` (`daycare.c:951`), and the length is 255 or 230.<br>• Trainer species uses `& 0x3FF` with `TRAINER_MON_FORM_SHIFT 10`.<br>• A learnset entry is `move : 9` / `level : 7` with `MAX_LEARNSET_ENTRIES 20`.<br>• `WaitButtonABTime 30` appears 395 times (plus 30×15, 8×60, 2×7).<br>• The `PlayerSave` padding is after `Options`, and `Options` is copied by value into the battle recording (`struct_0202F298.h:17`). |
 | V11 | Emulation survey assumed HG/SS game codes (IPKE/IPGE, IR cartridge) | Our ROM is **Platinum, serial `CPUE`** (`platinum.us/rom_rev1.ini:4`). There is no IR cartridge. Keep `CPUE` so melonDS 0.9.5 in Delta picks the right save type. That the database entry is 512 KB flash is still **to verify**. |
 | V12 | Trainer counts | 928 trainer JSON files (IDs 0–927), 180 of them `dummy_*`. `generated/species.txt` has 496 `SPECIES_*` lines. `ITEM_SECRET_KEY` = 467 and `MAX_ITEMS` = 468. |
+| V13 | `FieldBattleDTO` is RAM only (Phase 0) | **Confirmed.** It is heap-allocated per battle (`FieldBattleDTO_New`; `frscrcmd.c` for the Frontier) and never copied whole: link code sends parties, `TrainerInfo` and `Trainer`, and the battle recorder (`unk_0202F1D4.c` `sub_0202F8AC`) copies chosen fields one by one, `battleStatusMask` included, the new `levelCap` not. Recordings are made only of link and Frontier battles, which get no Imperium bits or cap. |
+| V14 | How debug builds are flagged | `make debug` reconfigures meson with `-Dlogging_enabled=true -Dgdb_debugging=true`, which defines `LOGGING_ENABLED` (and `GDB_DEBUGGING`, `-O1`). There is no `PM_DEBUG`. Its ROM builds; the extra `debug.nef` step needs the host tool `debugedit`, which this machine lacks. Use `make debug BUILD=build_debug` to keep the release build directory. |
 
 ---
 
@@ -300,6 +302,12 @@ the tracks in Phase 2 never touch the same file.
    - empty `Object` lines (or new stub files) in `main.lsf.in` for every new `.c` file planned.
 5. **Test harness, T1 and T1b.** Boot-to-field smoke test, plus a new-game fixture through the ppexp debug start (after Phase 1).
 
+**Status: done** (2026-11-14). The registry it froze is in [API.md](API.md); the numbers it measured
+are in [§8](#8-measurements-stage-2-baseline). Two deviations from the list above: the `check`
+dependency stays in the Makefile's `all:` (use `make release`), and the global-script entry reserved
+in `unused_0397.s` is the test mailbox's trainer battle (entry 8); the eight vanilla entries stay free
+for track B.
+
 ### 5.2 Phase 1: debug menu port (serial, one agent, right after Phase 0)
 
 Port ppexp's menu, gated by a meson option. It touches hot files (`field_control.c`, `player_move.c`,
@@ -402,9 +410,9 @@ freely available projects that copy its credits. Most of its sprites are from th
 
 ## 7. Open questions to settle by experiment once the build runs
 
-1. **Free main RAM:** read the real arena start from `overlay.map`, and the runtime free memory with `HeapExp_FndGetTotalFreeSize`. Is it 150–200 KB? Set a RAM budget for Static main additions.
+1. **Free main RAM:** read the real arena start from `overlay.map`, and the runtime free memory with `HeapExp_FndGetTotalFreeSize`. Is it 150–200 KB? Set a RAM budget for Static main additions. *Answered in §8: 191 KB of main RAM is unused.*
 2. **Overlay sizes:** `battle_anim` vs `trainer_ai` vs `battle_sub_menus`. How much room does the AI have? Does makelcf accept several `After` parents?
-3. **Save block sizes:** log `blockInfo[].size`. Are NORMAL `0xCF2C` and BOXES `0x121E4` right? Do the extra saves end at page 43?
+3. **Save block sizes:** log `blockInfo[].size`. Are NORMAL `0xCF2C` and BOXES `0x121E4` right? Do the extra saves end at page 43? *Answered in §8 for NORMAL and BOXES (both right); the extra saves are not measured yet.*
 4. **Instant battle text:** is `TEXT_SPEED_INSTANT` safe with `Task_WaitForBattleMessagePrint` and multi-page messages, or must FAST stay at 1 frame?
 5. **Frontier subscreen** (`battle_subscreen.c:896`, index 170): is it the command screen without BAG, reusable for HARD?
 6. **`PlayerSave` padding bytes:** are they zeroed on a new game and in vanilla saves? This matters only if they are ever used.
@@ -415,3 +423,62 @@ freely available projects that copy its credits. Most of its sprites are from th
 11. **Infinite Repel:** should it also block fishing and honey trees? Check how it feels in play.
 12. **AI cost:** how many frames does a smart-flag AI turn take on the interpreter (Delta, T2)? Make sure it never stalls a turn.
 13. **Fast battles:** frame counts for one trainer battle with FAST BATTLES off and on, measured in T1. The target is about a third less time, as in Crystal Imperium.
+
+---
+
+## 8. Measurements (stage 2 baseline)
+
+Measured on 2026-11-14 with `make release`, `tools/imperium/check.py` (from `build/main.nef.xMAP`
+and the ROM header) and the `measure` play test (from RAM, through the test mailbox). "Vanilla" is
+this repository before Phase 0, whose ROM matches retail Platinum (US) Rev 1 byte for byte; "Phase 0"
+is the build with everything in [API.md](API.md).
+
+### Linker map
+
+| | Vanilla | Phase 0 | Change |
+|---|---|---|---|
+| Static main, text + data | `0x02000000`–`0x02101D20` (1,056,032 B) | `0x02000000`–`0x021022C0` (1,057,472 B) | +1,440 B |
+| Static main, BSS end | `0x021D0D80` | `0x021D1320` | +1,440 B |
+| `battle_anim` (shared slot) | `0x0221FC20`–`0x0223B140`, 111,904 B | `0x022201C0`–`0x0223B6E0`, 111,904 B | moved up only |
+| `trainer_ai` (shared slot) | 62,560 B | 62,560 B | 49,344 B below `battle_anim` |
+| `battle_sub_menus` (shared slot) | 41,472 B | 41,472 B | 70,432 B below `battle_anim` |
+| `battle` (after `battle_anim`) | `0x0223B140`–`0x02270BC0`, 219,776 B | `0x0223B6E0`–`0x022711C0`, 219,872 B | +96 B |
+| Tallest overlay chain end | `0x02270BC0` (`battle`) | `0x022711C0` (`battle`) | +1,536 B |
+| Main arena (tallest end to `0x023E0000`) | 1,504,320 B | 1,502,784 B | −1,536 B |
+| Overlays | 122 | 122 | |
+
+`trainer_ai` and `battle_sub_menus` share `battle_anim`'s slot and must stay at or below its 111,904
+bytes; `check.py --check` fails the build otherwise. The AI therefore has **49,344 bytes** of room
+(§1.3, [V9]).
+
+### ROM
+
+| | Vanilla | Phase 0 |
+|---|---|---|
+| Used size (header 0x80) | 104,607,804 B (99.76 MiB) | 104,610,876 B (+3,072 B) |
+| File size (padded) | 128 MiB | 128 MiB |
+
+About 28 MiB remain before nitrorom has to switch to a 256 MiB image (§1.5).
+
+### RAM at run time (Phase 0, new game, player's bedroom)
+
+| | Bytes |
+|---|---|
+| Main RAM between the root heaps and the arena's end, used by nothing | **191,328** |
+| Free in the APPLICATION heap (field running) | 69,108 |
+| Free in the SYSTEM heap | 52,288 |
+
+The root heaps are SYSTEM `0xD200`, SAVE `0x20E00`, DEBUG `0x10` and APPLICATION `0x10D800`
+(`include/constants/heap.h`). The 191 KB of unused main RAM is the real budget for growth in Static
+main and in the tallest overlay chain: every byte added there comes out of it.
+
+### Save blocks (`SaveData.blockInfo`, read from RAM)
+
+| Block | Size | Sectors | Free before the 16-byte footer would need another sector |
+|---|---|---|---|
+| NORMAL | `0xCF2C` (53,036 B) | 13 | 196 B |
+| BOXES | `0x121E4` (74,212 B) | 19 | 3,596 B |
+
+Both match the outside figures for vanilla in §1.4; Phase 0 changed no saved struct's size.
+NORMAL can grow by only 196 bytes before it needs a 14th sector.
+

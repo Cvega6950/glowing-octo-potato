@@ -7,15 +7,16 @@ branch) to Platinum's own Sinnoh adventure. It is built on **pret/pokeplatinum**
 decompilation of Platinum (US), so the whole game is compiled from source and every change is
 made in Platinum's own engine.
 
-> **Status: stage 1 of 4 (setup) done; no gameplay changes yet.** What works today is listed
-> below with how it was tested. Nothing is marked done unless it was tested in an emulator.
+> **Status: stage 1 of 4 (setup) done; stage 2 phase 0 (the shared foundation) done; no gameplay
+> changes yet.** What works today is listed below with how it was tested. Nothing is marked done
+> unless it was tested in an emulator.
 
 ## Stages
 
 | Stage | Contents | Status |
 |---|---|---|
 | 1. Setup | Platinum builds from source; a play-test runner on the exact emulator core Delta uses | **Done** (see Evidence) |
-| 2. First playable | Auto-run, level caps, Rare Candy Box, reusable TMs, EXP Share for all, faster battles and text, move relearner, nature/IV/ability tools, Minimal Grinding, smart AI, redesigned boss teams; Gen 1–4 Pokémon | Not started |
+| 2. First playable | Auto-run, level caps, Rare Candy Box, reusable TMs, EXP Share for all, faster battles and text, move relearner, nature/IV/ability tools, Minimal Grinding, smart AI, redesigned boss teams; Gen 1–4 Pokémon | Phase 0 done: settings registry, battle plumbing, reserved IDs, test mailbox ([API.md](API.md)) |
 | 3. DexNav | A DexNav for the DS screens | Not started |
 | 4. Gen 5–9 Pokémon | New species, the Fairy type, modern moves and abilities, Megas | Not started |
 
@@ -29,6 +30,9 @@ The engineering plan, with where every feature hooks into Platinum's code, is in
 | Vanilla build from this repository (`make`) | The ROM's SHA-1 is `0862ec35b24de5c7e2dcb88c9eea0873110d755c`, Platinum (US) Rev 1, byte for byte |
 | Delta-core runner (`tools/dsrun/`) | Builds melonDS 0.9.5 from `rileytestut/melonDS` at `a53f9ba`, the commit Delta's DS core pins, set up as Delta sets it up (no JIT, threaded software renderer, direct boot, no BIOS files needed) |
 | Play test `boot` | **PASS**: the ROM boots without BIOS files and runs its intro (about 400 frames a second, 6.7× real time) |
+| Stage 2 phase 0 (`make release`, `tools/imperium/check.py --check`) | **PASS**: T0 checks (shared overlay slot, vars and flags, items, append-only tables) |
+| Play tests `settings_defaults`, `level_cap`, `mailbox`, `measure` | **PASS**: a new game has every Imperium setting at its default and the Running Shoes; the level-cap table and the cap a trainer battle receives (15, 85, 100); the test mailbox gives items and Pokémon, warps and starts trainer battles; save blocks and free RAM measured ([ENGINE_NOTES §8](ENGINE_NOTES.md#8-measurements-stage-2-baseline)) |
+| Play test `debug_assert` on a `make debug` ROM | **PASS**: a failed `GF_ASSERT` logs its caller and hangs |
 
 ## Building
 
