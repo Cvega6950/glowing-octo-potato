@@ -127,3 +127,6 @@ compile_commands.json
 wfcsettings.bin
 /PlatinumImperium.nds
 /build_debug/
+
+# Git worktrees of agents working on tracks (temporary)
+/.claude/worktrees/
