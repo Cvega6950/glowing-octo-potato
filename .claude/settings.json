@@ -13,7 +13,10 @@
       "Bash(git status:*)",
       "Bash(git diff:*)",
       "Bash(git log:*)",
-      "Bash(git worktree:*)"
+      "Bash(git worktree:*)",
+      "Bash(tools/imperium/worktree_setup.sh:*)",
+      "Bash(tools/imperium/check.py:*)",
+      "Bash(python3 tools/imperium/check.py:*)"
     ]
   }
 }
