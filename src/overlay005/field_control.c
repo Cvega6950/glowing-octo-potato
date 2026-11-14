@@ -41,6 +41,7 @@
 #include "field_map_change.h"
 #include "field_overworld_state.h"
 #include "game_records.h"
+#include "imperium_test.h"
 #include "inlines.h"
 #include "item_use_functions.h"
 #include "location.h"
@@ -195,6 +196,10 @@ BOOL FieldInput_Process(const FieldInput *input, FieldSystem *fieldSystem)
             MapObjectMan_PauseAllMovement(fieldSystem->mapObjMan);
             return TRUE;
         }
+    }
+
+    if (ImperiumTest_Process(fieldSystem) == TRUE) {
+        return TRUE;
     }
 
     if (input->movement) {

@@ -28,6 +28,7 @@
 #include "field_task.h"
 #include "game_overlay.h"
 #include "heap.h"
+#include "imperium_test.h"
 #include "main.h"
 #include "map_header_data.h"
 #include "map_matrix.h"
@@ -232,6 +233,8 @@ static BOOL HandleInputsEventsAndProcesses(FieldSystem *fieldSystem)
 
 static void HandleFieldInput(FieldSystem *fieldSystem)
 {
+    ImperiumTest_Refresh(fieldSystem);
+
     BOOL processInput = FALSE;
     if (!fieldSystem->processManager->pause && fieldSystem->runningFieldMap && FieldSystem_IsRunningTask(fieldSystem) == FALSE) {
         processInput = TRUE;

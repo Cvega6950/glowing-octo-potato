@@ -52,6 +52,7 @@
 #include "gx_layers.h"
 #include "hardware_palette.h"
 #include "heap.h"
+#include "imperium_test.h"
 #include "math_util.h"
 #include "message.h"
 #include "narc.h"
@@ -1035,6 +1036,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->seedDTO = dto->seed;
     battleSys->battleStatusMask = dto->battleStatusMask;
     battleSys->levelCap = dto->levelCap;
+    ImperiumTest_RecordBattleStart(battleSys->battleType, battleSys->battleStatusMask, BattleSystem_GetLevelCap(battleSys));
     battleSys->bag = Bag_New(HEAP_ID_BATTLE);
 
     Bag_Copy(dto->bag, battleSys->bag);

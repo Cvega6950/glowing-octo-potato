@@ -10,6 +10,7 @@
     ScriptEntry Unused397_Dummy6
     ScriptEntry Unused397_Dummy7
     ScriptEntry Unused397_Dummy8
+    ScriptEntry ImperiumTest_TrainerBattle
     ScriptEntryEnd
 
 Unused397_Dummy1:
@@ -190,3 +191,18 @@ Unused397_Unused22:
 Unused397_Unused23:
     Message 5
     Return
+
+// Platinum Imperium test mailbox (src/imperium_test.c): SCRIPT_ID(UNUSED_0397, 8).
+// Starts a single battle against the trainer in VAR_0x8004, as an NPC trainer's script does.
+ImperiumTest_TrainerBattle:
+    LockAll
+    StartTrainerBattle VAR_0x8004
+    CheckWonBattle VAR_RESULT
+    GoToIfEq VAR_RESULT, FALSE, ImperiumTest_LostBattle
+    ReleaseAll
+    End
+
+ImperiumTest_LostBattle:
+    BlackOutFromBattle
+    ReleaseAll
+    End
