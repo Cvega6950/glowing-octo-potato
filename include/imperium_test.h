@@ -15,8 +15,8 @@
 // Platinum Imperium test mailbox (docs/platinum_imperium/API.md, "Test mailbox").
 //
 // A play test finds gImperiumTest through the linker map, writes args[] and status = 0, then cmd.
-// The field runs the command on the next frame in which the player could move and no script or
-// other field task is running, and sets status to DONE (or ERROR). Commands that start a field task
+// The field runs the command on the next frame in which the player stands still (not in or at the
+// end of a step) and no script or other field task is running, and sets status to DONE (or ERROR). Commands that start a field task
 // (a script, a warp, a battle) stay BUSY until the field is free again. With cmd == 0 nothing
 // happens, so the mailbox is harmless in a normal game.
 

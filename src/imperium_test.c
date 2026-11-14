@@ -98,9 +98,11 @@ BOOL ImperiumTest_Process(FieldSystem *fieldSystem)
 {
     ImperiumTestMailbox *box = &gImperiumTest;
 
-    // A command that started a field task is done once the field is free again.
+    // A command that started a field task is done once the field is free again. A command the test
+    // wrote in the meantime stays queued for the next frame.
     if (box->pendingCmd != IMPERIUM_TEST_CMD_NONE) {
-        Finish(box, TRUE);
+        box->pendingCmd = IMPERIUM_TEST_CMD_NONE;
+        box->status = IMPERIUM_TEST_STATUS_DONE;
         return FALSE;
     }
 
@@ -108,9 +110,10 @@ BOOL ImperiumTest_Process(FieldSystem *fieldSystem)
         return FALSE;
     }
 
-    int moveState = PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar);
-
-    if (moveState != PLAYER_MOVE_STATE_END && moveState != PLAYER_MOVE_STATE_NONE) {
+    // Only while the player stands still: on the frame a step ends (PLAYER_MOVE_STATE_END), the
+    // rest of FieldInput_Process runs the step's events (step counters, warps, wild encounters),
+    // which a command started here would skip.
+    if (PlayerAvatar_GetPlayerMoveState(fieldSystem->playerAvatar) != PLAYER_MOVE_STATE_NONE) {
         return FALSE;
     }
 

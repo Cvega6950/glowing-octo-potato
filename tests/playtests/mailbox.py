@@ -1,8 +1,9 @@
 """Test mailbox: in a new game, every command does what it says. GIVE_ITEM puts items in the bag,
 GIVE_MON adds a Pokemon to the party, WARP moves the player to another map, START_TRAINER_BATTLE
 starts a real trainer battle (won here by mashing A with a level 100 Blaziken), and RUN_SCRIPT runs
-a field script with its arguments in VAR_0x8004 and up."""
-from playtest import MB_DONE, MB_ERROR, MB_GIVE_ITEM, MB_GIVE_MON, MB_WARP, MB_START_TRAINER_BATTLE, MB_RUN_SCRIPT
+a field script with its arguments in VAR_0x8004 and up. A command written while another is BUSY
+runs after it instead of being dropped."""
+from playtest import MB_DONE, MB_ERROR, MB_GIVE_ITEM, MB_GIVE_MON, MB_IDLE, MB_WARP, MB_START_TRAINER_BATTLE, MB_RUN_SCRIPT
 
 
 def run(t):
@@ -53,6 +54,27 @@ def run(t):
     script = 9900 + 8  # SCRIPT_ID(UNUSED_0397, 8), ImperiumTest_TrainerBattle
     st = t.mailbox_cmd(MB_RUN_SCRIPT, script, t.const("TRAINER_YOUNGSTER_TRISTAN"), timeout=20000, mash="A")
     t.check(st == MB_DONE and t.mb("battleCount") == battles + 2, "RUN_SCRIPT ran the battle script")
+
+    # A command written while another is BUSY waits its turn instead of being dropped
+    box = t.mbox()
+    potions = t.bag_quantity("ITEM_POTION")
+    t.ds.write16(box + 0x2E, t.const("TRAINER_YOUNGSTER_TRISTAN"))
+    t.ds.write16(box + 0x36, MB_IDLE)
+    t.ds.write16(box + 0x2C, MB_START_TRAINER_BATTLE)
+    t.wait_until(lambda: t.mb("pendingCmd") == MB_START_TRAINER_BATTLE, 600, 1, "the battle command to start")
+    t.ds.write16(box + 0x2E, t.const("ITEM_POTION"))
+    t.ds.write16(box + 0x30, 2)
+    t.ds.write16(box + 0x2C, MB_GIVE_ITEM)
+    start = t.ds.frame
+    while not (t.mb("cmd") == 0 and t.mb("pendingCmd") == 0 and t.mb("status") == MB_DONE):
+        t.check(t.ds.frame - start < 20000, "the queued command never finished")
+        if (t.ds.frame - start) % 16 == 8:
+            t.ds.hold("A")
+        elif (t.ds.frame - start) % 16 == 12:
+            t.ds.release()
+        t.ds.run(1)
+    t.ds.release()
+    t.check(t.bag_quantity("ITEM_POTION") == potions + 2, "a GIVE_ITEM queued during a battle ran afterwards")
 
     # Unknown commands are refused
     t.check(t.mailbox_cmd(0x7F) == MB_ERROR, "an unknown command sets status ERROR")

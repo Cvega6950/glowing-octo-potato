@@ -223,8 +223,10 @@ lets a play test drive the game. It is always present and does nothing while `cm
 - `src/field_system.c` `HandleFieldInput` calls `ImperiumTest_Refresh` every field frame.
 - `src/overlay005/field_control.c` `FieldInput_Process` calls `ImperiumTest_Process` after the
   frame-table scripts and trainer sight checks, so commands run only on a frame where the field is
-  processing input: no script or field task running, and the player standing still or finishing a
-  step.
+  processing input: no script or field task running, and the player standing still
+  (`PLAYER_MOVE_STATE_NONE`). The frame a step ends is skipped, so a command never preempts that
+  step's events (step counters, warps, wild encounters). A command written while an earlier one is
+  still BUSY waits for the next frame instead of being dropped.
 - `BattleSys_New` calls `ImperiumTest_RecordBattleStart`.
 
 ### Layout (layout version 1)
@@ -304,5 +306,5 @@ succeeds. A track that changes the intro (track G) must keep it working.
 | `boot` | the ROM boots without BIOS files and runs its intro |
 | `settings_defaults` | every Imperium flag and var after a new game, Running Shoes owned, Options bit 15 clear, cap 15 |
 | `level_cap` | the cap table for every badge count in NORMAL and HARD, OFF, and the cap and settings bits three trainer battles receive (0 badges: 15; 8 badges: 85 with HARD; game completed: 100 with EASY) |
-| `mailbox` | GIVE_ITEM, GIVE_MON, WARP, START_TRAINER_BATTLE, RUN_SCRIPT, ERROR on an unknown command |
-| `measure` | save block sizes, unused main RAM and free heap with the field running |
+| `mailbox` | GIVE_ITEM, GIVE_MON, WARP, START_TRAINER_BATTLE, RUN_SCRIPT, a command queued while another is BUSY, ERROR on an unknown command |
+| `measure` | save block sizes (fails unless they equal vanilla's), unused main RAM and free heap with the field running |
