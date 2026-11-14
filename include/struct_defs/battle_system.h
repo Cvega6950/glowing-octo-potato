@@ -141,6 +141,8 @@ struct BattleSystem {
     u32 padding_2474_1 : 31;
     SysTask *playbackStopButton;
     u8 recordedChatter[MAX_BATTLERS];
+    u8 levelCap; // Platinum Imperium: copied from FieldBattleDTO.levelCap; 0 = no cap
+    u8 imperiumPadding[3];
 };
 
 #endif // POKEPLATINUM_STRUCT_BATTLE_SYSTEM_H

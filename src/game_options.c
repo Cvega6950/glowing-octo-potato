@@ -126,3 +126,13 @@ void Options_SetFrame(Options *options, enum OptionsFrame frame)
 {
     options->frame = frame;
 }
+
+BOOL Options_GetAutoRunOff(const Options *options)
+{
+    return options->autoRunOff;
+}
+
+void Options_SetAutoRunOff(Options *options, BOOL autoRunOff)
+{
+    options->autoRunOff = autoRunOff ? TRUE : FALSE;
+}

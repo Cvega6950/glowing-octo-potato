@@ -42,6 +42,7 @@
 #include "constants/fade_screen.h"
 #include "constants/forms.h"
 #include "constants/honey_tree.h"
+#include "constants/imperium.h"
 #include "constants/init_script_types.h"
 #include "constants/items.h"
 #include "constants/map_object.h"

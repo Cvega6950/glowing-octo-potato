@@ -31,6 +31,7 @@
 #include "game_options.h"
 #include "game_records.h"
 #include "heap.h"
+#include "imperium_settings.h"
 #include "journal.h"
 #include "map_header.h"
 #include "map_tile_behavior.h"
@@ -274,6 +275,19 @@ void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fi
     dto->palPad = SaveData_GetPalPad(saveData);
     dto->mapHeaderID = mapHeaderID;
     dto->saveData = saveData;
+
+    FieldBattleDTO_ApplyImperiumSettings(dto, saveData);
+}
+
+void FieldBattleDTO_ApplyImperiumSettings(FieldBattleDTO *dto, SaveData *saveData)
+{
+    // Link, Frontier and Wi-Fi battles keep vanilla rules (ENGINE_NOTES 1.6 rule 1).
+    if (dto->battleType & (BATTLE_TYPE_LINK | BATTLE_TYPE_FRONTIER)) {
+        return;
+    }
+
+    dto->battleStatusMask |= Imperium_FieldBattleStatusBits(saveData);
+    dto->levelCap = LevelCap_Get(saveData);
 }
 
 void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem)

@@ -118,6 +118,18 @@
 #define BATTLE_STATUS_GIRATINA     (1 << 6)
 #define BATTLE_STATUS_DISTORTION   (1 << 7)
 
+// Platinum Imperium settings, set by Imperium_FieldBattleStatusBits for battles started from the
+// field. Never set for link, Frontier or Wi-Fi battles. See docs/platinum_imperium/API.md.
+#define BATTLE_STATUS_FAST_BATTLE       (1 << 8)
+#define BATTLE_STATUS_FAST_INTRO        (1 << 9)
+#define BATTLE_STATUS_HARD              (1 << 10)
+#define BATTLE_STATUS_SLEEP_CLAUSE      (1 << 11)
+#define BATTLE_STATUS_EXP_SHARE_ALL     (1 << 12)
+#define BATTLE_STATUS_MINIMAL_GRINDING  (1 << 13)
+#define BATTLE_STATUS_EXP_BOOST         (1 << 14)
+#define BATTLE_STATUS_EASY              (1 << 15)
+#define BATTLE_STATUS_IMPERIUM_SETTINGS (0xFF << 8)
+
 #define CHECK_INVALID_NO_MOVE     (1 << 0)
 #define CHECK_INVALID_NO_PP       (1 << 1)
 #define CHECK_INVALID_DISABLED    (1 << 2)

@@ -1034,6 +1034,7 @@ static void BattleSys_New(BattleSystem *battleSys, FieldBattleDTO *dto)
     battleSys->seedRandNext = dto->seed;
     battleSys->seedDTO = dto->seed;
     battleSys->battleStatusMask = dto->battleStatusMask;
+    battleSys->levelCap = dto->levelCap;
     battleSys->bag = Bag_New(HEAP_ID_BATTLE);
 
     Bag_Copy(dto->bag, battleSys->bag);

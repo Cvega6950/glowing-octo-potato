@@ -88,6 +88,8 @@ typedef struct FieldBattleDTO {
     u8 recordedChatter[MAX_BATTLERS];
     SaveData *saveData;
     u32 recordingStopped;
+    u8 levelCap; // Platinum Imperium: LevelCap_Get at battle start; 0 = no cap (link, Frontier, playback)
+    u8 imperiumPadding[3];
 } FieldBattleDTO;
 
 FieldBattleDTO *FieldBattleDTO_New(enum HeapID heapID, u32 battleType);
@@ -100,6 +102,7 @@ void FieldBattleDTO_CopyPartyToBattler(FieldBattleDTO *dto, const Party *src, in
 void FieldBattleDTO_CopyTrainerInfoToBattler(FieldBattleDTO *dto, const TrainerInfo *src, int battler);
 void FieldBattleDTO_CopyChatotCryToBattler(FieldBattleDTO *dto, const ChatotCry *src, int battler);
 void FieldBattleDTO_InitFromGameState(FieldBattleDTO *dto, const FieldSystem *fieldSystem, SaveData *save, enum MapHeaderID mapHeaderID, JournalEntry *journalEntry, BagCursor *bagCursor, u8 *subscreenCursorOn);
+void FieldBattleDTO_ApplyImperiumSettings(FieldBattleDTO *dto, SaveData *saveData);
 void FieldBattleDTO_Init(FieldBattleDTO *dto, const FieldSystem *fieldSystem);
 void FieldBattleDTO_InitWithNormalizedMonLevels(FieldBattleDTO *dto, const FieldSystem *fieldSystem, int level);
 void FieldBattleDTO_InitWithPartyOrder(FieldBattleDTO *dto, const FieldSystem *fieldSystem, const Party *party, const u8 *partyOrder);

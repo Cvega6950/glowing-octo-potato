@@ -181,6 +181,9 @@ int BattleSystem_GetEnemyInSlot(BattleSystem *battleSys, int attacker, int slot)
  */
 BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot, int moveSlot, int item);
 u32 BattleSystem_GetBattleStatusMask(BattleSystem *battleSys);
+// Platinum Imperium: the level cap for this battle (1-100). MAX_POKEMON_LEVEL when the battle has
+// no cap (link, Frontier, Wi-Fi, recorded playback).
+u8 BattleSystem_GetLevelCap(BattleSystem *battleSys);
 
 /**
  * @brief Get the time of day.

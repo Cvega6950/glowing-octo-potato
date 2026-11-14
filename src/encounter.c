@@ -658,6 +658,7 @@ void Encounter_NewVsFirstBattle(FieldTask *task, int trainerID, enum HeapID heap
     FieldBattleDTO_Init(dto, fieldSystem);
 
     dto->battleStatusMask = BATTLE_STATUS_FIRST_BATTLE;
+    FieldBattleDTO_ApplyImperiumSettings(dto, fieldSystem->saveData);
     dto->trainerIDs[BATTLER_ENEMY_1] = trainerID;
     dto->trainerIDs[BATTLER_ENEMY_2] = 0;
     dto->trainerIDs[BATTLER_PLAYER_2] = 0;

@@ -9,6 +9,7 @@
 #include "constants/game_options.h"
 #include "constants/heap.h"
 #include "constants/items.h"
+#include "constants/pokemon.h"
 #include "constants/rtc.h"
 #include "generated/abilities.h"
 #include "generated/species.h"
@@ -760,6 +761,15 @@ BOOL BattleSystem_UseBagItem(BattleSystem *battleSys, int battler, int partySlot
 u32 BattleSystem_GetBattleStatusMask(BattleSystem *battleSys)
 {
     return battleSys->battleStatusMask;
+}
+
+u8 BattleSystem_GetLevelCap(BattleSystem *battleSys)
+{
+    if (battleSys->levelCap == 0 || battleSys->levelCap > MAX_POKEMON_LEVEL) {
+        return MAX_POKEMON_LEVEL;
+    }
+
+    return battleSys->levelCap;
 }
 
 enum TimeOfDay BattleSystem_GetTime(BattleSystem *battleSys)

@@ -12,7 +12,7 @@ typedef struct Options {
     u16 battleScene : 1;
     u16 buttonMode : 2;
     u16 frame : 5;
-    u16 : 1;
+    u16 autoRunOff : 1; // Platinum Imperium: 0 = auto-run on (the default). Never widen Options.
 } Options;
 
 Options *Options_New(enum HeapID heapID);
@@ -32,5 +32,7 @@ int Options_ButtonMode(const Options *options);
 void Options_SetButtonMode(Options *options, enum OptionsButtonMode mode);
 int Options_Frame(const Options *options);
 void Options_SetFrame(Options *options, enum OptionsFrame frame);
+BOOL Options_GetAutoRunOff(const Options *options);
+void Options_SetAutoRunOff(Options *options, BOOL autoRunOff);
 
 #endif // POKEPLATINUM_GAME_OPTIONS_H
