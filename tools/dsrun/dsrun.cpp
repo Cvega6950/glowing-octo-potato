@@ -262,7 +262,8 @@ void dsrun_write8(unsigned a, unsigned v) { NDS::ARM9Write8(a, (u8)v); }
 void dsrun_write16(unsigned a, unsigned v) { NDS::ARM9Write16(a, (u16)v); }
 void dsrun_write32(unsigned a, unsigned v) { NDS::ARM9Write32(a, v); }
 
-// Both screens as 8-bit RGB (256x384, top screen first). melonDS 0.9.5 keeps 6-bit channels.
+// Both screens as 8-bit RGB (256x384, top screen first). The software renderer's last step
+// (GPU2D_Soft.cpp, "convert to 32-bit BGRA") leaves 0xAARRGGBB in each pixel.
 void dsrun_framebuffer_rgb(unsigned char* out)
 {
     for (int s = 0; s < 2; s++)
@@ -271,11 +272,10 @@ void dsrun_framebuffer_rgb(unsigned char* out)
         for (int i = 0; i < 256 * 192; i++)
         {
             u32 c = src ? src[i] : 0;
-            u8 r = c & 0x3F, g = (c >> 8) & 0x3F, b = (c >> 16) & 0x3F;
             unsigned char* p = out + (s * 256 * 192 + i) * 3;
-            p[0] = (r << 2) | (r >> 4);
-            p[1] = (g << 2) | (g >> 4);
-            p[2] = (b << 2) | (b >> 4);
+            p[0] = (c >> 16) & 0xFF;
+            p[1] = (c >> 8) & 0xFF;
+            p[2] = c & 0xFF;
         }
     }
 }
