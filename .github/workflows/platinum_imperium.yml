@@ -1,0 +1,41 @@
+name: Platinum Imperium
+
+on:
+  push:
+    branches: [ 'claude/**' ]
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Install software
+        run: |
+          sudo dpkg --add-architecture i386
+          sudo apt-get update -y
+          sudo apt-get install -y --no-install-recommends bison flex g++ gcc-arm-none-eabi git make \
+            ninja-build pkg-config python3 wget xz-utils nasm libc6:i386 libpng-dev cmake
+
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Build the ROM
+        run: tools/imperium/build.sh
+
+      - name: Build the Delta-core runner (melonDS 0.9.5, rileytestut/melonDS a53f9ba)
+        run: tools/dsrun/build.sh
+
+      - name: Play tests
+        run: ROM=PlatinumImperium.nds python3 tools/dsrun/run_tests.py
+
+      # The built ROM is Nintendo's game with our changes, so it is only uploaded when this
+      # repository is private (download it from the run's Artifacts section).
+      - name: Upload ROM (private repositories only)
+        if: github.event.repository.private
+        uses: actions/upload-artifact@v4
+        with:
+          name: PlatinumImperium-${{ github.sha }}
+          path: |
+            PlatinumImperium.nds
+            build/playtests/**/*.png
+          retention-days: 30

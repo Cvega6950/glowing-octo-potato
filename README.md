@@ -1,3 +1,8 @@
+> **This fork is Pokémon Platinum Imperium**: Pokémon Platinum with the systems of Crystal Imperium
+> (Emerald Imperium-style difficulty and quality of life). See
+> [docs/platinum_imperium/README.md](docs/platinum_imperium/README.md) for status, build steps and
+> how to play on Delta. pret's original README follows.
+
 # Pokémon Platinum
 
 This is a WIP decompilation of Pokémon Platinum. For instructions on how to set up the repository, please read [`INSTALL.md`](INSTALL.md).
