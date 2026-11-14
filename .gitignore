@@ -126,3 +126,4 @@ compile_commands.json
 # melonDS (tools/dsrun) writes its Wi-Fi settings here
 wfcsettings.bin
 /PlatinumImperium.nds
+/build_debug/
