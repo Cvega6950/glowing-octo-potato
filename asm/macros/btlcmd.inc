@@ -1235,6 +1235,14 @@
     .long BTLCMD_END
     .endm
 
+    // Platinum Imperium: jump if the Sleep Clause blocks putting the battler to sleep.
+    // A stub that never jumps until track D implements it (src/battle/battle_script.c).
+    .macro CheckSleepClause battler, jump
+    .long BTLCMD_CHECKSLEEPCLAUSE
+    .long \battler
+    .long (\jump-.) / 4 - 1
+    .endm
+
     .text
     .globl _start
 _start:

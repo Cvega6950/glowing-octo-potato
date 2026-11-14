@@ -228,6 +228,8 @@ ScriptCommand(BTLCMD_CHECKCURMOVEISTYPE,          BtlCmd_CheckCurMoveIsType)
 ScriptCommand(BTLCMD_LOADARCHIVEDMONDATA,         BtlCmd_LoadArchivedMonData)
 ScriptCommand(BTLCMD_REFRESHMONDATA,              BtlCmd_RefreshMonData)
 ScriptCommand(BTLCMD_END,                         BtlCmd_End)
+// Platinum Imperium (append-only; see docs/platinum_imperium/API.md)
+ScriptCommand(BTLCMD_CHECKSLEEPCLAUSE,            BtlCmd_CheckSleepClause)
 
 // clang-format on
 

@@ -4997,6 +4997,29 @@
     .byte \floor
     .endm
 
+    // Platinum Imperium commands (src/scrcmd_imperium.c; docs/platinum_imperium/API.md)
+    .macro FindPartySlotForFieldMove destVar, move
+    .short SCRCMD_FINDPARTYSLOTFORFIELDMOVE
+    .short \destVar
+    .short \move
+    .endm
+
+    .macro ImperiumToggleSetting flagID, destVar
+    .short SCRCMD_IMPERIUMTOGGLESETTING
+    .short \flagID
+    .short \destVar
+    .endm
+
+    .macro ImperiumOpenQuickMenu destVar
+    .short SCRCMD_IMPERIUMOPENQUICKMENU
+    .short \destVar
+    .endm
+
+    .macro ImperiumGiveCarePackage destVar
+    .short SCRCMD_IMPERIUMGIVECAREPACKAGE
+    .short \destVar
+    .endm
+
 
 
     .macro GoToIfLt varID, valueOrVarID, offset

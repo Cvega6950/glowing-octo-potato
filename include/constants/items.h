@@ -168,6 +168,12 @@
 #define ITEM_USE_FUNC_AZURE_FLUTE  22
 #define ITEM_USE_FUNC_VS_RECORDER  23
 #define ITEM_USE_FUNC_GRACIDEA     24
+// Platinum Imperium key items (stage 2 placeholders; see docs/platinum_imperium/API.md)
+#define ITEM_USE_FUNC_RARE_CANDY_BOX 25
+#define ITEM_USE_FUNC_INFINITE_REPEL 26
+#define ITEM_USE_FUNC_BOX_LINK       27
+#define ITEM_USE_FUNC_POKE_VIAL      28
+#define ITEM_USE_FUNC_TRAINING_KIT   29
 
 #define BATTLE_USE_CATEGORY_NONE      0
 #define BATTLE_USE_CATEGORY_POKE_BALL 1

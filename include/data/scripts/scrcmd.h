@@ -845,6 +845,11 @@ ScriptCommand(SCRCMD_BUFFERTRAINERCLASSNAMEWITHARTICLE,                    ScrCm
 ScriptCommand(SCRCMD_BUFFERBALLSEALNAMEPLURAL,                             ScrCmd_BufferBallSealNamePlural)
 ScriptCommand(SCRCMD_CAPITALIZEFIRSTLETTER,                                ScrCmd_CapitalizeFirstLetter)
 ScriptCommand(SCRCMD_BUFFERFLOORNUMBER,                                    ScrCmd_BufferFloorNumber)
+// Platinum Imperium (append-only; see docs/platinum_imperium/API.md)
+ScriptCommand(SCRCMD_FINDPARTYSLOTFORFIELDMOVE,                            ScrCmd_FindPartySlotForFieldMove)
+ScriptCommand(SCRCMD_IMPERIUMTOGGLESETTING,                                ScrCmd_ImperiumToggleSetting)
+ScriptCommand(SCRCMD_IMPERIUMOPENQUICKMENU,                                ScrCmd_ImperiumOpenQuickMenu)
+ScriptCommand(SCRCMD_IMPERIUMGIVECAREPACKAGE,                              ScrCmd_ImperiumGiveCarePackage)
 
 // clang-format on
 

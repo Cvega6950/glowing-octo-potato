@@ -164,6 +164,12 @@ static const ItemUseFuncDat sItemUseFuncs[] = {
     [ITEM_USE_FUNC_AZURE_FLUTE]  = { UseAzureFluteFromMenu,  UseAzureFluteInField,  CanUseAzureFlute  },
     [ITEM_USE_FUNC_VS_RECORDER]  = { UseVsRecorderFromMenu,  UseVsRecorderInField,  NULL              },
     [ITEM_USE_FUNC_GRACIDEA]     = { UseGracideaFromMenu,    UseGracideaInField,    NULL              },
+    // Platinum Imperium placeholders: they behave like ITEM_USE_FUNC_BAG_MESSAGE until track C fills them in.
+    [ITEM_USE_FUNC_RARE_CANDY_BOX] = { NULL,                 UseBagMessageItem,     NULL              },
+    [ITEM_USE_FUNC_INFINITE_REPEL] = { NULL,                 UseBagMessageItem,     NULL              },
+    [ITEM_USE_FUNC_BOX_LINK]       = { NULL,                 UseBagMessageItem,     NULL              },
+    [ITEM_USE_FUNC_POKE_VIAL]      = { NULL,                 UseBagMessageItem,     NULL              },
+    [ITEM_USE_FUNC_TRAINING_KIT]   = { NULL,                 UseBagMessageItem,     NULL              },
 };
 // clang-format on
 

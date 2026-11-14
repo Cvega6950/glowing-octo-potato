@@ -307,6 +307,7 @@ static BOOL BtlCmd_CheckCurMoveIsType(BattleSystem *battleSys, BattleContext *ba
 static BOOL BtlCmd_LoadArchivedMonData(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_RefreshMonData(BattleSystem *battleSys, BattleContext *battleCtx);
 static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx);
+static BOOL BtlCmd_CheckSleepClause(BattleSystem *battleSys, BattleContext *battleCtx);
 
 static int BattleScript_Read(BattleContext *battleCtx);
 static void BattleScript_Iter(BattleContext *battleCtx, int i);
@@ -9460,6 +9461,29 @@ static BOOL BtlCmd_End(BattleSystem *battleSys, BattleContext *battleCtx)
 {
     battleCtx->battleProgressFlag = TRUE;
     return BattleSystem_PopScript(battleCtx);
+}
+
+/**
+ * @brief Platinum Imperium: jump if the Sleep Clause blocks a sleep move on the
+ * given battler. Reserved in stage 2 phase 0: reads its arguments and never jumps.
+ *
+ * Inputs:
+ * 1. The battler that would fall asleep.
+ * 2. The distance to jump if the Sleep Clause applies.
+ *
+ * @param battleSys
+ * @param battleCtx
+ * @return FALSE
+ */
+static BOOL BtlCmd_CheckSleepClause(BattleSystem *battleSys, BattleContext *battleCtx)
+{
+    BattleScript_Iter(battleCtx, 1);
+    int inBattler = BattleScript_Read(battleCtx);
+    int jumpIfBlocked = BattleScript_Read(battleCtx);
+
+    (void)inBattler;
+    (void)jumpIfBlocked;
+    return FALSE;
 }
 
 /**

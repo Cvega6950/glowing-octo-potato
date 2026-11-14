@@ -367,6 +367,7 @@ Static main
 	Object src/unk_0209C370.c
 	Object src/unk_0209C390.c
 	Object src/imperium_settings.c
+	Object src/scrcmd_imperium.c
 	Library libspl.a
 	Library libwvr.a
 	Library libdwcbm.a

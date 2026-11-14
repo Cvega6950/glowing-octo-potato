@@ -167,6 +167,7 @@
 #include "scrcmd_fossil.h"
 #include "scrcmd_game_corner_prize.h"
 #include "scrcmd_group_connection.h"
+#include "scrcmd_imperium.h"
 #include "scrcmd_item.h"
 #include "scrcmd_jubilife_lottery.h"
 #include "scrcmd_money.h"
