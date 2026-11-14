@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(make:*)",
+      "Bash(cmake:*)",
+      "Bash(ninja:*)",
+      "Bash(tools/imperium/build.sh:*)",
+      "Bash(tools/dsrun/build.sh:*)",
+      "Bash(python3 tools/dsrun/run_tests.py:*)",
+      "Bash(python3 tools/dsrun/playtest.py:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git worktree:*)"
+    ]
+  }
+}
