@@ -185,19 +185,19 @@ void CheatCode_SetMonoType(struct ScriptContext *ctx)
         VarSet(VAR_MONO_STARTER_TYPE, TYPE_NONE);
 }
 
-// callnative (PROF. ELM's lab): VAR_RESULT = the Pokemon in Poke Ball VAR_STARTER_MON (0-2): the
-// Johto starters, or the MONO code's type's three
-void GetLabStarterSpecies(struct ScriptContext *ctx)
+// The MONO code's Pokemon in PROF. ELM's Poke Ball `ball` (0-2), SPECIES_NONE while the code is off
+// (src/lab_starters.c: the generation the player chose then fills the balls, D61)
+u16 GetMonoStarterSpecies(u32 ball)
 {
-    static const u16 sJohtoStarters[] = { SPECIES_CHIKORITA, SPECIES_CYNDAQUIL, SPECIES_TOTODILE };
-    u32 ball = VarGet(VAR_STARTER_MON) % ARRAY_COUNT(sJohtoStarters);
     u32 type = VarGet(VAR_MONO_STARTER_TYPE);
     u32 i;
 
-    gSpecialVar_Result = sJohtoStarters[ball];
+    if (type == TYPE_NONE)
+        return SPECIES_NONE;
     for (i = 0; i < MONO_STARTER_TYPE_COUNT; i++)
     {
-        if (type != TYPE_NONE && sMonoStarterTypes[i] == type)
-            gSpecialVar_Result = sMonoStarters[i][ball];
+        if (sMonoStarterTypes[i] == type)
+            return sMonoStarters[i][ball % ARRAY_COUNT(sMonoStarters[0])];
     }
+    return SPECIES_NONE;
 }

@@ -1148,7 +1148,8 @@ DexNav shows and that wild encounters draw from:
     Psychic Hatenna, Solosis, Gothita; Ice Snover, Swinub, Spheal; Dragon Bagon, Gible, Dratini;
     Dark Pawniard, Galarian Zigzagoon, Sandile; Normal Whismur, Lillipup, Smoliv; Fairy Cottonee,
     Igglybuff, Impidimp (Fire, Water and Grass have no list there either). Before the first
-    Pokémon only. The rival keeps the Johto starters.
+    Pokémon only. The rival keeps the Johto starters (as with the generations of D61, which MONO
+    overrides).
   - **SHINYR** / SHR: the roaming Pokémon shiny, those roaming now and those to come.
   - **DEXALL** / DXA: Imperium's switch for showing every Pokémon in the DexNav. Here the DexNav
     always does (D18), so the NES says so.
@@ -2508,3 +2509,82 @@ follows is the first build's; D45 lists what changed.)
   moves, the 100% free switch also fired after Fly had landed, Parting Shot counted as a pivot when
   it couldn't lower a stat, and the Imperium flag leaked into smart wild battles through the
   player's copy of the trainer's flags.
+
+## D61. The starter's generation, as in Emerald Imperium
+
+- The user: "Can you add the option to choose your start gen 1-9 like emerald imperium".
+- **Emerald Imperium.** Its public source, read as text (D2: nothing copied), its 1.3 changelog and
+  its 1.3 encounter tracker: PROF. BIRCH offers a scrolling list, Gen 1 to Gen 9 (and Cancel), that
+  fills the lab's three Poké Balls (grass, fire, water) with that generation's first partners, at
+  Lv 5, and changes them as often as the player asks him before taking one. The ball, not the
+  generation, decides the rival's team: he keeps the Hoenn starter that beats the ball's type. With
+  the Mono code the list is of its types instead.
+- **Here.** PROF. ELM asks at the end of his intro, after "Go on. Pick one!": he has first partner
+  Pokémon from every region and can fill the balls with any generation's three; "Which generation's
+  POKéMON would you like to see?" opens GEN 1 KANTO to GEN 9 PALDEA (six rows, scrolling). The
+  cursor starts on the current generation, Johto's in a new game, so A keeps Heart & Soul's three,
+  and B keeps the balls as they are. After a choice he names the three ("These BALLS now hold
+  TURTWIG, CHIMCHAR and PIPLUP!"); the player then looks at each ball as before (picture, cry,
+  "Do you want {POKéMON}, the {category} POKéMON?"). Talking to him again before taking one opens
+  the list again, as often as the player likes; once a Pokémon is taken he gives the errand, as
+  before.
+- **The 27**, grass, fire and water, the balls' order (every generation's own first partners, the
+  list Emerald Imperium has too): Bulbasaur, Charmander, Squirtle; Chikorita, Cyndaquil, Totodile;
+  Treecko, Torchic, Mudkip; Turtwig, Chimchar, Piplup; Snivy, Tepig, Oshawott; Chespin, Fennekin,
+  Froakie; Rowlet, Litten, Popplio; Grookey, Scorbunny, Sobble; Sprigatito, Fuecoco, Quaxly. Lv 5,
+  as before; every line evolves at 16 and 36 here (D44).
+- **The rival.** As in Emerald Imperium, the ball decides. `VAR_STARTER_MON` is still the ball (0
+  grass, 1 fire, 2 water), so his seven battles, the police scene's stolen ball and Jessica's
+  Tauros trade work as before: he takes the Johto starter that beats the ball's type (Cyndaquil
+  against any grass starter, Totodile against fire, Chikorita against water). With the MONO code
+  (D37) the ball decides too, whatever it holds (Cyndaquil for the left ball, and so on), so there
+  his starter need not counter the player's. A rival with the chosen generation's counter would need 144 more designed sets (24 lines
+  in battles 2 to 7) and 24 more first-battle Pokémon, and there are no trainer IDs for them (126
+  free, 168 needed): a party-pool or party-swap project, which Emerald Imperium doesn't do either.
+  Against the final forms, the Johto counter has an attack of its own type that is super effective
+  on 26 of the 27; Empoleon (the Gen 4 water ball) takes Meganium's Grass attacks neutrally, and
+  only Body Press (battles 3 and 5) and Earth Power (6 and 7) hit it super effectively; battle 4's
+  Meganium has neither.
+- **Precedence.** With the MONO code (D37) the balls hold its type's three and ELM offers no list,
+  as he doesn't while the One-Type Challenge or the starter randomizer picks his Pokémon (the choice
+  would change nothing, or only which random Pokémon came out). Emerald Imperium shows its Mono
+  types at BIRCH; here MONO's type is chosen at the NES, as since 0.12.0.
+- **Shiny.** The shiny roll stays a ball's (`ScrCmd_showmonpic` rolls it the first time each ball
+  is looked at during a visit), so a new generation keeps each ball's roll and switching can't
+  re-roll it. SHINYS (D37) makes the three shiny in any generation.
+- **What else follows the starter.** The credits' last slide shows the Pokémon of the player's
+  ball as ELM offers it (`GetStarterPokemon` now gives the chosen generation's, or MONO's; both
+  showed the Johto one before). It is worked out again from the settings rather than recorded, so
+  under the starter randomizer it is still the ball's own Pokémon (as before), MONO's regional forms
+  (Alolan Geodude, Galarian Zigzagoon) show as their base forms (the slides go by National Dex
+  number), and a One-Type Challenge switched on after the pick shows its pick. Mom's ¥10,000 gift
+  is a doll of the same Pokémon when one exists: the Johto and Hoenn starters' dolls, the big
+  Venusaur, Charizard and Blastoise dolls for the Kanto three, Pichu's and Duskull's for two of
+  MONO's; otherwise the Johto starter's from the same ball (Chikorita's, Cyndaquil's or
+  Totodile's), as before. Steven's Hoenn starter (Silph
+  Co.) is still a free choice of Treecko, Torchic or Mudkip. Like the other Pokémon from outside
+  Johto, a starter from Gens 3 to 9 is listed in the Pokédex once it has the National Dex (Oak, at
+  Olivine's port).
+- **Saves.** `VAR_STARTER_GENERATION` (0x40FC, unreferenced in every earlier build) holds 1 to 9; 0,
+  a game that never chose, means Johto's. Older saves (Heart & Soul 2.0.6, every Crystal Imperium)
+  read 0 there and keep their three; a save made in the lab before taking a Pokémon gets the list
+  from ELM. The randomizer's seed defines, dead while the seed is the trainer ID, no longer name
+  0x40FC.
+- **Code.** `src/lab_starters.c` (the table, `GetLabBallSpecies`, ELM's callnatives; the lab's
+  `GetLabStarterSpecies` moved there from `src/cheat_codes.c`, which keeps MONO's lists:
+  `GetMonoStarterSpecies`), `data/maps/NewBarkTown_Lab_hns/scripts.inc`, `src/starter_choose.c`
+  (`GetStarterPokemon`), `src/mom_savings.c` (the doll).
+- **Evidence.** `starter_generations` (new play test, mGBA and VBA-M): the list from ELM's intro;
+  B keeps Johto's; every generation's three balls (27 Pokémon, `VAR_STARTER_MON` 0 to 2); ELM again:
+  the cursor on GEN 9 (scrolled down), B keeps it (the cursor moved first), then GEN 3 and back to
+  GEN 9, each ball's shiny roll kept; Quaxly taken (Lv 5, it
+  follows), no list after, the errand; SAVE and CONTINUE keep both; at Cherrygrove the rival sends
+  out Chikorita against the water ball; MONO (Fighting: Machop in the middle ball), the One-Type
+  Challenge and the starter randomizer: no list. Three unit tests (`test/lab_starters.c`): every
+  generation's balls hold first stages of the grass, fire and water types in that order, and
+  `GetStarterPokemon` gives the same; 0 and unknown values give Johto's; MONO wins over the
+  generation. `story_opening` now marks Route 29's Ace Trainer (D47) as beaten before the walk
+  west: its check of the first wild battle had depended on a random encounter coming before his
+  tiles, and with this change's lab script that encounter no longer came.
+- **Not measured.** BALANCE.md's early bosses were measured with the Johto three only; the other 24
+  starters share their types and evolve at the same levels, but their win rates are unmeasured.

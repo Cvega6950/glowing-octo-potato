@@ -10,6 +10,6 @@ void CheatCode_GiveMegaStones(struct ScriptContext *ctx);
 void CheatCode_SetMaxMoney(struct ScriptContext *ctx);
 void CheatCode_MakeRoamersShiny(struct ScriptContext *ctx);
 void CheatCode_SetMonoType(struct ScriptContext *ctx);
-void GetLabStarterSpecies(struct ScriptContext *ctx);
+u16 GetMonoStarterSpecies(u32 ball);
 
 #endif // GUARD_CHEAT_CODES_H

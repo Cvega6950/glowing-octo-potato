@@ -1,0 +1,274 @@
+# Crystal Imperium play test: PROF. ELM's starter generations (DECISIONS.md D61), played without the
+# debug menu up to the starter. At the end of his intro ELM offers the first partners of any
+# generation, GEN 1 KANTO to GEN 9 PALDEA, as Emerald Imperium's PROF. BIRCH does; the cursor starts
+# on the current generation (Johto's in a new game) and B keeps it. For each generation the three
+# balls hold its grass, fire and water first partners, and VAR_STARTER_MON is still the ball (0-2).
+# Talking to ELM again before taking a Pokemon offers the list again. Then: Quaxly taken from GEN 9
+# (it follows the player), ELM's errand, SAVE and CONTINUE, and the rival at Cherrygrove, who keeps the
+# Johto starter that counters the player's ball (Chikorita against the water ball). Last, ELM offers no
+# list while the MONO code, the One-Type Challenge or the starter randomizer decides his Pokemon.
+!new_game()
+savestate bedroom.ss
+!leave_bedroom_get_running_shoes()
+!walkto(10, 10, path=True)
+hold UP 16
+wait 200
+# Stepping onto (6, 7) starts ELM's intro; YES to "help me", then B through it until he asks the player
+# to choose (VAR_NEWBARKTOWN_LABSTATE 1 is set before his last message), then B at that message's
+# three stops: the list opens after his question. (No B is pressed while the list opens: a B on its
+# first frame closes it, as it should.)
+!walkto(6, 7, soft=True)
+wait 60
+!yes_no(True, "help_elm")
+![f"waituntil8 {var_addr('VAR_NEWBARKTOWN_LABSTATE')} 1 4000 B elm_asks_to_choose"]
+wait 100
+press B
+wait 100
+press B
+wait 100
+press B
+wait 150
+expect8 {sGlobalScriptContextStatus} 1 generation_list_opens
+shot 01_generation_list.png
+!expect_var("VAR_STARTER_GENERATION", 0, "no_generation_chosen_yet")
+!expect_var("VAR_NEWBARKTOWN_LABSTATE", 1, "elm_asks_to_choose_a_pokemon")
+savestate generation_list.ss
+
+# B keeps the balls as they are: Johto's (the cursor moved to GEN 5 first)
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+press DOWN 2
+wait 8
+shot 02_cursor_on_gen_5.png
+press B
+wait 60
+mash B 120
+!expect_var("VAR_STARTER_GENERATION", 0, "b_keeps_johto")
+!walkto(9, 5, path=True)
+press UP
+wait 20
+press A
+wait 120
+!expect_var("VAR_TEMP_2", "SPECIES_CYNDAQUIL", "b_kept_johto_middle_ball_cyndaquil")
+!yes_no(False, "b_kept_johto_declined")
+mash B 200
+
+# Each generation from the list (the cursor starts on GEN 2 JOHTO), and its three balls
+loadstate generation_list.ss
+press UP 2
+wait 8
+press A
+wait 90
+shot 03_gen_1_chosen.png
+mash B 120
+!expect_var("VAR_STARTER_GENERATION", 1, "gen_1_chosen")
+!walkto(8, 5, path=True)
+press UP
+wait 20
+press A
+wait 120
+shot 04_gen_1_grass_ball.png
+!expect_var("VAR_TEMP_2", "SPECIES_BULBASAUR", "gen_1_grass_ball")
+!expect_var("VAR_STARTER_MON", 0, "gen_1_grass_ball_is_ball_0")
+!yes_no(False, "gen_1_grass_declined")
+mash B 200
+!walkto(9, 5, path=True)
+press UP
+wait 20
+press A
+wait 120
+!expect_var("VAR_TEMP_2", "SPECIES_CHARMANDER", "gen_1_fire_ball")
+!expect_var("VAR_STARTER_MON", 1, "gen_1_fire_ball_is_ball_1")
+!yes_no(False, "gen_1_fire_declined")
+mash B 200
+!walkto(10, 5, path=True)
+press UP
+wait 20
+press A
+wait 120
+!expect_var("VAR_TEMP_2", "SPECIES_SQUIRTLE", "gen_1_water_ball")
+!expect_var("VAR_STARTER_MON", 2, "gen_1_water_ball_is_ball_2")
+!yes_no(False, "gen_1_water_declined")
+mash B 200
+
+![line for g, sp in enumerate([None, None, ("CHIKORITA", "CYNDAQUIL", "TOTODILE"), ("TREECKO", "TORCHIC", "MUDKIP"), ("TURTWIG", "CHIMCHAR", "PIPLUP"), ("SNIVY", "TEPIG", "OSHAWOTT"), ("CHESPIN", "FENNEKIN", "FROAKIE"), ("ROWLET", "LITTEN", "POPPLIO"), ("GROOKEY", "SCORBUNNY", "SOBBLE"), ("SPRIGATITO", "FUECOCO", "QUAXLY")]) if sp for line in (["loadstate generation_list.ss"] + ["press DOWN 2", "wait 8"] * (g - 2) + ["press A", "wait 90", f"shot {g + 3:02d}_gen_{g}_chosen.png", "mash B 120"] + expect_var("VAR_STARTER_GENERATION", g, f"gen_{g}_chosen") + [x for b, s in enumerate(sp) for x in (walkto(8 + b, 5, path=True) + ["press UP", "wait 20", "press A", "wait 120"] + expect_var("VAR_TEMP_2", f"SPECIES_{s}", f"gen_{g}_ball_{b}_{s.lower()}") + expect_var("VAR_STARTER_MON", b, f"gen_{g}_ball_{b}_is_ball_{b}") + yes_no(False, f"gen_{g}_ball_{b}_declined") + ["mash B 200"])])]
+
+# Still GEN 9: talking to ELM again opens the list with the cursor on GEN 9 (scrolled down); A keeps it.
+# (The walk ends facing ELM, so UP bumps into him: the A waits for the bump to end.)
+!walkto(6, 4, path=True)
+press UP
+wait 60
+press A
+wait 150
+expect8 {sGlobalScriptContextStatus} 1 list_again
+shot 13_list_again_on_gen_9.png
+press A
+wait 90
+shot 14_gen_9_kept.png
+mash B 120
+!expect_var("VAR_STARTER_GENERATION", 9, "cursor_started_on_gen_9")
+# B keeps GEN 9 (the cursor moved to GEN 8 first): B never sets a generation, whatever it is
+wait 30
+press A
+wait 150
+expect8 {sGlobalScriptContextStatus} 1 list_for_b
+press UP 2
+wait 8
+shot 14b_cursor_on_gen_8.png
+press B
+wait 60
+mash B 120
+!expect_var("VAR_STARTER_GENERATION", 9, "b_keeps_gen_9")
+# Changed again: GEN 3 (six rows up), then back to GEN 9 (six rows down)
+wait 30
+press A
+wait 150
+expect8 {sGlobalScriptContextStatus} 1 list_third_time
+![line for _ in range(6) for line in ("press UP 2", "wait 8")]
+press A
+wait 90
+mash B 120
+!expect_var("VAR_STARTER_GENERATION", 3, "changed_to_gen_3")
+wait 30
+press A
+wait 150
+expect8 {sGlobalScriptContextStatus} 1 list_fourth_time
+shot 15_list_on_gen_3.png
+![line for _ in range(6) for line in ("press DOWN 2", "wait 8")]
+press A
+wait 90
+mash B 120
+!expect_var("VAR_STARTER_GENERATION", 9, "back_to_gen_9")
+# The three balls were looked at under GEN 9 above, and no map has loaded since: after three changes
+# of generation each ball still has its shiny roll (a new generation can't re-roll it, D61)
+!expect_flag("FLAG_STARTER_PREVIEW_CHECKED_1", 1, "grass_roll_kept_across_generations")
+!expect_flag("FLAG_STARTER_PREVIEW_CHECKED_2", 1, "fire_roll_kept_across_generations")
+!expect_flag("FLAG_STARTER_PREVIEW_CHECKED_3", 1, "water_roll_kept_across_generations")
+
+# Quaxly from the water ball: YES; B through the rest, which also answers NO to the nickname
+!walkto(10, 5, path=True)
+press UP
+wait 20
+press A
+wait 120
+shot 16_take_quaxly.png
+!expect_var("VAR_TEMP_2", "SPECIES_QUAXLY", "water_ball_quaxly")
+!yes_no(True, "take_quaxly")
+mash B 900
+wait 60
+shot 17_received_quaxly.png
+!expect_flag("FLAG_SYS_POKEMON_GET", 1, "got_a_pokemon")
+!expect_var("VAR_STARTER_MON", 2, "starter_ball_is_water")
+expect8 {gPlayerPartyCount} 1 party_has_the_starter
+!expect_party_species("gPlayerParty", 0, "SPECIES_QUAXLY", "starter_is_quaxly")
+expect8 {gPlayerParty+84} 5 quaxly_is_level_5
+!expect_follower_species("SPECIES_QUAXLY", "quaxly_follows")
+# The ball is gone; the other two can't be touched now
+!walkto(9, 5, path=True)
+press UP
+wait 60
+press A
+wait 60
+shot 18_shouldnt_touch.png
+mash B 120
+!expect_var("VAR_STARTER_GENERATION", 9, "generation_kept_after_the_pick")
+
+# ELM gives the errand now, not the list
+!walkto(6, 4, path=True)
+press UP
+wait 60
+press A
+mash B 1500
+wait 60
+shot 19_errand.png
+!expect_var("VAR_NEWBARKTOWN_LABSTATE", 2, "elm_gave_the_errand")
+!expect_var("VAR_STARTER_GENERATION", 9, "no_list_after_the_pick")
+
+# SAVE, reset, CONTINUE: the generation and the starter are in the save
+!save_and_continue()
+shot 20_continued.png
+!expect_var("VAR_STARTER_GENERATION", 9, "generation_saved")
+!expect_var("VAR_STARTER_MON", 2, "ball_saved")
+!expect_party_species("gPlayerParty", 0, "SPECIES_QUAXLY", "quaxly_saved")
+
+# The rival at Cherrygrove (after Mr. Pokemon's, VAR_CHERRYGROVE_CITY_STATE 3): one step onto his
+# trigger at (56, 10). Against the water ball he has Chikorita, whatever the generation.
+!set_var("VAR_CHERRYGROVE_CITY_STATE", 3)
+!set_flag("FLAG_HIDE_SILVER_CHERRYGROVE", 0)
+!teleport(*(lambda v: (v["g"], v["n"]))(probe.resolve({"g": "MAP_CHERRYGROVE_CITY_HNS >> 8", "n": "MAP_CHERRYGROVE_CITY_HNS & 0xFF"})), 57, 10)
+shot 21_cherrygrove.png
+hold LEFT 16
+# B through his lines until the battle starts, then nothing until the action menu (FAST BATTLES)
+waituntil32 {gMain+4} {BattleMainCB2} 2400 B rival_battle_starts
+!wait_action_menu("rival_battle_action_menu")
+shot 22_rival_battle.png
+![f"expect16 {{gTrainerBattleParameter+{probe.resolve({'o': 'offsetof(TrainerBattleParameter, params.opponentA)'})['o']}}} {probe.resolve({'t': 'TRAINER_RIVAL_CHIKORITA_1_HNS'})['t']} rival_is_trainer_rival_chikorita_1_hns"]
+!expect_battler(0, "species", "SPECIES_QUAXLY", "quaxly_sent_out")
+!expect_battler(1, "species", "SPECIES_CHIKORITA", "rival_sends_chikorita")
+
+# MONO (FIGHTING): ELM's balls hold Mankey, Machop and Timburr and he offers no generations (the A
+# presses that would choose GEN 2 JOHTO from a list leave the generation unset)
+loadstate bedroom.ss
+!nes_code("MONO")
+press DOWN 2
+wait 8
+press A
+wait 120
+mash B 300
+!expect_var("VAR_MONO_STARTER_TYPE", "TYPE_FIGHTING", "mono_fighting")
+!leave_bedroom_get_running_shoes()
+!walkto(10, 10, path=True)
+hold UP 16
+wait 200
+!walkto(6, 7, soft=True)
+wait 60
+mash A 2400
+wait 60
+mash B 300
+wait 30
+shot 23_mono_no_list.png
+!expect_var("VAR_NEWBARKTOWN_LABSTATE", 1, "mono_elm_asks_to_choose")
+!expect_var("VAR_STARTER_GENERATION", 0, "mono_offers_no_generations")
+!walkto(9, 5, path=True)
+press UP
+wait 20
+press A
+wait 120
+shot 24_mono_machop.png
+!expect_var("VAR_TEMP_2", "SPECIES_MACHOP", "mono_middle_ball_machop")
+!yes_no(False, "mono_declined")
+mash B 200
+
+# The One-Type Challenge (FIRE) picks ELM's Pokemon itself: no list
+loadstate bedroom.ss
+!set_challenge_option("tx_Challenges_OneTypeChallenge", 11)
+!leave_bedroom_get_running_shoes()
+!walkto(10, 10, path=True)
+hold UP 16
+wait 200
+!walkto(6, 7, soft=True)
+wait 60
+mash A 2400
+wait 60
+mash B 300
+wait 30
+!expect_var("VAR_NEWBARKTOWN_LABSTATE", 1, "one_type_elm_asks_to_choose")
+!expect_var("VAR_STARTER_GENERATION", 0, "one_type_offers_no_generations")
+
+# The starter randomizer picks them too: no list
+loadstate bedroom.ss
+!set_challenge_option("tx_Random_Starter", 1)
+!leave_bedroom_get_running_shoes()
+!walkto(10, 10, path=True)
+hold UP 16
+wait 200
+!walkto(6, 7, soft=True)
+wait 60
+mash A 2400
+wait 60
+mash B 300
+wait 30
+!expect_var("VAR_NEWBARKTOWN_LABSTATE", 1, "randomizer_elm_asks_to_choose")
+!expect_var("VAR_STARTER_GENERATION", 0, "randomizer_offers_no_generations")

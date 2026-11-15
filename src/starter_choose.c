@@ -6,6 +6,7 @@
 #include "event_data.h"
 #include "gpu_regs.h"
 #include "international_string_util.h"
+#include "lab_starters.h"
 #include "main.h"
 #include "menu.h"
 #include "palette.h"
@@ -114,7 +115,9 @@ static const u8 sStarterLabelCoords[STARTER_MON_COUNT][2] =
 };
 
 #if IS_HNS
-// Must match the VAR_STARTER_MON values set in NewBarkTown_Lab_hns/scripts.inc
+// Must match the VAR_STARTER_MON values set in NewBarkTown_Lab_hns/scripts.inc. Crystal Imperium:
+// GetStarterPokemon gives what PROF. ELM's balls hold (src/lab_starters.c, D61); these are the One-Type
+// Challenge's fallback
 #define GRASS_STARTER SPECIES_CHIKORITA
 #define FIRE_STARTER  SPECIES_CYNDAQUIL
 #define WATER_STARTER SPECIES_TOTODILE
@@ -452,7 +455,12 @@ u16 GetStarterPokemon(u16 chosenStarterId)
         return sOneTypeChallengeStarters[chosenStarterId];
     }
 
+#if IS_HNS
+    // Crystal Imperium: the chosen generation's, or the MONO code's (the credits' last slide, D61)
+    return GetLabBallSpecies(chosenStarterId);
+#else
     return sStarterMon[chosenStarterId];
+#endif
 }
 
 static void VblankCB_StarterChoose(void)

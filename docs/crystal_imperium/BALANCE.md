@@ -31,8 +31,9 @@ explains the *why*.
 5. **Measure win rates, not single runs.** The battle autopilot (`tools/emurun`) plays a
    deliberately naive line: no voluntary switching, one fixed move per Pokémon, and since 0.7.0
    held items only from the care packages the player has by then (before, no items).
-   For each Starter, at least one line obtainable at the cap must win, and a naive line
-   should win some but not all of its RNG samples (five, or twelve where the naive win rate
+   For each Starter, at least one line obtainable at the cap must win (measured with the Johto
+   three; since 0.19.0 PROF. ELM offers every generation's, D61, and the other 24 aren't
+   measured), and a naive line should win some but not all of its RNG samples (five, or twelve where the naive win rate
    is low). For the Elite Four from Will on, Blue and Red the autopilot plays a simple game
    plan instead, as a player would: for each of the boss's Pokémon some of the team have a
    move to use, and one of them is switched in when the Pokémon out has none. The number of
@@ -309,8 +310,8 @@ first three (D59, `tag_battle`). Healing items: Potions for Bugsy and Whitney, S
 Proton in Slowpoke Well and the rival in Azalea and at the Burned Tower, two Hyper Potions for Morty
 and the 5th-Gym versions, two Full Restores for everyone after that (three for the postgame
 rematches at 100) except the Kimono Girls, who carry none, and Red, who carries four; Falkner and
-Elder Li carry none. The rival's team follows the player's starter choice; the Cyndaquil versions
-are shown.
+Elder Li carry none. The rival's team follows the ball of the player's starter (in every
+generation, D61); the Cyndaquil versions are shown.
 
 | Boss | Level (every Pokémon) | Team (held item) |
 |---|---|---|

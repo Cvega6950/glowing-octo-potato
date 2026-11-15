@@ -25,6 +25,8 @@
 #include "constants/map_types.h"
 #include "decoration_inventory.h"
 #include "randomizer.h"
+#include "starter_choose.h"
+#include "constants/species.h"
 
 extern const u8 EventScript_MomGiftCall_Item[];
 extern const u8 EventScript_MomGiftCall_Berry[];
@@ -139,6 +141,45 @@ bool8 Mom_TryWithdrawMoney(u32 amount)
     return TRUE;
 }
 
+// Crystal Imperium: a doll of the Pokemon in the player's ball as PROF. ELM offers it (every generation's,
+// D61; the starter randomizer's own pick isn't recorded) when there is one (the Gen 1 starters' are the big
+// dolls of their final forms), else of the Johto starter from the same ball (Chikorita's, Cyndaquil's
+// or Totodile's) as before
+static u16 GetStarterDoll(void)
+{
+    static const u16 sStarterDolls[][2] =
+    {
+        { SPECIES_BULBASAUR,  DECOR_VENUSAUR_DOLL },
+        { SPECIES_CHARMANDER, DECOR_CHARIZARD_DOLL },
+        { SPECIES_SQUIRTLE,   DECOR_BLASTOISE_DOLL },
+        { SPECIES_CHIKORITA,  DECOR_CHIKORITA_DOLL },
+        { SPECIES_CYNDAQUIL,  DECOR_CYNDAQUIL_DOLL },
+        { SPECIES_TOTODILE,   DECOR_TOTODILE_DOLL },
+        { SPECIES_TREECKO,    DECOR_TREECKO_DOLL },
+        { SPECIES_TORCHIC,    DECOR_TORCHIC_DOLL },
+        { SPECIES_MUDKIP,     DECOR_MUDKIP_DOLL },
+        { SPECIES_PICHU,      DECOR_PICHU_DOLL },   // the MONO code's Electric starters
+        { SPECIES_DUSKULL,    DECOR_DUSKULL_DOLL }, // and its Ghost ones
+    };
+    u16 ball = VarGet(VAR_STARTER_MON);
+    u16 species;
+    u32 i;
+
+    if (ball > 2)
+        return DECOR_TOGEPI_DOLL;
+    species = GetStarterPokemon(ball);
+    for (i = 0; i < ARRAY_COUNT(sStarterDolls); i++)
+    {
+        if (sStarterDolls[i][0] == species)
+            return sStarterDolls[i][1];
+    }
+    if (ball == 0)
+        return DECOR_CHIKORITA_DOLL;
+    if (ball == 1)
+        return DECOR_CYNDAQUIL_DOLL;
+    return DECOR_TOTODILE_DOLL;
+}
+
 bool8 Mom_CheckForGiftPurchase(u32 newBalance, u32 oldBalance, bool8 isAutomatic)
 {
     u16 purchasedItem = ITEM_NONE;
@@ -152,22 +193,7 @@ bool8 Mom_CheckForGiftPurchase(u32 newBalance, u32 oldBalance, bool8 isAutomatic
     {
         if (purchasedItem == MOM_GIFT_STARTER_DOLL)
         {
-            u16 starterChoice = VarGet(VAR_STARTER_MON);
-            switch (starterChoice)
-            {
-                case 0:
-                    purchasedItem = DECOR_CHIKORITA_DOLL;
-                    break;
-                case 1:
-                    purchasedItem = DECOR_CYNDAQUIL_DOLL;
-                    break;
-                case 2:
-                    purchasedItem = DECOR_TOTODILE_DOLL;
-                    break;
-                default:
-                    purchasedItem = DECOR_TOGEPI_DOLL;
-                    break;
-            }
+            purchasedItem = GetStarterDoll();
             isDecoration = TRUE;
         }
         else

@@ -69,7 +69,11 @@ mash A 2400
 !expect_bag_quantity("keyItems", "ITEM_SHINY_CHARM", 1, "shiny_charm")
 !expect_bag_quantity("pokeBalls", "ITEM_QUICK_BALL", 153, "quick_balls")
 
-# West out of New Bark Town onto Route 29 (east edge at (69, 18))
+# West out of New Bark Town onto Route 29 (east edge at (69, 18)). The way west passes in front of
+# the route's Ace Trainer (D47, at (46, 22), looking 3 tiles left), whose team is far beyond a
+# Lv 5 starter: he is marked as beaten, so the first battle is a wild one whatever the random
+# encounters do (it used to depend on one coming before his tiles)
+!set_flag("TRAINER_FLAGS_START + TRAINER_ACE_R29_KAITO_HNS")
 !walkto(0, 13, path=True)
 hold LEFT 16
 wait 120

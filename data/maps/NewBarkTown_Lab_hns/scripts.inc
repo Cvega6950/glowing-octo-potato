@@ -84,7 +84,7 @@ NewBarkTown_Lab_EventScript_Elm_AfterEggCheck:
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 2, CopNewBarkTown_Lab_EventScript_ElmState2
 	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 3, CopNewBarkTown_Lab_EventScript_ElmState2
 	goto_if_set FLAG_SYS_POKEMON_GET, NewBarkTown_Lab_EventScript_MrPokemon
-	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_ElmChoosePokemon
+	goto_if_eq VAR_NEWBARKTOWN_LABSTATE, 1, NewBarkTown_Lab_EventScript_ElmChooseAgain
 	end
 
 NewBarkTown_Lab_EventScript_ElmAideIsWaiting::
@@ -138,8 +138,32 @@ NewBarkTown_Lab_EventScript_ElmAccepted::
 
 NewBarkTown_Lab_EventScript_ElmChoosePokemon::
 	msgbox NewBarkTown_Lab_Text_ElmChooseAPokemon, MSGBOX_DEFAULT
-	closemessage
 	setvar VAR_NEWBARKTOWN_LABSTATE, 1
+	@ Crystal Imperium: the balls can hold any generation's first partners, as in Emerald
+	@ Imperium (src/lab_starters.c, DECISIONS.md D61); not while MONO, the One-Type Challenge or
+	@ the starter randomizer decides them
+	callnative StarterGeneration_CanChoose
+	goto_if_eq VAR_RESULT, FALSE, NewBarkTown_Lab_EventScript_ElmChooseEnd
+	msgbox NewBarkTown_Lab_Text_ElmEveryGeneration, MSGBOX_DEFAULT
+	goto NewBarkTown_Lab_EventScript_ElmChooseGeneration
+	end
+
+@ Talking to ELM again before taking a POKéMON: the generations again, for as long as the player likes
+NewBarkTown_Lab_EventScript_ElmChooseAgain::
+	callnative StarterGeneration_CanChoose
+	goto_if_eq VAR_RESULT, FALSE, NewBarkTown_Lab_EventScript_ElmChoosePokemon
+NewBarkTown_Lab_EventScript_ElmChooseGeneration::
+	callnative StarterGeneration_GetMenuRow
+	message NewBarkTown_Lab_Text_ElmWhichGeneration
+	waitmessage
+	@ The cursor starts on the current generation (Johto's in a new game); B keeps it
+	dynmultichoice 19, 0, FALSE, 6, VAR_0x8004, DYN_MULTICHOICE_CB_NONE, NewBarkTown_Lab_Text_Gen1, NewBarkTown_Lab_Text_Gen2, NewBarkTown_Lab_Text_Gen3, NewBarkTown_Lab_Text_Gen4, NewBarkTown_Lab_Text_Gen5, NewBarkTown_Lab_Text_Gen6, NewBarkTown_Lab_Text_Gen7, NewBarkTown_Lab_Text_Gen8, NewBarkTown_Lab_Text_Gen9
+	goto_if_eq VAR_RESULT, MULTI_B_PRESSED, NewBarkTown_Lab_EventScript_ElmChooseEnd
+	callnative StarterGeneration_Set
+	callnative StarterGeneration_BufferBallSpecies
+	msgbox NewBarkTown_Lab_Text_ElmBallsHold, MSGBOX_DEFAULT
+NewBarkTown_Lab_EventScript_ElmChooseEnd::
+	closemessage
 	release
 	end
 
@@ -718,6 +742,48 @@ NewBarkTown_Lab_Text_ElmChooseAPokemon:
 	.string "You'll be that POKéMON's\n"
 	.string "first partner, {PLAYER}!\p"
 	.string "Go on. Pick one!$"
+
+NewBarkTown_Lab_Text_ElmEveryGeneration:
+	.string "Oh, and I've got first partner\n"
+	.string "POKéMON from every region!\p"
+	.string "I can fill these BALLS with any\n"
+	.string "generation's three. Talk to me\l"
+	.string "if you'd like to see others!$"
+
+NewBarkTown_Lab_Text_ElmWhichGeneration:
+	.string "Which generation's POKéMON\n"
+	.string "would you like to see?$"
+
+NewBarkTown_Lab_Text_ElmBallsHold:
+	.string "These BALLS now hold {STR_VAR_1},\n"
+	.string "{STR_VAR_2} and {STR_VAR_3}!$"
+
+NewBarkTown_Lab_Text_Gen1:
+	.string "GEN 1 KANTO$"
+
+NewBarkTown_Lab_Text_Gen2:
+	.string "GEN 2 JOHTO$"
+
+NewBarkTown_Lab_Text_Gen3:
+	.string "GEN 3 HOENN$"
+
+NewBarkTown_Lab_Text_Gen4:
+	.string "GEN 4 SINNOH$"
+
+NewBarkTown_Lab_Text_Gen5:
+	.string "GEN 5 UNOVA$"
+
+NewBarkTown_Lab_Text_Gen6:
+	.string "GEN 6 KALOS$"
+
+NewBarkTown_Lab_Text_Gen7:
+	.string "GEN 7 ALOLA$"
+
+NewBarkTown_Lab_Text_Gen8:
+	.string "GEN 8 GALAR$"
+
+NewBarkTown_Lab_Text_Gen9:
+	.string "GEN 9 PALDEA$"
 
 NewBarkTown_Lab_Text_ElmWhereGoing:
 	.string "ELM: Wait! Where are you\n"

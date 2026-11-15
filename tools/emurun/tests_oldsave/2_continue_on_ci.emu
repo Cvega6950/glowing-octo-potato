@@ -8,6 +8,8 @@ press A
 wait 900
 shot 03_ci_continue.png
 expect8 {gPlayerPartyCount} 2 party_kept
+# PROF. ELM's starter generation (D61) is in a var Heart & Soul never wrote: 0, Johto's
+!expect_var("VAR_STARTER_GENERATION", 0, "old_save_starter_generation_johto")
 !expect_bag_has("keyItems", "ITEM_INFINITE_RARE_CANDIES")
 !expect_bag_has("keyItems", "ITEM_POKE_VIAL")
 !expect_bag_has("keyItems", "ITEM_TRAINING_KIT")

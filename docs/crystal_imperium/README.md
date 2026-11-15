@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.18.0-experimental).** The full Heart & Soul story is in and playable.
+> **Status: in development (0.19.0-experimental).** The full Heart & Soul story is in and playable.
 > All the systems listed below work and are tested in an emulator. Every trainer fights at your
 > level cap (on NORMAL and HARD with Emerald Imperium's boss AI), every boss from the rival to Red, rematches and postgame included,
 > has a team built to a trainer standard on Radical Red's and Emerald Imperium's level (as are the
@@ -142,6 +142,12 @@ From the first step of a new game:
   with 6 and 8 and as Champion), a few from the side battles, or all 70 at once with the MEGA code.
   Six of Imperium's Megas have an ability Imperium made itself; they get the closest official one
   (DECISIONS.md D58).
+- **Any generation's starters** (since 0.19.0), as in Emerald Imperium: PROF. ELM can fill his
+  three Poké Balls with the first partners of any generation, GEN 1 KANTO to GEN 9 PALDEA (grass,
+  fire and water every time, Lv 5); talk to him again to change them until you take one. (Not
+  with the MONO code below, or the challenge menu's ONE TYPE ONLY or randomized STARTER POKéMON:
+  those choose his Pokémon, and he offers no list.) The rival still takes the Johto starter that beats
+  your ball's type.
 - **Emerald Imperium's cheat codes** at the NES in your room: turn it on, answer YES to "Enter a
   code?" and type one (any case):
 
@@ -152,7 +158,7 @@ From the first step of a new game:
   | CAUGHTALL | CAL | every Pokémon caught in the National Pokédex |
   | EZCATCH | EZC | switches Easy Catch off or on |
   | SHINYS | SHS | PROF. ELM's Pokémon shiny (before you choose one) |
-  | MONO | | pick a type for PROF. ELM's three Pokémon (before you choose one) |
+  | MONO | | pick a type for PROF. ELM's three Pokémon (before you choose one; instead of a generation) |
   | SHINYR | SHR | the roaming Pokémon shiny |
   | SHINYA | SHA, ALLSHINY | every wild Pokémon, gift Pokémon and Egg shiny; enter it again to stop (not one of Imperium's) |
   | DEXALL | DXA | the DexNav already shows every Pokémon |

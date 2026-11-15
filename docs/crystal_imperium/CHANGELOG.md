@@ -1,5 +1,33 @@
 # Crystal Imperium changelog
 
+## 0.19.0-experimental (2026-11-14)
+
+### Any generation's starters, as in Emerald Imperium (DECISIONS.md D61)
+- "Can you add the option to choose your start gen 1-9 like emerald imperium": PROF. ELM can now
+  fill his three Poké Balls with the first partners of any generation. At the end of his intro he
+  asks "Which generation's POKéMON would you like to see?": GEN 1 KANTO to GEN 9 PALDEA, the cursor
+  on Johto's (A keeps them, B too). He names the three he put in the balls; talk to him again to
+  change them, as often as you like, until you take one. Bulbasaur, Charmander, Squirtle; Chikorita,
+  Cyndaquil, Totodile; Treecko, Torchic, Mudkip; Turtwig, Chimchar, Piplup; Snivy, Tepig,
+  Oshawott; Chespin, Fennekin, Froakie; Rowlet, Litten, Popplio; Grookey, Scorbunny, Sobble;
+  Sprigatito, Fuecoco, Quaxly (grass, fire and water, the balls' order), all at Lv 5.
+- As in Emerald Imperium, the rival's team follows the ball, not the generation: he takes the Johto
+  starter that beats your ball's type (Cyndaquil against grass, Totodile against fire, Chikorita
+  against water). With the MONO code the ball decides too, whatever it holds.
+- With the MONO code the balls hold its type's three and ELM offers no list; nor while the One-Type
+  Challenge or the starter randomizer picks his Pokémon. SHINYS works in every generation.
+- The credits' last slide and Mom's starter doll (¥10,000 saved) follow the starter you chose: a
+  doll of it where one exists (the Johto and Hoenn starters, the big Venusaur, Charizard and
+  Blastoise dolls for Kanto's), else the Johto starter's from the same ball as before. The credits also
+  show MONO's starter now (but not the starter randomizer's: they show the ball's own Pokémon).
+- Saves: the generation is in a var no earlier version used, and 0 means Johto's, so older saves
+  keep their starters.
+- Tests: a new play test (`starter_generations`) chooses every generation and checks its three
+  balls, the cursor, B, choosing again, a starter taken, SAVE and CONTINUE, the rival at Cherrygrove
+  and MONO, the One-Type Challenge and the randomizer; three unit tests check the table
+  (`test/lab_starters.c`). `story_opening` marks Route 29's Ace Trainer as beaten before its walk
+  west, so its first wild battle no longer depends on an encounter coming before his tiles.
+
 ## 0.18.0-experimental (2026-11-09)
 
 ### The trainer AI on Emerald Imperium's level (DECISIONS.md D60)

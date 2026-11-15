@@ -45,9 +45,10 @@
 #define RANDOMIZER_VAR_SPECIES_MODE               VAR_UNUSED_0x404E
 
 #if !RANDOMIZER_SEED_IS_TRAINER_ID
-// Crystal Imperium: 0x40FA and 0x40FB are VAR_CARE_PACKAGE_RESUME and VAR_MONO_STARTER_TYPE now
-#define RANDOMIZER_VAR_SEED_L                     0x40FC
-#define RANDOMIZER_VAR_SEED_H                     0x40FF
+// Crystal Imperium: 0x40FA-0x40FC are VAR_CARE_PACKAGE_RESUME, VAR_MONO_STARTER_TYPE and
+// VAR_STARTER_GENERATION now; 0x40DF is free while FREE_MYSTERY_GIFT is TRUE (vars_hns.h)
+#define RANDOMIZER_VAR_SEED_L                     0x40FF
+#define RANDOMIZER_VAR_SEED_H                     0x40DF
 #endif
 
 #endif // RANDOMIZER_AVAILABLE

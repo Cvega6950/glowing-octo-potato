@@ -174,7 +174,7 @@
 #define VAR_CARE_PACKAGE_IMPERIUM                        0x40F9 // Crystal Imperium: care packages whose 0.12.0 contents have arrived (was Emerald VAR_UNUSED_0x40F9, no references in any build)
 #define VAR_CARE_PACKAGE_RESUME                          0x40FA // Crystal Imperium: a care package that stopped because the BAG and PC were full, 0 if none (was Emerald VAR_UNUSED_0x40FA, no references in any build)
 #define VAR_MONO_STARTER_TYPE                            0x40FB // Crystal Imperium: the MONO code's starter type, TYPE_NONE if off (was Emerald VAR_UNUSED_0x40FB, no references in any build)
-#define VAR_UNUSED_HNS_0x40FC                            0x40FC // Emerald VAR_UNUSED_0x40FC - no references in any build
+#define VAR_STARTER_GENERATION                           0x40FC // Crystal Imperium: the generation of PROF. ELM's three Pokemon, 1-9; 0 (never chosen) means Johto's, 2 (D61; was Emerald VAR_UNUSED_0x40FC, no references in any build)
 
 // !!! UNSAFE: live surf-blob engine state, written every time the player surfs.
 // !!! These were previously listed here as unused - they are not.

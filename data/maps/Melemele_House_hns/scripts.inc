@@ -83,8 +83,10 @@ Alola_Melemele_Pokecenter_Grubbin_Text_0:
 
 
 @ Jessica's Paldean Tauros trade. Which Tauros she offers depends on the
-@ player's starter, so the trade always covers one of its weaknesses:
-@ Cyndaquil -> Aqua, Totodile -> Blaze, Chikorita -> Combat.
+@ ball of the player's starter (VAR_STARTER_MON, the same in every generation
+@ PROF. ELM offers, DECISIONS.md D61): grass -> Aqua, fire -> Blaze,
+@ water -> Combat. (Heart & Soul's comment here said Cyndaquil -> Aqua,
+@ Totodile -> Blaze, Chikorita -> Combat; the code is kept as it was.)
 Alola_Melemele_Pokecenter_Jessica::
 	lock
 	faceplayer
