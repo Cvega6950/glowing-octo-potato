@@ -245,12 +245,21 @@ void GiveQoLKeyItems(void)
         if (!CheckBagHasItem(sQoLKeyItems[i], 1))
             AddBagItem(sQoLKeyItems[i], 1);
     }
+    // Never cleared: it also hides for good the object a side battle left on a map it moved from
+    // (tools/crystal_imperium/side_battles.py)
     FlagSet(FLAG_RECEIVED_QOL_KEY_ITEMS);
     // The DexNav, with hidden Pokemon detection, comes with them
     FlagSet(DN_FLAG_DEXNAV_GET);
     FlagSet(DN_FLAG_DETECTOR_MODE);
     // A search's state is not saved, so a game saved mid-search must not load as searching
     FlagClear(DN_FLAG_SEARCHING);
+    // The postgame's side battle visitors (D41) come once the Kanto League is won; the Hall of Fame
+    // shows them as it sets FLAG_IS_KANTO_CHAMPION (data/maps/PokemonLeague_HallOfFame_hns/scripts.inc).
+    // Here a new game, a save from before 0.21.0 and any other save get the flag that matches.
+    if (FlagGet(FLAG_IS_KANTO_CHAMPION))
+        FlagClear(FLAG_HIDE_SIDE_POSTGAME);
+    else
+        FlagSet(FLAG_HIDE_SIDE_POSTGAME);
 }
 
 void NewGameInitData(void)

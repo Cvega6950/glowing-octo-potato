@@ -598,6 +598,21 @@ void LoadSaveblockObjEventScripts(void)
 
     for (i = 0; i < OBJECT_EVENT_TEMPLATES_COUNT; i++)
         savObjTemplates[i].script = mapHeaderObjTemplates[i].script;
+
+    // Crystal Imperium (DECISIONS.md D64): a save keeps its map's object templates as they were when it
+    // was made. A slot the map gained since (objects are only ever appended) is empty in it: it gets the
+    // map's template, rather than a blank object at (0,0). Every other slot gets the map's hide flag,
+    // which nothing changes at runtime, so an object hidden since (a side battle's postgame visitor or
+    // the slot one left) hides once it is next spawned. A clone's slot holds its target's template.
+    for (i = 0; i < gMapHeader.events->objectEventCount && i < OBJECT_EVENT_TEMPLATES_COUNT; i++)
+    {
+        if (mapHeaderObjTemplates[i].kind == OBJ_KIND_CLONE)
+            continue;
+        if (savObjTemplates[i].localId == LOCALID_NONE)
+            savObjTemplates[i] = mapHeaderObjTemplates[i];
+        else
+            savObjTemplates[i].flagId = mapHeaderObjTemplates[i].flagId;
+    }
 }
 
 static struct ObjectEventTemplate *GetObjectEventTemplate(u8 localId)

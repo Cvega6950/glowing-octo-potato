@@ -1,0 +1,253 @@
+# Crystal Imperium play test: where the side battles stand since 0.21.0 (DECISIONS.md D64).
+# Volkner, the last of Sinnoh's eight, waits in Blackthorn City beside Clair's Gym for the eighth
+# badge. Paldea's eight each wait in a Kanto Gym's town for that Gym's badge (Kanto is reached after
+# the Johto League, FLAG_IS_CHAMPION): walk up to each, talk without the badge (a not-yet line, no
+# battle) and with it (the battle starts against them). Iono's Vermilion spot is checked in
+# side_battles. The spots they left (the Indigo Plateau, Lavender Town, Route 25, Vermilion's pier,
+# Celadon's street) have no visitor: the old objects stay hidden in their slots, and the player can
+# walk onto the tile.
+!new_game()
+!battle_style_set()
+!no_care_packages()
+!set_flag("FLAG_DISABLE_TRAINERS")
+!set_flag("FLAG_DISABLE_ENCOUNTERS")
+!prepared_team(100)
+savestate team.ss
+
+# Volkner, Blackthorn City (21,26), facing down, from Clair's Gym door (24,26): 7 badges, then 8
+loadstate team.ss
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_flag("FLAG_BADGE04_GET")
+!set_flag("FLAG_BADGE05_GET")
+!set_flag("FLAG_BADGE06_GET")
+!set_flag("FLAG_BADGE07_GET")
+!warp(0, 10, 2)
+wait 60
+!walkto(21, 27, path=True)
+press UP
+wait 20
+shot 01_volkner.png
+savestate volkner.ss
+press A
+wait 60
+shot 01_volkner_not_yet.png
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 volkner_no_battle_with_7_badges
+loadstate volkner.ss
+!set_flag("FLAG_BADGE08_GET")
+press A
+!yes_no(True, "volkner_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B volkner_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_VOLKNER_HNS", "opponent_is_volkner")
+expect8 {gEnemyPartyCount} 6 volkner_has_6
+
+# Katy, Pewter City (22,12), from Brock's Gym door (16,18): Brock's badge
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 33, 2)
+wait 60
+!walkto(22, 13, path=True)
+press UP
+wait 20
+shot 02_katy.png
+savestate katy.ss
+press A
+wait 60
+shot 02_katy_not_yet.png
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 katy_no_battle_before_brocks_badge
+loadstate katy.ss
+!set_flag("FLAG_BADGE09_GET")
+press A
+!yes_no(True, "katy_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B katy_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_KATY_HNS", "opponent_is_katy")
+expect8 {gEnemyPartyCount} 6 katy_has_6
+
+# Kofu, Cerulean City (31,31), from Misty's Gym door (34,31): Misty's badge
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 34, 5)
+wait 60
+!walkto(31, 32, path=True)
+press UP
+wait 20
+shot 03_kofu.png
+savestate kofu.ss
+press A
+wait 60
+shot 03_kofu_not_yet.png
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 kofu_no_battle_before_mistys_badge
+loadstate kofu.ss
+!set_flag("FLAG_BADGE10_GET")
+press A
+!yes_no(True, "kofu_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B kofu_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_KOFU_HNS", "opponent_is_kofu")
+expect8 {gEnemyPartyCount} 6 kofu_has_6
+
+# Brassius, Celadon City (16,30), from Erika's Gym door (12,30): Erika's badge
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 37, 5)
+wait 60
+!walkto(16, 31, path=True)
+press UP
+wait 20
+shot 04_brassius.png
+savestate brassius.ss
+press A
+wait 60
+shot 04_brassius_not_yet.png
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 brassius_no_battle_before_erikas_badge
+loadstate brassius.ss
+!set_flag("FLAG_BADGE12_GET")
+press A
+!yes_no(True, "brassius_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B brassius_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_BRASSIUS_HNS", "opponent_is_brassius")
+expect8 {gEnemyPartyCount} 6 brassius_has_6
+
+# Tulip, Saffron City (34,33): Sabrina's badge. Saffron's walkers crowd the streets between its doors
+# and her, so the player arrives on her talk tile (the generator checks it can be walked to)
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!teleport(0, 38, 34, 34)
+wait 60
+press UP
+wait 20
+shot 05_tulip.png
+savestate tulip.ss
+press A
+wait 60
+shot 05_tulip_not_yet.png
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 tulip_no_battle_before_sabrinas_badge
+loadstate tulip.ss
+!set_flag("FLAG_BADGE13_GET")
+press A
+!yes_no(True, "tulip_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B tulip_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_TULIP_HNS", "opponent_is_tulip")
+expect8 {gEnemyPartyCount} 6 tulip_has_6
+
+# Ryme, Fuchsia City (12,32), from Janine's Gym door (9,32): Janine's badge
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 39, 3)
+wait 60
+!walkto(12, 33, path=True)
+press UP
+wait 20
+shot 06_ryme.png
+savestate ryme.ss
+press A
+wait 60
+shot 06_ryme_not_yet.png
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 ryme_no_battle_before_janines_badge
+loadstate ryme.ss
+!set_flag("FLAG_BADGE14_GET")
+press A
+!yes_no(True, "ryme_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B ryme_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_RYME_HNS", "opponent_is_ryme")
+expect8 {gEnemyPartyCount} 6 ryme_has_6
+
+# Grusha, Cinnabar Island (42,34), facing left, from the POKeMON CENTER (45,29): Blaine's badge
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 40, 1)
+wait 60
+!walkto(41, 34, path=True)
+press RIGHT
+wait 20
+shot 07_grusha.png
+savestate grusha.ss
+press A
+wait 60
+shot 07_grusha_not_yet.png
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 grusha_no_battle_before_blaines_badge
+loadstate grusha.ss
+!set_flag("FLAG_BADGE15_GET")
+press A
+!yes_no(True, "grusha_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B grusha_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_GRUSHA_HNS", "opponent_is_grusha")
+expect8 {gEnemyPartyCount} 6 grusha_has_6
+
+# Larry, Viridian City (22,23), from the house door (32,18): Blue's badge. His talk tile (22,24) is
+# between him and a street lamp (22,25): the way in is from the east, (23,24)
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 32, 0)
+wait 60
+!walkto(23, 24, path=True)
+!walkto(22, 24)
+press UP
+wait 20
+shot 08_larry.png
+savestate larry.ss
+press A
+wait 60
+shot 08_larry_not_yet.png
+mash B 400
+wait 30
+expect8 {gBattleOutcome} 0 larry_no_battle_before_blues_badge
+loadstate larry.ss
+!set_flag("FLAG_BADGE16_GET")
+press A
+!yes_no(True, "larry_asks")
+waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B larry_action_menu
+!expect_const("{gTrainerBattleParameter+2}", "TRAINER_SIDE_LARRY_HNS", "opponent_is_larry")
+expect8 {gEnemyPartyCount} 6 larry_has_6
+
+# The spots the side battles left: nobody there, the player walks onto the old tile
+# Indigo Plateau (13,8), Volkner's, from the POKeMON CENTER door (11,6)
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 64, 0)
+wait 60
+!walkto(13, 8, path=True)
+shot 20_indigo_plateau_empty.png
+# Lavender Town (23,9), Iono's, from the radio station's door (22,6)
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 36, 2)
+wait 60
+!walkto(23, 9, path=True)
+shot 21_lavender_town_empty.png
+# Route 25 (80,15), Brassius's, from Bill's door (85,13)
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 66, 0)
+wait 60
+!walkto(80, 15, path=True)
+shot 22_route_25_empty.png
+# Vermilion City (49,27), Kofu's, from the POKeMON MART's door (38,16)
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 35, 5)
+wait 60
+!walkto(49, 27, path=True)
+shot 23_vermilion_pier_empty.png
+# Celadon City (36,22), Ryme's, from the Game Corner's door (35,19)
+loadstate team.ss
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 37, 4)
+wait 60
+!walkto(36, 22, path=True)
+shot 24_celadon_street_empty.png
+

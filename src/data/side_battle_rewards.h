@@ -116,16 +116,16 @@ static const u8 sSideBattleRewardText8[] = _(
     "{PLAYER} received BUG GEM ×10,\n"
     "LEAF STONE and SUN STONE!");
 
-static const struct SideBattleRewardItem sSideBattleReward9[] =  // BRASSIUS
+static const struct SideBattleRewardItem sSideBattleReward9[] =  // KOFU
 {
-    {ITEM_GRASS_GEM, 10},
-    {ITEM_SUN_STONE, 1},
-    {ITEM_GRASSY_SEED, 3},
+    {ITEM_WATER_GEM, 10},
+    {ITEM_PRISM_SCALE, 1},
+    {ITEM_DAMP_ROCK, 1},
 };
 
 static const u8 sSideBattleRewardText9[] = _(
-    "{PLAYER} received GRASS GEM ×10,\n"
-    "SUN STONE and GRASSY SEED ×3!");
+    "{PLAYER} received WATER GEM ×10,\n"
+    "PRISM SCALE and DAMP ROCK!");
 
 static const struct SideBattleRewardItem sSideBattleReward10[] =  // IONO
 {
@@ -137,26 +137,27 @@ static const u8 sSideBattleRewardText10[] = _(
     "{PLAYER} received ELECTRIC GEM\n"
     "×10 and CATCHING CHARM!");
 
-static const struct SideBattleRewardItem sSideBattleReward11[] =  // KOFU
+static const struct SideBattleRewardItem sSideBattleReward11[] =  // BRASSIUS
 {
-    {ITEM_WATER_GEM, 10},
-    {ITEM_PRISM_SCALE, 1},
-    {ITEM_DAMP_ROCK, 1},
+    {ITEM_GRASS_GEM, 10},
+    {ITEM_SUN_STONE, 1},
+    {ITEM_GRASSY_SEED, 3},
 };
 
 static const u8 sSideBattleRewardText11[] = _(
-    "{PLAYER} received WATER GEM ×10,\n"
-    "PRISM SCALE and DAMP ROCK!");
+    "{PLAYER} received GRASS GEM ×10,\n"
+    "SUN STONE and GRASSY SEED ×3!");
 
-static const struct SideBattleRewardItem sSideBattleReward12[] =  // LARRY
+static const struct SideBattleRewardItem sSideBattleReward12[] =  // TULIP
 {
-    {ITEM_NORMAL_GEM, 10},
-    {ITEM_EXP_CHARM, 1},
+    {ITEM_PSYCHIC_GEM, 10},
+    {ITEM_DAWN_STONE, 1},
+    {ITEM_PSYCHIC_SEED, 3},
 };
 
 static const u8 sSideBattleRewardText12[] = _(
-    "{PLAYER} received NORMAL GEM ×10\n"
-    "and EXP. CHARM!");
+    "{PLAYER} received PSYCHIC GEM\n"
+    "×10, DAWN STONE and PSYCHIC SEED ×3!");
 
 static const struct SideBattleRewardItem sSideBattleReward13[] =  // RYME
 {
@@ -169,27 +170,26 @@ static const u8 sSideBattleRewardText13[] = _(
     "{PLAYER} received GHOST GEM ×10,\n"
     "DUSK STONE and SPELL TAG!");
 
-static const struct SideBattleRewardItem sSideBattleReward14[] =  // TULIP
-{
-    {ITEM_PSYCHIC_GEM, 10},
-    {ITEM_DAWN_STONE, 1},
-    {ITEM_PSYCHIC_SEED, 3},
-};
-
-static const u8 sSideBattleRewardText14[] = _(
-    "{PLAYER} received PSYCHIC GEM\n"
-    "×10, DAWN STONE and PSYCHIC SEED ×3!");
-
-static const struct SideBattleRewardItem sSideBattleReward15[] =  // GRUSHA
+static const struct SideBattleRewardItem sSideBattleReward14[] =  // GRUSHA
 {
     {ITEM_ICE_GEM, 10},
     {ITEM_ICY_ROCK, 1},
     {ITEM_RAZOR_CLAW, 1},
 };
 
-static const u8 sSideBattleRewardText15[] = _(
+static const u8 sSideBattleRewardText14[] = _(
     "{PLAYER} received ICE GEM ×10,\n"
     "ICY ROCK and RAZOR CLAW!");
+
+static const struct SideBattleRewardItem sSideBattleReward15[] =  // LARRY
+{
+    {ITEM_NORMAL_GEM, 10},
+    {ITEM_EXP_CHARM, 1},
+};
+
+static const u8 sSideBattleRewardText15[] = _(
+    "{PLAYER} received NORMAL GEM ×10\n"
+    "and EXP. CHARM!");
 
 static const struct SideBattleRewardItem sSideBattleReward16[] =  // CYNTHIA
 {

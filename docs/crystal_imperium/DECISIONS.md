@@ -977,7 +977,8 @@ DexNav shows and that wild encounters draw from:
   PokéVial, PC, DexNav, Time and Stats, then Repel, Follower and Auto Run in green. As with
   everything from Imperium (D2), this is our own code.
 - **L in the field** opens it (`src/l_menu.c`): on the left POKéVIAL, PC, DEXNAV, TIME, STATS,
-  then the REPEL, FOLLOWER and AUTO RUN switches with ON or OFF, green when on; at the top right
+  BOSSES (since 0.21.0, D65), then the REPEL, FOLLOWER and AUTO RUN switches with ON or OFF, green
+  when on; nine entries, which fill the screen; at the top right
   the clock and the time of day. B or L closes it. It opens once you have a Pokémon, not where
   the start menu is cut down (link rooms, the Safari Zone, the Bug Catching Contest, the Battle
   Pike and Pyramid), and not with BUTTON MODE L=A, where L is the A button.
@@ -1468,12 +1469,14 @@ DexNav shows and that wild encounters draw from:
   place from a set badge, a YES/NO, one battle and a bundle of TMs, held items and Mega Stones.
   Here the same idea is written anew (D2): `tools/crystal_imperium/side_battles.py` holds the
   table and writes the trainer IDs, the party headers, the rewards, the scripts and the map objects.
-- **Who and where** (34 battles: 26 trainer IDs, 653-678, after Heart & Soul's own so its saved
-  defeat flags keep their meaning):
+- **Who and where** (25 battles: 26 trainer IDs, 653-678, after Heart & Soul's own so its saved
+  defeat flags keep their meaning; since 0.21.0 Volkner, Paldea's eight and the postgame's nine as in
+  D64):
   - Johto, Sinnoh's eight, one per badge stage: Candice (no badges, Violet City's Trainer School),
     Gardenia (2, Ilex Forest by the Route 34 gate; a stronger team from 4 badges), Fantina (3,
     Ecruteak City), Maylene (4, Cianwood City), Wake (5, Lake of Rage), Byron (6, Olivine City by
-    the lighthouse), Roark (7, Route 44 by the Ice Path), Volkner (8, Indigo Plateau).
+    the lighthouse), Roark (7, Route 44 by the Ice Path), Volkner (8, Indigo Plateau; Blackthorn City
+    since 0.21.0, D64).
   - Kanto, Paldea's eight, after the Johto League: Katy (Pewter City), Larry (Viridian City),
     Brassius (Route 25), Kofu (Vermilion City's pier), Iono (Lavender Town, by the Radio Tower),
     Ryme (Celadon City), Tulip (Saffron City), Grusha (Cinnabar Island). Paldea is the only newer
@@ -1482,7 +1485,8 @@ DexNav shows and that wild encounters draw from:
     (Blackthorn City), Geeta (Route 28, on the way to Mt. Silver), N (National Park), Cyrus
     (Mahogany Town), Wallace (Cherrygrove City), Maxie (Fuchsia City), Archie (Cerulean City) and
     Wally (Pallet Town).
-- **A side battle:** they stand on their map from the start. Talking to one before its badges or
+- **A side battle:** they stand on their map from the start (the postgame's nine only once the Kanto
+  League is won, since 0.21.0: D64). Talking to one before its badges or
   flag gets a line about when to come back; after it, a YES/NO. NO: they wait. YES: the battle
   (`trainerbattle_no_intro`); a loss is the usual whiteout, and they wait for another try. A win
   gives the reward once: `src/side_battles.c` puts it whole in the Bag, or in the PC when a pocket
@@ -2690,7 +2694,7 @@ follows is the first build's; D45 lists what changed.)
   in the Hill with LEVEL CAP OFF was counted and set down to the cap's experience. Both found by the
   release's review and fixed before it shipped. A Rare Candy has the same stored-level problem there
   (KNOWN_ISSUES #97), and a fainted Pokémon deposited there keeps the HP it lost against its Lv. 50
-  max HP (#98); both are older than this release.
+  max HP (#98); both are older than this release, and fixed in 0.21.0 (D66).
 - **The level.** The level cap (NORMAL or HARD); with LEVEL CAP OFF, NORMAL's cap for the player's
   progress, the level the trainers battle at (D56), not 100.
 - **What changes.** The experience only, to the level's least; party Pokémon get their stats
@@ -2715,3 +2719,139 @@ follows is the first build's; D45 lists what changed.)
   were, the fainted one still fainted with the HP the PC keeps at its new max HP, which fails without
   the fix, nothing left to raise after, SEE YA! still last); `tools/emurun` reads a stored Pokémon's
   experience (`expectpartyexp`) and all 11 bits of a held item.
+
+## D64. The side battles by region: Johto's in Johto, Kanto's by its Gyms, the postgame after the Kanto League
+
+- The user: "Organize the added gym battles better, the ones I need to battle for johto region keep them
+  in johto and then the kanto extra leaders organized better as well". Their answers to our questions
+  (all four recommended options): Johto's eight stay in Johto and only Volkner moves; each of Paldea's
+  eight waits in a Kanto Gym's town and battles once that Gym's badge is won; the nine postgame
+  characters keep their spots but are hidden until the Kanto League is won; Red stays as he is (he needs
+  only the Kanto League; every side battle stays optional, D41).
+- **Before** (D41): Volkner, the last of Sinnoh's eight, stood at the Indigo Plateau, a Kanto map section
+  in front of the League; Paldea's eight all opened together on the Johto League (`FLAG_IS_CHAMPION`),
+  already set before Kanto can be reached, and stood where they liked (Iono in Lavender Town, which has
+  no Gym; Brassius on Route 25); all nine postgame characters stood on their maps from a new game and only
+  said "Win the KANTO LEAGUE", six of them in Johto (Wallace in Cherrygrove was the first side-battle
+  character a new game met).
+- **Now:**
+  - Johto: Volkner waits in Blackthorn City beside Clair's Gym (21,26), still for the eighth badge. All
+    eight of Sinnoh's stand in Johto, one per badge count (0 to 8).
+  - Kanto: each of Paldea's eight waits in a Kanto Gym's town and battles once that Gym's badge is won:
+    Katy in Pewter City (Brock's, `FLAG_BADGE09_GET`), Kofu in Cerulean City by Misty's Gym (31,31;
+    `FLAG_BADGE10_GET`), Iono beside Lt. Surge's Gym in Vermilion City (19,24; `FLAG_BADGE11_GET`),
+    Brassius by Erika's Gym in Celadon City (16,30; `FLAG_BADGE12_GET`), Tulip in Saffron City
+    (Sabrina's, `FLAG_BADGE13_GET`), Ryme by Janine's Gym in Fuchsia City (12,32; `FLAG_BADGE14_GET`),
+    Grusha on Cinnabar Island (Blaine's, `FLAG_BADGE15_GET`: Heart & Soul's Blaine battles in the
+    Seafoam Islands) and Larry in Viridian City (Blue's, `FLAG_BADGE16_GET`). Before the badge each says
+    whom to beat first; the lines that named their old places were rewritten. Kanto has one level cap
+    (90) whatever its badges (D29), so their teams don't change.
+  - The postgame: the nine stand where they did but are hidden until the Kanto League is won.
+    `FLAG_HIDE_SIDE_POSTGAME` (Heart & Soul's unused extended flag 124) is their objects' flag: set at
+    New Game and every Continue while `FLAG_IS_KANTO_CHAMPION` is unset (`GiveQoLKeyItems`, which a save
+    from an older version also runs), cleared when it is set and by the Kanto League's Hall of Fame,
+    beside `setflag FLAG_IS_KANTO_CHAMPION`. A save past the Kanto League keeps them.
+- **Saves:** trainer IDs and reward flags don't change, so a battle already won stays won and a reward
+  not yet given is given at the new spot. A side battle's object on a map it has left stays in its slot,
+  hidden for good (`FLAG_RECEIVED_QOL_KEY_ITEMS`, set at New Game and every Continue) with a script that
+  does nothing (`RetiredSideBattle_EventScript`): a save keeps its map's objects by slot and gets their
+  scripts back by slot, so a deleted object would shift the slots after it and leave a save made beside
+  it with no script to run. On Continue, a save from an older version made on a changed map gets the
+  map's own template for an object the map gained since (before, its slot was empty in the save and a
+  blank object stood at (0,0) until the player left the map), and every object's hide flag follows the
+  map, so a hidden visitor or a retired slot hides once it is next spawned (`src/overworld.c`
+  `LoadSaveblockObjEventScripts`; found by the release's review). An object shown on screen when the
+  game was saved is restored as it was until it scrolls away or the player leaves (KNOWN_ISSUES #69);
+  talking to a retired one does nothing.
+- **The generator** (`side_battles.py`): a battle may name its objects' hide flag; objects left behind
+  are retired, never deleted, and `--check` looks at every map for a live side-battle object outside the
+  table. `boss_teams.py --check` now checks each side battle's team stage against its gate's earliest
+  point (a badge count is its own stage; Falkner's to Morty's badge flags 1-4, Chuck's, Jasmine's and
+  Pryce's 5, Clair's 8, a Kanto badge or the Johto League 9, the Kanto League 10), and the TM and Mega
+  Stone checks of the rewards use the same stage.
+- Evidence: `side_battle_spots` (new): walks up to Volkner in Blackthorn (no battle with 7 badges, his
+  battle with 8) and to each of Paldea's eight but Iono (no battle without their Gym's badge, theirs
+  with it), and onto the five tiles the visitors left (the Indigo Plateau, Lavender Town, Route 25,
+  Vermilion's pier, Celadon's street); `side_battles`: Iono beside Lt. Surge's Gym (no battle without
+  his badge), Cynthia's spot empty on a new game and her battle once the Kanto League's flags are set,
+  Wallace and Wally shown after it; the old-save test (Continue hides the postgame visitors); the
+  generators' `--check` modes.
+
+## D65. BOSSES: who to beat on the way to Red
+
+- The user: "add a tracker that helps track who I need to beat like a trainer list leading to the boss
+  bottle red". Their answer to our question: every Gym Leader, both Pokémon Leagues, every visiting
+  challenger and Red, on JOHTO, KANTO and TO RED pages, the next one marked, beaten ones ticked,
+  uncollected rewards flagged (the recommended option; the story battles left out). Emerald Imperium
+  has no such list: this one is our own (D2).
+- **Where:** a ninth L-menu entry, BOSSES, after STATS (D34), always there. A fades to the list, as
+  the DexNav does; B goes back to the L menu with its cursor on BOSSES, B again to the field. Nine
+  entries fill the L menu: its tiles end at 0x122, below the YES/NO box's at 0x125, and its rows fill
+  the screen's 20; `STATIC_ASSERT`s in `src/l_menu.c` stop a tenth. Not with BUTTON MODE L=A, where
+  the L menu doesn't open (KNOWN_ISSUES #44).
+- **The pages** (L and R, or LEFT and RIGHT; no wrap; each keeps its place while the list is open):
+  - JOHTO: Candice, Falkner, Bugsy, Gardenia, Whitney, Fantina, Morty, Maylene, Chuck, Wake, Jasmine,
+    Byron, Pryce, Roark, Clair, Volkner, the Johto League (each Gym followed by the visitor that opens
+    after it).
+  - KANTO: Brock, Katy, Misty, Kofu, Lt. Surge, Iono, Erika, Brassius, Sabrina, Tulip, Janine, Ryme,
+    Blaine, Grusha, Blue, Larry, the Kanto League.
+  - TO RED: Wallace, Cynthia, N, Cyrus, Iris, Wally, Archie, Maxie, Geeta, Red.
+- **A row:** a tick once beaten (a "!" while a visitor's reward waits), the name and the place. The
+  next boss on the way to Red (the first Gym, League or Red not beaten, in page order) is red; a
+  visitor whose battle isn't open yet is gray. The top bar names the page and how many of its rows
+  are beaten ("5/17 BEATEN"). An info window under the list says what the row is and what opens it
+  ("GYM 4 - ECRUTEAK CITY", "OPTIONAL - OPENS WITH 5 BADGES", "OPTIONAL - OPENS AFTER BROCK'S BADGE",
+  "OPTIONAL - OPENS AFTER THE KANTO LEAGUE", "LAST BOSS - AFTER THE KANTO LEAGUE") and how it stands
+  ("NEXT ON THE WAY TO RED", "OPEN - TALK TO HER FOR A BATTLE", "BEATEN - REWARD WAITING: TALK TO
+  HER", "BEATEN"). The list opens on the next boss's page with the cursor on it (on RED once all is
+  done). It looks like Heart & Soul's challenge menu (its top bar, frame and colours).
+- **States** read flags the game already keeps, so the list needs no save data and works on old saves:
+  a Gym's badge flag, the Leagues' champion flags, `FLAG_DEFEATED_RED`, a visitor's trainer flags (either
+  of Gardenia's two teams) and reward flag, and its gate tested as its script tests it (the badge count,
+  or the gate's flag). A visitor beaten before its gate opens (a save from before 0.21.0's Kanto gates)
+  shows as beaten. NEXT is only a suggestion where the order is free (Johto's fifth to seventh Gyms,
+  most of Kanto's), and Whitney and Clair stay NEXT until their badge, which comes after their battle.
+- **Data:** `tools/crystal_imperium/boss_tracker.py` writes `src/data/boss_tracker.h`: its own rows for
+  the Gyms, the Leagues and Red, and the visitors' from `side_battles.py`'s table (name, trainer IDs,
+  reward flag, gate and the place's map section), so a visitor who moves or opens at another point
+  moves in the list too. `--check` (in CI, after `side_battles.py`) stops on a visitor missing from the
+  pages, a main row's flag no script sets, and a name, place or line that doesn't fit.
+- **Cost:** ROM +5,648 bytes; EWRAM +4 bytes (one pointer to the list's state, allocated while it is
+  open, about 18 KB of heap, and freed when it closes); no save data.
+- Evidence: `test/boss_tracker.c` (10 unit tests: the pages and their order; NEXT on a new game
+  (FALKNER), with badges 1 to 4 (CHUCK), with eight (the JOHTO LEAGUE, then BROCK), after the Kanto
+  League (RED) and none after Red; visitors never NEXT; every visitor LOCKED until its gate, OPEN, then
+  REWARD and BEATEN; a page's count; every text fits); `boss_tracker` (the L menu's nine entries, the
+  list on the next boss, L/R and LEFT/RIGHT, scrolling, B back to the L menu with the list's memory
+  freed, marks for badges, a beaten visitor with and without its reward, the KANTO and TO RED pages
+  later in the game); `l_menu` (nine entries); the old-save test (BOSSES opens on a Heart & Soul save,
+  FALKNER next).
+
+## D66. Nothing works from the Trainer Hill's Lv. 50
+
+- Found by 0.20.0's review (KNOWN_ISSUES #97, #98). On the post-game Trainer Hill's floors (and, in the
+  code, in the Battle Pike and Pyramid) `FLAG_LIMIT_TO_50` makes `CalculateMonStats` store Lv. 50 for the
+  party and work stats out at 50. Heart & Soul has no PC on those floors, but this game's portable PC
+  (the L menu's PC and the Pokémon Box Link) and its Rare Candy Box reach them:
+  - a Rare Candy worked from the stored Lv. 50: a Lv. 70 Cyndaquil given one there was Lv. 51 after the
+    Hill;
+  - the PC keeps the HP a Pokémon lost (`OW_PC_HEAL`), there measured against Lv. 50 stats: a Lv. 70
+    Quilava that fainted and was deposited there came back with 43 HP after the Hill, a Lv. 30 one with
+    65,492 (the number wrapped around); a Pokémon withdrawn there got Lv. 50 stats the same way.
+- **Now:** one rule, `ArePokemonTreatedAsLevel50()` (`src/pokemon.c`, the flag). While it holds:
+  - the storage menu refuses DEPOSIT POKéMON, WITHDRAW POKéMON and MOVE POKéMON, as it refuses RAISE TO
+    LV. CAP (D63): "POKéMON are treated as Lv. 50 here, so they can't be moved." MOVE ITEMS still works;
+  - level-up items (Rare Candies, the Rare Candy Box, Exp. Candies) aren't used: the party menu says
+    "POKéMON are treated as Lv. 50 here, so it won't have any effect." (until A or B) before the count
+    and before the evolution a Rare Candy at the cap would start (D33), and `PokemonUseItemEffects`
+    skips the level-up for any other caller;
+  - a Nuzlocke's sweep of fainted Pokémon (after field poison) leaves them in the party: the PC would
+    keep the HP they lost against Lv. 50 (the Hill's battles were exempt already). Leaving the Hill
+    works their HP out at the real level again, and the next sweep counts them (found by the release's
+    review).
+- Evidence: `test/trainer_hill.c` (3 unit tests: the rule is the flag; under it a Rare Candy on a Lv. 70
+  Pokémon isn't used and it is still Lv. 70 after the Hill, then Lv. 71 with a candy outside it; a
+  Nuzlocke's fainted Pokémon stays in the party); `raise_to_cap` (under the flag DEPOSIT, MOVE POKéMON
+  and WITHDRAW give the message and no storage screen opens; a Rare Candy from the Bag on a Pokémon at
+  the cap gives the message, and the party menu stays: no evolution, nothing changed); `l_menu` (with
+  one Pokémon in the party, where WITHDRAW would open the boxes, it gives the message under the flag).

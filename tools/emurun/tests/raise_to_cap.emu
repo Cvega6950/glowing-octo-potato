@@ -60,6 +60,36 @@ expect8 {sMenu@menu+4} 5 no_yes_no_at_lv50
 press A
 wait 20
 expect8 {sMenu@menu+2} 4 cursor_still_on_raise_at_lv50
+# Nor can a POKeMON move between the party and the BOXES there (KNOWN_ISSUES #98): DEPOSIT (row 1), MOVE
+# POKeMON (row 0) and WITHDRAW (row 2) give a message and the storage screen doesn't open (the field's
+# callback stays). The party is full here, so WITHDRAW would be refused anyway: its check only shows no
+# screen opens
+![l for _ in range(3) for l in ("press UP", "wait 10")]
+expect8 {sMenu@menu+2} 1 cursor_on_deposit_at_lv50
+press A
+wait 60
+shot 02c_no_deposit_at_lv50.png
+expect8 {sMenu@menu+4} 5 no_deposit_screen_at_lv50
+expect32 {gMain+4} {CB2_Overworld+1} still_in_the_field_after_deposit
+press A
+wait 20
+press UP
+wait 10
+expect8 {sMenu@menu+2} 0 cursor_on_move_pokemon_at_lv50
+press A
+wait 60
+expect32 {gMain+4} {CB2_Overworld+1} still_in_the_field_after_move_pokemon
+press A
+wait 20
+![l for _ in range(2) for l in ("press DOWN", "wait 10")]
+expect8 {sMenu@menu+2} 2 cursor_on_withdraw_at_lv50
+press A
+wait 60
+expect32 {gMain+4} {CB2_Overworld+1} still_in_the_field_after_withdraw
+press A
+wait 20
+![l for _ in range(2) for l in ("press DOWN", "wait 10")]
+expect8 {sMenu@menu+2} 4 cursor_back_on_raise_at_lv50
 !set_flag("FLAG_LIMIT_TO_50", 0)
 
 # A: the question, 6 POKeMON to Lv. 15, NO first
@@ -135,3 +165,31 @@ wait 60
 mash B 200
 wait 60
 expect8 {sLockFieldControls} 0 back_in_the_field
+
+# A Rare Candy where every POKeMON is treated as Lv. 50 (KNOWN_ISSUES #97). The Rare Candy Box (the first Key
+# Item) fills the Bag with 999 Rare Candies (the Medicine pocket's first item); one on Cyndaquil, now Lv. 15
+# at the cap of 15, says it won't have any effect. Without the rule the candy at the cap would start
+# Cyndaquil's evolution (D33): the party menu stays instead, and nothing changes
+!open_bag_at("POCKET_KEY_ITEMS", 0)
+press A
+wait 20
+press A
+wait 120
+mash B 200
+wait 60
+!set_flag("FLAG_LIMIT_TO_50")
+!open_bag_at("POCKET_MEDICINE", 0)
+press A
+wait 20
+press A
+wait 120
+press A
+wait 60
+shot 06_no_rare_candy_at_lv50.png
+expect32 {gMain+4} {CB2_UpdatePartyMenu@party_menu+1} rare_candy_refused_party_menu_stays
+!expect_mon_species(party_mon("gPlayerParty", 0), "SPECIES_CYNDAQUIL", "cyndaquil_not_evolved_at_lv50")
+!expect_mon_exp(party_mon("gPlayerParty", 0), 2035, "cyndaquil_exp_unchanged_at_lv50")
+mash B 300
+wait 60
+!set_flag("FLAG_LIMIT_TO_50", 0)
+expect8 {sLockFieldControls} 0 back_in_the_field_after_the_bag

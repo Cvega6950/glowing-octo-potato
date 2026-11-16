@@ -3874,6 +3874,15 @@ void BoxMonToMon(const struct BoxPokemon *src, struct Pokemon *dest)
     SetMonData(dest, MON_DATA_HP, &value);
 }
 
+// Crystal Imperium (KNOWN_ISSUES #97, #98): FLAG_LIMIT_TO_50 (the Trainer Hill; the Battle Pike and Pyramid) makes
+// CalculateMonStats store Lv. 50 and work stats out at 50. Nothing may then move a POKeMON between the party and
+// the PC, use a level-up item or raise one to the cap (src/pokemon_storage_system.c, src/party_menu.c,
+// src/raise_to_cap.c): each would read or keep values worked out at Lv. 50
+bool32 ArePokemonTreatedAsLevel50(void)
+{
+    return FlagGet(FLAG_LIMIT_TO_50);
+}
+
 u8 GetLevelFromMonExp(struct Pokemon *mon)
 {
     u16 species = GetMonData(mon, MON_DATA_SPECIES);
@@ -6145,8 +6154,11 @@ bool8 PokemonUseItemEffects(struct Pokemon *mon, enum Item item, u8 partyIndex, 
         // Handle ITEM3 effects (Guard Spec, Rare Candy, cure status)
         case 3:
             // Rare Candy / EXP Candy
+            // Crystal Imperium (KNOWN_ISSUES #97): not at a stored Lv. 50 (FLAG_LIMIT_TO_50), which it would
+            // work from
             if ((itemEffect[i] & ITEM3_LEVEL_UP)
-             && GetMonData(mon, MON_DATA_LEVEL) != MAX_LEVEL)
+             && GetMonData(mon, MON_DATA_LEVEL) != MAX_LEVEL
+             && !ArePokemonTreatedAsLevel50())
             {
                 u8 param = GetItemHoldEffectParam(item);
                 dataUnsigned = 0;

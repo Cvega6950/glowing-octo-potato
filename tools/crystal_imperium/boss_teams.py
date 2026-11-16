@@ -2347,10 +2347,31 @@ def boss_list():
     return out + "};\n"
 
 
+def check_side_battle_stages():
+    """Each side battle's team is made for the stage its gate opens at (side_battles.py gate_stage), and a
+    second team for the later of that and its badge count: a gate moved earlier than its team's stage would
+    put the battle above the player's level cap, one moved later would leave a team made for a point the
+    player has passed (D56). Stops the generator at the first one that doesn't match."""
+    import side_battles  # noqa: E402  (imported here: it reads nothing until asked)
+    want = {}
+    for b in side_battles.BATTLES:
+        stage = side_battles.gate_stage(b.gate)
+        want[b.trainer] = stage
+        if b.second:
+            want[f"TRAINER_SIDE_{b.key}_2_HNS"] = max(stage, b.second[1])
+    if set(want) != set(SIDE_BATTLES):
+        sys.exit(f"SIDE_BATTLES and side_battles.py's table differ: {sorted(set(want) ^ set(SIDE_BATTLES))}")
+    for tid, stage in want.items():
+        if SIDE_BATTLES[tid][0] != stage_of(stage):
+            sys.exit(f"{tid}: its team is made for stage {SIDE_BATTLES[tid][0]}, but side_battles.py's gate opens "
+                     f"it at {stage_of(stage)}")
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
     args = ap.parse_args()
+    check_side_battle_stages()
     text = open(PARTY, encoding="utf-8").read()
     new = apply(text)
     old_list = open(BOSS_LIST, encoding="utf-8").read() if os.path.exists(BOSS_LIST) else ""

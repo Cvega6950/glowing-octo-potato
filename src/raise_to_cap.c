@@ -26,7 +26,7 @@ u32 GetRaiseToCapLevel(void)
 // are then worked out at Lv. 50, a boxed Pokemon's HP too, so one that fainted can read as alive
 bool32 CanUseRaiseToCap(void)
 {
-    return !FlagGet(FLAG_LIMIT_TO_50);
+    return !ArePokemonTreatedAsLevel50();
 }
 
 static bool32 IsNuzlockeOn(void)

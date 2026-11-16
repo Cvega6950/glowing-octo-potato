@@ -871,6 +871,7 @@ static const u8 sText_RaiseToCapAsk[] = _("Raise {STR_VAR_1} POKéMON to Lv. {ST
 static const u8 sText_RaiseToCapDone[] = _("Raised {STR_VAR_1} POKéMON to Lv. {STR_VAR_2}.\nEvolve: RARE CANDY. Moves: LEARN MOVES.");
 static const u8 sText_RaiseToCapNone[] = _("There's no unmarked POKéMON\nbelow Lv. {STR_VAR_2} to raise.");
 static const u8 sText_RaiseToCapNotHere[] = _("POKéMON are treated as Lv. 50 here,\nso RAISE TO LV. CAP can't be used.");
+static const u8 sText_MonsNotHere[] = _("POKéMON are treated as Lv. 50 here,\nso they can't be moved.");
 static const u8 gText_PartyFull[] = _("Your party is full!");
 static const u8 gText_Box[] = _("BOX");
 
@@ -1642,7 +1643,16 @@ static void Task_PCMainMenu(u8 taskId)
             DestroyTask(taskId);
             break;
         default:
-            if (task->tInput == OPTION_WITHDRAW && CountPartyMons() == GetMaxPartySize())
+            if ((task->tInput == OPTION_DEPOSIT || task->tInput == OPTION_WITHDRAW || task->tInput == OPTION_MOVE_MONS)
+             && ArePokemonTreatedAsLevel50())
+            {
+                // Crystal Imperium (KNOWN_ISSUES #98): no POKeMON moves between the party and the BOXES where every
+                // POKeMON is treated as Lv. 50 (the Trainer Hill): the PC would keep the HP one lost against Lv. 50
+                // stats, and a withdrawn one would get them
+                PrintMainMenuMessage(sText_MonsNotHere);
+                task->tState = STATE_ERROR_MSG;
+            }
+            else if (task->tInput == OPTION_WITHDRAW && CountPartyMons() == GetMaxPartySize())
             {
                 // Can't withdraw
                 FillWindowPixelBuffer(0, PIXEL_FILL(1));

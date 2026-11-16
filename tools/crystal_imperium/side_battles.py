@@ -10,18 +10,21 @@ this writes:
                                        tools/crystal_imperium/boss_teams.py writes their Pokemon
   src/data/side_battle_rewards.h       what each reward holds and the message listing it
   data/scripts/side_battles.inc        the scripts and their texts
-  data/maps/*/map.json                 each one's object on its map
+  data/maps/*/map.json                 each one's object on its map; on a map one has left, its old
+                                       object stays in its slot, hidden for good (retire_objects)
 
   python3 tools/crystal_imperium/side_battles.py           # rewrite the files
   python3 tools/crystal_imperium/side_battles.py --check   # exit 1 if any is out of date
 
-Run it before boss_teams.py, which needs the trainers' headers.
+Run it before boss_teams.py, which needs the trainers' headers and checks each team's stage against
+the gate here (gate_stage).
 
 Emerald Imperium (1.3.1) has Sinnoh's eight Gym Leaders as side battles in Hoenn, each at a set place
 from a set badge, with a YES/NO prompt, one battle and a bundle of TMs, held items and Mega Stones
 (emeraldimperium.info/walkthrough.html). Here the same idea is written anew (D2): Johto has Sinnoh's
-eight, one per badge stage; Kanto has Paldea's eight Gym Leaders; the postgame has other regions'
-Champions, rivals and villains around Johto and Kanto. Every one battles at the player's level cap
+eight, one per badge stage; Kanto has Paldea's eight Gym Leaders, one in each Kanto Gym's town, who
+battle once that Gym's badge is won; the postgame has other regions' Champions, rivals and villains
+around Johto and Kanto, there once the Kanto League is won. Every one battles at the player's level cap
 with six Pokemon (boss_teams.py, D21). A reward holds what this game doesn't already give ten at a
 time (the care packages, D16): ten Gems of the trainer's type, TMs before the TM shops sell
 them (D36), Mega Stones before the Goldenrod Mega shop sells them, an evolution item for the
@@ -31,6 +34,7 @@ or to the PC when a pocket is full; if neither has room, nothing is given and ta
 again tries once more (src/side_battles.c).
 """
 import argparse
+import glob
 import json
 import os
 import re
@@ -63,10 +67,48 @@ MUGSHOTS = {"Blue", "Dark Red", "Green", "Light Blue", "Orange", "Pink", "Purple
 JOHTO_CHAMPION_FLAG = "FLAG_IS_CHAMPION"
 KANTO_CHAMPION_FLAG = "FLAG_IS_KANTO_CHAMPION"
 
+# A gate's stage, the earliest point in the game its battle can happen, as boss_teams.py numbers its
+# teams' stages: a badge count 0-8, 9 once the Johto League is won, 10 once the Kanto League is. A
+# badge count is its own stage. A Gym's badge flag (FLAG_BADGE0n_GET) is the earliest badge count it can
+# come with: Falkner's to Morty's are the 1st to 4th, Chuck's, Jasmine's and Pryce's the 5th to 7th in
+# any order (src/caps.c), Clair's the 8th. Kanto's eight come after the Johto League, and Kanto has one
+# level cap whatever its badges (src/caps.c), so they are all stage 9.
+JOHTO_LEAGUE_STAGE = 9
+KANTO_LEAGUE_STAGE = 10
+FLAG_STAGES = {"FLAG_BADGE01_GET": 1, "FLAG_BADGE02_GET": 2, "FLAG_BADGE03_GET": 3, "FLAG_BADGE04_GET": 4,
+               "FLAG_BADGE05_GET": 5, "FLAG_BADGE06_GET": 5, "FLAG_BADGE07_GET": 5, "FLAG_BADGE08_GET": 8,
+               **{f"FLAG_BADGE{n:02d}_GET": JOHTO_LEAGUE_STAGE for n in range(9, 17)},
+               JOHTO_CHAMPION_FLAG: JOHTO_LEAGUE_STAGE, KANTO_CHAMPION_FLAG: KANTO_LEAGUE_STAGE}
+
+# The postgame's visitors' hide flag: set at New Game and every Continue until the Kanto League is
+# won, cleared by the Hall of Fame as it sets FLAG_IS_KANTO_CHAMPION (src/new_game.c GiveQoLKeyItems,
+# data/maps/PokemonLeague_HallOfFame_hns/scripts.inc)
+HIDE_POSTGAME = "FLAG_HIDE_SIDE_POSTGAME"
+
+# A side battle's object on a map the battle has left keeps its slot there, hidden for good: this flag is
+# set at New Game and every Continue and never cleared (GiveQoLKeyItems), and the script does nothing.
+# A save keeps the objects of the map it was made on by slot and gets their scripts back by slot
+# (src/overworld.c LoadSaveblockObjEventScripts), so a deleted object would shift the slots after it
+# and leave a save made beside it with no template to talk to (src/event_object_movement.c). The
+# script's name doesn't start with SideBattle_, which marks a battle for the tools
+# (ace_trainers.py's room around bosses, emu.py) and for retire_objects.
+RETIRED_FLAG = "FLAG_RECEIVED_QOL_KEY_ITEMS"
+RETIRED_SCRIPT = "RetiredSideBattle_EventScript"
+
+
+def gate_stage(gate):
+    """The stage a gate opens at (FLAG_STAGES); a gate on any other flag stops the generator."""
+    kind, value = gate
+    if kind == "badges":
+        return value
+    if value not in FLAG_STAGES:
+        sys.exit(f"{value}: a gate's flag must be a badge's or a League's (FLAG_STAGES)")
+    return FLAG_STAGES[value]
+
 
 class Battle:
     def __init__(self, key, trainer_id, name, trainer_class, pic, gender, music, mugshot, gfx, places,
-                 gate, reward, texts, second=None):
+                 gate, reward, texts, second=None, hide=None):
         self.key = key                      # CANDICE: the labels' and the reward flag's name
         self.trainer = f"TRAINER_SIDE_{key}_HNS"
         self.trainer_id = trainer_id
@@ -82,6 +124,7 @@ class Battle:
         self.reward = reward                # [(ITEM_ name without ITEM_, quantity)]
         self.texts = texts                  # challenge, not_yet, declined, defeat, reward, after
         self.second = second                # (trainer ID, badges, challenge text): a stronger team later
+        self.hide = hide                    # the objects' hide flag (FLAG_*): there only while it's clear
         self.reward_flag = f"FLAG_SIDE_REWARD_{key}"
 
     def trainers(self):
@@ -181,30 +224,35 @@ JOHTO = [
             "after": ["Dad's in OLIVINE CITY, looking at the lighthouse. He loves anything made of "
                       "steel!"]}),
     Battle("VOLKNER", 661, "VOLKNER", "Leader Hns", "Volkner Hns", "Male", "Hg Boy 1", "Yellow",
-           "OBJ_EVENT_GFX_VOLKNER_HNS", [("IndigoPlateau_hns", 13, 8, "down")],
+           "OBJ_EVENT_GFX_VOLKNER_HNS", [("BlackthornCity_hns", 21, 26, "down")],
            ("badges", 8),
            [("ELECTRIC_GEM", 10), ("ROTOM_CATALOG", 1), ("LINKING_CORD", 1)],
-           {"not_yet": ["...I'm VOLKNER. SUNYSHORE CITY's GYM LEADER. I'm waiting for a trainer worth "
-                        "battling.", "Come back with all eight GYM BADGES."],
+           {"not_yet": ["...I'm VOLKNER, SUNYSHORE CITY's GYM LEADER. I heard JOHTO's toughest GYM was "
+                        "here.", "I'm waiting for a trainer worth battling. Come back with all eight GYM "
+                        "BADGES."],
             "challenge": ["Eight BADGES. You might be the one who can make my battles exciting again. "
                           "Ready?"],
             "declined": ["...Fine. I'll wait."],
             "defeat": ["...Heh. That was fun. I haven't felt this charged up in ages."],
             "reward": ["Take these. You've earned them."],
-            "after": ["Go win the POKéMON LEAGUE. Then come back and tell me about it."]}),
+            "after": ["Battles like that are why I became a GYM LEADER. Thanks for reminding me."]}),
 ]
 
-# --- Kanto: Paldea's eight Gym Leaders, after the Johto League (all at Kanto's cap) ------------------
-# One in each of eight Kanto towns, near a place that suits them; Kanto's Gym Leader class, for its
-# battle music. Every TM and Mega Stone is on sale by then, so a reward is ten Gems and an item of
-# the leader's own: Larry's Exp. Charm and Iono's Catching Charm are the only ones in the game.
+# --- Kanto: Paldea's eight Gym Leaders, one in each Kanto Gym's town, after that Gym's badge -------------
+# In the Gyms' order: each waits in a Kanto Gym's town and battles once the player has its badge
+# (FLAG_BADGE09_GET to FLAG_BADGE16_GET); Grusha on Cinnabar Island, which Blaine's Gym left for the
+# Seafoam Islands. Kanto comes after the Johto League and has one level cap whatever its badges, so all
+# eight are made for that stage (boss_teams.py); Kanto's Gym Leader class, for its battle music. Every
+# TM and Mega Stone is on sale by then, so a reward is ten Gems and an item of the leader's own: Larry's
+# Exp. Charm and Iono's Catching Charm are the only ones in the game.
 KANTO = [
     Battle("KATY", 662, "KATY", "Leader Kanto Hns", "Katy Hns", "Female", "Hg Girl 1", "Orange",
            "OBJ_EVENT_GFX_KATY_HNS", [("PewterCity_hns", 22, 12, "down")],
-           ("flag", JOHTO_CHAMPION_FLAG),
+           ("flag", "FLAG_BADGE09_GET"),
            [("BUG_GEM", 10), ("LEAF_STONE", 1), ("SUN_STONE", 1)],
            {"not_yet": ["Hi there! I'm KATY, CORTONDO's GYM LEADER in PALDEA. I'm on a tour of KANTO's "
-                        "bakeries!", "Once you're JOHTO's CHAMPION, let's have a battle, okay?"],
+                        "bakeries!", "Come back once you've beaten BROCK at the PEWTER GYM, and let's have "
+                        "a battle, okay?"],
             "challenge": ["Hi there! I'm KATY, CORTONDO's GYM LEADER in PALDEA. I'm on a tour of KANTO's "
                           "bakeries!", "My BUG POKéMON are as sweet as my cakes, but they still sting! "
                           "Shall we battle?"],
@@ -212,73 +260,52 @@ KANTO = [
             "defeat": ["Oh my! That battle was sweeter than any cake!"],
             "reward": ["A sweet battle deserves a sweet treat! Here you go!"],
             "after": ["If you ever visit PALDEA, come by my bakery in CORTONDO!"]}),
+    Battle("KOFU", 665, "KOFU", "Leader Kanto Hns", "Kofu Hns", "Male", "Hg Boy 1", "Blue",
+           "OBJ_EVENT_GFX_KOFU_HNS", [("CeruleanCity_hns", 31, 31, "down")],
+           ("flag", "FLAG_BADGE10_GET"),
+           [("WATER_GEM", 10), ("PRISM_SCALE", 1), ("DAMP_ROCK", 1)],
+           {"not_yet": ["Hola! I'm KOFU, CASCARRAFA's GYM LEADER! I came to CERULEAN for MISTY's GYM and "
+                        "the freshest fish!", "Once you've beaten MISTY at the CERULEAN GYM, we'll have a "
+                        "battle, fresh from the river!"],
+            "challenge": ["Hola! I'm KOFU, CASCARRAFA's GYM LEADER! I came to CERULEAN for MISTY's GYM and "
+                          "the freshest fish!", "You look like a fine catch! Let's battle, and see who's "
+                          "freshest!"],
+            "declined": ["No? Then I'll go haggle with the fishermen!"],
+            "defeat": ["Whoa! You cooked me but good!"],
+            "reward": ["A great battle earns a great prize! Take it!"],
+            "after": ["Life is like the sea: full of surprises, and full of flavor!"]}),
+    Battle("IONO", 664, "IONO", "Leader Kanto Hns", "Iono Hns", "Female", "Hg Girl 1", "Yellow",
+           "OBJ_EVENT_GFX_IONO_HNS", [("VermilionCity_hns", 19, 24, "down")],
+           ("flag", "FLAG_BADGE11_GET"),
+           [("ELECTRIC_GEM", 10), ("CATCHING_CHARM", 1)],
+           {"not_yet": ["Ello, ello, hola! It's your electrifying streamer, IONO! I'm streaming live from "
+                        "VERMILION's GYM!", "Zap LT. SURGE at the VERMILION GYM first, and then you can star "
+                        "in my stream!"],
+            "challenge": ["Ello, ello, hola! It's your electrifying streamer, IONO! I'm streaming live from "
+                          "VERMILION's GYM!", "Wanna star in my stream? Let's battle, and make it shocking!"],
+            "declined": ["Boo! My chat is sad now! Come back soon, 'kay?"],
+            "defeat": ["Ack! My chat is going wild! You zapped me good!"],
+            "reward": ["Here's a little something from your favorite streamer!"],
+            "after": ["Thanks for being on my stream! The views are through the roof!"]}),
     Battle("BRASSIUS", 663, "BRASSIUS", "Leader Kanto Hns", "Brassius Hns", "Male", "Hg Boy 1", "Green",
-           "OBJ_EVENT_GFX_BRASSIUS_HNS", [("Route25_hns", 80, 15, "down")],
-           ("flag", JOHTO_CHAMPION_FLAG),
+           "OBJ_EVENT_GFX_BRASSIUS_HNS", [("CeladonCity_hns", 16, 30, "down")],
+           ("flag", "FLAG_BADGE12_GET"),
            [("GRASS_GEM", 10), ("SUN_STONE", 1), ("GRASSY_SEED", 3)],
-           {"not_yet": ["I am BRASSIUS, artist and GYM LEADER of ARTAZON! The flowers by this sea inspire "
-                        "me!", "Return as JOHTO's CHAMPION, and we shall create art together!"],
-            "challenge": ["I am BRASSIUS, artist and GYM LEADER of ARTAZON! The flowers by this sea inspire "
+           {"not_yet": ["I am BRASSIUS, artist and GYM LEADER of ARTAZON! The flowers of ERIKA's GYM inspire "
+                        "me!", "Win ERIKA's BADGE at the CELADON GYM, and we shall create art together!"],
+            "challenge": ["I am BRASSIUS, artist and GYM LEADER of ARTAZON! The flowers of ERIKA's GYM inspire "
                           "me!", "Will you join me in a battle? A living work of art!"],
             "declined": ["Inspiration cannot be rushed. I shall wait."],
             "defeat": ["Magnificent! Our battle was a masterpiece!"],
             "reward": ["Take these, as thanks for the inspiration!"],
             "after": ["Art and battles both bloom when you pour your heart into them!"]}),
-    Battle("IONO", 664, "IONO", "Leader Kanto Hns", "Iono Hns", "Female", "Hg Girl 1", "Yellow",
-           "OBJ_EVENT_GFX_IONO_HNS", [("LavenderTown_hns", 23, 9, "down")],
-           ("flag", JOHTO_CHAMPION_FLAG),
-           [("ELECTRIC_GEM", 10), ("CATCHING_CHARM", 1)],
-           {"not_yet": ["Ello, ello, hola! It's your electrifying streamer, IONO! I'm live from KANTO's "
-                        "RADIO TOWER!", "Become JOHTO's CHAMPION, and you can star in my stream!"],
-            "challenge": ["Ello, ello, hola! It's your electrifying streamer, IONO! I'm live from KANTO's "
-                          "RADIO TOWER!", "Wanna star in my stream? Let's battle, and make it shocking!"],
-            "declined": ["Boo! My chat is sad now! Come back soon, 'kay?"],
-            "defeat": ["Ack! My chat is going wild! You zapped me good!"],
-            "reward": ["Here's a little something from your favorite streamer!"],
-            "after": ["Thanks for being on my stream! The views are through the roof!"]}),
-    Battle("KOFU", 665, "KOFU", "Leader Kanto Hns", "Kofu Hns", "Male", "Hg Boy 1", "Blue",
-           "OBJ_EVENT_GFX_KOFU_HNS", [("VermilionCity_hns", 49, 27, "down")],
-           ("flag", JOHTO_CHAMPION_FLAG),
-           [("WATER_GEM", 10), ("PRISM_SCALE", 1), ("DAMP_ROCK", 1)],
-           {"not_yet": ["Hola! I'm KOFU, CASCARRAFA's GYM LEADER! I came to VERMILION for the freshest "
-                        "seafood!", "Once you're JOHTO's CHAMPION, we'll have a battle, fresh off the "
-                        "boat!"],
-            "challenge": ["Hola! I'm KOFU, CASCARRAFA's GYM LEADER! I came to VERMILION for the freshest "
-                          "seafood!", "You look like a fine catch! Let's battle, and see who's freshest!"],
-            "declined": ["No? Then I'll go haggle with the fishermen!"],
-            "defeat": ["Whoa! You cooked me but good!"],
-            "reward": ["A great battle earns a great prize! Take it!"],
-            "after": ["Life is like the sea: full of surprises, and full of flavor!"]}),
-    Battle("LARRY", 666, "LARRY", "Leader Kanto Hns", "Larry Hns", "Male", "Hg Boy 1", "Dark Red",
-           "OBJ_EVENT_GFX_LARRY_HNS", [("ViridianCity_hns", 22, 23, "down")],
-           ("flag", JOHTO_CHAMPION_FLAG),
-           [("NORMAL_GEM", 10), ("EXP_CHARM", 1)],
-           {"not_yet": ["...I'm LARRY. GYM LEADER of MEDALI, in PALDEA. I'm on a business trip. Again.",
-                        "Come back when you're JOHTO's CHAMPION. I'll be here. Working."],
-            "challenge": ["...I'm LARRY. GYM LEADER of MEDALI, in PALDEA. I'm on a business trip. Again.",
-                          "A battle? Fine. Let's get it over with. I won't go easy, though."],
-            "declined": ["Good. I'd rather sit down for a while anyway."],
-            "defeat": ["...You're strong. I'll put that in my report."],
-            "reward": ["My boss said to hand these out. Here."],
-            "after": ["Ordinary is best. Remember that, kid."]}),
-    Battle("RYME", 667, "RYME", "Leader Kanto Hns", "Ryme Hns", "Female", "Hg Girl 1", "Purple",
-           "OBJ_EVENT_GFX_RYME_HNS", [("CeladonCity_hns", 36, 22, "down")],
-           ("flag", JOHTO_CHAMPION_FLAG),
-           [("GHOST_GEM", 10), ("DUSK_STONE", 1), ("SPELL_TAG", 1)],
-           {"not_yet": ["Yo! MC RYME, from MONTENEVERA, in the house! CELADON's crowd better be ready!",
-                        "Come back as JOHTO's CHAMPION, and we'll take the stage together!"],
-            "challenge": ["Yo! MC RYME, from MONTENEVERA, in the house! CELADON's crowd better be ready!",
-                          "Step up to the mic! Let's battle, and drop some beats!"],
-            "declined": ["Nah? Then I'll keep the crowd warm for ya!"],
-            "defeat": ["Mic drop! You stole the whole show!"],
-            "reward": ["A star performance deserves some love! Here!"],
-            "after": ["Keep your rhythm, and your POKéMON will follow your beat!"]}),
     Battle("TULIP", 668, "TULIP", "Leader Kanto Hns", "Tulip Hns", "Female", "Hg Girl 1", "Pink",
            "OBJ_EVENT_GFX_TULIP_HNS", [("SaffronCity_hns", 34, 33, "down")],
-           ("flag", JOHTO_CHAMPION_FLAG),
+           ("flag", "FLAG_BADGE13_GET"),
            [("PSYCHIC_GEM", 10), ("DAWN_STONE", 1), ("PSYCHIC_SEED", 3)],
            {"not_yet": ["Hello. I'm TULIP, GYM LEADER of ALFORNADA, and a makeup artist. SAFFRON's style "
-                        "is... interesting.", "Come back as JOHTO's CHAMPION. Then we'll battle."],
+                        "is... interesting.", "Come back once you've beaten SABRINA at the SAFFRON GYM. Then "
+                        "we'll battle."],
             "challenge": ["Hello. I'm TULIP, GYM LEADER of ALFORNADA, and a makeup artist. SAFFRON's style "
                           "is... interesting.", "Shall we battle? I'll show you how beautiful PSYCHIC "
                           "POKéMON can be."],
@@ -286,24 +313,49 @@ KANTO = [
             "defeat": ["How lovely. You and your POKéMON shine brighter than I do."],
             "reward": ["Please accept these. You've earned them."],
             "after": ["True beauty comes from the bond you share with your POKéMON."]}),
+    Battle("RYME", 667, "RYME", "Leader Kanto Hns", "Ryme Hns", "Female", "Hg Girl 1", "Purple",
+           "OBJ_EVENT_GFX_RYME_HNS", [("FuchsiaCity_hns", 12, 32, "down")],
+           ("flag", "FLAG_BADGE14_GET"),
+           [("GHOST_GEM", 10), ("DUSK_STONE", 1), ("SPELL_TAG", 1)],
+           {"not_yet": ["Yo! MC RYME, from MONTENEVERA, in the house! FUCHSIA's crowd better be ready!",
+                        "Beat JANINE at the FUCHSIA GYM first, then we'll take the stage together!"],
+            "challenge": ["Yo! MC RYME, from MONTENEVERA, in the house! FUCHSIA's crowd better be ready!",
+                          "Step up to the mic! Let's battle, and drop some beats!"],
+            "declined": ["Nah? Then I'll keep the crowd warm for ya!"],
+            "defeat": ["Mic drop! You stole the whole show!"],
+            "reward": ["A star performance deserves some love! Here!"],
+            "after": ["Keep your rhythm, and your POKéMON will follow your beat!"]}),
     Battle("GRUSHA", 669, "GRUSHA", "Leader Kanto Hns", "Grusha Hns", "Male", "Hg Boy 1", "Light Blue",
            "OBJ_EVENT_GFX_GRUSHA_HNS", [("CinnabarIsland_hns", 42, 34, "left")],
-           ("flag", JOHTO_CHAMPION_FLAG),
+           ("flag", "FLAG_BADGE15_GET"),
            [("ICE_GEM", 10), ("ICY_ROCK", 1), ("RAZOR_CLAW", 1)],
            {"not_yet": ["I'm GRUSHA, GYM LEADER of GLASEADO. This island is way too hot for me.",
-                        "Come back once you're JOHTO's CHAMPION."],
+                        "BLAINE moved his GYM to the SEAFOAM ISLANDS. Beat him there, then come back."],
             "challenge": ["I'm GRUSHA, GYM LEADER of GLASEADO. This island is way too hot for me.",
                           "...Fine, let's battle. I'll cool you down."],
             "declined": ["Your loss."],
             "defeat": ["...You've got real heat. I respect that."],
             "reward": ["Here. You earned these."],
             "after": ["Even on a hot island, ice holds its own. So should you."]}),
+    Battle("LARRY", 666, "LARRY", "Leader Kanto Hns", "Larry Hns", "Male", "Hg Boy 1", "Dark Red",
+           "OBJ_EVENT_GFX_LARRY_HNS", [("ViridianCity_hns", 22, 23, "down")],
+           ("flag", "FLAG_BADGE16_GET"),
+           [("NORMAL_GEM", 10), ("EXP_CHARM", 1)],
+           {"not_yet": ["...I'm LARRY. GYM LEADER of MEDALI, in PALDEA. I'm on a business trip. Again.",
+                        "Come back when you've beaten BLUE at the VIRIDIAN GYM. I'll be here. Working."],
+            "challenge": ["...I'm LARRY. GYM LEADER of MEDALI, in PALDEA. I'm on a business trip. Again.",
+                          "A battle? Fine. Let's get it over with. I won't go easy, though."],
+            "declined": ["Good. I'd rather sit down for a while anyway."],
+            "defeat": ["...You're strong. I'll put that in my report."],
+            "reward": ["My boss said to hand these out. Here."],
+            "after": ["Ordinary is best. Remember that, kid."]}),
 ]
 
 # --- Postgame: Champions, rivals and villains of other regions, before Red ------------------------------
-# They wait around Johto and Kanto from the start and battle once the player has won the Kanto League,
-# the point where Red on Mt. Silver battles too; each at level 100 like him. Wallace, Maxie, Archie and
-# Wally use the sprites Emerald already has.
+# They come to Johto and Kanto once the player has won the Kanto League, the point where Red on Mt.
+# Silver battles too (hidden until then: HIDE_POSTGAME), and battle at once; each at level 100 like him.
+# Beating them is up to the player: Red needs only the Kanto League. Wallace, Maxie, Archie and Wally use
+# the sprites Emerald already has.
 POSTGAME = [
     Battle("CYNTHIA", 670, "CYNTHIA", "Champion Hns", "Cynthia Hns", "Female", "Hg Girl 1", "Dark Red",
            "OBJ_EVENT_GFX_CYNTHIA_HNS", [("RuinsOfAlph_Outside_hns", 33, 19, "down")],
@@ -316,7 +368,8 @@ POSTGAME = [
             "declined": ["I'll be here. The UNOWN have plenty to teach me while I wait."],
             "defeat": ["Splendid! That was the best battle I've had in a long time!"],
             "reward": ["You're truly strong. Please, take these."],
-            "after": ["RED is waiting atop MT. SILVER. I think you're ready for him."]}),
+            "after": ["RED is waiting atop MT. SILVER. I think you're ready for him."]},
+           hide=HIDE_POSTGAME),
     Battle("IRIS", 671, "IRIS", "Champion Hns", "Iris Hns", "Female", "Hg Girl 1", "Purple",
            "OBJ_EVENT_GFX_IRIS_HNS", [("BlackthornCity_hns", 29, 15, "down")],
            ("flag", KANTO_CHAMPION_FLAG),
@@ -328,7 +381,8 @@ POSTGAME = [
             "declined": ["Aww! I'll go play in the DRAGON'S DEN until you're ready!"],
             "defeat": ["Wow! You and your POKéMON really trust each other!"],
             "reward": ["That was super fun! Here, these are for you!"],
-            "after": ["CLAIR told me all about RED. I bet you can beat him!"]}),
+            "after": ["CLAIR told me all about RED. I bet you can beat him!"]},
+           hide=HIDE_POSTGAME),
     Battle("GEETA", 672, "GEETA", "Champion Hns", "Geeta Hns", "Female", "Hg Girl 1", "Dark Red",
            "OBJ_EVENT_GFX_GEETA_HNS", [("Route28_hns", 49, 14, "down")],
            ("flag", KANTO_CHAMPION_FLAG),
@@ -341,7 +395,8 @@ POSTGAME = [
             "declined": ["Come back when you are prepared. I do not grade on effort."],
             "defeat": ["...Remarkable. You pass, with distinction."],
             "reward": ["Accept these, with the LEAGUE's compliments."],
-            "after": ["The road ahead leads to MT. SILVER. Show RED what you showed me."]}),
+            "after": ["The road ahead leads to MT. SILVER. Show RED what you showed me."]},
+           hide=HIDE_POSTGAME),
     Battle("N", 673, "N", "Pkmn Trainer 1 Hns", "N Hns", "Male", "Hg Boy 1", "Green",
            "OBJ_EVENT_GFX_N_HNS", [("NationalPark_Normal_hns", 30, 30, "down")],
            ("flag", KANTO_CHAMPION_FLAG),
@@ -353,7 +408,8 @@ POSTGAME = [
             "declined": ["...I see. I'll keep listening to the POKéMON here."],
             "defeat": ["Your POKéMON... they're happy. That is the answer I was looking for."],
             "reward": ["Please, take these. For you, and for your friends."],
-            "after": ["POKéMON and people can understand each other. You've shown me that."]}),
+            "after": ["POKéMON and people can understand each other. You've shown me that."]},
+           hide=HIDE_POSTGAME),
     Battle("CYRUS", 674, "CYRUS", "Pkmn Trainer 1 Hns", "Cyrus Hns", "Male", "Hg Boy 1", "Blue",
            "OBJ_EVENT_GFX_CYRUS_HNS", [("Mahoganytown_hns", 12, 10, "down")],
            ("flag", KANTO_CHAMPION_FLAG),
@@ -365,7 +421,8 @@ POSTGAME = [
             "declined": ["Hmph. Hesitation is the weakness of spirit."],
             "defeat": ["...So this is the strength that spirit gives. Interesting."],
             "reward": ["Take these. I have no use for sentiment."],
-            "after": ["Go. Seek your answer atop MT. SILVER, as I seek mine."]}),
+            "after": ["Go. Seek your answer atop MT. SILVER, as I seek mine."]},
+           hide=HIDE_POSTGAME),
     Battle("WALLACE", 675, "WALLACE", "Champion Hns", "Champion Wallace", "Male", "Hg Boy 1", "Light Blue",
            "OBJ_EVENT_GFX_WALLACE", [("CherrygroveCity_hns", 30, 17, "down")],
            ("flag", KANTO_CHAMPION_FLAG),
@@ -377,7 +434,8 @@ POSTGAME = [
             "declined": ["Ah, a pity! I'll admire the waves a while longer."],
             "defeat": ["Magnificent! A battle of true elegance!"],
             "reward": ["Please, accept these with my sincerest admiration."],
-            "after": ["Beauty and strength flow together, like the tide."]}),
+            "after": ["Beauty and strength flow together, like the tide."]},
+           hide=HIDE_POSTGAME),
     Battle("MAXIE", 676, "MAXIE", "Magma Leader", "Magma Leader Maxie", "Male", "Hg Boy 1", "Dark Red",
            "OBJ_EVENT_GFX_MAXIE", [("FuchsiaCity_hns", 25, 9, "down")],
            ("flag", KANTO_CHAMPION_FLAG),
@@ -389,7 +447,8 @@ POSTGAME = [
             "declined": ["Prudence. I can respect that."],
             "defeat": ["Fufufu... I miscalculated. Again."],
             "reward": ["Take these. A token of my recalculated respect."],
-            "after": ["The land and the sea must stay in balance. I have learned that, at least."]}),
+            "after": ["The land and the sea must stay in balance. I have learned that, at least."]},
+           hide=HIDE_POSTGAME),
     Battle("ARCHIE", 677, "ARCHIE", "Aqua Leader", "Aqua Leader Archie", "Male", "Hg Boy 1", "Blue",
            "OBJ_EVENT_GFX_ARCHIE", [("CeruleanCity_hns", 18, 8, "down")],
            ("flag", KANTO_CHAMPION_FLAG),
@@ -401,7 +460,8 @@ POSTGAME = [
             "declined": ["Scared of a little water? Bwahahaha!"],
             "defeat": ["Bwahahaha! You sank me fair and square!"],
             "reward": ["Here! Treasures from the bottom of the sea!"],
-            "after": ["The sea is vast, and so is your strength. Bwahahaha!"]}),
+            "after": ["The sea is vast, and so is your strength. Bwahahaha!"]},
+           hide=HIDE_POSTGAME),
     Battle("WALLY", 678, "WALLY", "Pkmn Trainer 1 Hns", "Wally", "Male", "Hg Boy 1", "Green",
            "OBJ_EVENT_GFX_WALLY", [("PalletTown_hns", 8, 9, "down")],
            ("flag", KANTO_CHAMPION_FLAG),
@@ -414,7 +474,8 @@ POSTGAME = [
             "declined": ["Okay... I'll keep training until you're ready!"],
             "defeat": ["I lost... but I'm not sad. You're amazing!"],
             "reward": ["Please take these! Thank you for battling me!"],
-            "after": ["Someday I'll be strong enough to battle RED too!"]}),
+            "after": ["Someday I'll be strong enough to battle RED too!"]},
+           hide=HIDE_POSTGAME),
 ]
 
 BATTLES = JOHTO + KANTO + POSTGAME
@@ -520,7 +581,7 @@ def render_rewards(text, names):
     return "\n".join(out)
 
 
-SHARED = """\
+SHARED = f"""\
 @ Generated by tools/crystal_imperium/side_battles.py from its table: edit that, not this file.
 @ Crystal Imperium side battles (DECISIONS.md D41): Gym Leaders from newer regions and the postgame's
 @ visitors. Each waits on its map (map.json), talks, offers a battle (YES/NO) once its badges or flag
@@ -548,6 +609,12 @@ SideBattle_EventScript_NoRoom:
 
 SideBattle_EventScript_Release:
 	release
+	end
+
+@ The object a side battle left behind on a map it no longer stands on: kept in its slot, hidden for good
+@ ({RETIRED_FLAG}, set at New Game and every Continue), so that the objects after it keep
+@ theirs. Talking to it, where a save from an older version still shows it, does nothing.
+{RETIRED_SCRIPT}::
 	end
 """
 
@@ -763,7 +830,8 @@ class MapData:
 
 
 def place_objects(check_only):
-    """Adds or updates each side battle's object on its maps; returns the maps out of date."""
+    """Adds or updates each side battle's object on its maps (a new one goes after the map's others), then
+    retires the objects of the maps they have left (retire_objects); returns the maps out of date."""
     stale = []
     for b in BATTLES:
         for folder, x, y, facing, *layouts in b.places:
@@ -795,7 +863,7 @@ def place_objects(check_only):
                     sys.exit(f"{b.key}: at ({x},{y}) on {folder} ({layout or 'its layout'}), cuts off {sorted(cut_off)[:5]}")
             obj = {"graphics_id": b.gfx, "x": x, "y": y, "elevation": 0, "movement_type": FACINGS[facing],
                    "movement_range_x": 0, "movement_range_y": 0, "trainer_type": "TRAINER_TYPE_NONE",
-                   "trainer_sight_or_berry_tree_id": "0", "script": script, "flag": "0"}
+                   "trainer_sight_or_berry_tree_id": "0", "script": script, "flag": b.hide or "0"}
             objects = m.json["object_events"]
             mine = [i for i, o in enumerate(objects) if o.get("script") == script]
             if mine:
@@ -810,6 +878,34 @@ def place_objects(check_only):
             if not check_only:
                 with open(m.path, "w", encoding="utf-8") as f:
                     json.dump(m.json, f, indent=2, ensure_ascii=False)
+                    f.write("\n")
+    return list(dict.fromkeys(stale + retire_objects(check_only)))
+
+
+def retire_objects(check_only):
+    """A side battle's object on a map that isn't one of its places now (it moved, or left the table) stays
+    in its slot, hidden for good with a script that does nothing (RETIRED_FLAG, RETIRED_SCRIPT): never
+    deleted, so the slots after it never shift. Every map is looked at, so a battle moved by hand can't
+    leave a live object behind. Returns the maps out of date."""
+    standing = {(folder, script_label(b)) for b in BATTLES for folder, *_ in b.places}
+    stale = []
+    for path in sorted(glob.glob(os.path.join(ROOT, "data", "maps", "*", "map.json"))):
+        text = read(path)
+        if '"SideBattle_' not in text:
+            continue
+        folder = os.path.basename(os.path.dirname(path))
+        d = json.loads(text)
+        changed = False
+        for o in d.get("object_events") or []:
+            script = str(o.get("script", ""))
+            if script.startswith("SideBattle_") and (folder, script) not in standing:
+                o["script"], o["flag"] = RETIRED_SCRIPT, RETIRED_FLAG
+                changed = True
+        if changed:
+            stale.append(os.path.relpath(path, ROOT))
+            if not check_only:
+                with open(path, "w", encoding="utf-8") as f:
+                    json.dump(d, f, indent=2, ensure_ascii=False)
                     f.write("\n")
     return stale
 
@@ -826,14 +922,17 @@ def mega_shop():
     return {start: set(re.findall(r"ITEM_(\w+)", lists[n])) for n, start in (("1", 3), ("2", 6), ("3", 8), ("4", 9))}
 
 
-def on_sale_at(shop, badges):
-    """The Mega Stones the shop sells at a badge count (9: after the Johto League)."""
-    starts = [start for start in shop if start <= badges]
+def on_sale_at(shop, stage):
+    """The Mega Stones the shop sells at a stage (a badge count; 9 and 10 after the Johto and the Kanto
+    League)."""
+    starts = [start for start in shop if start <= stage]
     return shop[max(starts)] if starts else set()
 
 
 def check(names):
     defined = read("include/constants/flags_hns.h") + read("include/constants/flags.h")
+    if not re.search(r"#define " + RETIRED_FLAG + r"\b", defined):
+        sys.exit(f"{RETIRED_FLAG} isn't defined")
     pics = read("include/constants/trainers.h")
     gfx = read("include/constants/event_objects.h")
     moves_info = read("src/data/moves_info.h")
@@ -862,6 +961,11 @@ def check(names):
         kind, value = b.gate
         if kind == "flag" and not re.search(r"#define " + value + r"\b", defined):
             sys.exit(f"{b.key}: {value} isn't defined")
+        stage = gate_stage(b.gate)
+        if b.second and not (kind == "badges" and value < b.second[1] <= 8):
+            sys.exit(f"{b.key}: a second team needs a badge gate and more badges than it")
+        if b.hide and not re.search(r"#define " + b.hide + r"\b", defined):
+            sys.exit(f"{b.key}: hide flag {b.hide} isn't defined")
         if not 1 <= len(b.reward) <= MAX_REWARD_ITEMS:
             sys.exit(f"{b.key}: 1 to {MAX_REWARD_ITEMS} reward items")
         if len({item for item, _ in b.reward}) != len(b.reward):
@@ -871,12 +975,13 @@ def check(names):
                 sys.exit(f"{b.key}: no ITEM_{item}")
             if not 0 < n <= 999:
                 sys.exit(f"{b.key}: {n} {item}")
-            # A TM in a Johto reward comes before the TM shops sell it
-            if item.startswith("TM_") and kind == "badges" and tm_list.badges_needed(moves_info, item[3:]) <= value:
-                sys.exit(f"{b.key}: TM_{item[3:]} is on sale already at {value} badges")
+            # A TM comes before the TM shops sell it, at the earliest the battle can happen (its gate's
+            # stage: past 8, every TM is on sale)
+            if item.startswith("TM_") and tm_list.badges_needed(moves_info, item[3:]) <= stage:
+                sys.exit(f"{b.key}: TM_{item[3:]} is on sale already at stage {stage}")
             # A Mega Stone comes before the Mega shop sells it
-            if item in every_stone and item in on_sale_at(shop, value if kind == "badges" else 9):
-                sys.exit(f"{b.key}: {item} is on sale already")
+            if item in every_stone and item in on_sale_at(shop, stage):
+                sys.exit(f"{b.key}: {item} is on sale already at stage {stage}")
         needed = {"challenge", "declined", "defeat", "reward", "after"} | ({"not_yet"} if b.gate != ("badges", 0) else set())
         if set(b.texts) != needed:
             sys.exit(f"{b.key}: texts {sorted(set(b.texts) ^ needed)}")

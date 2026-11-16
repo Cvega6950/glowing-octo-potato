@@ -86,6 +86,8 @@ PokemonLeague_HallOfFame_EventScript_SetGameClearFlags::
 	clearflag FLAG_ITEM_GS_BALL
 	setflag FLAG_HIDE_BATTLEFRONTIER_ENGINEER
 	setflag FLAG_IS_KANTO_CHAMPION
+	@ Crystal Imperium: the postgame's side battle visitors come (D41; GiveQoLKeyItems hides them until now)
+	clearflag FLAG_HIDE_SIDE_POSTGAME
 	setvar VAR_COMPLETED_LUGIA, 4
 	clearflag FLAG_HIDE_LUGIA
 	setvar VAR_COMPLETED_HO_OH, 4

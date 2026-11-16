@@ -848,7 +848,7 @@
 #define FLAG_OLIVINE_GYM_NPC_TRADE_COMPLETED         0x302
 #define FLAG_ENABLE_CONDITION                       0x303
 #define FLAG_UNUSED_36                              0x304
-#define FLAG_RECEIVED_QOL_KEY_ITEMS                 0x305 // Crystal Imperium: the QoL key items were given (set by GiveQoLKeyItems; not read)
+#define FLAG_RECEIVED_QOL_KEY_ITEMS                 0x305 // Crystal Imperium: the QoL key items were given (set by GiveQoLKeyItems at New Game and every Continue, never cleared; the hide flag of a side battle's object on a map it has left, tools/crystal_imperium/side_battles.py)
 #define FLAG_INFINITE_REPEL_ON                      0x306 // Crystal Imperium: Infinite Repel switched on
 #define FLAG_RECEIVED_MEGA_RING                     0x307 // Crystal Imperium
 #define HNS_UNUSED_COUNT                            40
@@ -1006,7 +1006,7 @@
 #define FLAG_SIDE_REWARD_WALLY                     (HNS_EXTENDED_CONTENT_START + 121) // Crystal Imperium: WALLY's side battle reward (D41)
 #define FLAG_CODE_SHINY_ALL                        (HNS_EXTENDED_CONTENT_START + 122) // Crystal Imperium: the SHINYA code (every wild and gift Pokemon shiny, P_FLAG_FORCE_SHINY)
 #define FLAG_CARE_PACKAGE_PP_MAX                   (HNS_EXTENDED_CONTENT_START + 123) // Crystal Imperium: the Bag's PP Max filled up to 999 (D54: the starting package, or once for a save from before 0.15.2)
-#define FLAG_EXTENDED_CONTENT_124                   (HNS_EXTENDED_CONTENT_START + 124)
+#define FLAG_HIDE_SIDE_POSTGAME                    (HNS_EXTENDED_CONTENT_START + 124) // Crystal Imperium: hides the postgame's side battle visitors until the Kanto League is won (D41; GiveQoLKeyItems, the Hall of Fame)
 #define FLAG_EXTENDED_CONTENT_125                   (HNS_EXTENDED_CONTENT_START + 125)
 #define FLAG_EXTENDED_CONTENT_126                   (HNS_EXTENDED_CONTENT_START + 126)
 #define FLAG_EXTENDED_CONTENT_127                   (HNS_EXTENDED_CONTENT_START + 127)

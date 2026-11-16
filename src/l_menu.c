@@ -1,13 +1,14 @@
 // Crystal Imperium: the L menu, after Emerald Imperium's L button menu (DECISIONS.md D34). In the
 // field, L opens a quick menu with the tools that otherwise live in the bag: the PokeVial, a PC,
-// the DexNav, the time of day, the Training Kit (STATS: IVs and EVs, nature, ability), and on/off
-// switches for the Infinite Repel, the follower Pokemon and Auto Run, green when on. The clock
-// and the time of day show at the top right. The tools need their key items, which every save has
-// (new games get them at the start, older saves when they are loaded).
+// the DexNav, the time of day, the Training Kit (STATS: IVs and EVs, nature, ability), the BOSSES
+// list (src/boss_tracker.c), and on/off switches for the Infinite Repel, the follower Pokemon and
+// Auto Run, green when on. The clock and the time of day show at the top right. The tools need their
+// key items, which every save has (new games get them at the start, older saves when they are loaded).
 #include "global.h"
 #include "l_menu.h"
 #include "battle_pike.h"
 #include "battle_pyramid.h"
+#include "boss_tracker.h"
 #include "bug_contest.h"
 #include "clock.h"
 #include "dexnav.h"
@@ -52,12 +53,14 @@ enum
     L_MENU_REPEL,
     L_MENU_FOLLOWER,
     L_MENU_AUTO_RUN,
+    L_MENU_BOSSES, // shown after STATS: the values are the order they were added in (emu.py's L_MENU)
     L_MENU_COUNT,
 };
 
 // Windows on BG0, in tiles. The menu sits on the left like Imperium's, the clock at the top
 // right, and the time of day choice next to the menu's TIME row. Their tiles stay below the
-// field's yes/no and message boxes (0x125 on).
+// field's yes/no and message boxes (0x125 on), and the menu with every entry fills the screen's
+// height: nine entries fit both, a tenth fits neither.
 #define L_MENU_LEFT       1
 #define L_MENU_TOP        1
 #define L_MENU_WIDTH      11
@@ -68,6 +71,9 @@ enum
 #define L_MENU_BASE_BLOCK    0x8
 #define CLOCK_BASE_BLOCK     (L_MENU_BASE_BLOCK + L_MENU_WIDTH * L_MENU_COUNT * 2)
 #define TIME_MENU_BASE_BLOCK (CLOCK_BASE_BLOCK + CLOCK_WIDTH * 4)
+
+STATIC_ASSERT(TIME_MENU_BASE_BLOCK + TIME_MENU_WIDTH * TIMES_OF_DAY_COUNT * 2 <= 0x125, LMenuTilesBelowTheYesNoBox);
+STATIC_ASSERT(L_MENU_TOP + L_MENU_COUNT * 2 + 1 <= DISPLAY_TILE_HEIGHT, LMenuFitsTheScreen);
 
 EWRAM_DATA static u8 sLMenuCursorPos = 0;
 EWRAM_DATA static u8 sNumLMenuActions = 0;
@@ -90,6 +96,7 @@ static const u8 sText_PokeVial[] = _("POKéVIAL");
 static const u8 sText_PC[] = _("PC");
 static const u8 sText_Time[] = _("TIME");
 static const u8 sText_Stats[] = _("STATS");
+static const u8 sText_Bosses[] = _("BOSSES");
 static const u8 sText_Repel[] = _("REPEL");
 static const u8 sText_Follower[] = _("FOLLOWER");
 static const u8 sText_AutoRun[] = _("AUTO RUN");
@@ -108,6 +115,7 @@ static const u8 *const sLMenuTexts[L_MENU_COUNT] =
     [L_MENU_REPEL]    = sText_Repel,
     [L_MENU_FOLLOWER] = sText_Follower,
     [L_MENU_AUTO_RUN] = sText_AutoRun,
+    [L_MENU_BOSSES]   = sText_Bosses,
 };
 
 static const u8 *const sTimeOfDayNames[TIMES_OF_DAY_COUNT] =
@@ -168,6 +176,7 @@ static void BuildLMenuActions(void)
     AppendToList(sLMenuActions, &sNumLMenuActions, L_MENU_TIME);
     if (CheckBagHasItem(ITEM_TRAINING_KIT, 1))
         AppendToList(sLMenuActions, &sNumLMenuActions, L_MENU_STATS);
+    AppendToList(sLMenuActions, &sNumLMenuActions, L_MENU_BOSSES);
     if (CheckBagHasItem(ITEM_INFINITE_REPEL, 1))
         AppendToList(sLMenuActions, &sNumLMenuActions, L_MENU_REPEL);
     if (OW_FOLLOWERS_ENABLED)
@@ -376,6 +385,12 @@ static void DoLMenuAction(u8 taskId)
         ScriptContext_SetupScript(EventScript_TrainingKit);
         DestroyTask(taskId);
         break;
+    case L_MENU_BOSSES:
+        // B in the list comes back to this menu, as from the DexNav
+        PlaySE(SE_SELECT);
+        FadeScreen(FADE_TO_BLACK, 0);
+        gTasks[taskId].func = Task_OpenBossTrackerFromLMenu;
+        break;
     case L_MENU_REPEL:
         FlagToggle(FLAG_INFINITE_REPEL_ON);
         PlaySE(FlagGet(FLAG_INFINITE_REPEL_ON) ? SE_REPEL : SE_PC_OFF);
@@ -492,8 +507,8 @@ static void FieldCB_ReturnAfterTimeChange(void)
     FieldCB_DefaultWarpExit();
 }
 
-// The DexNav returns here (B, CB2_ReturnToFieldWithOpenLMenu), like the start menu's DexNav
-// returns to the start menu
+// The DexNav and the BOSSES list return here (B, CB2_ReturnToFieldWithOpenLMenu), like the start
+// menu's DexNav returns to the start menu
 bool8 FieldCB_ReturnToFieldOpenLMenu(void)
 {
     FreezeObjectEvents();

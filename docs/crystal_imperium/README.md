@@ -23,8 +23,11 @@ From the first step of a new game:
 - **The L menu**, as in Emerald Imperium: press **L** in the field for the PokéVial, a PC (all
   of a Pokémon Center's), the DexNav, **TIME** (make it morning, day, evening or night: the
   clock moves forward to that time and the map follows at once), **STATS** (the Training Kit:
-  nature, ability, and an IV and EV editor) and the **REPEL**, **FOLLOWER** and **AUTO RUN**
-  switches (green when on), with the clock at the top right. Nothing needs the bag. (Not with
+  nature, ability, and an IV and EV editor), **BOSSES** (since 0.21.0: every Gym Leader, both
+  Leagues, the 25 side-battle challengers and Red on JOHTO, KANTO and TO RED pages, the next one
+  on the way to Red in red, beaten ones ticked, a "!" where a reward waits, with where each one is
+  and what opens it) and the **REPEL**, **FOLLOWER** and **AUTO RUN** switches (green when on),
+  with the clock at the top right. Nothing needs the bag. (Not with
   BUTTON MODE L=A, where L is the A button.)
 - **IV and EV editor** (L > STATS > IVs & EVs): each stat's IV, EV and value, Hidden Power's
   type and the EVs used; A changes a value (UP/DOWN by 1, LEFT/RIGHT by 10), START sets every
@@ -40,7 +43,8 @@ From the first step of a new game:
   and any already at or above the level are left as they are, and so are fainted ones in a
   Nuzlocke. Nothing evolves and no move is learned: a Rare Candy then evolves one at the cap, and
   LEARN MOVES in the party menu teaches what it skipped. It can't be used inside the Trainer Hill,
-  where every Pokémon counts as Lv. 50.
+  where every Pokémon counts as Lv. 50; there the PC moves no Pokémon and Rare Candies have no
+  effect either (since 0.21.0).
 - **Fast Egg hatching:** an Egg cycle is 8 steps instead of 256, so most Eggs hatch in a
   short walk (a Togepi Egg in about 90 steps).
 - **DexNav** (L menu):
@@ -212,9 +216,13 @@ From the first step of a new game:
   Talk to one, answer YES, and win for a reward, once: ten Gems of their type and items such as
   TMs and Mega Stones before the shops sell them, the Rotom Catalog, the Exp. Charm and the
   Catching Charm. Sinnoh's eight in Johto, one for each badge count (Candice in Violet City's
-  Trainer School from the start); Paldea's eight in Kanto after the Johto League; and after the
-  Kanto League, nine visitors at level 100 on the way to Red: Cynthia, Iris, Geeta, N, Cyrus,
-  Wallace, Maxie, Archie and Wally. Each has their own sprites (Credits).
+  Trainer School from the start, Volkner in Blackthorn City for the eighth); Paldea's eight in
+  Kanto, each in a Gym's town for that Gym's badge (Katy in Pewter after Brock, Kofu in Cerulean
+  after Misty, Iono in Vermilion after Lt. Surge, Brassius in Celadon after Erika, Tulip in Saffron
+  after Sabrina, Ryme in Fuchsia after Janine, Grusha on Cinnabar after Blaine, Larry in Viridian
+  after Blue); and, once you've won the Kanto League, nine visitors at level 100 on the way to Red:
+  Cynthia, Iris, Geeta, N, Cyrus, Wallace, Maxie, Archie and Wally. All are optional: Red needs only
+  the Kanto League. Each has their own sprites (Credits).
 
 All of these are in the challenge menu at the start of a new game (and on the settings PC in
 your house), except Auto Run, which is in the Options menu and the L menu.

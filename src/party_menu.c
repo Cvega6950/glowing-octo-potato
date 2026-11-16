@@ -5908,8 +5908,21 @@ static void PrintRareCandyCount(void)
 void ItemUseCB_RareCandy(u8 taskId, TaskFunc task)
 {
     static const u8 sText_HowManyRareCandies[] = _("How many will you use?");
+    static const u8 sText_NotAtLv50[] = _("POKéMON are treated as Lv. 50 here,\nso it won't have any effect.{PAUSE_UNTIL_PRESS}");
     struct Pokemon *mon = &gPlayerParty[gPartyMenu.slotId];
     u32 level = GetMonData(mon, MON_DATA_LEVEL), limit = GetRareCandyLevelLimit(), max = 0;
+
+    // Crystal Imperium (KNOWN_ISSUES #97): not where every POKeMON is treated as Lv. 50 (the Trainer Hill): the
+    // candy, its count and the evolution a Rare Candy checks for would all work from that stored level
+    if (ArePokemonTreatedAsLevel50())
+    {
+        PlaySE(SE_SELECT);
+        gPartyMenuUseExitCallback = FALSE;
+        DisplayPartyMenuMessage(sText_NotAtLv50, TRUE);
+        ScheduleBgCopyTilemapToVram(2);
+        gTasks[taskId].func = task;
+        return;
+    }
 
     if (I_QUICK_RARE_CANDY && GetItemHoldEffectParam(gSpecialVar_ItemId) == 0 && level < limit)
         max = min(limit - level, CountTotalItemQuantityInBag(gSpecialVar_ItemId));

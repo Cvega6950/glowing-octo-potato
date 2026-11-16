@@ -1,0 +1,227 @@
+# Crystal Imperium play test: the L menu's BOSSES list (src/boss_tracker.c). The L menu has nine
+# entries, BOSSES after STATS; A fades to the list, which opens on the page of the next boss on the
+# way to Red with the cursor on it (FALKNER on a new game). L/R (and LEFT/RIGHT) change the page, B
+# goes back to the L menu with its cursor still on BOSSES, and B again to the field.
+# A Gym whose badge was won and a visitor whose reward was given show a tick; a visitor beaten whose
+# reward waits shows a "!". The rows (src/data/boss_tracker.h, from boss_tracker.py's pages): JOHTO 0
+# CANDICE, 1 FALKNER, 2 BUGSY, 3 GARDENIA, 4 WHITNEY, 5 FANTINA, 6 MORTY, 7 MAYLENE ... 16 the JOHTO
+# LEAGUE; KANTO 17 BROCK ... 33 the KANTO LEAGUE; TO RED 34 WALLACE ... 43 RED. sBossTracker: +0 the
+# page, +1 the next boss's row (255: none), +2 the cursor's row. The list's window starts at (8, 24),
+# a row is 16 pixels high and its mark is at (16, 28 + 16 * the row on the screen).
+!new_game()
+!give_mon(155, 5)
+!set_flag("FLAG_DISABLE_ENCOUNTERS")
+!warp(0, 11, 0)
+
+# The L menu: nine entries, BOSSES after STATS (its value is 8, the last added), AUTO RUN still last
+press L
+wait 60
+shot 01_l_menu.png
+expect8 {sNumLMenuActions} 9 l_menu_has_nine_entries
+expect8 {sLMenuActions+4} 4 stats_fifth
+expect8 {sLMenuActions+5} 8 bosses_after_stats
+expect8 {sLMenuActions+8} 7 auto_run_last
+!l_menu("BOSSES", open=False)
+waituntil32 {gMain+4} {CB2_BossTracker+1} 600 - bosses_opens
+wait 30
+shot 02_johto_new_game.png
+expect8 *{sBossTracker}+0 0 opens_on_johto
+expect8 *{sBossTracker}+1 1 next_is_falkner
+expect8 *{sBossTracker}+2 1 cursor_on_falkner
+# Nobody beaten: no marks
+snaprect candice_mark 16 28 8 8
+snaprect falkner_mark 16 44 8 8
+snaprect gardenia_mark 16 76 8 8
+
+# Pages: R to KANTO and TO RED (no further), L back; LEFT and RIGHT too
+press R
+wait 30
+shot 03_kanto.png
+expect8 *{sBossTracker}+0 1 r_to_kanto
+expect8 *{sBossTracker}+2 17 kanto_cursor_on_brock
+press R
+wait 30
+shot 04_to_red.png
+expect8 *{sBossTracker}+0 2 r_to_to_red
+expect8 *{sBossTracker}+2 34 to_red_cursor_on_wallace
+press R
+wait 30
+expect8 *{sBossTracker}+0 2 r_stays_on_to_red
+press L
+wait 30
+expect8 *{sBossTracker}+0 1 l_to_kanto
+press LEFT
+wait 30
+expect8 *{sBossTracker}+0 0 left_to_johto
+expect8 *{sBossTracker}+2 1 johto_keeps_its_cursor
+press L
+wait 30
+expect8 *{sBossTracker}+0 0 l_stays_on_johto
+press RIGHT
+wait 30
+expect8 *{sBossTracker}+0 1 right_to_kanto
+press LEFT
+wait 30
+# Down the JOHTO page: the list scrolls
+press DOWN
+wait 10
+press DOWN
+wait 10
+press DOWN
+wait 10
+press DOWN
+wait 10
+press DOWN
+wait 10
+press DOWN
+wait 10
+shot 05_johto_scrolled.png
+expect8 *{sBossTracker}+2 7 cursor_on_maylene
+
+# B: back to the L menu, its cursor still on BOSSES and the list's memory freed; B again: the field
+press B
+waituntil32 {gMain+4} {CB2_Overworld+1} 600 - back_in_the_field
+wait 60
+shot 06_back_to_l_menu.png
+expect8 {sNumLMenuActions} 9 l_menu_again
+expect8 {sLMenuCursorPos} 5 l_menu_cursor_on_bosses
+expect8 {sLockFieldControls} 1 l_menu_open_again
+expect32 {sBossTracker} 0 list_freed
+press B
+wait 60
+expect8 {sLockFieldControls} 0 l_menu_closed
+shot 07_field.png
+
+# Three badges, CANDICE beaten with her reward waiting (her trainer flag alone), GARDENIA beaten and
+# rewarded: CANDICE shows a "!", the three Gyms and GARDENIA a tick, and the next boss is MORTY
+!set_flag("FLAG_BADGE01_GET")
+!set_flag("FLAG_BADGE02_GET")
+!set_flag("FLAG_BADGE03_GET")
+!set_flag("TRAINER_FLAGS_START + TRAINER_SIDE_CANDICE_HNS")
+!set_flag("TRAINER_FLAGS_START + TRAINER_SIDE_GARDENIA_HNS")
+!set_flag("FLAG_SIDE_REWARD_GARDENIA")
+!l_menu("BOSSES")
+waituntil32 {gMain+4} {CB2_BossTracker+1} 600 - bosses_opens_again
+wait 30
+shot 08_johto_three_badges.png
+expect8 *{sBossTracker}+0 0 three_badges_opens_on_johto
+expect8 *{sBossTracker}+1 6 next_is_morty
+expect8 *{sBossTracker}+2 6 cursor_on_morty
+# Up to CANDICE: the list scrolls back to the top
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+shot 09_candice_reward_waiting.png
+expect8 *{sBossTracker}+2 0 cursor_on_candice
+expectrectne candice_mark candice_marked
+expectrectne falkner_mark falkner_ticked
+expectrectne gardenia_mark gardenia_ticked
+snaprect candice_reward_mark 16 28 8 8
+snaprect falkner_tick 16 44 8 8
+press B
+waituntil32 {gMain+4} {CB2_Overworld+1} 600 - back_in_the_field_2
+wait 60
+press B
+wait 60
+
+# CANDICE's reward given: her "!" becomes a tick
+!set_flag("FLAG_SIDE_REWARD_CANDICE")
+!l_menu("BOSSES")
+waituntil32 {gMain+4} {CB2_BossTracker+1} 600 - bosses_opens_rewarded
+wait 30
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+press UP
+wait 10
+shot 10_candice_rewarded.png
+expect8 *{sBossTracker}+2 0 cursor_on_candice_again
+expectrectne candice_reward_mark candice_tick_not_reward_mark
+expectrect falkner_tick falkner_still_ticked
+press B
+waituntil32 {gMain+4} {CB2_Overworld+1} 600 - back_in_the_field_3
+wait 60
+press B
+wait 60
+
+# The Johto League won: the next boss is BROCK, on KANTO
+!set_flag("FLAG_BADGE04_GET")
+!set_flag("FLAG_BADGE05_GET")
+!set_flag("FLAG_BADGE06_GET")
+!set_flag("FLAG_BADGE07_GET")
+!set_flag("FLAG_BADGE08_GET")
+!set_flag("FLAG_IS_CHAMPION")
+!l_menu("BOSSES")
+waituntil32 {gMain+4} {CB2_BossTracker+1} 600 - bosses_opens_kanto
+wait 30
+shot 11_kanto_next_brock.png
+expect8 *{sBossTracker}+0 1 opens_on_kanto
+expect8 *{sBossTracker}+1 17 next_is_brock
+expect8 *{sBossTracker}+2 17 cursor_on_brock
+press B
+waituntil32 {gMain+4} {CB2_Overworld+1} 600 - back_in_the_field_4
+wait 60
+press B
+wait 60
+
+# The Kanto League won: the list opens on TO RED, the cursor on RED
+!set_flag("FLAG_BADGE09_GET")
+!set_flag("FLAG_BADGE10_GET")
+!set_flag("FLAG_BADGE11_GET")
+!set_flag("FLAG_BADGE12_GET")
+!set_flag("FLAG_BADGE13_GET")
+!set_flag("FLAG_BADGE14_GET")
+!set_flag("FLAG_BADGE15_GET")
+!set_flag("FLAG_BADGE16_GET")
+!set_flag("FLAG_IS_KANTO_CHAMPION")
+!l_menu("BOSSES")
+waituntil32 {gMain+4} {CB2_BossTracker+1} 600 - bosses_opens_to_red
+wait 30
+shot 12_to_red_next_red.png
+expect8 *{sBossTracker}+0 2 opens_on_to_red
+expect8 *{sBossTracker}+1 43 next_is_red
+expect8 *{sBossTracker}+2 43 cursor_on_red
+press B
+waituntil32 {gMain+4} {CB2_Overworld+1} 600 - back_in_the_field_5
+wait 60
+press B
+wait 60
+
+# RED beaten: no next boss; the list still opens on TO RED with the cursor on RED
+!set_flag("FLAG_DEFEATED_RED")
+!l_menu("BOSSES")
+waituntil32 {gMain+4} {CB2_BossTracker+1} 600 - bosses_opens_red_beaten
+wait 30
+shot 13_red_beaten.png
+expect8 *{sBossTracker}+0 2 red_beaten_opens_on_to_red
+expect8 *{sBossTracker}+1 255 no_next
+expect8 *{sBossTracker}+2 43 cursor_on_red_again
+press B
+waituntil32 {gMain+4} {CB2_Overworld+1} 600 - back_in_the_field_6
+wait 60
+expect8 {sLockFieldControls} 1 l_menu_open_at_the_end
+press B
+wait 60
+expect8 {sLockFieldControls} 0 field_controls_unlocked
+expect32 {sBossTracker} 0 list_freed_at_the_end
+# The field as it was: the follower Pokemon is back, and the player walks
+!expect_follower_species("SPECIES_CYNDAQUIL", "follower_after_the_list")
+!walkto(33, 11)
+expect16 *{gSaveBlock1Ptr}+4 33 player_walks_after_the_list
+shot 14_field.png

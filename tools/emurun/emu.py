@@ -94,7 +94,8 @@ def start_menu(entry):
             "wait 120"]
 
 
-L_MENU = {"POKEVIAL": 0, "PC": 1, "DEXNAV": 2, "TIME": 3, "STATS": 4, "REPEL": 5, "FOLLOWER": 6, "AUTO_RUN": 7}
+L_MENU = {"POKEVIAL": 0, "PC": 1, "DEXNAV": 2, "TIME": 3, "STATS": 4, "REPEL": 5, "FOLLOWER": 6, "AUTO_RUN": 7,
+          "BOSSES": 8}
 
 
 def l_menu(entry, open=True):

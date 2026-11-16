@@ -371,6 +371,11 @@ void NuzlockeDeleteFaintedPartyPokemon(void)
     // duplicate corpse in the PC under the cemetery option.
     if (GetBugContestFlag())
         return;
+    // Crystal Imperium (DECISIONS.md D66): nor where every Pokemon is treated as Lv. 50 (the Trainer Hill):
+    // the PC would keep the HP one lost against Lv. 50 stats (KNOWN_ISSUES #98). Its battles are exempt
+    // already; leaving the Hill works the HP out at the real level again, and the next sweep counts it
+    if (ArePokemonTreatedAsLevel50())
+        return;
 
     for (i = 0; i < PARTY_SIZE; i++)
     {

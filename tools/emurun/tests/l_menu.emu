@@ -1,9 +1,11 @@
 # Crystal Imperium play test: the L menu (Emerald Imperium's L button menu, DECISIONS.md D34) and
-# a start menu that fits on the screen. In the field, L opens POKéVIAL, PC, DEXNAV, TIME, STATS
-# and the REPEL, FOLLOWER and AUTO RUN switches (green when on), with the clock at the top right.
+# a start menu that fits on the screen. In the field, L opens POKéVIAL, PC, DEXNAV, TIME, STATS,
+# BOSSES and the REPEL, FOLLOWER and AUTO RUN switches (green when on), with the clock at the top
+# right: nine entries, as many as the screen's height holds.
 # With the Pokédex and the Pokégear the start menu had nine entries and ran off the bottom of the
 # screen, which has room for eight: the DexNav moved to the L menu.
-# TIME is checked by l_menu_time, STATS by stat_editor and DEXNAV by the dexnav tests.
+# TIME is checked by l_menu_time, STATS by stat_editor, DEXNAV by the dexnav tests and BOSSES by
+# boss_tracker.
 # Pokemon: status +80, hp +86, maxHP +88 (STATUS1_POISON = 8).
 !new_game()
 !give_mon(155, 5)
@@ -26,10 +28,11 @@ wait 40
 press L
 wait 60
 shot 02_l_menu.png
-expect8 {sNumLMenuActions} 8 l_menu_has_eight_entries
+expect8 {sNumLMenuActions} 9 l_menu_has_nine_entries
 expect8 {sLMenuActions+0} 0 pokevial_first
 expect8 {sLMenuActions+2} 2 dexnav_third
-expect8 {sLMenuActions+7} 7 auto_run_last
+expect8 {sLMenuActions+5} 8 bosses_after_stats
+expect8 {sLMenuActions+8} 7 auto_run_last
 !expect_flag("FLAG_INFINITE_REPEL_ON", 0, "repel_off")
 !expect_follower(True, "follower_on")
 !expect_save3("challengeSettings.autoRun", 1, "auto_run_off")
@@ -107,6 +110,31 @@ wait 120
 shot 12_pc_off.png
 expect32 {gMain+4} {CB2_Overworld+1} back_in_the_field
 expect8 {sLockFieldControls} 0 pc_logged_off
+# Where every POKeMON is treated as Lv. 50 (FLAG_LIMIT_TO_50: the Trainer Hill, D66) the PC moves no POKeMON.
+# With one POKeMON in the party WITHDRAW (the third choice) would open the boxes: it gives a message, and
+# the field's screen stays
+!set_flag("FLAG_LIMIT_TO_50")
+!l_menu("PC")
+press A
+wait 120
+press A
+wait 150
+press B
+wait 120
+press B
+wait 90
+![l for _ in range(2) for l in ("press DOWN", "wait 10")]
+expect8 {sMenu@menu+2} 2 cursor_on_withdraw_at_lv50
+press A
+wait 60
+shot 12b_no_withdraw_at_lv50.png
+expect32 {gMain+4} {CB2_Overworld+1} no_withdraw_at_lv50
+press A
+wait 20
+mash B 300
+wait 120
+expect8 {sLockFieldControls} 0 pc_closed_at_lv50
+!set_flag("FLAG_LIMIT_TO_50", 0)
 
 # AUTO RUN works like OPTION > AUTORUN (autorun): on New Bark Town's open row y = 13, holding
 # LEFT for 32 frames walks 2 tiles with it off and runs 4 with it on

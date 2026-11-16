@@ -7,6 +7,10 @@
 # when the player talks to her again with room for it.
 # Each battles to their class's theme: Johto's Gym Leader theme for Sinnoh's eight, Kanto's for
 # Paldea's eight, the Champion theme for Cynthia.
+# Since 0.21.0 Paldea's eight each wait in a Kanto Gym's town for its badge (Iono beside the
+# Vermilion Gym, after Lt. Surge's), and the postgame's visitors are hidden until the Kanto League is
+# won (FLAG_HIDE_SIDE_POSTGAME, set at New Game and cleared by the Hall of Fame). The other moved
+# spots are walked to in side_battle_spots.
 !new_game()
 !battle_style_set()
 !no_care_packages()
@@ -136,13 +140,15 @@ shot 13_gardenia_after.png
 !expect_bag_quantity("items", "ITEM_GRASS_GEM", 10)
 !expect_bag_has("items", "ITEM_LEAF_STONE")
 
-# Lavender Town, from the Radio Tower's door (22,6): Iono stands at (23,9), facing down. Paldea's
-# leaders battle after the Johto League, at Kanto's cap (90)
+# Vermilion City, from Lt. Surge's Gym door (21,23): Iono stands at (19,24), facing down. Paldea's
+# leaders battle once their Kanto Gym's badge is won (Iono: Lt. Surge's, FLAG_BADGE11_GET), at
+# Kanto's cap (90). Kanto is reached after the Johto League (FLAG_IS_CHAMPION)
 loadstate team.ss
-!warp(0, 36, 2)
+!set_flag("FLAG_IS_CHAMPION")
+!warp(0, 35, 6)
 wait 60
-!walkto(24, 10, path=True)
-!walkto(23, 10)
+!walkto(21, 25, path=True)
+!walkto(19, 25, path=True)
 press UP
 wait 20
 shot 14_iono.png
@@ -152,9 +158,9 @@ wait 60
 shot 15_iono_not_yet.png
 mash B 400
 wait 30
-expect8 {gBattleOutcome} 0 iono_no_battle_before_the_league
+expect8 {gBattleOutcome} 0 iono_no_battle_before_surges_badge
 loadstate iono.ss
-!set_flag("FLAG_IS_CHAMPION")
+!set_flag("FLAG_BADGE11_GET")
 press A
 !yes_no(True, "iono_asks")
 waituntil32 {gBattlerControllerFuncs} {HandleInputChooseAction@battle_controller_player} 4000 B iono_action_menu
@@ -175,9 +181,23 @@ wait 60
 !expect_bag_quantity("items", "ITEM_ELECTRIC_GEM", 10)
 !expect_bag_has("keyItems", "ITEM_CATCHING_CHARM")
 
-# The postgame's visitors battle once the player has won the Kanto League, at level 100.
-# Cynthia, outside the Ruins of Alph, from the lab's door (36,16): she stands at (33,19), facing down
+# The postgame's visitors come once the player has won the Kanto League and battle at level 100.
+# Cynthia, outside the Ruins of Alph, from the lab's door (36,16): her spot is (33,19), facing down.
+# Before the Kanto League she isn't there: a new game sets FLAG_HIDE_SIDE_POSTGAME, and the player
+# can walk onto her spot
 loadstate team.ss
+!expect_flag("FLAG_HIDE_SIDE_POSTGAME", 1, "postgame_visitors_hidden_on_a_new_game")
+!warp(24, 5, 4)
+wait 60
+!walkto(32, 20, path=True)
+!walkto(33, 20)
+!walkto(33, 19)
+shot 17_no_cynthia_yet.png
+# The Hall of Fame of the Kanto League sets FLAG_IS_KANTO_CHAMPION and clears the hide flag: back on
+# the map, she's there
+!set_flag("FLAG_IS_CHAMPION")
+!set_flag("FLAG_IS_KANTO_CHAMPION")
+!set_flag("FLAG_HIDE_SIDE_POSTGAME", 0)
 !warp(24, 5, 4)
 wait 60
 !walkto(32, 20, path=True)
@@ -185,15 +205,6 @@ wait 60
 press UP
 wait 20
 shot 17_cynthia.png
-savestate cynthia.ss
-press A
-wait 60
-mash B 400
-wait 30
-expect8 {gBattleOutcome} 0 cynthia_no_battle_before_the_kanto_league
-loadstate cynthia.ss
-!set_flag("FLAG_IS_CHAMPION")
-!set_flag("FLAG_IS_KANTO_CHAMPION")
 press A
 !yes_no(True, "cynthia_asks")
 wait 330
@@ -205,8 +216,10 @@ expect8 {gEnemyParty+84} 100 cynthia_lead_at_100
 expect8 {gEnemyParty+584} 100 cynthia_ace_at_100
 expect32 {gMPlayInfo_BGM} {mus_hg_vs_champion} cynthia_champion_theme
 
-# Emerald's own sprites in Johto and Kanto: Wallace in Cherrygrove City, Wally in Pallet Town
+# Emerald's own sprites in Johto and Kanto: Wallace in Cherrygrove City, Wally in Pallet Town (after
+# the Kanto League: the hide flag cleared)
 loadstate team.ss
+!set_flag("FLAG_HIDE_SIDE_POSTGAME", 0)
 !warp(0, 1, 2)
 wait 60
 !walkto(31, 18, path=True)
@@ -215,6 +228,7 @@ press UP
 wait 20
 shot 19_wallace.png
 loadstate team.ss
+!set_flag("FLAG_HIDE_SIDE_POSTGAME", 0)
 !warp(0, 31, 0)
 wait 60
 !walkto(9, 10, path=True)

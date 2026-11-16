@@ -1,5 +1,57 @@
 # Crystal Imperium changelog
 
+## 0.21.0-experimental (2026-11-16)
+
+### The side battles by region (DECISIONS.md D64)
+- "Organize the added gym battles better, the ones I need to battle for johto region keep them in
+  johto and then the kanto extra leaders organized better as well": Sinnoh's eight all wait in Johto
+  now. Volkner moved from the Indigo Plateau to Blackthorn City, beside Clair's Gym, and still battles
+  you with all eight badges; the other seven stay where they were.
+- Paldea's eight each wait in a Kanto Gym's town and battle you once you have that Gym's badge: Katy
+  in Pewter City (Brock's), Kofu in Cerulean City by Misty's Gym, Iono beside Lt. Surge's Gym in
+  Vermilion City, Brassius by Erika's Gym in Celadon City, Tulip in Saffron City (Sabrina's), Ryme by
+  Janine's Gym in Fuchsia City, Grusha on Cinnabar Island (Blaine's) and Larry in Viridian City
+  (Blue's). Before that they tell you whom to beat first. Their teams are as before (Kanto has one
+  level cap).
+- The nine postgame challengers (Cynthia, Iris, Geeta, N, Cyrus, Wallace, Maxie, Archie, Wally) keep
+  their spots but only appear once you've won the Kanto League, so nobody tells you to come back later
+  on your journey. Red still needs only the Kanto League; every side battle stays optional.
+- Saves: battles you've won stay won and a reward you couldn't carry is still given, at the new spot.
+  Continuing a save made on a map that changed, the new visitor is there and a hidden one goes once it
+  leaves the screen (Continue now takes the map's own object list for what changed since the save; a
+  blank object no longer stands in the map's corner). One that was on screen when you saved stays until
+  you leave the map, and does nothing.
+- Tests: `side_battle_spots` (new) walks up to Volkner and seven of Paldea's eight without and with
+  their badge, and onto the five spots the visitors left; `side_battles` checks Iono's new spot and
+  gate and that Cynthia is hidden until the Kanto League; the old-save test checks that Continue hides
+  the postgame visitors on a save before the Kanto League. `side_battles.py --check` now fails on a side
+  battle left behind on a map, and `boss_teams.py --check` on a team made for another stage than its
+  gate's.
+
+### BOSSES: who to beat on the way to Red (DECISIONS.md D65)
+- "add a tracker that helps track who I need to beat like a trainer list leading to the boss bottle
+  red": the L menu has a new entry, BOSSES (after STATS). It lists every Gym Leader, both Pokémon
+  Leagues, all 25 side-battle challengers and Red on three pages, JOHTO, KANTO and TO RED (L and R to
+  change), in the order you meet them, each Gym followed by the challenger who opens after it.
+- The next boss on your way to Red is in red, and the list opens on it. Beaten ones get a tick; a "!"
+  means a challenger you've beaten still has a reward for you (talk to them again). Challengers whose
+  battle isn't open yet are gray. The box under the list says where each one is and what opens it
+  ("OPTIONAL - OPENS AFTER BROCK'S BADGE", "OPTIONAL - OPENS AFTER THE KANTO LEAGUE"...).
+- It reads what your save already has: it works on old saves at once and saves nothing new. The L menu
+  is now full (nine entries).
+- Tests: `boss_tracker` (new), `l_menu` (nine entries), the old-save test (BOSSES opens on an old
+  save); 10 unit tests (`test/boss_tracker.c`).
+
+### Nothing works from the Trainer Hill's Lv. 50 (DECISIONS.md D66)
+- Fixed: inside the Trainer Hill, where every Pokémon counts as Lv. 50, a Rare Candy worked from Lv. 50
+  and could lower a Pokémon (KNOWN_ISSUES #97), and a Pokémon that fainted there and was deposited
+  there came back from the PC with the wrong HP (#98). There the PC no longer moves Pokémon between
+  your party and boxes (DEPOSIT, WITHDRAW and MOVE POKéMON say "POKéMON are treated as Lv. 50 here, so
+  they can't be moved."; MOVE ITEMS still works), level-up items have no effect (the message waits for
+  A or B), and a Nuzlocke's fainted Pokémon stay in your party there instead of going to the PC.
+- Tests: `test/trainer_hill.c` (3, new) and `test/old_save_objects.c` (1, new); `raise_to_cap` checks
+  the PC's refusals and a Rare Candy's there, `l_menu` WITHDRAW's with one Pokémon in the party.
+
 ## 0.20.0-experimental (2026-11-16)
 
 ### Pikachu keeps its stats and Zippy Zap's critical hit; the Light Ball is ×1.5 (DECISIONS.md D62)

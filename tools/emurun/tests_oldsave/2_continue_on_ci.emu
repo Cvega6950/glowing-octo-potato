@@ -16,6 +16,9 @@ expect8 {gPlayerPartyCount} 2 party_kept
 !expect_bag_has("keyItems", "ITEM_INFINITE_REPEL")
 !expect_bag_has("keyItems", "ITEM_POKEMON_BOX_LINK")
 !expect_flag("FLAG_SYS_DEXNAV_GET", 1, "dexnav_given")
+# The postgame's side battle visitors (D41) are hidden until the Kanto League: Continue sets the flag
+# on a save that hasn't won it
+!expect_flag("FLAG_HIDE_SIDE_POSTGAME", 1, "old_save_hides_postgame_visitors")
 !expect_save3("dexNavSearchLevels[NATIONAL_DEX_RATTATA]", 0, "search_levels_zero")
 # Faster battles (D38): a save from before 0.13.0 gets FAST INTRO (off in Heart & Soul's new
 # games) and FAST BATTLES turned on
@@ -37,7 +40,17 @@ wait 400
 !warp(0, 11, 0)
 press L
 wait 40
-expect8 {sNumLMenuActions} 8 l_menu_complete_on_old_save
+expect8 {sNumLMenuActions} 9 l_menu_complete_on_old_save
+# BOSSES reads flags the save already has: the list opens (on FALKNER, a Heart & Soul save with no
+# badge) and B comes back to the L menu
+!l_menu("BOSSES", open=False)
+waituntil32 {gMain+4} {CB2_BossTracker+1} 600 - bosses_opens_on_old_save
+wait 30
+shot 04_ci_bosses.png
+expect8 *{sBossTracker}+1 1 old_save_next_is_falkner
+press B
+waituntil32 {gMain+4} {CB2_Overworld+1} 600 - bosses_back_on_old_save
+wait 60
 press B
 wait 40
 !l_menu("DEXNAV")
