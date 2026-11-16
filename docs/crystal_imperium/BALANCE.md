@@ -462,6 +462,18 @@ worse than a person, so their win counts are lower bounds. Since 0.7.0 every bos
 the cap, and the test teams hold items from the care packages the player has by then (before,
 no items). The regression's counts for both emulators are in TESTING.md.
 
+- **A Light Ball Pikachu** (0.20.0, D62) swept the Elite Four for the user. Measured with a damage
+  calculator that matches the engine and in the game: with D51's stats, the Light Ball doubling both
+  attacking stats and Zippy Zap's sure critical hit, it one-shot 22 of the 30 Pokémon of the first
+  Elite Four and Lance on every roll (NORMAL, Minimal Grinding), and alone (Naive; Zippy Zap,
+  Thunderbolt, Surf, Grass Knot; the eight badges; no switching or items) it beat Koga 8 times in 8,
+  Karen 4, Will 3, Bruno 1 and Lance 0. With the Light Ball at ×1.5 it one-shots 14 (Zippy Zap keeps
+  its sure critical hit, as the user asked), still beats Koga every time, but never the others,
+  knocking out 1.0 (Will) to 1.4 (Bruno) of their Pokémon a battle, and 0.25 of Lance's, whose AI
+  mostly switches Gyarados out to Raging Bolt ahead of Zippy Zap. Red's Light Ball Pikachu
+  hits a quarter less too: the test six beats Red 12 and 16 times in 24 (mGBA, VBA-M; 10 and 8
+  before).
+
 - **Emerald Imperium's AI** (0.18.0, D60) made most of the same battles harder for the test teams.
   Over the 15 sampled battles from Bugsy to Red they won 37.6% (mGBA) and 42.5% (VBA-M) of the
   time, against 44.6% on both with 0.17.0's AI; they won less often against 9 trainers and more often

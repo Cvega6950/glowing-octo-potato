@@ -3840,7 +3840,13 @@ void CalculateMonStats(struct Pokemon *mon)
     // been initialized at this point or this pokemon is
     // just fainted, the check for oldMaxHP is important.
     if (currentHP == 0 && oldMaxHP != 0)
+    {
+        // Crystal Imperium: a fainted Pokemon stays fainted in the PC too (DECISIONS.md D63). The box keeps the
+        // HP it lost (OW_PC_HEAL), which must follow the new max HP: otherwise a level gained while fainted (a
+        // Rare Candy, the PC's RAISE TO LV. CAP) came back as HP when it was withdrawn
+        SetMonData(mon, MON_DATA_HP, &currentHP);
         return;
+    }
 
     // Only add to currentHP if newMaxHP went up.
     if (newMaxHP > oldMaxHP)

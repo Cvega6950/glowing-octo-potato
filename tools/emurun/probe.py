@@ -24,7 +24,7 @@ def resolve(exprs):
                '#include "constants/items.h"', '#include "constants/species.h"', '#include "item_menu.h"', '#include "pokemon.h"', '#include "battle.h"',
                '#include "dexnav.h"', '#include "money.h"', '#include "constants/opponents.h"', '#include "window.h"', '#include "battle_setup.h"',
                '#include "constants/move_relearner.h"', '#include "list_menu.h"', '#include "party_menu.h"',
-               '#include "constants/event_objects.h"']
+               '#include "constants/event_objects.h"', '#include "pokemon_storage_system.h"']
         src += [f"const int kProbe_{i} = ({v});" for i, v in enumerate(todo)]
         path = _probe_path()
         with open(path, "w") as f:

@@ -4,7 +4,7 @@ The Johto and Kanto adventure of **Pokémon Heart & Soul** (a Gen 2 remake on th
 pokeemerald-expansion GBA engine), rebuilt around the team building, quality of life and
 competitive difficulty of **Pokémon Emerald Imperium**, with every Gen 1–9 Pokémon catchable.
 
-> **Status: in development (0.19.0-experimental).** The full Heart & Soul story is in and playable.
+> **Status: in development (0.20.0-experimental).** The full Heart & Soul story is in and playable.
 > All the systems listed below work and are tested in an emulator. Every trainer fights at your
 > level cap (on NORMAL and HARD with Emerald Imperium's boss AI), every boss from the rival to Red, rematches and postgame included,
 > has a team built to a trainer standard on Radical Red's and Emerald Imperium's level (as are the
@@ -33,6 +33,14 @@ From the first step of a new game:
 - **Quick Rare Candies:** choose a Pokémon and how many to use (at first, all of them up to the
   level cap); they are used at once, with one message, no stat pages, and no level-up jingle,
   so the music keeps playing. Moves of every level passed are still learned.
+- **RAISE TO LV. CAP** (since 0.20.0), like Emerald Imperium's level-cap nurse but in every PC's
+  storage menu (a Pokémon Center's, the L menu's and the Box Link's): it raises every Pokémon in your
+  party and boxes to the level cap at once (with LEVEL CAP OFF, to the cap of your progress, the
+  level trainers battle at). It says how many and asks first. Pokémon you've given a PC mark, Eggs
+  and any already at or above the level are left as they are, and so are fainted ones in a
+  Nuzlocke. Nothing evolves and no move is learned: a Rare Candy then evolves one at the cap, and
+  LEARN MOVES in the party menu teaches what it skipped. It can't be used inside the Trainer Hill,
+  where every Pokémon counts as Lv. 50.
 - **Fast Egg hatching:** an Egg cycle is 8 steps instead of 256, so most Eggs hatch in a
   short walk (a Togepi Egg in about 90 steps).
 - **DexNav** (L menu):
@@ -98,7 +106,9 @@ From the first step of a new game:
   (Striker, Bone Zone...) aren't in this engine. **Imperium's base stats** too: 294 Pokémon get
   its buffs (Farfetch'd, Sunflora, Parasect, Ledian, Raichu, Fearow, Octillery...), so Pokémon
   that are weak in the official games are worth using. **Pikachu** is strong without evolving
-  (60/90/60/120/90/70, 490 in all) and shows its newest sprites.
+  (60/90/60/120/90/70, 490 in all) and shows its newest sprites. With those stats the Light Ball
+  raises its Attack and Sp. Atk by half, not double (since 0.20.0), so it one-shots fewer of the
+  Elite Four; Zippy Zap keeps its sure critical hit (DECISIONS.md D62).
 - **A Gen 5 look:** Black/White-style battles (healthboxes, text box, FIGHT / BAG / POKÉMON /
   RUN buttons, a move box with types, PP and effectiveness) and a Black/White-style summary
   screen (A on the skills page shows IVs and EVs).
@@ -226,8 +236,10 @@ Also asked for and done: DexNav and Rare Candy before the first Gym (both are th
 first step), Easy Catch, an unlimited PokéVial given with the Rare Candy Box, milestone care
 packages (in stacks since 0.11.0), Emerald Imperium's L menu (with a start menu that fits on
 the screen again), Emerald Imperium's abilities and move pools, a TM clerk in every Poké Mart,
-Emerald Imperium's custom Megas (D58), and every designed trainer team brought to the trainer
-standard (D59: 193 of the 234 redesigned, the other 41 already met it).
+Emerald Imperium's custom Megas (D58), every designed trainer team brought to the trainer
+standard (D59: 193 of the 234 redesigned, the other 41 already met it), Emerald Imperium's trainer
+AI (D60), any generation's starters (D61), a Pikachu that keeps its stats and Zippy Zap's critical
+hit but one-shots fewer of the Elite Four (D62) and the PC's RAISE TO LV. CAP (D63).
 
 **Not done yet:** a full story playthrough; a test on a real iPhone; Imperium-style teams for
 Heart & Soul's other ordinary trainers (they keep their own teams, at your level cap, evolved,

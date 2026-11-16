@@ -7195,8 +7195,10 @@ static inline u32 CalcAttackStat(struct BattleContext *ctx)
             modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
         break;
     case HOLD_EFFECT_LIGHT_BALL:
+        // Crystal Imperium (DECISIONS.md D62): x1.5, not x2. This game's Pikachu has 90 Attack and Sp. Atk of
+        // its own (D51), where the item was made for 55 and 50
         if (atkBaseSpeciesId == SPECIES_PIKACHU && (GetConfig(B_LIGHT_BALL_ATTACK_BOOST) >= GEN_4 || IsBattleMoveSpecial(move)))
-            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(2.0));
+            modifier = uq4_12_multiply_half_down(modifier, UQ_4_12(1.5));
         break;
     case HOLD_EFFECT_CHOICE_BAND:
         if (IsBattleMovePhysical(move) && GetActiveGimmick(battlerAtk) != GIMMICK_DYNAMAX)

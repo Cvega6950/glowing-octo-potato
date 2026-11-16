@@ -1,5 +1,63 @@
 # Crystal Imperium changelog
 
+## 0.20.0-experimental (2026-11-16)
+
+### Pikachu keeps its stats and Zippy Zap's critical hit; the Light Ball is ×1.5 (DECISIONS.md D62)
+- "The elite 4 was too easy, pikachu basically one shotted everybody", then "I want to keep pikachus
+  stats high it's so usable just not one shot" and "I want zippy zap to have critical hit": Pikachu
+  keeps D51's 60/90/60/120/90/70, and Zippy Zap keeps its 80 power, +2 priority and sure critical hit.
+  What changes is the Light Ball, which doubled both of Pikachu's attacking stats: an item made for
+  Pikachu's official 55 and 50 made D51's 90 and 90 hit like a base-199 attacker.
+- The Light Ball now raises Pikachu's Attack and Sp. Atk by half. With it, a Pikachu has 303 Attack
+  in battle (202 on the summary; Adamant, level 85), more than Emerald Imperium's Light Ball Pikachu
+  (272), with better bulk and Speed, and its Zippy Zap still hits about two and a half times as hard
+  as Emerald Imperium's, which has 50 power and does ×1.5 on a critical hit (×2 here).
+- Against the first Elite Four and Lance (30 Pokémon at 85), a Light Ball Pikachu one-shots 14 on
+  every roll on NORMAL (22 before) and 11 on HARD (19), with Minimal Grinding on, the default (15 on
+  both with it off; 22 before). Alone, with Zippy Zap, Thunderbolt, Surf and Grass Knot and no
+  switching, it still beats Koga every time, but no longer Karen (4 times in 8 before), Will (3) or
+  Bruno (1), and against the rematch teams it beats Bruno twice in 8 (8 before) and Lance and Will
+  never (2 and 1).
+- Red's Pikachu and Pokéfan Derek's last rematch Pikachu hold Light Balls too, so they hit a quarter
+  less: the test six now beats Red 12 times in 24 on mGBA and 16 on VBA-M (10 and 8 before). He keeps
+  the strongest setup by design (level 100, EVs, the Prediction AI and the most Full Restores).
+- Koga's team for the first challenge still has no answer to a fast Electric attacker (KNOWN_ISSUES
+  #95); no team changes in this release.
+- Tests: the engine's Light Ball tests expect ×1.5; `test/battle/pikachu_imperium.c` (new) keeps
+  Zippy Zap's sure critical hit, 80 power and +2 priority, and checks in battle that it goes first, is
+  a critical hit whatever the roll and raises evasion.
+
+### RAISE TO LV. CAP in the PC, like Emerald Imperium's level-cap nurse (DECISIONS.md D63)
+- "Also add something that lets you set box mon to level cap like imperium": every PC's storage menu
+  (a Pokémon Center's, the L menu's PC and the Pokémon Box Link) has a new choice, RAISE TO LV. CAP,
+  between MOVE ITEMS and SEE YA!. It asks "Raise N POKéMON to Lv. L? Any with a MARK will be left as
+  it is." (NO first), then raises every Pokémon in your party and the 14 boxes that is below the
+  level, isn't an Egg and has no mark (in a Nuzlocke, no fainted one either), and says how many,
+  with a reminder: "Evolve: RARE CANDY. Moves: LEARN MOVES." (the party menu's move relearner).
+- It can't be used where every Pokémon counts as Lv. 50 (inside the Trainer Hill): there a Pokémon's
+  level and HP read as Lv. 50's, so it says so and asks nothing.
+- The level is your level cap; with LEVEL CAP OFF, NORMAL's cap for your progress, the level the
+  trainers battle at (D56).
+- Only the experience changes, to the level's least; party Pokémon get their new stats, and their HP
+  goes up by the max HP they gained. Nothing evolves and no move is learned, as in Emerald Imperium:
+  a Rare Candy evolves one at the cap, and the relearner teaches the moves it skipped.
+- To keep a Pokémon as it is, give it a mark (MARK, on a Pokémon in the PC).
+- Fixed: a Pokémon that fainted and then gained a level (a Rare Candy can be used on a fainted
+  Pokémon) came back alive from the PC, which doesn't heal (KNOWN_ISSUES #94).
+- Saves: nothing new is saved.
+- Known, older than this release, inside the Trainer Hill, where every Pokémon counts as Lv. 50: a
+  Rare Candy works from Lv. 50, so one used on a Pokémon above Lv. 50 sets it to Lv. 51 (KNOWN_ISSUES
+  #97); and a Pokémon that faints there and is deposited there (L menu PC, Box Link) comes back from
+  the PC with the wrong HP (#98). Don't use Rare Candies or deposit a fainted Pokémon there.
+- Tests: a new play test (`raise_to_cap`) opens the PC from the L menu and checks the new choice,
+  that it can't be used where every Pokémon counts as Lv. 50, the count and level it asks about, NO,
+  YES, the experience and species of the party's, BOX 1's and BOX 14's Pokémon after, the marked
+  ones, the Egg and the two above the cap left alone, the fainted one still fainted with the HP the
+  PC keeps at its new max HP, nothing left to raise after and SEE YA! as the last choice; 9 unit
+  tests (`test/raise_to_cap.c`), one of them that a Pokémon counted as Lv. 50 isn't lowered.
+  `tools/emurun` reads a stored Pokémon's experience (`expectpartyexp`) and all 11 bits of a held
+  item (`expectpartyitem` read 10).
+
 ## 0.19.0-experimental (2026-11-14)
 
 ### Any generation's starters, as in Emerald Imperium (DECISIONS.md D61)

@@ -1,0 +1,137 @@
+# Crystal Imperium play test: the PC's RAISE TO LV. CAP (DECISIONS.md D63), Emerald Imperium's "set the box to the
+# level cap" in the PC's own menu. A new game (LEVEL CAP NORMAL, no badges: cap 15) with six Pokemon, four in BOX 1 and
+# one in BOX 14: party Cyndaquil 5, Caterpie 5, Magikarp 20 (above the cap), Pidgey 5 (marked), a Togepi Egg, Sentret 5
+# (fainted); BOX 1 Rattata 3, Caterpie 4, Spearow 5 (marked), Magikarp 30; BOX 14 Rattata 5. From the L menu's PC: the
+# storage menu has the new fifth entry (six in all); with every Pokemon held at Lv. 50 (the Trainer Hill) it can't be
+# used; NO changes nothing; YES raises the six unmarked ones below 15 (Cyndaquil, Caterpie, Sentret and the three
+# Rattata and Caterpie in the boxes) to exactly 15's experience, with no evolution, Sentret still fainted and the HP it
+# lost (what the PC keeps) its new max HP; the marked ones, the Egg and the two Magikarp keep theirs; then there is
+# nothing left to raise.
+!new_game()
+!no_care_packages()
+!give_mon(155, 5)
+!give_mon(10, 5)
+!give_mon(129, 20)
+!give_mon(16, 5)
+!give_egg(175)
+!give_mon(161, 5)
+expect8 {gPlayerPartyCount} 6 party_full
+# The party is full: these go to the PC's BOX 1
+!give_mon(19, 3)
+!give_mon(10, 4)
+!give_mon(21, 5)
+!give_mon(129, 30)
+!expect_mon_species(box_mon(0, 0), "SPECIES_RATTATA", "box_rattata")
+!expect_mon_species(box_mon(0, 3), "SPECIES_MAGIKARP", "box_magikarp")
+# One in the last box: a Pokemon sent to the PC goes to the current box (struct PokemonStorage's first byte) first
+poke8 *{gPokemonStoragePtr}+0 13
+!give_mon(19, 5)
+poke8 *{gPokemonStoragePtr}+0 0
+!expect_mon_species(box_mon(13, 0), "SPECIES_RATTATA", "box14_rattata")
+# The marks, and Sentret fainted as the game faints one: HP 0 and the HP it lost (struct BoxPokemon's 14-bit hpLost,
+# after the checksum: what the PC keeps) its max HP, 20 at Lv. 5
+!mark_party_mon("gPlayerParty", 3)
+!mark_box_mon(0, 2)
+![f"poke16 {party_mon('gPlayerParty', 5, 86)} 0"]
+![f"pokebits16 {party_mon('gPlayerParty', 5, probe.resolve({'o': 'offsetof(struct BoxPokemon, checksum) + 2'})['o'])} 0x3FFF 20"]
+
+# L > PC > SOMEONE'S PC: two messages (B), then the storage menu with six entries
+!l_menu("PC")
+press A
+wait 120
+press A
+wait 150
+press B
+wait 120
+press B
+wait 90
+shot 01_storage_menu.png
+expect8 {sMenu@menu+4} 5 storage_menu_has_six_entries
+![l for _ in range(4) for l in ("press DOWN", "wait 10")]
+expect8 {sMenu@menu+2} 4 cursor_on_raise_to_cap
+shot 02_raise_to_cap_description.png
+
+# Where every POKeMON is held at Lv. 50 (FLAG_LIMIT_TO_50: the Trainer Hill) it can't be used: a message, no YES/NO
+!set_flag("FLAG_LIMIT_TO_50")
+press A
+wait 40
+shot 02b_not_at_lv50.png
+expect8 {sMenu@menu+4} 5 no_yes_no_at_lv50
+press A
+wait 20
+expect8 {sMenu@menu+2} 4 cursor_still_on_raise_at_lv50
+!set_flag("FLAG_LIMIT_TO_50", 0)
+
+# A: the question, 6 POKeMON to Lv. 15, NO first
+press A
+wait 40
+shot 03_question.png
+expect8 {sMenu@menu+4} 1 yes_no_box
+expect8 {sMenu@menu+2} 1 no_selected_first
+expect8 {gStringVar1} 0xA7 six_to_raise
+expect8 {gStringVar1+1} 0xFF six_to_raise_end
+expect8 {gStringVar2} 0xA2 level_15_first_digit
+expect8 {gStringVar2+1} 0xA6 level_15_second_digit
+expect8 {gStringVar2+2} 0xFF level_15_end
+# NO: nothing changes and the menu is back on RAISE TO LV. CAP
+press A
+wait 40
+expect8 {sMenu@menu+4} 5 menu_back_after_no
+expect8 {sMenu@menu+2} 4 cursor_back_on_raise_after_no
+![f"expect8 {party_mon('gPlayerParty', 0, 84)} 5 no_left_cyndaquil_at_5"]
+!expect_mon_exp(box_mon(0, 0), 27, "no_left_rattata_at_3")
+
+# YES (STR_VAR_1 cleared first: the question wrote the same count there)
+press A
+wait 40
+press UP
+wait 10
+poke8 {gStringVar1} 0xFF
+press A
+wait 60
+shot 04_raised.png
+expect8 {gStringVar1} 0xA7 raised_six
+expect8 {gStringVar1+1} 0xFF raised_six_end
+# The party: Cyndaquil, Caterpie and Sentret at 15; Magikarp still 20, the marked Pidgey 5; the Egg as it was
+![f"expect8 {party_mon('gPlayerParty', 0, 84)} 15 cyndaquil_at_15"]
+!expect_mon_exp(party_mon("gPlayerParty", 0), 2035, "cyndaquil_exp_of_15")
+!expect_mon_species(party_mon("gPlayerParty", 0), "SPECIES_CYNDAQUIL", "cyndaquil_not_evolved")
+![f"expect8 {party_mon('gPlayerParty', 1, 84)} 15 caterpie_at_15"]
+!expect_mon_species(party_mon("gPlayerParty", 1), "SPECIES_CATERPIE", "caterpie_not_evolved")
+![f"expect8 {party_mon('gPlayerParty', 2, 84)} 20 magikarp_not_lowered"]
+!expect_mon_exp(party_mon("gPlayerParty", 2), 10000, "magikarp_exp_of_20_kept")
+![f"expect8 {party_mon('gPlayerParty', 3, 84)} 5 marked_pidgey_kept"]
+!expect_mon_exp(party_mon("gPlayerParty", 3), 135, "marked_pidgey_exp_kept")
+![f"expect8 {party_mon('gPlayerParty', 4, 84)} {probe.resolve({'e': '((P_EGG_HATCH_LEVEL >= GEN_4) ? 1 : 5)'})['e']} egg_left_alone"]
+![f"expect8 {party_mon('gPlayerParty', 5, 84)} 15 fainted_sentret_at_15"]
+![f"expect16 {party_mon('gPlayerParty', 5, 86)} 0 sentret_still_fainted"]
+# and the HP it lost is its Lv. 15 max HP, 40: deposited, it stays fainted
+![f"expectbits16 {party_mon('gPlayerParty', 5, probe.resolve({'o': 'offsetof(struct BoxPokemon, checksum) + 2'})['o'])} 0x3FFF 40 sentret_pc_lost_hp_follows_max"]
+# BOX 1: Rattata and Caterpie at 15's experience; the marked Spearow and Magikarp 30 as they were. BOX 14's Rattata at 15
+!expect_mon_exp(box_mon(0, 0), 3375, "box_rattata_exp_of_15")
+!expect_mon_exp(box_mon(0, 1), 3375, "box_caterpie_exp_of_15")
+!expect_mon_species(box_mon(0, 1), "SPECIES_CATERPIE", "box_caterpie_not_evolved")
+!expect_mon_exp(box_mon(0, 2), 125, "box_marked_spearow_kept")
+!expect_mon_exp(box_mon(0, 3), 33750, "box_magikarp_not_lowered")
+!expect_mon_exp(box_mon(13, 0), 3375, "box14_rattata_exp_of_15")
+
+# A closes the message; the menu is back. Again: nothing left to raise, and no YES/NO
+press A
+wait 40
+expect8 {sMenu@menu+4} 5 menu_back_after_raising
+expect8 {sMenu@menu+2} 4 cursor_back_on_raise
+press A
+wait 40
+shot 05_nothing_to_raise.png
+expect8 {sMenu@menu+4} 5 no_yes_no_when_nothing
+press B
+wait 30
+# SEE YA! is still reachable, the sixth row
+press DOWN
+wait 10
+expect8 {sMenu@menu+2} 5 cursor_reaches_see_ya
+press A
+wait 60
+mash B 200
+wait 60
+expect8 {sLockFieldControls} 0 back_in_the_field

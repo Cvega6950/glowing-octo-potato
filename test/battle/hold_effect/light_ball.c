@@ -26,7 +26,8 @@ static const u32 speciesToCheck[] = {
     SPECIES_PIKACHU_GMAX,
 };
 
-SINGLE_BATTLE_TEST("Light Ball doubles Pikachu's Special Attack", s16 damage)
+// Crystal Imperium (DECISIONS.md D62): the Light Ball raises Pikachu's attacking stats by half, not double
+SINGLE_BATTLE_TEST("Light Ball raises Pikachu's Special Attack by half", s16 damage)
 {
     u32 species = 0, item = 0;
 
@@ -55,12 +56,12 @@ SINGLE_BATTLE_TEST("Light Ball doubles Pikachu's Special Attack", s16 damage)
         if (i == 1) { // First check to avoid boosting other species
             EXPECT_EQ(results[i - 1].damage, results[i].damage);
         } else if (i % 2 == 1) { // Every 2nd test afterwards
-            EXPECT_MUL_EQ(results[i - 1].damage, Q_4_12(2.0), results[i].damage);
+            EXPECT_MUL_EQ(results[i - 1].damage, Q_4_12(1.5), results[i].damage);
         }
     }
 }
 
-SINGLE_BATTLE_TEST("Light Ball doubles Pikachu's Attack (Gen4+)", s16 damage)
+SINGLE_BATTLE_TEST("Light Ball raises Pikachu's Attack by half (Gen4+)", s16 damage)
 {
     u32 species = 0, item = 0, config = 0;
 
@@ -92,8 +93,8 @@ SINGLE_BATTLE_TEST("Light Ball doubles Pikachu's Attack (Gen4+)", s16 damage)
             EXPECT_EQ(results[i - 2].damage, results[i].damage); // No item vs Light Ball
             EXPECT_EQ(results[i - 1].damage, results[i].damage); // Gen 3 vs Gen 4
         } else if (i % 3 == 2) { // Every 3rd test afterwards
-            EXPECT_MUL_EQ(results[i - 2].damage, Q_4_12(2.0), results[i].damage); // No item vs Light Ball
-            EXPECT_MUL_EQ(results[i - 1].damage, Q_4_12(2.0), results[i].damage); // Gen 3 vs Gen 4
+            EXPECT_MUL_EQ(results[i - 2].damage, Q_4_12(1.5), results[i].damage); // No item vs Light Ball
+            EXPECT_MUL_EQ(results[i - 1].damage, Q_4_12(1.5), results[i].damage); // Gen 3 vs Gen 4
         }
     }
 }

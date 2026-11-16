@@ -48,8 +48,10 @@
 //                          SPECIES: its substructs (SIZE bytes each, from offset SECURE) are XORed with
 //                          personality ^ OT ID (+0, +4), and the first one, whose low 11 bits are the
 //                          species, is in the slot the personality mod 24 picks (src/pokemon.c)
-//   expectpartyitem ADDR SECURE SIZE ITEM [LABEL]   the same for the item it holds: bits 16-25 of that
+//   expectpartyitem ADDR SECURE SIZE ITEM [LABEL]   the same for the item it holds: bits 16-26 of that
 //                          substruct's first word (struct PokemonSubstruct0's heldItem)
+//   expectpartyexp ADDR SECURE SIZE EXP [LABEL]   the same for its experience: bits 0-20 of that
+//                          substruct's second word. These three also read a struct BoxPokemon (a PC box's)
 //   setflag SB1PTR FLAGSOFF FLAG VALUE   set (1) or clear (0) event flag FLAG in (*SB1PTR)->flags
 //   expectflag SB1PTR FLAGSOFF FLAG WANT [LABEL]   check event flag FLAG (0/1) in (*SB1PTR)->flags
 //   seek8/seek16 ADDR TARGET KEYUP KEYDOWN   tap KEYUP while the value at ADDR is below TARGET and
@@ -1022,20 +1024,21 @@ int main(int argc, char **argv)
             if (got != want)
                 failures++;
         }
-        else if (!strcmp(cmd, "expectpartyspecies") || !strcmp(cmd, "expectpartyitem"))
+        else if (!strcmp(cmd, "expectpartyspecies") || !strcmp(cmd, "expectpartyitem") || !strcmp(cmd, "expectpartyexp"))
         {
             // sSubstructOffsets[SUBSTRUCT_TYPE_0] in src/pokemon.c
             static const uint8_t growthSlot[24] = {0, 0, 0, 0, 0, 0, 1, 1, 2, 3, 2, 3, 1, 1, 2, 3, 2, 3, 1, 1, 2, 3, 2, 3};
-            int item = !strcmp(cmd, "expectpartyitem");
+            int item = !strcmp(cmd, "expectpartyitem"), exp = !strcmp(cmd, "expectpartyexp");
             char label[128];
             unsigned secure = 0, size = 0, want = 0;
             snprintf(label, sizeof(label), "%s", cmd);
             sscanf(line, "%*s %*s %u %u %u %127s", &secure, &size, &want, label);
             uint32_t addr = ParseAddr(a1), personality = Peek(32, addr), key = personality ^ Peek(32, addr + 4);
-            uint32_t word = Peek(32, addr + secure + growthSlot[personality % 24] * size) ^ key;
-            uint32_t got = item ? (word >> 16) & 0x3FF : word & 0x7FF;
+            uint32_t substruct = addr + secure + growthSlot[personality % 24] * size;
+            uint32_t word = Peek(32, substruct + (exp ? 4 : 0)) ^ key;
+            uint32_t got = exp ? word & 0x1FFFFF : item ? (word >> 16) & 0x7FF : word & 0x7FF;
             printf("[frame %lu] %s %s: @0x%08X %s %u (want %u)\n", frameCount, got == want ? "PASS" : "FAIL",
-                   label, addr, item ? "item" : "species", got, want);
+                   label, addr, exp ? "exp" : item ? "item" : "species", got, want);
             if (got != want)
                 failures++;
         }

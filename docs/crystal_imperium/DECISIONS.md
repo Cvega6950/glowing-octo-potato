@@ -835,8 +835,9 @@ DexNav shows and that wild encounters draw from:
   (`sRematchLevelCeilingByBadges`), so they come at the same points of the game as before.
   Prize money uses the party data's levels (KNOWN_ISSUES #39).
 - **Wild Pokémon** keep Heart & Soul's levels, as Emerald Imperium's do: the player catches
-  them low and brings them up with the Rare Candy Box (Emerald Imperium has a nurse that sets
-  the party to the cap). They are never above the cap (D28).
+  them low and brings them up with the Rare Candy Box or, since 0.20.0, the PC's RAISE TO LV. CAP
+  (D63; Emerald Imperium has a nurse that sets a party Pokémon, and since its 1.3 every unmarked
+  Pokémon in the party and PC, to the cap). They are never above the cap (D28).
 - Early bosses with Heart & Soul's own teams fell behind at the higher caps. Their teams kept
   their early moves while the player's level-up moves got stronger:
   - Bugsy got an Imperium-style team (BALANCE.md): the naive test line had beaten Heart & Soul's
@@ -2588,3 +2589,129 @@ follows is the first build's; D45 lists what changed.)
   tiles, and with this change's lab script that encounter no longer came.
 - **Not measured.** BALANCE.md's early bosses were measured with the Johto three only; the other 24
   starters share their types and evolve at the same levels, but their win rates are unmeasured.
+
+## D62. Pikachu keeps its stats and Zippy Zap's critical hit; the Light Ball is ×1.5
+
+- The user, after 0.18.0: "The elite 4 was too easy, pikachu basically one shotted everybody", then "I
+  want to keep pikachus stats high it's so usable just not one shot". On a first fix that also took
+  away Zippy Zap's sure critical hit: "No don't do that I want zippy zap to have critical hit".
+- **Why it one-shot them.** Measured with a damage calculator that copies the engine's integer damage
+  code step by step and gave the engine's numbers on all 92 values checked (4 stats, the 48 rolls of
+  the engine's own damage tests, 40 from 20 Elite Four cases run in the engine), and in the game
+  itself:
+  - D51's stats (60/90/60/120/90/70) with the Light Ball, which doubled both Attack and Sp. Atk: at
+    85 (31 IVs, no EVs under Minimal Grinding, a neutral nature) 368 in both, 405 with NORMAL's badge
+    boost. That is about a base-199 attacker, above Mega Mewtwo Y's Sp. Atk and Mega Mewtwo X's Attack
+    at once. The item was made for Pikachu's official 55 and 50 (Emerald Imperium's Pikachu: 248
+    Attack and 232 Sp. Atk with it, the same way).
+  - Zippy Zap as compiled (pokeemerald-expansion's data): Scarlet and Violet's 80 power, +2 priority
+    and evasion boost together with Let's Go's sure critical hit, which there goes with 50 power. A
+    critical hit does ×2 here (Heart & Soul's `B_CRIT_MULTIPLIER` GEN_3), so it hits like a 160-power
+    priority move (240 with STAB) that also ignores Intimidate, screens and Defense boosts.
+  - Against the first Elite Four and Lance (30 Pokémon at 85; NORMAL, Minimal Grinding on), a Light
+    Ball Pikachu one-shot 22 on every roll, 21 before they could move; no other attacker the
+    calculator tried came close in what it KOs before the target moves (at most 13: Raichu with a
+    Life Orb and the same Zippy Zap). In the game, a lone Light Ball Pikachu (Naive; Zippy Zap,
+    Thunderbolt, Surf, Grass Knot; the eight badges; no switching or items) beat Koga 8 times in 8,
+    Karen 4, Will 3, Bruno 1 and Lance 0.
+- **The change.** Pikachu's stats stay D51's, and Zippy Zap stays as compiled (80 power, +2 priority,
+  +1 evasion and a sure critical hit), as the user asked. The Light Ball raises Pikachu's Attack and
+  Sp. Atk by half, not double (`battle_util.c`). With D51's 90 and 90 that is 303 Attack in battle (202
+  on the summary; Adamant, 85, 31 IVs; 333 with NORMAL's badge boost) against Emerald Imperium's Light
+  Ball Pikachu's 272, with this game's better bulk and Speed. Emerald Imperium's critical hits do ×1.5
+  and it has no badge boosts (D60), and its Zippy Zap is 50 power with no evasion boost: per Zippy
+  Zap, this Pikachu still does about 2.4 times what Emerald Imperium's does on HARD and 2.6 times on
+  NORMAL (the table's 50-power row is this game's Pikachu with Emerald Imperium's move).
+- **Effect.** One-shots of the 30, on every roll (before the target moves), with each Pikachu set's
+  best moves:
+
+  | Light Ball | Zippy Zap | NORMAL | HARD |
+  |---|---|---|---|
+  | ×2 (0.19.0) | 80, sure crit | 22 (21) | 19 (18) |
+  | **×1.5 (now)** | **80, sure crit** | **14 (14)** | **11 (11)** |
+  | ×1.5 (the first fix, turned down) | 80, no sure crit | 8 (7) | 6 (5) |
+  | ×1.5 | 50, sure crit (Emerald Imperium's) | 9 (8) | 6 (6) |
+  | none | 80, sure crit | 7 (7) | 5 (5) |
+
+  The sure critical hit alone, with no Light Ball boost, one-shots 7: while Zippy Zap keeps its 80
+  power and the crit, the one-shots can't go lower through the item. In the game, the same lone
+  Pikachu still beats Koga 8 times in 8, but now never beats Karen, Will, Bruno or Lance: it knocks out
+  1.1 of Karen's Pokémon a battle on average, 1.0 of Will's, 1.4 of Bruno's and 0.25 of Lance's
+  (before: 4.0, 3.1, 1.6 and 0.25; in 6 of 8 battles, on both builds, Lance's AI switches Gyarados out
+  to Raging Bolt ahead of Zippy Zap and nothing is knocked out). Against the rematch teams at 90,
+  which the user meets next as Champion, it beats Bruno twice in 8 and the others never (0.19.0:
+  Bruno 8 times, Lance 2, Will 1).
+- **Also measured.** The Elite Four battle as designed (levels at 85, items, abilities, Megas, D60's
+  AI). Koga's first team has no answer to a fast Electric attacker (no Ground type, no Electric
+  immunity or resistance), so nothing to switch to; the AI does switch before a knockout to a
+  Pokémon that resists the attack and wins the match-up (Lance's Gyarados to Raging Bolt, 6 times in
+  8). The others and the rematch teams have answers (KNOWN_ISSUES #95). Emerald Imperium's Elite Four
+  is stronger by design (box legendaries such as Calyrex-Shadow, Reshiram and Xerneas, and Dialga and
+  Palkia in its Champion battle), which this game's trainer standard leaves out (D59); no team
+  changes here.
+- **Red.** His Pikachu holds a Light Ball, so it hits a quarter less: the test six now beats Red 12
+  times in 24 on mGBA and 16 on VBA-M (10 and 8 before). He keeps the strongest setup by design (D27:
+  all six at 100, EVs, the Prediction AI, the most Full Restores; `validate.py` checks these, not
+  battle results). Pokéfan Derek's last rematch Pikachu holds one too. No trainer uses Zippy Zap.
+- **Evidence.** Unit tests: `test/battle/hold_effect/light_ball.c` (the expansion's, now ×1.5 for
+  every Pikachu form, both stats) and `test/battle/pikachu_imperium.c` (Zippy Zap's sure critical hit,
+  80 power and +2 priority; in battle it goes first, is a critical hit whatever the roll and raises
+  evasion), which fail if the sure critical hit is taken away. Play tests: `pikachu`, `red`, and the
+  full suite on mGBA and VBA-M. The in-game runs gave Pikachu its nature by pressing UP nature+1
+  times, around the play tests' nature bug (KNOWN_ISSUES #96).
+
+## D63. RAISE TO LV. CAP: the PC brings the boxes to the level cap
+
+- The user: "Also add something that lets you set box mon to level cap like imperium".
+- **Emerald Imperium** (its public source read as text, D2; its 1.2 and 1.3 changelogs): a second nurse
+  in every Pokémon Center sets one party Pokémon to the level cap, and since 1.3 every Pokémon in the
+  party and the 14 boxes that has no PC mark. It writes the cap's least experience, evolves nothing
+  and teaches nothing; marking a Pokémon keeps it out. It also lowered Pokémon above the cap and let
+  ordinary Eggs through.
+- **Here.** The Pokémon Storage System's menu has a new entry, the fifth of six, RAISE TO LV. CAP
+  (between MOVE ITEMS and SEE YA!), so it works from any PC, the L menu's PC and the Pokémon Box
+  Link, from the first day. (Emerald Imperium greys its two level-cap choices out until the player
+  has met its move relearner, because players skipped level-up moves; here the party menu's
+  relearner, LEARN MOVES, is there from the start.) A then asks "Raise N POKéMON to Lv. L? Any with
+  a MARK will be left as it is." (NO first); YES raises them (the party, then a box a frame) and
+  says how many, then "Evolve: RARE CANDY. Moves: LEARN MOVES.", so the player knows where the
+  skipped moves are. With nothing to raise it says so and asks nothing. Emerald Imperium's
+  one-Pokémon choice has no entry of its own: the Rare Candy Box's count already starts at the cap
+  (D33).
+- **Which Pokémon.** Every Pokémon in the party and the 14 boxes that is below the level, isn't an
+  Egg (nor a Bad Egg) and has no PC mark; in a Nuzlocke, not a fainted one. Nothing is lowered: a
+  party Pokémon's level is the one its experience gives, not the stored one. The Day-Care's two
+  aren't covered.
+- **Not at Lv. 50.** Where `FLAG_LIMIT_TO_50` holds every Pokémon at Lv. 50 (inside the Trainer
+  Hill, after the first Hall of Fame; in the code also the Battle Pike and Pyramid), it says "POKéMON are treated as
+  Lv. 50 here, so RAISE TO LV. CAP can't be used." and asks nothing. There stats are worked out at
+  Lv. 50 and the party's stored level is 50, so a boxed Pokémon's HP reads as Lv. 50's (a Nuzlocke's
+  fainted ones read as alive) and, before the experience was used for the party, a Lv. 100 Pokémon
+  in the Hill with LEVEL CAP OFF was counted and set down to the cap's experience. Both found by the
+  release's review and fixed before it shipped. A Rare Candy has the same stored-level problem there
+  (KNOWN_ISSUES #97), and a fainted Pokémon deposited there keeps the HP it lost against its Lv. 50
+  max HP (#98); both are older than this release.
+- **The level.** The level cap (NORMAL or HARD); with LEVEL CAP OFF, NORMAL's cap for the player's
+  progress, the level the trainers battle at (D56), not 100.
+- **What changes.** The experience only, to the level's least; party Pokémon get their stats
+  worked out again and their HP goes up by the max HP gained, so a full one stays full and a
+  fainted one stays fainted. A boxed Pokémon keeps no level or stats: they are worked out when it is
+  withdrawn. Nothing evolves and no move is learned, as in Emerald Imperium: one Rare Candy from the
+  Rare Candy Box evolves a Pokémon at the cap (D33), and the relearner teaches what it skipped.
+- **A fix with it.** A level gained while fainted (a Rare Candy, this option) didn't follow into the
+  HP the PC keeps for a stored Pokémon (`OW_PC_HEAL`: no healing in the PC), so a fainted Pokémon
+  could come back from the PC alive, a Nuzlocke revival. `CalculateMonStats` now keeps a fainted
+  Pokémon's lost HP at its new max HP.
+- **Saves.** Nothing new is saved: the level is in the experience, the opt-out in the marks.
+- **Code.** `src/raise_to_cap.c`, the storage menu in `src/pokemon_storage_system.c`,
+  `CalculateMonStats` in `src/pokemon.c`. Tests: `test/raise_to_cap.c` (9 unit tests: the level in
+  each cap mode at four stages (no badges, one badge, Johto and Kanto Champion); a boxed Pokémon
+  raised, nothing else changed; Eggs, each mark and Pokémon at or above the level left alone; a hurt
+  and a fainted Pokémon through the PC; party stats and HP; the Nuzlocke rule; the count asked about
+  is the count raised; a party Pokémon held at Lv. 50 isn't lowered; no use at Lv. 50), the two
+  fainted-HP cases failing without the fix and the Lv. 50 one with the stored level; the play test
+  `raise_to_cap` (the menu from the L menu's PC, refused at Lv. 50, NO, YES, the party's, BOX 1's and
+  BOX 14's experience and species after, the marked ones, the Egg and the two above the cap as they
+  were, the fainted one still fainted with the HP the PC keeps at its new max HP, which fails without
+  the fix, nothing left to raise after, SEE YA! still last); `tools/emurun` reads a stored Pokémon's
+  experience (`expectpartyexp`) and all 11 bits of a held item.

@@ -47,6 +47,7 @@
 #include "constants/pokemon_icon.h"
 #include "chooseboxmon.h"
 #include "party_menu.h"
+#include "raise_to_cap.h"
 #include "nuzlocke.h"
 #include "challenge_menu.h"
 
@@ -74,6 +75,7 @@ enum {
     OPTION_WITHDRAW,
 #endif
     OPTION_MOVE_ITEMS,
+    OPTION_RAISE_TO_CAP, // Crystal Imperium (src/raise_to_cap.c, DECISIONS.md D63)
     OPTION_EXIT,
     OPTIONS_COUNT,
     OPTION_SELECT_MON
@@ -864,6 +866,11 @@ void SetMonFormPSS_ItemHold(struct BoxPokemon *boxMon);
 void UpdateSpeciesSpritePSS(struct BoxPokemon *boxmon);
 
 static const u8 gText_JustOnePkmn[] = _("There is just one POKéMON with you.");
+// Crystal Imperium: RAISE TO LV. CAP (D63); {STR_VAR_1} is how many, {STR_VAR_2} the level
+static const u8 sText_RaiseToCapAsk[] = _("Raise {STR_VAR_1} POKéMON to Lv. {STR_VAR_2}?\nAny with a MARK will be left as it is.");
+static const u8 sText_RaiseToCapDone[] = _("Raised {STR_VAR_1} POKéMON to Lv. {STR_VAR_2}.\nEvolve: RARE CANDY. Moves: LEARN MOVES.");
+static const u8 sText_RaiseToCapNone[] = _("There's no unmarked POKéMON\nbelow Lv. {STR_VAR_2} to raise.");
+static const u8 sText_RaiseToCapNotHere[] = _("POKéMON are treated as Lv. 50 here,\nso RAISE TO LV. CAP can't be used.");
 static const u8 gText_PartyFull[] = _("Your party is full!");
 static const u8 gText_Box[] = _("BOX");
 
@@ -876,6 +883,7 @@ struct {
     [OPTION_DEPOSIT]    = {COMPOUND_STRING("DEPOSIT POKéMON"),  COMPOUND_STRING("Store POKéMON in your party in BOXES.")},
     [OPTION_MOVE_MONS]  = {COMPOUND_STRING("MOVE POKéMON"),     COMPOUND_STRING("Organize the POKéMON in BOXES and\nin your party.")},
     [OPTION_MOVE_ITEMS] = {COMPOUND_STRING("MOVE ITEMS"),       COMPOUND_STRING("Move items held by any POKéMON\nin a BOX or your party.")},
+    [OPTION_RAISE_TO_CAP] = {COMPOUND_STRING("RAISE TO LV. CAP"), COMPOUND_STRING("Raise each unmarked POKéMON in the\nBOXES and party to the level cap.")},
     [OPTION_EXIT]       = {COMPOUND_STRING("SEE YA!"),          COMPOUND_STRING("Return to the previous menu.")}
 };
 
@@ -885,7 +893,7 @@ static const struct WindowTemplate sWindowTemplate_MainMenu =
     .tilemapLeft = 1,
     .tilemapTop = 1,
     .width = 17,
-    .height = 10,
+    .height = 2 * OPTIONS_COUNT,
     .paletteNum = 15,
     .baseBlock = 0x1,
 };
@@ -1550,13 +1558,42 @@ enum {
     STATE_HANDLE_INPUT,
     STATE_ERROR_MSG,
     STATE_ENTER_PC,
+    STATE_RAISE_ASK,
+    STATE_RAISE_RUN,
+    STATE_RAISE_DONE,
 };
 
 #define tState          data[0]
 #define tSelectedOption data[1]
 #define tInput          data[2]
 #define tNextOption     data[3]
+#define tRaiseLevel     data[4]
+#define tRaiseStep      data[5]
+#define tRaiseCount     data[6]
 #define tWindowId       data[15]
+
+// Crystal Imperium: a message in the main menu's text box
+static void PrintMainMenuMessage(const u8 *text)
+{
+    FillWindowPixelBuffer(0, PIXEL_FILL(1));
+    AddTextPrinterParameterized2(0, FONT_NORMAL, text, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
+}
+
+// RAISE TO LV. CAP (D63): how many and the level, in STR_VAR_1 and STR_VAR_2, then the text
+static void PrintRaiseToCapMessage(const u8 *text, u32 count, u32 level)
+{
+    ConvertIntToDecimalStringN(gStringVar1, count, STR_CONV_MODE_LEFT_ALIGN, 3);
+    ConvertIntToDecimalStringN(gStringVar2, level, STR_CONV_MODE_LEFT_ALIGN, 3);
+    StringExpandPlaceholders(gStringVar4, text);
+    PrintMainMenuMessage(gStringVar4);
+}
+
+// Back to the main menu after the YES/NO box, which took the menu's cursor state (menu.c keeps one)
+static void RestorePcMainMenu(struct Task *task)
+{
+    InitMenuInUpperLeftCornerNormal(task->tWindowId, OPTIONS_COUNT, task->tSelectedOption);
+    PrintMainMenuMessage(sMainMenuTexts[task->tSelectedOption].desc);
+}
 
 static void Task_PCMainMenu(u8 taskId)
 {
@@ -1619,6 +1656,31 @@ static void Task_PCMainMenu(u8 taskId)
                 AddTextPrinterParameterized2(0, FONT_NORMAL, gText_JustOnePkmn, 0, NULL, TEXT_COLOR_DARK_GRAY, TEXT_COLOR_WHITE, TEXT_COLOR_LIGHT_GRAY);
                 task->tState = STATE_ERROR_MSG;
             }
+            else if (task->tInput == OPTION_RAISE_TO_CAP && !CanUseRaiseToCap())
+            {
+                // Crystal Imperium (D63): not where every POKeMON is held at Lv. 50 (the Trainer Hill)
+                PrintMainMenuMessage(sText_RaiseToCapNotHere);
+                task->tState = STATE_ERROR_MSG;
+            }
+            else if (task->tInput == OPTION_RAISE_TO_CAP)
+            {
+                // Crystal Imperium (D63): ask, with how many and the level; NO is the default
+                u32 count;
+
+                task->tRaiseLevel = GetRaiseToCapLevel();
+                count = CountMonsToRaise(task->tRaiseLevel);
+                if (count == 0)
+                {
+                    PrintRaiseToCapMessage(sText_RaiseToCapNone, count, task->tRaiseLevel);
+                    task->tState = STATE_ERROR_MSG;
+                }
+                else
+                {
+                    PrintRaiseToCapMessage(sText_RaiseToCapAsk, count, task->tRaiseLevel);
+                    DisplayYesNoMenuWithDefault(1);
+                    task->tState = STATE_RAISE_ASK;
+                }
+            }
             else
             {
                 // Enter PC
@@ -1665,6 +1727,41 @@ static void Task_PCMainMenu(u8 taskId)
             EnterPokeStorage(task->tInput);
             RemoveWindow(task->tWindowId);
             DestroyTask(taskId);
+        }
+        break;
+    case STATE_RAISE_ASK:
+        switch (Menu_ProcessInputNoWrapClearOnChoose())
+        {
+        case 0: // YES
+            task->tRaiseStep = -1;
+            task->tRaiseCount = 0;
+            task->tState = STATE_RAISE_RUN;
+            break;
+        case 1: // NO
+        case MENU_B_PRESSED:
+            RestorePcMainMenu(task);
+            task->tState = STATE_HANDLE_INPUT;
+            break;
+        }
+        break;
+    case STATE_RAISE_RUN:
+        // The party, then a box a frame
+        if (task->tRaiseStep < 0)
+            task->tRaiseCount += RaisePartyToLevel(task->tRaiseLevel);
+        else
+            task->tRaiseCount += RaiseBoxToLevel(task->tRaiseStep, task->tRaiseLevel);
+        if (++task->tRaiseStep >= TOTAL_BOXES_COUNT)
+        {
+            PlaySE(SE_EXP_MAX);
+            PrintRaiseToCapMessage(sText_RaiseToCapDone, task->tRaiseCount, task->tRaiseLevel);
+            task->tState = STATE_RAISE_DONE;
+        }
+        break;
+    case STATE_RAISE_DONE:
+        if (JOY_NEW(A_BUTTON | B_BUTTON))
+        {
+            RestorePcMainMenu(task);
+            task->tState = STATE_HANDLE_INPUT;
         }
         break;
     }

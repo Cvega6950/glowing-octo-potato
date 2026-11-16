@@ -875,6 +875,47 @@ def expect_party_species(party, slot, species, label):
     return [f"expectpartyspecies {{{party}+{slot * v['mon_size']}}} {v['secure']} {v['substruct']} {v[species]} {label}"]
 
 
+def box_mon(box, slot, field=0):
+    """Address expression of the struct BoxPokemon in a PC box (0-13) at a slot (0-29), plus `field` bytes
+    (one offset: the runner adds one number after a dereference)."""
+    v = probe.resolve({"boxes": "offsetof(struct PokemonStorage, boxes)", "size": "sizeof(struct BoxPokemon)",
+                       "count": "IN_BOX_COUNT"})
+    return f"*{{gPokemonStoragePtr}}+{v['boxes'] + (box * v['count'] + slot) * v['size'] + field}"
+
+
+def party_mon(party, slot, field=0):
+    """Address expression of a struct Pokemon of gPlayerParty or gEnemyParty (party, a symbol) at slot 0-5,
+    plus `field` bytes."""
+    v = probe.resolve({"mon_size": "sizeof(struct Pokemon)"})
+    return f"{{{party}+{slot * v['mon_size'] + field}}}"
+
+
+def expect_mon_exp(addr, exp, label):
+    """Check the experience of the Pokemon at addr (party_mon or box_mon), in the encrypted part of
+    struct BoxPokemon (the runner decrypts it: expectpartyexp)."""
+    v = probe.resolve({"secure": "offsetof(struct BoxPokemon, secure)", "substruct": "NUM_SUBSTRUCT_BYTES"})
+    return [f"expectpartyexp {addr} {v['secure']} {v['substruct']} {exp} {label}"]
+
+
+def expect_mon_species(addr, species, label):
+    """Check the species of the Pokemon at addr (party_mon or box_mon): expectpartyspecies."""
+    v = probe.resolve({"secure": "offsetof(struct BoxPokemon, secure)", "substruct": "NUM_SUBSTRUCT_BYTES",
+                       species: species})
+    return [f"expectpartyspecies {addr} {v['secure']} {v['substruct']} {v[species]} {label}"]
+
+
+def mark_party_mon(party, slot):
+    """Give a party Pokemon the PC's first marking (the circle): struct BoxPokemon's markings."""
+    byte, mask = probe.bitfield("BoxPokemon", "markings")
+    return [f"pokebits8 {party_mon(party, slot, byte)} {mask} {mask & -mask}"]
+
+
+def mark_box_mon(box, slot):
+    """Give a PC box's Pokemon the PC's first marking (the circle)."""
+    byte, mask = probe.bitfield("BoxPokemon", "markings")
+    return [f"pokebits8 {box_mon(box, slot, byte)} {mask} {mask & -mask}"]
+
+
 def expect_party_item(party, slot, item, label):
     """Check the item (an ITEM_ constant, or ITEM_NONE) a Pokemon of gPlayerParty or gEnemyParty holds
     at slot 0-5, in the same encrypted substruct as its species (expectpartyitem)."""
