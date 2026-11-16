@@ -14,9 +14,10 @@
 | Patches | `tools/crystal_imperium/make_patches.sh` | The BPS patch rebuilds the ROM byte for byte from the HnS 2.0.6 ROM. |
 | Save compatibility | `tools/emurun/old_save_test.sh` (`EMURUN_EMULATOR=vbam` for VBA-M) | A save made with Heart & Soul 2.0.6 continues in Crystal Imperium, its Pokémon holding their items. |
 
-CI (`.github/workflows/crystal_imperium.yml`) runs the validation and generator checks, the build and the mGBA tests in
+CI (`.github/workflows/crystal_imperium.yml`) runs the build, the validation and generator checks and the mGBA tests in
 one job, and the build plus the VBA-M tests in a second job, on pushes to Crystal Imperium
-branches.
+branches. `validate.py` needs a built tree (`make hns`): it preprocesses `global.h`, which includes headers the build
+generates (`include/constants/map_groups.h`).
 
 ## Emulator play tests (`tools/emurun/tests/`)
 

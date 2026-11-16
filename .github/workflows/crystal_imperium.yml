@@ -20,6 +20,14 @@ jobs:
           sudo apt-get install -y --no-install-recommends binutils-arm-none-eabi gcc-arm-none-eabi \
             libnewlib-arm-none-eabi libpng-dev libmgba-dev python3
 
+      - name: Build ROM
+        run: |
+          make -j$(nproc) hns
+          cp pokehns.gba CrystalImperium.gba
+          sha1sum CrystalImperium.gba
+
+      # After the build: validate.py preprocesses global.h, which includes headers the build
+      # generates (include/constants/map_groups.h).
       - name: Validate game data
         run: |
           python3 tools/crystal_imperium/validate.py --check
@@ -30,12 +38,6 @@ jobs:
           python3 tools/crystal_imperium/care_packages.py --check
           python3 tools/crystal_imperium/tm_list.py --check
           python3 tools/crystal_imperium/trainer_tests.py --check
-
-      - name: Build ROM
-        run: |
-          make -j$(nproc) hns
-          cp pokehns.gba CrystalImperium.gba
-          sha1sum CrystalImperium.gba
 
       - name: Emulator play tests
         run: tools/emurun/run_all.sh

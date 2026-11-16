@@ -52,6 +52,12 @@
 - Tests: `test/trainer_hill.c` (3, new) and `test/old_save_objects.c` (1, new); `raise_to_cap` checks
   the PC's refusals and a Rare Candy's there, `l_menu` WITHDRAW's with one Pokémon in the party.
 
+### CI
+- CI's first job runs the data checks after the build. Since 2026-10-30 `validate.py` has preprocessed
+  `global.h`, which includes a header the build generates (`include/constants/map_groups.h`), so on
+  GitHub that job stopped at its first check and didn't build or run the mGBA play tests. The VBA-M job
+  wasn't affected.
+
 ## 0.20.0-experimental (2026-11-16)
 
 ### Pikachu keeps its stats and Zippy Zap's critical hit; the Light Ball is ×1.5 (DECISIONS.md D62)
