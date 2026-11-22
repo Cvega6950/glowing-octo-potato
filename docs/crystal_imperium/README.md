@@ -133,7 +133,7 @@ From the first step of a new game:
   The Goldenrod Dept. Store 2F sells Imperium's fifteen evolution items for ¥500 each (every
   stone, the Linking Cord, Prism Scale, King's Rock, Metal Coat and Up-Grade) and the Berries that
   raise friendship: one raises it to the maximum, so a Pokémon that evolves by friendship evolves at its
-  next level-up.
+  next level-up, at the time of day its evolution needs.
 - **HMs without teaching:** carrying the HM (and its badge) lets any Pokémon in the party use
   Cut, Surf, Strength, Rock Smash, Waterfall, and Fly or Flash from the lead's party menu.
 - **A starting care package** from Prof. Elm as soon as you have a Pokémon, as in Emerald

@@ -66,7 +66,8 @@ wait 60
 expect32 {gMain+4} {CB2_Overworld+1} back_in_the_field
 
 # Another Pomeg Berry on Crobat, at maximum friendship with no HP EVs: it won't have any effect and
-# stays in the Bag (the party menu stays open)
+# stays in the Bag. The message shows on the party menu, which then closes to the Bag, as after a used
+# Berry, so the Berry still in the Bag is what tells the two apart
 !give_item("ITEM_POMEG_BERRY")
 !open_bag_at("POCKET_BERRIES", 0)
 press A
@@ -77,7 +78,7 @@ wait 120
 press A
 wait 120
 shot 05_pomeg_no_effect.png
-expect32 {gMain+4} {CB2_UpdatePartyMenu+1} no_effect_stays_in_the_party_menu
+expect32 {gMain+4} {CB2_UpdatePartyMenu+1} no_effect_message_on_the_party_menu
 !expect_bag_quantity("berries", "ITEM_POMEG_BERRY", 1, "pomeg_berry_kept")
 mash B 300
 wait 60

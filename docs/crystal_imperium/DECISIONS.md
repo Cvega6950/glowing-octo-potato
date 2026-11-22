@@ -2874,7 +2874,7 @@ follows is the first build's; D45 lists what changed.)
   friendship Berries, and since each lowers a different EV a player can pick one whose stat the Pokémon
   doesn't use. Their Bag descriptions ("Makes a Pokémon friendly but lowers base HP.") still hold.
 - Saves: nothing new is saved.
-- Evidence: `test/friendship_berries.c` (6 unit tests: the six and nothing else follow the rule; one from 70
+- Evidence: `test/friendship_berries.c` (6 unit tests: the six follow the rule, HP Up, the Oran Berry and the Soothe Bell don't; one from 70
   friendship gives 255 and lowers its EV from 100 to 90; with 0 friendship and no EV it still gives 255; at
   255 a Pomeg lowers HP EVs from 15 to 5 and 0, then changes nothing; a Golbat at 70 has no evolution, after
   one Pomeg Berry its level-up evolution is Crobat; HP Up still raises friendship by a few points);
