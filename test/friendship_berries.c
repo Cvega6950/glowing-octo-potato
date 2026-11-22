@@ -67,7 +67,7 @@ TEST("Friendship Berries: with no EV to lower one still raises friendship to the
     ZeroPlayerPartyMons();
 }
 
-TEST("Friendship Berries: at maximum friendship one only lowers the EV, and with none to lower it can't be used")
+TEST("Friendship Berries: at maximum friendship one only lowers the EV, and then changes nothing")
 {
     ZeroPlayerPartyMons();
     CreateMon(&gPlayerParty[0], SPECIES_GOLBAT, 20, 0, OTID_STRUCT_PLAYER_ID);
@@ -78,8 +78,12 @@ TEST("Friendship Berries: at maximum friendship one only lowers the EV, and with
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HP_EV), 5);
     EXPECT(!ExecuteTableBasedItemEffect(&gPlayerParty[0], ITEM_POMEG_BERRY, 0, 0));
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HP_EV), 0);
-    EXPECT(ExecuteTableBasedItemEffect(&gPlayerParty[0], ITEM_POMEG_BERRY, 0, 0)); // no effect
+    // Nothing left to change: friendship stays 255 and the EV 0. The item code reports the Berry as
+    // used either way (as before); the party menu compares the two values and says it won't have any
+    // effect, keeping the Berry (ItemUseCB_ReduceEV; tools/emurun/tests/friendship_berries.emu)
+    ExecuteTableBasedItemEffect(&gPlayerParty[0], ITEM_POMEG_BERRY, 0, 0);
     EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_FRIENDSHIP), MAX_FRIENDSHIP);
+    EXPECT_EQ(GetMonData(&gPlayerParty[0], MON_DATA_HP_EV), 0);
     ZeroPlayerPartyMons();
 }
 

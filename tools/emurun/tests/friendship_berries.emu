@@ -64,3 +64,21 @@ shot 04_evolved_party.png
 mash B 300
 wait 60
 expect32 {gMain+4} {CB2_Overworld+1} back_in_the_field
+
+# Another Pomeg Berry on Crobat, at maximum friendship with no HP EVs: it won't have any effect and
+# stays in the Bag (the party menu stays open)
+!give_item("ITEM_POMEG_BERRY")
+!open_bag_at("POCKET_BERRIES", 0)
+press A
+wait 20
+press A
+wait 120
+!party_cursor(0)
+press A
+wait 120
+shot 05_pomeg_no_effect.png
+expect32 {gMain+4} {CB2_UpdatePartyMenu+1} no_effect_stays_in_the_party_menu
+!expect_bag_quantity("berries", "ITEM_POMEG_BERRY", 1, "pomeg_berry_kept")
+mash B 300
+wait 60
+expect32 {gMain+4} {CB2_Overworld+1} back_in_the_field_at_the_end

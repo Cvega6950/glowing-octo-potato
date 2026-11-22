@@ -9,7 +9,8 @@
   by 10, 5 or 2 as in the official games, and a Pokémon needed about 33 of them. Each still lowers its EV by
   10 (HP, Attack, Defense, Sp. Atk, Sp. Def, Speed): pick one whose stat the Pokémon doesn't use.
 - Tests: `friendship_berries` (new play test: one Pomeg Berry and a Rare Candy turn Golbat into Crobat, one
-  Tamato Berry and a Rare Candy Chansey into Blissey); `test/friendship_berries.c` (6 unit tests).
+  Tamato Berry and a Rare Candy Chansey into Blissey, and another Pomeg Berry on Crobat won't have any
+  effect); `test/friendship_berries.c` (6 unit tests).
 
 ## 0.21.0-experimental (2026-11-16)
 
