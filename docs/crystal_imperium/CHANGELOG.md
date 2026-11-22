@@ -1,5 +1,16 @@
 # Crystal Imperium changelog
 
+## 0.21.1-experimental (2026-11-22)
+
+### One friendship Berry is enough (DECISIONS.md D67)
+- "pomeg berry isn't giving max friendship to help evolve": one Pomeg, Kelpsy, Qualot, Hondew, Grepa or
+  Tamato Berry (Goldenrod Dept. Store 2F, ¥20) now raises a Pokémon's friendship to the maximum, so a
+  Pokémon that evolves by friendship evolves at its next level-up (a Rare Candy works). Before, one raised it
+  by 10, 5 or 2 as in the official games, and a Pokémon needed about 33 of them. Each still lowers its EV by
+  10 (HP, Attack, Defense, Sp. Atk, Sp. Def, Speed): pick one whose stat the Pokémon doesn't use.
+- Tests: `friendship_berries` (new play test: one Pomeg Berry and a Rare Candy turn Golbat into Crobat, one
+  Tamato Berry and a Rare Candy Chansey into Blissey); `test/friendship_berries.c` (6 unit tests).
+
 ## 0.21.0-experimental (2026-11-16)
 
 ### The side battles by region (DECISIONS.md D64)

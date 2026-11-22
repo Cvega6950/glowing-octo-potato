@@ -1,0 +1,66 @@
+# Crystal Imperium play test: the friendship Berries (DECISIONS.md D67). One Pomeg Berry from the Bag
+# raises a Golbat's friendship to the maximum (it has no HP EVs to lower) and the next Rare Candy evolves
+# it into Crobat; one Tamato Berry does the same for Chansey (Blissey), whose Speed EV goes through the
+# other half of the item code (ITEM5). Before 0.21.1 a Berry raised friendship by 10, 5 or 2, and one
+# let neither evolve (a Golbat needs 220). Debug-given Pokemon aren't in the Pokedex, so an evolved
+# one's caught flag shows what it became. A Rare Candy above the level cap (15 here) still evolves (D33).
+!new_game()
+!no_care_packages()
+!give_mon(42, 20)
+!give_mon(113, 20)
+!expect_dex_caught("SPECIES_CROBAT", 0, "no_crobat_yet")
+!expect_dex_caught("SPECIES_BLISSEY", 0, "no_blissey_yet")
+
+# One Pomeg Berry on Golbat (Bag > Berries > USE)
+!give_item("ITEM_POMEG_BERRY")
+!open_bag_at("POCKET_BERRIES", 0)
+press A
+wait 20
+press A
+wait 120
+!party_cursor(0)
+press A
+wait 120
+shot 01_pomeg_berry_used.png
+!expect_bag_lacks("berries", "ITEM_POMEG_BERRY", "pomeg_berry_used_up")
+mash B 200
+wait 60
+
+# One Tamato Berry on Chansey
+!give_item("ITEM_TAMATO_BERRY")
+!open_bag_at("POCKET_BERRIES", 0)
+press A
+wait 20
+press A
+wait 120
+!party_cursor(1)
+press A
+wait 120
+shot 02_tamato_berry_used.png
+!expect_bag_lacks("berries", "ITEM_TAMATO_BERRY", "tamato_berry_used_up")
+mash B 200
+wait 60
+
+# Rare Candies (the Rare Candy Box): Golbat becomes Crobat, Chansey Blissey
+!use_key_item(0)
+!open_bag_at("POCKET_MEDICINE", 0)
+press A
+wait 20
+press A
+wait 120
+!party_cursor(0)
+press A
+waituntil32 {gMain+4} {CB2_EvolutionSceneUpdate+1} 600 - golbat_evolves
+wait 120
+shot 03_golbat_evolving.png
+waituntil32 {gMain+4} {CB2_UpdatePartyMenu+1} 4000 A back_in_the_party_menu
+!expect_dex_caught("SPECIES_CROBAT", 1, "golbat_became_crobat")
+!party_cursor(1)
+press A
+waituntil32 {gMain+4} {CB2_EvolutionSceneUpdate+1} 600 - chansey_evolves
+waituntil32 {gMain+4} {CB2_UpdatePartyMenu+1} 4000 A back_in_the_party_menu_again
+!expect_dex_caught("SPECIES_BLISSEY", 1, "chansey_became_blissey")
+shot 04_evolved_party.png
+mash B 300
+wait 60
+expect32 {gMain+4} {CB2_Overworld+1} back_in_the_field

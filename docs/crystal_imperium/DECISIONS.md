@@ -2855,3 +2855,28 @@ follows is the first build's; D45 lists what changed.)
   and WITHDRAW give the message and no storage screen opens; a Rare Candy from the Bag on a Pokémon at
   the cap gives the message, and the party menu stays: no evolution, nothing changed); `l_menu` (with
   one Pokémon in the party, where WITHDRAW would open the boxes, it gives the message under the flag).
+
+## D67. One friendship Berry is enough
+
+- The user: "pomeg berry isn't giving max friendship to help evolve". The six Berries the Goldenrod Dept.
+  Store 2F sells for friendship (D45: Pomeg, Kelpsy, Qualot, Hondew, Grepa and Tamato, ¥20) worked as in the
+  official games: friendship +10 below 100, +5 below 200 and +2 from there (more with a Soothe Bell), each
+  lowering an EV by 10. A Pokémon at the usual 70 needed about 33 of them to reach the 220 a friendship
+  evolution asks for (`P_FRIENDSHIP_EVO_THRESHOLD` is Gen 3's).
+- **Now:** one of the six raises friendship to the maximum, 255 (`IsMaxFriendshipBerry`, used where
+  `PokemonUseItemEffects` changes friendship, `src/pokemon.c`), so a Pokémon that evolves by friendship
+  evolves at its next level-up (a Rare Candy, at the cap too, D33), at the time of day its evolution names.
+  The rest is as before: the Berry still lowers its EV by 10; with none to lower it still raises
+  friendship; at maximum friendship it only lowers the EV, and with that EV at 0 too it won't have any
+  effect; where the game changes no friendship (the Battle Pike and Pyramid) it changes none. Other items
+  that change friendship (vitamins, the bitter herbal medicines) keep their small steps.
+- All six, not only the Pomeg Berry: the shop and the guides sell and describe them together as the
+  friendship Berries, and since each lowers a different EV a player can pick one whose stat the Pokémon
+  doesn't use. Their Bag descriptions ("Makes a Pokémon friendly but lowers base HP.") still hold.
+- Saves: nothing new is saved.
+- Evidence: `test/friendship_berries.c` (6 unit tests: the six and nothing else follow the rule; one from 70
+  friendship gives 255 and lowers its EV from 100 to 90; with 0 friendship and no EV it still gives 255; at
+  255 a Pomeg lowers HP EVs from 15 to 5 and 0, then can't be used; a Golbat at 70 has no evolution, after
+  one Pomeg Berry its level-up evolution is Crobat; HP Up still raises friendship by a few points);
+  `friendship_berries` (play test: one Pomeg Berry from the Bag and a Rare Candy turn Golbat into Crobat,
+  one Tamato Berry and a Rare Candy Chansey into Blissey).

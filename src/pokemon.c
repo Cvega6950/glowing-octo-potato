@@ -6061,13 +6061,34 @@ bool8 ExecuteTableBasedItemEffect(struct Pokemon *mon, enum Item item, u8 partyI
     return PokemonUseItemEffects(mon, item, partyIndex, moveIndex, FALSE);
 }
 
+// Crystal Imperium (DECISIONS.md D67): the six friendship Berries the Goldenrod Dept. Store sells (each
+// also lowers an EV) raise friendship to the maximum in one use instead of by 10, 5 or 2
+bool32 IsMaxFriendshipBerry(enum Item item)
+{
+    switch (item)
+    {
+    case ITEM_POMEG_BERRY:
+    case ITEM_KELPSY_BERRY:
+    case ITEM_QUALOT_BERRY:
+    case ITEM_HONDEW_BERRY:
+    case ITEM_GREPA_BERRY:
+    case ITEM_TAMATO_BERRY:
+        return TRUE;
+    default:
+        return FALSE;
+    }
+}
+
 #define UPDATE_FRIENDSHIP_FROM_ITEM()                                                                   \
 {                                                                                                       \
     if ((retVal == 0 || friendshipOnly) && !ShouldSkipFriendshipChange() && friendshipChange == 0)      \
     {                                                                                                   \
         friendshipChange = itemEffect[itemEffectParam];                                                 \
         friendship = GetMonData(mon, MON_DATA_FRIENDSHIP);                                        \
-        friendship += CalculateFriendshipBonuses(mon,friendshipChange,holdEffect);                      \
+        if (IsMaxFriendshipBerry(item))                                                                 \
+            friendship = MAX_FRIENDSHIP;                                                                \
+        else                                                                                            \
+            friendship += CalculateFriendshipBonuses(mon,friendshipChange,holdEffect);                  \
         if (friendship < 0)                                                                             \
             friendship = 0;                                                                             \
         if (friendship > MAX_FRIENDSHIP)                                                                \

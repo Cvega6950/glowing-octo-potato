@@ -105,7 +105,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 | Legendary and Mythical Pokémon | Done | On the DexNav list from the start (`dexnav_any`); after becoming Champion, a quarter of the areas' Wild Variety sets end with one (one set a day until 0.14.1, D42). HnS's own legendary events are unchanged. D24. |
 | Cheat menu (any Pokémon or item) | Existing | HnS's debug menu, compiled in: hold R and press START in the overworld (the play tests use it). |
 | Families with no source in the base game | Done | 258 non-legendary families placed in DexNav hidden slots on 249 map tables, a map's tables for every time of day sharing one set of three (`gen_hidden_encounters.py`, D42). val: 449 of 571 families have a wild, hidden or scripted source; the remaining 122 are all legendary/mythical (see above). |
-| Evolution items | Done | Emerald Imperium's fifteen at the Goldenrod Dept. Store 2F for ¥500 each, and in the care packages; the ones no evolution uses are out of the packages, the Mahogany shop and the side-battle rewards. emu: `imperium_evolutions` (the 2F list and prices), `care_packages`. D16, D44. |
+| Evolution items | Done | Emerald Imperium's fifteen at the Goldenrod Dept. Store 2F for ¥500 each, and in the care packages; the ones no evolution uses are out of the packages, the Mahogany shop and the side-battle rewards. The same clerk's six friendship Berries (¥20): since 0.21.1 one raises friendship to the maximum, so a friendship evolution happens at the next level-up (each still lowers an EV by 10). emu: `imperium_evolutions` (the 2F list and prices), `care_packages`, `friendship_berries`; unit: `test/friendship_berries.c`. D16, D44, D67. |
 | Encounter availability database | Done | `docs/crystal_imperium/data/encounters.json` (val). |
 | Randomizer with all Gen 1–9 species | Existing | HnS option. Not needed for the normal game. |
 
@@ -163,7 +163,7 @@ assertions; run on mGBA and on VBA-M, Delta's emulator core); *build* = compiles
 
 | Feature | Status | Evidence / notes |
 |---|---|---|
-| Valid GBA ROM (header fixed by gbafix, 32 MB) | Done | build. ROM 98.18% of 32 MB (609,636 bytes free in 0.21.0, 616,308 in 0.20.0; 626,356 in 0.16.0, which left out Legends: Z-A's unused Mega cries, D58), EWRAM 99.19%, SaveBlock1 15,760 / 15,872 bytes, SaveBlock3 1,548 / 1,624 bytes. |
+| Valid GBA ROM (header fixed by gbafix, 32 MB) | Done | build. ROM 98.18% of 32 MB (609,524 bytes free in 0.21.1, 609,636 in 0.21.0, 616,308 in 0.20.0; 626,356 in 0.16.0, which left out Legends: Z-A's unused Mega cries, D58), EWRAM 99.19%, SaveBlock1 15,760 / 15,872 bytes, SaveBlock3 1,548 / 1,624 bytes. |
 | mGBA (libmgba 0.10.2) | Done | emu: full suite. |
 | Delta (iOS) emulator core: VBA-M at GBADeltaCore's pinned commit `453fa0de` | Done | emu: full suite on `run_all.sh vbam` (see TESTING.md for the run). ROM keeps game code `BPEE` → Delta's `vba-over.ini` gives RTC on and 128 KB Flash, matching the game. |
 | Delta app on an iPhone | **Unverified** | No iOS device here. The app layer (touch controls, save files, suspend/resume) needs the device checklist in TESTING.md. |

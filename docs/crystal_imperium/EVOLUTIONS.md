@@ -13,8 +13,9 @@ evolutions of Emerald Imperium's official dex (DECISIONS.md D44, D45). Edit the 
 - **Trade evolutions** still work by trading. A Linking Cord does the same for a plain trade; a Pokémon that
   trades holding an item takes an item used from the Bag instead, its own or Imperium's (Seadra a Prism Scale):
   the table says which.
-- **Friendship:** the same clerk sells the Pomeg, Kelpsy, Qualot, Hondew, Grepa and Tamato Berries (¥20), which
-  raise it (and lower an EV each). Walking, battling and a Soothe Bell raise it too.
+- **Friendship:** the same clerk sells the Pomeg, Kelpsy, Qualot, Hondew, Grepa and Tamato Berries (¥20). One
+  raises it to the maximum (and lowers an EV by 10), so the Pokémon evolves at its next level-up, at the time
+  the table names. Walking, battling and a Soothe Bell raise it too.
 - **Time of day:** night is 19:00-5:59, "by day" 6:00-18:59, the evening 18:00-18:59. The L button menu's
   TIME sets the morning, day, evening or night.
 - **"Level up knowing a move":** teach the move with the party menu's LEARN MOVES, then level up once. A Rare
