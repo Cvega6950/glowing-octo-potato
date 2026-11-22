@@ -30,8 +30,8 @@ cartridge clock starts at a fixed time (2026-10-24 01:30 UTC, night in the game)
 with emulated time on both emulators. Battle results depend on the RNG, which depends on the
 code and on the emulator, so balance checks sample several battles and accept a range.
 
-Results on the 0.21.0 ROM (SHA-1 `9d99fd84527a8023176f452588eafca850f9a76a`), 2026-11-16:
-All 86 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
+Results on the 0.21.1 ROM (SHA-1 `e479598ab78ee7c613524d76705ab792bf479c6a`), 2026-11-22:
+All 87 play tests pass on both emulators. Numbers in brackets are sampled counts (hits/runs)
 that each test requires to be inside its accepted range.
 
 | Test | Covers | mGBA | VBA-M (Delta's core) |
